@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Register EU — Enterprise AI Systems Compliance Database</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', 'Segoe UI', Tahoma, sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #003399; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #0055cc; text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4 { font-family: 'Merriweather', Georgia, serif; font-weight: 700; line-height: 1.3; }
+
+    /* ===== UTILITY BAR ===== */
+    .utility-bar {
+      background: #0d1b3e;
+      color: #c5cfe0;
+      font-size: 0.8rem;
+      padding: 6px 0;
+      border-bottom: 2px solid #ffc107;
+    }
+    .utility-bar .container { display: flex; justify-content: space-between; align-items: center; }
+    .utility-bar a { color: #c5cfe0; font-size: 0.8rem; }
+    .utility-bar a:hover { color: #ffffff; text-decoration: underline; }
+    .utility-links { display: flex; gap: 18px; }
+    .lang-selector {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); padding: 3px 10px; border-radius: 3px;
+      font-size: 0.78rem; cursor: pointer;
+    }
+    .lang-selector:hover { background: rgba(255,255,255,0.14); }
+
+    /* ===== CONTAINER ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      background: #ffffff; border-bottom: 1px solid #dce3ed;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo-mark {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, #003399, #0055cc);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 0.72rem;
+      font-family: 'Merriweather', serif; letter-spacing: -0.3px;
+      position: relative; line-height: 1.1; text-align: center;
+    }
+    .logo-mark::after {
+      content: ''; position: absolute; bottom: -2px; left: 8px; right: 8px;
+      height: 3px; background: #ffc107; border-radius: 2px;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-family: 'Merriweather', serif; font-size: 1.2rem; font-weight: 700; color: #0d1b3e; letter-spacing: -0.3px; }
+    .logo-tagline { font-size: 0.72rem; color: #5a6a85; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 500; }
+    .main-nav { display: flex; align-items: center; gap: 4px; }
+    .main-nav a { padding: 8px 16px; font-size: 0.92rem; font-weight: 500; color: #2a3a5c; border-radius: 4px; transition: all 0.2s; }
+    .main-nav a:hover { background: #f0f4fa; color: #003399; text-decoration: none; }
+    .main-nav a.active { color: #003399; background: #e8eef8; }
+    .header-search {
+      display: flex; align-items: center; border: 1px solid #d0d8e8;
+      border-radius: 4px; padding: 6px 10px; gap: 6px; background: #f8f9fc;
+    }
+    .header-search input { border: none; background: transparent; font-size: 0.88rem; outline: none; width: 160px; font-family: inherit; color: #2a3a5c; }
+    .header-search input::placeholder { color: #8896af; }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb-bar { background: #f5f7fb; border-bottom: 1px solid #e2e8f2; padding: 10px 0; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #6b7b99; }
+    .breadcrumb a { color: #4a6fa5; }
+    .breadcrumb .sep { color: #b0bdd0; }
+    .breadcrumb .current { color: #2a3a5c; font-weight: 500; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #0d1b3e 0%, #1a2f5a 50%, #003399 100%);
+      color: #ffffff; padding: 56px 0 52px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23grid)'/%3E%3C/svg%3E");
+    }
+    .hero::after {
+      content: ''; position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+      width: 340px; height: 340px; border: 2px solid rgba(255,255,255,0.06); border-radius: 50%;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-content { max-width: 680px; }
+    .hero-label {
+      display: inline-block; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 600; color: #ffc107; margin-bottom: 16px;
+      padding: 4px 12px; border: 1px solid rgba(255,193,7,0.3); border-radius: 3px;
+    }
+    .hero h1 { font-size: 2.2rem; line-height: 1.25; margin-bottom: 18px; }
+    .hero p { font-size: 1.06rem; line-height: 1.7; color: #b8c8e8; margin-bottom: 28px; max-width: 580px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; font-size: 0.92rem; font-weight: 600;
+      border-radius: 4px; border: none; cursor: pointer; transition: all 0.2s;
+      font-family: inherit; text-decoration: none;
+    }
+    .btn-primary { background: #ffc107; color: #0d1b3e; }
+    .btn-primary:hover { background: #ffcd38; color: #0d1b3e; text-decoration: none; }
+    .btn-outline { background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.35); }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); color: #ffffff; text-decoration: none; }
+
+    /* ===== HERO SEARCH ===== */
+    .hero-search {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; padding: 20px 24px; margin-top: 32px; max-width: 620px;
+    }
+    .hero-search-label { font-size: 0.78rem; color: #8aa8d4; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 500; }
+    .hero-search-bar {
+      display: flex; gap: 10px;
+    }
+    .hero-search-bar input {
+      flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px; background: rgba(255,255,255,0.06); color: #ffffff;
+      font-size: 0.95rem; font-family: inherit; outline: none;
+    }
+    .hero-search-bar input::placeholder { color: #6a8abf; }
+    .hero-search-bar input:focus { border-color: #ffc107; background: rgba(255,255,255,0.1); }
+    .hero-search-bar button {
+      padding: 12px 22px; background: #ffc107; color: #0d1b3e; border: none;
+      border-radius: 4px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      font-family: inherit; white-space: nowrap;
+    }
+    .hero-search-bar button:hover { background: #ffcd38; }
+    .hero-search-tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-search-tags span { font-size: 0.76rem; color: #7a9cc8; }
+    .hero-search-tags a {
+      font-size: 0.76rem; color: #a0c0e8; background: rgba(255,255,255,0.06);
+      padding: 2px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-search-tags a:hover { background: rgba(255,255,255,0.12); color: #fff; text-decoration: none; }
+
+    /* ===== NOTICE BAR ===== */
+    .notice-bar {
+      background: #fffbeb; border: 1px solid #f5e6a3; border-left: 4px solid #d4a017;
+      padding: 14px 20px; margin: -20px auto 0; max-width: 1200px;
+      border-radius: 0 4px 4px 0; display: flex; align-items: flex-start;
+      gap: 12px; position: relative; z-index: 2;
+    }
+    .notice-icon { color: #b8860b; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .notice-bar p { font-size: 0.88rem; color: #6b5900; }
+    .notice-bar a { color: #8b6914; font-weight: 600; }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 56px 0; }
+    .section-alt { background: #f5f7fb; }
+    .section-header { margin-bottom: 36px; }
+    .section-header h2 { font-size: 1.6rem; color: #0d1b3e; margin-bottom: 8px; }
+    .section-header p { font-size: 0.95rem; color: #5a6a85; max-width: 640px; }
+    .section-divider { width: 48px; height: 3px; background: #003399; margin-top: 12px; border-radius: 2px; }
+
+    /* ===== FEATURED AI SYSTEMS ===== */
+    .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ai-card {
+      background: #ffffff; border: 1px solid #dce3ed; border-radius: 6px;
+      padding: 24px; transition: all 0.25s; position: relative;
+    }
+    .ai-card:hover { border-color: #003399; box-shadow: 0 4px 16px rgba(0,51,153,0.08); transform: translateY(-2px); }
+    .ai-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+    .ai-card-vendor { font-size: 0.75rem; color: #7a8ba8; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; margin-bottom: 4px; }
+    .ai-card h3 {
+      font-family: 'Source Sans 3', sans-serif; font-size: 1.05rem; font-weight: 600; color: #0d1b3e; margin-bottom: 2px;
+    }
+    .ai-card-type { font-size: 0.78rem; color: #5a6a85; font-style: italic; }
+    .risk-badge {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.6px;
+      font-weight: 700; padding: 4px 10px; border-radius: 3px; white-space: nowrap; flex-shrink: 0;
+    }
+    .risk-high { background: #fde8e8; color: #b91c1c; border: 1px solid #f5c6c6; }
+    .risk-limited { background: #fff5e0; color: #92600a; border: 1px solid #f5e2a8; }
+    .risk-minimal { background: #e6f5e9; color: #15803d; border: 1px solid #b8e6c4; }
+    .risk-unacceptable { background: #f3e8ff; color: #6b21a8; border: 1px solid #ddd0f2; }
+    .ai-card p { font-size: 0.86rem; color: #5a6a85; line-height: 1.5; margin-bottom: 14px; }
+    .ai-card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .ai-card-tags span {
+      font-size: 0.72rem; background: #f0f4fa; color: #3a5a8a; padding: 2px 8px;
+      border-radius: 3px; border: 1px solid #dce3ed;
+    }
+    .compliance-scores { display: flex; gap: 12px; padding-top: 12px; border-top: 1px solid #eef2f8; }
+    .compliance-score { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .compliance-score .score-label { font-size: 0.65rem; color: #8896af; text-transform: uppercase; letter-spacing: 0.5px; }
+    .compliance-score .score-value {
+      font-size: 0.85rem; font-weight: 700; width: 36px; height: 36px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .score-green { background: #e6f5e9; color: #15803d; }
+    .score-amber { background: #fff5e0; color: #92600a; }
+    .score-red { background: #fde8e8; color: #b91c1c; }
+    .score-blue { background: #e8eef8; color: #003399; }
+    .ai-card-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.84rem; font-weight: 600; color: #003399; margin-top: 4px;
+    }
+    .ai-card-link:hover { gap: 8px; }
+
+    /* ===== BROWSE BY CATEGORY ===== */
+    .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .category-card {
+      background: #ffffff; border: 1px solid #dce3ed; border-radius: 6px;
+      padding: 22px 20px; text-align: center; transition: all 0.2s; cursor: pointer;
+    }
+    .category-card:hover { border-color: #003399; box-shadow: 0 2px 12px rgba(0,51,153,0.06); transform: translateY(-1px); text-decoration: none; }
+    .category-icon {
+      width: 48px; height: 48px; border-radius: 10px; margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .category-icon.blue { background: #e8eef8; color: #003399; }
+    .category-icon.teal { background: #e6f5f3; color: #007a6d; }
+    .category-icon.amber { background: #fff5e0; color: #b8860b; }
+    .category-icon.indigo { background: #eee8f8; color: #4a2d8e; }
+    .category-icon.slate { background: #edf0f5; color: #3a4a6a; }
+    .category-icon.green { background: #e8f5e9; color: #2e7d32; }
+    .category-icon.rose { background: #fde8ef; color: #9f1239; }
+    .category-icon.cyan { background: #e0f7fa; color: #00838f; }
+    .category-card h3 {
+      font-family: 'Source Sans 3', sans-serif; font-size: 0.92rem; font-weight: 600; color: #0d1b3e; margin-bottom: 4px;
+    }
+    .category-card .count { font-size: 0.78rem; color: #7a8ba8; }
+
+    /* ===== STATS BANNER ===== */
+    .stats-banner { background: linear-gradient(135deg, #0d1b3e, #1a2f5a); padding: 44px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-item { color: #ffffff; }
+    .stat-number { font-family: 'Merriweather', serif; font-size: 2.2rem; font-weight: 700; color: #ffc107; margin-bottom: 4px; }
+    .stat-label { font-size: 0.85rem; color: #a0b4d0; line-height: 1.4; }
+
+    /* ===== REGULATION FRAMEWORKS ===== */
+    .frameworks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .framework-card {
+      background: #ffffff; border: 1px solid #dce3ed; border-radius: 6px;
+      padding: 28px 24px; transition: border-color 0.2s;
+    }
+    .framework-card:hover { border-color: #a0b8d8; }
+    .framework-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .framework-badge {
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      padding: 6px 10px; border-radius: 4px; line-height: 1;
+    }
+    .fw-eu { background: #003399; color: #ffffff; }
+    .fw-sector { background: #007a6d; color: #ffffff; }
+    .fw-national { background: #6b21a8; color: #ffffff; }
+    .framework-card h3 { font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 600; color: #0d1b3e; margin-bottom: 8px; }
+    .framework-card p { font-size: 0.86rem; color: #5a6a85; line-height: 1.5; margin-bottom: 12px; }
+    .framework-meta { display: flex; gap: 16px; font-size: 0.78rem; color: #7a8ba8; }
+    .framework-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ===== LATEST UPDATES (main + sidebar) ===== */
+    .updates-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+    .update-item { padding: 20px 0; border-bottom: 1px solid #e2e8f2; }
+    .update-item:first-child { padding-top: 0; }
+    .update-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .update-date { font-size: 0.8rem; color: #7a8ba8; font-weight: 500; }
+    .update-tag {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      font-weight: 600; padding: 2px 8px; border-radius: 3px;
+    }
+    .tag-new-entry { background: #e6f5e9; color: #15803d; }
+    .tag-updated { background: #e8eef8; color: #003399; }
+    .tag-regulation { background: #fff5e0; color: #92600a; }
+    .tag-removed { background: #fde8e8; color: #b91c1c; }
+    .update-item h3 { font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 600; color: #1a2a4a; margin-bottom: 6px; }
+    .update-item h3 a { color: inherit; }
+    .update-item h3 a:hover { color: #003399; }
+    .update-item p { font-size: 0.86rem; color: #5a6a85; line-height: 1.5; }
+
+    /* Sidebar */
+    .sidebar-section {
+      background: #f5f7fb; border: 1px solid #e2e8f2; border-radius: 6px;
+      padding: 22px; margin-bottom: 20px;
+    }
+    .sidebar-section h3 {
+      font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; font-weight: 600;
+      color: #0d1b3e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #003399;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 8px; padding: 8px 0;
+      font-size: 0.86rem; color: #2a3a5c; border-bottom: 1px solid #eaeff5;
+    }
+    .sidebar-link:last-child { border-bottom: none; }
+    .sidebar-link:hover { color: #003399; text-decoration: none; }
+    .sidebar-link .arrow { color: #a0b0c8; font-size: 0.75rem; }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .how-step { text-align: center; position: relative; }
+    .how-step::after {
+      content: ''; position: absolute; top: 28px; right: -12px;
+      width: 24px; height: 2px; background: #dce3ed;
+    }
+    .how-step:last-child::after { display: none; }
+    .how-number {
+      width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Merriweather', serif; font-size: 1.3rem; font-weight: 700;
+      background: #e8eef8; color: #003399; border: 2px solid #d0dae8;
+    }
+    .how-step h3 { font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; font-weight: 600; color: #0d1b3e; margin-bottom: 6px; }
+    .how-step p { font-size: 0.84rem; color: #5a6a85; line-height: 1.5; }
+
+    /* ===== INDUSTRY FILTERS ===== */
+    .industry-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .industry-pill {
+      font-size: 0.84rem; padding: 7px 18px; border-radius: 20px;
+      border: 1px solid #dce3ed; color: #3a5a8a; background: #ffffff;
+      cursor: pointer; transition: all 0.2s; font-weight: 500;
+    }
+    .industry-pill:hover, .industry-pill.active {
+      background: #003399; color: #ffffff; border-color: #003399;
+    }
+
+    /* ===== TRUST BAND ===== */
+    .trust-band {
+      background: #f5f7fb; border-top: 1px solid #e2e8f2;
+      border-bottom: 1px solid #e2e8f2; padding: 32px 0;
+    }
+    .trust-inner { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .trust-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: #8896af; font-weight: 600; }
+    .trust-logos { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .trust-logo {
+      font-size: 0.82rem; font-weight: 600; color: #8896af;
+      padding: 8px 16px; border: 1px solid #dce3ed; border-radius: 4px;
+      background: #ffffff; white-space: nowrap;
+    }
+
+    /* ===== CTA ===== */
+    .cta-strip { background: #003399; padding: 40px 0; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-text h2 { font-size: 1.3rem; color: #ffffff; margin-bottom: 4px; }
+    .cta-text p { font-size: 0.9rem; color: #a0bce0; }
+    .cta-form { display: flex; gap: 10px; }
+    .cta-form input {
+      padding: 11px 16px; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px; background: rgba(255,255,255,0.08);
+      color: #ffffff; font-size: 0.9rem; font-family: inherit; width: 280px; outline: none;
+    }
+    .cta-form input::placeholder { color: #7a9cc8; }
+    .cta-form input:focus { border-color: #ffc107; background: rgba(255,255,255,0.12); }
+    .cta-form button {
+      padding: 11px 24px; background: #ffc107; color: #0d1b3e; border: none;
+      border-radius: 4px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      font-family: inherit; white-space: nowrap;
+    }
+    .cta-form button:hover { background: #ffcd38; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: #0a1628; color: #8896af; padding: 48px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 36px; }
+    .footer-brand .logo-name { color: #ffffff; font-size: 1.1rem; }
+    .footer-brand .logo-tagline { color: #5a6a85; }
+    .footer-brand p { font-size: 0.84rem; line-height: 1.6; margin-top: 12px; color: #6b7b99; }
+    .footer-col h4 {
+      font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 1.2px; color: #5a6a85;
+      margin-bottom: 16px; font-weight: 600;
+    }
+    .footer-col a { display: block; font-size: 0.88rem; color: #8896af; padding: 4px 0; }
+    .footer-col a:hover { color: #ffffff; }
+    .footer-bottom {
+      border-top: 1px solid #1a2a44; padding: 18px 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: #5a6a85; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 0.78rem; color: #5a6a85; }
+    .footer-bottom-links a:hover { color: #8896af; }
+    .disclaimer { background: #070e1c; padding: 14px 0; border-top: 1px solid #111d34; }
+    .disclaimer p { font-size: 0.72rem; color: #3e506e; text-align: center; line-height: 1.5; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .ai-grid { grid-template-columns: repeat(2, 1fr); }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .frameworks-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .updates-layout { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-step::after { display: none; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 640px) {
+      .ai-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero { padding: 40px 0; }
+      .main-nav { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .utility-links { display: none; }
+      .cta-form { flex-direction: column; }
+      .cta-form input { width: 100%; }
+      .hero-search-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="utility-bar">
+    <div class="container">
+      <div class="utility-links">
+        <a href="#">About</a>
+        <a href="#">Methodology</a>
+        <a href="#">API Access</a>
+        <a href="#">Submit an AI System</a>
+      </div>
+      <div class="lang-selector">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        EN
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-mark">AI<br>REG</div>
+          <div class="logo-text">
+            <span class="logo-name">AI Register EU</span>
+            <span class="logo-tagline">Enterprise AI Compliance Database</span>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <a href="#" class="active">Home</a>
+          <a href="#">AI Database</a>
+          <a href="#">Regulations</a>
+          <a href="#">Industries</a>
+          <a href="#">Ratings</a>
+          <a href="#">Resources</a>
+        </nav>
+        <div class="header-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" placeholder="Search AI systems...">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="#">Home</a>
+        <span class="sep">&#8250;</span>
+        <span class="current">Enterprise AI Systems — Compliance Database</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-label">Independent &amp; Vendor-Neutral</span>
+        <h1>The European Reference Database for Enterprise AI Compliance</h1>
+        <p>Search, compare, and evaluate enterprise AI systems against EU regulations and industry-specific policies. Transparent compliance ratings grounded in the AI Act, GDPR, DORA, and sector frameworks.</p>
+      </div>
+      <div class="hero-search">
+        <div class="hero-search-label">Find an AI System</div>
+        <div class="hero-search-bar">
+          <input type="text" placeholder="Search by name, vendor, or use case — e.g. &quot;credit scoring&quot;, &quot;SAP&quot;, &quot;chatbot&quot;...">
+          <button type="button">Search Database</button>
+        </div>
+        <div class="hero-search-tags">
+          <span>Popular:</span>
+          <a href="#">GPT-4 Enterprise</a>
+          <a href="#">ServiceNow AI</a>
+          <a href="#">Salesforce Einstein</a>
+          <a href="#">Palantir AIP</a>
+          <a href="#">Bloomberg GPT</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notice Bar -->
+  <div class="container">
+    <div class="notice-bar">
+      <span class="notice-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      </span>
+      <p><strong>Database Update — March 2026:</strong> 47 new AI systems added this month. EU AI Act high-risk classifications updated following the latest EC implementing guidance. <a href="#">View changelog</a></p>
+    </div>
+  </div>
+
+  <!-- Browse by Industry -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Browse by Industry</h2>
+        <p>Explore AI systems and compliance requirements specific to your sector.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="categories-grid">
+        <a href="#" class="category-card">
+          <div class="category-icon blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <h3>Financial Services</h3>
+          <span class="count">312 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Healthcare &amp; Life Sciences</h3>
+          <span class="count">198 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Insurance</h3>
+          <span class="count">145 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Public Sector</h3>
+          <span class="count">127 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon indigo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Manufacturing</h3>
+          <span class="count">94 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon slate">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Telecommunications</h3>
+          <span class="count">83 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <h3>Energy &amp; Utilities</h3>
+          <span class="count">71 AI systems</span>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon cyan">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Human Resources</h3>
+          <span class="count">108 AI systems</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1,284</div>
+          <div class="stat-label">Enterprise AI systems catalogued and rated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">12</div>
+          <div class="stat-label">EU and sector-specific regulatory frameworks covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">27</div>
+          <div class="stat-label">EU member states with jurisdiction mapping</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">47</div>
+          <div class="stat-label">New AI systems added this month</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured AI Systems -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Recently Assessed AI Systems</h2>
+        <p>Latest additions and updates to the compliance database, with risk classification and sector ratings.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="industry-pills">
+        <span class="industry-pill active">All Sectors</span>
+        <span class="industry-pill">Financial Services</span>
+        <span class="industry-pill">Healthcare</span>
+        <span class="industry-pill">Insurance</span>
+        <span class="industry-pill">Public Sector</span>
+        <span class="industry-pill">HR &amp; Recruitment</span>
+      </div>
+      <div class="ai-grid">
+        <!-- Card 1 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">Microsoft</div>
+              <h3>Azure OpenAI Service</h3>
+              <div class="ai-card-type">General-Purpose LLM Platform</div>
+            </div>
+            <span class="risk-badge risk-high">High Risk</span>
+          </div>
+          <p>Enterprise deployment of GPT-4 and associated models via Azure cloud infrastructure. Used for document processing, code generation, and customer interaction automation.</p>
+          <div class="ai-card-tags">
+            <span>Financial Services</span>
+            <span>Healthcare</span>
+            <span>Public Sector</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-amber">B+</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-green">A</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-amber">B</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-blue">B+</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+        <!-- Card 2 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">Salesforce</div>
+              <h3>Einstein GPT</h3>
+              <div class="ai-card-type">CRM-Integrated AI / Generative</div>
+            </div>
+            <span class="risk-badge risk-limited">Limited Risk</span>
+          </div>
+          <p>AI layer embedded within Salesforce CRM for lead scoring, opportunity insights, service case summarisation, and predictive analytics across sales and marketing workflows.</p>
+          <div class="ai-card-tags">
+            <span>Financial Services</span>
+            <span>Insurance</span>
+            <span>Telecoms</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-green">A-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-green">A</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-amber">B+</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-green">A-</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+        <!-- Card 3 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">Palantir</div>
+              <h3>AIP (Artificial Intelligence Platform)</h3>
+              <div class="ai-card-type">Decision Intelligence / Operational AI</div>
+            </div>
+            <span class="risk-badge risk-high">High Risk</span>
+          </div>
+          <p>Ontology-driven AI platform combining LLM capabilities with structured data analysis for defence, intelligence, and enterprise decision-making at scale.</p>
+          <div class="ai-card-tags">
+            <span>Public Sector</span>
+            <span>Defence</span>
+            <span>Energy</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-red">C+</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-amber">B</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-amber">B-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-red">C</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+        <!-- Card 4 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">Workday</div>
+              <h3>Workday AI</h3>
+              <div class="ai-card-type">HR Analytics / Workforce AI</div>
+            </div>
+            <span class="risk-badge risk-high">High Risk</span>
+          </div>
+          <p>AI-powered features within Workday HCM for candidate screening, compensation benchmarking, attrition prediction, and workforce planning. Subject to AI Act Annex III obligations.</p>
+          <div class="ai-card-tags">
+            <span>HR &amp; Recruitment</span>
+            <span>All Sectors</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-amber">B</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-green">A-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-blue">N/A</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-amber">B+</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+        <!-- Card 5 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">FICO</div>
+              <h3>FICO Platform (Falcon &amp; Originations)</h3>
+              <div class="ai-card-type">Credit Scoring / Fraud Detection</div>
+            </div>
+            <span class="risk-badge risk-high">High Risk</span>
+          </div>
+          <p>Credit decisioning and fraud detection models deployed by banks and insurers across Europe. Directly subject to AI Act high-risk obligations for creditworthiness assessment.</p>
+          <div class="ai-card-tags">
+            <span>Financial Services</span>
+            <span>Insurance</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-amber">B-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-amber">B+</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-green">A-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-amber">B</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+        <!-- Card 6 -->
+        <div class="ai-card">
+          <div class="ai-card-header">
+            <div>
+              <div class="ai-card-vendor">ServiceNow</div>
+              <h3>Now Assist</h3>
+              <div class="ai-card-type">IT Service Management AI / Generative</div>
+            </div>
+            <span class="risk-badge risk-minimal">Minimal Risk</span>
+          </div>
+          <p>Generative AI capabilities embedded in ServiceNow workflows for incident summarisation, knowledge article generation, virtual agent conversations, and code assist.</p>
+          <div class="ai-card-tags">
+            <span>All Sectors</span>
+            <span>IT Operations</span>
+          </div>
+          <div class="compliance-scores">
+            <div class="compliance-score">
+              <span class="score-label">AI Act</span>
+              <span class="score-value score-green">A</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">GDPR</span>
+              <span class="score-value score-green">A</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">DORA</span>
+              <span class="score-value score-green">A-</span>
+            </div>
+            <div class="compliance-score">
+              <span class="score-label">Sector</span>
+              <span class="score-value score-green">A</span>
+            </div>
+          </div>
+          <a href="#" class="ai-card-link">Full assessment <span>&#8594;</span></a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="#" class="btn btn-outline" style="color: #003399; border-color: #003399;">
+          Browse All 1,284 AI Systems
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regulatory Frameworks Covered -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Regulatory Frameworks We Rate Against</h2>
+        <p>Each AI system is assessed against applicable EU-wide and sector-specific regulatory requirements.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="frameworks-grid">
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-eu">EU Regulation</span>
+          </div>
+          <h3>EU Artificial Intelligence Act</h3>
+          <p>Risk classification (unacceptable, high, limited, minimal), conformity assessment, transparency obligations, and prohibited practices under Regulation (EU) 2024/1689.</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              42 assessment criteria
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Effective Aug 2025
+            </span>
+          </div>
+        </div>
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-eu">EU Regulation</span>
+          </div>
+          <h3>GDPR — Data Protection</h3>
+          <p>Assessment of AI systems against data processing principles, automated decision-making rights (Art. 22), DPIA requirements, and cross-border transfer safeguards.</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              28 assessment criteria
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              In force since 2018
+            </span>
+          </div>
+        </div>
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-eu">EU Regulation</span>
+          </div>
+          <h3>DORA — Digital Resilience</h3>
+          <p>ICT risk management, third-party dependency assessment, incident reporting capabilities, and operational resilience of AI-dependent critical functions under Regulation (EU) 2022/2554.</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              24 assessment criteria
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Effective Jan 2025
+            </span>
+          </div>
+        </div>
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-sector">Sector Policy</span>
+          </div>
+          <h3>EBA / EIOPA AI Guidelines</h3>
+          <p>Supervisory expectations for use of AI/ML in credit decisioning, insurance pricing, and anti-money laundering, including model governance and explainability requirements.</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              18 assessment criteria
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Updated 2025
+            </span>
+          </div>
+        </div>
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-sector">Sector Policy</span>
+          </div>
+          <h3>MDR / IVDR — Medical Devices</h3>
+          <p>Regulatory classification of AI-powered medical devices and in-vitro diagnostic software, CE marking requirements, and post-market surveillance obligations.</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              31 assessment criteria
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              In force since 2021
+            </span>
+          </div>
+        </div>
+        <div class="framework-card">
+          <div class="framework-card-header">
+            <span class="framework-badge fw-national">National Guidance</span>
+          </div>
+          <h3>National AI Strategies &amp; Codes</h3>
+          <p>Country-specific AI governance codes, national supervisory authority guidance, and voluntary codes of conduct adopted by member state regulators (BaFin, AMF, FCA, etc.).</p>
+          <div class="framework-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              Varies by jurisdiction
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              14 jurisdictions mapped
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>How Our Ratings Work</h2>
+        <p>A transparent, structured methodology grounded in regulatory text and supervisory guidance.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-number">1</div>
+          <h3>System Identification</h3>
+          <p>We catalogue the AI system's purpose, capabilities, deployment model, data inputs, and the sectors where it is deployed within the EU.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">2</div>
+          <h3>Risk Classification</h3>
+          <p>Each system is classified under the EU AI Act risk tiers (unacceptable, high, limited, minimal) based on its intended use and Annex III categories.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">3</div>
+          <h3>Multi-Framework Assessment</h3>
+          <p>We evaluate compliance against all applicable regulations — AI Act, GDPR, DORA, and relevant sector-specific frameworks — using standardised criteria.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">4</div>
+          <h3>Rating &amp; Publication</h3>
+          <p>Systems receive per-framework grades (A to D) and an overall compliance posture. Ratings are reviewed quarterly and after major regulatory updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Updates & Sidebar -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Database Changelog</h2>
+        <p>Recent additions, rating changes, and regulatory developments affecting our assessments.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="updates-layout">
+        <div class="updates-main">
+          <div class="update-item">
+            <div class="update-meta">
+              <span class="update-date">24 March 2026</span>
+              <span class="update-tag tag-new-entry">New Entry</span>
+            </div>
+            <h3><a href="#">Google Vertex AI Agent Builder added to the database</a></h3>
+            <p>Initial assessment completed across AI Act, GDPR, and sector frameworks for financial services and healthcare. Classified as high-risk for regulated deployment contexts.</p>
+          </div>
+          <div class="update-item">
+            <div class="update-meta">
+              <span class="update-date">21 March 2026</span>
+              <span class="update-tag tag-updated">Rating Updated</span>
+            </div>
+            <h3><a href="#">Azure OpenAI Service — DORA rating upgraded from B- to B</a></h3>
+            <p>Following Microsoft's publication of enhanced incident reporting SLAs and ICT concentration risk disclosures for European financial sector customers.</p>
+          </div>
+          <div class="update-item">
+            <div class="update-meta">
+              <span class="update-date">18 March 2026</span>
+              <span class="update-tag tag-regulation">Regulation</span>
+            </div>
+            <h3><a href="#">EC publishes implementing act on AI Act high-risk system registration</a></h3>
+            <p>New registration requirements affect 412 systems in our database currently classified as high-risk. Assessment criteria updated across all affected entries.</p>
+          </div>
+          <div class="update-item">
+            <div class="update-meta">
+              <span class="update-date">12 March 2026</span>
+              <span class="update-tag tag-new-entry">New Entry</span>
+            </div>
+            <h3><a href="#">47 AI systems added in the March 2026 batch update</a></h3>
+            <p>Including entries from UiPath, Databricks, Anthropic Claude Enterprise, Cohere, and 12 European AI vendors. Full list and assessments now available.</p>
+          </div>
+        </div>
+        <aside>
+          <div class="sidebar-section">
+            <h3>Top Searches</h3>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> Credit scoring AI systems</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> ChatGPT Enterprise compliance</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> AI Act high-risk list</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> Insurance pricing models</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> HR screening tools</a>
+          </div>
+          <div class="sidebar-section">
+            <h3>Resources</h3>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> Rating Methodology (PDF)</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> AI Act Quick Guide</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> DORA x AI Checklist</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> API Documentation</a>
+            <a href="#" class="sidebar-link"><span class="arrow">&#8250;</span> Bulk Data Export</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Band -->
+  <div class="trust-band">
+    <div class="container">
+      <div class="trust-inner">
+        <span class="trust-label">Methodology Aligned With</span>
+        <div class="trust-logos">
+          <span class="trust-logo">EU AI Act</span>
+          <span class="trust-logo">OECD AI Principles</span>
+          <span class="trust-logo">ISO/IEC 42001</span>
+          <span class="trust-logo">NIST AI RMF</span>
+          <span class="trust-logo">IEEE 7000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter CTA -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>AI Compliance Intelligence</h2>
+          <p>Weekly digest of new AI system ratings, regulatory changes, and compliance analysis.</p>
+        </div>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your professional email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text">
+            <span class="logo-name">AI Register EU</span>
+            <span class="logo-tagline">Enterprise AI Compliance Database</span>
+          </div>
+          <p>AI Register EU is an independent, vendor-neutral platform that catalogues enterprise AI systems and rates their compliance against European regulations and industry-specific policies. Not affiliated with any EU institution.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Database</h4>
+          <a href="#">Browse All Systems</a>
+          <a href="#">By Industry</a>
+          <a href="#">By Vendor</a>
+          <a href="#">By Risk Level</a>
+          <a href="#">Recently Added</a>
+          <a href="#">Compare Systems</a>
+        </div>
+        <div class="footer-col">
+          <h4>Regulations</h4>
+          <a href="#">EU AI Act</a>
+          <a href="#">GDPR</a>
+          <a href="#">DORA</a>
+          <a href="#">NIS2</a>
+          <a href="#">EBA / EIOPA</a>
+          <a href="#">MDR / IVDR</a>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="#">About Us</a>
+          <a href="#">Methodology</a>
+          <a href="#">API Access</a>
+          <a href="#">Pricing</a>
+          <a href="#">Submit an AI System</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AI Register EU. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Legal Notice</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p>AI Register EU is an independent private platform and is not affiliated with, endorsed by, or acting on behalf of any European Union institution, agency, or national regulatory authority. Compliance ratings are for informational purposes only and do not constitute legal advice or regulatory certification.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
