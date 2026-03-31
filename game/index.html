@@ -3,80 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-  <title>NEO-DUAT — Gods of the Digital Afterlife</title>
+  <title>AEONS OF DUAT — A Space Opera</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>𓂀</text></svg>">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       width: 100%; height: 100%; overflow: hidden;
       background: #000;
-      font-family: 'Rajdhani', sans-serif;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
-      -webkit-user-select: none;
     }
-    canvas#gameCanvas {
+    canvas {
       display: block;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      touch-action: none;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
     }
-    #uiLayer {
-      position: fixed;
-      inset: 0;
-      z-index: 10;
+    #mobile {
+      position: fixed; bottom: 8px; left: 0; right: 0;
+      display: none; z-index: 20;
+      justify-content: space-between; padding: 0 12px;
       pointer-events: none;
     }
-    #uiLayer > * {
-      pointer-events: auto;
+    #mobile > * { pointer-events: auto; }
+    .dp { width: 130px; height: 130px; position: relative; }
+    .db {
+      position: absolute; width: 40px; height: 40px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.3); font-size: 16px;
+      touch-action: manipulation;
     }
-    .hidden { display: none !important; }
-    .fade-in { animation: fadeIn 0.5s ease-out; }
-    .fade-out { animation: fadeOut 0.4s ease-out forwards; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-    @keyframes glitch {
-      0%, 100% { transform: translate(0); }
-      20% { transform: translate(-2px, 1px); }
-      40% { transform: translate(2px, -1px); }
-      60% { transform: translate(-1px, 2px); }
-      80% { transform: translate(1px, -2px); }
+    .db:active { background: rgba(255,255,255,0.15); }
+    .du { top: 0; left: 45px; }
+    .dd { bottom: 0; left: 45px; }
+    .dl { top: 45px; left: 0; }
+    .dr { top: 45px; right: 0; }
+    .ab { display: flex; gap: 8px; align-items: flex-end; }
+    .btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4); font-size: 11px; font-weight: bold;
+      font-family: monospace; touch-action: manipulation;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    @keyframes hieroglyphFloat {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.3; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-200px) rotate(15deg); opacity: 0; }
-    }
-    @keyframes scanline {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100vh); }
-    }
-    @keyframes eyeOpen {
-      0% { transform: scale(0); opacity: 0; }
-      50% { transform: scale(1.2); opacity: 1; }
-      70% { transform: scale(1); }
-      100% { transform: scale(1); opacity: 0; }
-    }
+    .btn:active { background: rgba(255,255,255,0.15); }
+    @media (pointer: coarse) { #mobile { display: flex; } }
   </style>
 </head>
 <body>
-  <canvas id="gameCanvas"></canvas>
-  <div id="uiLayer"></div>
-
-  <!-- Game modules loaded in order -->
-  <script src="js/utils.js"></script>
+  <canvas id="c"></canvas>
+  <div id="mobile">
+    <div class="dp">
+      <div class="db du" data-dir="up">▲</div>
+      <div class="db dd" data-dir="down">▼</div>
+      <div class="db dl" data-dir="left">◀</div>
+      <div class="db dr" data-dir="right">▶</div>
+    </div>
+    <div class="ab">
+      <div class="btn" data-act="cancel" style="border-color:rgba(255,80,80,0.2);color:rgba(255,80,80,0.4)">B</div>
+      <div class="btn" data-act="confirm" style="width:54px;height:54px;font-size:13px;border-color:rgba(80,180,255,0.25);color:rgba(80,180,255,0.5)">A</div>
+      <div class="btn" data-act="menu" style="width:38px;height:38px;font-size:9px;border-color:rgba(255,215,0,0.15);color:rgba(255,215,0,0.3)">MNU</div>
+    </div>
+  </div>
+  <script src="js/engine.js"></script>
+  <script src="js/sprites.js"></script>
   <script src="js/audio.js"></script>
-  <script src="js/renderer.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/characters.js"></script>
-  <script src="js/combat.js"></script>
-  <script src="js/secrets.js"></script>
-  <script src="js/ui.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/dialogue.js"></script>
+  <script src="js/menu.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>

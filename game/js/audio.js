@@ -1,441 +1,341 @@
 // ============================================================
-// NEO-DUAT — Procedural Dark Minimal Techno Audio Engine
-// Boris Brejcha-inspired: minimal, dark, melodic, hypnotic
+// AEONS OF DUAT — SNES-Style Procedural Audio
+// Chiptune + space synth + Egyptian scales
 // ============================================================
 
-ND.audio = (function() {
-  let actx = null;
+G.audio = (function() {
+  let ctx = null;
   let master = null;
-  let compressor = null;
-  let playing = false;
-  let bpm = 128;
-  let beatTime = 60 / bpm;
-  let barTime = beatTime * 4;
-  let nextBeatTime = 0;
-  let beatCount = 0;
-  let intensity = 0.3; // 0-1, ramps with fight intensity
-  let schedulerTimer = null;
+  let playing = null;
+  let loopTimer = null;
 
-  // --- Synth nodes ---
-  let kickGain, bassGain, hihatGain, padGain, leadGain, fxGain;
-
-  // Egyptian scale: D E F A Bb (Phrygian-ish, dark & mysterious)
-  const SCALE = [62, 64, 65, 69, 70, 74, 76, 77]; // MIDI notes
-  const midiToFreq = (n) => 440 * Math.pow(2, (n - 69) / 12);
+  // D Phrygian scale (dark, Egyptian feel): D Eb F G A Bb C
+  const SCALE = [62, 63, 65, 67, 69, 70, 72]; // MIDI
+  const freq = n => 440 * Math.pow(2, (n - 69) / 12);
 
   function init() {
-    if (actx) return;
-    actx = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Master chain: compressor -> gain -> destination
-    compressor = actx.createDynamicsCompressor();
-    compressor.threshold.value = -12;
-    compressor.ratio.value = 4;
-
-    master = actx.createGain();
-    master.gain.value = 0.7;
-    master.connect(compressor);
-    compressor.connect(actx.destination);
-
-    // Sub-buses
-    kickGain = createBus(0.8);
-    bassGain = createBus(0.35);
-    hihatGain = createBus(0.15);
-    padGain = createBus(0.2);
-    leadGain = createBus(0.12);
-    fxGain = createBus(0.3);
+    if (ctx) return;
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    master = ctx.createGain();
+    master.gain.value = 0.4;
+    master.connect(ctx.destination);
   }
 
-  function createBus(vol) {
-    const g = actx.createGain();
+  function resume() {
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+  }
+
+  // --- Square wave (SNES-like) ---
+  function square(f, start, dur, vol, dest) {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'square';
+    o.frequency.value = f;
+    g.gain.setValueAtTime(vol, start);
+    g.gain.linearRampToValueAtTime(0, start + dur);
+    o.connect(g); g.connect(dest || master);
+    o.start(start); o.stop(start + dur + 0.01);
+  }
+
+  // --- Triangle wave (bass) ---
+  function tri(f, start, dur, vol, dest) {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'triangle';
+    o.frequency.value = f;
+    g.gain.setValueAtTime(vol, start);
+    g.gain.linearRampToValueAtTime(0, start + dur * 0.9);
+    o.connect(g); g.connect(dest || master);
+    o.start(start); o.stop(start + dur + 0.01);
+  }
+
+  // --- Noise (hi-hat/snare) ---
+  function noise(start, dur, vol) {
+    const bufLen = ctx.sampleRate * dur;
+    const buf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < bufLen; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i/bufLen, 3);
+    const src = ctx.createBufferSource();
+    const g = ctx.createGain();
+    const hp = ctx.createBiquadFilter();
+    src.buffer = buf;
+    hp.type = 'highpass'; hp.frequency.value = 5000;
     g.gain.value = vol;
-    g.connect(master);
-    return g;
+    src.connect(hp); hp.connect(g); g.connect(master);
+    src.start(start);
   }
 
-  // --- KICK (deep, punchy 909-style) ---
-  function scheduleKick(time) {
-    const osc = actx.createOscillator();
-    const g = actx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(150, time);
-    osc.frequency.exponentialRampToValueAtTime(30, time + 0.12);
-    g.gain.setValueAtTime(1, time);
-    g.gain.exponentialRampToValueAtTime(0.001, time + 0.4);
-    osc.connect(g);
-    g.connect(kickGain);
-    osc.start(time);
-    osc.stop(time + 0.4);
+  // --- Music patterns ---
+  const TRACKS = {
+    title: { bpm: 90, loop: true, gen: genTitle },
+    explore: { bpm: 110, loop: true, gen: genExplore },
+    battle: { bpm: 140, loop: true, gen: genBattle },
+    boss: { bpm: 155, loop: true, gen: genBoss },
+    victory: { bpm: 120, loop: false, gen: genVictory },
+    gameover: { bpm: 70, loop: false, gen: genGameover },
+  };
 
-    // Click layer
-    const click = actx.createOscillator();
-    const cg = actx.createGain();
-    click.type = 'square';
-    click.frequency.setValueAtTime(1200, time);
-    click.frequency.exponentialRampToValueAtTime(100, time + 0.02);
-    cg.gain.setValueAtTime(0.3, time);
-    cg.gain.exponentialRampToValueAtTime(0.001, time + 0.03);
-    click.connect(cg);
-    cg.connect(kickGain);
-    click.start(time);
-    click.stop(time + 0.05);
-  }
-
-  // --- BASS (dark, pulsing sub) ---
-  function scheduleBass(time, note) {
-    const freq = midiToFreq(note - 12); // One octave down
-    const osc = actx.createOscillator();
-    const g = actx.createGain();
-    const filter = actx.createBiquadFilter();
-
-    osc.type = 'sawtooth';
-    osc.frequency.value = freq;
-
-    filter.type = 'lowpass';
-    filter.frequency.value = 200 + intensity * 600;
-    filter.Q.value = 5;
-
-    g.gain.setValueAtTime(0, time);
-    g.gain.linearRampToValueAtTime(0.6, time + 0.05);
-    g.gain.linearRampToValueAtTime(0.3, time + beatTime * 0.8);
-    g.gain.linearRampToValueAtTime(0, time + beatTime);
-
-    osc.connect(filter);
-    filter.connect(g);
-    g.connect(bassGain);
-    osc.start(time);
-    osc.stop(time + beatTime + 0.1);
-  }
-
-  // --- HI-HAT (metallic, tight) ---
-  function scheduleHihat(time, open) {
-    const bufferSize = actx.sampleRate * (open ? 0.15 : 0.05);
-    const buffer = actx.createBuffer(1, bufferSize, actx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, open ? 2 : 8);
-    }
-
-    const src = actx.createBufferSource();
-    const g = actx.createGain();
-    const filter = actx.createBiquadFilter();
-
-    src.buffer = buffer;
-    filter.type = 'highpass';
-    filter.frequency.value = 7000;
-    g.gain.value = open ? 0.4 : 0.6;
-
-    src.connect(filter);
-    filter.connect(g);
-    g.connect(hihatGain);
-    src.start(time);
-  }
-
-  // --- PAD (dark atmospheric, reverb-like) ---
-  function schedulePad(time, notes, duration) {
-    notes.forEach(note => {
-      const freq = midiToFreq(note);
-      const osc = actx.createOscillator();
-      const osc2 = actx.createOscillator();
-      const g = actx.createGain();
-      const filter = actx.createBiquadFilter();
-
-      osc.type = 'sine';
-      osc2.type = 'triangle';
-      osc.frequency.value = freq;
-      osc2.frequency.value = freq * 1.002; // Slight detune for width
-
-      filter.type = 'lowpass';
-      filter.frequency.value = 1000 + intensity * 2000;
-
-      g.gain.setValueAtTime(0, time);
-      g.gain.linearRampToValueAtTime(0.15, time + duration * 0.3);
-      g.gain.linearRampToValueAtTime(0.1, time + duration * 0.7);
-      g.gain.linearRampToValueAtTime(0, time + duration);
-
-      osc.connect(filter);
-      osc2.connect(filter);
-      filter.connect(g);
-      g.connect(padGain);
-      osc.start(time);
-      osc2.start(time);
-      osc.stop(time + duration + 0.1);
-      osc2.stop(time + duration + 0.1);
+  function genTitle(t, beat) {
+    const bt = 60 / 90;
+    // Slow, atmospheric pad
+    const notes = [SCALE[0], SCALE[2], SCALE[4]]; // D F A (minor chord)
+    notes.forEach(n => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq(n - 12);
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.06, t + bt);
+      g.gain.linearRampToValueAtTime(0.04, t + bt * 3);
+      g.gain.linearRampToValueAtTime(0, t + bt * 4);
+      o.connect(g); g.connect(master);
+      o.start(t); o.stop(t + bt * 4 + 0.1);
     });
+
+    // Melody every 2 beats
+    if (beat % 2 === 0) {
+      const n = SCALE[(beat / 2) % SCALE.length];
+      square(freq(n + 12), t + bt * 0.5, bt * 1.5, 0.05);
+    }
+
+    // Gentle kick
+    if (beat % 4 === 0) {
+      tri(60, t, 0.3, 0.12);
+    }
+    return bt * 4;
   }
 
-  // --- LEAD (ney flute simulation — filtered sine with vibrato) ---
-  function scheduleLead(time, note, duration) {
-    const freq = midiToFreq(note);
-    const osc = actx.createOscillator();
-    const vibrato = actx.createOscillator();
-    const vibratoGain = actx.createGain();
-    const g = actx.createGain();
-    const filter = actx.createBiquadFilter();
+  function genExplore(t, beat) {
+    const bt = 60 / 110;
+    const bar = Math.floor(beat / 4);
 
-    osc.type = 'sine';
-    osc.frequency.value = freq;
+    // Bass: root note every beat
+    const bassNote = SCALE[bar % SCALE.length];
+    tri(freq(bassNote - 24), t, bt * 0.8, 0.15);
 
-    vibrato.type = 'sine';
-    vibrato.frequency.value = 5;
-    vibratoGain.gain.value = 3;
-    vibrato.connect(vibratoGain);
-    vibratoGain.connect(osc.frequency);
-
-    filter.type = 'bandpass';
-    filter.frequency.value = freq * 2;
-    filter.Q.value = 2;
-
-    g.gain.setValueAtTime(0, time);
-    g.gain.linearRampToValueAtTime(0.3, time + 0.1);
-    g.gain.setValueAtTime(0.25, time + duration * 0.5);
-    g.gain.linearRampToValueAtTime(0, time + duration);
-
-    osc.connect(filter);
-    filter.connect(g);
-    g.connect(leadGain);
-    vibrato.start(time);
-    osc.start(time);
-    osc.stop(time + duration + 0.1);
-    vibrato.stop(time + duration + 0.1);
-  }
-
-  // --- FX: Impact hit ---
-  function playImpact(type) {
-    if (!actx) return;
-    const now = actx.currentTime;
-
-    if (type === 'hit') {
-      const osc = actx.createOscillator();
-      const g = actx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(400, now);
-      osc.frequency.exponentialRampToValueAtTime(60, now + 0.1);
-      g.gain.setValueAtTime(0.4, now);
-      g.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-      osc.connect(g);
-      g.connect(fxGain);
-      osc.start(now);
-      osc.stop(now + 0.2);
+    // Kick on 1 and 3
+    if (beat % 4 === 0 || beat % 4 === 2) {
+      tri(50, t, 0.15, 0.1);
     }
 
-    if (type === 'heavy') {
-      const osc = actx.createOscillator();
-      const g = actx.createGain();
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(800, now);
-      osc.frequency.exponentialRampToValueAtTime(40, now + 0.2);
-      g.gain.setValueAtTime(0.5, now);
-      g.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-      osc.connect(g);
-      g.connect(fxGain);
-      osc.start(now);
-      osc.stop(now + 0.35);
+    // Hi-hat on every beat
+    noise(t, 0.04, 0.04);
+    // Off-beat hat
+    noise(t + bt / 2, 0.03, 0.02);
 
-      // Sub rumble
-      const sub = actx.createOscillator();
-      const sg = actx.createGain();
-      sub.type = 'sine';
-      sub.frequency.value = 35;
-      sg.gain.setValueAtTime(0.6, now);
-      sg.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-      sub.connect(sg);
-      sg.connect(fxGain);
-      sub.start(now);
-      sub.stop(now + 0.5);
+    // Melody: arpeggiate scale
+    if (beat % 2 === 0) {
+      const n = SCALE[(beat + bar * 3) % SCALE.length];
+      square(freq(n), t, bt * 0.6, 0.04);
+    }
+    if (beat % 4 === 1) {
+      const n = SCALE[(beat + bar * 2 + 3) % SCALE.length];
+      square(freq(n + 12), t, bt * 0.4, 0.03);
     }
 
-    if (type === 'special') {
-      // Reversed reverb whoosh
-      for (let i = 0; i < 5; i++) {
-        const osc = actx.createOscillator();
-        const g = actx.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = 200 + i * 300;
-        g.gain.setValueAtTime(0, now);
-        g.gain.linearRampToValueAtTime(0.15, now + 0.3);
-        g.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-        osc.connect(g);
-        g.connect(fxGain);
-        osc.start(now);
-        osc.stop(now + 0.6);
-      }
-    }
-
-    if (type === 'ko') {
-      // Bass drop + silence
-      const osc = actx.createOscillator();
-      const g = actx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(100, now);
-      osc.frequency.exponentialRampToValueAtTime(20, now + 1);
-      g.gain.setValueAtTime(0.8, now);
-      g.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
-      osc.connect(g);
-      g.connect(fxGain);
-      osc.start(now);
-      osc.stop(now + 1.5);
-    }
-
-    if (type === 'block') {
-      const bufferSize = actx.sampleRate * 0.08;
-      const buffer = actx.createBuffer(1, bufferSize, actx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 4);
-      }
-      const src = actx.createBufferSource();
-      const g = actx.createGain();
-      src.buffer = buffer;
-      g.gain.value = 0.3;
-      src.connect(g);
-      g.connect(fxGain);
-      src.start(now);
-    }
-
-    if (type === 'secret') {
-      // Eerie chime
-      [523, 659, 784, 1047].forEach((f, i) => {
-        const osc = actx.createOscillator();
-        const g = actx.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = f;
-        g.gain.setValueAtTime(0, now + i * 0.15);
-        g.gain.linearRampToValueAtTime(0.2, now + i * 0.15 + 0.05);
-        g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.15 + 0.8);
-        osc.connect(g);
-        g.connect(fxGain);
-        osc.start(now + i * 0.15);
-        osc.stop(now + i * 0.15 + 1);
+    // Pad chord every 4 beats
+    if (beat % 4 === 0) {
+      [0, 2, 4].forEach(i => {
+        const n = SCALE[(bar + i) % SCALE.length];
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = freq(n);
+        g.gain.setValueAtTime(0.02, t);
+        g.gain.linearRampToValueAtTime(0, t + bt * 4);
+        o.connect(g); g.connect(master);
+        o.start(t); o.stop(t + bt * 4 + 0.1);
       });
     }
+
+    return bt;
   }
 
-  // --- SEQUENCER ---
-  let melodyPattern = [];
-  let currentBar = 0;
+  function genBattle(t, beat) {
+    const bt = 60 / 140;
+    const bar = Math.floor(beat / 4);
 
-  function generateMelody() {
-    melodyPattern = [];
-    const len = 8;
-    for (let i = 0; i < len; i++) {
-      if (Math.random() < 0.6) {
-        melodyPattern.push(SCALE[ND.randInt(0, SCALE.length - 1)]);
-      } else {
-        melodyPattern.push(null); // rest
+    // Driving bass
+    const bassNote = SCALE[bar % SCALE.length];
+    tri(freq(bassNote - 24), t, bt * 0.5, 0.18);
+    if (beat % 2 === 0) {
+      tri(freq(bassNote - 12), t + bt * 0.5, bt * 0.3, 0.1);
+    }
+
+    // Kick every beat
+    tri(45, t, 0.12, 0.15);
+
+    // Snare on 2 and 4
+    if (beat % 4 === 1 || beat % 4 === 3) {
+      noise(t, 0.1, 0.12);
+    }
+
+    // Hi-hat
+    noise(t, 0.03, 0.05);
+    noise(t + bt/2, 0.02, 0.03);
+
+    // Aggressive melody
+    const melodySeq = [0,2,4,6,4,2,0,3];
+    const noteIdx = melodySeq[beat % melodySeq.length];
+    square(freq(SCALE[noteIdx] + 12), t, bt * 0.4, 0.06);
+
+    // Counter melody every 2 beats
+    if (beat % 2 === 1) {
+      const n2 = SCALE[(noteIdx + 3) % SCALE.length];
+      square(freq(n2 + 24), t, bt * 0.3, 0.03);
+    }
+
+    return bt;
+  }
+
+  function genBoss(t, beat) {
+    const bt = 60 / 155;
+    const bar = Math.floor(beat / 4);
+
+    // Heavier bass
+    const bassNote = SCALE[(bar * 2) % SCALE.length];
+    tri(freq(bassNote - 24), t, bt * 0.7, 0.2);
+
+    // Double kick
+    tri(40, t, 0.1, 0.18);
+    if (beat % 2 === 0) tri(40, t + bt * 0.5, 0.08, 0.12);
+
+    // Snare on 2 and 4, with ghost notes
+    if (beat % 4 === 1 || beat % 4 === 3) noise(t, 0.12, 0.15);
+    if (beat % 4 === 0 && bar % 2 === 1) noise(t + bt * 0.75, 0.06, 0.06);
+
+    // Fast hats
+    noise(t, 0.025, 0.06);
+    noise(t + bt/2, 0.02, 0.04);
+    if (beat % 2 === 0) noise(t + bt/4, 0.015, 0.03);
+
+    // Chaotic melody
+    const mSeq = [0,6,3,5,1,4,2,6];
+    const n = SCALE[mSeq[beat % 8]];
+    square(freq(n + 12), t, bt * 0.3, 0.07);
+
+    if (beat % 3 === 0) {
+      square(freq(n + 24), t + bt * 0.25, bt * 0.2, 0.04);
+    }
+
+    return bt;
+  }
+
+  function genVictory(t, beat) {
+    const bt = 60 / 120;
+    if (beat < 8) {
+      // Fanfare
+      const fanfare = [0,0,2,2,4,4,6,4];
+      const n = SCALE[fanfare[beat]];
+      square(freq(n + 12), t, bt * 0.8, 0.08);
+      if (beat % 2 === 0) tri(freq(n - 12), t, bt * 0.6, 0.1);
+      if (beat === 0 || beat === 4) tri(50, t, 0.2, 0.12);
+    }
+    return bt;
+  }
+
+  function genGameover(t, beat) {
+    const bt = 60 / 70;
+    if (beat < 6) {
+      const notes = [6,5,4,3,2,0];
+      const n = SCALE[notes[beat]];
+      square(freq(n), t, bt * 1.5, 0.05);
+      tri(freq(n - 12), t, bt * 1.2, 0.06);
+    }
+    return bt;
+  }
+
+  // --- Playback ---
+  function play(trackName) {
+    init(); resume();
+    if (playing === trackName) return;
+    stop();
+    playing = trackName;
+    const track = TRACKS[trackName];
+    if (!track) return;
+
+    let beat = 0;
+    let nextTime = ctx.currentTime + 0.1;
+
+    function schedule() {
+      if (playing !== trackName) return;
+      const now = ctx.currentTime;
+      while (nextTime < now + 0.3) {
+        const dur = track.gen(nextTime, beat);
+        nextTime += dur;
+        beat++;
+        if (!track.loop && beat > 32) { playing = null; return; }
+        if (track.loop && beat > 128) beat = 0;
       }
+      loopTimer = setTimeout(schedule, 50);
+    }
+    schedule();
+  }
+
+  function stop() {
+    playing = null;
+    if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; }
+  }
+
+  // --- SFX ---
+  function sfx(type) {
+    init(); resume();
+    const t = ctx.currentTime;
+
+    switch(type) {
+      case 'confirm':
+        square(freq(72), t, 0.06, 0.08);
+        square(freq(76), t + 0.06, 0.08, 0.08);
+        break;
+      case 'cancel':
+        square(freq(65), t, 0.08, 0.06);
+        square(freq(60), t + 0.06, 0.1, 0.06);
+        break;
+      case 'cursor':
+        square(freq(80), t, 0.03, 0.04);
+        break;
+      case 'hit':
+        noise(t, 0.08, 0.15);
+        tri(100, t, 0.1, 0.12);
+        break;
+      case 'crit':
+        noise(t, 0.12, 0.2);
+        tri(60, t, 0.15, 0.18);
+        square(freq(84), t + 0.05, 0.1, 0.06);
+        break;
+      case 'heal':
+        square(freq(72), t, 0.1, 0.05);
+        square(freq(76), t + 0.1, 0.1, 0.05);
+        square(freq(79), t + 0.2, 0.15, 0.05);
+        break;
+      case 'magic':
+        for (let i = 0; i < 5; i++) {
+          square(freq(72 + i * 4), t + i * 0.04, 0.08, 0.04);
+        }
+        break;
+      case 'death':
+        tri(200, t, 0.3, 0.1);
+        tri(100, t + 0.1, 0.3, 0.08);
+        noise(t, 0.3, 0.08);
+        break;
+      case 'chest':
+        for (let i = 0; i < 4; i++) {
+          square(freq(60 + i * 5), t + i * 0.08, 0.12, 0.06);
+        }
+        break;
+      case 'save':
+        [0,2,4,6].forEach((n,i) => {
+          square(freq(SCALE[n] + 12), t + i * 0.12, 0.15, 0.05);
+        });
+        break;
+      case 'encounter':
+        noise(t, 0.15, 0.12);
+        square(freq(62), t, 0.08, 0.1);
+        square(freq(65), t + 0.08, 0.08, 0.1);
+        square(freq(69), t + 0.16, 0.15, 0.1);
+        break;
     }
   }
 
-  function scheduleBeat(beatNum, time) {
-    const bar = Math.floor(beatNum / 4);
-    const beat = beatNum % 4;
-    const eighth = beatNum % 2;
-
-    // Kick: every beat, sometimes skip beat 3 for groove
-    if (beat !== 3 || Math.random() < 0.3 + intensity * 0.5) {
-      scheduleKick(time);
-    }
-
-    // Hi-hat: every 8th note when intensity > 0.3
-    if (intensity > 0.3) {
-      scheduleHihat(time, beat === 2);
-      if (intensity > 0.6) {
-        scheduleHihat(time + beatTime / 2, false); // 16th note
-      }
-    }
-
-    // Bass: beats 0 and 2
-    if (beat === 0 || beat === 2) {
-      const bassNote = SCALE[bar % SCALE.length];
-      scheduleBass(time, bassNote);
-    }
-
-    // Pad: every 4 bars, play chord
-    if (beat === 0 && bar % 4 === 0) {
-      const root = SCALE[bar % SCALE.length];
-      schedulePad(time, [root, root + 5, root + 7], barTime * 4);
-    }
-
-    // Lead melody: when intensity > 0.5
-    if (intensity > 0.5 && beat % 2 === 0) {
-      const noteIdx = beatNum % melodyPattern.length;
-      const note = melodyPattern[noteIdx];
-      if (note) {
-        scheduleLead(time, note + 12, beatTime * 0.8);
-      }
-    }
-
-    // Regenerate melody every 8 bars
-    if (beat === 0 && bar % 8 === 0) {
-      generateMelody();
-    }
-
-    currentBar = bar;
-  }
-
-  function scheduler() {
-    if (!playing || !actx) return;
-    const now = actx.currentTime;
-
-    while (nextBeatTime < now + 0.2) {
-      scheduleBeat(beatCount, nextBeatTime);
-      nextBeatTime += beatTime;
-      beatCount++;
-    }
-
-    schedulerTimer = setTimeout(scheduler, 25);
-  }
-
-  // --- Public API ---
-  return {
-    init,
-
-    start(startBpm) {
-      init();
-      if (actx.state === 'suspended') actx.resume();
-      bpm = startBpm || 128;
-      beatTime = 60 / bpm;
-      barTime = beatTime * 4;
-      beatCount = 0;
-      nextBeatTime = actx.currentTime + 0.1;
-      playing = true;
-      generateMelody();
-      scheduler();
-    },
-
-    stop() {
-      playing = false;
-      if (schedulerTimer) clearTimeout(schedulerTimer);
-    },
-
-    setIntensity(v) {
-      intensity = ND.clamp(v, 0, 1);
-    },
-
-    setBpm(newBpm) {
-      bpm = newBpm;
-      beatTime = 60 / bpm;
-      barTime = beatTime * 4;
-    },
-
-    playImpact,
-
-    // Menu ambient drone
-    startAmbient() {
-      init();
-      if (actx.state === 'suspended') actx.resume();
-      const now = actx.currentTime;
-      schedulePad(now, [50, 57, 62], 20);
-      // Subtle kick every 2 seconds
-      let t = now;
-      for (let i = 0; i < 10; i++) {
-        scheduleKick(t);
-        t += 2;
-      }
-    },
-
-    getContext() { return actx; },
-    isPlaying() { return playing; }
-  };
+  return { play, stop, sfx, init, resume };
 })();
