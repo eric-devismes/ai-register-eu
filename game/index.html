@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <title>NEO-DUAT — Gods of the Digital Afterlife</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>𓂀</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: #000;
+      font-family: 'Rajdhani', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    canvas#gameCanvas {
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      touch-action: none;
+    }
+    #uiLayer {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+    }
+    #uiLayer > * {
+      pointer-events: auto;
+    }
+    .hidden { display: none !important; }
+    .fade-in { animation: fadeIn 0.5s ease-out; }
+    .fade-out { animation: fadeOut 0.4s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, 2px); }
+      80% { transform: translate(1px, -2px); }
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes hieroglyphFloat {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-200px) rotate(15deg); opacity: 0; }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    @keyframes eyeOpen {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      70% { transform: scale(1); }
+      100% { transform: scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div id="uiLayer"></div>
+
+  <!-- Game modules loaded in order -->
+  <script src="js/utils.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/secrets.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
