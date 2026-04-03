@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0d1b3e;
+  --color-navy-700: #1a2f5a;
+  --color-navy-600: #2a3a5c;
+  --color-navy-500: #3a5a8a;
+  --color-navy-400: #4a6fa5;
+  --color-navy-300: #7a8ba8;
+  --color-navy-200: #a0b4d0;
+  --color-navy-100: #c5cfe0;
+  --color-navy-50: #e8eef8;
+
+  --color-eu-blue: #003399;
+  --color-eu-blue-light: #0055cc;
+  --color-eu-gold: #ffc107;
+  --color-eu-gold-light: #ffcd38;
+
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f7fb;
+  --color-border: #dce3ed;
+  --color-border-light: #e2e8f2;
+  --color-border-lighter: #eef2f8;
+
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #5a6a85;
+  --color-text-muted: #7a8ba8;
+  --color-text-light: #8896af;
+
+  --color-risk-high-bg: #fde8e8;
+  --color-risk-high: #b91c1c;
+  --color-risk-limited-bg: #fff5e0;
+  --color-risk-limited: #92600a;
+  --color-risk-minimal-bg: #e6f5e9;
+  --color-risk-minimal: #15803d;
+
+  --color-score-green-bg: #e6f5e9;
+  --color-score-green: #15803d;
+  --color-score-amber-bg: #fff5e0;
+  --color-score-amber: #92600a;
+  --color-score-red-bg: #fde8e8;
+  --color-score-red: #b91c1c;
+
+  --font-heading: "Merriweather", Georgia, serif;
+  --font-body: "Source Sans 3", "Segoe UI", Tahoma, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+}

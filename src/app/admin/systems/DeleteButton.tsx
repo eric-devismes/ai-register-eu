@@ -1,0 +1,50 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { deleteSystem } from "./actions";
+
+export function DeleteSystemButton({
+  id,
+  name,
+}: {
+  id: string;
+  name: string;
+}) {
+  const router = useRouter();
+  const [confirming, setConfirming] = useState(false);
+
+  async function handleDelete() {
+    await deleteSystem(id);
+    router.refresh();
+  }
+
+  if (confirming) {
+    return (
+      <div className="flex items-center gap-1">
+        <span className="text-xs text-red-600">Delete {name}?</span>
+        <button
+          onClick={handleDelete}
+          className="rounded-lg px-2 py-1 text-xs font-medium text-red-600 transition hover:bg-red-50"
+        >
+          Yes
+        </button>
+        <button
+          onClick={() => setConfirming(false)}
+          className="rounded-lg px-2 py-1 text-xs font-medium text-text-secondary transition hover:bg-gray-100"
+        >
+          No
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={() => setConfirming(true)}
+      className="rounded-lg px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50"
+    >
+      Delete
+    </button>
+  );
+}

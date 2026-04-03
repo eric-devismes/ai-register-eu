@@ -1,0 +1,305 @@
+/**
+ * Prisma Schema — Database structure for AI Compass EU
+ *
+ * 15 models:
+ *   - AISystem: AI tools rated for EU compliance
+ *   - RegulatoryFramework: EU regulations with structured meta info
+ *   - FrameworkSection: Sections/chapters within a regulation
+ *   - PolicyStatement: Specific policy requirements with commentary
+ *   - Industry: Sectors like Financial Services, Healthcare
+ *   - AssessmentScore: Links a system to a framework with a letter grade
+ *   - ChangeLog: Versioned history of changes to frameworks and systems
+ *   - Subscriber: Public user accounts (email-only, magic link auth, GDPR-compliant)
+ *   - DigestLog: Track sent digest emails for GDPR compliance
+ *   - Translation: Cached translations of DB content in 14 EU languages
+ *   - ChatUsage: Rate limiting for anonymous chat users
+ *   - ChatLog: All chat interactions for admin review
+ *   - DimensionScore: Per-section scoring for cross-framework reports + spider charts
+ *   - ApprovedSource: Admin-curated external URLs the chatbot can reference
+ *
+ * The database URL is configured in prisma.config.ts (not here).
+ */
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// A regulatory framework that AI systems are scored against.
+/// Examples: EU AI Act, GDPR, DORA.
+///
+/// Contains meta information (issuing authority, enforcement type, penalties,
+/// applicable regions) plus structured sections and policy statements.
+model RegulatoryFramework {
+  id            String            @id @default(cuid())
+  slug          String            @unique
+  name          String                                 // "EU AI Act"
+  description   String                                 // Short summary for homepage cards
+  content       String            @default("")         // General overview/introduction (Markdown)
+  badgeType     String                                 // "EU", "Sector", or "National"
+  criteriaCount Int               @default(0)          // Number of assessment criteria
+  effectiveDate String            @default("")         // "Aug 2025", "May 2018", etc.
+  published     Boolean           @default(true)       // Only published ones show on frontend
+
+  // ─── Meta Information ──────────────────────────────
+  issuingAuthority  String  @default("")               // "European Parliament & Council"
+  enforcementType   String  @default("")               // "Legal — Binding with penalties" / "Recommendation" / "Guideline"
+  maxPenalty        String  @default("")               // "Up to €35M or 7% of global turnover"
+  applicableRegions String  @default("")               // "All EU/EEA member states"
+  purpose           String  @default("")               // Overall purpose of this regulation
+  officialUrl       String  @default("")               // Link to official regulation text
+
+  // ─── Relations ─────────────────────────────────────
+  industries    Industry[]                             // Many-to-many: which industries this applies to
+  sections      FrameworkSection[]                     // Ordered sections/chapters
+  scores        AssessmentScore[]                      // All scores given under this framework
+  changelog     ChangeLog[]                            // Version history
+  subscribers   Subscriber[]                           // Users following this framework
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+/// A section or chapter within a regulatory framework.
+/// Example: "Risk Management System" under the EU AI Act.
+/// Contains ordered policy statements.
+model FrameworkSection {
+  id          String              @id @default(cuid())
+  title       String                                   // "Chapter 2: Risk Management System"
+  description String              @default("")         // Overview of what this section covers
+  sortOrder   Int                 @default(0)          // Controls display order (lower = first)
+  framework   RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  frameworkId String
+  statements      PolicyStatement[]                    // Ordered policy statements
+  dimensionScores DimensionScore[]                     // Per-system scores for this section
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+}
+
+/// A specific policy requirement within a framework section.
+/// Contains the actual requirement text and a plain-language commentary
+/// explaining what it means for organisations.
+model PolicyStatement {
+  id          String           @id @default(cuid())
+  reference   String           @default("")            // "Article 9(1)" or "Recital 47"
+  statement   String                                   // The actual policy requirement text
+  commentary  String           @default("")            // Plain-language explanation for organisations
+  sourceUrl   String           @default("")            // URL to official legal text / source
+  sourceNote  String           @default("")            // "EUR-Lex, Regulation 2024/1689, Art. 9"
+  sortOrder   Int              @default(0)             // Display order within section
+  section     FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId   String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+/// An industry sector (e.g., Financial Services, Healthcare).
+/// Connected to AI systems and regulatory frameworks via many-to-many.
+model Industry {
+  id         String                @id @default(cuid())
+  slug       String                @unique
+  name       String                                    // "Financial Services"
+  colorClass String                @default("")        // Tailwind classes: "bg-blue-100 text-blue-700"
+  iconName   String                @default("building")// Icon identifier for frontend
+  systems    AISystem[]                                // Many-to-many with AISystem
+  frameworks RegulatoryFramework[]                     // Many-to-many: which frameworks apply to this industry
+  createdAt  DateTime              @default(now())
+  updatedAt  DateTime              @updatedAt
+}
+
+/// A compliance score linking one AI system to one regulatory framework.
+/// Each system can have at most one score per framework.
+model AssessmentScore {
+  id          String              @id @default(cuid())
+  score       String                                   // Letter grade: "A+", "B-", etc.
+  system      AISystem            @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String
+  framework   RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  frameworkId String
+  @@unique([systemId, frameworkId])                    // One score per system per framework
+}
+
+/// Per-section (dimension) score for cross-framework reports and spider charts.
+/// Links one AI system to one framework section with a letter grade + commentary.
+/// The spider chart uses these scores as axes — larger area = better compliance.
+model DimensionScore {
+  id          String           @id @default(cuid())
+  score       String                                   // Letter grade: "A-", "C+", etc.
+  commentary  String           @default("")            // Why this score — displayed in the report
+  system      AISystem         @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String
+  section     FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId   String
+  @@unique([systemId, sectionId])                      // One score per system per section
+}
+
+/// An AI system rated for EU regulatory compliance.
+/// Each entry appears as a card on the website with per-framework scores.
+/// Extended fields provide the full vendor profile shown on the assessment page.
+model AISystem {
+  id          String            @id @default(cuid())
+  slug        String            @unique                // URL-friendly name
+  vendor      String                                   // Company name (e.g. "Microsoft")
+  name        String                                   // Product name (e.g. "Azure OpenAI")
+  type        String                                   // Category label (e.g. "Foundation Model")
+  risk        String                                   // "High", "Limited", or "Minimal"
+  description String                                   // What the system does
+  category    String                                   // Filter category on homepage
+  featured    Boolean           @default(false)        // Show on homepage?
+  industries  Industry[]                               // Many-to-many: which sectors it applies to
+  scores      AssessmentScore[]                        // Per-framework compliance scores
+
+  // ─── Vendor Profile ────────────────────────────────
+  vendorHq       String   @default("")                 // "Redmond, USA"
+  euPresence     String   @default("")                 // "Yes — subsidiaries across EU..."
+  useCases       String   @default("")                 // Newline-separated list
+
+  // ─── Data Handling ─────────────────────────────────
+  dataStorage     String  @default("")
+  dataProcessing  String  @default("")
+  trainingDataUse String  @default("")
+  subprocessors   String  @default("")
+
+  // ─── Contractual ───────────────────────────────────
+  dpaDetails      String  @default("")
+  slaDetails      String  @default("")
+  dataPortability String  @default("")
+  exitTerms       String  @default("")
+  ipTerms         String  @default("")
+
+  // ─── Security ──────────────────────────────────────
+  certifications  String  @default("")
+  encryptionInfo  String  @default("")
+  accessControls  String  @default("")
+
+  // ─── AI Transparency ──────────────────────────────
+  modelDocs       String  @default("")
+  explainability  String  @default("")
+  biasTesting     String  @default("")
+
+  // ─── EU Compliance ─────────────────────────────────
+  aiActStatus     String  @default("")
+  gdprStatus      String  @default("")
+  euResidency     String  @default("")
+
+  // ─── Assessment metadata ───────────────────────────
+  assessedAt      DateTime?
+  assessmentNote  String   @default("")
+
+  changelog       ChangeLog[]                            // Version history for this system
+  subscribers     Subscriber[]                           // Users following this system
+  dimensionScores DimensionScore[]                       // Per-section scores for cross-reports
+
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+/// A versioned change log entry tracking updates to frameworks or AI systems.
+/// Every significant change must reference a trusted source.
+/// Displayed publicly as "Version History" on framework and assessment pages.
+model ChangeLog {
+  id          String               @id @default(cuid())
+  date        DateTime             @default(now())       // When the change occurred
+  title       String                                     // "GDPR Amendment: AI-specific guidance added"
+  description String                                     // What changed and why
+  changeType  String               @default("update")    // "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
+  sourceUrl   String               @default("")          // URL to the trusted source
+  sourceLabel String               @default("")          // "EUR-Lex", "Vendor Blog", "CJEU Ruling C-123/25"
+  author      String               @default("")          // Who made the change (e.g., "AI Compass EU Editorial")
+
+  // Polymorphic: a changelog entry belongs to either a framework or a system (or both)
+  framework   RegulatoryFramework? @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  frameworkId String?
+  system      AISystem?            @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String?
+
+  createdAt   DateTime             @default(now())
+}
+
+/// A public subscriber (email-only account with magic link auth).
+/// GDPR-compliant: stores only email + preferences + consent record.
+/// No passwords, no names, no tracking, no profiling.
+model Subscriber {
+  id              String                @id @default(cuid())
+  email           String                @unique
+  verified        Boolean               @default(false)       // Email confirmed via magic link
+  digestEnabled   Boolean               @default(true)        // Receives daily digest
+  digestFrequency String                @default("daily")     // "daily" | "weekly" | "none"
+
+  // GDPR consent record
+  consentDate     DateTime?                                   // When they gave consent
+  consentText     String                @default("")          // Snapshot of what they consented to
+
+  // Preferences (many-to-many)
+  frameworks      RegulatoryFramework[]                       // Frameworks they follow
+  systems         AISystem[]                                  // AI systems they follow
+
+  // Magic link auth tokens
+  magicToken      String?                                     // Hashed magic link token
+  magicTokenExp   DateTime?                                   // Token expiry (15 min)
+  sessionToken    String?                                     // Hashed session token
+  sessionExp      DateTime?                                   // Session expiry (30 days)
+
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+}
+
+/// Tracks sent digest emails for GDPR compliance and delivery monitoring.
+model DigestLog {
+  id           String   @id @default(cuid())
+  subscriberId String
+  sentAt       DateTime @default(now())
+  itemCount    Int                                            // How many items were in the digest
+  status       String   @default("sent")                     // "sent" | "failed" | "bounced"
+}
+
+/// Cached translations of database content in EU languages.
+/// Auto-generated by DeepL API when content is created/updated.
+/// Generic table: any entity type + field can be translated.
+model Translation {
+  id         String   @id @default(cuid())
+  entityType String                                           // "framework", "system", "section", "statement", "industry", "changelog"
+  entityId   String                                           // ID of the source entity
+  locale     String                                           // "fr", "de", "pl", "ro", etc.
+  field      String                                           // "name", "description", "content", "statement", etc.
+  value      String                                           // The translated text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([entityType, entityId, locale, field])             // One translation per entity+locale+field
+}
+
+/// Rate limiting for the chatbot — tracks daily question count per anonymous visitor.
+/// Uses a fingerprint cookie (survives page reload) to prevent abuse.
+model ChatUsage {
+  id          String   @id @default(cuid())
+  fingerprint String                                           // Cookie-based fingerprint
+  date        String                                           // "2026-04-03" (calendar day)
+  count       Int      @default(0)                             // Questions asked today
+  @@unique([fingerprint, date])
+}
+
+/// Logs all chat interactions for admin review and abuse detection.
+model ChatLog {
+  id           String   @id @default(cuid())
+  fingerprint  String
+  subscriberId String?                                         // If logged in
+  question     String
+  answer       String
+  locale       String
+  blocked      Boolean  @default(false)                        // Was this blocked?
+  blockReason  String   @default("")                           // "injection", "off-topic", "rate-limit"
+  createdAt    DateTime @default(now())
+}
+
+/// Admin-curated external source URLs the chatbot can reference.
+model ApprovedSource {
+  id          String   @id @default(cuid())
+  url         String   @unique                                 // "https://artificialintelligenceact.eu"
+  name        String                                           // "EU AI Act Official"
+  description String   @default("")
+  createdAt   DateTime @default(now())
+}

@@ -1,0 +1,249 @@
+"use client";
+
+/**
+ * ChatWidget — Floating chat bubble with RAG-powered Q&A.
+ *
+ * - Bottom-right floating bubble
+ * - Expandable chat panel with message history
+ * - Shows remaining questions for anonymous users
+ * - When exhausted: shows consulting CTA + case submission form
+ * - Responds in the user's language
+ */
+
+import { useState, useRef, useEffect } from "react";
+import { useLocale, useT } from "@/lib/locale-context";
+
+interface Message {
+  role: "user" | "assistant" | "system";
+  content: string;
+}
+
+export default function ChatWidget() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [remaining, setRemaining] = useState<number | null>(null);
+  const [exhausted, setExhausted] = useState(false);
+  const [isSubscriber, setIsSubscriber] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
+  const t = useT();
+
+  // Welcome message
+  useEffect(() => {
+    if (open && messages.length === 0) {
+      setMessages([{
+        role: "assistant",
+        content: locale === "fr"
+          ? "Bonjour ! Je suis l'assistant AI Compass EU. Posez-moi vos questions sur les r\u00e9glementations IA europ\u00e9ennes ou les syst\u00e8mes IA \u00e9valu\u00e9s sur notre plateforme."
+          : locale === "de"
+          ? "Hallo! Ich bin der AI Compass EU Assistent. Stellen Sie mir Fragen zu EU-KI-Vorschriften oder den auf unserer Plattform bewerteten KI-Systemen."
+          : "Hello! I'm the AI Compass EU assistant. Ask me about EU AI regulations or the AI systems assessed on our platform.",
+      }]);
+    }
+  }, [open, messages.length, locale]);
+
+  // Scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  async function handleSend() {
+    if (!input.trim() || loading || exhausted) return;
+
+    const question = input.trim();
+    setInput("");
+    setMessages((prev) => [...prev, { role: "user", content: question }]);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, locale }),
+      });
+
+      const data = await res.json();
+      setRemaining(data.remaining);
+      setIsSubscriber(data.isSubscriber);
+
+      if (data.exhausted) {
+        setExhausted(true);
+        setMessages((prev) => [...prev, {
+          role: "system",
+          content: "EXHAUSTED",
+        }]);
+      } else {
+        setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
+      }
+    } catch {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Please try again." }]);
+    }
+
+    setLoading(false);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  }
+
+  // Consulting CTA messages
+  const exhaustedMessages: Record<string, { titleAnon: string; titleSub: string; body: string; cta: string; email: string }> = {
+    en: {
+      titleAnon: "You've used your 5 free questions for today",
+      titleSub: "You've used your 20 questions for this month",
+      body: "Need deeper analysis? Our consulting team provides bespoke AI compliance assessments tailored to your organisation's specific use case and regulatory context.",
+      cta: "Submit a case for offline analysis",
+      email: "consulting@aicompass.eu",
+    },
+    fr: {
+      titleAnon: "Vous avez utilis\u00e9 vos 5 questions gratuites pour aujourd'hui",
+      titleSub: "Vous avez utilis\u00e9 vos 20 questions pour ce mois",
+      body: "Besoin d'une analyse approfondie ? Notre \u00e9quipe de consulting fournit des \u00e9valuations de conformit\u00e9 IA sur mesure pour votre organisation.",
+      cta: "Soumettre un cas pour analyse",
+      email: "consulting@aicompass.eu",
+    },
+    de: {
+      titleAnon: "Sie haben heute Ihre 5 kostenlosen Fragen verbraucht",
+      titleSub: "Sie haben Ihre 20 Fragen f\u00fcr diesen Monat verbraucht",
+      body: "Ben\u00f6tigen Sie eine tiefergehende Analyse? Unser Beratungsteam bietet ma\u00dfgeschneiderte KI-Compliance-Bewertungen.",
+      cta: "Fall zur Offline-Analyse einreichen",
+      email: "consulting@aicompass.eu",
+    },
+  };
+
+  const exMsg = exhaustedMessages[locale] || exhaustedMessages.en;
+
+  return (
+    <>
+      {/* Floating bubble */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#003399] text-white shadow-lg transition hover:bg-[#003399]/90 hover:shadow-xl"
+          aria-label="Open chat"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+          </svg>
+          {remaining !== null && remaining > 0 && remaining <= 3 && !isSubscriber && (
+            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#ffc107] text-[10px] font-bold text-[#0d1b3e]">
+              {remaining}
+            </span>
+          )}
+        </button>
+      )}
+
+      {/* Chat panel */}
+      {open && (
+        <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:h-[550px]">
+          {/* Header */}
+          <div className="flex items-center justify-between bg-[#003399] px-4 py-3">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="text-xs font-bold text-white">AI</span>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">AI Compass EU</p>
+                <p className="text-[10px] text-blue-200">
+                  {remaining !== null && remaining >= 0
+                    ? `${remaining} ${isSubscriber ? "this month" : "today"}`
+                    : "AI Compliance Assistant"}
+                </p>
+              </div>
+            </div>
+            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+            {messages.map((msg, i) => {
+              if (msg.role === "system" && msg.content === "EXHAUSTED") {
+                return (
+                  <div key={i} className="rounded-xl bg-amber-50 border border-amber-200 p-4">
+                    <p className="text-sm font-semibold text-amber-800">{isSubscriber ? exMsg.titleSub : exMsg.titleAnon}</p>
+                    <p className="mt-2 text-xs text-amber-700">{exMsg.body}</p>
+                    <div className="mt-3 space-y-2">
+                      <a href={`mailto:${exMsg.email}?subject=AI%20Compliance%20Consulting%20Request`}
+                        className="block w-full rounded-lg bg-[#003399] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#003399]/90">
+                        {exMsg.cta}
+                      </a>
+                      {!isSubscriber && (
+                        <a href={`/${locale}/subscribe`}
+                          className="block w-full rounded-lg border border-[#003399] px-4 py-2 text-center text-sm font-semibold text-[#003399] hover:bg-[#003399]/5">
+                          {t("common.signUp")} — 20 {locale === "fr" ? "questions/mois" : "questions/month"}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div className={`max-w-[85%] rounded-xl px-3 py-2 text-sm ${
+                    msg.role === "user"
+                      ? "bg-[#003399] text-white"
+                      : "bg-gray-100 text-gray-800"
+                  }`}>
+                    <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                  </div>
+                </div>
+              );
+            })}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="rounded-xl bg-gray-100 px-4 py-2">
+                  <div className="flex gap-1">
+                    <span className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <span className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <span className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input */}
+          {!exhausted && (
+            <div className="border-t border-gray-200 px-3 py-3">
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder={locale === "fr" ? "Posez votre question..." : locale === "de" ? "Stellen Sie Ihre Frage..." : "Ask about EU AI regulations..."}
+                  maxLength={500}
+                  disabled={loading}
+                  className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#003399] focus:outline-none focus:ring-1 focus:ring-[#003399] disabled:opacity-50"
+                />
+                <button
+                  onClick={handleSend}
+                  disabled={loading || !input.trim()}
+                  className="rounded-lg bg-[#003399] p-2 text-white transition hover:bg-[#003399]/90 disabled:opacity-50"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                  </svg>
+                </button>
+              </div>
+              <p className={`mt-1 text-[10px] text-center ${input.length > 400 ? "text-red-500 font-semibold" : input.length > 300 ? "text-amber-500" : "text-gray-400"}`}>
+                {input.length}/500
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
