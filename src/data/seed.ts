@@ -168,6 +168,150 @@ const systems = [
     industrySlugs: ["telecommunications", "financial-services", "healthcare"],
     scores: { "eu-ai-act": "B", "gdpr": "B+", "dora": "B", "eba-eiopa-guidelines": "B" },
   },
+  {
+    slug: "anthropic-claude",
+    vendor: "Anthropic",
+    name: "Claude",
+    type: "Foundation Model",
+    risk: "High",
+    description: "General-purpose AI assistant focused on safety, helpfulness, and honesty. Available via API and direct access for enterprise use.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["financial-services", "healthcare", "public-sector", "human-resources"],
+    scores: { "eu-ai-act": "B+", "gdpr": "B", "dora": "B", "eba-eiopa-guidelines": "B" },
+  },
+  {
+    slug: "openai-gpt-4",
+    vendor: "OpenAI",
+    name: "GPT-4",
+    type: "Foundation Model",
+    risk: "High",
+    description: "Multimodal large language model powering enterprise applications in content generation, analysis, coding, and decision support.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["financial-services", "healthcare", "telecommunications", "public-sector"],
+    scores: { "eu-ai-act": "B", "gdpr": "B-", "dora": "B-", "eba-eiopa-guidelines": "B-" },
+  },
+  {
+    slug: "mistral-ai-mistral-large",
+    vendor: "Mistral AI",
+    name: "Mistral Large",
+    type: "Foundation Model",
+    risk: "High",
+    description: "European-built large language model offering multilingual capabilities with data processing options within EU jurisdictions.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["financial-services", "public-sector", "telecommunications"],
+    scores: { "eu-ai-act": "A-", "gdpr": "A-", "dora": "B+", "eba-eiopa-guidelines": "B+" },
+  },
+  {
+    slug: "sap-business-ai",
+    vendor: "SAP",
+    name: "SAP Business AI",
+    type: "Enterprise AI Platform",
+    risk: "Limited",
+    description: "AI capabilities embedded across SAP S/4HANA, SuccessFactors, and Ariba for process automation, forecasting, and procurement intelligence.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["manufacturing", "financial-services", "energy-utilities"],
+    scores: { "eu-ai-act": "A-", "gdpr": "A", "dora": "B+", "eba-eiopa-guidelines": "A-" },
+  },
+  {
+    slug: "google-vertex-ai",
+    vendor: "Google Cloud",
+    name: "Vertex AI",
+    type: "ML Platform",
+    risk: "High",
+    description: "Unified machine learning platform for building, deploying, and scaling AI models including Gemini foundation models for enterprise use.",
+    category: "Healthcare",
+    featured: false,
+    industrySlugs: ["healthcare", "telecommunications", "manufacturing"],
+    scores: { "eu-ai-act": "B", "gdpr": "B", "dora": "B", "eba-eiopa-guidelines": "B" },
+  },
+  {
+    slug: "ibm-watsonx",
+    vendor: "IBM",
+    name: "watsonx",
+    type: "Enterprise AI Platform",
+    risk: "High",
+    description: "AI and data platform with foundation models, governance tools, and deployment infrastructure designed for regulated industries.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["financial-services", "insurance", "healthcare", "public-sector"],
+    scores: { "eu-ai-act": "A-", "gdpr": "A-", "dora": "A-", "eba-eiopa-guidelines": "A" },
+  },
+  {
+    slug: "uipath-ai-center",
+    vendor: "UiPath",
+    name: "AI Center",
+    type: "Process Automation AI",
+    risk: "Limited",
+    description: "Machine learning platform integrated with robotic process automation for intelligent document processing and workflow automation.",
+    category: "Financial",
+    featured: false,
+    industrySlugs: ["financial-services", "insurance", "manufacturing"],
+    scores: { "eu-ai-act": "B+", "gdpr": "B+", "dora": "B", "eba-eiopa-guidelines": "B+" },
+  },
+  {
+    slug: "verint-da-vinci-ai",
+    vendor: "Verint",
+    name: "Da Vinci AI",
+    type: "Customer Experience AI",
+    risk: "Limited",
+    description: "AI-powered analytics for customer engagement, workforce management, and experience automation in contact centres.",
+    category: "Healthcare",
+    featured: false,
+    industrySlugs: ["telecommunications", "insurance", "financial-services"],
+    scores: { "eu-ai-act": "B", "gdpr": "B", "dora": "B-", "eba-eiopa-guidelines": "B" },
+  },
+  {
+    slug: "siemens-industrial-copilot",
+    vendor: "Siemens",
+    name: "Industrial Copilot",
+    type: "Industrial AI",
+    risk: "High",
+    description: "Generative AI assistant for engineering and manufacturing, integrating with Siemens Xcelerator for product design and factory automation.",
+    category: "Public Sector",
+    featured: false,
+    industrySlugs: ["manufacturing", "energy-utilities"],
+    scores: { "eu-ai-act": "A-", "gdpr": "A", "dora": "B", "eba-eiopa-guidelines": "B" },
+  },
+  {
+    slug: "philips-healthsuite-ai",
+    vendor: "Philips",
+    name: "HealthSuite AI",
+    type: "Healthcare AI Platform",
+    risk: "High",
+    description: "Clinical AI solutions for radiology, pathology, and patient monitoring with CE-marked medical device certifications.",
+    category: "Healthcare",
+    featured: false,
+    industrySlugs: ["healthcare"],
+    scores: { "eu-ai-act": "A", "gdpr": "A", "dora": "B+", "mdr-ivdr": "A-" },
+  },
+  {
+    slug: "hirevue-ai-hiring",
+    vendor: "HireVue",
+    name: "HireVue AI Hiring",
+    type: "HR AI / Recruitment",
+    risk: "High",
+    description: "AI-driven video interviewing and candidate assessment platform used in enterprise recruitment processes.",
+    category: "HR",
+    featured: false,
+    industrySlugs: ["human-resources"],
+    scores: { "eu-ai-act": "C+", "gdpr": "B-", "dora": "C", "eba-eiopa-guidelines": "C" },
+  },
+  {
+    slug: "personio-ai",
+    vendor: "Personio",
+    name: "Personio AI",
+    type: "HR AI Assistant",
+    risk: "Limited",
+    description: "European-built HR platform with AI capabilities for people analytics, workflow automation, and employee self-service.",
+    category: "HR",
+    featured: false,
+    industrySlugs: ["human-resources", "manufacturing"],
+    scores: { "eu-ai-act": "B+", "gdpr": "A", "dora": "B", "eba-eiopa-guidelines": "B+" },
+  },
 ];
 
 // ─── Main Seed Function ──────────────────────────────────
@@ -243,6 +387,57 @@ async function main() {
     }
 
     console.log(`  ✓ ${sys.vendor} ${sys.name} (${Object.keys(scores).length} scores)`);
+  }
+
+  // 4. Seed a few changelog entries for realism
+  console.log("\nChangelog Entries:");
+  const euAiAct = await prisma.regulatoryFramework.findUnique({ where: { slug: "eu-ai-act" } });
+  const gdpr = await prisma.regulatoryFramework.findUnique({ where: { slug: "gdpr" } });
+
+  if (euAiAct) {
+    await prisma.changeLog.create({
+      data: {
+        date: new Date("2025-08-01"),
+        title: "EU AI Act enters into force",
+        description: "First provisions of the EU AI Act become applicable, including prohibitions on unacceptable-risk AI systems.",
+        changeType: "amendment",
+        sourceUrl: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+        sourceLabel: "EUR-Lex",
+        author: "AI Compass EU",
+        frameworkId: euAiAct.id,
+      },
+    }).catch(() => {/* skip if duplicate */});
+    console.log("  ✓ EU AI Act enters into force");
+
+    await prisma.changeLog.create({
+      data: {
+        date: new Date("2026-02-15"),
+        title: "AI Office publishes first general-purpose AI code of practice",
+        description: "The European AI Office released the initial code of practice for general-purpose AI model providers, covering transparency and copyright obligations.",
+        changeType: "update",
+        sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-pact",
+        sourceLabel: "EU AI Office",
+        author: "AI Compass EU",
+        frameworkId: euAiAct.id,
+      },
+    }).catch(() => {/* skip if duplicate */});
+    console.log("  ✓ AI Office code of practice");
+  }
+
+  if (gdpr) {
+    await prisma.changeLog.create({
+      data: {
+        date: new Date("2026-01-10"),
+        title: "EDPB issues guidelines on AI and data protection",
+        description: "The European Data Protection Board published guidelines on the interplay between the AI Act and GDPR, clarifying supervisory responsibilities.",
+        changeType: "jurisprudence",
+        sourceUrl: "https://edpb.europa.eu",
+        sourceLabel: "EDPB",
+        author: "AI Compass EU",
+        frameworkId: gdpr.id,
+      },
+    }).catch(() => {/* skip if duplicate */});
+    console.log("  ✓ EDPB AI/GDPR guidelines");
   }
 
   console.log("\nDone! Seeded everything.");

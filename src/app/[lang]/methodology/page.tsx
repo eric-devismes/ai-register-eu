@@ -239,22 +239,16 @@ export default function MethodologyPage() {
               ))}
             </div>
 
-            {/* Coming Soon */}
+            {/* Grading scale */}
             <div className="mt-16 mx-auto max-w-2xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#ffc107]/10 px-4 py-1.5 text-sm font-medium text-[#b38600]">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffc107] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ffc107]" />
-                </span>
-                Coming Soon
-              </div>
-              <h2 className="mt-6 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                Full Rubrics &amp; Worked Examples
+              <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                Grading Scale
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                Detailed scoring rubrics with point breakdowns, evidence
-                requirements, and worked examples for each dimension will be
-                published here. Subscribe to be notified.
+                Each dimension receives a letter grade from A+ (exemplary) to F
+                (non-compliant). Grades are weighted by dimension importance and
+                aggregated into an overall compliance score. All ratings include
+                source references so you can verify the evidence yourself.
               </p>
             </div>
           </div>

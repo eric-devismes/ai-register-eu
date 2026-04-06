@@ -99,21 +99,22 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Coming Soon */}
+            {/* Contact */}
             <div className="mt-16 mx-auto max-w-2xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#ffc107]/10 px-4 py-1.5 text-sm font-medium text-[#b38600]">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffc107] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ffc107]" />
-                </span>
-                Coming Soon
-              </div>
-              <h2 className="mt-6 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                Full Team Profiles Launching Soon
+              <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                Get in Touch
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                Detailed profiles of our advisory board, research team, and
-                domain experts will be published here. Stay tuned.
+                AI Compass EU is an independent project built in Europe for
+                European decision-makers. For questions, partnership enquiries, or
+                press requests, contact us at{" "}
+                <a
+                  href="mailto:contact@aicompass.eu"
+                  className="font-semibold text-[#003399] hover:underline"
+                >
+                  contact@aicompass.eu
+                </a>
+                .
               </p>
             </div>
           </div>

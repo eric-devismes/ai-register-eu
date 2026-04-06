@@ -83,24 +83,17 @@ export default function RatingsPage() {
           </div>
         </section>
 
-        {/* Coming Soon */}
+        {/* Scoring Dimensions */}
         <section className="py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#ffc107]/10 px-4 py-1.5 text-sm font-medium text-[#b38600]">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffc107] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ffc107]" />
-                </span>
-                Coming Soon
-              </div>
-              <h2 className="mt-6 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                Full Scoring Details In Development
+              <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                8 Weighted Dimensions
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                Detailed rubrics, scoring criteria, evidence requirements, and
-                worked examples for each dimension are being finalized for
-                publication.
+                Each AI system is evaluated across 8 dimensions. Weights reflect
+                the relative importance of each area for EU-compliant AI
+                deployment.
               </p>
             </div>
 
