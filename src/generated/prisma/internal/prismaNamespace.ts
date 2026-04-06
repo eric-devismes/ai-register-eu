@@ -397,6 +397,7 @@ export const ModelName = {
   Translation: 'Translation',
   ChatUsage: 'ChatUsage',
   ChatLog: 'ChatLog',
+  Feedback: 'Feedback',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "approvedSource"
+    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "feedback" | "approvedSource"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1379,6 +1380,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Feedback: {
+      payload: Prisma.$FeedbackPayload<ExtArgs>
+      fields: Prisma.FeedbackFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FeedbackFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FeedbackFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        findFirst: {
+          args: Prisma.FeedbackFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FeedbackFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        findMany: {
+          args: Prisma.FeedbackFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        create: {
+          args: Prisma.FeedbackCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        createMany: {
+          args: Prisma.FeedbackCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FeedbackCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        delete: {
+          args: Prisma.FeedbackDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        update: {
+          args: Prisma.FeedbackUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        deleteMany: {
+          args: Prisma.FeedbackDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FeedbackUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FeedbackUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+        }
+        upsert: {
+          args: Prisma.FeedbackUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackPayload>
+        }
+        aggregate: {
+          args: Prisma.FeedbackAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFeedback>
+        }
+        groupBy: {
+          args: Prisma.FeedbackGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FeedbackCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackCountAggregateOutputType> | number
+        }
+      }
+    }
     ApprovedSource: {
       payload: Prisma.$ApprovedSourcePayload<ExtArgs>
       fields: Prisma.ApprovedSourceFieldRefs
@@ -1643,6 +1718,10 @@ export const SubscriberScalarFieldEnum = {
   digestFrequency: 'digestFrequency',
   consentDate: 'consentDate',
   consentText: 'consentText',
+  tier: 'tier',
+  stripeCustomerId: 'stripeCustomerId',
+  stripeSubscriptionId: 'stripeSubscriptionId',
+  tierExpiresAt: 'tierExpiresAt',
   magicToken: 'magicToken',
   magicTokenExp: 'magicTokenExp',
   sessionToken: 'sessionToken',
@@ -1702,6 +1781,21 @@ export const ChatLogScalarFieldEnum = {
 } as const
 
 export type ChatLogScalarFieldEnum = (typeof ChatLogScalarFieldEnum)[keyof typeof ChatLogScalarFieldEnum]
+
+
+export const FeedbackScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  category: 'category',
+  subject: 'subject',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
 
 
 export const ApprovedSourceScalarFieldEnum = {
@@ -1915,6 +2009,7 @@ export type GlobalOmitConfig = {
   translation?: Prisma.TranslationOmit
   chatUsage?: Prisma.ChatUsageOmit
   chatLog?: Prisma.ChatLogOmit
+  feedback?: Prisma.FeedbackOmit
   approvedSource?: Prisma.ApprovedSourceOmit
 }
 

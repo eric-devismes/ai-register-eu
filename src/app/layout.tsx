@@ -31,6 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
+        {/* Plausible Analytics — replace YOUR_DOMAIN with your domain when ready */}
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

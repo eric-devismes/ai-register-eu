@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useT, useLocale } from "@/lib/locale-context";
 
 const popularSearches = ["GPT-4", "Claude", "Mistral", "SAP AI", "Salesforce Einstein"];
@@ -9,6 +10,13 @@ export default function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
   const t = useT();
   const locale = useLocale();
+  const router = useRouter();
+
+  function handleSearch() {
+    if (searchQuery.trim()) {
+      router.push(`/${locale}/database?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  }
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#0d1b3e] via-[#0d1b3e] to-[#003399]">
@@ -47,9 +55,10 @@ export default function Hero() {
           <div className="mx-auto mt-12 max-w-2xl">
             <div className="flex overflow-hidden rounded-xl bg-white/10 p-1.5 shadow-2xl ring-1 ring-white/20 backdrop-blur-sm">
               <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder={t("hero.searchPlaceholder")}
                 className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder-blue-200/50 focus:outline-none" />
-              <button type="button"
+              <button type="button" onClick={handleSearch}
                 className="rounded-lg bg-[#ffc107] px-6 py-3 text-sm font-semibold text-[#0d1b3e] transition hover:bg-[#ffcd38]">
                 {t("hero.searchButton")}
               </button>

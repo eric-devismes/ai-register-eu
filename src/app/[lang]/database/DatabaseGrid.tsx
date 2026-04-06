@@ -37,8 +37,8 @@ const RISK_COLORS: Record<string, string> = {
   Minimal: "bg-green-100 text-green-700 border-green-200",
 };
 
-export function DatabaseGrid({ systems }: { systems: System[] }) {
-  const [search, setSearch] = useState("");
+export function DatabaseGrid({ systems, initialSearch = "" }: { systems: System[]; initialSearch?: string }) {
+  const [search, setSearch] = useState(initialSearch);
   const [riskFilter, setRiskFilter] = useState("All");
 
   const filtered = systems.filter((s) => {

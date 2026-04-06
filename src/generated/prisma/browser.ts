@@ -104,6 +104,11 @@ export type ChatUsage = Prisma.ChatUsageModel
  */
 export type ChatLog = Prisma.ChatLogModel
 /**
+ * Model Feedback
+ * Feedback submitted via the contact form.
+ */
+export type Feedback = Prisma.FeedbackModel
+/**
  * Model ApprovedSource
  * Admin-curated external source URLs the chatbot can reference.
  */

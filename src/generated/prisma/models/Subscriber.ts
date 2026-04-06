@@ -34,6 +34,10 @@ export type SubscriberMinAggregateOutputType = {
   digestFrequency: string | null
   consentDate: Date | null
   consentText: string | null
+  tier: string | null
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  tierExpiresAt: Date | null
   magicToken: string | null
   magicTokenExp: Date | null
   sessionToken: string | null
@@ -50,6 +54,10 @@ export type SubscriberMaxAggregateOutputType = {
   digestFrequency: string | null
   consentDate: Date | null
   consentText: string | null
+  tier: string | null
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  tierExpiresAt: Date | null
   magicToken: string | null
   magicTokenExp: Date | null
   sessionToken: string | null
@@ -66,6 +74,10 @@ export type SubscriberCountAggregateOutputType = {
   digestFrequency: number
   consentDate: number
   consentText: number
+  tier: number
+  stripeCustomerId: number
+  stripeSubscriptionId: number
+  tierExpiresAt: number
   magicToken: number
   magicTokenExp: number
   sessionToken: number
@@ -84,6 +96,10 @@ export type SubscriberMinAggregateInputType = {
   digestFrequency?: true
   consentDate?: true
   consentText?: true
+  tier?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  tierExpiresAt?: true
   magicToken?: true
   magicTokenExp?: true
   sessionToken?: true
@@ -100,6 +116,10 @@ export type SubscriberMaxAggregateInputType = {
   digestFrequency?: true
   consentDate?: true
   consentText?: true
+  tier?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  tierExpiresAt?: true
   magicToken?: true
   magicTokenExp?: true
   sessionToken?: true
@@ -116,6 +136,10 @@ export type SubscriberCountAggregateInputType = {
   digestFrequency?: true
   consentDate?: true
   consentText?: true
+  tier?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  tierExpiresAt?: true
   magicToken?: true
   magicTokenExp?: true
   sessionToken?: true
@@ -205,6 +229,10 @@ export type SubscriberGroupByOutputType = {
   digestFrequency: string
   consentDate: Date | null
   consentText: string
+  tier: string
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  tierExpiresAt: Date | null
   magicToken: string | null
   magicTokenExp: Date | null
   sessionToken: string | null
@@ -242,6 +270,10 @@ export type SubscriberWhereInput = {
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
+  tier?: Prisma.StringFilter<"Subscriber"> | string
+  stripeCustomerId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  tierExpiresAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   magicToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   magicTokenExp?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   sessionToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
@@ -260,6 +292,10 @@ export type SubscriberOrderByWithRelationInput = {
   digestFrequency?: Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tierExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   magicToken?: Prisma.SortOrderInput | Prisma.SortOrder
   magicTokenExp?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionToken?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -281,6 +317,10 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
+  tier?: Prisma.StringFilter<"Subscriber"> | string
+  stripeCustomerId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  tierExpiresAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   magicToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   magicTokenExp?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   sessionToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
@@ -299,6 +339,10 @@ export type SubscriberOrderByWithAggregationInput = {
   digestFrequency?: Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tierExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   magicToken?: Prisma.SortOrderInput | Prisma.SortOrder
   magicTokenExp?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionToken?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -321,6 +365,10 @@ export type SubscriberScalarWhereWithAggregatesInput = {
   digestFrequency?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  tier?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  stripeCustomerId?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
+  tierExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   magicToken?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
   magicTokenExp?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   sessionToken?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
@@ -337,6 +385,10 @@ export type SubscriberCreateInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -355,6 +407,10 @@ export type SubscriberUncheckedCreateInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -373,6 +429,10 @@ export type SubscriberUpdateInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -391,6 +451,10 @@ export type SubscriberUncheckedUpdateInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -409,6 +473,10 @@ export type SubscriberCreateManyInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -425,6 +493,10 @@ export type SubscriberUpdateManyMutationInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -441,6 +513,10 @@ export type SubscriberUncheckedUpdateManyInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -467,6 +543,10 @@ export type SubscriberCountOrderByAggregateInput = {
   digestFrequency?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  tierExpiresAt?: Prisma.SortOrder
   magicToken?: Prisma.SortOrder
   magicTokenExp?: Prisma.SortOrder
   sessionToken?: Prisma.SortOrder
@@ -483,6 +563,10 @@ export type SubscriberMaxOrderByAggregateInput = {
   digestFrequency?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  tierExpiresAt?: Prisma.SortOrder
   magicToken?: Prisma.SortOrder
   magicTokenExp?: Prisma.SortOrder
   sessionToken?: Prisma.SortOrder
@@ -499,6 +583,10 @@ export type SubscriberMinOrderByAggregateInput = {
   digestFrequency?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  tierExpiresAt?: Prisma.SortOrder
   magicToken?: Prisma.SortOrder
   magicTokenExp?: Prisma.SortOrder
   sessionToken?: Prisma.SortOrder
@@ -591,6 +679,10 @@ export type SubscriberCreateWithoutFrameworksInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -608,6 +700,10 @@ export type SubscriberUncheckedCreateWithoutFrameworksInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -649,6 +745,10 @@ export type SubscriberScalarWhereInput = {
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
+  tier?: Prisma.StringFilter<"Subscriber"> | string
+  stripeCustomerId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
+  tierExpiresAt?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   magicToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   magicTokenExp?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   sessionToken?: Prisma.StringNullableFilter<"Subscriber"> | string | null
@@ -665,6 +765,10 @@ export type SubscriberCreateWithoutSystemsInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -682,6 +786,10 @@ export type SubscriberUncheckedCreateWithoutSystemsInput = {
   digestFrequency?: string
   consentDate?: Date | string | null
   consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
   magicToken?: string | null
   magicTokenExp?: Date | string | null
   sessionToken?: string | null
@@ -720,6 +828,10 @@ export type SubscriberUpdateWithoutFrameworksInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -737,6 +849,10 @@ export type SubscriberUncheckedUpdateWithoutFrameworksInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -754,6 +870,10 @@ export type SubscriberUncheckedUpdateManyWithoutFrameworksInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -770,6 +890,10 @@ export type SubscriberUpdateWithoutSystemsInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -787,6 +911,10 @@ export type SubscriberUncheckedUpdateWithoutSystemsInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -804,6 +932,10 @@ export type SubscriberUncheckedUpdateManyWithoutSystemsInput = {
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -860,6 +992,10 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   digestFrequency?: boolean
   consentDate?: boolean
   consentText?: boolean
+  tier?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  tierExpiresAt?: boolean
   magicToken?: boolean
   magicTokenExp?: boolean
   sessionToken?: boolean
@@ -879,6 +1015,10 @@ export type SubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   digestFrequency?: boolean
   consentDate?: boolean
   consentText?: boolean
+  tier?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  tierExpiresAt?: boolean
   magicToken?: boolean
   magicTokenExp?: boolean
   sessionToken?: boolean
@@ -895,6 +1035,10 @@ export type SubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   digestFrequency?: boolean
   consentDate?: boolean
   consentText?: boolean
+  tier?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  tierExpiresAt?: boolean
   magicToken?: boolean
   magicTokenExp?: boolean
   sessionToken?: boolean
@@ -911,6 +1055,10 @@ export type SubscriberSelectScalar = {
   digestFrequency?: boolean
   consentDate?: boolean
   consentText?: boolean
+  tier?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  tierExpiresAt?: boolean
   magicToken?: boolean
   magicTokenExp?: boolean
   sessionToken?: boolean
@@ -919,7 +1067,7 @@ export type SubscriberSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "verified" | "digestEnabled" | "digestFrequency" | "consentDate" | "consentText" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
+export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "verified" | "digestEnabled" | "digestFrequency" | "consentDate" | "consentText" | "tier" | "stripeCustomerId" | "stripeSubscriptionId" | "tierExpiresAt" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
 export type SubscriberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   frameworks?: boolean | Prisma.Subscriber$frameworksArgs<ExtArgs>
   systems?: boolean | Prisma.Subscriber$systemsArgs<ExtArgs>
@@ -942,6 +1090,10 @@ export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.Internal
     digestFrequency: string
     consentDate: Date | null
     consentText: string
+    tier: string
+    stripeCustomerId: string | null
+    stripeSubscriptionId: string | null
+    tierExpiresAt: Date | null
     magicToken: string | null
     magicTokenExp: Date | null
     sessionToken: string | null
@@ -1380,6 +1532,10 @@ export interface SubscriberFieldRefs {
   readonly digestFrequency: Prisma.FieldRef<"Subscriber", 'String'>
   readonly consentDate: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly consentText: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly tier: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly stripeCustomerId: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly stripeSubscriptionId: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly tierExpiresAt: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly magicToken: Prisma.FieldRef<"Subscriber", 'String'>
   readonly magicTokenExp: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly sessionToken: Prisma.FieldRef<"Subscriber", 'String'>

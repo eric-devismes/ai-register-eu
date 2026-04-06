@@ -64,6 +64,7 @@ export const ModelName = {
   Translation: 'Translation',
   ChatUsage: 'ChatUsage',
   ChatLog: 'ChatLog',
+  Feedback: 'Feedback',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -234,6 +235,10 @@ export const SubscriberScalarFieldEnum = {
   digestFrequency: 'digestFrequency',
   consentDate: 'consentDate',
   consentText: 'consentText',
+  tier: 'tier',
+  stripeCustomerId: 'stripeCustomerId',
+  stripeSubscriptionId: 'stripeSubscriptionId',
+  tierExpiresAt: 'tierExpiresAt',
   magicToken: 'magicToken',
   magicTokenExp: 'magicTokenExp',
   sessionToken: 'sessionToken',
@@ -293,6 +298,21 @@ export const ChatLogScalarFieldEnum = {
 } as const
 
 export type ChatLogScalarFieldEnum = (typeof ChatLogScalarFieldEnum)[keyof typeof ChatLogScalarFieldEnum]
+
+
+export const FeedbackScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  category: 'category',
+  subject: 'subject',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
 
 
 export const ApprovedSourceScalarFieldEnum = {

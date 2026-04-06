@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   description: "Browse and search AI systems rated for European compliance. Filter by risk level, industry, regulation, and compliance score.",
 };
 
-export default async function DatabasePage() {
+export default async function DatabasePage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q: searchQuery } = await searchParams;
   const [systems, frameworks] = await Promise.all([
     getAllSystems(),
     getPublishedFrameworks(),
@@ -74,7 +75,7 @@ export default async function DatabasePage() {
         {/* Database grid */}
         <section className="py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <DatabaseGrid systems={plainSystems} />
+            <DatabaseGrid systems={plainSystems} initialSearch={searchQuery || ""} />
           </div>
         </section>
       </main>

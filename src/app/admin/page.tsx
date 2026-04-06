@@ -9,10 +9,12 @@ import { prisma } from "@/lib/db";
 
 export default async function AdminDashboard() {
   // Fetch all counts in parallel
-  const [systemCount, frameworkCount, industryCount, recentSystems] = await Promise.all([
+  const [systemCount, frameworkCount, industryCount, subscriberCount, feedbackCount, recentSystems] = await Promise.all([
     prisma.aISystem.count(),
     prisma.regulatoryFramework.count(),
     prisma.industry.count(),
+    prisma.subscriber.count(),
+    prisma.feedback.count({ where: { status: "new" } }),
     prisma.aISystem.findMany({
       orderBy: { updatedAt: "desc" },
       take: 5,
@@ -25,7 +27,7 @@ export default async function AdminDashboard() {
       <h1 className="font-heading text-2xl font-bold text-text-primary">Dashboard</h1>
 
       {/* Stats cards */}
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-5">
         <div className="rounded-xl border border-border-light bg-white p-6">
           <p className="text-sm text-text-secondary">AI Systems</p>
           <p className="mt-1 text-3xl font-bold text-text-primary">{systemCount}</p>
@@ -39,12 +41,15 @@ export default async function AdminDashboard() {
           <p className="mt-1 text-3xl font-bold text-text-primary">{industryCount}</p>
         </div>
         <div className="rounded-xl border border-border-light bg-white p-6">
-          <Link href="/admin/systems/new"
-            className="flex h-full items-center justify-center gap-2 text-sm font-semibold text-eu-blue transition hover:text-eu-blue-light">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            Add New AI System
+          <Link href="/admin/subscribers" className="block">
+            <p className="text-sm text-text-secondary">Subscribers</p>
+            <p className="mt-1 text-3xl font-bold text-text-primary">{subscriberCount}</p>
+          </Link>
+        </div>
+        <div className="rounded-xl border border-border-light bg-white p-6">
+          <Link href="/admin/feedback" className="block">
+            <p className="text-sm text-text-secondary">New Feedback</p>
+            <p className="mt-1 text-3xl font-bold text-amber-600">{feedbackCount}</p>
           </Link>
         </div>
       </div>

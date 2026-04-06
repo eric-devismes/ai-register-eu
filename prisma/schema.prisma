@@ -238,6 +238,12 @@ model Subscriber {
   frameworks      RegulatoryFramework[]                       // Frameworks they follow
   systems         AISystem[]                                  // AI systems they follow
 
+  // Subscription tier
+  tier                 String    @default("free")             // "free", "pro", "team"
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  tierExpiresAt        DateTime?
+
   // Magic link auth tokens
   magicToken      String?                                     // Hashed magic link token
   magicTokenExp   DateTime?                                   // Token expiry (15 min)
@@ -293,6 +299,19 @@ model ChatLog {
   blocked      Boolean  @default(false)                        // Was this blocked?
   blockReason  String   @default("")                           // "injection", "off-topic", "rate-limit"
   createdAt    DateTime @default(now())
+}
+
+/// Feedback submitted via the contact form.
+model Feedback {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  category  String                          // "general", "correction", "partnership", "press"
+  subject   String
+  message   String
+  status    String   @default("new")        // "new", "read", "responded"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 /// Admin-curated external source URLs the chatbot can reference.
