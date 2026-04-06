@@ -12,6 +12,8 @@
 import { getTOTP } from "@/lib/auth";
 import { TotpQrCode } from "./TotpQrCode";
 
+export const dynamic = "force-dynamic";
+
 export default function SetupTotpPage() {
   const totp = getTOTP();
   const uri = totp.toString(); // otpauth:// URI for QR code
