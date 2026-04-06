@@ -106,7 +106,7 @@ async function main() {
   }
 
   // ─── Also seed Mistral AI for GDPR (to show another example) ───
-  const mistral = await prisma.aISystem.findUnique({ where: { slug: "mistral-ai" } });
+  const mistral = await prisma.aISystem.findUnique({ where: { slug: "mistral-ai-mistral-large" } });
   if (mistral && gdpr) {
     console.log("\nGDPR scores for Mistral AI:");
     const mistralGdprScores: Record<string, { score: string; commentary: string }> = {
