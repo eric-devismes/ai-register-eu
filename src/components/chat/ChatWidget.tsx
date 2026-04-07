@@ -10,8 +10,34 @@
  * - Responds in the user's language
  */
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { useLocale, useT } from "@/lib/locale-context";
+
+/**
+ * Parse markdown links [text](url) in chat messages and render as clickable <a> tags.
+ * Also handles **bold** text.
+ */
+function renderWithLinks(content: string): ReactNode[] {
+  // Match markdown links and bold text
+  const parts = content.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    // Markdown link: [text](url)
+    const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+    if (linkMatch) {
+      return (
+        <a key={i} href={linkMatch[2]} className="font-semibold text-[#003399] underline hover:text-[#002277]">
+          {linkMatch[1]}
+        </a>
+      );
+    }
+    // Bold: **text**
+    const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
+    if (boldMatch) {
+      return <strong key={i}>{boldMatch[1]}</strong>;
+    }
+    return part;
+  });
+}
 
 interface Message {
   role: "user" | "assistant" | "system";
@@ -194,7 +220,9 @@ export default function ChatWidget() {
                       ? "bg-[#003399] text-white"
                       : "bg-gray-100 text-gray-800"
                   }`}>
-                    <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                    <p className="whitespace-pre-wrap leading-relaxed">
+                      {msg.role === "assistant" ? renderWithLinks(msg.content) : msg.content}
+                    </p>
                   </div>
                 </div>
               );
