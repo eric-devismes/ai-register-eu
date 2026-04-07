@@ -40,6 +40,7 @@ export default function Header() {
   const mainNavLinks = [
     { label: t("common.home"), href: `/${pathLocale}` },
     { label: t("common.database"), href: l("/database") },
+    { label: "Compare", href: l("/compare") },
     { label: t("common.regulations"), href: l("/regulations") },
     { label: t("common.industries"), href: l("/industries") },
     { label: t("common.pricing"), href: l("/pricing") },
