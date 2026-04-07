@@ -195,17 +195,36 @@ Rules:
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
 
-  const response = await client.messages.create({
-    model: "claude-haiku-4-20250414",
-    max_tokens: 2048,
-    system: systemPrompt,
-    messages: [{ role: "user", content: userMessage }],
-  }, { signal: controller.signal }).finally(() => clearTimeout(timeout));
+  let response;
+  try {
+    response = await client.messages.create({
+      model: "claude-haiku-4-20250414",
+      max_tokens: 2048,
+      system: systemPrompt,
+      messages: [{ role: "user", content: userMessage }],
+    }, { signal: controller.signal }).finally(() => clearTimeout(timeout));
+  } catch (error: unknown) {
+    console.error("[compare] LLM call failed:", error);
+    const status = (error as { status?: number })?.status;
+    if (status === 400 || status === 402) {
+      return {
+        ready: false,
+        analysis: "The AI matching service is temporarily unavailable. You can browse our AI database directly to find systems relevant to your use case.",
+        followUpQuestions: null,
+        matches: [],
+      };
+    }
+    return {
+      ready: false,
+      analysis: "Unable to process your request. Please try again in a moment.",
+      followUpQuestions: null,
+      matches: [],
+    };
+  }
 
   const text = response.content.find((b) => b.type === "text")?.text || "{}";
 
   try {
-    // Extract JSON from response (handle markdown code blocks)
     const jsonMatch = text.match(/```json\n?([\s\S]*?)\n?```/) || text.match(/(\{[\s\S]*\})/);
     const jsonStr = jsonMatch ? jsonMatch[1] : text;
     return JSON.parse(jsonStr);

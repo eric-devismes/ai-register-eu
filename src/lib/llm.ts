@@ -91,8 +91,15 @@ export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
     const answer = textBlock?.text || "I could not generate a response. Please try again.";
 
     return { answer, blocked: false };
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("[llm] API call failed:", error);
+    const status = (error as { status?: number })?.status;
+    if (status === 400 || status === 402) {
+      return {
+        answer: "Our AI assistant is temporarily unavailable. In the meantime, you can browse our AI database and regulation pages directly for compliance information.",
+        blocked: false,
+      };
+    }
     return {
       answer: "I'm temporarily unable to respond. Please try again in a moment.",
       blocked: false,
