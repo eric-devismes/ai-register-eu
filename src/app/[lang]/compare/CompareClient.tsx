@@ -12,6 +12,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLocale } from "@/lib/locale-context";
 
 // ─── Types ────────────────────────────────────────────────
 
@@ -90,6 +91,7 @@ function RelevanceBadge({ score }: { score: number }) {
 // ─── Main Component ───────────────────────────────────────
 
 export function CompareClient() {
+  const locale = useLocale();
   const [phase, setPhase] = useState<Phase>("input");
   const [useCase, setUseCase] = useState("");
   const [followUpAnswers, setFollowUpAnswers] = useState("");
@@ -451,7 +453,7 @@ export function CompareClient() {
 
                   {/* View link */}
                   <Link
-                    href={`/en/systems/${m.slug}`}
+                    href={`/${locale}/systems/${m.slug}`}
                     onClick={(e) => e.stopPropagation()}
                     className="flex-shrink-0 text-xs text-[#003399] hover:underline mt-0.5"
                   >
@@ -539,7 +541,7 @@ export function CompareClient() {
                   </th>
                   {compareData.systems.map((s) => (
                     <th key={s.id} className="px-5 py-4 text-left min-w-[220px]">
-                      <Link href={`/en/systems/${s.slug}`} className="hover:underline">
+                      <Link href={`/${locale}/systems/${s.slug}`} className="hover:underline">
                         <div className="text-white font-semibold text-sm">{s.vendor}</div>
                         <div className="text-blue-200 text-xs font-normal mt-0.5">{s.name}</div>
                       </Link>
@@ -622,7 +624,7 @@ export function CompareClient() {
             {compareData.systems.map((s) => (
               <Link
                 key={s.id}
-                href={`/en/systems/${s.slug}`}
+                href={`/${locale}/systems/${s.slug}`}
                 className="flex items-center gap-3 bg-white rounded-xl border border-gray-200 p-4 hover:border-[#003399] hover:shadow-sm transition-all"
               >
                 <div className="flex-1">

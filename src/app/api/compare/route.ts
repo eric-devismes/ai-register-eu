@@ -190,12 +190,15 @@ Rules:
     ? `Use case: ${useCase}\n\nFollow-up answers: ${followUpAnswers}`
     : `Use case: ${useCase}`;
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
   const response = await client.messages.create({
     model: "claude-haiku-4-20250414",
     max_tokens: 2048,
     system: systemPrompt,
     messages: [{ role: "user", content: userMessage }],
-  });
+  }, { signal: controller.signal }).finally(() => clearTimeout(timeout));
 
   const text = response.content.find((b) => b.type === "text")?.text || "{}";
 
