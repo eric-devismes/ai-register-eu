@@ -10,6 +10,8 @@
  * Step 5: Side-by-side comparison table (systems as columns, attributes as rows)
  */
 
+export const dynamic = "force-dynamic";
+
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
