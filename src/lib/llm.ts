@@ -77,12 +77,15 @@ export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
     const Anthropic = (await import("@anthropic-ai/sdk")).default;
     const client = new Anthropic({ apiKey });
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+
     const response = await client.messages.create({
       model: "claude-haiku-4-20250414",
       max_tokens: 1024,
       system: buildSystemPrompt(req.locale, req.context),
       messages: [{ role: "user", content: req.question }],
-    });
+    }, { signal: controller.signal }).finally(() => clearTimeout(timeout));
 
     const textBlock = response.content.find((b) => b.type === "text");
     const answer = textBlock?.text || "I could not generate a response. Please try again.";

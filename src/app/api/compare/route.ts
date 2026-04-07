@@ -16,6 +16,8 @@
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { checkRateLimit, incrementUsage } from "@/lib/chat-rate-limit";
+import { guardQuestion } from "@/lib/chat-guard";
 
 // ─── Comparison Attributes ───────────────────────────────
 // These are the rows in the side-by-side comparison table
@@ -221,6 +223,12 @@ Rules:
 
 export async function POST(request: Request) {
   try {
+    // ── Request size guard (max 10KB) ─────────────────────
+    const contentLength = request.headers.get("content-length");
+    if (contentLength && parseInt(contentLength) > 10240) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+
     const body = await request.json();
     const { useCase, followUpAnswers, systemIds, phase } = body as {
       useCase?: string;
@@ -229,8 +237,11 @@ export async function POST(request: Request) {
       phase: "match" | "compare";
     };
 
-    // ── Phase 2: Return full comparison data ──────────────
+    // ── Phase 2: Return full comparison data (no LLM, lighter limits) ──
     if (phase === "compare" && systemIds?.length) {
+      if (systemIds.length > 10) {
+        return NextResponse.json({ error: "Maximum 10 systems" }, { status: 400 });
+      }
       const systems = await prisma.aISystem.findMany({
         where: { id: { in: systemIds } },
         include: {
@@ -253,6 +264,34 @@ export async function POST(request: Request) {
     if (!useCase) {
       return NextResponse.json({ error: "useCase is required" }, { status: 400 });
     }
+
+    // Rate limit (same daily limits as chatbot)
+    const rateLimit = await checkRateLimit();
+    if (!rateLimit.allowed) {
+      return NextResponse.json({
+        error: "Daily comparison limit reached. Sign up for more.",
+        remaining: 0,
+      }, { status: 429 });
+    }
+
+    // Input length cap (2000 chars for use case descriptions)
+    if (useCase.length > 2000) {
+      return NextResponse.json({ error: "Use case description too long (max 2000 characters)" }, { status: 400 });
+    }
+
+    // Injection detection on use case input
+    const guard = guardQuestion(useCase);
+    if (!guard.allowed && guard.reason === "injection") {
+      return NextResponse.json({
+        error: "Please describe a genuine business use case.",
+        analysis: "Please describe what your organisation needs — e.g., 'customer service automation for our insurance claims team'.",
+        matches: [],
+        ready: false,
+      });
+    }
+
+    // Count this as a usage
+    await incrementUsage(rateLimit.fingerprint);
 
     // Get all systems summary for the LLM
     const allSystems = await prisma.aISystem.findMany({
