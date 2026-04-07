@@ -1,16 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 const CATEGORIES = [
   { value: "general", label: "General Enquiry" },
   { value: "correction", label: "Rating Correction" },
   { value: "partnership", label: "Partnership" },
   { value: "press", label: "Press / Media" },
+  { value: "services", label: "Services Enquiry" },
 ];
 
 export function ContactForm() {
+  const searchParams = useSearchParams();
   const [form, setForm] = useState({ name: "", email: "", category: "general", subject: "", message: "" });
+
+  // Pre-select category from URL param (e.g., /contact?category=services)
+  useEffect(() => {
+    const cat = searchParams.get("category");
+    if (cat && CATEGORIES.some((c) => c.value === cat)) {
+      setForm((prev) => ({ ...prev, category: cat }));
+    }
+  }, [searchParams]);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 

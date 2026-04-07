@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ContactForm } from "./ContactForm";
@@ -32,7 +33,9 @@ export default function ContactPage() {
 
         <section className="py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <ContactForm />
+            <Suspense fallback={null}>
+              <ContactForm />
+            </Suspense>
 
             <div className="mt-16 grid gap-8 sm:grid-cols-2">
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">

@@ -43,6 +43,7 @@ export default function Header() {
     { label: "Compare", href: l("/compare") },
     { label: t("common.regulations"), href: l("/regulations") },
     { label: t("common.industries"), href: l("/industries") },
+    { label: "Services", href: l("/services") },
     { label: t("common.pricing"), href: l("/pricing") },
   ];
 
