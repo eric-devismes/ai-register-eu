@@ -120,8 +120,9 @@ function RelevanceBadge({ score }: { score: number }) {
 
 // ─── Main Component ───────────────────────────────────────
 
-export function CompareClient() {
+export function CompareClient({ tier = "free" }: { tier?: string }) {
   const locale = useLocale();
+  const hasFullAccess = tier === "pro" || tier === "enterprise";
   const [phase, setPhase] = useState<Phase>("input");
   const [useCase, setUseCase] = useState("");
   const [industry, setIndustry] = useState("");
@@ -151,6 +152,7 @@ export function CompareClient() {
         body: JSON.stringify({
           useCase,
           phase: "match",
+          tier,
           filters: {
             industry: industry || undefined,
             deployment: deployment || undefined,
@@ -458,6 +460,21 @@ export function CompareClient() {
               </button>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Upgrade banner for free users */}
+      {phase === "matches" && !hasFullAccess && (
+        <div className="rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-5 text-center">
+          <p className="text-sm font-medium text-[#0d1b3e]">
+            Seeing limited results? Pro unlocks all 60+ AI systems.
+          </p>
+          <a
+            href="/en/pricing"
+            className="mt-2 inline-block rounded-lg bg-[#003399] px-5 py-2 text-xs font-semibold text-white hover:bg-[#002277]"
+          >
+            Upgrade to Pro — €19/month
+          </a>
         </div>
       )}
 
