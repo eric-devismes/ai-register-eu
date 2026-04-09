@@ -235,6 +235,27 @@ model ChangeLog {
 }
 
 /// A public subscriber (email-only account with magic link auth).
+// ─── Admin Users ────────────────────────────────────────────
+
+/// Admin users who can access the admin panel.
+/// Roles: "owner" (unrestricted), "admin" (full admin), "editor" (content only).
+/// Owner also bypasses all public-site tier restrictions (full testing access).
+model AdminUser {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String   @default("")
+  passwordHash  String                        // bcrypt hash
+  totpSecret    String   @default("")         // base32-encoded TOTP secret (empty = not set up)
+  totpEnabled   Boolean  @default(false)      // Whether 2FA is active
+  role          String   @default("editor")   // "owner", "admin", "editor"
+  active        Boolean  @default(true)       // Deactivate without deleting
+  lastLoginAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── Subscribers ────────────────────────────────────────────
+
 /// GDPR-compliant: stores only email + preferences + consent record.
 /// No passwords, no names, no tracking, no profiling.
 model Subscriber {

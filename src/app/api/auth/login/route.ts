@@ -2,41 +2,52 @@
  * Login API — Step 1 of 2
  *
  * POST /api/auth/login
- * Body: { password: string }
+ * Body: { email: string, password: string }
  *
- * Verifies the admin password. If correct, tells the client
- * to proceed to TOTP verification (step 2).
- * Does NOT create a session — that happens after TOTP is verified.
+ * Verifies admin credentials against the AdminUser table (or legacy env vars).
+ * If correct and TOTP is enabled, tells the client to proceed to step 2.
+ * If TOTP is not enabled, creates session immediately.
  */
 
 import { NextResponse } from "next/server";
-import { verifyPassword } from "@/lib/auth";
+import { authenticateAdmin, createSession, setSessionCookie } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
-    const { password } = await request.json();
+    const { email, password } = await request.json();
 
     if (!password) {
-      return NextResponse.json(
-        { error: "Password required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Password required" }, { status: 400 });
     }
 
-    const valid = await verifyPassword(password);
+    // Authenticate against DB or legacy env vars
+    // For legacy mode (no email field), use a placeholder email
+    const admin = await authenticateAdmin(email || "admin@aicompass.eu", password);
 
-    if (!valid) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 }
-      );
+    if (!admin) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    return NextResponse.json({ success: true, step: "totp" });
+    // If TOTP is enabled, require step 2
+    if (admin.totpEnabled && admin.totpSecret) {
+      return NextResponse.json({
+        success: true,
+        step: "totp",
+        adminId: admin.id,
+      });
+    }
+
+    // No TOTP — create session directly
+    const token = await createSession({
+      id: admin.id,
+      email: admin.email,
+      name: admin.name || "Admin",
+      role: admin.role,
+    });
+    await setSessionCookie(token);
+
+    return NextResponse.json({ success: true, step: "done" });
   } catch {
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

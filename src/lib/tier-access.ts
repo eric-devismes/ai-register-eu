@@ -100,6 +100,32 @@ export function canAccessSystem(tier: SubscriptionTier, slug: string): boolean {
 }
 
 /**
+ * Get the effective tier for the current user.
+ * Admin owners get "enterprise" tier (full access) for testing.
+ * Otherwise returns the subscriber's actual tier.
+ */
+export async function getEffectiveTier(): Promise<SubscriptionTier> {
+  // Check if admin owner (bypasses all restrictions)
+  try {
+    const { isOwnerSession } = await import("@/lib/auth");
+    if (await isOwnerSession()) return "enterprise";
+  } catch {
+    // Auth module not available (e.g., during build)
+  }
+
+  // Check subscriber tier
+  try {
+    const { getSubscriber } = await import("@/lib/subscriber-auth");
+    const sub = await getSubscriber();
+    if (sub?.tier) return sub.tier as SubscriptionTier;
+  } catch {
+    // Not logged in
+  }
+
+  return "free";
+}
+
+/**
  * Get the upgrade message for a gated feature.
  */
 export function getUpgradeMessage(feature: string): string {

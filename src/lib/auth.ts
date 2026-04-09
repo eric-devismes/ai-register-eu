@@ -1,140 +1,212 @@
 /**
- * Authentication Module
+ * Admin Authentication — Multi-user with roles.
  *
- * Handles all admin authentication for AI Compass EU:
- *   1. Password verification (bcrypt)
- *   2. TOTP two-factor authentication (authenticator app)
- *   3. JWT session tokens (stored in HTTP-only cookies)
+ * Supports multiple admin users stored in the database (AdminUser model).
+ * Each admin has: email, password (bcrypt), optional TOTP 2FA, and a role.
  *
- * Environment variables required:
- *   - ADMIN_PASSWORD_HASH: bcrypt hash of the admin password
- *   - TOTP_SECRET: base32-encoded secret for the authenticator app
- *   - JWT_SECRET: random string (32+ chars) for signing session tokens
+ * Roles:
+ *   - "owner"  — Unrestricted. Full admin + bypasses all public-site tier limits.
+ *   - "admin"  — Full admin panel access.
+ *   - "editor" — Content management only (systems, frameworks, changelog).
+ *
+ * Backward compatibility:
+ *   If no AdminUser records exist in the DB, falls back to the legacy
+ *   ADMIN_PASSWORD_HASH + TOTP_SECRET env vars (single-admin mode).
+ *
+ * Session: JWT stored in HTTP-only cookie, 24-hour expiry.
+ * JWT payload includes: { adminId, role, type: "admin" }
  */
 
 import bcrypt from "bcryptjs";
 import { SignJWT, jwtVerify } from "jose";
 import { TOTP, Secret } from "otpauth";
 import { cookies } from "next/headers";
+import { prisma } from "@/lib/db";
 
-// Name of the cookie that stores the session token
+// ─── Constants ──────────────────────────────────────────
+
 const SESSION_COOKIE = "admin-session";
+const SESSION_DURATION = 24 * 60 * 60; // 24 hours in seconds
 
-// How long a login session lasts (24 hours)
-const SESSION_DURATION = 24 * 60 * 60; // in seconds
+export type AdminRole = "owner" | "admin" | "editor";
 
-/**
- * Convert the JWT_SECRET string into bytes for the jose library.
- * Throws an error if the env var is not set.
- */
+export interface AdminSession {
+  adminId: string;       // AdminUser.id (or "legacy" for env-var mode)
+  email: string;
+  name: string;
+  role: AdminRole;
+}
+
+// ─── JWT Helpers ────────────────────────────────────────
+
 function getJwtSecret() {
   const secret = process.env.JWT_SECRET;
   if (!secret) throw new Error("JWT_SECRET not set");
   return new TextEncoder().encode(secret);
 }
 
-// ─── Password ────────────────────────────────────────────
+// ─── Password ───────────────────────────────────────────
 
-/**
- * Check if a plaintext password matches the stored hash.
- * The hash comes from the ADMIN_PASSWORD_HASH env var.
- */
-export async function verifyPassword(plaintext: string): Promise<boolean> {
-  const hash = process.env.ADMIN_PASSWORD_HASH;
-  if (!hash) throw new Error("ADMIN_PASSWORD_HASH not set");
+/** Verify a plaintext password against a bcrypt hash. */
+export async function verifyPassword(plaintext: string, hash: string): Promise<boolean> {
   return bcrypt.compare(plaintext, hash);
 }
 
-// ─── TOTP (Two-Factor Authentication) ───────────────────
+/** Hash a plaintext password for storage. */
+export async function hashPassword(plaintext: string): Promise<string> {
+  return bcrypt.hash(plaintext, 12);
+}
 
-/**
- * Create a TOTP instance configured for this app.
- * Used both for generating QR codes (setup) and validating codes (login).
- */
-export function getTOTP() {
-  const totpSecret = process.env.TOTP_SECRET;
-  if (!totpSecret) throw new Error("TOTP_SECRET not set");
+// ─── TOTP ───────────────────────────────────────────────
+
+/** Create a TOTP instance for a given secret. */
+export function createTOTP(secret: string, label = "Admin") {
   return new TOTP({
-    issuer: "AI Compass EU",   // Shows in the authenticator app
-    label: "Admin",             // Account name in the authenticator app
-    algorithm: "SHA1",          // Standard TOTP algorithm
-    digits: 6,                  // 6-digit codes
-    period: 30,                 // New code every 30 seconds
-    secret: Secret.fromBase32(totpSecret),
+    issuer: "AI Compass EU",
+    label,
+    algorithm: "SHA1",
+    digits: 6,
+    period: 30,
+    secret: Secret.fromBase32(secret),
   });
 }
 
-/**
- * Verify a 6-digit TOTP code from the user.
- * Accepts codes from the current and adjacent time windows (±30s)
- * to account for clock skew.
- */
-export function verifyTOTP(token: string): boolean {
-  const totp = getTOTP();
+/** Verify a 6-digit TOTP code. Accepts ±1 window for clock skew. */
+export function verifyTOTP(token: string, secret: string): boolean {
+  const totp = createTOTP(secret);
   const delta = totp.validate({ token, window: 1 });
   return delta !== null;
 }
 
-// ─── JWT Sessions ────────────────────────────────────────
+// Legacy TOTP for env-var mode
+export function getTOTP() {
+  const totpSecret = process.env.TOTP_SECRET;
+  if (!totpSecret) throw new Error("TOTP_SECRET not set");
+  return createTOTP(totpSecret, "Admin");
+}
+
+// ─── Admin User Lookup ──────────────────────────────────
 
 /**
- * Create a new signed JWT session token.
- * The token contains the admin role and expires after 24 hours.
+ * Find an admin user by email and verify their password.
+ * Returns the admin record if credentials are valid, null otherwise.
  */
-export async function createSession(): Promise<string> {
-  const token = await new SignJWT({ role: "admin" })
+export async function authenticateAdmin(email: string, password: string) {
+  // Try DB-backed admin first
+  const admin = await prisma.adminUser.findUnique({ where: { email } });
+
+  if (admin && admin.active) {
+    const valid = await verifyPassword(password, admin.passwordHash);
+    if (valid) return admin;
+    return null;
+  }
+
+  // Legacy fallback: env-var mode (no email check, just password)
+  const legacyHash = process.env.ADMIN_PASSWORD_HASH;
+  if (legacyHash) {
+    const valid = await verifyPassword(password, legacyHash);
+    if (valid) {
+      return {
+        id: "legacy",
+        email: "admin@aicompass.eu",
+        name: "Admin",
+        role: "owner" as AdminRole,
+        totpSecret: process.env.TOTP_SECRET || "",
+        totpEnabled: !!process.env.TOTP_SECRET,
+      };
+    }
+  }
+
+  return null;
+}
+
+// ─── Sessions ───────────────────────────────────────────
+
+/** Create a signed JWT session for an admin user. */
+export async function createSession(admin: { id: string; email: string; name: string; role: string }): Promise<string> {
+  return new SignJWT({
+    adminId: admin.id,
+    email: admin.email,
+    name: admin.name,
+    role: admin.role,
+    type: "admin",
+  })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(`${SESSION_DURATION}s`)
     .sign(getJwtSecret());
-  return token;
 }
 
-/**
- * Check if a JWT token is valid and not expired.
- * Returns false for any invalid/expired/tampered tokens.
- */
-export async function verifySession(token: string): Promise<boolean> {
-  try {
-    await jwtVerify(token, getJwtSecret());
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-// ─── Cookie Management ───────────────────────────────────
-
-/**
- * Save the session token as a secure HTTP-only cookie.
- * HTTP-only means JavaScript can't read it (prevents XSS attacks).
- */
+/** Save session token as HTTP-only cookie. */
 export async function setSessionCookie(token: string) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, token, {
-    httpOnly: true,                                    // Can't be read by JS
-    secure: process.env.NODE_ENV === "production",     // HTTPS only in prod
-    sameSite: "lax",                                   // Basic CSRF protection
-    maxAge: SESSION_DURATION,                          // Auto-expires
-    path: "/",                                         // Available site-wide
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: SESSION_DURATION,
+    path: "/",
   });
 }
 
-/**
- * Remove the session cookie (used for logout).
- */
+/** Remove session cookie (logout). */
 export async function clearSessionCookie() {
   const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE);
 }
 
 /**
- * Check if the current request has a valid admin session.
- * Used by server actions to verify the user is logged in.
+ * Get the current admin session from the cookie.
+ * Returns the full session payload (adminId, email, name, role) or null.
  */
-export async function getSession(): Promise<boolean> {
+export async function getAdminSession(): Promise<AdminSession | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
-  if (!token) return false;
-  return verifySession(token);
+  if (!token) return null;
+
+  try {
+    const { payload } = await jwtVerify(token, getJwtSecret());
+    if (payload.type !== "admin") return null;
+
+    return {
+      adminId: payload.adminId as string,
+      email: payload.email as string,
+      name: (payload.name as string) || "Admin",
+      role: (payload.role as AdminRole) || "admin",
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Legacy compat: check if there's a valid admin session (boolean).
+ * Used by existing server actions that call getSession().
+ */
+export async function getSession(): Promise<boolean> {
+  const session = await getAdminSession();
+  return session !== null;
+}
+
+// ─── Role Checks ────────────────────────────────────────
+
+/** Check if a role has permission for an action. */
+export function hasAdminPermission(role: AdminRole, action: "view" | "edit" | "manage_admins"): boolean {
+  switch (action) {
+    case "view":
+      return true; // All admin roles can view
+    case "edit":
+      return role === "owner" || role === "admin" || role === "editor";
+    case "manage_admins":
+      return role === "owner"; // Only owner can add/remove admins
+  }
+}
+
+/**
+ * Check if the current user (admin or subscriber) should bypass tier restrictions.
+ * Returns true for admin owners — they see everything as if Enterprise.
+ */
+export async function isOwnerSession(): Promise<boolean> {
+  const session = await getAdminSession();
+  return session?.role === "owner";
 }

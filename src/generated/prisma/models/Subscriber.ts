@@ -14,7 +14,6 @@ import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Subscriber
- * A public subscriber (email-only account with magic link auth).
  * GDPR-compliant: stores only email + preferences + consent record.
  * No passwords, no names, no tracking, no profiling.
  */

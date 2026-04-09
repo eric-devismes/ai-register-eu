@@ -59,6 +59,7 @@ export const ModelName = {
   DimensionScore: 'DimensionScore',
   AISystem: 'AISystem',
   ChangeLog: 'ChangeLog',
+  AdminUser: 'AdminUser',
   Subscriber: 'Subscriber',
   DigestLog: 'DigestLog',
   Translation: 'Translation',
@@ -235,6 +236,23 @@ export const ChangeLogScalarFieldEnum = {
 } as const
 
 export type ChangeLogScalarFieldEnum = (typeof ChangeLogScalarFieldEnum)[keyof typeof ChangeLogScalarFieldEnum]
+
+
+export const AdminUserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  passwordHash: 'passwordHash',
+  totpSecret: 'totpSecret',
+  totpEnabled: 'totpEnabled',
+  role: 'role',
+  active: 'active',
+  lastLoginAt: 'lastLoginAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdminUserScalarFieldEnum = (typeof AdminUserScalarFieldEnum)[keyof typeof AdminUserScalarFieldEnum]
 
 
 export const SubscriberScalarFieldEnum = {
