@@ -42,7 +42,7 @@ export const TIER_FEATURES = {
     tailoredAlerts: false,
     apiAccess: false,
     multiSeat: false,
-    chatLimit: 5,                 // per day
+    chatLimit: 10,                // per day
     newsfeed: true,               // general, non-personalized
     reports: true,                // full access to white papers
     newsletter: "weekly",

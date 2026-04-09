@@ -13,7 +13,7 @@ const tiers = [
     highlighted: false,
     features: [
       { text: "5 most-used AI systems with top-level scores", included: true },
-      { text: "AI compliance chatbot — 5 questions per day", included: true },
+      { text: "AI compliance chatbot — 10 questions per day", included: true },
       { text: "General regulatory newsfeed", included: true },
       { text: "Full access to reports & white papers", included: true },
       { text: "Weekly newsletter", included: true },

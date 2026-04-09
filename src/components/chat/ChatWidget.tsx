@@ -126,21 +126,21 @@ export default function ChatWidget() {
   // Consulting CTA messages
   const exhaustedMessages: Record<string, { titleAnon: string; titleSub: string; body: string; cta: string; email: string }> = {
     en: {
-      titleAnon: "You've used your 5 free questions for today",
+      titleAnon: "You've used your 10 free questions for today",
       titleSub: "That's it for today — unlimited access with Pro",
       body: "Need a deeper dive? Our team can analyse your specific use case, map it against the regulations, and give you a clear action plan.",
       cta: "Raise a case with our team",
       email: "consulting@aicompass.eu",
     },
     fr: {
-      titleAnon: "Vous avez utilis\u00e9 vos 5 questions gratuites pour aujourd'hui",
+      titleAnon: "Vous avez utilis\u00e9 vos 10 questions gratuites pour aujourd'hui",
       titleSub: "C'est tout pour aujourd'hui \u2014 acc\u00e8s illimit\u00e9 avec Pro",
       body: "Besoin d'aller plus loin ? Notre \u00e9quipe peut analyser votre cas sp\u00e9cifique, le confronter aux r\u00e9glementations et vous donner un plan d'action clair.",
       cta: "Soumettre un cas \u00e0 notre \u00e9quipe",
       email: "consulting@aicompass.eu",
     },
     de: {
-      titleAnon: "Sie haben heute Ihre 5 kostenlosen Fragen verbraucht",
+      titleAnon: "Sie haben heute Ihre 10 kostenlosen Fragen verbraucht",
       titleSub: "Das war's f\u00fcr heute \u2014 unbegrenzter Zugang mit Pro",
       body: "Brauchen Sie eine tiefere Analyse? Unser Team kann Ihren konkreten Anwendungsfall pr\u00fcfen und Ihnen einen klaren Handlungsplan geben.",
       cta: "Einen Fall bei unserem Team einreichen",

@@ -10,7 +10,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/db";
 import crypto from "crypto";
 
-const FREE_DAILY_LIMIT = 5;
+const FREE_DAILY_LIMIT = 10;
 const COOKIE_NAME = "chat-fingerprint";
 const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year
 
