@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 import { notFound } from "next/navigation";
 import { getSystemBySlug } from "@/lib/queries";
-import { computeOverallScore } from "@/lib/scoring";
+import { computeOverallScore, computeAllDimensionScores } from "@/lib/scoring";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SystemDetailClient from "./SystemDetailClient";
@@ -30,6 +30,25 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
 
   const grades = system.scores.map((s) => s.score);
   const overall = computeOverallScore(grades);
+
+  // Compute dimension scores for the spider chart
+  const dimensionScores = computeAllDimensionScores({
+    scores: system.scores.map((s) => ({ score: s.score })),
+    certifications: system.certifications,
+    encryptionInfo: system.encryptionInfo,
+    accessControls: system.accessControls,
+    foundedYear: system.foundedYear,
+    employeeCount: system.employeeCount,
+    marketPresence: system.marketPresence,
+    customerCount: system.customerCount,
+    fundingStatus: system.fundingStatus,
+    euResidency: system.euResidency,
+    dataStorage: system.dataStorage,
+    dataProcessing: system.dataProcessing,
+    modelDocs: system.modelDocs,
+    explainability: system.explainability,
+    biasTesting: system.biasTesting,
+  });
 
   // Serialise for client component (dates → strings, strip Prisma internals)
   const systemData = {
@@ -83,7 +102,7 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
     <>
       <Header />
       <main className="flex-1 bg-gray-50">
-        <SystemDetailClient system={systemData} overall={overall} locale={locale} />
+        <SystemDetailClient system={systemData} overall={overall} locale={locale} dimensionScores={dimensionScores} />
       </main>
       <Footer />
     </>
