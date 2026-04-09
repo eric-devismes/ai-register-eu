@@ -64,35 +64,55 @@ export async function POST(request: Request) {
   });
 }
 
-/** PATCH — Toggle active status */
+/** PATCH — Update admin user (name, email, role, active) */
 export async function PATCH(request: Request) {
   const session = await getAdminSession();
   if (!session || session.role !== "owner") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
-  const { id, active } = await request.json();
+  const body = await request.json();
+  const { id } = body;
 
-  if (!id || typeof active !== "boolean") {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  if (!id) {
+    return NextResponse.json({ error: "ID required" }, { status: 400 });
   }
 
-  // Prevent deactivating yourself
-  if (id === session.adminId) {
-    return NextResponse.json({ error: "Cannot deactivate yourself" }, { status: 400 });
-  }
-
-  // Prevent deactivating owner
   const target = await prisma.adminUser.findUnique({ where: { id } });
   if (!target) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  if (target.role === "owner") {
-    return NextResponse.json({ error: "Cannot deactivate the owner" }, { status: 400 });
+
+  // Build update data from provided fields
+  const data: Record<string, unknown> = {};
+
+  if (typeof body.name === "string") data.name = body.name;
+  if (typeof body.email === "string" && body.email !== target.email) {
+    // Check uniqueness
+    const existing = await prisma.adminUser.findUnique({ where: { email: body.email } });
+    if (existing && existing.id !== id) {
+      return NextResponse.json({ error: "Email already in use" }, { status: 409 });
+    }
+    data.email = body.email;
+  }
+  if (typeof body.role === "string" && target.role !== "owner") {
+    // Can't change owner role, and can only assign editor or admin
+    const validRole = body.role === "admin" ? "admin" : "editor";
+    data.role = validRole;
+  }
+  if (typeof body.active === "boolean") {
+    if (id === session.adminId) {
+      return NextResponse.json({ error: "Cannot deactivate yourself" }, { status: 400 });
+    }
+    if (target.role === "owner") {
+      return NextResponse.json({ error: "Cannot deactivate the owner" }, { status: 400 });
+    }
+    data.active = body.active;
   }
 
-  await prisma.adminUser.update({
-    where: { id },
-    data: { active },
-  });
+  if (Object.keys(data).length === 0) {
+    return NextResponse.json({ error: "Nothing to update" }, { status: 400 });
+  }
+
+  await prisma.adminUser.update({ where: { id }, data });
 
   return NextResponse.json({ success: true });
 }

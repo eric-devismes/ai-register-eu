@@ -1,10 +1,12 @@
 "use client";
 
 /**
- * AdminTeamClient — Interactive admin team management.
+ * AdminTeamClient — Admin team management with inline editing.
  *
- * Shows table of all admin users with role badges, status, and actions.
- * Supports adding new admins and toggling active/inactive.
+ * - View all admin users with role, status, 2FA, last login
+ * - Inline edit name, email, role (click to edit, blur/Enter to save)
+ * - Activate / deactivate admins (owner only, can't deactivate self or owner)
+ * - Add new admin users
  */
 
 import { useState } from "react";
@@ -41,6 +43,38 @@ export function AdminTeamClient({
   const [newRole, setNewRole] = useState("editor");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValues, setEditValues] = useState<{ name: string; email: string; role: string }>({ name: "", email: "", role: "" });
+
+  // ─── Inline edit ──────────────────────────────────────
+
+  function startEdit(admin: AdminUser) {
+    setEditingId(admin.id);
+    setEditValues({ name: admin.name, email: admin.email, role: admin.role });
+  }
+
+  async function saveEdit(id: string) {
+    setEditingId(null);
+    try {
+      const res = await fetch("/api/admin/team", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, ...editValues }),
+      });
+      const data = await res.json();
+      if (data.error) { setError(data.error); return; }
+      setAdmins((prev) => prev.map((a) => (a.id === id ? { ...a, ...editValues } : a)));
+    } catch {
+      setError("Failed to save");
+    }
+  }
+
+  function handleEditKeyDown(e: React.KeyboardEvent, id: string) {
+    if (e.key === "Enter") saveEdit(id);
+    if (e.key === "Escape") setEditingId(null);
+  }
+
+  // ─── Add new admin ────────────────────────────────────
 
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
@@ -58,16 +92,15 @@ export function AdminTeamClient({
       if (data.error) { setError(data.error); setLoading(false); return; }
 
       setAdmins((prev) => [...prev, data.admin]);
-      setNewEmail("");
-      setNewName("");
-      setNewPassword("");
-      setNewRole("editor");
+      setNewEmail(""); setNewName(""); setNewPassword(""); setNewRole("editor");
       setShowAdd(false);
     } catch {
       setError("Failed to add admin");
     }
     setLoading(false);
   }
+
+  // ─── Toggle active ────────────────────────────────────
 
   async function toggleActive(id: string, active: boolean) {
     try {
@@ -79,10 +112,10 @@ export function AdminTeamClient({
       const data = await res.json();
       if (data.error) return;
       setAdmins((prev) => prev.map((a) => (a.id === id ? { ...a, active: !active } : a)));
-    } catch {
-      // silently fail
-    }
+    } catch { /* silently fail */ }
   }
+
+  // ─── Render ───────────────────────────────────────────
 
   return (
     <div className="space-y-4">
@@ -95,7 +128,8 @@ export function AdminTeamClient({
         <table className="w-full text-sm">
           <thead className="bg-gray-50 text-xs uppercase tracking-wider text-gray-500 border-b">
             <tr>
-              <th className="px-5 py-3 text-left">User</th>
+              <th className="px-5 py-3 text-left">Name</th>
+              <th className="px-5 py-3 text-left">Email</th>
               <th className="px-5 py-3 text-left">Role</th>
               <th className="px-5 py-3 text-left">2FA</th>
               <th className="px-5 py-3 text-left">Status</th>
@@ -107,23 +141,84 @@ export function AdminTeamClient({
             {admins.map((admin) => {
               const badge = ROLE_BADGES[admin.role] || ROLE_BADGES.editor;
               const isSelf = admin.id === currentAdminId;
+              const isEditing = editingId === admin.id;
+
               return (
                 <tr key={admin.id} className={!admin.active ? "opacity-50" : ""}>
+                  {/* Name — editable */}
                   <td className="px-5 py-3">
-                    <p className="font-medium text-gray-900">
-                      {admin.name || admin.email}
-                      {isSelf && <span className="ml-1 text-xs text-gray-400">(you)</span>}
-                    </p>
-                    <p className="text-xs text-gray-500">{admin.email}</p>
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        value={editValues.name}
+                        onChange={(e) => setEditValues({ ...editValues, name: e.target.value })}
+                        onBlur={() => saveEdit(admin.id)}
+                        onKeyDown={(e) => handleEditKeyDown(e, admin.id)}
+                        className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-[#003399] focus:outline-none"
+                        autoFocus
+                      />
+                    ) : (
+                      <p
+                        className="font-medium text-gray-900 cursor-pointer hover:text-[#003399]"
+                        onClick={() => startEdit(admin)}
+                        title="Click to edit"
+                      >
+                        {admin.name || "—"}
+                        {isSelf && <span className="ml-1 text-xs text-gray-400">(you)</span>}
+                      </p>
+                    )}
                   </td>
+
+                  {/* Email — editable */}
                   <td className="px-5 py-3">
-                    <span className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.bg} ${badge.text}`}>
-                      {admin.role}
-                    </span>
+                    {isEditing ? (
+                      <input
+                        type="email"
+                        value={editValues.email}
+                        onChange={(e) => setEditValues({ ...editValues, email: e.target.value })}
+                        onBlur={() => saveEdit(admin.id)}
+                        onKeyDown={(e) => handleEditKeyDown(e, admin.id)}
+                        className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-[#003399] focus:outline-none"
+                      />
+                    ) : (
+                      <p
+                        className="text-gray-600 cursor-pointer hover:text-[#003399]"
+                        onClick={() => startEdit(admin)}
+                        title="Click to edit"
+                      >
+                        {admin.email}
+                      </p>
+                    )}
                   </td>
+
+                  {/* Role — editable dropdown */}
+                  <td className="px-5 py-3">
+                    {isEditing && admin.role !== "owner" ? (
+                      <select
+                        value={editValues.role}
+                        onChange={(e) => {
+                          setEditValues({ ...editValues, role: e.target.value });
+                          // Auto-save on role change
+                          setTimeout(() => saveEdit(admin.id), 0);
+                        }}
+                        className="rounded border border-gray-300 px-2 py-1 text-xs focus:border-[#003399] focus:outline-none"
+                      >
+                        <option value="editor">Editor</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                    ) : (
+                      <span
+                        className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge.bg} ${badge.text} ${admin.role !== "owner" ? "cursor-pointer" : ""}`}
+                        onClick={() => admin.role !== "owner" && startEdit(admin)}
+                      >
+                        {admin.role}
+                      </span>
+                    )}
+                  </td>
+
                   <td className="px-5 py-3">
                     <span className={`text-xs ${admin.totpEnabled ? "text-green-600" : "text-gray-400"}`}>
-                      {admin.totpEnabled ? "Enabled" : "Off"}
+                      {admin.totpEnabled ? "On" : "Off"}
                     </span>
                   </td>
                   <td className="px-5 py-3">
@@ -162,52 +257,25 @@ export function AdminTeamClient({
         <form onSubmit={handleAdd} className="rounded-xl border border-gray-200 bg-white p-5 space-y-3">
           <h3 className="font-semibold text-gray-900">Add admin user</h3>
           <div className="grid grid-cols-2 gap-3">
-            <input
-              type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-              placeholder="Email"
-              required
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
-            />
-            <input
-              type="text"
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
-              placeholder="Name"
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
-            />
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="Password"
-              required
-              minLength={8}
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
-            />
-            <select
-              value={newRole}
-              onChange={(e) => setNewRole(e.target.value)}
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
-            >
+            <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}
+              placeholder="Email" required className="rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+            <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)}
+              placeholder="Name" className="rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+            <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Password" required minLength={8} className="rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+            <select value={newRole} onChange={(e) => setNewRole(e.target.value)}
+              className="rounded-lg border border-gray-300 px-3 py-2 text-sm">
               <option value="editor">Editor</option>
               <option value="admin">Admin</option>
             </select>
           </div>
           <div className="flex gap-2">
-            <button
-              type="submit"
-              disabled={loading}
-              className="rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white hover:bg-[#002277] disabled:opacity-50"
-            >
+            <button type="submit" disabled={loading}
+              className="rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white hover:bg-[#002277] disabled:opacity-50">
               {loading ? "Adding..." : "Add"}
             </button>
-            <button
-              type="button"
-              onClick={() => { setShowAdd(false); setError(""); }}
-              className="rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
-            >
+            <button type="button" onClick={() => { setShowAdd(false); setError(""); }}
+              className="rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50">
               Cancel
             </button>
           </div>
