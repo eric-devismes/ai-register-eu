@@ -153,71 +153,71 @@ export default function ReportsPage() {
           </div>
         </section>
 
-        {/* Published reports */}
+        {/* Reports grid — square tiles */}
         <section className="py-12">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="space-y-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Sign-up gate notice */}
+            <div className="mb-8 rounded-xl border border-[#003399]/15 bg-[#003399]/5 p-4 flex items-center justify-between">
+              <p className="text-sm text-[#0d1b3e]">
+                <strong>Free access</strong> — create an account to read full reports.
+              </p>
+              <a href="/en/subscribe" className="rounded-lg bg-[#003399] px-4 py-2 text-xs font-semibold text-white hover:bg-[#002277] shrink-0">
+                Create free account
+              </a>
+            </div>
+
+            {/* Published reports — square tile grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {published.map((report) => {
                 const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
                 return (
                   <Link
                     key={report.slug}
                     href={`/en/reports/${report.slug}`}
-                    className="block rounded-xl border border-gray-200 bg-white p-6 hover:shadow-md hover:border-[#003399]/30 transition-all group"
+                    className="group flex flex-col rounded-xl border border-gray-200 bg-white p-5 hover:shadow-md hover:border-[#003399]/30 transition-all aspect-square sm:aspect-auto sm:min-h-[220px]"
                   >
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
                         {CATEGORY_LABELS[report.category]}
                       </span>
-                      <span className="text-[10px] text-gray-400">{report.date}</span>
-                      <span className="text-[10px] text-gray-400">&middot; {report.readingTime}</span>
+                      <span className="text-[10px] text-gray-400">{report.readingTime}</span>
                     </div>
-                    <h3 className="text-lg font-semibold text-[#0d1b3e] group-hover:text-[#003399] transition-colors">
+                    <h3 className="text-sm font-bold text-[#0d1b3e] group-hover:text-[#003399] transition-colors line-clamp-2">
                       {report.title}
                     </h3>
-                    <p className="mt-0.5 text-sm font-medium text-gray-500">{report.subtitle}</p>
-                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">{report.excerpt}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[#003399]">
-                      Read report
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                      </svg>
-                    </span>
+                    <p className="mt-1 text-xs text-gray-500 line-clamp-2 flex-1">{report.subtitle}</p>
+                    <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span className="text-[10px] text-gray-400">{report.date}</span>
+                      <span className="text-xs font-semibold text-[#003399] group-hover:underline">
+                        Read →
+                      </span>
+                    </div>
                   </Link>
                 );
               })}
-            </div>
 
-            {/* Upcoming reports */}
-            {upcoming.length > 0 && (
-              <div className="mt-16">
-                <h2 className="text-lg font-semibold text-[#0d1b3e] border-b border-gray-200 pb-2 mb-6">
-                  Coming Soon
-                </h2>
-                <div className="space-y-4">
-                  {upcoming.map((report) => {
-                    const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
-                    return (
-                      <div
-                        key={report.slug}
-                        className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-6"
-                      >
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
-                            {CATEGORY_LABELS[report.category]}
-                          </span>
-                          <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-[10px] font-semibold text-gray-500">
-                            Coming Soon
-                          </span>
-                        </div>
-                        <h3 className="font-semibold text-gray-700">{report.title}</h3>
-                        <p className="mt-0.5 text-sm text-gray-500">{report.subtitle}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+              {/* Coming soon tiles */}
+              {upcoming.map((report) => {
+                const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
+                return (
+                  <div
+                    key={report.slug}
+                    className="flex flex-col rounded-xl border border-dashed border-gray-300 bg-gray-50 p-5 sm:min-h-[220px]"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
+                        {CATEGORY_LABELS[report.category]}
+                      </span>
+                      <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-[10px] font-semibold text-gray-500">
+                        Coming Soon
+                      </span>
+                    </div>
+                    <h3 className="text-sm font-bold text-gray-500 line-clamp-2">{report.title}</h3>
+                    <p className="mt-1 text-xs text-gray-400 line-clamp-2 flex-1">{report.subtitle}</p>
+                  </div>
+                );
+              })}
+            </div>
 
             {/* Consulting CTA */}
             <div className="mt-16 rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-8 text-center">
