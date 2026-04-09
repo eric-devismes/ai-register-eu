@@ -1,23 +1,23 @@
 /**
- * Chat Rate Limiting — Fingerprint-based daily limits for anonymous users.
+ * Chat Rate Limiting — Tier-based limits.
  *
- * Anonymous: 5 questions per calendar day (tracked by persistent cookie).
- * Logged-in subscribers: unlimited.
+ * Free / anonymous: 5 questions per calendar day.
+ * Pro subscribers: unlimited.
+ * Enterprise subscribers: unlimited.
  */
 
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/db";
 import crypto from "crypto";
 
-const ANONYMOUS_DAILY_LIMIT = 5;
-const SUBSCRIBER_MONTHLY_LIMIT = 20;
+const FREE_DAILY_LIMIT = 5;
 const COOKIE_NAME = "chat-fingerprint";
 const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year
 
 export interface RateLimitResult {
   allowed: boolean;
   remaining: number;
-  isSubscriber: boolean;
+  tier: "free" | "pro" | "enterprise";
   fingerprint: string;
 }
 
@@ -44,45 +44,41 @@ async function getFingerprint(): Promise<string> {
 }
 
 /**
- * Check if this visitor is a logged-in subscriber.
+ * Get the subscriber's tier if logged in.
  */
-async function isLoggedIn(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("subscriber-session")?.value;
-  return !!sessionToken;
+async function getSubscriberTier(): Promise<"free" | "pro" | "enterprise" | null> {
+  try {
+    const { getSubscriber } = await import("@/lib/subscriber-auth");
+    const sub = await getSubscriber();
+    if (!sub) return null;
+    const tier = sub.tier as "free" | "pro" | "enterprise";
+    return tier;
+  } catch {
+    return null;
+  }
 }
 
 /**
  * Check rate limit and return status.
  *
- * Anonymous: 5 questions per calendar day.
- * Subscriber: 20 questions per calendar month.
+ * Free / anonymous: 5 questions per calendar day.
+ * Pro / Enterprise: unlimited.
  */
 export async function checkRateLimit(): Promise<RateLimitResult> {
   const fingerprint = await getFingerprint();
-  const subscriber = await isLoggedIn();
+  const tier = (await getSubscriberTier()) || "free";
 
-  if (subscriber) {
-    // Subscribers: 20 per month, tracked by fingerprint + month key
-    const month = new Date().toISOString().slice(0, 7); // "2026-04"
-    const monthKey = `sub-${month}`;
-
-    const usage = await prisma.chatUsage.findUnique({
-      where: { fingerprint_date: { fingerprint, date: monthKey } },
-    });
-
-    const currentCount = usage?.count || 0;
-    const remaining = Math.max(0, SUBSCRIBER_MONTHLY_LIMIT - currentCount);
-
+  // Pro and Enterprise: unlimited
+  if (tier === "pro" || tier === "enterprise") {
     return {
-      allowed: currentCount < SUBSCRIBER_MONTHLY_LIMIT,
-      remaining,
-      isSubscriber: true,
+      allowed: true,
+      remaining: -1, // -1 = unlimited
+      tier,
       fingerprint,
     };
   }
 
-  // Anonymous: 5 per calendar day
+  // Free / anonymous: 5 per calendar day
   const today = new Date().toISOString().split("T")[0];
 
   const usage = await prisma.chatUsage.findUnique({
@@ -90,12 +86,12 @@ export async function checkRateLimit(): Promise<RateLimitResult> {
   });
 
   const currentCount = usage?.count || 0;
-  const remaining = Math.max(0, ANONYMOUS_DAILY_LIMIT - currentCount);
+  const remaining = Math.max(0, FREE_DAILY_LIMIT - currentCount);
 
   return {
-    allowed: currentCount < ANONYMOUS_DAILY_LIMIT,
+    allowed: currentCount < FREE_DAILY_LIMIT,
     remaining,
-    isSubscriber: false,
+    tier: "free",
     fingerprint,
   };
 }

@@ -147,6 +147,7 @@ model AISystem {
   name        String                                   // Product name (e.g. "Azure OpenAI")
   type        String                                   // Category label (e.g. "Foundation Model")
   risk        String                                   // "High", "Limited", or "Minimal"
+  capabilityType String @default("")                   // Meta AI taxonomy: "generative-ai", "supervised-ml", "unsupervised-ml", "conversational-ai", "autonomous-agents", "search-retrieval", "computer-vision", "decision-intelligence", "nlp"
   description String                                   // What the system does
   category    String                                   // Filter category on homepage
   featured    Boolean           @default(false)        // Show on homepage?
@@ -185,6 +186,19 @@ model AISystem {
   aiActStatus     String  @default("")
   gdprStatus      String  @default("")
   euResidency     String  @default("")
+
+  // ─── Capability & Deployment ────────────────────────
+  deploymentModel String  @default("")               // "cloud-only", "self-hosted", "hybrid"
+  sourceModel     String  @default("")               // "open-source", "closed-source", "open-weights", "partial-open"
+
+  // ─── Vendor Maturity & Market ─────────────────────
+  foundedYear       Int?                              // Year vendor was founded
+  employeeCount     String  @default("")              // "50,000+", "200-500", etc.
+  fundingStatus     String  @default("")              // "Public", "Private", "VC-backed ($1.2B)"
+  marketPresence    String  @default("")              // "Leader", "Challenger", "Niche", "Emerging"
+  customerCount     String  @default("")              // "10,000+", "500+", etc.
+  notableCustomers  String  @default("")              // "Deutsche Bank, NHS, Airbus"
+  customerStories   String  @default("")              // Brief success story summaries
 
   // ─── Assessment metadata ───────────────────────────
   assessedAt      DateTime?
@@ -230,6 +244,12 @@ model Subscriber {
   digestEnabled   Boolean               @default(true)        // Receives daily digest
   digestFrequency String                @default("daily")     // "daily" | "weekly" | "none"
 
+  // ─── User Profile (for tailored responses) ──────
+  role            String                @default("")          // "dpo", "procurement", "cto", "ciso", "legal", "executive", "other"
+  industry        String                @default("")          // "financial", "healthcare", "insurance", "public-sector", "hr", "other"
+  platforms       String                @default("")          // Comma-separated slugs of AI systems they use/evaluate
+  orgSize         String                @default("")          // "startup", "sme", "enterprise", "public-sector"
+
   // GDPR consent record
   consentDate     DateTime?                                   // When they gave consent
   consentText     String                @default("")          // Snapshot of what they consented to
@@ -239,7 +259,7 @@ model Subscriber {
   systems         AISystem[]                                  // AI systems they follow
 
   // Subscription tier
-  tier                 String    @default("free")             // "free", "pro", "team"
+  tier                 String    @default("free")             // "free", "pro", "enterprise"
   stripeCustomerId     String?
   stripeSubscriptionId String?
   tierExpiresAt        DateTime?

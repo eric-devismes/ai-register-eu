@@ -3,11 +3,15 @@
 /**
  * DatabaseGrid — Interactive search + filter grid for the /database page.
  * Client component for state (search term, risk filter).
+ *
+ * Tier gating: free users see all systems listed but Pro-only systems
+ * show a lock icon and link to the pricing page instead of the assessment.
  */
 
 import { useState } from "react";
 import Link from "next/link";
 import { gradeColor } from "@/lib/scoring";
+import type { SubscriptionTier } from "@/lib/tier-access";
 
 interface Score {
   frameworkName: string;
@@ -27,6 +31,7 @@ interface System {
   scores: Score[];
   overallScore: string;
   updatedAt: string;
+  isFree: boolean;
 }
 
 const RISK_FILTERS = ["All", "High", "Limited", "Minimal"];
@@ -37,9 +42,27 @@ const RISK_COLORS: Record<string, string> = {
   Minimal: "bg-green-100 text-green-700 border-green-200",
 };
 
-export function DatabaseGrid({ systems, initialSearch = "" }: { systems: System[]; initialSearch?: string }) {
+function LockIcon() {
+  return (
+    <svg className="h-3.5 w-3.5 text-[#003399]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+    </svg>
+  );
+}
+
+export function DatabaseGrid({
+  systems,
+  initialSearch = "",
+  tier = "free",
+}: {
+  systems: System[];
+  initialSearch?: string;
+  tier?: SubscriptionTier;
+}) {
   const [search, setSearch] = useState(initialSearch);
   const [riskFilter, setRiskFilter] = useState("All");
+
+  const hasFullAccess = tier === "pro" || tier === "enterprise";
 
   const filtered = systems.filter((s) => {
     const matchesSearch =
@@ -50,6 +73,9 @@ export function DatabaseGrid({ systems, initialSearch = "" }: { systems: System[
     const matchesRisk = riskFilter === "All" || s.risk === riskFilter;
     return matchesSearch && matchesRisk;
   });
+
+  const freeCount = filtered.filter((s) => s.isFree).length;
+  const proCount = filtered.filter((s) => !s.isFree).length;
 
   return (
     <>
@@ -82,6 +108,11 @@ export function DatabaseGrid({ systems, initialSearch = "" }: { systems: System[
       {/* Results count */}
       <p className="mt-4 text-sm text-gray-500">
         {filtered.length} system{filtered.length !== 1 ? "s" : ""} found
+        {!hasFullAccess && proCount > 0 && (
+          <span className="ml-2 text-[#003399]">
+            &middot; {proCount} available with <Link href="/en/pricing" className="underline hover:text-[#002277]">Pro</Link>
+          </span>
+        )}
       </p>
 
       {/* Systems table */}
@@ -103,59 +134,111 @@ export function DatabaseGrid({ systems, initialSearch = "" }: { systems: System[
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {filtered.map((s) => (
-                <tr key={s.id} className="transition hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <Link href={`/systems/${s.slug}`} className="group">
-                      <p className="font-medium text-gray-900 group-hover:text-[#003399]">
-                        {s.name}
-                      </p>
-                      <p className="text-xs text-gray-500">{s.vendor} &middot; {s.type}</p>
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[s.risk] || RISK_COLORS.High}`}>
-                      {s.risk}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${gradeColor(s.overallScore)}`}>
-                      {s.overallScore}
-                    </span>
-                  </td>
-                  <td className="hidden px-6 py-4 lg:table-cell">
-                    <div className="flex gap-2">
-                      {s.scores.slice(0, 4).map((sc) => (
-                        <div key={sc.frameworkName} className="flex flex-col items-center gap-0.5">
-                          <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white ${gradeColor(sc.score)}`}>
-                            {sc.score}
-                          </span>
-                          <span className="text-[9px] text-gray-400 max-w-[48px] truncate">{sc.frameworkName}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="hidden px-6 py-4 md:table-cell">
-                    <div className="flex flex-wrap gap-1">
-                      {s.industries.slice(0, 2).map((name) => (
-                        <span key={name} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600">
-                          {name}
-                        </span>
-                      ))}
-                      {s.industries.length > 2 && (
-                        <span className="text-[10px] text-gray-400">+{s.industries.length - 2}</span>
+              {filtered.map((s) => {
+                const accessible = hasFullAccess || s.isFree;
+                return (
+                  <tr key={s.id} className={`transition ${accessible ? "hover:bg-gray-50" : "hover:bg-blue-50/30"}`}>
+                    <td className="px-6 py-4">
+                      {accessible ? (
+                        <Link href={`/systems/${s.slug}`} className="group">
+                          <p className="font-medium text-gray-900 group-hover:text-[#003399]">
+                            {s.name}
+                          </p>
+                          <p className="text-xs text-gray-500">{s.vendor} &middot; {s.type}</p>
+                        </Link>
+                      ) : (
+                        <Link href="/en/pricing" className="group">
+                          <p className="font-medium text-gray-900 group-hover:text-[#003399] flex items-center gap-1.5">
+                            {s.name}
+                            <LockIcon />
+                          </p>
+                          <p className="text-xs text-gray-500">{s.vendor} &middot; {s.type}</p>
+                          <p className="mt-0.5 text-[10px] text-[#003399] opacity-0 group-hover:opacity-100 transition-opacity">
+                            Upgrade to Pro for full assessment
+                          </p>
+                        </Link>
                       )}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-xs text-gray-400">
-                    {s.updatedAt}
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[s.risk] || RISK_COLORS.High}`}>
+                        {s.risk}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      {accessible ? (
+                        <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${gradeColor(s.overallScore)}`}>
+                          {s.overallScore}
+                        </span>
+                      ) : (
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-400">
+                          ?
+                        </span>
+                      )}
+                    </td>
+                    <td className="hidden px-6 py-4 lg:table-cell">
+                      {accessible ? (
+                        <div className="flex gap-2">
+                          {s.scores.slice(0, 4).map((sc) => (
+                            <div key={sc.frameworkName} className="flex flex-col items-center gap-0.5">
+                              <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white ${gradeColor(sc.score)}`}>
+                                {sc.score}
+                              </span>
+                              <span className="text-[9px] text-gray-400 max-w-[48px] truncate">{sc.frameworkName}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex gap-2">
+                          {[1, 2, 3].map((i) => (
+                            <div key={i} className="flex flex-col items-center gap-0.5">
+                              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-400">
+                                ?
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </td>
+                    <td className="hidden px-6 py-4 md:table-cell">
+                      <div className="flex flex-wrap gap-1">
+                        {s.industries.slice(0, 2).map((name) => (
+                          <span key={name} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600">
+                            {name}
+                          </span>
+                        ))}
+                        {s.industries.length > 2 && (
+                          <span className="text-[10px] text-gray-400">+{s.industries.length - 2}</span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-xs text-gray-400">
+                      {s.updatedAt}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
       </div>
+
+      {/* Upgrade banner for free users */}
+      {!hasFullAccess && proCount > 0 && (
+        <div className="mt-8 rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-6 text-center">
+          <p className="text-sm font-medium text-[#0d1b3e]">
+            {proCount} more AI systems available with full compliance assessments
+          </p>
+          <p className="mt-1 text-xs text-gray-500">
+            Get detailed scoring breakdowns, comparison tools, and a personalized compliance dashboard.
+          </p>
+          <Link
+            href="/en/pricing"
+            className="mt-4 inline-block rounded-lg bg-[#003399] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#002277] transition-colors"
+          >
+            Upgrade to Pro &mdash; &euro;19/month
+          </Link>
+        </div>
+      )}
     </>
   );
 }

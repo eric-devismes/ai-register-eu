@@ -4,10 +4,9 @@
  * CompareClient — The full interactive comparison tool.
  *
  * Phases:
- *   1. "input"    — User describes use case
- *   2. "followup" — AI asks clarifying questions
- *   3. "matches"  — AI shows ranked matching systems; user selects
- *   4. "compare"  — Side-by-side comparison table
+ *   1. "input"    — User describes use case + optional filters
+ *   2. "matches"  — AI shows ranked matching systems; user selects
+ *   3. "compare"  — Side-by-side comparison table
  */
 
 import { useState } from "react";
@@ -49,7 +48,38 @@ interface CompareSystem {
   [key: string]: string;
 }
 
-type Phase = "input" | "loading" | "followup" | "matches" | "comparing" | "compare";
+type Phase = "input" | "loading" | "matches" | "comparing" | "compare";
+
+// ─── Filter options ─────────────────────────────────────
+
+const INDUSTRY_OPTIONS = [
+  { value: "", label: "Any industry" },
+  { value: "financial-services", label: "Financial Services" },
+  { value: "healthcare", label: "Healthcare" },
+  { value: "insurance", label: "Insurance" },
+  { value: "public-sector", label: "Public Sector" },
+  { value: "manufacturing", label: "Manufacturing" },
+  { value: "telecommunications", label: "Telecom" },
+  { value: "energy-utilities", label: "Energy" },
+  { value: "human-resources", label: "HR" },
+];
+
+const DEPLOYMENT_OPTIONS = [
+  { value: "", label: "Any deployment" },
+  { value: "cloud-only", label: "Cloud only" },
+  { value: "self-hosted", label: "Self-hosted" },
+  { value: "hybrid", label: "Hybrid" },
+];
+
+const CAPABILITY_OPTIONS = [
+  { value: "", label: "Any capability" },
+  { value: "conversational-ai", label: "Conversational AI" },
+  { value: "document-processing", label: "Document processing" },
+  { value: "decision-intelligence", label: "Decision intelligence" },
+  { value: "workflow-automation", label: "Workflow automation" },
+  { value: "code-generation", label: "Code generation" },
+  { value: "analytics", label: "Analytics / BI" },
+];
 
 // ─── Score badge ─────────────────────────────────────────
 
@@ -94,8 +124,9 @@ export function CompareClient() {
   const locale = useLocale();
   const [phase, setPhase] = useState<Phase>("input");
   const [useCase, setUseCase] = useState("");
-  const [followUpAnswers, setFollowUpAnswers] = useState("");
-  const [followUpQuestions, setFollowUpQuestions] = useState<string[]>([]);
+  const [industry, setIndustry] = useState("");
+  const [deployment, setDeployment] = useState("");
+  const [capability, setCapability] = useState("");
   const [analysis, setAnalysis] = useState("");
   const [matches, setMatches] = useState<MatchResult[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -106,7 +137,7 @@ export function CompareClient() {
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
 
-  // ── Phase 1 → Match ───────────────────────────────────
+  // ── Phase 1 → Match (direct, no follow-ups) ──────────
   async function handleMatch(e: React.FormEvent) {
     e.preventDefault();
     if (!useCase.trim()) return;
@@ -117,52 +148,26 @@ export function CompareClient() {
       const res = await fetch("/api/compare", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ useCase, followUpAnswers, phase: "match" }),
+        body: JSON.stringify({
+          useCase,
+          phase: "match",
+          filters: {
+            industry: industry || undefined,
+            deployment: deployment || undefined,
+            capability: capability || undefined,
+          },
+        }),
       });
       const data = await res.json();
 
       if (data.error) { setError(data.error); setPhase("input"); return; }
 
       setAnalysis(data.analysis || "");
-
-      if (!data.ready) {
-        setFollowUpQuestions(data.followUpQuestions || []);
-        setPhase("followup");
-      } else {
-        setMatches(data.matches || []);
-        setPhase("matches");
-      }
+      setMatches(data.matches || []);
+      setPhase("matches");
     } catch {
       setError("Something went wrong. Please try again.");
       setPhase("input");
-    }
-  }
-
-  // ── Phase 2: Follow-up → Match again ─────────────────
-  async function handleFollowUp(e: React.FormEvent) {
-    e.preventDefault();
-    setPhase("loading");
-    setError(null);
-
-    try {
-      const res = await fetch("/api/compare", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ useCase, followUpAnswers, phase: "match" }),
-      });
-      const data = await res.json();
-      if (data.error) { setError(data.error); setPhase("followup"); return; }
-      setAnalysis(data.analysis || "");
-      if (!data.ready) {
-        setFollowUpQuestions(data.followUpQuestions || []);
-        setPhase("followup");
-      } else {
-        setMatches(data.matches || []);
-        setPhase("matches");
-      }
-    } catch {
-      setError("Something went wrong. Please try again.");
-      setPhase("followup");
     }
   }
 
@@ -200,8 +205,9 @@ export function CompareClient() {
   function reset() {
     setPhase("input");
     setUseCase("");
-    setFollowUpAnswers("");
-    setFollowUpQuestions([]);
+    setIndustry("");
+    setDeployment("");
+    setCapability("");
     setAnalysis("");
     setMatches([]);
     setSelectedIds(new Set());
@@ -233,15 +239,48 @@ export function CompareClient() {
               Write in plain English. What problem are you solving? Who are the users? What data is involved? What decisions will the AI make or inform?
             </p>
 
-            <form onSubmit={handleMatch} className="space-y-4">
+            <form onSubmit={handleMatch} className="space-y-5">
               <textarea
                 value={useCase}
                 onChange={(e) => setUseCase(e.target.value)}
                 placeholder="Example: We want to automate the first stage of candidate screening for our EU recruitment process. The AI would score CVs and rank candidates before our HR team reviews them. We receive about 500 applications per month across Germany, France, and the Netherlands."
-                rows={6}
+                rows={5}
                 className="w-full rounded-xl border border-gray-200 p-4 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#003399] resize-none"
                 required
               />
+
+              {/* Optional filters — simple dropdowns */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <select
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-[#003399]"
+                >
+                  {INDUSTRY_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={deployment}
+                  onChange={(e) => setDeployment(e.target.value)}
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-[#003399]"
+                >
+                  {DEPLOYMENT_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={capability}
+                  onChange={(e) => setCapability(e.target.value)}
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-[#003399]"
+                >
+                  {CAPABILITY_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              </div>
 
               <div className="flex items-center gap-3">
                 <button
@@ -251,7 +290,7 @@ export function CompareClient() {
                   <span>✦</span>
                   Find matching AI systems
                 </button>
-                <p className="text-xs text-gray-400">AI will analyse your use case and may ask follow-up questions</p>
+                <p className="text-xs text-gray-400">AI will match your requirements against 60+ assessed systems</p>
               </div>
             </form>
 
@@ -289,67 +328,7 @@ export function CompareClient() {
         </div>
       )}
 
-      {/* ─── Phase 2: Follow-up questions ─────────────── */}
-      {phase === "followup" && (
-        <div className="space-y-6">
-          {/* Analysis so far */}
-          {analysis && (
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
-              <p className="text-sm text-blue-800 leading-relaxed">
-                <span className="font-semibold">Initial analysis: </span>{analysis}
-              </p>
-            </div>
-          )}
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
-            <h2 className="text-xl font-bold text-gray-900 font-serif mb-2">
-              A few follow-up questions
-            </h2>
-            <p className="text-gray-500 text-sm mb-6">
-              To recommend the most relevant systems, please answer these questions:
-            </p>
-
-            <div className="mb-5 space-y-3">
-              {followUpQuestions.map((q, i) => (
-                <div key={i} className="flex gap-3 items-start">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#003399] text-white text-xs font-bold flex items-center justify-center mt-0.5">
-                    {i + 1}
-                  </span>
-                  <p className="text-sm text-gray-700">{q}</p>
-                </div>
-              ))}
-            </div>
-
-            <form onSubmit={handleFollowUp} className="space-y-4">
-              <textarea
-                value={followUpAnswers}
-                onChange={(e) => setFollowUpAnswers(e.target.value)}
-                placeholder="Type your answers here…"
-                rows={4}
-                className="w-full rounded-xl border border-gray-200 p-4 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#003399] resize-none"
-                required
-              />
-              <div className="flex gap-3">
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#003399] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0d1b3e] transition-colors"
-                >
-                  ✦ Get recommendations
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setPhase("matches"); }}
-                  className="rounded-xl border border-gray-200 px-5 py-3 text-sm text-gray-500 hover:bg-gray-50"
-                >
-                  Skip, show me all matches
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ─── Phase 3: Matches ─────────────────────────── */}
+      {/* ─── Phase 2: Matches ─────────────────────────── */}
       {phase === "matches" && (
         <div className="space-y-6">
           {/* Analysis */}

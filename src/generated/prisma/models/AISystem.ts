@@ -22,8 +22,18 @@ export type AISystemModel = runtime.Types.Result.DefaultSelection<Prisma.$AISyst
 
 export type AggregateAISystem = {
   _count: AISystemCountAggregateOutputType | null
+  _avg: AISystemAvgAggregateOutputType | null
+  _sum: AISystemSumAggregateOutputType | null
   _min: AISystemMinAggregateOutputType | null
   _max: AISystemMaxAggregateOutputType | null
+}
+
+export type AISystemAvgAggregateOutputType = {
+  foundedYear: number | null
+}
+
+export type AISystemSumAggregateOutputType = {
+  foundedYear: number | null
 }
 
 export type AISystemMinAggregateOutputType = {
@@ -33,6 +43,7 @@ export type AISystemMinAggregateOutputType = {
   name: string | null
   type: string | null
   risk: string | null
+  capabilityType: string | null
   description: string | null
   category: string | null
   featured: boolean | null
@@ -57,6 +68,15 @@ export type AISystemMinAggregateOutputType = {
   aiActStatus: string | null
   gdprStatus: string | null
   euResidency: string | null
+  deploymentModel: string | null
+  sourceModel: string | null
+  foundedYear: number | null
+  employeeCount: string | null
+  fundingStatus: string | null
+  marketPresence: string | null
+  customerCount: string | null
+  notableCustomers: string | null
+  customerStories: string | null
   assessedAt: Date | null
   assessmentNote: string | null
   createdAt: Date | null
@@ -70,6 +90,7 @@ export type AISystemMaxAggregateOutputType = {
   name: string | null
   type: string | null
   risk: string | null
+  capabilityType: string | null
   description: string | null
   category: string | null
   featured: boolean | null
@@ -94,6 +115,15 @@ export type AISystemMaxAggregateOutputType = {
   aiActStatus: string | null
   gdprStatus: string | null
   euResidency: string | null
+  deploymentModel: string | null
+  sourceModel: string | null
+  foundedYear: number | null
+  employeeCount: string | null
+  fundingStatus: string | null
+  marketPresence: string | null
+  customerCount: string | null
+  notableCustomers: string | null
+  customerStories: string | null
   assessedAt: Date | null
   assessmentNote: string | null
   createdAt: Date | null
@@ -107,6 +137,7 @@ export type AISystemCountAggregateOutputType = {
   name: number
   type: number
   risk: number
+  capabilityType: number
   description: number
   category: number
   featured: number
@@ -131,6 +162,15 @@ export type AISystemCountAggregateOutputType = {
   aiActStatus: number
   gdprStatus: number
   euResidency: number
+  deploymentModel: number
+  sourceModel: number
+  foundedYear: number
+  employeeCount: number
+  fundingStatus: number
+  marketPresence: number
+  customerCount: number
+  notableCustomers: number
+  customerStories: number
   assessedAt: number
   assessmentNote: number
   createdAt: number
@@ -139,6 +179,14 @@ export type AISystemCountAggregateOutputType = {
 }
 
 
+export type AISystemAvgAggregateInputType = {
+  foundedYear?: true
+}
+
+export type AISystemSumAggregateInputType = {
+  foundedYear?: true
+}
+
 export type AISystemMinAggregateInputType = {
   id?: true
   slug?: true
@@ -146,6 +194,7 @@ export type AISystemMinAggregateInputType = {
   name?: true
   type?: true
   risk?: true
+  capabilityType?: true
   description?: true
   category?: true
   featured?: true
@@ -170,6 +219,15 @@ export type AISystemMinAggregateInputType = {
   aiActStatus?: true
   gdprStatus?: true
   euResidency?: true
+  deploymentModel?: true
+  sourceModel?: true
+  foundedYear?: true
+  employeeCount?: true
+  fundingStatus?: true
+  marketPresence?: true
+  customerCount?: true
+  notableCustomers?: true
+  customerStories?: true
   assessedAt?: true
   assessmentNote?: true
   createdAt?: true
@@ -183,6 +241,7 @@ export type AISystemMaxAggregateInputType = {
   name?: true
   type?: true
   risk?: true
+  capabilityType?: true
   description?: true
   category?: true
   featured?: true
@@ -207,6 +266,15 @@ export type AISystemMaxAggregateInputType = {
   aiActStatus?: true
   gdprStatus?: true
   euResidency?: true
+  deploymentModel?: true
+  sourceModel?: true
+  foundedYear?: true
+  employeeCount?: true
+  fundingStatus?: true
+  marketPresence?: true
+  customerCount?: true
+  notableCustomers?: true
+  customerStories?: true
   assessedAt?: true
   assessmentNote?: true
   createdAt?: true
@@ -220,6 +288,7 @@ export type AISystemCountAggregateInputType = {
   name?: true
   type?: true
   risk?: true
+  capabilityType?: true
   description?: true
   category?: true
   featured?: true
@@ -244,6 +313,15 @@ export type AISystemCountAggregateInputType = {
   aiActStatus?: true
   gdprStatus?: true
   euResidency?: true
+  deploymentModel?: true
+  sourceModel?: true
+  foundedYear?: true
+  employeeCount?: true
+  fundingStatus?: true
+  marketPresence?: true
+  customerCount?: true
+  notableCustomers?: true
+  customerStories?: true
   assessedAt?: true
   assessmentNote?: true
   createdAt?: true
@@ -289,6 +367,18 @@ export type AISystemAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AISystemAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AISystemSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AISystemMinAggregateInputType
@@ -319,6 +409,8 @@ export type AISystemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: AISystemCountAggregateInputType | true
+  _avg?: AISystemAvgAggregateInputType
+  _sum?: AISystemSumAggregateInputType
   _min?: AISystemMinAggregateInputType
   _max?: AISystemMaxAggregateInputType
 }
@@ -330,6 +422,7 @@ export type AISystemGroupByOutputType = {
   name: string
   type: string
   risk: string
+  capabilityType: string
   description: string
   category: string
   featured: boolean
@@ -354,11 +447,22 @@ export type AISystemGroupByOutputType = {
   aiActStatus: string
   gdprStatus: string
   euResidency: string
+  deploymentModel: string
+  sourceModel: string
+  foundedYear: number | null
+  employeeCount: string
+  fundingStatus: string
+  marketPresence: string
+  customerCount: string
+  notableCustomers: string
+  customerStories: string
   assessedAt: Date | null
   assessmentNote: string
   createdAt: Date
   updatedAt: Date
   _count: AISystemCountAggregateOutputType | null
+  _avg: AISystemAvgAggregateOutputType | null
+  _sum: AISystemSumAggregateOutputType | null
   _min: AISystemMinAggregateOutputType | null
   _max: AISystemMaxAggregateOutputType | null
 }
@@ -388,6 +492,7 @@ export type AISystemWhereInput = {
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
@@ -412,6 +517,15 @@ export type AISystemWhereInput = {
   aiActStatus?: Prisma.StringFilter<"AISystem"> | string
   gdprStatus?: Prisma.StringFilter<"AISystem"> | string
   euResidency?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
   assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
   assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
@@ -430,6 +544,7 @@ export type AISystemOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -454,6 +569,15 @@ export type AISystemOrderByWithRelationInput = {
   aiActStatus?: Prisma.SortOrder
   gdprStatus?: Prisma.SortOrder
   euResidency?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
   assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -475,6 +599,7 @@ export type AISystemWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
@@ -499,6 +624,15 @@ export type AISystemWhereUniqueInput = Prisma.AtLeast<{
   aiActStatus?: Prisma.StringFilter<"AISystem"> | string
   gdprStatus?: Prisma.StringFilter<"AISystem"> | string
   euResidency?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
   assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
   assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
@@ -517,6 +651,7 @@ export type AISystemOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -541,13 +676,24 @@ export type AISystemOrderByWithAggregationInput = {
   aiActStatus?: Prisma.SortOrder
   gdprStatus?: Prisma.SortOrder
   euResidency?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
   assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AISystemCountOrderByAggregateInput
+  _avg?: Prisma.AISystemAvgOrderByAggregateInput
   _max?: Prisma.AISystemMaxOrderByAggregateInput
   _min?: Prisma.AISystemMinOrderByAggregateInput
+  _sum?: Prisma.AISystemSumOrderByAggregateInput
 }
 
 export type AISystemScalarWhereWithAggregatesInput = {
@@ -560,6 +706,7 @@ export type AISystemScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   type?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   risk?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   description?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   category?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   featured?: Prisma.BoolWithAggregatesFilter<"AISystem"> | boolean
@@ -584,6 +731,15 @@ export type AISystemScalarWhereWithAggregatesInput = {
   aiActStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   gdprStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   euResidency?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableWithAggregatesFilter<"AISystem"> | number | null
+  employeeCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  fundingStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  customerCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  customerStories?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   assessedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AISystem"> | Date | string | null
   assessmentNote?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AISystem"> | Date | string
@@ -597,6 +753,7 @@ export type AISystemCreateInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -621,6 +778,15 @@ export type AISystemCreateInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -639,6 +805,7 @@ export type AISystemUncheckedCreateInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -663,6 +830,15 @@ export type AISystemUncheckedCreateInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -681,6 +857,7 @@ export type AISystemUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -705,6 +882,15 @@ export type AISystemUpdateInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -723,6 +909,7 @@ export type AISystemUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -747,6 +934,15 @@ export type AISystemUncheckedUpdateInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -765,6 +961,7 @@ export type AISystemCreateManyInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -789,6 +986,15 @@ export type AISystemCreateManyInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -802,6 +1008,7 @@ export type AISystemUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -826,6 +1033,15 @@ export type AISystemUpdateManyMutationInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -839,6 +1055,7 @@ export type AISystemUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -863,6 +1080,15 @@ export type AISystemUncheckedUpdateManyInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -891,6 +1117,7 @@ export type AISystemCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -915,10 +1142,23 @@ export type AISystemCountOrderByAggregateInput = {
   aiActStatus?: Prisma.SortOrder
   gdprStatus?: Prisma.SortOrder
   euResidency?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
   assessedAt?: Prisma.SortOrder
   assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type AISystemAvgOrderByAggregateInput = {
+  foundedYear?: Prisma.SortOrder
 }
 
 export type AISystemMaxOrderByAggregateInput = {
@@ -928,6 +1168,7 @@ export type AISystemMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -952,6 +1193,15 @@ export type AISystemMaxOrderByAggregateInput = {
   aiActStatus?: Prisma.SortOrder
   gdprStatus?: Prisma.SortOrder
   euResidency?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
   assessedAt?: Prisma.SortOrder
   assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -965,6 +1215,7 @@ export type AISystemMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -989,10 +1240,23 @@ export type AISystemMinOrderByAggregateInput = {
   aiActStatus?: Prisma.SortOrder
   gdprStatus?: Prisma.SortOrder
   euResidency?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
   assessedAt?: Prisma.SortOrder
   assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type AISystemSumOrderByAggregateInput = {
+  foundedYear?: Prisma.SortOrder
 }
 
 export type AISystemNullableScalarRelationFilter = {
@@ -1066,6 +1330,14 @@ export type AISystemUpdateOneRequiredWithoutDimensionScoresNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AISystemUpdateToOneWithWhereWithoutDimensionScoresInput, Prisma.AISystemUpdateWithoutDimensionScoresInput>, Prisma.AISystemUncheckedUpdateWithoutDimensionScoresInput>
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -1131,6 +1403,7 @@ export type AISystemCreateWithoutIndustriesInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1155,6 +1428,15 @@ export type AISystemCreateWithoutIndustriesInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1172,6 +1454,7 @@ export type AISystemUncheckedCreateWithoutIndustriesInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1196,6 +1479,15 @@ export type AISystemUncheckedCreateWithoutIndustriesInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1237,6 +1529,7 @@ export type AISystemScalarWhereInput = {
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
@@ -1261,6 +1554,15 @@ export type AISystemScalarWhereInput = {
   aiActStatus?: Prisma.StringFilter<"AISystem"> | string
   gdprStatus?: Prisma.StringFilter<"AISystem"> | string
   euResidency?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
   assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
   assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
@@ -1274,6 +1576,7 @@ export type AISystemCreateWithoutScoresInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1298,6 +1601,15 @@ export type AISystemCreateWithoutScoresInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1315,6 +1627,7 @@ export type AISystemUncheckedCreateWithoutScoresInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1339,6 +1652,15 @@ export type AISystemUncheckedCreateWithoutScoresInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1372,6 +1694,7 @@ export type AISystemUpdateWithoutScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1396,6 +1719,15 @@ export type AISystemUpdateWithoutScoresInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1413,6 +1745,7 @@ export type AISystemUncheckedUpdateWithoutScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1437,6 +1770,15 @@ export type AISystemUncheckedUpdateWithoutScoresInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1454,6 +1796,7 @@ export type AISystemCreateWithoutDimensionScoresInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1478,6 +1821,15 @@ export type AISystemCreateWithoutDimensionScoresInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1495,6 +1847,7 @@ export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1519,6 +1872,15 @@ export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1552,6 +1914,7 @@ export type AISystemUpdateWithoutDimensionScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1576,6 +1939,15 @@ export type AISystemUpdateWithoutDimensionScoresInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1593,6 +1965,7 @@ export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1617,6 +1990,15 @@ export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1634,6 +2016,7 @@ export type AISystemCreateWithoutChangelogInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1658,6 +2041,15 @@ export type AISystemCreateWithoutChangelogInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1675,6 +2067,7 @@ export type AISystemUncheckedCreateWithoutChangelogInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1699,6 +2092,15 @@ export type AISystemUncheckedCreateWithoutChangelogInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1732,6 +2134,7 @@ export type AISystemUpdateWithoutChangelogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1756,6 +2159,15 @@ export type AISystemUpdateWithoutChangelogInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1773,6 +2185,7 @@ export type AISystemUncheckedUpdateWithoutChangelogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1797,6 +2210,15 @@ export type AISystemUncheckedUpdateWithoutChangelogInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1814,6 +2236,7 @@ export type AISystemCreateWithoutSubscribersInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1838,6 +2261,15 @@ export type AISystemCreateWithoutSubscribersInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1855,6 +2287,7 @@ export type AISystemUncheckedCreateWithoutSubscribersInput = {
   name: string
   type: string
   risk: string
+  capabilityType?: string
   description: string
   category: string
   featured?: boolean
@@ -1879,6 +2312,15 @@ export type AISystemUncheckedCreateWithoutSubscribersInput = {
   aiActStatus?: string
   gdprStatus?: string
   euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
   assessedAt?: Date | string | null
   assessmentNote?: string
   createdAt?: Date | string
@@ -1917,6 +2359,7 @@ export type AISystemUpdateWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1941,6 +2384,15 @@ export type AISystemUpdateWithoutIndustriesInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1958,6 +2410,7 @@ export type AISystemUncheckedUpdateWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1982,6 +2435,15 @@ export type AISystemUncheckedUpdateWithoutIndustriesInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1999,6 +2461,7 @@ export type AISystemUncheckedUpdateManyWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2023,6 +2486,15 @@ export type AISystemUncheckedUpdateManyWithoutIndustriesInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2036,6 +2508,7 @@ export type AISystemUpdateWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2060,6 +2533,15 @@ export type AISystemUpdateWithoutSubscribersInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2077,6 +2559,7 @@ export type AISystemUncheckedUpdateWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2101,6 +2584,15 @@ export type AISystemUncheckedUpdateWithoutSubscribersInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2118,6 +2610,7 @@ export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2142,6 +2635,15 @@ export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
   aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
   gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
   euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
   assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2222,6 +2724,7 @@ export type AISystemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   type?: boolean
   risk?: boolean
+  capabilityType?: boolean
   description?: boolean
   category?: boolean
   featured?: boolean
@@ -2246,6 +2749,15 @@ export type AISystemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   aiActStatus?: boolean
   gdprStatus?: boolean
   euResidency?: boolean
+  deploymentModel?: boolean
+  sourceModel?: boolean
+  foundedYear?: boolean
+  employeeCount?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  customerCount?: boolean
+  notableCustomers?: boolean
+  customerStories?: boolean
   assessedAt?: boolean
   assessmentNote?: boolean
   createdAt?: boolean
@@ -2265,6 +2777,7 @@ export type AISystemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   type?: boolean
   risk?: boolean
+  capabilityType?: boolean
   description?: boolean
   category?: boolean
   featured?: boolean
@@ -2289,6 +2802,15 @@ export type AISystemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   aiActStatus?: boolean
   gdprStatus?: boolean
   euResidency?: boolean
+  deploymentModel?: boolean
+  sourceModel?: boolean
+  foundedYear?: boolean
+  employeeCount?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  customerCount?: boolean
+  notableCustomers?: boolean
+  customerStories?: boolean
   assessedAt?: boolean
   assessmentNote?: boolean
   createdAt?: boolean
@@ -2302,6 +2824,7 @@ export type AISystemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   type?: boolean
   risk?: boolean
+  capabilityType?: boolean
   description?: boolean
   category?: boolean
   featured?: boolean
@@ -2326,6 +2849,15 @@ export type AISystemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   aiActStatus?: boolean
   gdprStatus?: boolean
   euResidency?: boolean
+  deploymentModel?: boolean
+  sourceModel?: boolean
+  foundedYear?: boolean
+  employeeCount?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  customerCount?: boolean
+  notableCustomers?: boolean
+  customerStories?: boolean
   assessedAt?: boolean
   assessmentNote?: boolean
   createdAt?: boolean
@@ -2339,6 +2871,7 @@ export type AISystemSelectScalar = {
   name?: boolean
   type?: boolean
   risk?: boolean
+  capabilityType?: boolean
   description?: boolean
   category?: boolean
   featured?: boolean
@@ -2363,13 +2896,22 @@ export type AISystemSelectScalar = {
   aiActStatus?: boolean
   gdprStatus?: boolean
   euResidency?: boolean
+  deploymentModel?: boolean
+  sourceModel?: boolean
+  foundedYear?: boolean
+  employeeCount?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  customerCount?: boolean
+  notableCustomers?: boolean
+  customerStories?: boolean
   assessedAt?: boolean
   assessmentNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AISystemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "vendor" | "name" | "type" | "risk" | "description" | "category" | "featured" | "vendorHq" | "euPresence" | "useCases" | "dataStorage" | "dataProcessing" | "trainingDataUse" | "subprocessors" | "dpaDetails" | "slaDetails" | "dataPortability" | "exitTerms" | "ipTerms" | "certifications" | "encryptionInfo" | "accessControls" | "modelDocs" | "explainability" | "biasTesting" | "aiActStatus" | "gdprStatus" | "euResidency" | "assessedAt" | "assessmentNote" | "createdAt" | "updatedAt", ExtArgs["result"]["aISystem"]>
+export type AISystemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "vendor" | "name" | "type" | "risk" | "capabilityType" | "description" | "category" | "featured" | "vendorHq" | "euPresence" | "useCases" | "dataStorage" | "dataProcessing" | "trainingDataUse" | "subprocessors" | "dpaDetails" | "slaDetails" | "dataPortability" | "exitTerms" | "ipTerms" | "certifications" | "encryptionInfo" | "accessControls" | "modelDocs" | "explainability" | "biasTesting" | "aiActStatus" | "gdprStatus" | "euResidency" | "deploymentModel" | "sourceModel" | "foundedYear" | "employeeCount" | "fundingStatus" | "marketPresence" | "customerCount" | "notableCustomers" | "customerStories" | "assessedAt" | "assessmentNote" | "createdAt" | "updatedAt", ExtArgs["result"]["aISystem"]>
 export type AISystemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   industries?: boolean | Prisma.AISystem$industriesArgs<ExtArgs>
   scores?: boolean | Prisma.AISystem$scoresArgs<ExtArgs>
@@ -2397,6 +2939,7 @@ export type $AISystemPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     type: string
     risk: string
+    capabilityType: string
     description: string
     category: string
     featured: boolean
@@ -2421,6 +2964,15 @@ export type $AISystemPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     aiActStatus: string
     gdprStatus: string
     euResidency: string
+    deploymentModel: string
+    sourceModel: string
+    foundedYear: number | null
+    employeeCount: string
+    fundingStatus: string
+    marketPresence: string
+    customerCount: string
+    notableCustomers: string
+    customerStories: string
     assessedAt: Date | null
     assessmentNote: string
     createdAt: Date
@@ -2859,6 +3411,7 @@ export interface AISystemFieldRefs {
   readonly name: Prisma.FieldRef<"AISystem", 'String'>
   readonly type: Prisma.FieldRef<"AISystem", 'String'>
   readonly risk: Prisma.FieldRef<"AISystem", 'String'>
+  readonly capabilityType: Prisma.FieldRef<"AISystem", 'String'>
   readonly description: Prisma.FieldRef<"AISystem", 'String'>
   readonly category: Prisma.FieldRef<"AISystem", 'String'>
   readonly featured: Prisma.FieldRef<"AISystem", 'Boolean'>
@@ -2883,6 +3436,15 @@ export interface AISystemFieldRefs {
   readonly aiActStatus: Prisma.FieldRef<"AISystem", 'String'>
   readonly gdprStatus: Prisma.FieldRef<"AISystem", 'String'>
   readonly euResidency: Prisma.FieldRef<"AISystem", 'String'>
+  readonly deploymentModel: Prisma.FieldRef<"AISystem", 'String'>
+  readonly sourceModel: Prisma.FieldRef<"AISystem", 'String'>
+  readonly foundedYear: Prisma.FieldRef<"AISystem", 'Int'>
+  readonly employeeCount: Prisma.FieldRef<"AISystem", 'String'>
+  readonly fundingStatus: Prisma.FieldRef<"AISystem", 'String'>
+  readonly marketPresence: Prisma.FieldRef<"AISystem", 'String'>
+  readonly customerCount: Prisma.FieldRef<"AISystem", 'String'>
+  readonly notableCustomers: Prisma.FieldRef<"AISystem", 'String'>
+  readonly customerStories: Prisma.FieldRef<"AISystem", 'String'>
   readonly assessedAt: Prisma.FieldRef<"AISystem", 'DateTime'>
   readonly assessmentNote: Prisma.FieldRef<"AISystem", 'String'>
   readonly createdAt: Prisma.FieldRef<"AISystem", 'DateTime'>

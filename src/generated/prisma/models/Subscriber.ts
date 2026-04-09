@@ -32,6 +32,10 @@ export type SubscriberMinAggregateOutputType = {
   verified: boolean | null
   digestEnabled: boolean | null
   digestFrequency: string | null
+  role: string | null
+  industry: string | null
+  platforms: string | null
+  orgSize: string | null
   consentDate: Date | null
   consentText: string | null
   tier: string | null
@@ -52,6 +56,10 @@ export type SubscriberMaxAggregateOutputType = {
   verified: boolean | null
   digestEnabled: boolean | null
   digestFrequency: string | null
+  role: string | null
+  industry: string | null
+  platforms: string | null
+  orgSize: string | null
   consentDate: Date | null
   consentText: string | null
   tier: string | null
@@ -72,6 +80,10 @@ export type SubscriberCountAggregateOutputType = {
   verified: number
   digestEnabled: number
   digestFrequency: number
+  role: number
+  industry: number
+  platforms: number
+  orgSize: number
   consentDate: number
   consentText: number
   tier: number
@@ -94,6 +106,10 @@ export type SubscriberMinAggregateInputType = {
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
+  role?: true
+  industry?: true
+  platforms?: true
+  orgSize?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -114,6 +130,10 @@ export type SubscriberMaxAggregateInputType = {
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
+  role?: true
+  industry?: true
+  platforms?: true
+  orgSize?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -134,6 +154,10 @@ export type SubscriberCountAggregateInputType = {
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
+  role?: true
+  industry?: true
+  platforms?: true
+  orgSize?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -227,6 +251,10 @@ export type SubscriberGroupByOutputType = {
   verified: boolean
   digestEnabled: boolean
   digestFrequency: string
+  role: string
+  industry: string
+  platforms: string
+  orgSize: string
   consentDate: Date | null
   consentText: string
   tier: string
@@ -268,6 +296,10 @@ export type SubscriberWhereInput = {
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
+  role?: Prisma.StringFilter<"Subscriber"> | string
+  industry?: Prisma.StringFilter<"Subscriber"> | string
+  platforms?: Prisma.StringFilter<"Subscriber"> | string
+  orgSize?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -290,6 +322,10 @@ export type SubscriberOrderByWithRelationInput = {
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  platforms?: Prisma.SortOrder
+  orgSize?: Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -315,6 +351,10 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
+  role?: Prisma.StringFilter<"Subscriber"> | string
+  industry?: Prisma.StringFilter<"Subscriber"> | string
+  platforms?: Prisma.StringFilter<"Subscriber"> | string
+  orgSize?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -337,6 +377,10 @@ export type SubscriberOrderByWithAggregationInput = {
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  platforms?: Prisma.SortOrder
+  orgSize?: Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -363,6 +407,10 @@ export type SubscriberScalarWhereWithAggregatesInput = {
   verified?: Prisma.BoolWithAggregatesFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolWithAggregatesFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  role?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  industry?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  platforms?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  orgSize?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   tier?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
@@ -383,6 +431,10 @@ export type SubscriberCreateInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -405,6 +457,10 @@ export type SubscriberUncheckedCreateInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -427,6 +483,10 @@ export type SubscriberUpdateInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -449,6 +509,10 @@ export type SubscriberUncheckedUpdateInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -471,6 +535,10 @@ export type SubscriberCreateManyInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -491,6 +559,10 @@ export type SubscriberUpdateManyMutationInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -511,6 +583,10 @@ export type SubscriberUncheckedUpdateManyInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -541,6 +617,10 @@ export type SubscriberCountOrderByAggregateInput = {
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  platforms?: Prisma.SortOrder
+  orgSize?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -561,6 +641,10 @@ export type SubscriberMaxOrderByAggregateInput = {
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  platforms?: Prisma.SortOrder
+  orgSize?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -581,6 +665,10 @@ export type SubscriberMinOrderByAggregateInput = {
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  platforms?: Prisma.SortOrder
+  orgSize?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -677,6 +765,10 @@ export type SubscriberCreateWithoutFrameworksInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -698,6 +790,10 @@ export type SubscriberUncheckedCreateWithoutFrameworksInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -743,6 +839,10 @@ export type SubscriberScalarWhereInput = {
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
+  role?: Prisma.StringFilter<"Subscriber"> | string
+  industry?: Prisma.StringFilter<"Subscriber"> | string
+  platforms?: Prisma.StringFilter<"Subscriber"> | string
+  orgSize?: Prisma.StringFilter<"Subscriber"> | string
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -763,6 +863,10 @@ export type SubscriberCreateWithoutSystemsInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -784,6 +888,10 @@ export type SubscriberUncheckedCreateWithoutSystemsInput = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -826,6 +934,10 @@ export type SubscriberUpdateWithoutFrameworksInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -847,6 +959,10 @@ export type SubscriberUncheckedUpdateWithoutFrameworksInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -868,6 +984,10 @@ export type SubscriberUncheckedUpdateManyWithoutFrameworksInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -888,6 +1008,10 @@ export type SubscriberUpdateWithoutSystemsInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -909,6 +1033,10 @@ export type SubscriberUncheckedUpdateWithoutSystemsInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -930,6 +1058,10 @@ export type SubscriberUncheckedUpdateManyWithoutSystemsInput = {
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -990,6 +1122,10 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
+  role?: boolean
+  industry?: boolean
+  platforms?: boolean
+  orgSize?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1013,6 +1149,10 @@ export type SubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
+  role?: boolean
+  industry?: boolean
+  platforms?: boolean
+  orgSize?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1033,6 +1173,10 @@ export type SubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
+  role?: boolean
+  industry?: boolean
+  platforms?: boolean
+  orgSize?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1053,6 +1197,10 @@ export type SubscriberSelectScalar = {
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
+  role?: boolean
+  industry?: boolean
+  platforms?: boolean
+  orgSize?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1067,7 +1215,7 @@ export type SubscriberSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "verified" | "digestEnabled" | "digestFrequency" | "consentDate" | "consentText" | "tier" | "stripeCustomerId" | "stripeSubscriptionId" | "tierExpiresAt" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
+export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "verified" | "digestEnabled" | "digestFrequency" | "role" | "industry" | "platforms" | "orgSize" | "consentDate" | "consentText" | "tier" | "stripeCustomerId" | "stripeSubscriptionId" | "tierExpiresAt" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
 export type SubscriberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   frameworks?: boolean | Prisma.Subscriber$frameworksArgs<ExtArgs>
   systems?: boolean | Prisma.Subscriber$systemsArgs<ExtArgs>
@@ -1088,6 +1236,10 @@ export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.Internal
     verified: boolean
     digestEnabled: boolean
     digestFrequency: string
+    role: string
+    industry: string
+    platforms: string
+    orgSize: string
     consentDate: Date | null
     consentText: string
     tier: string
@@ -1530,6 +1682,10 @@ export interface SubscriberFieldRefs {
   readonly verified: Prisma.FieldRef<"Subscriber", 'Boolean'>
   readonly digestEnabled: Prisma.FieldRef<"Subscriber", 'Boolean'>
   readonly digestFrequency: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly role: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly industry: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly platforms: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly orgSize: Prisma.FieldRef<"Subscriber", 'String'>
   readonly consentDate: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly consentText: Prisma.FieldRef<"Subscriber", 'String'>
   readonly tier: Prisma.FieldRef<"Subscriber", 'String'>

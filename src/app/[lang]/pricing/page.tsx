@@ -6,7 +6,7 @@ import { PricingCards } from "./PricingCards";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "AI Compass EU pricing plans. Free, Pro, and Team tiers for AI compliance intelligence. Start free and upgrade as your needs grow.",
+    "AI Compass EU pricing plans. Free, Pro, and Enterprise tiers for AI compliance intelligence. Start free, upgrade to Pro for \u20ac19/month, or contact us for enterprise.",
 };
 
 export default function PricingPage() {
@@ -22,12 +22,12 @@ export default function PricingPage() {
                 Pricing
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                Plans for Every Team
+                AI Compliance Intelligence, Priced for Everyone
               </h1>
               <p className="mt-4 text-lg text-blue-100 leading-relaxed">
-                Start free with essential compliance data. Upgrade to Pro for
-                full access, or bring your whole team with shared tools and API
-                integration.
+                Start free with essential compliance data and our AI chatbot.
+                Upgrade to Pro for full access to 30+ AI systems, personalized
+                dashboards, and comparison tools &mdash; or talk to us about enterprise.
               </p>
             </div>
           </div>

@@ -122,22 +122,22 @@ export default function ChatWidget() {
     en: {
       titleAnon: "You've used your 5 free questions for today",
       titleSub: "You've used your 20 questions for this month",
-      body: "Need deeper analysis? Our consulting team provides bespoke AI compliance assessments tailored to your organisation's specific use case and regulatory context.",
-      cta: "Submit a case for offline analysis",
+      body: "Need a deeper dive? Our team can analyse your specific use case, map it against the regulations, and give you a clear action plan.",
+      cta: "Raise a case with our team",
       email: "consulting@aicompass.eu",
     },
     fr: {
       titleAnon: "Vous avez utilis\u00e9 vos 5 questions gratuites pour aujourd'hui",
       titleSub: "Vous avez utilis\u00e9 vos 20 questions pour ce mois",
-      body: "Besoin d'une analyse approfondie ? Notre \u00e9quipe de consulting fournit des \u00e9valuations de conformit\u00e9 IA sur mesure pour votre organisation.",
-      cta: "Soumettre un cas pour analyse",
+      body: "Besoin d'aller plus loin ? Notre \u00e9quipe peut analyser votre cas sp\u00e9cifique, le confronter aux r\u00e9glementations et vous donner un plan d'action clair.",
+      cta: "Soumettre un cas \u00e0 notre \u00e9quipe",
       email: "consulting@aicompass.eu",
     },
     de: {
       titleAnon: "Sie haben heute Ihre 5 kostenlosen Fragen verbraucht",
       titleSub: "Sie haben Ihre 20 Fragen f\u00fcr diesen Monat verbraucht",
-      body: "Ben\u00f6tigen Sie eine tiefergehende Analyse? Unser Beratungsteam bietet ma\u00dfgeschneiderte KI-Compliance-Bewertungen.",
-      cta: "Fall zur Offline-Analyse einreichen",
+      body: "Brauchen Sie eine tiefere Analyse? Unser Team kann Ihren konkreten Anwendungsfall pr\u00fcfen und Ihnen einen klaren Handlungsplan geben.",
+      cta: "Einen Fall bei unserem Team einreichen",
       email: "consulting@aicompass.eu",
     },
   };

@@ -3,11 +3,10 @@
  *
  * URL: /database
  *
- * Features:
- *   - Filter by risk level and category
- *   - Search by name/vendor
- *   - Shows overall score, risk badge, per-framework scores
- *   - Links to full assessment pages
+ * Tier gating:
+ *   - Free: sees all systems in the grid but only free-tier systems link to full assessments.
+ *     Pro-only systems show a lock icon and upgrade prompt.
+ *   - Pro / Enterprise: full access to all systems and assessments.
  */
 
 export const dynamic = "force-dynamic";
@@ -17,6 +16,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getAllSystems, getPublishedFrameworks } from "@/lib/queries";
 import { computeOverallScore } from "@/lib/scoring";
+import { getSubscriber } from "@/lib/subscriber-auth";
+import { FREE_TIER_SYSTEM_SLUGS, type SubscriptionTier } from "@/lib/tier-access";
 import { DatabaseGrid } from "./DatabaseGrid";
 
 export const metadata: Metadata = {
@@ -26,10 +27,13 @@ export const metadata: Metadata = {
 
 export default async function DatabasePage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q: searchQuery } = await searchParams;
-  const [systems, frameworks] = await Promise.all([
+  const [systems, subscriber] = await Promise.all([
     getAllSystems(),
-    getPublishedFrameworks(),
+    getSubscriber(),
   ]);
+
+  const tier: SubscriptionTier = (subscriber?.tier as SubscriptionTier) || "free";
+  const freeSlugs = FREE_TIER_SYSTEM_SLUGS as readonly string[];
 
   // Convert to plain objects for client component
   const plainSystems = systems.map((s) => ({
@@ -48,6 +52,7 @@ export default async function DatabasePage({ searchParams }: { searchParams: Pro
     })),
     overallScore: computeOverallScore(s.scores.map((sc) => sc.score)),
     updatedAt: s.updatedAt.toISOString().split("T")[0],
+    isFree: freeSlugs.includes(s.slug),
   }));
 
   return (
@@ -75,7 +80,7 @@ export default async function DatabasePage({ searchParams }: { searchParams: Pro
         {/* Database grid */}
         <section className="py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <DatabaseGrid systems={plainSystems} initialSearch={searchQuery || ""} />
+            <DatabaseGrid systems={plainSystems} initialSearch={searchQuery || ""} tier={tier} />
           </div>
         </section>
       </main>

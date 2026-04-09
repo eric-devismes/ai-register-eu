@@ -171,6 +171,21 @@ export async function getSystemChangelog(systemId: string) {
   });
 }
 
+/**
+ * Get all recent changelog entries (for the public newsfeed).
+ * Returns entries across all frameworks and systems, sorted by date.
+ */
+export async function getRecentChangelogs(limit = 50) {
+  return prisma.changeLog.findMany({
+    orderBy: { date: "desc" },
+    take: limit,
+    include: {
+      framework: { select: { slug: true, name: true } },
+      system: { select: { slug: true, name: true, vendor: true } },
+    },
+  });
+}
+
 // ─── Industries ──────────────────────────────────────────
 
 /**

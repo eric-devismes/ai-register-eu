@@ -1,15 +1,13 @@
 /**
- * POST /api/compare — AI-powered use case matcher + follow-up conversation.
+ * POST /api/compare — AI-powered use case matcher.
  *
- * Phase 1 (no systemIds): Analyse use case description, ask follow-up questions,
- *   then return ranked matching AI systems from the database.
- *
- * Phase 2 (systemIds provided): Return full comparison data for selected systems.
+ * Phase "match": Analyse use case + optional filters, return ranked AI systems.
+ * Phase "compare": Return full comparison data for selected systems.
  *
  * Body: {
  *   useCase: string,           // plain text use case description
- *   followUpAnswers?: string,  // answers to follow-up questions
- *   systemIds?: string[],      // if provided, return comparison data
+ *   filters?: { industry?, deployment?, capability? },
+ *   systemIds?: string[],      // for compare phase
  *   phase: "match" | "compare"
  * }
  */
@@ -124,9 +122,8 @@ function computeOverallScore(grades: string[]): string {
 
 // ─── LLM Call for Matching ───────────────────────────────
 
-async function callMatchingLLM(useCase: string, followUpAnswers: string, systemsSummary: string): Promise<{
+async function callMatchingLLM(useCase: string, body: Record<string, unknown>, systemsSummary: string): Promise<{
   analysis: string;
-  followUpQuestions: string[] | null;
   matches: Array<{ slug: string; relevanceScore: number; reason: string; useCaseMatch: string; riskNote: string }>;
   ready: boolean;
 }> {
@@ -134,39 +131,34 @@ async function callMatchingLLM(useCase: string, followUpAnswers: string, systems
   if (!apiKey) {
     return {
       analysis: "Demo mode — configure ANTHROPIC_API_KEY to enable AI matching.",
-      followUpQuestions: null,
       matches: [],
-      ready: false,
+      ready: true,
     };
   }
 
   const Anthropic = (await import("@anthropic-ai/sdk")).default;
   const client = new Anthropic({ apiKey });
 
+  // Build filter context from optional structured fields
+  const filters = (body.filters || {}) as { industry?: string; deployment?: string; capability?: string };
+  const filterContext = [
+    filters.industry ? `Industry: ${filters.industry}` : "",
+    filters.deployment ? `Deployment preference: ${filters.deployment}` : "",
+    filters.capability ? `Key capability needed: ${filters.capability}` : "",
+  ].filter(Boolean).join("\n");
+
   const systemPrompt = `You are an AI procurement advisor for EU enterprises. You help organisations find the right AI solutions for their use cases while ensuring EU regulatory compliance (EU AI Act, GDPR, DORA).
 
-Your job:
-1. Analyse the use case description
-2. If you need more information to make a good recommendation, ask 2-3 focused follow-up questions
-3. Once you have enough information, return ranked matches from the AI systems database
+Your job: Analyse the use case and return ranked matches from the AI systems database. Always return matches directly — never ask follow-up questions.
 
 AVAILABLE AI SYSTEMS (summary):
 ${systemsSummary}
 
-RESPONSE FORMAT — you must return ONLY valid JSON in this exact format:
-
-If you need more information:
-{
-  "ready": false,
-  "analysis": "Brief analysis of what you understand so far",
-  "followUpQuestions": ["Question 1?", "Question 2?", "Question 3?"]
-}
-
-If you have enough information to recommend:
+${filterContext ? `USER FILTERS (use these to prioritise results):\n${filterContext}\n` : ""}
+RESPONSE FORMAT — return ONLY valid JSON:
 {
   "ready": true,
   "analysis": "2-3 sentence analysis of the use case and key considerations",
-  "followUpQuestions": null,
   "matches": [
     {
       "slug": "system-slug-from-database",
@@ -179,7 +171,9 @@ If you have enough information to recommend:
 }
 
 Rules:
-- Only include systems that are genuinely relevant to the use case
+- Always return ready: true with matches — never ask follow-up questions
+- Only include systems genuinely relevant to the use case
+- If the user specified filters (industry, deployment, capability), strongly prefer systems matching those filters
 - relevanceScore is 0-100 (only include systems with score >= 50)
 - Maximum 8 matches, ranked by relevance
 - Be specific about which feature of the system matches the use case
@@ -188,9 +182,7 @@ Rules:
 - If the use case involves employment/HR, flag Annex III Category 4
 - If the use case involves financial decisions, flag Annex III Category 5`;
 
-  const userMessage = followUpAnswers
-    ? `Use case: ${useCase}\n\nFollow-up answers: ${followUpAnswers}`
-    : `Use case: ${useCase}`;
+  const userMessage = `Use case: ${useCase}`;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
@@ -208,16 +200,14 @@ Rules:
     const status = (error as { status?: number })?.status;
     if (status === 400 || status === 402) {
       return {
-        ready: false,
+        ready: true,
         analysis: "The AI matching service is temporarily unavailable. You can browse our AI database directly to find systems relevant to your use case.",
-        followUpQuestions: null,
         matches: [],
       };
     }
     return {
-      ready: false,
+      ready: true,
       analysis: "Unable to process your request. Please try again in a moment.",
-      followUpQuestions: null,
       matches: [],
     };
   }
@@ -230,9 +220,8 @@ Rules:
     return JSON.parse(jsonStr);
   } catch {
     return {
-      ready: false,
+      ready: true,
       analysis: "Unable to parse response. Please try again.",
-      followUpQuestions: ["Could you describe your use case in more detail?"],
       matches: [],
     };
   }
@@ -249,10 +238,10 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { useCase, followUpAnswers, systemIds, phase } = body as {
+    const { useCase, systemIds, phase } = body as {
       useCase?: string;
-      followUpAnswers?: string;
       systemIds?: string[];
+      filters?: { industry?: string; deployment?: string; capability?: string };
       phase: "match" | "compare";
     };
 
@@ -305,7 +294,7 @@ export async function POST(request: Request) {
         error: "Please describe a genuine business use case.",
         analysis: "Please describe what your organisation needs — e.g., 'customer service automation for our insurance claims team'.",
         matches: [],
-        ready: false,
+        ready: true,
       });
     }
 
@@ -348,7 +337,7 @@ Scores: ${scores}
       })
       .join("\n");
 
-    const result = await callMatchingLLM(useCase, followUpAnswers || "", systemsSummary);
+    const result = await callMatchingLLM(useCase, body, systemsSummary);
 
     // If ready, enrich matches with full system data
     if (result.ready && result.matches?.length) {

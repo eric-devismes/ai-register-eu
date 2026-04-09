@@ -11,15 +11,33 @@ import { NextResponse } from "next/server";
 import { guardQuestion, getRefusalMessage } from "@/lib/chat-guard";
 import { checkRateLimit, incrementUsage, getSubscriberId } from "@/lib/chat-rate-limit";
 import { retrieveContext } from "@/lib/chat-rag";
-import { callLLM } from "@/lib/llm";
+import { callLLM, type UserProfile } from "@/lib/llm";
 import { prisma } from "@/lib/db";
 import { isValidLocale, type Locale } from "@/lib/i18n";
+
+/** Load user profile from subscriber record (if logged in). */
+async function getUserProfile(subscriberId: string | null): Promise<UserProfile | undefined> {
+  if (!subscriberId) return undefined;
+  try {
+    const sub = await prisma.subscriber.findUnique({
+      where: { id: subscriberId },
+      select: { role: true, industry: true, orgSize: true },
+    });
+    if (sub && (sub.role || sub.industry || sub.orgSize)) {
+      return { role: sub.role || undefined, industry: sub.industry || undefined, orgSize: sub.orgSize || undefined };
+    }
+  } catch { /* no-op */ }
+  return undefined;
+}
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const question = body.question as string;
     const locale = (isValidLocale(body.locale) ? body.locale : "en") as Locale;
+
+    // 0. Get subscriber ID early (used for logging + profile)
+    const subId = await getSubscriberId();
 
     // 1. Rate limit check
     const rateLimit = await checkRateLimit();
@@ -29,7 +47,7 @@ export async function POST(request: Request) {
       await prisma.chatLog.create({
         data: {
           fingerprint: rateLimit.fingerprint,
-          subscriberId: await getSubscriberId(),
+          subscriberId: subId,
           question: (question || "").slice(0, 500),
           answer: "",
           locale,
@@ -56,7 +74,7 @@ export async function POST(request: Request) {
       await prisma.chatLog.create({
         data: {
           fingerprint: rateLimit.fingerprint,
-          subscriberId: await getSubscriberId(),
+          subscriberId: subId,
           question: (question || "").slice(0, 500),
           answer: refusal,
           locale,
@@ -69,31 +87,35 @@ export async function POST(request: Request) {
       return NextResponse.json({
         answer: refusal,
         remaining: rateLimit.remaining,
-        isSubscriber: rateLimit.isSubscriber,
+        isSubscriber: rateLimit.tier !== "free",
         blocked: true,
         exhausted: false,
       });
     }
 
-    // 3. RAG retrieval
-    const context = await retrieveContext(guard.sanitised!);
+    // 3. RAG retrieval + user profile (parallel)
+    const [context, userProfile] = await Promise.all([
+      retrieveContext(guard.sanitised!),
+      getUserProfile(subId),
+    ]);
 
-    // 4. LLM call
+    // 4. LLM call (with profile-aware system prompt)
     const llmResponse = await callLLM({
       question: guard.sanitised!,
       context,
       locale,
+      userProfile,
     });
 
     // 5. Increment usage (only for successful, non-blocked responses)
     await incrementUsage(rateLimit.fingerprint);
-    const newRemaining = rateLimit.isSubscriber ? -1 : rateLimit.remaining - 1;
+    const newRemaining = rateLimit.tier !== "free" ? -1 : rateLimit.remaining - 1;
 
     // 6. Log the interaction
     await prisma.chatLog.create({
       data: {
         fingerprint: rateLimit.fingerprint,
-        subscriberId: await getSubscriberId(),
+        subscriberId: subId,
         question: guard.sanitised!,
         answer: llmResponse.answer,
         locale,
@@ -105,7 +127,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       answer: llmResponse.answer,
       remaining: newRemaining,
-      isSubscriber: rateLimit.isSubscriber,
+      isSubscriber: rateLimit.tier !== "free",
       blocked: false,
       exhausted: false,
     });

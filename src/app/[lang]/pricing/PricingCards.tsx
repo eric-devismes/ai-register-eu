@@ -8,53 +8,61 @@ const tiers = [
     name: "Free",
     price: "0",
     period: "forever",
-    description: "Get started with essential AI compliance data. Perfect for individual exploration.",
+    description:
+      "Explore AI compliance data for the most widely used platforms. Perfect for getting started.",
     highlighted: false,
     features: [
-      "Browse top-level compliance scores",
-      "5 full assessments per month",
-      "Basic search and filtering",
-      "EU AI Act risk category lookup",
-      "Weekly regulatory newsletter",
+      { text: "5 most-used AI systems with top-level scores", included: true },
+      { text: "AI compliance chatbot — 5 questions per day", included: true },
+      { text: "General regulatory newsfeed", included: true },
+      { text: "Full access to reports & white papers", included: true },
+      { text: "Weekly newsletter", included: true },
+      { text: "All AI systems with full assessments", included: false },
+      { text: "Personalized compliance dashboard", included: false },
+      { text: "Side-by-side comparison tool", included: false },
     ],
     action: "free" as const,
     cta: "Get Started Free",
   },
   {
     name: "Pro",
-    price: "49",
+    price: "19",
     period: "/month",
-    description: "Full access to compliance intelligence for professionals and compliance officers.",
+    description:
+      "Full compliance intelligence for DPOs, compliance officers, and AI-aware professionals.",
     highlighted: true,
+    badge: "Most Popular",
     features: [
-      "Unlimited full assessments",
-      "Side-by-side comparison tool",
-      "Real-time regulatory alerts",
-      "Export compliance reports (PDF/CSV)",
-      "Detailed scoring breakdowns",
-      "Saved searches and watchlists",
-      "Priority email support",
+      { text: "All 30+ AI systems — full assessments & deep-dives", included: true },
+      { text: "Unlimited AI compliance chatbot", included: true },
+      { text: "Personalized dashboard — your AI stack at a glance", included: true },
+      { text: "Side-by-side comparison tool", included: true },
+      { text: "Real-time regulatory alerts tailored to your stack", included: true },
+      { text: "Export compliance reports (PDF / CSV)", included: true },
+      { text: "Full access to reports & white papers", included: true },
+      { text: "Priority email support", included: true },
     ],
     action: "pro" as const,
-    cta: "Start Pro Trial",
+    cta: "Start Pro — \u20ac19/month",
   },
   {
-    name: "Team",
-    price: "149",
-    period: "/month",
-    description: "Collaborate on AI compliance across your organization with shared tools and API access.",
+    name: "Enterprise",
+    price: null,
+    period: null,
+    description:
+      "For compliance teams managing AI across the organization. Includes API access and consulting.",
     highlighted: false,
     features: [
-      "Everything in Pro",
-      "5 team member seats",
-      "REST API access (10K calls/month)",
-      "Custom compliance reports",
-      "Shared team watchlists",
-      "SSO integration",
-      "Priority phone & email support",
-      "Dedicated account manager",
+      { text: "Everything in Pro", included: true },
+      { text: "REST API access — integrate compliance data into your stack", included: true },
+      { text: "Multi-seat team access with SSO", included: true },
+      { text: "Custom compliance reports & bulk JSON export", included: true },
+      { text: "Webhook alerts with custom rules", included: true },
+      { text: "Consulting days with EU AI compliance experts", included: true },
+      { text: "Dedicated account manager", included: true },
+      { text: "Priority phone & email support", included: true },
     ],
-    action: "team" as const,
+    action: "enterprise" as const,
     cta: "Contact Sales",
   },
 ];
@@ -63,13 +71,13 @@ export function PricingCards() {
   const locale = useLocale();
   const [loading, setLoading] = useState<string | null>(null);
 
-  async function handleClick(action: "free" | "pro" | "team") {
+  async function handleClick(action: "free" | "pro" | "enterprise") {
     if (action === "free") {
       window.location.href = `/${locale}/subscribe`;
       return;
     }
 
-    if (action === "team") {
+    if (action === "enterprise") {
       window.location.href = `/${locale}/contact`;
       return;
     }
@@ -109,10 +117,10 @@ export function PricingCards() {
                   : "border-gray-200"
               }`}
             >
-              {tier.highlighted && (
+              {tier.highlighted && tier.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center rounded-full bg-[#003399] px-4 py-1 text-xs font-semibold text-white shadow-sm">
-                    Most Popular
+                    {tier.badge}
                   </span>
                 </div>
               )}
@@ -120,23 +128,46 @@ export function PricingCards() {
               <div className="text-center">
                 <h3 className="text-lg font-semibold text-[#0d1b3e]">{tier.name}</h3>
                 <div className="mt-4 flex items-baseline justify-center gap-1">
-                  <span className="text-sm font-medium text-gray-500">&euro;</span>
-                  <span className="text-5xl font-bold text-[#0d1b3e]">{tier.price}</span>
-                  <span className="text-sm font-medium text-gray-500">{tier.period}</span>
+                  {tier.price !== null ? (
+                    <>
+                      <span className="text-sm font-medium text-gray-500">&euro;</span>
+                      <span className="text-5xl font-bold text-[#0d1b3e]">{tier.price}</span>
+                      <span className="text-sm font-medium text-gray-500">{tier.period}</span>
+                    </>
+                  ) : (
+                    <span className="text-3xl font-bold text-[#0d1b3e]">Custom</span>
+                  )}
                 </div>
                 <p className="mt-3 text-sm text-gray-600">{tier.description}</p>
               </div>
 
               <ul className="mt-8 space-y-3">
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <svg
-                      className={`h-5 w-5 shrink-0 ${tier.highlighted ? "text-[#003399]" : "text-green-500"}`}
-                      fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
-                    <span className="text-sm text-gray-700">{feature}</span>
+                  <li key={feature.text} className="flex items-start gap-3">
+                    {feature.included ? (
+                      <svg
+                        className={`h-5 w-5 shrink-0 ${tier.highlighted ? "text-[#003399]" : "text-green-500"}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="h-5 w-5 shrink-0 text-gray-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                      </svg>
+                    )}
+                    <span className={`text-sm ${feature.included ? "text-gray-700" : "text-gray-400"}`}>
+                      {feature.text}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -159,12 +190,15 @@ export function PricingCards() {
           ))}
         </div>
 
-        <div className="mt-16 mx-auto max-w-2xl text-center">
+        {/* Annual discount + enterprise CTA */}
+        <div className="mt-16 mx-auto max-w-2xl text-center space-y-3">
+          <p className="text-sm font-medium text-[#0d1b3e]">
+            Save 20% with annual billing &mdash; Pro at just &euro;182/year.
+          </p>
           <p className="text-sm text-gray-500">
-            All prices exclude VAT. Annual billing available with 20% discount.
-            Need a custom enterprise plan?{" "}
+            All prices exclude VAT. Need a tailored enterprise plan with API access and consulting?{" "}
             <a href={`/${locale}/contact`} className="font-medium text-[#003399] hover:underline">
-              Contact our sales team
+              Let&apos;s talk
             </a>
             .
           </p>
