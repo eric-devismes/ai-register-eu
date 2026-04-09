@@ -1,22 +1,47 @@
 /**
- * TOTP Setup Page
+ * TOTP Setup Page — Scan QR code to set up authenticator app.
  *
- * One-time setup page to configure your authenticator app.
- * Shows the TOTP secret and a QR code that you scan with
- * Google Authenticator, Authy, or similar apps.
+ * Reads the TOTP secret from the AdminUser record in the database.
+ * After scanning, the user's authenticator app generates 6-digit codes.
  *
- * This page is only useful during initial setup.
- * After scanning, the TOTP code is saved in your authenticator app.
+ * Requires admin login. Only shows the current user's TOTP secret.
  */
-
-import { getTOTP } from "@/lib/auth";
-import { TotpQrCode } from "./TotpQrCode";
 
 export const dynamic = "force-dynamic";
 
-export default function SetupTotpPage() {
-  const totp = getTOTP();
-  const uri = totp.toString(); // otpauth:// URI for QR code
+import { redirect } from "next/navigation";
+import { getAdminSession, createTOTP } from "@/lib/auth";
+import { prisma } from "@/lib/db";
+import { TotpQrCode } from "./TotpQrCode";
+
+export default async function SetupTotpPage() {
+  const session = await getAdminSession();
+  if (!session) redirect("/admin/login");
+
+  // Get the admin user's TOTP secret from DB
+  const admin = await prisma.adminUser.findUnique({
+    where: { id: session.adminId },
+    select: { totpSecret: true, totpEnabled: true, email: true },
+  });
+
+  // Fallback for legacy mode
+  const secret = admin?.totpSecret || process.env.TOTP_SECRET || "";
+
+  if (!secret) {
+    return (
+      <>
+        <h1 className="font-heading text-2xl font-bold text-text-primary">
+          Two-Factor Authentication
+        </h1>
+        <p className="mt-4 text-sm text-gray-500">
+          No TOTP secret configured. Contact the site owner to set one up.
+        </p>
+      </>
+    );
+  }
+
+  const totp = createTOTP(secret, admin?.email || "Admin");
+  const uri = totp.toString();
 
   return (
     <>
@@ -29,18 +54,24 @@ export default function SetupTotpPage() {
         generates when logging in.
       </p>
 
+      {admin?.totpEnabled && (
+        <div className="mt-4 rounded-lg bg-green-50 border border-green-200 p-3">
+          <p className="text-sm text-green-700">
+            ✓ Two-factor authentication is <strong>active</strong> on your account.
+          </p>
+        </div>
+      )}
+
       <div className="mt-8 rounded-xl border border-border-light bg-white p-8">
         <div className="flex flex-col items-center gap-6">
-          {/* QR code rendered client-side */}
           <TotpQrCode uri={uri} />
 
-          {/* Manual entry fallback */}
           <div className="text-center">
             <p className="text-xs text-text-muted">
               Can&apos;t scan? Enter this key manually:
             </p>
             <code className="mt-1 block rounded bg-surface-alt px-4 py-2 text-sm font-mono tracking-wider text-text-primary">
-              {process.env.TOTP_SECRET}
+              {secret}
             </code>
           </div>
         </div>
