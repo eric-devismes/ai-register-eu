@@ -13,6 +13,7 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getRecentChangelogs } from "@/lib/queries";
+import { getEffectiveTier } from "@/lib/tier-access";
 import { NewsfeedClient } from "./NewsfeedClient";
 
 export const metadata: Metadata = {
@@ -22,7 +23,10 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsfeedPage() {
-  const entries = await getRecentChangelogs(200);
+  const [entries, tier] = await Promise.all([
+    getRecentChangelogs(200),
+    getEffectiveTier(),
+  ]);
 
   const plainEntries = entries.map((e) => ({
     id: e.id,
@@ -61,7 +65,7 @@ export default async function NewsfeedPage() {
         {/* Feed */}
         <section className="py-12">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <NewsfeedClient entries={plainEntries} />
+            <NewsfeedClient entries={plainEntries} tier={tier} />
           </div>
         </section>
       </main>

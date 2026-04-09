@@ -116,10 +116,11 @@ function formatDate(iso: string): string {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso));
 }
 
-export function NewsfeedClient({ entries }: { entries: Entry[] }) {
+export function NewsfeedClient({ entries, tier = "anonymous" }: { entries: Entry[]; tier?: string }) {
   const [tab, setTab] = useState<"news" | "calendar">("news");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const isAnonymous = tier === "anonymous";
 
   // Recent = last 7 days
   const sevenDaysAgo = new Date();
@@ -313,9 +314,15 @@ export function NewsfeedClient({ entries }: { entries: Entry[] }) {
                       <span className="sm:hidden text-[10px] text-gray-400">{formatDate(entry.date)}</span>
                     </div>
                     <h3 className="font-medium text-gray-900 text-sm">{entry.title}</h3>
-                    <p className="mt-1 text-sm text-gray-600 line-clamp-2">{entry.description}</p>
+                    {isAnonymous ? (
+                      <p className="mt-1 text-xs text-[#003399]">
+                        <a href="/en/subscribe" className="underline hover:text-[#002277]">Sign in</a> to read the full update
+                      </p>
+                    ) : (
+                      <p className="mt-1 text-sm text-gray-600 line-clamp-2">{entry.description}</p>
+                    )}
 
-                    {entry.sourceUrl && (
+                    {!isAnonymous && entry.sourceUrl && (
                       <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-xs text-[#003399] hover:underline">
                         {entry.sourceLabel || "Source"}
                         <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
