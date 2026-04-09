@@ -18,6 +18,7 @@ import { getFrameworkBySlug } from "@/lib/queries";
 import { gradeColor } from "@/lib/scoring";
 import Header from "@/components/layout/Header";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import FrameworkPillars from "@/components/ui/FrameworkPillars";
 import Footer from "@/components/layout/Footer";
 
 interface PageProps {
@@ -165,17 +166,31 @@ export default async function FrameworkPage({ params }: PageProps) {
             />
           )}
 
-          {/* ── Sections & Policy Statements ── */}
+          {/* ── Pillar Visualization ── */}
           {hasSections && (
             <div className="mt-14">
+              <FrameworkPillars
+                frameworkName={framework.name}
+                sections={framework.sections.map((s) => ({
+                  id: s.id,
+                  title: s.title,
+                  statementCount: s.statements.length,
+                }))}
+              />
+            </div>
+          )}
+
+          {/* ── Sections & Policy Statements ── */}
+          {hasSections && (
+            <div className="mt-10">
               <h2 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-3">
                 Sections &amp; Requirements
               </h2>
 
               <div className="mt-6 space-y-4">
                 {framework.sections.map((section, idx) => (
+                  <div key={section.id} id={`section-${section.id}`}>
                   <CollapsibleSection
-                    key={section.id}
                     title={section.title}
                     subtitle={section.description}
                     badge={
@@ -219,6 +234,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                       </div>
                     )}
                   </CollapsibleSection>
+                  </div>
                 ))}
               </div>
             </div>
