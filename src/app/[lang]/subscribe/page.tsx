@@ -68,13 +68,13 @@ export default function SubscribePage() {
       <main className="flex-1 bg-white">
         <div className="mx-auto max-w-md px-4 py-24">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900">Get AI Compliance Updates</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Sign In</h1>
             <p className="mt-2 text-gray-600">
-              Enter your email to sign in or create an account. No password needed.
+              Enter your email to receive a sign-in link. No password needed.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
               <input
@@ -85,18 +85,16 @@ export default function SubscribePage() {
               />
             </div>
 
-            <label className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
+            {/* Consent — shown for all, but the API only enforces it for new accounts */}
+            <label className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-3">
               <input
                 type="checkbox" checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
                 className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#003399] focus:ring-[#003399]"
               />
               <span className="text-xs text-gray-600 leading-relaxed">
-                I agree to receive email updates about selected AI compliance topics from AI Compass EU.
-                I can unsubscribe or delete my account at any time.
-                <br /><br />
-                We store only your email and topic preferences. No tracking, no profiling.
-                Read our <a href="/privacy" className="text-[#003399] underline">privacy policy</a>.
+                New here? I agree to the <a href="/en/privacy" className="text-[#003399] underline">privacy policy</a> and
+                to receive compliance updates. Existing users can skip this.
               </span>
             </label>
 
@@ -106,15 +104,15 @@ export default function SubscribePage() {
 
             <button
               type="submit"
-              disabled={status === "loading" || !consent}
+              disabled={status === "loading"}
               className="w-full rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#003399]/90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === "loading" ? "Sending link..." : "Send sign-in link"}
             </button>
           </form>
 
-          <p className="mt-8 text-center text-xs text-gray-400">
-            We&apos;ll send you a magic link. No password to remember.
+          <p className="mt-6 text-center text-xs text-gray-400">
+            We&apos;ll email you a magic link — click it to sign in. Works for both new and existing accounts.
           </p>
         </div>
       </main>
