@@ -206,6 +206,7 @@ model AISystem {
 
   changelog       ChangeLog[]                            // Version history for this system
   subscribers     Subscriber[]                           // Users following this system
+  companies       Company[]                              // Companies using/evaluating this system
   dimensionScores DimensionScore[]                       // Per-section scores for cross-reports
 
   createdAt   DateTime          @default(now())
@@ -250,8 +251,57 @@ model AdminUser {
   role          String   @default("editor")   // "owner", "admin", "editor"
   active        Boolean  @default(true)       // Deactivate without deleting
   lastLoginAt   DateTime?
+  assignedCases Case[]                        // Cases assigned to this admin
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+// ─── Companies ──────────────────────────────────────────────
+
+/// Company / Organisation — groups subscribers and tracks AI system usage.
+/// Used by the admin CRM to manage customer relationships.
+model Company {
+  id            String       @id @default(cuid())
+  name          String                                  // "Deutsche Bank AG"
+  domain        String       @default("")               // "deutschebank.com" — for auto-matching subscribers
+  industry      String       @default("")               // "financial", "healthcare", etc.
+  country       String       @default("")               // "Germany", "France", etc.
+  size          String       @default("")               // "startup", "sme", "enterprise", "public-sector"
+  tier          String       @default("free")           // Highest tier among company subscribers
+  notes         String       @default("")               // Internal notes (admin only)
+
+  subscribers   Subscriber[]                             // People from this company
+  cases         Case[]                                   // Support cases
+  aiSystems     AISystem[]                               // AI systems this company uses/evaluates
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+// ─── Cases (Support / Consulting) ───────────────────────────
+
+/// Case — A support request, consulting inquiry, or tracked interaction.
+/// Managed by admins. Linked to a subscriber and optionally a company.
+model Case {
+  id            String       @id @default(cuid())
+  title         String                                   // "RFI Assistance — AI Act compliance"
+  description   String       @default("")               // Detail of the request
+  status        String       @default("open")           // "open", "in_progress", "waiting", "resolved", "closed"
+  priority      String       @default("normal")         // "low", "normal", "high", "urgent"
+  category      String       @default("general")        // "general", "consulting", "billing", "technical", "compliance"
+
+  // Relationships
+  subscriber    Subscriber?  @relation(fields: [subscriberId], references: [id])
+  subscriberId  String?
+  company       Company?     @relation(fields: [companyId], references: [id])
+  companyId     String?
+  assignedTo    AdminUser?   @relation(fields: [assignedToId], references: [id])
+  assignedToId  String?
+
+  // Tracking
+  resolvedAt    DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 }
 
 // ─── Subscribers ────────────────────────────────────────────
@@ -261,6 +311,7 @@ model AdminUser {
 model Subscriber {
   id              String                @id @default(cuid())
   email           String                @unique
+  name            String                @default("")          // Display name (optional)
   verified        Boolean               @default(false)       // Email confirmed via magic link
   digestEnabled   Boolean               @default(true)        // Receives daily digest
   digestFrequency String                @default("daily")     // "daily" | "weekly" | "none"
@@ -270,6 +321,11 @@ model Subscriber {
   industry        String                @default("")          // "financial", "healthcare", "insurance", "public-sector", "hr", "other"
   platforms       String                @default("")          // Comma-separated slugs of AI systems they use/evaluate
   orgSize         String                @default("")          // "startup", "sme", "enterprise", "public-sector"
+
+  // ─── Company link ──────────────────────────────
+  company         Company?              @relation(fields: [companyId], references: [id])
+  companyId       String?
+  cases           Case[]                                      // Support cases from this subscriber
 
   // GDPR consent record
   consentDate     DateTime?                                   // When they gave consent

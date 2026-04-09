@@ -60,6 +60,8 @@ export const ModelName = {
   AISystem: 'AISystem',
   ChangeLog: 'ChangeLog',
   AdminUser: 'AdminUser',
+  Company: 'Company',
+  Case: 'Case',
   Subscriber: 'Subscriber',
   DigestLog: 'DigestLog',
   Translation: 'Translation',
@@ -255,9 +257,44 @@ export const AdminUserScalarFieldEnum = {
 export type AdminUserScalarFieldEnum = (typeof AdminUserScalarFieldEnum)[keyof typeof AdminUserScalarFieldEnum]
 
 
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  domain: 'domain',
+  industry: 'industry',
+  country: 'country',
+  size: 'size',
+  tier: 'tier',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CaseScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  priority: 'priority',
+  category: 'category',
+  subscriberId: 'subscriberId',
+  companyId: 'companyId',
+  assignedToId: 'assignedToId',
+  resolvedAt: 'resolvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CaseScalarFieldEnum = (typeof CaseScalarFieldEnum)[keyof typeof CaseScalarFieldEnum]
+
+
 export const SubscriberScalarFieldEnum = {
   id: 'id',
   email: 'email',
+  name: 'name',
   verified: 'verified',
   digestEnabled: 'digestEnabled',
   digestFrequency: 'digestFrequency',
@@ -265,6 +302,7 @@ export const SubscriberScalarFieldEnum = {
   industry: 'industry',
   platforms: 'platforms',
   orgSize: 'orgSize',
+  companyId: 'companyId',
   consentDate: 'consentDate',
   consentText: 'consentText',
   tier: 'tier',

@@ -98,26 +98,8 @@ export type AISystem = Prisma.AISystemModel
  */
 export type ChangeLog = Prisma.ChangeLogModel
 /**
- * Model AdminUser
- * Admin users who can access the admin panel.
- * Roles: "owner" (unrestricted), "admin" (full admin), "editor" (content only).
- * Owner also bypasses all public-site tier restrictions (full testing access).
- */
-export type AdminUser = Prisma.AdminUserModel
-/**
- * Model Company
- * Company / Organisation — groups subscribers and tracks AI system usage.
- * Used by the admin CRM to manage customer relationships.
- */
-export type Company = Prisma.CompanyModel
-/**
- * Model Case
- * Case — A support request, consulting inquiry, or tracked interaction.
- * Managed by admins. Linked to a subscriber and optionally a company.
- */
-export type Case = Prisma.CaseModel
-/**
  * Model Subscriber
+ * A public subscriber (email-only account with magic link auth).
  * GDPR-compliant: stores only email + preferences + consent record.
  * No passwords, no names, no tracking, no profiling.
  */

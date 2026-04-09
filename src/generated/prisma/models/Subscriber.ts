@@ -28,6 +28,7 @@ export type AggregateSubscriber = {
 export type SubscriberMinAggregateOutputType = {
   id: string | null
   email: string | null
+  name: string | null
   verified: boolean | null
   digestEnabled: boolean | null
   digestFrequency: string | null
@@ -35,6 +36,7 @@ export type SubscriberMinAggregateOutputType = {
   industry: string | null
   platforms: string | null
   orgSize: string | null
+  companyId: string | null
   consentDate: Date | null
   consentText: string | null
   tier: string | null
@@ -52,6 +54,7 @@ export type SubscriberMinAggregateOutputType = {
 export type SubscriberMaxAggregateOutputType = {
   id: string | null
   email: string | null
+  name: string | null
   verified: boolean | null
   digestEnabled: boolean | null
   digestFrequency: string | null
@@ -59,6 +62,7 @@ export type SubscriberMaxAggregateOutputType = {
   industry: string | null
   platforms: string | null
   orgSize: string | null
+  companyId: string | null
   consentDate: Date | null
   consentText: string | null
   tier: string | null
@@ -76,6 +80,7 @@ export type SubscriberMaxAggregateOutputType = {
 export type SubscriberCountAggregateOutputType = {
   id: number
   email: number
+  name: number
   verified: number
   digestEnabled: number
   digestFrequency: number
@@ -83,6 +88,7 @@ export type SubscriberCountAggregateOutputType = {
   industry: number
   platforms: number
   orgSize: number
+  companyId: number
   consentDate: number
   consentText: number
   tier: number
@@ -102,6 +108,7 @@ export type SubscriberCountAggregateOutputType = {
 export type SubscriberMinAggregateInputType = {
   id?: true
   email?: true
+  name?: true
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
@@ -109,6 +116,7 @@ export type SubscriberMinAggregateInputType = {
   industry?: true
   platforms?: true
   orgSize?: true
+  companyId?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -126,6 +134,7 @@ export type SubscriberMinAggregateInputType = {
 export type SubscriberMaxAggregateInputType = {
   id?: true
   email?: true
+  name?: true
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
@@ -133,6 +142,7 @@ export type SubscriberMaxAggregateInputType = {
   industry?: true
   platforms?: true
   orgSize?: true
+  companyId?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -150,6 +160,7 @@ export type SubscriberMaxAggregateInputType = {
 export type SubscriberCountAggregateInputType = {
   id?: true
   email?: true
+  name?: true
   verified?: true
   digestEnabled?: true
   digestFrequency?: true
@@ -157,6 +168,7 @@ export type SubscriberCountAggregateInputType = {
   industry?: true
   platforms?: true
   orgSize?: true
+  companyId?: true
   consentDate?: true
   consentText?: true
   tier?: true
@@ -247,6 +259,7 @@ export type SubscriberGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type SubscriberGroupByOutputType = {
   id: string
   email: string
+  name: string
   verified: boolean
   digestEnabled: boolean
   digestFrequency: string
@@ -254,6 +267,7 @@ export type SubscriberGroupByOutputType = {
   industry: string
   platforms: string
   orgSize: string
+  companyId: string | null
   consentDate: Date | null
   consentText: string
   tier: string
@@ -292,6 +306,7 @@ export type SubscriberWhereInput = {
   NOT?: Prisma.SubscriberWhereInput | Prisma.SubscriberWhereInput[]
   id?: Prisma.StringFilter<"Subscriber"> | string
   email?: Prisma.StringFilter<"Subscriber"> | string
+  name?: Prisma.StringFilter<"Subscriber"> | string
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
@@ -299,6 +314,7 @@ export type SubscriberWhereInput = {
   industry?: Prisma.StringFilter<"Subscriber"> | string
   platforms?: Prisma.StringFilter<"Subscriber"> | string
   orgSize?: Prisma.StringFilter<"Subscriber"> | string
+  companyId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -311,6 +327,8 @@ export type SubscriberWhereInput = {
   sessionExp?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  cases?: Prisma.CaseListRelationFilter
   frameworks?: Prisma.RegulatoryFrameworkListRelationFilter
   systems?: Prisma.AISystemListRelationFilter
 }
@@ -318,6 +336,7 @@ export type SubscriberWhereInput = {
 export type SubscriberOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
@@ -325,6 +344,7 @@ export type SubscriberOrderByWithRelationInput = {
   industry?: Prisma.SortOrder
   platforms?: Prisma.SortOrder
   orgSize?: Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -337,6 +357,8 @@ export type SubscriberOrderByWithRelationInput = {
   sessionExp?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  company?: Prisma.CompanyOrderByWithRelationInput
+  cases?: Prisma.CaseOrderByRelationAggregateInput
   frameworks?: Prisma.RegulatoryFrameworkOrderByRelationAggregateInput
   systems?: Prisma.AISystemOrderByRelationAggregateInput
 }
@@ -347,6 +369,7 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SubscriberWhereInput | Prisma.SubscriberWhereInput[]
   OR?: Prisma.SubscriberWhereInput[]
   NOT?: Prisma.SubscriberWhereInput | Prisma.SubscriberWhereInput[]
+  name?: Prisma.StringFilter<"Subscriber"> | string
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
@@ -354,6 +377,7 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   industry?: Prisma.StringFilter<"Subscriber"> | string
   platforms?: Prisma.StringFilter<"Subscriber"> | string
   orgSize?: Prisma.StringFilter<"Subscriber"> | string
+  companyId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -366,6 +390,8 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
   sessionExp?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Subscriber"> | Date | string
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  cases?: Prisma.CaseListRelationFilter
   frameworks?: Prisma.RegulatoryFrameworkListRelationFilter
   systems?: Prisma.AISystemListRelationFilter
 }, "id" | "email">
@@ -373,6 +399,7 @@ export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
 export type SubscriberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
@@ -380,6 +407,7 @@ export type SubscriberOrderByWithAggregationInput = {
   industry?: Prisma.SortOrder
   platforms?: Prisma.SortOrder
   orgSize?: Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
   consentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -403,6 +431,7 @@ export type SubscriberScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SubscriberScalarWhereWithAggregatesInput | Prisma.SubscriberScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   email?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  name?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   verified?: Prisma.BoolWithAggregatesFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolWithAggregatesFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
@@ -410,6 +439,7 @@ export type SubscriberScalarWhereWithAggregatesInput = {
   industry?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   platforms?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   orgSize?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
+  companyId?: Prisma.StringNullableWithAggregatesFilter<"Subscriber"> | string | null
   consentDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
   tier?: Prisma.StringWithAggregatesFilter<"Subscriber"> | string
@@ -427,6 +457,7 @@ export type SubscriberScalarWhereWithAggregatesInput = {
 export type SubscriberCreateInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -446,6 +477,8 @@ export type SubscriberCreateInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutSubscribersInput
+  cases?: Prisma.CaseCreateNestedManyWithoutSubscriberInput
   frameworks?: Prisma.RegulatoryFrameworkCreateNestedManyWithoutSubscribersInput
   systems?: Prisma.AISystemCreateNestedManyWithoutSubscribersInput
 }
@@ -453,6 +486,7 @@ export type SubscriberCreateInput = {
 export type SubscriberUncheckedCreateInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -460,6 +494,7 @@ export type SubscriberUncheckedCreateInput = {
   industry?: string
   platforms?: string
   orgSize?: string
+  companyId?: string | null
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -472,6 +507,7 @@ export type SubscriberUncheckedCreateInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  cases?: Prisma.CaseUncheckedCreateNestedManyWithoutSubscriberInput
   frameworks?: Prisma.RegulatoryFrameworkUncheckedCreateNestedManyWithoutSubscribersInput
   systems?: Prisma.AISystemUncheckedCreateNestedManyWithoutSubscribersInput
 }
@@ -479,6 +515,7 @@ export type SubscriberUncheckedCreateInput = {
 export type SubscriberUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -498,6 +535,8 @@ export type SubscriberUpdateInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutSubscribersNestedInput
+  cases?: Prisma.CaseUpdateManyWithoutSubscriberNestedInput
   frameworks?: Prisma.RegulatoryFrameworkUpdateManyWithoutSubscribersNestedInput
   systems?: Prisma.AISystemUpdateManyWithoutSubscribersNestedInput
 }
@@ -505,6 +544,7 @@ export type SubscriberUpdateInput = {
 export type SubscriberUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -512,6 +552,7 @@ export type SubscriberUncheckedUpdateInput = {
   industry?: Prisma.StringFieldUpdateOperationsInput | string
   platforms?: Prisma.StringFieldUpdateOperationsInput | string
   orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -524,6 +565,7 @@ export type SubscriberUncheckedUpdateInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cases?: Prisma.CaseUncheckedUpdateManyWithoutSubscriberNestedInput
   frameworks?: Prisma.RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersNestedInput
   systems?: Prisma.AISystemUncheckedUpdateManyWithoutSubscribersNestedInput
 }
@@ -531,6 +573,7 @@ export type SubscriberUncheckedUpdateInput = {
 export type SubscriberCreateManyInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -538,6 +581,7 @@ export type SubscriberCreateManyInput = {
   industry?: string
   platforms?: string
   orgSize?: string
+  companyId?: string | null
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -555,6 +599,7 @@ export type SubscriberCreateManyInput = {
 export type SubscriberUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -579,6 +624,7 @@ export type SubscriberUpdateManyMutationInput = {
 export type SubscriberUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -586,6 +632,7 @@ export type SubscriberUncheckedUpdateManyInput = {
   industry?: Prisma.StringFieldUpdateOperationsInput | string
   platforms?: Prisma.StringFieldUpdateOperationsInput | string
   orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -610,9 +657,15 @@ export type SubscriberOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type SubscriberNullableScalarRelationFilter = {
+  is?: Prisma.SubscriberWhereInput | null
+  isNot?: Prisma.SubscriberWhereInput | null
+}
+
 export type SubscriberCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
@@ -620,6 +673,7 @@ export type SubscriberCountOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   platforms?: Prisma.SortOrder
   orgSize?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -637,6 +691,7 @@ export type SubscriberCountOrderByAggregateInput = {
 export type SubscriberMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
@@ -644,6 +699,7 @@ export type SubscriberMaxOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   platforms?: Prisma.SortOrder
   orgSize?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -661,6 +717,7 @@ export type SubscriberMaxOrderByAggregateInput = {
 export type SubscriberMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   digestEnabled?: Prisma.SortOrder
   digestFrequency?: Prisma.SortOrder
@@ -668,6 +725,7 @@ export type SubscriberMinOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   platforms?: Prisma.SortOrder
   orgSize?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
   consentDate?: Prisma.SortOrder
   consentText?: Prisma.SortOrder
   tier?: Prisma.SortOrder
@@ -758,9 +816,68 @@ export type SubscriberUncheckedUpdateManyWithoutSystemsNestedInput = {
   deleteMany?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
 }
 
+export type SubscriberCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput> | Prisma.SubscriberCreateWithoutCompanyInput[] | Prisma.SubscriberUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCompanyInput | Prisma.SubscriberCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.SubscriberCreateManyCompanyInputEnvelope
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+}
+
+export type SubscriberUncheckedCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput> | Prisma.SubscriberCreateWithoutCompanyInput[] | Prisma.SubscriberUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCompanyInput | Prisma.SubscriberCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.SubscriberCreateManyCompanyInputEnvelope
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+}
+
+export type SubscriberUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput> | Prisma.SubscriberCreateWithoutCompanyInput[] | Prisma.SubscriberUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCompanyInput | Prisma.SubscriberCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.SubscriberUpsertWithWhereUniqueWithoutCompanyInput | Prisma.SubscriberUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.SubscriberCreateManyCompanyInputEnvelope
+  set?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  disconnect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  delete?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  update?: Prisma.SubscriberUpdateWithWhereUniqueWithoutCompanyInput | Prisma.SubscriberUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.SubscriberUpdateManyWithWhereWithoutCompanyInput | Prisma.SubscriberUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+}
+
+export type SubscriberUncheckedUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput> | Prisma.SubscriberCreateWithoutCompanyInput[] | Prisma.SubscriberUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCompanyInput | Prisma.SubscriberCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.SubscriberUpsertWithWhereUniqueWithoutCompanyInput | Prisma.SubscriberUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.SubscriberCreateManyCompanyInputEnvelope
+  set?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  disconnect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  delete?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  connect?: Prisma.SubscriberWhereUniqueInput | Prisma.SubscriberWhereUniqueInput[]
+  update?: Prisma.SubscriberUpdateWithWhereUniqueWithoutCompanyInput | Prisma.SubscriberUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.SubscriberUpdateManyWithWhereWithoutCompanyInput | Prisma.SubscriberUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
+}
+
+export type SubscriberCreateNestedOneWithoutCasesInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCasesInput, Prisma.SubscriberUncheckedCreateWithoutCasesInput>
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCasesInput
+  connect?: Prisma.SubscriberWhereUniqueInput
+}
+
+export type SubscriberUpdateOneWithoutCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriberCreateWithoutCasesInput, Prisma.SubscriberUncheckedCreateWithoutCasesInput>
+  connectOrCreate?: Prisma.SubscriberCreateOrConnectWithoutCasesInput
+  upsert?: Prisma.SubscriberUpsertWithoutCasesInput
+  disconnect?: Prisma.SubscriberWhereInput | boolean
+  delete?: Prisma.SubscriberWhereInput | boolean
+  connect?: Prisma.SubscriberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubscriberUpdateToOneWithWhereWithoutCasesInput, Prisma.SubscriberUpdateWithoutCasesInput>, Prisma.SubscriberUncheckedUpdateWithoutCasesInput>
+}
+
 export type SubscriberCreateWithoutFrameworksInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -780,12 +897,15 @@ export type SubscriberCreateWithoutFrameworksInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutSubscribersInput
+  cases?: Prisma.CaseCreateNestedManyWithoutSubscriberInput
   systems?: Prisma.AISystemCreateNestedManyWithoutSubscribersInput
 }
 
 export type SubscriberUncheckedCreateWithoutFrameworksInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -793,6 +913,7 @@ export type SubscriberUncheckedCreateWithoutFrameworksInput = {
   industry?: string
   platforms?: string
   orgSize?: string
+  companyId?: string | null
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -805,6 +926,7 @@ export type SubscriberUncheckedCreateWithoutFrameworksInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  cases?: Prisma.CaseUncheckedCreateNestedManyWithoutSubscriberInput
   systems?: Prisma.AISystemUncheckedCreateNestedManyWithoutSubscribersInput
 }
 
@@ -835,6 +957,7 @@ export type SubscriberScalarWhereInput = {
   NOT?: Prisma.SubscriberScalarWhereInput | Prisma.SubscriberScalarWhereInput[]
   id?: Prisma.StringFilter<"Subscriber"> | string
   email?: Prisma.StringFilter<"Subscriber"> | string
+  name?: Prisma.StringFilter<"Subscriber"> | string
   verified?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestEnabled?: Prisma.BoolFilter<"Subscriber"> | boolean
   digestFrequency?: Prisma.StringFilter<"Subscriber"> | string
@@ -842,6 +965,7 @@ export type SubscriberScalarWhereInput = {
   industry?: Prisma.StringFilter<"Subscriber"> | string
   platforms?: Prisma.StringFilter<"Subscriber"> | string
   orgSize?: Prisma.StringFilter<"Subscriber"> | string
+  companyId?: Prisma.StringNullableFilter<"Subscriber"> | string | null
   consentDate?: Prisma.DateTimeNullableFilter<"Subscriber"> | Date | string | null
   consentText?: Prisma.StringFilter<"Subscriber"> | string
   tier?: Prisma.StringFilter<"Subscriber"> | string
@@ -859,6 +983,7 @@ export type SubscriberScalarWhereInput = {
 export type SubscriberCreateWithoutSystemsInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -878,12 +1003,15 @@ export type SubscriberCreateWithoutSystemsInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutSubscribersInput
+  cases?: Prisma.CaseCreateNestedManyWithoutSubscriberInput
   frameworks?: Prisma.RegulatoryFrameworkCreateNestedManyWithoutSubscribersInput
 }
 
 export type SubscriberUncheckedCreateWithoutSystemsInput = {
   id?: string
   email: string
+  name?: string
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: string
@@ -891,6 +1019,7 @@ export type SubscriberUncheckedCreateWithoutSystemsInput = {
   industry?: string
   platforms?: string
   orgSize?: string
+  companyId?: string | null
   consentDate?: Date | string | null
   consentText?: string
   tier?: string
@@ -903,6 +1032,7 @@ export type SubscriberUncheckedCreateWithoutSystemsInput = {
   sessionExp?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  cases?: Prisma.CaseUncheckedCreateNestedManyWithoutSubscriberInput
   frameworks?: Prisma.RegulatoryFrameworkUncheckedCreateNestedManyWithoutSubscribersInput
 }
 
@@ -927,9 +1057,164 @@ export type SubscriberUpdateManyWithWhereWithoutSystemsInput = {
   data: Prisma.XOR<Prisma.SubscriberUpdateManyMutationInput, Prisma.SubscriberUncheckedUpdateManyWithoutSystemsInput>
 }
 
-export type SubscriberUpdateWithoutFrameworksInput = {
+export type SubscriberCreateWithoutCompanyInput = {
+  id?: string
+  email: string
+  name?: string
+  verified?: boolean
+  digestEnabled?: boolean
+  digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
+  consentDate?: Date | string | null
+  consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
+  magicToken?: string | null
+  magicTokenExp?: Date | string | null
+  sessionToken?: string | null
+  sessionExp?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cases?: Prisma.CaseCreateNestedManyWithoutSubscriberInput
+  frameworks?: Prisma.RegulatoryFrameworkCreateNestedManyWithoutSubscribersInput
+  systems?: Prisma.AISystemCreateNestedManyWithoutSubscribersInput
+}
+
+export type SubscriberUncheckedCreateWithoutCompanyInput = {
+  id?: string
+  email: string
+  name?: string
+  verified?: boolean
+  digestEnabled?: boolean
+  digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
+  consentDate?: Date | string | null
+  consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
+  magicToken?: string | null
+  magicTokenExp?: Date | string | null
+  sessionToken?: string | null
+  sessionExp?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cases?: Prisma.CaseUncheckedCreateNestedManyWithoutSubscriberInput
+  frameworks?: Prisma.RegulatoryFrameworkUncheckedCreateNestedManyWithoutSubscribersInput
+  systems?: Prisma.AISystemUncheckedCreateNestedManyWithoutSubscribersInput
+}
+
+export type SubscriberCreateOrConnectWithoutCompanyInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput>
+}
+
+export type SubscriberCreateManyCompanyInputEnvelope = {
+  data: Prisma.SubscriberCreateManyCompanyInput | Prisma.SubscriberCreateManyCompanyInput[]
+  skipDuplicates?: boolean
+}
+
+export type SubscriberUpsertWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  update: Prisma.XOR<Prisma.SubscriberUpdateWithoutCompanyInput, Prisma.SubscriberUncheckedUpdateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutCompanyInput, Prisma.SubscriberUncheckedCreateWithoutCompanyInput>
+}
+
+export type SubscriberUpdateWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  data: Prisma.XOR<Prisma.SubscriberUpdateWithoutCompanyInput, Prisma.SubscriberUncheckedUpdateWithoutCompanyInput>
+}
+
+export type SubscriberUpdateManyWithWhereWithoutCompanyInput = {
+  where: Prisma.SubscriberScalarWhereInput
+  data: Prisma.XOR<Prisma.SubscriberUpdateManyMutationInput, Prisma.SubscriberUncheckedUpdateManyWithoutCompanyInput>
+}
+
+export type SubscriberCreateWithoutCasesInput = {
+  id?: string
+  email: string
+  name?: string
+  verified?: boolean
+  digestEnabled?: boolean
+  digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
+  consentDate?: Date | string | null
+  consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
+  magicToken?: string | null
+  magicTokenExp?: Date | string | null
+  sessionToken?: string | null
+  sessionExp?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutSubscribersInput
+  frameworks?: Prisma.RegulatoryFrameworkCreateNestedManyWithoutSubscribersInput
+  systems?: Prisma.AISystemCreateNestedManyWithoutSubscribersInput
+}
+
+export type SubscriberUncheckedCreateWithoutCasesInput = {
+  id?: string
+  email: string
+  name?: string
+  verified?: boolean
+  digestEnabled?: boolean
+  digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
+  companyId?: string | null
+  consentDate?: Date | string | null
+  consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
+  magicToken?: string | null
+  magicTokenExp?: Date | string | null
+  sessionToken?: string | null
+  sessionExp?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  frameworks?: Prisma.RegulatoryFrameworkUncheckedCreateNestedManyWithoutSubscribersInput
+  systems?: Prisma.AISystemUncheckedCreateNestedManyWithoutSubscribersInput
+}
+
+export type SubscriberCreateOrConnectWithoutCasesInput = {
+  where: Prisma.SubscriberWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutCasesInput, Prisma.SubscriberUncheckedCreateWithoutCasesInput>
+}
+
+export type SubscriberUpsertWithoutCasesInput = {
+  update: Prisma.XOR<Prisma.SubscriberUpdateWithoutCasesInput, Prisma.SubscriberUncheckedUpdateWithoutCasesInput>
+  create: Prisma.XOR<Prisma.SubscriberCreateWithoutCasesInput, Prisma.SubscriberUncheckedCreateWithoutCasesInput>
+  where?: Prisma.SubscriberWhereInput
+}
+
+export type SubscriberUpdateToOneWithWhereWithoutCasesInput = {
+  where?: Prisma.SubscriberWhereInput
+  data: Prisma.XOR<Prisma.SubscriberUpdateWithoutCasesInput, Prisma.SubscriberUncheckedUpdateWithoutCasesInput>
+}
+
+export type SubscriberUpdateWithoutCasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -949,12 +1234,71 @@ export type SubscriberUpdateWithoutFrameworksInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutSubscribersNestedInput
+  frameworks?: Prisma.RegulatoryFrameworkUpdateManyWithoutSubscribersNestedInput
+  systems?: Prisma.AISystemUpdateManyWithoutSubscribersNestedInput
+}
+
+export type SubscriberUncheckedUpdateWithoutCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  frameworks?: Prisma.RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersNestedInput
+  systems?: Prisma.AISystemUncheckedUpdateManyWithoutSubscribersNestedInput
+}
+
+export type SubscriberUpdateWithoutFrameworksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutSubscribersNestedInput
+  cases?: Prisma.CaseUpdateManyWithoutSubscriberNestedInput
   systems?: Prisma.AISystemUpdateManyWithoutSubscribersNestedInput
 }
 
 export type SubscriberUncheckedUpdateWithoutFrameworksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -962,6 +1306,7 @@ export type SubscriberUncheckedUpdateWithoutFrameworksInput = {
   industry?: Prisma.StringFieldUpdateOperationsInput | string
   platforms?: Prisma.StringFieldUpdateOperationsInput | string
   orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -974,12 +1319,14 @@ export type SubscriberUncheckedUpdateWithoutFrameworksInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cases?: Prisma.CaseUncheckedUpdateManyWithoutSubscriberNestedInput
   systems?: Prisma.AISystemUncheckedUpdateManyWithoutSubscribersNestedInput
 }
 
 export type SubscriberUncheckedUpdateManyWithoutFrameworksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -987,6 +1334,7 @@ export type SubscriberUncheckedUpdateManyWithoutFrameworksInput = {
   industry?: Prisma.StringFieldUpdateOperationsInput | string
   platforms?: Prisma.StringFieldUpdateOperationsInput | string
   orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consentText?: Prisma.StringFieldUpdateOperationsInput | string
   tier?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1004,6 +1352,7 @@ export type SubscriberUncheckedUpdateManyWithoutFrameworksInput = {
 export type SubscriberUpdateWithoutSystemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1023,12 +1372,94 @@ export type SubscriberUpdateWithoutSystemsInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutSubscribersNestedInput
+  cases?: Prisma.CaseUpdateManyWithoutSubscriberNestedInput
   frameworks?: Prisma.RegulatoryFrameworkUpdateManyWithoutSubscribersNestedInput
 }
 
 export type SubscriberUncheckedUpdateWithoutSystemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cases?: Prisma.CaseUncheckedUpdateManyWithoutSubscriberNestedInput
+  frameworks?: Prisma.RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersNestedInput
+}
+
+export type SubscriberUncheckedUpdateManyWithoutSystemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SubscriberCreateManyCompanyInput = {
+  id?: string
+  email: string
+  name?: string
+  verified?: boolean
+  digestEnabled?: boolean
+  digestFrequency?: string
+  role?: string
+  industry?: string
+  platforms?: string
+  orgSize?: string
+  consentDate?: Date | string | null
+  consentText?: string
+  tier?: string
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  tierExpiresAt?: Date | string | null
+  magicToken?: string | null
+  magicTokenExp?: Date | string | null
+  sessionToken?: string | null
+  sessionExp?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SubscriberUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1048,12 +1479,43 @@ export type SubscriberUncheckedUpdateWithoutSystemsInput = {
   sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  frameworks?: Prisma.RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersNestedInput
+  cases?: Prisma.CaseUpdateManyWithoutSubscriberNestedInput
+  frameworks?: Prisma.RegulatoryFrameworkUpdateManyWithoutSubscribersNestedInput
+  systems?: Prisma.AISystemUpdateManyWithoutSubscribersNestedInput
 }
 
-export type SubscriberUncheckedUpdateManyWithoutSystemsInput = {
+export type SubscriberUncheckedUpdateWithoutCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.StringFieldUpdateOperationsInput | string
+  platforms?: Prisma.StringFieldUpdateOperationsInput | string
+  orgSize?: Prisma.StringFieldUpdateOperationsInput | string
+  consentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  consentText?: Prisma.StringFieldUpdateOperationsInput | string
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tierExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  magicToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  magicTokenExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessionToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionExp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cases?: Prisma.CaseUncheckedUpdateManyWithoutSubscriberNestedInput
+  frameworks?: Prisma.RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersNestedInput
+  systems?: Prisma.AISystemUncheckedUpdateManyWithoutSubscribersNestedInput
+}
+
+export type SubscriberUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   digestFrequency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1081,11 +1543,13 @@ export type SubscriberUncheckedUpdateManyWithoutSystemsInput = {
  */
 
 export type SubscriberCountOutputType = {
+  cases: number
   frameworks: number
   systems: number
 }
 
 export type SubscriberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cases?: boolean | SubscriberCountOutputTypeCountCasesArgs
   frameworks?: boolean | SubscriberCountOutputTypeCountFrameworksArgs
   systems?: boolean | SubscriberCountOutputTypeCountSystemsArgs
 }
@@ -1098,6 +1562,13 @@ export type SubscriberCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
    * Select specific fields to fetch from the SubscriberCountOutputType
    */
   select?: Prisma.SubscriberCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SubscriberCountOutputType without action
+ */
+export type SubscriberCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CaseWhereInput
 }
 
 /**
@@ -1118,6 +1589,7 @@ export type SubscriberCountOutputTypeCountSystemsArgs<ExtArgs extends runtime.Ty
 export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
+  name?: boolean
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
@@ -1125,6 +1597,7 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   industry?: boolean
   platforms?: boolean
   orgSize?: boolean
+  companyId?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1137,6 +1610,8 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   sessionExp?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
+  cases?: boolean | Prisma.Subscriber$casesArgs<ExtArgs>
   frameworks?: boolean | Prisma.Subscriber$frameworksArgs<ExtArgs>
   systems?: boolean | Prisma.Subscriber$systemsArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriberCountOutputTypeDefaultArgs<ExtArgs>
@@ -1145,6 +1620,7 @@ export type SubscriberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type SubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
+  name?: boolean
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
@@ -1152,6 +1628,7 @@ export type SubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   industry?: boolean
   platforms?: boolean
   orgSize?: boolean
+  companyId?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1164,11 +1641,13 @@ export type SubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   sessionExp?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
 }, ExtArgs["result"]["subscriber"]>
 
 export type SubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
+  name?: boolean
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
@@ -1176,6 +1655,7 @@ export type SubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   industry?: boolean
   platforms?: boolean
   orgSize?: boolean
+  companyId?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1188,11 +1668,13 @@ export type SubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   sessionExp?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
 }, ExtArgs["result"]["subscriber"]>
 
 export type SubscriberSelectScalar = {
   id?: boolean
   email?: boolean
+  name?: boolean
   verified?: boolean
   digestEnabled?: boolean
   digestFrequency?: boolean
@@ -1200,6 +1682,7 @@ export type SubscriberSelectScalar = {
   industry?: boolean
   platforms?: boolean
   orgSize?: boolean
+  companyId?: boolean
   consentDate?: boolean
   consentText?: boolean
   tier?: boolean
@@ -1214,24 +1697,33 @@ export type SubscriberSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "verified" | "digestEnabled" | "digestFrequency" | "role" | "industry" | "platforms" | "orgSize" | "consentDate" | "consentText" | "tier" | "stripeCustomerId" | "stripeSubscriptionId" | "tierExpiresAt" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
+export type SubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "verified" | "digestEnabled" | "digestFrequency" | "role" | "industry" | "platforms" | "orgSize" | "companyId" | "consentDate" | "consentText" | "tier" | "stripeCustomerId" | "stripeSubscriptionId" | "tierExpiresAt" | "magicToken" | "magicTokenExp" | "sessionToken" | "sessionExp" | "createdAt" | "updatedAt", ExtArgs["result"]["subscriber"]>
 export type SubscriberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
+  cases?: boolean | Prisma.Subscriber$casesArgs<ExtArgs>
   frameworks?: boolean | Prisma.Subscriber$frameworksArgs<ExtArgs>
   systems?: boolean | Prisma.Subscriber$systemsArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriberCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type SubscriberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type SubscriberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type SubscriberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
+}
+export type SubscriberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.Subscriber$companyArgs<ExtArgs>
+}
 
 export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Subscriber"
   objects: {
+    company: Prisma.$CompanyPayload<ExtArgs> | null
+    cases: Prisma.$CasePayload<ExtArgs>[]
     frameworks: Prisma.$RegulatoryFrameworkPayload<ExtArgs>[]
     systems: Prisma.$AISystemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
+    name: string
     verified: boolean
     digestEnabled: boolean
     digestFrequency: string
@@ -1239,6 +1731,7 @@ export type $SubscriberPayload<ExtArgs extends runtime.Types.Extensions.Internal
     industry: string
     platforms: string
     orgSize: string
+    companyId: string | null
     consentDate: Date | null
     consentText: string
     tier: string
@@ -1645,6 +2138,8 @@ readonly fields: SubscriberFieldRefs;
  */
 export interface Prisma__SubscriberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  company<T extends Prisma.Subscriber$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscriber$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cases<T extends Prisma.Subscriber$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscriber$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   frameworks<T extends Prisma.Subscriber$frameworksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscriber$frameworksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegulatoryFrameworkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   systems<T extends Prisma.Subscriber$systemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subscriber$systemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1678,6 +2173,7 @@ export interface Prisma__SubscriberClient<T, Null = never, ExtArgs extends runti
 export interface SubscriberFieldRefs {
   readonly id: Prisma.FieldRef<"Subscriber", 'String'>
   readonly email: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly name: Prisma.FieldRef<"Subscriber", 'String'>
   readonly verified: Prisma.FieldRef<"Subscriber", 'Boolean'>
   readonly digestEnabled: Prisma.FieldRef<"Subscriber", 'Boolean'>
   readonly digestFrequency: Prisma.FieldRef<"Subscriber", 'String'>
@@ -1685,6 +2181,7 @@ export interface SubscriberFieldRefs {
   readonly industry: Prisma.FieldRef<"Subscriber", 'String'>
   readonly platforms: Prisma.FieldRef<"Subscriber", 'String'>
   readonly orgSize: Prisma.FieldRef<"Subscriber", 'String'>
+  readonly companyId: Prisma.FieldRef<"Subscriber", 'String'>
   readonly consentDate: Prisma.FieldRef<"Subscriber", 'DateTime'>
   readonly consentText: Prisma.FieldRef<"Subscriber", 'String'>
   readonly tier: Prisma.FieldRef<"Subscriber", 'String'>
@@ -1951,6 +2448,10 @@ export type SubscriberCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    */
   data: Prisma.SubscriberCreateManyInput | Prisma.SubscriberCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2021,6 +2522,10 @@ export type SubscriberUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * Limit how many Subscribers to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2087,6 +2592,49 @@ export type SubscriberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Subscribers to delete.
    */
   limit?: number
+}
+
+/**
+ * Subscriber.company
+ */
+export type Subscriber$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Company
+   */
+  select?: Prisma.CompanySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Company
+   */
+  omit?: Prisma.CompanyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInclude<ExtArgs> | null
+  where?: Prisma.CompanyWhereInput
+}
+
+/**
+ * Subscriber.cases
+ */
+export type Subscriber$casesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Case
+   */
+  select?: Prisma.CaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Case
+   */
+  omit?: Prisma.CaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CaseInclude<ExtArgs> | null
+  where?: Prisma.CaseWhereInput
+  orderBy?: Prisma.CaseOrderByWithRelationInput | Prisma.CaseOrderByWithRelationInput[]
+  cursor?: Prisma.CaseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CaseScalarFieldEnum | Prisma.CaseScalarFieldEnum[]
 }
 
 /**

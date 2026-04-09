@@ -74,14 +74,8 @@ export type AISystem = Prisma.AISystemModel
  */
 export type ChangeLog = Prisma.ChangeLogModel
 /**
- * Model AdminUser
- * Admin users who can access the admin panel.
- * Roles: "owner" (unrestricted), "admin" (full admin), "editor" (content only).
- * Owner also bypasses all public-site tier restrictions (full testing access).
- */
-export type AdminUser = Prisma.AdminUserModel
-/**
  * Model Subscriber
+ * A public subscriber (email-only account with magic link auth).
  * GDPR-compliant: stores only email + preferences + consent record.
  * No passwords, no names, no tracking, no profiling.
  */

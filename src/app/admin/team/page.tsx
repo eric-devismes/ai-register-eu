@@ -45,7 +45,7 @@ export default async function AdminTeamPage() {
       </div>
 
       <AdminTeamClient
-        admins={admins.map((a) => ({
+        admins={admins.map((a: typeof admins[number]) => ({
           ...a,
           lastLoginAt: a.lastLoginAt?.toISOString() || null,
           createdAt: a.createdAt.toISOString(),
