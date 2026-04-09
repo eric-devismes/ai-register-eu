@@ -1,15 +1,94 @@
 "use client";
 
 /**
- * NewsfeedClient — Interactive newsfeed with search and time filtering.
- *
- * Default view: recent news (last 7 days).
- * Search: filters by title, description, framework, or system name.
- * "Show all" toggle to see the complete archive.
+ * NewsfeedClient — Interactive newsfeed with two tabs:
+ *   1. "News" — recent updates (last 7 days) + search for past entries
+ *   2. "Calendar" — upcoming regulatory milestones as a timeline
  */
 
 import { useState } from "react";
 import Link from "next/link";
+
+// ─── Upcoming regulatory milestones ─────────────────────
+
+interface Milestone {
+  date: string;       // ISO date
+  title: string;
+  framework: string;
+  description: string;
+  impact: "high" | "medium" | "low";
+}
+
+const MILESTONES: Milestone[] = [
+  {
+    date: "2026-08-02",
+    title: "EU AI Act — High-Risk System Obligations Apply",
+    framework: "EU AI Act",
+    description: "Full compliance requirements for high-risk AI systems (Annex III) take effect. Providers and deployers must meet all Chapter 2 obligations.",
+    impact: "high",
+  },
+  {
+    date: "2026-08-02",
+    title: "EU AI Act — Deployer Obligations Begin",
+    framework: "EU AI Act",
+    description: "Organisations deploying high-risk AI must implement human oversight, conduct FRIAs, and maintain AI system registries.",
+    impact: "high",
+  },
+  {
+    date: "2026-08-02",
+    title: "EU AI Act — Transparency for Limited-Risk Systems",
+    framework: "EU AI Act",
+    description: "Chatbots, deepfakes, and emotion recognition systems must disclose AI involvement to users (Article 50).",
+    impact: "medium",
+  },
+  {
+    date: "2027-02-02",
+    title: "EU AI Act — GPAI Model Obligations",
+    framework: "EU AI Act",
+    description: "General-purpose AI model providers must comply with transparency and documentation requirements (Chapter V).",
+    impact: "high",
+  },
+  {
+    date: "2027-08-02",
+    title: "EU AI Act — Full Enforcement",
+    framework: "EU AI Act",
+    description: "All remaining provisions apply. National authorities begin full enforcement with penalties up to €35M or 7% of global turnover.",
+    impact: "high",
+  },
+  {
+    date: "2026-10-17",
+    title: "NIS2 Directive — Transposition Deadline",
+    framework: "NIS2",
+    description: "EU member states must transpose NIS2 into national law. Applies to essential and important entities including AI service providers.",
+    impact: "medium",
+  },
+  {
+    date: "2027-01-17",
+    title: "DORA — Full Application",
+    framework: "DORA",
+    description: "Digital Operational Resilience Act fully applies to financial entities. ICT risk management, incident reporting, and third-party oversight required.",
+    impact: "high",
+  },
+  {
+    date: "2026-12-31",
+    title: "EU Data Act — Full Application",
+    framework: "EU Data Act",
+    description: "Rules on fair access to and use of data. Impacts AI systems that generate or process IoT and industrial data.",
+    impact: "medium",
+  },
+];
+
+const IMPACT_COLORS = {
+  high: "border-red-300 bg-red-50",
+  medium: "border-amber-300 bg-amber-50",
+  low: "border-blue-300 bg-blue-50",
+};
+
+const IMPACT_BADGES = {
+  high: "bg-red-100 text-red-700",
+  medium: "bg-amber-100 text-amber-700",
+  low: "bg-blue-100 text-blue-700",
+};
 
 interface Entry {
   id: string;
@@ -38,6 +117,7 @@ function formatDate(iso: string): string {
 }
 
 export function NewsfeedClient({ entries }: { entries: Entry[] }) {
+  const [tab, setTab] = useState<"news" | "calendar">("news");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
 
@@ -71,8 +151,82 @@ export function NewsfeedClient({ entries }: { entries: Entry[] }) {
 
   const recentCount = entries.filter((e) => new Date(e.date) >= sevenDaysAgo).length;
 
+  // Sort milestones by date, filter future only
+  const now = new Date();
+  const upcomingMilestones = MILESTONES
+    .filter((m) => new Date(m.date) >= now)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  const daysUntil = (date: string) => {
+    const diff = new Date(date).getTime() - now.getTime();
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  };
+
   return (
     <>
+      {/* Tab switcher */}
+      <div className="flex gap-1 mb-8 rounded-lg bg-gray-100 p-1 w-fit">
+        <button
+          onClick={() => setTab("news")}
+          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
+            tab === "news" ? "bg-white text-[#0d1b3e] shadow-sm" : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          News
+        </button>
+        <button
+          onClick={() => setTab("calendar")}
+          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
+            tab === "calendar" ? "bg-white text-[#0d1b3e] shadow-sm" : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          Regulatory Calendar
+        </button>
+      </div>
+
+      {/* ─── Calendar Tab ─────────────────────────────── */}
+      {tab === "calendar" && (
+        <div className="space-y-4">
+          <p className="text-xs text-gray-400 mb-2">
+            {upcomingMilestones.length} upcoming milestone{upcomingMilestones.length !== 1 ? "s" : ""}
+          </p>
+
+          {upcomingMilestones.map((m, i) => {
+            const days = daysUntil(m.date);
+            return (
+              <div
+                key={`${m.date}-${i}`}
+                className={`rounded-xl border-l-4 bg-white p-5 shadow-sm ${IMPACT_COLORS[m.impact]}`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <span className="text-xs font-bold text-gray-900">
+                        {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date(m.date))}
+                      </span>
+                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${IMPACT_BADGES[m.impact]}`}>
+                        {m.impact} impact
+                      </span>
+                      <span className="text-[10px] text-gray-400">{m.framework}</span>
+                    </div>
+                    <h3 className="font-semibold text-sm text-gray-900">{m.title}</h3>
+                    <p className="mt-1 text-sm text-gray-600">{m.description}</p>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <span className={`text-2xl font-bold ${days <= 30 ? "text-red-600" : days <= 90 ? "text-amber-600" : "text-gray-400"}`}>
+                      {days}
+                    </span>
+                    <p className="text-[10px] text-gray-400">days</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ─── News Tab ─────────────────────────────────── */}
+      {tab === "news" && <>
       {/* Search + controls */}
       <div className="flex flex-col sm:flex-row gap-3 mb-8">
         <div className="relative flex-1">
@@ -189,6 +343,7 @@ export function NewsfeedClient({ entries }: { entries: Entry[] }) {
           Upgrade to Pro — €19/month
         </Link>
       </div>
+      </>}
     </>
   );
 }
