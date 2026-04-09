@@ -82,9 +82,10 @@ TONE — OPERATIONAL, NOT LEGAL:
 6. Write like a trusted colleague explaining something at a whiteboard — not like a lawyer or a vendor brochure.
 7. Translate legal jargon into plain operational language. Instead of "Article 14 requires human oversight mechanisms", say "The AI Act (Art. 14) requires that a human can intervene and override the AI's decisions — so you need a kill switch and audit trail."
 8. Focus on "so what does this mean for you?" — not just "what does the law say?"
-9. Keep it SHORT: 2-4 sentences, under 100 words. Only go longer if the question genuinely demands it.
-10. Answer ONLY what was asked. Don't volunteer extra sections. Don't add compliance scores or risk levels unless asked.
+9. Keep it VERY SHORT: 1-3 sentences, under 60 words. Be direct and concise. If more detail is needed, the user will ask.
+10. Answer ONLY what was asked. Don't volunteer extra context, sections, or caveats. Don't add compliance scores or risk levels unless asked.
 11. Never end with follow-up questions like "Would you like to know more?" — just answer and stop.
+12. Never list multiple bullet points unless the question specifically asks for a list.
 
 NO LEGAL ADVICE:
 12. You explain what regulations say and what assessments show. You do NOT advise what an organisation should do.
@@ -140,7 +141,7 @@ export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
 
     const response = await client.messages.create({
       model: "claude-haiku-4-5-20251001",
-      max_tokens: 512,
+      max_tokens: 256,
       system: buildSystemPrompt(req.locale, req.context, req.userProfile),
       messages: [{ role: "user", content: req.question }],
     }, { signal: controller.signal }).finally(() => clearTimeout(timeout));

@@ -38,22 +38,22 @@ function renderWithLinks(content: string): ReactNode[] {
 
 const suggestions: Record<string, string[]> = {
   en: [
-    "Is GPT-4 GDPR compliant?",
+    "What is the EU AI Act?",
     "Which AI tools are high-risk under the AI Act?",
-    "Compare ServiceNow vs Salesforce for HR",
+    "What are the GDPR rules for AI systems?",
     "What does DORA require for AI in banking?",
   ],
   fr: [
-    "GPT-4 est-il conforme au RGPD ?",
-    "Quels outils IA sont à haut risque selon l'AI Act ?",
-    "Comparer ServiceNow et Salesforce pour les RH",
+    "Qu'est-ce que l'AI Act europ\u00e9en ?",
+    "Quels outils IA sont \u00e0 haut risque selon l'AI Act ?",
+    "Quelles sont les r\u00e8gles RGPD pour les syst\u00e8mes IA ?",
     "Que demande DORA pour l'IA en banque ?",
   ],
   de: [
-    "Ist GPT-4 DSGVO-konform?",
+    "Was ist der EU AI Act?",
     "Welche KI-Tools sind laut AI Act hochriskant?",
-    "ServiceNow vs. Salesforce für HR vergleichen",
-    "Was verlangt DORA für KI im Bankwesen?",
+    "Welche DSGVO-Regeln gelten f\u00fcr KI-Systeme?",
+    "Was verlangt DORA f\u00fcr KI im Bankwesen?",
   ],
 };
 
@@ -75,10 +75,16 @@ export default function Hero() {
 
   const localeSuggestions = suggestions[locale] || suggestions.en;
 
-  // Auto-scroll chat
+  // Auto-scroll chat panel (NOT the page)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    const el = messagesEndRef.current;
+    if (el) {
+      const container = el.parentElement;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+  }, [messages, loading]);
 
   // Focus input when chat opens
   useEffect(() => {

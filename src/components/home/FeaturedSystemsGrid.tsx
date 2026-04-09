@@ -140,8 +140,8 @@ export function FeaturedSystemsGrid({
                 </span>
               </div>
 
-              {/* Description */}
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-gray-600">
+              {/* Description — clamped to 3 lines for balanced card heights */}
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-3">
                 {system.description}
               </p>
 
