@@ -11,14 +11,12 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/db";
 import { computeOverallScore } from "@/lib/scoring";
-import { getSubscriber } from "@/lib/subscriber-auth";
-import type { SubscriptionTier } from "@/lib/tier-access";
+import { getEffectiveTier } from "@/lib/tier-access";
 
 export async function GET(request: NextRequest) {
-  const subscriber = await getSubscriber();
-  const tier = (subscriber?.tier as SubscriptionTier) || "free";
+  const tier = await getEffectiveTier();
 
-  if (!subscriber || tier === "free") {
+  if (tier === "free" || tier === "anonymous") {
     return Response.json(
       { error: "Export requires a Pro or Enterprise subscription." },
       { status: 403 }

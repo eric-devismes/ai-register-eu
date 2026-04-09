@@ -16,8 +16,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getAllSystems, getPublishedFrameworks } from "@/lib/queries";
 import { computeOverallScore } from "@/lib/scoring";
-import { getSubscriber } from "@/lib/subscriber-auth";
-import { FREE_TIER_SYSTEM_SLUGS, type SubscriptionTier } from "@/lib/tier-access";
+import { FREE_TIER_SYSTEM_SLUGS, getEffectiveTier, type SubscriptionTier } from "@/lib/tier-access";
 import { DatabaseGrid } from "./DatabaseGrid";
 
 export const metadata: Metadata = {
@@ -27,12 +26,10 @@ export const metadata: Metadata = {
 
 export default async function DatabasePage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q: searchQuery } = await searchParams;
-  const [systems, subscriber] = await Promise.all([
+  const [systems, tier] = await Promise.all([
     getAllSystems(),
-    getSubscriber(),
+    getEffectiveTier(),
   ]);
-
-  const tier: SubscriptionTier = (subscriber?.tier as SubscriptionTier) || "free";
   const freeSlugs = FREE_TIER_SYSTEM_SLUGS as readonly string[];
 
   // Convert to plain objects for client component

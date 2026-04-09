@@ -8,12 +8,19 @@
  *
  * For now, reports are defined as static data here.
  * Future: move to a CMS or database model for admin management.
+ *
+ * Access:
+ *   - Anonymous: see titles + category only, prompted to create account
+ *   - Free+: full access to all reports
  */
+
+export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getEffectiveTier } from "@/lib/tier-access";
 
 export const metadata: Metadata = {
   title: "Reports & White Papers — AI Compass EU",
@@ -126,7 +133,9 @@ const reports: Report[] = [
   },
 ];
 
-export default function ReportsPage() {
+export default async function ReportsPage() {
+  const tier = await getEffectiveTier();
+  const isAnonymous = tier === "anonymous";
   const published = reports.filter((r) => !r.comingSoon);
   const upcoming = reports.filter((r) => r.comingSoon);
 
@@ -156,21 +165,45 @@ export default function ReportsPage() {
         {/* Reports grid — square tiles */}
         <section className="py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Sign-up gate notice */}
-            <div className="mb-8 rounded-xl border border-[#003399]/15 bg-[#003399]/5 p-4 flex items-center justify-between">
-              <p className="text-sm text-[#0d1b3e]">
-                <strong>Free access</strong> — create an account to read full reports.
-              </p>
-              <a href="/en/subscribe" className="rounded-lg bg-[#003399] px-4 py-2 text-xs font-semibold text-white hover:bg-[#002277] shrink-0">
-                Create free account
-              </a>
-            </div>
+            {/* Sign-up gate notice — only for anonymous */}
+            {isAnonymous && (
+              <div className="mb-8 rounded-xl border border-[#003399]/15 bg-[#003399]/5 p-4 flex items-center justify-between">
+                <p className="text-sm text-[#0d1b3e]">
+                  <strong>Free access</strong> — create an account to read full reports.
+                </p>
+                <a href="/en/subscribe" className="rounded-lg bg-[#003399] px-4 py-2 text-xs font-semibold text-white hover:bg-[#002277] shrink-0">
+                  Create free account
+                </a>
+              </div>
+            )}
 
             {/* Published reports — square tile grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {published.map((report) => {
                 const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
-                return (
+                return isAnonymous ? (
+                    <div
+                      key={report.slug}
+                      className="flex flex-col rounded-xl border border-gray-200 bg-white p-5 sm:min-h-[220px]"
+                    >
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
+                          {CATEGORY_LABELS[report.category]}
+                        </span>
+                      </div>
+                      <h3 className="text-sm font-bold text-[#0d1b3e] line-clamp-2">
+                        {report.title}
+                      </h3>
+                      <p className="mt-2 text-xs text-gray-400 flex-1">
+                        Sign in to read this report
+                      </p>
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <a href="/en/subscribe" className="text-xs font-semibold text-[#003399] hover:underline">
+                          Create free account →
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
                   <Link
                     key={report.slug}
                     href={`/en/reports/${report.slug}`}

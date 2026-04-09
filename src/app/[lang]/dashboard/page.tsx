@@ -21,7 +21,7 @@ import { getSubscriber } from "@/lib/subscriber-auth";
 import { getRecentChangelogs } from "@/lib/queries";
 import { prisma } from "@/lib/db";
 import { computeOverallScore, gradeColor } from "@/lib/scoring";
-import type { SubscriptionTier } from "@/lib/tier-access";
+import { getEffectiveTier } from "@/lib/tier-access";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -30,15 +30,17 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardPage() {
-  const subscriber = await getSubscriber();
-  const tier = (subscriber?.tier as SubscriptionTier) || "free";
+  const [subscriber, tier] = await Promise.all([
+    getSubscriber(),
+    getEffectiveTier(),
+  ]);
 
-  if (!subscriber || (tier !== "pro" && tier !== "enterprise")) {
+  if (tier !== "pro" && tier !== "enterprise") {
     redirect("/en/pricing");
   }
 
   // Get the user's followed AI systems with scores
-  const followedSystems = await prisma.aISystem.findMany({
+  const followedSystems = subscriber ? await prisma.aISystem.findMany({
     where: {
       subscribers: { some: { id: subscriber.id } },
     },
@@ -47,13 +49,13 @@ export default async function DashboardPage() {
       industries: { select: { name: true } },
     },
     orderBy: { name: "asc" },
-  });
+  }) : [];
 
   // Get recent changelog entries for the user's systems
   const recentChanges = await getRecentChangelogs(100);
   const followedSlugs = new Set(followedSystems.map((s) => s.slug));
   const followedFrameworkSlugs = new Set(
-    (subscriber.frameworks || []).map((f: { slug: string }) => f.slug)
+    (subscriber?.frameworks || []).map((f: { slug: string }) => f.slug)
   );
 
   const relevantChanges = recentChanges.filter((c) => {

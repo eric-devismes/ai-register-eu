@@ -120,9 +120,43 @@ function RelevanceBadge({ score }: { score: number }) {
 
 // ─── Main Component ───────────────────────────────────────
 
-export function CompareClient({ tier = "free" }: { tier?: string }) {
+export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
   const locale = useLocale();
   const hasFullAccess = tier === "pro" || tier === "enterprise";
+  const isAnonymous = tier === "anonymous";
+
+  // Anonymous users see a signup prompt instead of the tool
+  if (isAnonymous) {
+    return (
+      <div className="mx-auto max-w-2xl text-center py-16">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm opacity-60 pointer-events-none">
+          <div className="space-y-4">
+            <div className="h-10 w-full rounded-lg bg-gray-100 animate-pulse" />
+            <div className="text-sm text-gray-400">Describe your AI use case...</div>
+            <div className="grid grid-cols-3 gap-4 pt-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-lg border border-gray-100 p-4 space-y-2">
+                  <div className="h-4 w-24 rounded bg-gray-100" />
+                  <div className="h-3 w-full rounded bg-gray-50" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="rounded-2xl border-2 border-[#003399]/20 bg-gradient-to-br from-[#003399]/5 to-[#ffc107]/5 p-8">
+          <h2 className="text-xl font-bold text-[#0d1b3e]">Create a Free Account to Compare</h2>
+          <p className="mt-2 text-sm text-gray-600 max-w-md mx-auto">
+            Sign up for free to compare AI systems side-by-side against EU compliance criteria.
+            Upgrade to Pro for access to all 60+ systems.
+          </p>
+          <a href={`/${locale}/subscribe`}
+            className="mt-5 inline-block rounded-lg bg-[#003399] px-8 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors shadow-sm">
+            Create Free Account
+          </a>
+        </div>
+      </div>
+    );
+  }
   const [phase, setPhase] = useState<Phase>("input");
   const [useCase, setUseCase] = useState("");
   const [industry, setIndustry] = useState("");
