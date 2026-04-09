@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -195,47 +196,31 @@ export default function MethodologyPage() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="mt-12 grid gap-4 sm:grid-cols-2">
               {dimensions.map((dim) => (
-                <div
+                <CollapsibleSection
                   key={dim.name}
-                  className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
-                >
-                  <div className="flex items-center gap-3">
+                  title={dim.name}
+                  badge={
                     <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
                       style={{ backgroundColor: dim.color }}
                     >
                       {dim.number}
                     </span>
-                    <h3 className="text-lg font-semibold text-[#0d1b3e]">
-                      {dim.name}
-                    </h3>
-                  </div>
-                  <ul className="mt-4 space-y-2">
+                  }
+                >
+                  <ul className="px-6 py-4 space-y-2">
                     {dim.criteria.map((criterion) => (
-                      <li
-                        key={criterion}
-                        className="flex items-start gap-2 text-sm text-gray-600"
-                      >
-                        <svg
-                          className="h-4 w-4 shrink-0 mt-0.5 text-[#003399]/40"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2}
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m4.5 12.75 6 6 9-13.5"
-                          />
+                      <li key={criterion} className="flex items-start gap-2 text-sm text-gray-600">
+                        <svg className="h-4 w-4 shrink-0 mt-0.5 text-[#003399]/40" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                         </svg>
                         {criterion}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </CollapsibleSection>
               ))}
             </div>
 
@@ -244,11 +229,9 @@ export default function MethodologyPage() {
               <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
                 Grading Scale
               </h2>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                Each dimension receives a letter grade from A+ (exemplary) to F
-                (non-compliant). Grades are weighted by dimension importance and
-                aggregated into an overall compliance score. All ratings include
-                source references so you can verify the evidence yourself.
+              <p className="mt-4 text-sm text-gray-600">
+                Each dimension receives a letter grade from A+ (exemplary) to D (non-compliant),
+                weighted and aggregated into an overall score. All ratings include source references.
               </p>
             </div>
           </div>

@@ -42,8 +42,7 @@ export default async function RegulationsPage() {
                 EU Compliance Frameworks
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                We assess AI systems against {frameworks.length} European regulatory frameworks.
-                Each framework defines specific requirements for AI compliance.
+                {frameworks.length} frameworks that define AI compliance requirements in Europe.
               </p>
             </div>
           </div>

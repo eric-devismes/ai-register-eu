@@ -17,6 +17,7 @@ import Link from "next/link";
 import { getFrameworkBySlug } from "@/lib/queries";
 import { gradeColor } from "@/lib/scoring";
 import Header from "@/components/layout/Header";
+import CollapsibleSection from "@/components/ui/CollapsibleSection";
 import Footer from "@/components/layout/Footer";
 
 interface PageProps {
@@ -171,23 +172,23 @@ export default async function FrameworkPage({ params }: PageProps) {
                 Sections &amp; Requirements
               </h2>
 
-              <div className="mt-6 space-y-8">
-                {framework.sections.map((section) => (
-                  <div key={section.id} className="rounded-xl border border-gray-200 overflow-hidden">
-                    {/* Section header */}
-                    <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-                      <h3 className="text-base font-bold text-gray-900">{section.title}</h3>
-                      {section.description && (
-                        <p className="mt-1 text-sm text-gray-600">{section.description}</p>
-                      )}
-                    </div>
-
-                    {/* Policy statements */}
+              <div className="mt-6 space-y-4">
+                {framework.sections.map((section, idx) => (
+                  <CollapsibleSection
+                    key={section.id}
+                    title={section.title}
+                    subtitle={section.description}
+                    badge={
+                      <span className="rounded-full bg-gray-200 px-2 py-0.5 text-[10px] font-semibold text-gray-500">
+                        {section.statements.length} requirement{section.statements.length !== 1 ? "s" : ""}
+                      </span>
+                    }
+                    defaultOpen={idx === 0}
+                  >
                     {section.statements.length > 0 && (
                       <div className="divide-y divide-gray-100">
                         {section.statements.map((stmt) => (
                           <div key={stmt.id} className="px-6 py-4">
-                            {/* Reference badge + statement */}
                             <div className="flex items-start gap-3">
                               {stmt.reference && (
                                 <span className="mt-0.5 shrink-0 rounded bg-[#003399]/10 px-2 py-0.5 text-xs font-semibold text-[#003399]">
@@ -196,16 +197,12 @@ export default async function FrameworkPage({ params }: PageProps) {
                               )}
                               <p className="text-sm text-gray-800">{stmt.statement}</p>
                             </div>
-
-                            {/* Commentary */}
                             {stmt.commentary && (
-                              <div className="mt-3 ml-0 rounded-lg bg-amber-50 border border-amber-100 px-4 py-3">
+                              <div className="mt-3 rounded-lg bg-amber-50 border border-amber-100 px-4 py-3">
                                 <p className="text-xs font-semibold text-amber-700 mb-1">What this means for your organisation</p>
                                 <p className="text-sm text-amber-900">{stmt.commentary}</p>
                               </div>
                             )}
-
-                            {/* Source citation */}
                             {stmt.sourceUrl && (
                               <div className="mt-2">
                                 <a href={stmt.sourceUrl} target="_blank" rel="noopener noreferrer"
@@ -221,7 +218,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                         ))}
                       </div>
                     )}
-                  </div>
+                  </CollapsibleSection>
                 ))}
               </div>
             </div>
