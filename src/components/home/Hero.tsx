@@ -75,13 +75,14 @@ export default function Hero() {
 
   const localeSuggestions = suggestions[locale] || suggestions.en;
 
-  // Auto-scroll chat panel (NOT the page)
+  // Keep the latest user message visible at the top of the chat panel
+  const lastUserMsgRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const el = messagesEndRef.current;
-    if (el) {
-      const container = el.parentElement;
+    if (lastUserMsgRef.current) {
+      const container = lastUserMsgRef.current.closest("[data-chat-scroll]") as HTMLElement | null;
       if (container) {
-        container.scrollTop = container.scrollHeight;
+        // Scroll so the user's question sits near the top with a small margin
+        container.scrollTop = lastUserMsgRef.current.offsetTop - 8;
       }
     }
   }, [messages, loading]);
@@ -161,22 +162,30 @@ export default function Hero() {
             <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-1.5 shadow-2xl backdrop-blur-sm">
               {/* Chat messages area — visible when chat is active */}
               {chatOpen && messages.length > 0 && (
-                <div className="mb-2 max-h-72 overflow-y-auto rounded-xl bg-[#0a1428]/80 p-4 text-left">
-                  {messages.map((msg, i) => (
-                    <div key={i} className={`mb-3 last:mb-0 ${msg.role === "user" ? "text-right" : "text-left"}`}>
+                <div data-chat-scroll className="mb-2 max-h-72 overflow-y-auto rounded-xl bg-[#0a1428]/80 p-4 text-left">
+                  {messages.map((msg, i) => {
+                    // Track the last user message so we can scroll to it
+                    const isLastUser = msg.role === "user" && !messages.slice(i + 1).some((m) => m.role === "user");
+                    return (
                       <div
-                        className={`inline-block max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
-                          msg.role === "user"
-                            ? "bg-[#003399] text-white"
-                            : "bg-white/10 text-blue-50"
-                        }`}
+                        key={i}
+                        ref={isLastUser ? lastUserMsgRef : undefined}
+                        className={`mb-3 last:mb-0 ${msg.role === "user" ? "text-right" : "text-left"}`}
                       >
-                        <p className="whitespace-pre-wrap">
-                          {msg.role === "assistant" ? renderWithLinks(msg.content) : msg.content}
-                        </p>
+                        <div
+                          className={`inline-block max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
+                            msg.role === "user"
+                              ? "bg-[#003399] text-white"
+                              : "bg-white/10 text-blue-50"
+                          }`}
+                        >
+                          <p className="whitespace-pre-wrap">
+                            {msg.role === "assistant" ? renderWithLinks(msg.content) : msg.content}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                   {loading && (
                     <div className="text-left">
                       <div className="inline-block rounded-xl bg-white/10 px-4 py-2">
