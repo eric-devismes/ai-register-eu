@@ -45,8 +45,7 @@ export default function Header() {
     { label: t("common.industries"), href: l("/industries") },
     { label: "Newsfeed", href: l("/newsfeed") },
     { label: "Reports", href: l("/reports") },
-    { label: "Services", href: l("/services") },
-    { label: t("common.pricing"), href: l("/pricing") },
+    { label: "Plans", href: l("/pricing") },
   ];
 
   return (
