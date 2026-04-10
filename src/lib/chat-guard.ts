@@ -1,35 +1,57 @@
 /**
- * Chat Security Guard — Input sanitisation, injection detection, topic check.
+ * Chat Security Guard — Input validation before the LLM call.
+ *
+ * This is the first line of defense against misuse of the chatbot.
+ * Runs BEFORE the LLM call, so malicious inputs never reach Claude.
+ *
+ * Three checks, in order:
+ *   1. Length — reject questions over 500 characters
+ *   2. Injection — detect prompt injection attempts
+ *   3. Off-topic — detect clearly unrelated questions
+ *
+ * If a question passes all checks, it's sanitised (control chars
+ * stripped, whitespace normalised) and passed to the RAG pipeline.
+ *
+ * Note: This is a heuristic filter, not a foolproof defense. The
+ * LLM system prompt provides a second layer of protection. Advanced
+ * attackers could bypass regex patterns (e.g., Unicode tricks), but
+ * the dual-layer approach catches the vast majority of attempts.
  */
 
 const MAX_QUESTION_LENGTH = 500;
 
-// Patterns that suggest prompt injection attempts
+// ─── Injection Detection ───────────────────────────────
+// Each pattern targets a known class of prompt injection attack.
+// If any matches, the question is blocked before reaching the LLM.
+
 const INJECTION_PATTERNS = [
-  /ignore\s+(previous|all|your|above)\s+(instructions|rules|prompt)/i,
-  /forget\s+(your|all|previous)\s+(instructions|rules)/i,
-  /you\s+are\s+now\s+/i,
-  /pretend\s+(to\s+be|you\s+are)/i,
-  /act\s+as\s+(if|a|an)/i,
-  /new\s+instructions?:/i,
-  /system\s*prompt/i,
-  /\bDAN\b/,
-  /jailbreak/i,
-  /bypass\s+(safety|filter|rules)/i,
-  /override\s+(instructions|rules|safety)/i,
-  /reveal\s+(your|the)\s+(prompt|instructions|system)/i,
-  /what\s+(are|is)\s+your\s+(instructions|system\s*prompt|rules)/i,
+  /ignore\s+(previous|all|your|above)\s+(instructions|rules|prompt)/i,  // "Ignore previous instructions"
+  /forget\s+(your|all|previous)\s+(instructions|rules)/i,               // "Forget your rules"
+  /you\s+are\s+now\s+/i,                                                 // "You are now a helpful..."
+  /pretend\s+(to\s+be|you\s+are)/i,                                      // "Pretend to be..."
+  /act\s+as\s+(if|a|an)/i,                                               // "Act as a..."
+  /new\s+instructions?:/i,                                               // "New instructions: ..."
+  /system\s*prompt/i,                                                     // Probing for system prompt
+  /\bDAN\b/,                                                              // "Do Anything Now" jailbreak
+  /jailbreak/i,                                                           // Direct jailbreak mention
+  /bypass\s+(safety|filter|rules)/i,                                     // "Bypass safety filters"
+  /override\s+(instructions|rules|safety)/i,                             // "Override instructions"
+  /reveal\s+(your|the)\s+(prompt|instructions|system)/i,                 // "Reveal your prompt"
+  /what\s+(are|is)\s+your\s+(instructions|system\s*prompt|rules)/i,     // "What are your instructions?"
 ];
 
-// Off-topic patterns — questions clearly unrelated to AI compliance
+// ─── Off-Topic Detection ───────────────────────────────
+// Questions clearly unrelated to AI compliance / EU regulations.
+// These get a polite redirect instead of wasting an LLM call.
+
 const OFF_TOPIC_PATTERNS = [
-  /(?:weather|forecast|temperature)\s+(?:in|for|today)/i,
-  /(?:recipe|cook|bake)\s+/i,
-  /(?:sports?|football|soccer|basketball)\s+(?:score|result|game)/i,
-  /(?:write|compose|draft)\s+(?:a\s+)?(?:poem|story|song|essay|code|script)/i,
-  /(?:translate|convert)\s+(?:this|the\s+following)/i,
-  /(?:joke|funny|humor)/i,
-  /(?:stock|crypto|bitcoin|invest)\s+(?:price|market)/i,
+  /(?:weather|forecast|temperature)\s+(?:in|for|today)/i,               // Weather queries
+  /(?:recipe|cook|bake)\s+/i,                                           // Cooking
+  /(?:sports?|football|soccer|basketball)\s+(?:score|result|game)/i,    // Sports
+  /(?:write|compose|draft)\s+(?:a\s+)?(?:poem|story|song|essay|code|script)/i, // Creative writing
+  /(?:translate|convert)\s+(?:this|the\s+following)/i,                   // Translation requests
+  /(?:joke|funny|humor)/i,                                               // Humor
+  /(?:stock|crypto|bitcoin|invest)\s+(?:price|market)/i,                // Financial markets
 ];
 
 export interface GuardResult {

@@ -62,6 +62,9 @@ model RegulatoryFramework {
 
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
+
+  @@index([published])                                   // Filter queries on homepage
+  @@index([name])                                        // Search/sort by name
 }
 
 /// A section or chapter within a regulatory framework.
@@ -95,6 +98,8 @@ model PolicyStatement {
   sectionId   String
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
+
+  @@index([sectionId])                                   // FK lookup when loading section statements
 }
 
 /// An industry sector (e.g., Financial Services, Healthcare).
@@ -233,9 +238,12 @@ model ChangeLog {
   systemId    String?
 
   createdAt   DateTime             @default(now())
+
+  @@index([date])                                        // Sort by date (newsfeed, dashboard)
+  @@index([frameworkId])                                  // Filter changelog by framework
+  @@index([systemId])                                     // Filter changelog by system
 }
 
-/// A public subscriber (email-only account with magic link auth).
 // ─── Admin Users ────────────────────────────────────────────
 
 /// Admin users who can access the admin panel.
@@ -349,6 +357,8 @@ model Subscriber {
 
   createdAt       DateTime              @default(now())
   updatedAt       DateTime              @updatedAt
+
+  @@index([stripeCustomerId])                                // Stripe webhook lookups
 }
 
 /// Tracks sent digest emails for GDPR compliance and delivery monitoring.
@@ -358,6 +368,8 @@ model DigestLog {
   sentAt       DateTime @default(now())
   itemCount    Int                                            // How many items were in the digest
   status       String   @default("sent")                     // "sent" | "failed" | "bounced"
+
+  @@index([subscriberId])                                    // Lookup digest history per subscriber
 }
 
 /// Cached translations of database content in EU languages.
@@ -396,6 +408,9 @@ model ChatLog {
   blocked      Boolean  @default(false)                        // Was this blocked?
   blockReason  String   @default("")                           // "injection", "off-topic", "rate-limit"
   createdAt    DateTime @default(now())
+
+  @@index([fingerprint])                                       // Admin lookup by fingerprint
+  @@index([createdAt])                                         // Sort/filter by date in admin panel
 }
 
 /// Feedback submitted via the contact form.

@@ -1,3 +1,13 @@
+/**
+ * POST /api/feedback — Submit a contact form message.
+ *
+ * Public endpoint (no auth required). Creates a Feedback record
+ * that admins can review and respond to in the admin panel.
+ *
+ * Body: { name, email, category, subject, message }
+ * Categories: "general", "correction", "partnership", "press"
+ */
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 

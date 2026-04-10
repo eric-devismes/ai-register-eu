@@ -22,11 +22,12 @@ import { SignJWT, jwtVerify } from "jose";
 import { TOTP, Secret } from "otpauth";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/db";
+import { ADMIN_SESSION_HOURS } from "@/lib/constants";
 
 // ─── Constants ──────────────────────────────────────────
 
 const SESSION_COOKIE = "admin-session";
-const SESSION_DURATION = 24 * 60 * 60; // 24 hours in seconds
+const SESSION_DURATION = ADMIN_SESSION_HOURS * 60 * 60; // in seconds
 
 export type AdminRole = "owner" | "admin" | "editor";
 

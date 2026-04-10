@@ -9,11 +9,11 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/db";
 import crypto from "crypto";
+import { SUBSCRIBER_SESSION_DAYS, MAGIC_LINK_MINUTES } from "@/lib/constants";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "");
 const COOKIE_NAME = "subscriber-session";
-const SESSION_DAYS = 30;
-const MAGIC_LINK_MINUTES = 15;
+const SESSION_DAYS = SUBSCRIBER_SESSION_DAYS;
 
 // ─── Token Helpers ───────────────────────────────────────
 

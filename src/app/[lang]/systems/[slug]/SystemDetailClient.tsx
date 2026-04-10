@@ -13,6 +13,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import SpiderChart from "@/components/charts/SpiderChart";
+import { gradeColor } from "@/lib/scoring";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -71,22 +72,7 @@ interface Props {
 }
 
 // ─── Helpers ────────────────────────────────────────────
-
-function gradeColor(grade: string): string {
-  const letter = grade.charAt(0).toUpperCase();
-  if (letter === "A") return "bg-emerald-500";
-  if (letter === "B") return "bg-blue-500";
-  if (letter === "C") return "bg-amber-500";
-  return "bg-red-500";
-}
-
-function gradeBgLight(grade: string): string {
-  const letter = grade.charAt(0).toUpperCase();
-  if (letter === "A") return "bg-emerald-50 border-emerald-200 text-emerald-700";
-  if (letter === "B") return "bg-blue-50 border-blue-200 text-blue-700";
-  if (letter === "C") return "bg-amber-50 border-amber-200 text-amber-700";
-  return "bg-red-50 border-red-200 text-red-700";
-}
+// gradeColor() is imported from @/lib/scoring (single source of truth)
 
 const riskStyles: Record<string, string> = {
   High: "bg-red-100 text-red-700 border-red-200",

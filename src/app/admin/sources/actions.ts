@@ -1,3 +1,11 @@
+/**
+ * Server Actions for Approved Sources.
+ *
+ * Approved sources are admin-curated external URLs that the chatbot
+ * can reference in its answers (e.g., official regulation pages).
+ * These are stored in the ApprovedSource table.
+ */
+
 "use server";
 
 import { prisma } from "@/lib/db";

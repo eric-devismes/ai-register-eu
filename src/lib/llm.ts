@@ -9,6 +9,7 @@
  */
 
 import { localeNames, type Locale } from "@/lib/i18n";
+import { LLM_MODEL, LLM_CHAT_MAX_TOKENS, LLM_TIMEOUT_MS } from "@/lib/constants";
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -137,11 +138,11 @@ export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
     const client = new Anthropic({ apiKey });
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
+    const timeout = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
 
     const response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 256,
+      model: LLM_MODEL,
+      max_tokens: LLM_CHAT_MAX_TOKENS,
       system: buildSystemPrompt(req.locale, req.context, req.userProfile),
       messages: [{ role: "user", content: req.question }],
     }, { signal: controller.signal }).finally(() => clearTimeout(timeout));

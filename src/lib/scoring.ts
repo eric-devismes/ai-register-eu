@@ -100,6 +100,18 @@ export function gradeColor(grade: string): string {
   return "bg-red-500";
 }
 
+/**
+ * Get the light background + border + text color for a letter grade.
+ * Used for score badges that need a softer appearance (e.g., cards, tables).
+ */
+export function gradeBgLight(grade: string): string {
+  const letter = grade.charAt(0).toUpperCase();
+  if (letter === "A") return "bg-emerald-50 border-emerald-200 text-emerald-700";
+  if (letter === "B") return "bg-blue-50 border-blue-200 text-blue-700";
+  if (letter === "C") return "bg-amber-50 border-amber-200 text-amber-700";
+  return "bg-red-50 border-red-200 text-red-700";
+}
+
 // ─── Dimension Scores for Comparison Spider Chart ───────
 //
 // These functions compute high-level dimension scores (0-10) from
