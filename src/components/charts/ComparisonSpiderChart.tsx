@@ -15,6 +15,8 @@
  *   size        — chart diameter in pixels (default: 480)
  */
 
+import { wrapLabel } from "@/lib/utils/chart-helpers";
+
 // ─── Types ───────────────────────────────────────────────
 
 interface Dimension {
@@ -212,12 +214,4 @@ export default function ComparisonSpiderChart({
   );
 }
 
-// ─── Helpers ─────────────────────────────────────────────
-
-/** Split a long label into 2 lines at a word boundary */
-function wrapLabel(text: string): string[] {
-  if (text.length <= 18) return [text];
-  const mid = text.lastIndexOf(" ", 20);
-  if (mid === -1) return [text];
-  return [text.slice(0, mid), text.slice(mid + 1)];
-}
+// wrapLabel imported from @/lib/utils/chart-helpers

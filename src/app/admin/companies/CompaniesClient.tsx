@@ -71,7 +71,7 @@ export function CompaniesClient({
       setCompanies((prev) => [...prev, data.company]);
       setForm({ name: "", domain: "", industry: "", country: "", size: "", notes: "" });
       setShowAdd(false);
-    } catch { setError("Failed"); }
+    } catch { setError("Failed to create company"); }
     setLoading(false);
   }
 

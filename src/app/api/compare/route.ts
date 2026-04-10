@@ -1,21 +1,33 @@
 /**
- * POST /api/compare — AI-powered use case matcher.
+ * POST /api/compare — AI-powered use case matcher and comparison tool.
  *
- * Phase "match": Analyse use case + optional filters, return ranked AI systems.
- * Phase "compare": Return full comparison data for selected systems.
+ * Two-phase flow:
  *
- * Body: {
- *   useCase: string,           // plain text use case description
- *   filters?: { industry?, deployment?, capability? },
- *   systemIds?: string[],      // for compare phase
- *   phase: "match" | "compare"
- * }
+ * Phase 1 — "match":
+ *   User describes a use case → LLM analyses it against all AI systems
+ *   in the database → returns ranked matches with relevance scores.
+ *   Rate-limited like the chatbot (same daily quota).
+ *
+ * Phase 2 — "compare":
+ *   User selects systems from the match results → we return full
+ *   comparison data (scores, attributes, vendor details) for a
+ *   side-by-side table. No LLM call needed — pure data retrieval.
+ *
+ * Request body:
+ *   { phase: "match",   useCase: string, filters?: { industry?, deployment?, capability? } }
+ *   { phase: "compare", systemIds: string[] }
+ *
+ * Response:
+ *   match:   { analysis, matches[], ready }
+ *   compare: { systems[], attributes[] }
  */
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { checkRateLimit, incrementUsage } from "@/lib/chat-rate-limit";
 import { guardQuestion } from "@/lib/chat-guard";
+import { computeOverallScore } from "@/lib/scoring";
+import { LLM_MODEL, LLM_COMPARE_MAX_TOKENS, LLM_TIMEOUT_MS } from "@/lib/constants";
 
 // ─── Comparison Attributes ───────────────────────────────
 // These are the rows in the side-by-side comparison table
@@ -104,22 +116,6 @@ function systemToCompareRow(system: Record<string, unknown>, scores: Array<{ fra
   };
 }
 
-function computeOverallScore(grades: string[]): string {
-  const map: Record<string, number> = {
-    "A+": 10, "A": 9, "A-": 8, "B+": 7, "B": 6, "B-": 5,
-    "C+": 4, "C": 3, "C-": 2, "D": 1, "F": 0,
-  };
-  if (grades.length === 0) return "N/A";
-  const total = grades.reduce((s, g) => s + (map[g] ?? 0), 0);
-  const avg = total / grades.length;
-  const thresholds: [number, string][] = [
-    [9.5, "A+"], [8.5, "A"], [7.5, "A-"], [6.5, "B+"],
-    [5.5, "B"], [4.5, "B-"], [3.5, "C+"], [2.5, "C"], [1.5, "C-"], [0, "D"],
-  ];
-  for (const [t, g] of thresholds) if (avg >= t) return g;
-  return "D";
-}
-
 // ─── LLM Call for Matching ───────────────────────────────
 
 async function callMatchingLLM(useCase: string, body: Record<string, unknown>, systemsSummary: string): Promise<{
@@ -185,13 +181,13 @@ Rules:
   const userMessage = `Use case: ${useCase}`;
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
+  const timeout = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
 
   let response;
   try {
     response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 2048,
+      model: LLM_MODEL,
+      max_tokens: LLM_COMPARE_MAX_TOKENS,
       system: systemPrompt,
       messages: [{ role: "user", content: userMessage }],
     }, { signal: controller.signal }).finally(() => clearTimeout(timeout));
@@ -301,26 +297,17 @@ export async function POST(request: Request) {
     // Count this as a usage
     await incrementUsage(rateLimit.fingerprint);
 
-    // Get all systems summary for the LLM
+    // Fetch all systems with scores and industries — used for both
+    // the LLM summary and for enriching match results afterwards.
+    // Single query instead of two separate fetches.
     const allSystems = await prisma.aISystem.findMany({
-      select: {
-        id: true,
-        slug: true,
-        vendor: true,
-        name: true,
-        type: true,
-        risk: true,
-        description: true,
-        category: true,
-        useCases: true,
-        aiActStatus: true,
-        gdprStatus: true,
-        euResidency: true,
-        scores: { include: { framework: { select: { slug: true } } } },
+      include: {
+        scores: { include: { framework: { select: { slug: true, name: true } } } },
         industries: { select: { name: true } },
       },
     });
 
+    // Build a text summary for the LLM (just the fields it needs to rank)
     const systemsSummary = allSystems
       .map((s) => {
         const scores = s.scores.map((sc) => `${sc.framework.slug}: ${sc.score}`).join(", ");
@@ -339,18 +326,10 @@ Scores: ${scores}
 
     const result = await callMatchingLLM(useCase, body, systemsSummary);
 
-    // If ready, enrich matches with full system data
+    // Enrich LLM matches with full system data from the already-fetched list
+    // (no second DB query needed — we reuse allSystems)
     if (result.ready && result.matches?.length) {
-      const matchSlugs = result.matches.map((m) => m.slug);
-      const matchedSystems = await prisma.aISystem.findMany({
-        where: { slug: { in: matchSlugs } },
-        include: {
-          scores: { include: { framework: true } },
-          industries: true,
-        },
-      });
-
-      const systemsBySlug = Object.fromEntries(matchedSystems.map((s) => [s.slug, s]));
+      const systemsBySlug = Object.fromEntries(allSystems.map((s) => [s.slug, s]));
 
       const enrichedMatches = result.matches
         .filter((m) => systemsBySlug[m.slug])

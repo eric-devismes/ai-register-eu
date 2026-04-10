@@ -9,30 +9,10 @@
  * while making the chatbot the centre of the experience.
  */
 
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useT, useLocale } from "@/lib/locale-context";
-
-// ─── Markdown renderer (shared with ChatWidget) ─────────
-
-function renderWithLinks(content: string): ReactNode[] {
-  const parts = content.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*)/g);
-  return parts.map((part, i) => {
-    const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
-    if (linkMatch) {
-      return (
-        <a key={i} href={linkMatch[2]} className="font-semibold text-[#ffc107] underline hover:text-[#ffcd38]">
-          {linkMatch[1]}
-        </a>
-      );
-    }
-    const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
-    if (boldMatch) {
-      return <strong key={i}>{boldMatch[1]}</strong>;
-    }
-    return part;
-  });
-}
+import { renderMarkdownInline } from "@/lib/utils/markdown";
 
 // ─── Suggestion prompts per locale ──────────────────────
 
@@ -180,7 +160,7 @@ export default function Hero() {
                           }`}
                         >
                           <p className="whitespace-pre-wrap">
-                            {msg.role === "assistant" ? renderWithLinks(msg.content) : msg.content}
+                            {msg.role === "assistant" ? renderMarkdownInline(msg.content) : msg.content}
                           </p>
                         </div>
                       </div>

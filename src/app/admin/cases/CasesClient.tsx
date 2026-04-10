@@ -85,7 +85,7 @@ export function CasesClient({
       setCases((prev) => [data.caseItem, ...prev]);
       setForm({ title: "", description: "", priority: "normal", category: "general", subscriberId: "", companyId: "", assignedToId: "" });
       setShowAdd(false);
-    } catch { setError("Failed"); }
+    } catch { setError("Failed to create case"); }
     setLoading(false);
   }
 

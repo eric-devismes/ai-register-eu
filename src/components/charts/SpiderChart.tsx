@@ -11,6 +11,8 @@
  * Pure SVG — no external dependencies.
  */
 
+import { wrapLabel } from "@/lib/utils/chart-helpers";
+
 interface Dimension {
   id: string;      // Section ID for anchor linking
   label: string;
@@ -55,14 +57,6 @@ export default function SpiderChart({
     if (grade.startsWith("B")) return "#2563eb"; // blue-600
     if (grade.startsWith("C")) return "#d97706"; // amber-600
     return "#dc2626"; // red-600
-  }
-
-  // Word-wrap long labels into 2 lines
-  function wrapLabel(text: string): string[] {
-    if (text.length <= 20) return [text];
-    const mid = text.lastIndexOf(" ", 22);
-    if (mid === -1) return [text];
-    return [text.slice(0, mid), text.slice(mid + 1)];
   }
 
   return (

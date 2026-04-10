@@ -10,34 +10,10 @@
  * - Responds in the user's language
  */
 
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocale, useT } from "@/lib/locale-context";
-
-/**
- * Parse markdown links [text](url) in chat messages and render as clickable <a> tags.
- * Also handles **bold** text.
- */
-function renderWithLinks(content: string): ReactNode[] {
-  // Match markdown links and bold text
-  const parts = content.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*)/g);
-  return parts.map((part, i) => {
-    // Markdown link: [text](url)
-    const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
-    if (linkMatch) {
-      return (
-        <a key={i} href={linkMatch[2]} className="font-semibold text-[#003399] underline hover:text-[#002277]">
-          {linkMatch[1]}
-        </a>
-      );
-    }
-    // Bold: **text**
-    const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
-    if (boldMatch) {
-      return <strong key={i}>{boldMatch[1]}</strong>;
-    }
-    return part;
-  });
-}
+import { renderMarkdownInline } from "@/lib/utils/markdown";
+import { CONSULTING_EMAIL } from "@/lib/constants";
 
 interface Message {
   role: "user" | "assistant" | "system";
@@ -130,21 +106,21 @@ export default function ChatWidget() {
       titleSub: "That's it for today — unlimited access with Pro",
       body: "Need a deeper dive? Our team can analyse your specific use case, map it against the regulations, and give you a clear action plan.",
       cta: "Raise a case with our team",
-      email: "consulting@aicompass.eu",
+      email: CONSULTING_EMAIL,
     },
     fr: {
       titleAnon: "Vous avez utilis\u00e9 vos 3 questions \u2014 cr\u00e9ez un compte pour 10/jour",
       titleSub: "C'est tout pour aujourd'hui \u2014 acc\u00e8s illimit\u00e9 avec Pro",
       body: "Besoin d'aller plus loin ? Notre \u00e9quipe peut analyser votre cas sp\u00e9cifique, le confronter aux r\u00e9glementations et vous donner un plan d'action clair.",
       cta: "Soumettre un cas \u00e0 notre \u00e9quipe",
-      email: "consulting@aicompass.eu",
+      email: CONSULTING_EMAIL,
     },
     de: {
       titleAnon: "Sie haben Ihre 3 Fragen verbraucht \u2014 Konto erstellen f\u00fcr 10/Tag",
       titleSub: "Das war's f\u00fcr heute \u2014 unbegrenzter Zugang mit Pro",
       body: "Brauchen Sie eine tiefere Analyse? Unser Team kann Ihren konkreten Anwendungsfall pr\u00fcfen und Ihnen einen klaren Handlungsplan geben.",
       cta: "Einen Fall bei unserem Team einreichen",
-      email: "consulting@aicompass.eu",
+      email: CONSULTING_EMAIL,
     },
   };
 
@@ -227,7 +203,7 @@ export default function ChatWidget() {
                       : "bg-gray-100 text-gray-800"
                   }`}>
                     <p className="whitespace-pre-wrap leading-relaxed">
-                      {msg.role === "assistant" ? renderWithLinks(msg.content) : msg.content}
+                      {msg.role === "assistant" ? renderMarkdownInline(msg.content) : msg.content}
                     </p>
                   </div>
                 </div>
