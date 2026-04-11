@@ -8,12 +8,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ProfileBubble from "./ProfileBubble";
 import { useT, useLocale } from "@/lib/locale-context";
 import { locales, type Locale } from "@/lib/i18n";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSubscriber, setIsSubscriber] = useState(false);
+  const [userData, setUserData] = useState<{ name: string | null; email: string; tier: string } | null>(null);
   const t = useT();
   const locale = useLocale();
   const pathname = usePathname();
@@ -28,7 +30,12 @@ export default function Header() {
   useEffect(() => {
     fetch("/api/feed")
       .then((r) => r.json())
-      .then((data) => setIsSubscriber(data.authenticated))
+      .then((data) => {
+        setIsSubscriber(data.authenticated);
+        if (data.authenticated && data.user) {
+          setUserData(data.user);
+        }
+      })
       .catch(() => {});
   }, []);
 
@@ -65,10 +72,8 @@ export default function Header() {
             </nav>
 
             <div className="ml-auto flex items-center gap-6">
-              {isSubscriber ? (
-                <Link href={l("/account")} className="text-[#ffc107] hover:text-white transition-colors text-xs font-medium">
-                  {t("common.myAccount")}
-                </Link>
+              {isSubscriber && userData ? (
+                <ProfileBubble name={userData.name} email={userData.email} tier={userData.tier} />
               ) : (
                 <Link href={l("/subscribe")} className="text-gray-300 hover:text-white transition-colors text-xs">
                   {t("common.logIn")}

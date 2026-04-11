@@ -49,5 +49,10 @@ export async function GET() {
       system: item.system,
     })),
     authenticated: true,
+    user: {
+      name: subscriber.name || null,
+      email: subscriber.email,
+      tier: subscriber.tier || "free",
+    },
   });
 }
