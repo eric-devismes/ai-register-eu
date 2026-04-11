@@ -13,6 +13,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import SpiderChart from "@/components/charts/SpiderChart";
+import RoleDrillDown from "@/components/systems/RoleDrillDown";
 import { gradeColor } from "@/lib/scoring";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_BADGES, RISK_TOOLTIPS } from "@/lib/constants";
@@ -60,6 +61,14 @@ interface SystemData {
   aiActStatus: string;
   gdprStatus: string;
   euResidency: string;
+  deploymentModel: string;
+  sourceModel: string;
+  employeeCount: string;
+  fundingStatus: string;
+  marketPresence: string;
+  notableCustomers: string;
+  customerStories: string;
+  customerCount: string;
   assessedAt: string | null;
   assessmentNote: string;
   industries: Industry[];
@@ -354,6 +363,11 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
             </Link>
           ))}
         </div>
+      </div>
+
+      {/* ── Role-Based Drill-Down ── */}
+      <div className="mt-10">
+        <RoleDrillDown system={system} scores={system.scores} />
       </div>
 
       {/* ── Drill-Down Sections (Accordion) ── */}
