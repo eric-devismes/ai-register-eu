@@ -68,5 +68,5 @@ npm run lint     # ESLint
 
 ## Revenue Model
 
-Freemium subscription (Free / Pro €49/mo / Team €149/mo) + education courses.
-Future: Stripe payments, Clerk auth, newsletter via Buttondown/Resend.
+Freemium subscription (Free / Pro €19/mo / Enterprise custom pricing) + education courses.
+Payments: LemonSqueezy (Merchant of Record). Auth: magic link (passwordless).
