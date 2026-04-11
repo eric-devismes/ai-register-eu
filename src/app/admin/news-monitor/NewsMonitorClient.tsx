@@ -10,6 +10,7 @@
  */
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface Source {
   id: string;
@@ -74,6 +75,7 @@ export function NewsMonitorClient({
   sources: Source[];
   recentItems: RecentItem[];
 }) {
+  const router = useRouter();
   const [running, setRunning] = useState(false);
   const [result, setResult] = useState<RunResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -96,6 +98,8 @@ export function NewsMonitorClient({
         setError(data.error || "Failed to run news monitor");
       } else {
         setResult(data);
+        // Refresh server components to update stats
+        router.refresh();
       }
     } catch (err) {
       setError((err as Error).message);
