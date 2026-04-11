@@ -40,6 +40,14 @@ interface RunResult {
   newItems: number;
   classifiedItems: number;
   ingestedItems: number;
+  grok?: {
+    enabled: boolean;
+    rawItems: number;
+    newItems: number;
+    ingestedItems: number;
+    errors: string[];
+    duration: number;
+  };
   errors: string[];
   duration: number;
 }
@@ -169,6 +177,26 @@ export function NewsMonitorClient({
                 <span className="text-green-700"> ingested</span>
               </div>
             </div>
+            {/* Grok/X Scanner results */}
+            {result.grok && (
+              <div className={`mt-3 rounded-md p-3 ${result.grok.enabled ? "bg-blue-50 border border-blue-200" : "bg-gray-50 border border-gray-200"}`}>
+                <p className="text-xs font-semibold text-blue-800 flex items-center gap-1.5">
+                  <span>𝕏</span> Grok / Twitter Scanner
+                  {!result.grok.enabled && <span className="text-gray-500 font-normal">(not configured — add XAI_API_KEY)</span>}
+                </p>
+                {result.grok.enabled && (
+                  <div className="mt-1 flex gap-4 text-xs">
+                    <span><strong>{result.grok.rawItems}</strong> found</span>
+                    <span><strong>{result.grok.newItems}</strong> new</span>
+                    <span><strong>{result.grok.ingestedItems}</strong> ingested</span>
+                    <span className="text-gray-400">{result.grok.duration}ms</span>
+                  </div>
+                )}
+                {result.grok.errors.length > 0 && (
+                  <p className="mt-1 text-xs text-red-600">{result.grok.errors[0]}</p>
+                )}
+              </div>
+            )}
             {result.errors.length > 0 && (
               <div className="mt-2 text-xs text-amber-700">
                 {result.errors.length} error(s): {result.errors.slice(0, 3).join(", ")}

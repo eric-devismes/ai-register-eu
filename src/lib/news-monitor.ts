@@ -13,6 +13,7 @@
 import { prisma } from "@/lib/db";
 import { getEnabledSources, RELEVANCE_KEYWORDS, type NewsSource } from "@/lib/news-sources";
 import { LLM_MODEL, LLM_TIMEOUT_MS } from "@/lib/constants";
+import { runGrokScanner } from "@/lib/news-grok";
 
 // ─── Types ─────────────────────────────────────────────
 
@@ -337,6 +338,14 @@ export interface MonitorResult {
   newItems: number;
   classifiedItems: number;
   ingestedItems: number;
+  grok?: {
+    enabled: boolean;
+    rawItems: number;
+    newItems: number;
+    ingestedItems: number;
+    errors: string[];
+    duration: number;
+  };
   errors: string[];
   duration: number;
 }
@@ -395,6 +404,18 @@ export async function runNewsMonitor(): Promise<MonitorResult> {
   const ingestedCount = await ingestItems(toIngest);
   console.log(`[news-monitor] ${ingestedCount} items ingested into newsfeed`);
 
+  // 6. Run Grok/X scanner (if XAI_API_KEY configured)
+  let grokResult;
+  try {
+    grokResult = await runGrokScanner();
+    if (grokResult.enabled) {
+      console.log(`[news-monitor] Grok scanner: ${grokResult.ingestedItems} items from X/Twitter`);
+    }
+  } catch (err) {
+    console.warn("[news-monitor] Grok scanner error:", (err as Error).message);
+    errors.push(`grok: ${(err as Error).message}`);
+  }
+
   return {
     sourcesFetched: sources.length,
     rawItems: allRaw.length,
@@ -402,6 +423,7 @@ export async function runNewsMonitor(): Promise<MonitorResult> {
     newItems: newItems.length,
     classifiedItems: classified.length,
     ingestedItems: ingestedCount,
+    grok: grokResult,
     errors,
     duration: Date.now() - start,
   };
