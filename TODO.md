@@ -108,6 +108,14 @@
 - [ ] **Customer support via chatbot**: Handle claims for payment cancellation, refunds, billing issues
 - [ ] **Full customer engagement**: Make the chatbot handle all regular customer cases — easy, self-service, no friction
 
+## Scoring & Methodology
+
+- [ ] **Develop detailed scoring/ranking methodology**: Deep discussion with expert agents needed. Must show transparency to customers about how we rank systems, but protect proprietary methodology (don't give away everything for free). Balance: show enough to build trust, keep the secret sauce proprietary. This is a strategic decision requiring advisory board input.
+
+## UX Fixes
+
+- [ ] **Risk badge UX**: "High Risk" red badge is confusing when compliance scores are A/B — users don't understand why it's "high risk" if everything looks good. Fix: make risk badge clickable with explanation popup, and add hover tooltips on each compliance score letter explaining what it means and how it was assessed.
+
 ## Documentation
 
 - [ ] **Retro-documentation of the site**: Document current architecture, features, data model, APIs, deployment, and configuration
@@ -115,9 +123,18 @@
 ## DevOps & Quality
 
 - [ ] **QA Bot (continuous loop)** (2026-04-11): Autonomous bot monitored via Telegram that continuously tests the site from UX/customer perspective. Finds usability issues, missed translations, broken UX, degraded experiences. Maintains a defects log. Dev agent picks up fixes twice daily. Continuous loop: test → log defects → fix → retest → close.
+- [ ] **Content Quality Agents** (2026-04-11): Each domain expert agent (CTO, CISO, DPO, etc.) continuously monitors site content in their area and suggests improvements/refinements to improve quality. Not just testing — actively enriching and refining content.
 - [ ] **Tester Agent** (2026-04-11): Autonomous testing agent — functional tests, broken links, forms, performance, mobile
 - [ ] **UI/UX Improvement Agent** (2026-04-11): Continuously crawl site, find UX issues, accessibility gaps, suggest fixes
 - [x] **Telegram Bot for Status Updates** (2026-04-11): Done — scripts/telegram-notify.sh, hourly cron active
+
+## Expert Agent Panel (Advisory Board) — PRIORITY
+
+- [~] **Multi-agent expert collaboration system**: 11 domain-expert agents (CTO, CISO, DPO, CFO, Legal, HR, Procurement, Ops, Risk, PMO, Business) that collaborate, debate, and bring their domain perspective to decisions
+- [ ] Each agent speaks in user's tone/voice — "digital me" with domain expertise
+- [ ] Agents discuss via shared log, visible to user via Telegram
+- [ ] When agents disagree, user decides as CEO via Telegram response
+- [ ] Domains: Technology, Security, Data/Privacy, Risk/Compliance, Operations, Procurement, HR/Change, Finance, Legal, Project Delivery, Business Stakeholders
 
 ## Ideas Inbox
 > Add new ideas here — will be triaged into the sections above
