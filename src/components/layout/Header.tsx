@@ -54,7 +54,7 @@ export default function Header() {
       {/* Utility Bar */}
       <div className="bg-[#0d1b3e] border-b-2 border-[#ffc107]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-9 text-xs">
+          <div className="flex items-center justify-between h-11 text-xs">
             <nav className="hidden md:flex items-center gap-4">
               {utilityLinks.map((link) => (
                 <Link key={link.href} href={link.href}
@@ -64,18 +64,18 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="ml-auto flex items-center gap-4">
+            <div className="ml-auto flex items-center gap-6">
               {isSubscriber ? (
                 <Link href={l("/account")} className="text-[#ffc107] hover:text-white transition-colors text-xs font-medium">
                   {t("common.myAccount")}
                 </Link>
               ) : (
                 <Link href={l("/subscribe")} className="text-gray-300 hover:text-white transition-colors text-xs">
-                  {t("common.signIn")}
+                  {t("common.logIn")}
                 </Link>
               )}
+              <LanguageSwitcher />
             </div>
-            <LanguageSwitcher />
           </div>
         </div>
       </div>
