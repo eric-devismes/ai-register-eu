@@ -28,6 +28,9 @@ export async function GET() {
   return NextResponse.json({
     subscriber: {
       email: subscriber.email,
+      tier: subscriber.tier,
+      subscriptionId: subscriber.stripeSubscriptionId,
+      tierExpiresAt: subscriber.tierExpiresAt,
       digestFrequency: subscriber.digestFrequency,
       frameworks: subscriber.frameworks,
       systems: subscriber.systems,

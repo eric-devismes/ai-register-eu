@@ -10,7 +10,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -18,6 +18,9 @@ interface Framework { id: string; slug: string; name: string }
 interface System { id: string; slug: string; vendor: string; name: string }
 interface Subscriber {
   email: string;
+  tier: string;
+  subscriptionId: string | null;
+  tierExpiresAt: string | null;
   digestFrequency: string;
   frameworks: Framework[];
   systems: System[];
@@ -25,6 +28,8 @@ interface Subscriber {
 
 export default function AccountPage() {
   const router = useRouter();
+  const params = useParams();
+  const lang = (params?.lang as string) || "en";
   const [loading, setLoading] = useState(true);
   const [subscriber, setSubscriber] = useState<Subscriber | null>(null);
   const [allFrameworks, setAllFrameworks] = useState<Framework[]>([]);
@@ -35,6 +40,7 @@ export default function AccountPage() {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
 
   useEffect(() => {
     // Fetch subscriber data + all options
@@ -78,6 +84,22 @@ export default function AccountPage() {
     setDeleting(true);
     await fetch("/api/account/delete", { method: "DELETE" });
     router.push("/account/deleted");
+  }
+
+  async function handleManageSubscription() {
+    setPortalLoading(true);
+    try {
+      const res = await fetch("/api/lemonsqueezy/portal");
+      const data = await res.json();
+      if (data.url) {
+        window.open(data.url, "_blank");
+      } else {
+        alert(data.error || "Could not open subscription portal");
+      }
+    } catch {
+      alert("Could not connect to payment service");
+    }
+    setPortalLoading(false);
   }
 
   async function handleLogout() {
@@ -170,6 +192,69 @@ export default function AccountPage() {
               {saving ? "Saving..." : "Save Preferences"}
             </button>
             {saved && <span className="text-sm text-green-600">Saved!</span>}
+          </div>
+
+          {/* ── Subscription ── */}
+          <div className="mt-16 border-t border-gray-200 pt-8">
+            <h2 className="text-lg font-bold text-gray-900">Subscription</h2>
+            <div className="mt-4 rounded-xl border border-gray-200 p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${
+                      subscriber?.tier === "enterprise" ? "bg-purple-100 text-purple-700" :
+                      subscriber?.tier === "pro" ? "bg-blue-100 text-blue-700" :
+                      "bg-gray-100 text-gray-600"
+                    }`}>
+                      {subscriber?.tier === "enterprise" ? "Enterprise" :
+                       subscriber?.tier === "pro" ? "Pro" : "Free"}
+                    </span>
+                    {subscriber?.tier === "pro" && (
+                      <span className="text-xs text-gray-500">
+                        {subscriber?.tierExpiresAt
+                          ? `Renews ${new Date(subscriber.tierExpiresAt).toLocaleDateString()}`
+                          : "Active subscription"}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm text-gray-500">
+                    {subscriber?.tier === "pro"
+                      ? "Full access to all AI systems, unlimited chat, exports, and real-time alerts."
+                      : subscriber?.tier === "enterprise"
+                      ? "Everything in Pro plus API access, multi-seat, and dedicated support."
+                      : "Access to 5 AI systems. Upgrade to Pro for full access."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 flex gap-3">
+                {subscriber?.tier === "free" && (
+                  <a
+                    href={`/${lang}/pricing`}
+                    className="rounded-lg bg-[#003399] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#003399]/90"
+                  >
+                    Upgrade to Pro
+                  </a>
+                )}
+                {subscriber?.tier === "pro" && subscriber?.subscriptionId && (
+                  <button
+                    onClick={handleManageSubscription}
+                    disabled={portalLoading}
+                    className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+                  >
+                    {portalLoading ? "Loading..." : "Manage Billing"}
+                  </button>
+                )}
+                {subscriber?.tier === "enterprise" && (
+                  <a
+                    href={`/${lang}/contact`}
+                    className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+                  >
+                    Contact Account Manager
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* ── GDPR Controls ── */}

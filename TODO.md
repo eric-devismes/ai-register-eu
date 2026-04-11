@@ -101,7 +101,7 @@
 - [x] Wire up subscription tiers (Free / Pro / Enterprise) to LemonSqueezy checkout (2026-04-11)
 - [x] Handle webhooks for payment events (subscription created, updated, cancelled, expired, failed) (2026-04-11)
 - [ ] **LemonSqueezy configuration**: Eric to create product in LS dashboard, then set env vars on Vercel (API_KEY, STORE_ID, VARIANT_ID, WEBHOOK_SECRET)
-- [ ] **Subscription management page**: Let users view/cancel their subscription from dashboard
+- [x] **Subscription management page**: Let users view/cancel their subscription from dashboard (2026-04-11)
 
 ## Chatbot
 
