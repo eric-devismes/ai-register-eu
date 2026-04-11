@@ -48,11 +48,11 @@
 - [x] DeepSeek (enriched) (2026-04-11)
 
 ### Priority 3: Sector-Specific Systems
-- [ ] Healthcare: Tempus AI, PathAI, Paige AI, Viz.ai
-- [ ] Legal: Harvey AI, CoCounsel (Thomson Reuters)
-- [ ] Finance: Bloomberg GPT, Kensho, Ayasdi
-- [ ] Manufacturing: Siemens Industrial Copilot (enrich), Cognite, Uptake
-- [ ] HR: Eightfold AI, Beamery, Phenom
+- [x] Healthcare: Tempus AI, PathAI, Paige AI, Viz.ai (2026-04-11)
+- [x] Legal: Harvey AI, CoCounsel (Thomson Reuters) (2026-04-11)
+- [x] Finance: Bloomberg GPT, Kensho, Ayasdi/SymphonyAI (2026-04-11)
+- [~] Manufacturing: Siemens Industrial Copilot (enrich), Cognite, Uptake (2026-04-11) — Cognite + Uptake done, Siemens enrich pending
+- [x] HR: Eightfold AI, Beamery, Phenom (2026-04-11)
 
 ---
 
