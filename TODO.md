@@ -23,29 +23,29 @@
 - [x] Amazon Bedrock (2026-04-11)
 - [x] Databricks / Mosaic AI (2026-04-11)
 - [x] Snowflake Cortex AI (2026-04-11)
-- [ ] UiPath Maestro
+- [x] UiPath Maestro (2026-04-11)
 - [x] CrowdStrike Falcon AI (2026-04-11)
 - [x] Darktrace (2026-04-11)
 - [x] Palo Alto Networks Cortex XSIAM (2026-04-11)
-- [ ] Glean Enterprise Search
+- [x] Glean Enterprise Search (2026-04-11)
 
 ### Priority 2: Add Missing Major Systems
 - [ ] Cohere (enterprise LLM)
 - [ ] Adobe Firefly / Sensei
 - [ ] Zoom AI Companion
-- [ ] Slack AI
+- [x] Slack AI (2026-04-11)
 - [ ] Atlassian Intelligence
 - [ ] HubSpot AI
 - [ ] Zendesk AI
 - [ ] Freshworks Freddy AI
 - [ ] Monday.com AI
-- [ ] Canva AI
-- [ ] Figma AI
-- [ ] Grammarly Business
-- [ ] Jasper AI
-- [ ] Notion AI (enrich existing)
-- [ ] Perplexity (enrich existing)
-- [ ] DeepSeek (enrich existing)
+- [x] Canva AI (2026-04-11)
+- [x] Figma AI (2026-04-11)
+- [x] Grammarly Business (2026-04-11)
+- [x] Jasper AI (2026-04-11)
+- [x] Notion AI (enriched) (2026-04-11)
+- [x] Perplexity (enriched) (2026-04-11)
+- [x] DeepSeek (enriched) (2026-04-11)
 
 ### Priority 3: Sector-Specific Systems
 - [ ] Healthcare: Tempus AI, PathAI, Paige AI, Viz.ai
@@ -67,11 +67,11 @@
 - [ ] National AI Strategies: add more countries (Spain, Italy, Nordic, Poland)
 
 ### Add New Frameworks/Standards
-- [ ] NIS2 Directive (cybersecurity)
+- [x] NIS2 Directive (cybersecurity) (2026-04-11)
 - [ ] Data Act (data sharing obligations)
 - [ ] Digital Services Act / Digital Markets Act
-- [ ] ISO 42001 (AI management systems)
-- [ ] NIST AI RMF (US framework, global relevance)
+- [x] ISO 42001 (AI management systems) (2026-04-11)
+- [x] NIST AI RMF (US framework, global relevance) (2026-04-11)
 
 ### Cross-Framework Intelligence
 - [ ] GDPR ↔ AI Act mapping (which articles relate)
