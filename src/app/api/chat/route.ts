@@ -47,6 +47,87 @@ async function getUserProfile(subscriberId: string | null): Promise<UserProfile 
   return undefined;
 }
 
+/**
+ * Detect if a question is about the user's account, billing, or subscription.
+ */
+const ACCOUNT_PATTERNS = [
+  /\b(?:my\s+)?(?:account|subscription|billing|invoice|payment|plan|tier)\b/i,
+  /\b(?:cancel|unsubscribe|downgrade|upgrade|refund)\b/i,
+  /\b(?:mon\s+)?(?:compte|abonnement|facturation|facture|paiement|forfait)\b/i,
+  /\b(?:annuler|résilier|désabonner)\b/i,
+  /\b(?:mein\s+)?(?:konto|abonnement|rechnung|zahlung|plan)\b/i,
+  /\b(?:kündigen|abbestellen)\b/i,
+  /\bhow\s+(?:to|do\s+i)\s+(?:cancel|unsubscribe|delete|export)\b/i,
+  /\bwhat\s+(?:plan|tier)\s+am\s+i\b/i,
+  /\bdata\s+(?:export|delete|portability)\b/i,
+];
+
+function isAccountQuestion(question: string): boolean {
+  return ACCOUNT_PATTERNS.some((p) => p.test(question));
+}
+
+/**
+ * Build account context for the LLM when the user asks about their account.
+ */
+async function getAccountContext(subscriberId: string | null, locale: string): Promise<string> {
+  if (!subscriberId) {
+    return locale === "fr"
+      ? "L'utilisateur n'est pas connecté. Pour gérer un compte, il doit d'abord se connecter via la page /subscribe. Les visiteurs anonymes ont 3 questions gratuites par jour."
+      : locale === "de"
+      ? "Der Benutzer ist nicht angemeldet. Zur Kontoverwaltung muss er sich unter /subscribe anmelden. Anonyme Besucher haben 3 kostenlose Fragen pro Tag."
+      : "The user is not logged in. To manage an account, they need to log in via the /subscribe page. Anonymous visitors get 3 free questions per day.";
+  }
+
+  try {
+    const sub = await prisma.subscriber.findUnique({
+      where: { id: subscriberId },
+      select: {
+        email: true,
+        name: true,
+        tier: true,
+        stripeSubscriptionId: true,
+        tierExpiresAt: true,
+        digestEnabled: true,
+        digestFrequency: true,
+        consentDate: true,
+        createdAt: true,
+      },
+    });
+
+    if (!sub) return "User account not found.";
+
+    const tierLabels: Record<string, string> = {
+      free: "Free (3 questions/day, basic access)",
+      pro: "Pro €49/month (unlimited questions, full access, CSV exports)",
+      enterprise: "Enterprise €149/month (unlimited, API access, priority support)",
+    };
+
+    return [
+      `ACCOUNT INFO FOR THIS USER:`,
+      `Email: ${sub.email}`,
+      `Name: ${sub.name || "Not set"}`,
+      `Plan: ${tierLabels[sub.tier || "free"] || sub.tier}`,
+      sub.stripeSubscriptionId ? `Subscription active (managed via payment provider)` : `No active paid subscription`,
+      sub.tierExpiresAt ? `Expires: ${sub.tierExpiresAt.toISOString().split("T")[0]}` : "",
+      `Member since: ${sub.createdAt.toISOString().split("T")[0]}`,
+      `Digest: ${sub.digestEnabled ? `Enabled (${sub.digestFrequency})` : "Disabled"}`,
+      "",
+      "SELF-SERVICE ACTIONS THE USER CAN TAKE:",
+      "- View/edit profile and preferences: /account",
+      "- Export all personal data (GDPR Art. 20): /api/account/export",
+      "- Delete account permanently (GDPR Art. 17): available in /account settings",
+      "- Manage subscription/billing: click 'Subscription' in the profile menu",
+      "- Upgrade plan: /pricing",
+      "- Cancel subscription: via the LemonSqueezy customer portal (link in /account)",
+      "- Unsubscribe from digest emails: toggle in /account preferences",
+      "",
+      "IMPORTANT: Never share the user's email or personal data in the response. Refer to their plan/tier and guide them to the right page.",
+    ].filter(Boolean).join("\n");
+  } catch {
+    return "Unable to load account information. Please try again or visit /account directly.";
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -111,8 +192,12 @@ export async function POST(request: Request) {
     }
 
     // Step 3: RAG retrieval + user profile lookup (run in parallel)
+    // If the question is about the user's account, inject account context instead of RAG
+    const isAccount = isAccountQuestion(guard.sanitised!);
     const [context, userProfile] = await Promise.all([
-      retrieveContext(guard.sanitised!),
+      isAccount
+        ? getAccountContext(subId, locale)
+        : retrieveContext(guard.sanitised!),
       getUserProfile(subId),
     ]);
 
