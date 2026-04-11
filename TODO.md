@@ -91,7 +91,7 @@
 - [x] **Business Case Generator**: ROI/TCO business cases with 9 sections, Pro+ tier gate (2026-04-11)
 - [x] **RFI/RFP Answer Engine**: paste up to 20 questions, select AI systems, get AI-generated draft answers. Enterprise tier gate. (2026-04-11)
 - [x] **Podium Recommendations**: Gold/Silver/Bronze top-3 AI system picker with fit scoring, strengths/weaknesses, risk flags. Pro+ tier gate. (2026-04-11)
-- [ ] **Vendor Discussion Prep**: generate talking points, negotiation leverage, and red-flag questions for procurement team meetings with vendors
+- [x] **Vendor Discussion Prep**: talking points per attendee role, negotiation leverage, red flags, compliance checklist, follow-up actions. Pro+ tier gate. (2026-04-11)
 
 ---
 
