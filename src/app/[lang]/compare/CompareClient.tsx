@@ -539,6 +539,15 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
             </div>
             <div className="flex gap-3">
               <button
+                onClick={() => {
+                  const slugs = compareData.systems.map((s: CompareSystem) => s.slug).join(",");
+                  window.open(`/api/export?compare=${slugs}`, "_blank");
+                }}
+                className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
+              >
+                Export CSV
+              </button>
+              <button
                 onClick={() => setPhase("matches")}
                 className="rounded-xl border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
               >
