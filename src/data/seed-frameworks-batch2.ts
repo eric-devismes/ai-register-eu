@@ -76,6 +76,8 @@ This is the critical article for AI procurement:
 - Include security requirements in AI vendor contracts
 - Monitor supply chain risks continuously
 - Evaluate dependencies on non-EU AI providers
+- Maintain **Software Bill of Materials (SBOM)** for visibility into AI tool components
+- Map suppliers and sub-suppliers with access to critical data
 
 **3. Incident Handling (Article 23)**
 Strict reporting timelines for significant incidents:
@@ -99,7 +101,7 @@ Strict reporting timelines for significant incidents:
 **Essential entities**: Up to €10,000,000 or 2% of global annual turnover (whichever is higher)
 **Important entities**: Up to €7,000,000 or 1.4% of global annual turnover (whichever is higher)
 
-Management bodies can be held **personally liable** and temporarily banned from exercising management functions (Article 32(5)).
+Management bodies can be held **personally liable** if gross negligence is proven after a cyber incident. For essential entities, individuals can be **temporarily banned from holding management positions** in case of repeated violations (Article 34).
 
 ### Implementation Timeline
 
@@ -108,7 +110,13 @@ Management bodies can be held **personally liable** and temporarily banned from 
 - **17 April 2025**: Member states must establish list of essential/important entities
 - **17 October 2027**: Commission reviews the directive
 
-**Status (April 2026)**: Most member states have transposed NIS2 into national law. Some delays in implementation acts for specific sectors. National CSIRTs are operational.
+**Status (April 2026)**: Mixed transposition progress. In May 2025, the European Commission sent reasoned opinions to **19 member states** for failing to fully transpose NIS2. As of 2026:
+- **Operational** (Level 4): Belgium, Germany, Italy, Hungary, Greece, Czech Republic, Slovakia, Slovenia, Latvia, Lithuania, Croatia
+- **Bills passed** (Level 3): Sweden, Denmark, Austria, Portugal, Malta, Finland, Estonia, Romania, Cyprus
+- **Drafting** (Level 2): Luxembourg, France, Spain, Netherlands, Poland, Bulgaria
+- **Early stage** (Level 1): Ireland, Norway
+
+Estimated **160,000+ entities** across the EU are in scope.
 
 ### NIS2 ↔ DORA Overlap
 
