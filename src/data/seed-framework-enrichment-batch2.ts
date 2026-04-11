@@ -201,6 +201,56 @@ const policyStatements = [
     ],
   },
 
+  // ── DORA: Vendor Assessment Template ─────────────────────
+  {
+    frameworkSlug: "dora",
+    sectionTitle: "AI Vendor Assessment Template (Article 28-30)",
+    statements: [
+      {
+        statement:
+          "Before entering into a contractual arrangement with an ICT third-party service provider, financial entities shall assess whether the arrangement covers the use of ICT services supporting critical or important functions, and if so, apply enhanced due diligence requirements.",
+        commentary:
+          "Article 28(1) requires a risk-based assessment before procurement. For AI vendors: classify each AI tool as supporting critical/important functions or not. Critical functions include: customer-facing decision systems, fraud detection, credit scoring, AML, and core banking. AI tools supporting these require the full DORA vendor assessment.",
+        sortOrder: 1,
+      },
+      {
+        statement:
+          "Contractual arrangements with ICT third-party providers supporting critical or important functions shall include: (a) clear descriptions of all functions and services; (b) quantitative and qualitative performance targets; (c) notice periods and reporting obligations for incidents; (d) business continuity measures; (e) termination rights and exit strategies.",
+        commentary:
+          "Article 30(2) mandates specific contractual clauses. AI vendor contract checklist: 1) Define AI service scope with measurable SLAs (uptime, latency, accuracy). 2) Set performance benchmarks with consequences for underperformance. 3) Require incident notification within 24 hours. 4) Document failover and disaster recovery for AI-dependent processes. 5) Include exit provisions with minimum 6-month transition support and data return in standard formats.",
+        sortOrder: 2,
+      },
+      {
+        statement:
+          "Financial entities shall ensure the right to access, inspect, and audit the ICT third-party service provider, and shall agree on the exercise of those rights in the contractual arrangement.",
+        commentary:
+          "Article 30(3)(e) establishes audit rights. For AI vendors: negotiate the right to audit AI model performance, data handling practices, and security controls. Include: on-site inspection rights (or pooled audit arrangements), access to SOC 2/ISO 27001 reports, right to commission third-party penetration testing, and access to AI model performance metrics. Pooled audits (multiple customers sharing one audit) are explicitly permitted to reduce vendor burden.",
+        sortOrder: 3,
+      },
+      {
+        statement:
+          "Contractual arrangements shall include provisions on data access, recovery, and return in the event of insolvency, resolution, or discontinuation of operations of the ICT third-party service provider.",
+        commentary:
+          "Article 30(2)(g) addresses worst-case scenarios. For AI vendors: ensure your contract covers: data return within 30 days of termination, data format requirements (standard, machine-readable), escrow arrangements for critical AI models, and transition plans if the vendor fails. This is especially critical for AI vendors — if your fraud detection AI vendor goes bankrupt, you need your data and model configurations back immediately.",
+        sortOrder: 4,
+      },
+      {
+        statement:
+          "Financial entities shall maintain and update a register of information on all contractual arrangements with ICT third-party service providers, distinguishing between those supporting critical or important functions and those that do not.",
+        commentary:
+          "Article 28(3) requires a central register. Build an AI vendor register that includes: vendor name and jurisdiction, services provided, criticality classification, contract details (start/end, renewal terms), subcontractor chains, data processing locations, incident history, and last audit date. This register must be available to competent authorities on request. Update it whenever you add or change an AI vendor.",
+        sortOrder: 5,
+      },
+      {
+        statement:
+          "Financial entities shall assess the concentration risk arising from ICT third-party service provider arrangements, considering the substitutability of the provider, the potential impact of disruptions, and the provider's systemic importance.",
+        commentary:
+          "Article 29 addresses concentration risk — critical for AI. If all your AI tools run on one cloud provider (e.g., Azure) or use one model provider (e.g., OpenAI), you have concentration risk. Assessment checklist: 1) Map all AI vendors to their underlying infrastructure providers. 2) Identify single points of failure. 3) Evaluate substitutability — can you switch within 30 days? 4) Consider geographic concentration — are all vendors US-based? 5) Document mitigation strategies (multi-cloud, multi-model approaches).",
+        sortOrder: 6,
+      },
+    ],
+  },
+
   // ── Cross-Framework: DORA ↔ NIS2 Overlap ────────────────
   {
     frameworkSlug: "nis2",

@@ -61,7 +61,7 @@
 ### Deepen Existing Frameworks
 - [x] EU AI Act: add 2025-2026 enforcement timeline, prohibited practices detail (2026-04-11)
 - [x] GDPR: add practical procurement compliance checklist (2026-04-11)
-- [ ] DORA: add vendor assessment template guidance
+- [x] DORA: add vendor assessment template guidance (2026-04-11)
 - [ ] EBA/EIOPA: add model risk management deep-dive
 - [ ] MDR/IVDR: add SaMD classification decision tree
 - [ ] National AI Strategies: add more countries (Spain, Italy, Nordic, Poland)
