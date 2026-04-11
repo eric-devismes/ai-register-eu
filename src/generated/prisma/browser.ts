@@ -127,6 +127,17 @@ export type ChatLog = Prisma.ChatLogModel
  */
 export type Feedback = Prisma.FeedbackModel
 /**
+ * Model ExpertDiscussion
+ * A discussion thread where domain experts debate a topic.
+ * The CEO (user) receives the summary via Telegram and makes the call.
+ */
+export type ExpertDiscussion = Prisma.ExpertDiscussionModel
+/**
+ * Model ExpertResponse
+ * An individual expert's response within a discussion.
+ */
+export type ExpertResponse = Prisma.ExpertResponseModel
+/**
  * Model ApprovedSource
  * Admin-curated external source URLs the chatbot can reference.
  */

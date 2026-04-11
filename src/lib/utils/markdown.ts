@@ -21,7 +21,7 @@ export function renderMarkdownInline(content: string): ReactNode[] {
       return createElement("a", {
         key: i,
         href: linkMatch[2],
-        className: "font-semibold text-[#003399] underline hover:text-[#002277]",
+        className: "font-semibold text-[#ffc107] underline hover:text-[#ffe082]",
       }, linkMatch[1]);
     }
     // Bold: **text**

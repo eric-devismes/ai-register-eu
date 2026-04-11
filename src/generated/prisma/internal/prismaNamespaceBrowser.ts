@@ -68,6 +68,8 @@ export const ModelName = {
   ChatUsage: 'ChatUsage',
   ChatLog: 'ChatLog',
   Feedback: 'Feedback',
+  ExpertDiscussion: 'ExpertDiscussion',
+  ExpertResponse: 'ExpertResponse',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -383,6 +385,36 @@ export const FeedbackScalarFieldEnum = {
 } as const
 
 export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
+
+
+export const ExpertDiscussionScalarFieldEnum = {
+  id: 'id',
+  topic: 'topic',
+  context: 'context',
+  status: 'status',
+  consensus: 'consensus',
+  summary: 'summary',
+  ceoDecision: 'ceoDecision',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpertDiscussionScalarFieldEnum = (typeof ExpertDiscussionScalarFieldEnum)[keyof typeof ExpertDiscussionScalarFieldEnum]
+
+
+export const ExpertResponseScalarFieldEnum = {
+  id: 'id',
+  discussionId: 'discussionId',
+  expertId: 'expertId',
+  expertName: 'expertName',
+  emoji: 'emoji',
+  round: 'round',
+  response: 'response',
+  position: 'position',
+  createdAt: 'createdAt'
+} as const
+
+export type ExpertResponseScalarFieldEnum = (typeof ExpertResponseScalarFieldEnum)[keyof typeof ExpertResponseScalarFieldEnum]
 
 
 export const ApprovedSourceScalarFieldEnum = {

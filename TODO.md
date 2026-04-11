@@ -154,9 +154,11 @@
 
 ## Newsfeed & Content Pipeline
 
-- [ ] **Automated News Monitoring System**: Continuously monitor EU AI regulatory news sources (EU Official Journal, national DPAs, ENISA, EDPB, major tech press) and auto-ingest into the newsfeed. Pipeline: scrape/fetch → summarize → classify (regulation, enforcement, guidance, industry) → tag relevant frameworks/systems → publish to newsfeed. Could use scheduled tasks + LLM summarization.
-- [ ] **News Source Configuration**: Define curated list of authoritative sources (RSS feeds, API endpoints, web pages to monitor)
-- [ ] **Auto-tagging & Classification**: LLM-powered tagging of news items with relevant regulations, AI systems, industries, and severity/impact level
+- [x] **Automated News Monitoring System**: 27 RSS sources + Grok/xAI Twitter scanner. Pipeline: fetch → keyword filter → dedup → LLM classify → ingest. Admin dashboard at /admin/news-monitor. (2026-04-11)
+- [x] **News Source Configuration**: 27 sources — EU official (EUR-Lex, EDPB, ENISA, EC), DPAs (CNIL, BfDI, AEPD, ICO, Garante), standards (ISO, NIST), vendors (OpenAI, Anthropic, Google, Microsoft, Mistral, Meta, AWS, Salesforce, IBM), press (Euractiv, IAPP, TechCrunch, Wired, Reuters, AI Act Blog). (2026-04-11)
+- [x] **Auto-tagging & Classification**: LLM classifies relevance 0-100, assigns changeType, tags frameworks + AI systems, generates plain-language actionable summaries. (2026-04-11)
+- [x] **Grok/xAI Twitter Scanner**: Attempted but disabled — Grok produces hallucinated URLs and unverifiable content even with x_search grounding. (2026-04-11)
+- [ ] **Review news sourcing strategy**: Audit current 27 RSS sources (are they the right ones?), review automation quality, evaluate Perplexity API as alternative to Grok for real-time social/web intelligence. Perplexity has grounded search with citations that actually work.
 
 ---
 
@@ -168,6 +170,8 @@
 - (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — DONE: Audited, 4 essential cookies only, no tracking.
 - (2026-04-11) "i can think of getting domain name send email to people to register, connect to lemonfizzy as next steps" — Eric's next steps: (1) Get/configure domain name, (2) Send launch emails to get registrations, (3) Connect LemonSqueezy for payments
 - (2026-04-11) "also need a system to continuously monitor news and feed the news feed" — Automated news monitoring + ingestion pipeline for the newsfeed
+- (2026-04-11) "At the bottom of the home page, there are 2 sections with disclaimer. I'd prefer it to be consolidated in 1 section with 2 disclaimers" — Merge footer disclaimers into one section, both with icon+title format
+- (2026-04-11) "blue on grey is not visible. Use a visible color" — Chatbot response links are blue on dark navy background, nearly invisible. Fix link color to something visible (gold, white, light blue).
 
 ---
 

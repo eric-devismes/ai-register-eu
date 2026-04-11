@@ -401,6 +401,8 @@ export const ModelName = {
   ChatUsage: 'ChatUsage',
   ChatLog: 'ChatLog',
   Feedback: 'Feedback',
+  ExpertDiscussion: 'ExpertDiscussion',
+  ExpertResponse: 'ExpertResponse',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -417,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "adminUser" | "company" | "case" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "feedback" | "approvedSource"
+    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "adminUser" | "company" | "case" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "feedback" | "expertDiscussion" | "expertResponse" | "approvedSource"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1679,6 +1681,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ExpertDiscussion: {
+      payload: Prisma.$ExpertDiscussionPayload<ExtArgs>
+      fields: Prisma.ExpertDiscussionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExpertDiscussionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExpertDiscussionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        findFirst: {
+          args: Prisma.ExpertDiscussionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExpertDiscussionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        findMany: {
+          args: Prisma.ExpertDiscussionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>[]
+        }
+        create: {
+          args: Prisma.ExpertDiscussionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        createMany: {
+          args: Prisma.ExpertDiscussionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExpertDiscussionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>[]
+        }
+        delete: {
+          args: Prisma.ExpertDiscussionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        update: {
+          args: Prisma.ExpertDiscussionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ExpertDiscussionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExpertDiscussionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExpertDiscussionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ExpertDiscussionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertDiscussionPayload>
+        }
+        aggregate: {
+          args: Prisma.ExpertDiscussionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExpertDiscussion>
+        }
+        groupBy: {
+          args: Prisma.ExpertDiscussionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertDiscussionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExpertDiscussionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertDiscussionCountAggregateOutputType> | number
+        }
+      }
+    }
+    ExpertResponse: {
+      payload: Prisma.$ExpertResponsePayload<ExtArgs>
+      fields: Prisma.ExpertResponseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExpertResponseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExpertResponseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        findFirst: {
+          args: Prisma.ExpertResponseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExpertResponseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        findMany: {
+          args: Prisma.ExpertResponseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>[]
+        }
+        create: {
+          args: Prisma.ExpertResponseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        createMany: {
+          args: Prisma.ExpertResponseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExpertResponseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>[]
+        }
+        delete: {
+          args: Prisma.ExpertResponseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        update: {
+          args: Prisma.ExpertResponseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        deleteMany: {
+          args: Prisma.ExpertResponseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExpertResponseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExpertResponseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>[]
+        }
+        upsert: {
+          args: Prisma.ExpertResponseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertResponsePayload>
+        }
+        aggregate: {
+          args: Prisma.ExpertResponseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExpertResponse>
+        }
+        groupBy: {
+          args: Prisma.ExpertResponseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertResponseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExpertResponseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertResponseCountAggregateOutputType> | number
+        }
+      }
+    }
     ApprovedSource: {
       payload: Prisma.$ApprovedSourcePayload<ExtArgs>
       fields: Prisma.ApprovedSourceFieldRefs
@@ -2090,6 +2240,36 @@ export const FeedbackScalarFieldEnum = {
 export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
 
 
+export const ExpertDiscussionScalarFieldEnum = {
+  id: 'id',
+  topic: 'topic',
+  context: 'context',
+  status: 'status',
+  consensus: 'consensus',
+  summary: 'summary',
+  ceoDecision: 'ceoDecision',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpertDiscussionScalarFieldEnum = (typeof ExpertDiscussionScalarFieldEnum)[keyof typeof ExpertDiscussionScalarFieldEnum]
+
+
+export const ExpertResponseScalarFieldEnum = {
+  id: 'id',
+  discussionId: 'discussionId',
+  expertId: 'expertId',
+  expertName: 'expertName',
+  emoji: 'emoji',
+  round: 'round',
+  response: 'response',
+  position: 'position',
+  createdAt: 'createdAt'
+} as const
+
+export type ExpertResponseScalarFieldEnum = (typeof ExpertResponseScalarFieldEnum)[keyof typeof ExpertResponseScalarFieldEnum]
+
+
 export const ApprovedSourceScalarFieldEnum = {
   id: 'id',
   url: 'url',
@@ -2305,6 +2485,8 @@ export type GlobalOmitConfig = {
   chatUsage?: Prisma.ChatUsageOmit
   chatLog?: Prisma.ChatLogOmit
   feedback?: Prisma.FeedbackOmit
+  expertDiscussion?: Prisma.ExpertDiscussionOmit
+  expertResponse?: Prisma.ExpertResponseOmit
   approvedSource?: Prisma.ApprovedSourceOmit
 }
 

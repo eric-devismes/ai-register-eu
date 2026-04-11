@@ -426,6 +426,42 @@ model Feedback {
   updatedAt DateTime @updatedAt
 }
 
+// ─── Expert Panel (Advisory Board) ──────────────────────────
+
+/// A discussion thread where domain experts debate a topic.
+/// The CEO (user) receives the summary via Telegram and makes the call.
+model ExpertDiscussion {
+  id          String           @id @default(cuid())
+  topic       String                                   // The question being discussed
+  context     String           @default("")            // Additional context provided
+  status      String           @default("in_progress") // "in_progress", "awaiting_ceo", "decided", "closed"
+  consensus   Boolean          @default(false)         // Did experts reach consensus?
+  summary     String           @default("")            // AI-generated meeting summary
+  ceoDecision String           @default("")            // CEO's final decision text
+  responses   ExpertResponse[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+/// An individual expert's response within a discussion.
+model ExpertResponse {
+  id           String           @id @default(cuid())
+  discussionId String
+  discussion   ExpertDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  expertId     String                                   // "cto", "ciso", "dpo", etc.
+  expertName   String                                   // Display name: "CTO", "CISO"
+  emoji        String           @default("")            // "🔧", "🛡️", etc.
+  round        Int              @default(1)             // 1 = initial take, 2 = rebuttal
+  response     String                                   // The expert's actual response
+  position     String           @default("neutral")     // "agree", "disagree", "concern", "neutral"
+  createdAt    DateTime         @default(now())
+
+  @@index([discussionId])
+}
+
 /// Admin-curated external source URLs the chatbot can reference.
 model ApprovedSource {
   id          String   @id @default(cuid())
