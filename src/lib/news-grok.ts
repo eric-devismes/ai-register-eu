@@ -71,6 +71,37 @@ const SEARCH_TOPICS = [
   "foundation model regulation GPAI",
 ];
 
+// ─── URL Sanitization ──────────────────────────────────
+// Grok hallucinate tweet IDs. This function catches fake URLs and
+// replaces them with real X search links that will actually work.
+
+function sanitizeGrokUrl(url: string, sourceLabel: string, title: string): string {
+  if (!url) return "";
+
+  // Detect hallucinated tweet URLs: x.com/user/status/digits or twitter.com/user/status/digits
+  const tweetPattern = /^https?:\/\/(x\.com|twitter\.com)\/\w+\/status\/\d+/i;
+  if (tweetPattern.test(url)) {
+    // Extract username from sourceLabel (e.g., "X/@CNIL" → "CNIL")
+    const userMatch = sourceLabel?.match(/@(\w+)/);
+    const username = userMatch ? userMatch[1] : "";
+
+    // Build a search URL using key terms from the title
+    const keywords = title
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .slice(0, 4)
+      .join(" ");
+
+    const query = username
+      ? `from:${username} ${keywords}`
+      : keywords;
+
+    return `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
+  }
+
+  return url;
+}
+
 // ─── Grok API Call ─────────────────────────────────────
 
 async function queryGrok(apiKey: string): Promise<GrokNewsItem[]> {
@@ -94,8 +125,11 @@ FOR EACH NEWS ITEM, return a JSON object with:
   * Examples of the tone I want:
     "France's CNIL just fined a recruitment platform €15M for letting AI reject candidates without human review. If your company uses automated screening in the EU, this is the precedent that should keep you up at night."
     "Quietly, the EU AI Office published its first compliance templates for high-risk systems. Voluntary for now — but expect them to become the yardstick auditors measure you against."
-- sourceUrl: The tweet URL (https://x.com/user/status/ID) or linked article URL
-- sourceLabel: "X/@username" or the publication name
+- sourceUrl: IMPORTANT — Do NOT fabricate tweet URLs. LLMs hallucinate tweet IDs. Instead:
+  * If the tweet links to an external article, return that article's URL
+  * If there is no external link, return an X search URL like: https://x.com/search?q=from%3Ausername%20keyword&f=live
+  * NEVER return a made-up x.com/user/status/ID — those will 404
+- sourceLabel: "X/@username" format (e.g. "X/@CNIL", "X/@OpenAI")
 - changeType: One of "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
 - relevance: 0-100 (significance for EU AI compliance)
 - frameworks: Slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001
@@ -148,7 +182,13 @@ Return ONLY a valid JSON array. No markdown, no explanation.`;
 
   try {
     const items = JSON.parse(jsonMatch[0]) as GrokNewsItem[];
-    return items.filter((item) => item.relevance >= 50 && item.title && item.summary);
+    return items
+      .filter((item) => item.relevance >= 50 && item.title && item.summary)
+      .map((item) => ({
+        ...item,
+        // Safety net: replace likely-hallucinated tweet URLs with search URLs
+        sourceUrl: sanitizeGrokUrl(item.sourceUrl, item.sourceLabel, item.title),
+      }));
   } catch (err) {
     console.warn("[grok-scanner] Failed to parse Grok JSON:", (err as Error).message);
     return [];
