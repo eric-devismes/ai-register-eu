@@ -146,8 +146,18 @@
 - [ ] When agents disagree, user decides as CEO via Telegram response
 - [ ] Domains: Technology, Security, Data/Privacy, Risk/Compliance, Operations, Procurement, HR/Change, Finance, Legal, Project Delivery, Business Stakeholders
 
+## Admin Panel
+
+- [~] **Redesign admin customer management**: Merge Companies and Subscribers into one page with 2 tabs: "Customer Users" and "Companies". Companies = enterprise subscribers. Drill down from company to see its users. Add ability to manually edit customer/user records.
+- [ ] **Admin: inline record editing**: Edit subscriber fields (name, email, tier, role, industry) directly from the admin panel
+- [ ] **Admin: company drill-down**: Click a company to see all users belonging to it, manage company-level settings
+
 ## Ideas Inbox
 > Add new ideas here — will be triaged into the sections above
+> Every user message is captured here immediately.
+
+- (2026-04-11) "everytime i say something, add it to the todo immediately" — Standing rule: capture all user messages as TODO items instantly
+- (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — Investigate: does the site actually set cookies? If so, which ones? Audit cookie usage and update footer/privacy accordingly.
 
 ---
 
