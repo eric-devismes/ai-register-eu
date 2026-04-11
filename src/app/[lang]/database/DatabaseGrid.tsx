@@ -11,6 +11,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { gradeColor } from "@/lib/scoring";
+import { Tooltip } from "@/components/ui/Tooltip";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 interface Score {
@@ -40,6 +41,37 @@ const RISK_COLORS: Record<string, string> = {
   High: "bg-red-100 text-red-700 border-red-200",
   Limited: "bg-amber-100 text-amber-700 border-amber-200",
   Minimal: "bg-green-100 text-green-700 border-green-200",
+};
+
+const RISK_TOOLTIPS: Record<string, { short: string; detail: string }> = {
+  High: {
+    short: "EU AI Act: High-Risk Category",
+    detail:
+      "This AI system operates in a use-case category classified as 'high-risk' by the EU AI Act (e.g., credit scoring, recruitment, medical devices, law enforcement). This does NOT mean the vendor is non-compliant — it means the system must meet stricter requirements: risk management, data governance, human oversight, transparency, and conformity assessment. A high-risk system can still score A+ on compliance.",
+  },
+  Limited: {
+    short: "EU AI Act: Limited Risk",
+    detail:
+      "This AI system falls under the 'limited risk' category of the EU AI Act. It has transparency obligations — users must be informed they are interacting with AI (e.g., chatbots, content generation). Fewer requirements than high-risk, but the vendor must still ensure transparency and user awareness.",
+  },
+  Minimal: {
+    short: "EU AI Act: Minimal Risk",
+    detail:
+      "This AI system is classified as 'minimal risk' under the EU AI Act. No specific regulatory requirements apply beyond existing laws. Most AI systems fall in this category (e.g., spam filters, recommendation engines). Voluntary codes of conduct may apply.",
+  },
+};
+
+const SCORE_TOOLTIPS: Record<string, string> = {
+  "A+": "Excellent — exceeds requirements with best-in-class practices",
+  A: "Very good — strong compliance with minor gaps",
+  "A-": "Good — solid compliance, some areas for improvement",
+  "B+": "Above average — meets most requirements with notable gaps",
+  B: "Average — meets baseline requirements",
+  "B-": "Below average — meets minimum but with significant gaps",
+  "C+": "Needs improvement — partial compliance only",
+  C: "Weak — major compliance gaps identified",
+  "C-": "Poor — significant regulatory risk",
+  D: "Failing — does not meet basic requirements",
 };
 
 function LockIcon() {
@@ -160,15 +192,27 @@ export function DatabaseGrid({
                       )}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[s.risk] || RISK_COLORS.High}`}>
-                        {s.risk}
-                      </span>
+                      <Tooltip
+                        text={RISK_TOOLTIPS[s.risk]?.short || "EU AI Act Risk Level"}
+                        detail={RISK_TOOLTIPS[s.risk]?.detail}
+                        clickable
+                        position="bottom"
+                      >
+                        <span className={`inline-block cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[s.risk] || RISK_COLORS.High}`}>
+                          {s.risk} ⓘ
+                        </span>
+                      </Tooltip>
                     </td>
                     <td className="px-6 py-4">
                       {accessible ? (
-                        <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${gradeColor(s.overallScore)}`}>
-                          {s.overallScore}
-                        </span>
+                        <Tooltip
+                          text={`Overall: ${s.overallScore} — ${SCORE_TOOLTIPS[s.overallScore] || "Average across all frameworks"}`}
+                          position="bottom"
+                        >
+                          <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white cursor-help ${gradeColor(s.overallScore)}`}>
+                            {s.overallScore}
+                          </span>
+                        </Tooltip>
                       ) : (
                         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-400">
                           ?
@@ -180,9 +224,14 @@ export function DatabaseGrid({
                         <div className="flex gap-2">
                           {s.scores.slice(0, 4).map((sc) => (
                             <div key={sc.frameworkName} className="flex flex-col items-center gap-0.5">
-                              <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white ${gradeColor(sc.score)}`}>
-                                {sc.score}
-                              </span>
+                              <Tooltip
+                                text={`${sc.frameworkName}: ${sc.score} — ${SCORE_TOOLTIPS[sc.score] || "Assessment score"}`}
+                                position="bottom"
+                              >
+                                <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white cursor-help ${gradeColor(sc.score)}`}>
+                                  {sc.score}
+                                </span>
+                              </Tooltip>
                               <span className="text-[9px] text-gray-400 max-w-[48px] truncate">{sc.frameworkName}</span>
                             </div>
                           ))}

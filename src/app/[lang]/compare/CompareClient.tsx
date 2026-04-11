@@ -100,9 +100,19 @@ function RiskBadge({ risk }: { risk: string }) {
   const color = risk === "High" ? "bg-red-100 text-red-700 border-red-200"
     : risk === "Limited" ? "bg-amber-100 text-amber-700 border-amber-200"
     : "bg-green-100 text-green-700 border-green-200";
+
+  const explanations: Record<string, string> = {
+    High: "EU AI Act classifies this use-case category as high-risk (e.g., credit scoring, recruitment). This reflects the use case, not the vendor's compliance quality.",
+    Limited: "EU AI Act limited risk — transparency obligations apply (e.g., users must know they're interacting with AI).",
+    Minimal: "EU AI Act minimal risk — no specific regulatory requirements beyond existing laws.",
+  };
+
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${color}`}>
-      {risk} Risk
+    <span
+      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border cursor-help ${color}`}
+      title={explanations[risk] || "EU AI Act risk classification"}
+    >
+      {risk} Risk ⓘ
     </span>
   );
 }
