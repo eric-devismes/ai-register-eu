@@ -279,7 +279,7 @@ const systems = [
       "Monthly/annual subscriptions. Design exports available. No lock-in on content (export in standard formats). Template and brand kit migration manual.",
     ipTerms:
       "Customer retains IP in designs. AI-generated content: Canva grants commercial use rights. Third-party stock content follows license terms.",
-    certifications: "SOC 2 Type II. ISO 27001. GDPR compliant.",
+    certifications: "SOC 2 Type II. ISO 27001. GDPR compliant. Canva Shield provides AI indemnification for IP claims at no extra cost for Enterprise (100+ seats).",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit. No customer-managed keys.",
     accessControls:
       "SSO (SAML 2.0) for Enterprise tier. SCIM provisioning. Basic RBAC. Admin console with usage analytics.",
@@ -341,11 +341,11 @@ const systems = [
       "Export as PNG, SVG, PDF. Figma file format (.fig) exportable. REST API for programmatic access. No full bulk migration tool to competitors.",
     exitTerms: "Annual contracts for Enterprise. File export in standard formats. Design files are portable.",
     ipTerms: "Customer retains all IP in designs. AI-generated suggestions are derivative works covered by customer's license.",
-    certifications: "SOC 2 Type II. ISO 27001. GDPR compliant. Annual penetration testing.",
+    certifications: "SOC 2 Type II. SOC 3. ISO 27001. C5 (German BSI — significant for EU procurement). GDPR compliant. Annual penetration testing.",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit. SSE for stored files.",
     accessControls:
       "SAML 2.0 SSO. SCIM provisioning. Organization-level admin controls. Audit logs. MFA. Guest access controls.",
-    modelDocs: "Limited AI model documentation. Feature-level descriptions available. No formal model cards.",
+    modelDocs: "Limited AI model documentation. AI features run on a credit system with monthly caps — heavy AI usage requires purchasing additional credit packs ($120-240/mo). Feature-level descriptions available.",
     explainability: "AI suggestions are interactive — designers can accept, modify, or reject. No formal explainability framework.",
     biasTesting: "No public bias audit reports. Design suggestions based on design patterns.",
     aiActStatus:
@@ -402,7 +402,7 @@ const systems = [
     exitTerms: "Annual contracts for Business/Enterprise. No lock-in on content. User data deletion upon request.",
     ipTerms: "Customer retains all IP in text content. AI suggestions are ephemeral. Grammarly retains IP in models and algorithms.",
     certifications:
-      "SOC 2 Type II (Security, Availability). ISO 27001:2013. HIPAA compliant. GDPR compliant. Annual third-party audits.",
+      "SOC 2 Type II (Security, Availability). ISO 27001. ISO 27017. HIPAA compliant. EU-US Data Privacy Framework certified. CCPA compliant. GDPR compliant. Annual third-party audits.",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit. SSE for stored data.",
     accessControls:
       "SAML 2.0 SSO (Enterprise). SCIM provisioning. Admin console with team management. Usage analytics. MFA. Domain-level controls.",
@@ -516,14 +516,14 @@ const systems = [
     dataProcessing:
       "Notion AI uses third-party LLMs (Anthropic Claude) for inference. Enterprise: EU data processing available. Notion states AI features do not use customer data for model training.",
     trainingDataUse:
-      "Customer data NOT used for AI model training. Explicitly stated in privacy policy. AI responses generated in real-time without data retention for training.",
+      "Customer data NOT used for AI model training. Enterprise workspaces: zero data retention by LLM providers. Non-Enterprise: 30-day data retention by LLM providers. AI responses generated in real-time.",
     subprocessors: "AWS (infrastructure). Anthropic (AI provider). Published subprocessor list.",
     dpaDetails: "DPA available. GDPR compliance. EU SCCs. Privacy documentation.",
     slaDetails: "Enterprise: 99.9% uptime SLA. Business: best-effort.",
     dataPortability: "Export to Markdown, CSV, PDF. API access for data extraction. Notion → competitor migration tools available (community-built).",
     exitTerms: "Annual contracts for Enterprise. Full data export available. Content portable in standard formats.",
     ipTerms: "Customer retains all IP in workspace content. AI-generated content covered by customer's license.",
-    certifications: "SOC 2 Type II. ISO 27001. GDPR compliant. HIPAA (Enterprise). Annual penetration testing.",
+    certifications: "SOC 2 Type II. ISO 27001. ISO 27701 (privacy). ISO 27017. ISO 27018. GDPR compliant (DPO appointed). HIPAA (Enterprise). Annual penetration testing.",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit. No customer-managed keys.",
     accessControls: "SAML 2.0 SSO. SCIM provisioning. Admin console. Audit logs. MFA. Domain management. Space permissions.",
     modelDocs: "Notion AI uses Anthropic Claude — model documentation available via Anthropic. Notion AI feature documentation published.",
@@ -580,14 +580,14 @@ const systems = [
     dataPortability: "Search history exportable. No lock-in on research outputs (text-based). API access for Enterprise.",
     exitTerms: "Monthly/annual subscriptions. No significant lock-in.",
     ipTerms: "User retains rights to research outputs. Citations reference original sources.",
-    certifications: "SOC 2 Type II (achieved 2024). Growing certification portfolio. Annual security audits.",
+    certifications: "SOC 2 Type II (achieved 2024). PCI DSS. GDPR self-declared (NOT independently audited — weaker than competitors). Growing certification portfolio.",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit. Data isolation for Enterprise.",
     accessControls: "SSO (SAML 2.0) for Enterprise. Admin console. Usage analytics. Team management.",
     modelDocs: "Perplexity uses a mix of proprietary and third-party models. Model selection documentation limited. Answer sources always cited.",
     explainability: "All answers include inline citations to source material. Users can verify claims against original sources. Transparency through citation is a core feature.",
     biasTesting: "No public bias audit reports. Young company — responsible AI program still developing.",
     aiActStatus: "AI-powered search = limited risk (users informed of AI involvement). Citations provide transparency. Young compliance posture.",
-    gdprStatus: "GDPR compliance claimed. DPA available for Enterprise. EU SCCs. Privacy program developing.",
+    gdprStatus: "GDPR compliance self-declared but NOT independently audited — weakest GDPR posture among US competitors. DPA available for Enterprise. EU SCCs. Enterprise Pro minimum 50 seats for audit logs and data retention controls.",
     euResidency: "No — US-based processing. A significant limitation for EU regulated entities requiring data sovereignty.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
@@ -644,9 +644,9 @@ const systems = [
     explainability: "DeepSeek-R1 provides chain-of-thought reasoning (visible reasoning steps). Open-weight allows model inspection. Better transparency than closed-source competitors in some aspects.",
     biasTesting: "No public bias audit reports. Open-weight allows third-party bias testing. Training data composition not fully disclosed.",
     aiActStatus:
-      "CRITICAL CONCERN: Chinese AI company with no EU presence. Under EU AI Act, providers placing AI systems on the EU market must comply with all requirements and designate an EU representative (Article 22). DeepSeek has not done this. Self-hosted deployment shifts compliance burden to the deployer (Article 25).",
+      "CRITICAL CONCERN: Chinese AI company with no EU presence. Under EU AI Act, providers placing AI systems on the EU market must comply with all requirements and designate an EU representative (Article 22). DeepSeek has not done this. Self-hosted deployment shifts compliance burden to the deployer (Article 25). Italy's Garante banned the API within 72 hours of launch. 13 EU jurisdictions opened investigations.",
     gdprStatus:
-      "API use: NOT GDPR-compliant. No DPA, no EU representative (Art. 27 violation), data processed in China, subject to Chinese government data access. Self-hosted: customer manages own GDPR compliance — model itself is GDPR-neutral.",
+      "API use: EFFECTIVELY BANNED IN EU. Italy banned the API. 13 EU jurisdictions investigated. Germany's BSI confirmed classified metadata was transmitted to Shanghai servers. Privacy policy exempts training data from consent. No DPA, no EU representative (Art. 27 violation), data processed in China subject to Chinese PIPL government data access. Self-hosted: customer manages own GDPR compliance — model weights are GDPR-neutral.",
     euResidency:
       "API: No — data processed in China. Self-hosted: Yes — full EU data sovereignty if deployed on EU infrastructure. Self-hosting is the only compliant option for EU organizations.",
     deploymentModel: "hybrid",
