@@ -159,7 +159,7 @@ export default function ChatWidget() {
                 <p className="text-sm font-semibold text-white">AI Compass EU</p>
                 <p className="text-[10px] text-blue-200">
                   {remaining !== null && remaining >= 0
-                    ? `${remaining} ${isSubscriber ? "this month" : "today"}`
+                    ? `${remaining} remaining today`
                     : "AI Compliance Assistant"}
                 </p>
               </div>

@@ -123,7 +123,7 @@ ${context}`;
 // ─── LLM Call ────────────────────────────────────────────
 
 export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
 
   if (!apiKey) {
     // Dev mode — return placeholder
