@@ -187,7 +187,7 @@ export default function ChatWidget() {
                       {!isSubscriber && (
                         <a href={`/${locale}/subscribe`}
                           className="block w-full rounded-lg border border-[#003399] px-4 py-2 text-center text-sm font-semibold text-[#003399] hover:bg-[#003399]/5">
-                          {t("common.signUp")} — 20 {locale === "fr" ? "questions/mois" : "questions/month"}
+                          {t("common.signUp")} — 10 {locale === "fr" ? "questions/jour" : locale === "de" ? "Fragen/Tag" : "questions/day"}
                         </a>
                       )}
                     </div>
