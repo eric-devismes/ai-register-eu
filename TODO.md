@@ -105,7 +105,7 @@
 
 ## Chatbot
 
-- [ ] **Fix chatbot** — not working as of 2026-04-11, needs debugging
+- [~] **Fix chatbot** — code fixes applied (API key trim, label fix). Root cause: ANTHROPIC_API_KEY empty or has trailing whitespace in Vercel. Eric: verify key in Vercel dashboard.
 - [ ] **Account management via chatbot**: Answer questions about user's account tier, next payment date, how to unsubscribe
 - [ ] **Customer support via chatbot**: Handle claims for payment cancellation, refunds, billing issues
 - [ ] **Full customer engagement**: Make the chatbot handle all regular customer cases — easy, self-service, no friction
