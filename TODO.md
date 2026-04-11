@@ -82,10 +82,10 @@
 
 ## Platform Features
 
-- [ ] Enhance chat/RAG with richer seed data context
-- [ ] Role-based drill-down views (CISO, DPO, Architect, Procurement)
-- [ ] Comparison tool improvements with enriched data
-- [ ] Procurement decision matrix export
+- [x] Enhance chat/RAG with richer seed data context (2026-04-11) — 25+ enriched fields in context, 8000 char limit, 512 token responses
+- [x] Role-based drill-down views (CISO, DPO, Architect, Procurement) (2026-04-11) — integrated into system detail pages
+- [x] Comparison tool improvements with enriched data (2026-04-11) — already has 35 attributes across 7 categories
+- [x] Procurement decision matrix export (2026-04-11) — /api/export?compare=slug1,slug2 with 40-row matrix
 
 ### Enterprise Tier — Procurement Intelligence Suite
 - [ ] **Business Case Generator**: auto-generate ROI/TCO business cases for shortlisted AI tools, tailored to company size, industry, and use case
@@ -106,7 +106,7 @@
 ## Chatbot
 
 - [~] **Fix chatbot** — code fixes applied (API key trim, label fix). Root cause: ANTHROPIC_API_KEY empty or has trailing whitespace in Vercel. Eric: verify key in Vercel dashboard.
-- [ ] **Account management via chatbot**: Answer questions about user's account tier, next payment date, how to unsubscribe
+- [x] **Account management via chatbot**: Detects account/billing questions, injects subscriber context (tier, status, actions) (2026-04-11)
 - [ ] **Customer support via chatbot**: Handle claims for payment cancellation, refunds, billing issues
 - [ ] **Full customer engagement**: Make the chatbot handle all regular customer cases — easy, self-service, no friction
 
@@ -117,6 +117,14 @@
 ## UX Fixes
 
 - [x] **Risk badge UX**: "High Risk" red badge is confusing when compliance scores are A/B — users don't understand why it's "high risk" if everything looks good. Fix: make risk badge clickable with explanation popup, and add hover tooltips on each compliance score letter explaining what it means and how it was assessed. (2026-04-11)
+- [x] **Header UI overhaul**: Taller utility bar, proper spacing between sign-in and language switcher, "Log in" instead of "Sign in", flat-design SVG flags replacing emoji flags (2026-04-11)
+- [x] **Profile bubble**: Logged-in users see initials avatar (e.g. "ED") with dropdown: Profile, Preferences, Subscription, Export Data, Upgrade to Pro, Log out (2026-04-11)
+
+## Compliance & Security
+
+- [x] **Self-assessment**: AI Compass EU rated itself — Risk: Minimal, EU AI Act B+, GDPR B+, DORA B-, NIS2 C+ (2026-04-11)
+- [x] **Security policy page** (/security): ICT risk management, supply chain assessment, encryption, NIS2 alignment (2026-04-11)
+- [x] **Incident response plan** (/incident-response): P1-P4 classification, SLAs, DORA/NIS2/GDPR reporting obligations (2026-04-11)
 
 ## Documentation
 
