@@ -76,7 +76,7 @@
 ### Cross-Framework Intelligence
 - [x] GDPR ↔ AI Act mapping (which articles relate) (2026-04-11)
 - [x] DORA ↔ NIS2 overlap guidance (2026-04-11)
-- [ ] Compliance checklist generator per framework combo
+- [x] Compliance checklist generator per framework combo (2026-04-11)
 
 ---
 

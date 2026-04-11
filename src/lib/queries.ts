@@ -212,6 +212,27 @@ export async function getAllIndustries() {
   });
 }
 
+// ─── Compliance Checklist ────────────────────────────────
+
+/**
+ * Get multiple frameworks by slug with their sections and statements.
+ * Used by the compliance checklist generator.
+ */
+export async function getFrameworksWithSections(slugs: string[]) {
+  return prisma.regulatoryFramework.findMany({
+    where: { slug: { in: slugs }, published: true },
+    orderBy: { name: "asc" },
+    include: {
+      sections: {
+        orderBy: { sortOrder: "asc" },
+        include: {
+          statements: { orderBy: { sortOrder: "asc" } },
+        },
+      },
+    },
+  });
+}
+
 // ─── Stats ───────────────────────────────────────────────
 
 /**
