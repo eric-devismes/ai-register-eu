@@ -175,6 +175,22 @@ export function NewsMonitorClient({
     }
   }
 
+  const grokItems = items.filter((item) => item.author?.includes("Grok"));
+
+  async function deleteAllGrokItems() {
+    if (!confirm(`Delete all ${grokItems.length} Grok-sourced items? These may contain fabricated news.`)) return;
+    let deleted = 0;
+    for (const item of grokItems) {
+      try {
+        const res = await fetch(`/api/admin/changelog?id=${item.id}`, { method: "DELETE" });
+        if (res.ok) deleted++;
+      } catch { /* continue */ }
+    }
+    setItems((prev) => prev.filter((item) => !item.author?.includes("Grok")));
+    showToast(`Deleted ${deleted} Grok items`);
+    router.refresh();
+  }
+
   function showToast(msg: string) {
     setToast(msg);
     setTimeout(() => setToast(null), 2500);
@@ -286,6 +302,31 @@ export function NewsMonitorClient({
       {/* ─── Recent Items (Cards with editable summaries) ─── */}
       {tab === "recent" && (
         <div className="space-y-4">
+          {/* Grok warning + bulk delete */}
+          {grokItems.length > 0 && (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-4 flex items-start justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <svg className="h-5 w-5 shrink-0 text-red-500 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <div>
+                  <p className="text-sm font-semibold text-red-800">
+                    {grokItems.length} item{grokItems.length !== 1 ? "s" : ""} from Grok/X may be fabricated
+                  </p>
+                  <p className="mt-0.5 text-xs text-red-600">
+                    Grok hallucinates news stories and URLs. These items are marked below with a warning badge. Review each one or delete them all.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={deleteAllGrokItems}
+                className="shrink-0 rounded-md bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 transition"
+              >
+                Delete all Grok items
+              </button>
+            </div>
+          )}
+
           {items.length === 0 ? (
             <div className="rounded-xl border border-gray-200 bg-white px-6 py-12 text-center text-gray-400">
               No auto-ingested items yet. Click &quot;Run Now&quot; to start.
@@ -309,8 +350,8 @@ export function NewsMonitorClient({
                           {item.changeType}
                         </span>
                         {isGrok && (
-                          <span className="rounded-full bg-sky-100 text-sky-700 px-2 py-0.5 text-[10px] font-semibold">
-                            via Grok/X
+                          <span className="rounded-full bg-red-100 text-red-700 px-2 py-0.5 text-[10px] font-semibold">
+                            ⚠ Grok — may be fabricated
                           </span>
                         )}
                         {item.framework && (

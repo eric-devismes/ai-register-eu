@@ -427,17 +427,22 @@ export async function runNewsMonitor(): Promise<MonitorResult> {
   const ingestedCount = await ingestItems(toIngest);
   console.log(`[news-monitor] ${ingestedCount} items ingested into newsfeed`);
 
-  // 6. Run Grok/X scanner (if XAI_API_KEY configured)
-  let grokResult;
-  try {
-    grokResult = await runGrokScanner();
-    if (grokResult.enabled) {
-      console.log(`[news-monitor] Grok scanner: ${grokResult.ingestedItems} items from X/Twitter`);
-    }
-  } catch (err) {
-    console.warn("[news-monitor] Grok scanner error:", (err as Error).message);
-    errors.push(`grok: ${(err as Error).message}`);
-  }
+  // 6. Grok/X scanner DISABLED — Grok hallucinates both URLs and entire
+  // news stories. Cannot verify if the news is real. Keeping the code for
+  // future use if xAI adds grounding/citations, but not running it.
+  // To re-enable: uncomment the block below.
+  //
+  // let grokResult;
+  // try {
+  //   grokResult = await runGrokScanner();
+  //   if (grokResult.enabled) {
+  //     console.log(`[news-monitor] Grok scanner: ${grokResult.ingestedItems} items from X/Twitter`);
+  //   }
+  // } catch (err) {
+  //   console.warn("[news-monitor] Grok scanner error:", (err as Error).message);
+  //   errors.push(`grok: ${(err as Error).message}`);
+  // }
+  const grokResult = { enabled: false, rawItems: 0, newItems: 0, ingestedItems: 0, errors: ["Disabled — Grok fabricates news items. Waiting for grounded search API."], duration: 0 };
 
   return {
     sourcesFetched: sources.length,
