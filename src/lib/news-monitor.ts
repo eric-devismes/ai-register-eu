@@ -13,7 +13,8 @@
 import { prisma } from "@/lib/db";
 import { getEnabledSources, RELEVANCE_KEYWORDS, type NewsSource } from "@/lib/news-sources";
 import { LLM_MODEL, LLM_TIMEOUT_MS } from "@/lib/constants";
-import { runGrokScanner } from "@/lib/news-grok";
+// Grok scanner disabled — unreliable URLs and unverifiable content
+// import { runGrokScanner } from "@/lib/news-grok";
 
 // ─── Types ─────────────────────────────────────────────
 
@@ -427,19 +428,12 @@ export async function runNewsMonitor(): Promise<MonitorResult> {
   const ingestedCount = await ingestItems(toIngest);
   console.log(`[news-monitor] ${ingestedCount} items ingested into newsfeed`);
 
-  // 6. Grok/X scanner — uses xAI Responses API with x_search tool
-  // for grounded real-time X/Twitter search (no hallucination)
-  let grokResult;
-  try {
-    grokResult = await runGrokScanner();
-    if (grokResult.enabled) {
-      console.log(`[news-monitor] Grok scanner: ${grokResult.ingestedItems} items from X/Twitter (grounded search)`);
-    }
-  } catch (err) {
-    console.warn("[news-monitor] Grok scanner error:", (err as Error).message);
-    errors.push(`grok: ${(err as Error).message}`);
-    grokResult = { enabled: true, rawItems: 0, newItems: 0, ingestedItems: 0, errors: [(err as Error).message], duration: 0 };
-  }
+  // 6. Grok/X scanner — DISABLED permanently.
+  // Even with the xAI Responses API + x_search grounding, Grok produces
+  // unreliable URLs (hallucinated tweet IDs, empty search links, profile
+  // pages with no way to find the actual post). Cannot guarantee the news
+  // items themselves are real either. RSS pipeline covers our needs.
+  const grokResult = { enabled: false, rawItems: 0, newItems: 0, ingestedItems: 0, errors: [] as string[], duration: 0 };
 
   return {
     sourcesFetched: sources.length,
