@@ -559,6 +559,20 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
             </div>
           </div>
 
+          {/* Procurement tools CTA */}
+          <div className="flex flex-wrap gap-3 rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">
+            <span className="text-xs text-gray-500 self-center">Next steps:</span>
+            <Link href={`/${locale}/business-case`} className="text-xs font-medium text-[#003399] hover:underline">
+              Generate Business Case →
+            </Link>
+            <Link href={`/${locale}/rfp-engine`} className="text-xs font-medium text-[#003399] hover:underline">
+              Answer RFP Questions →
+            </Link>
+            <Link href={`/${locale}/vendor-prep`} className="text-xs font-medium text-[#003399] hover:underline">
+              Prepare for Vendor Meeting →
+            </Link>
+          </div>
+
           {/* Category filter */}
           {(() => {
             const categories = ["All", ...Array.from(new Set(compareData.attributes.map((a) => a.category)))];

@@ -157,7 +157,8 @@
 > Every user message is captured here immediately.
 
 - (2026-04-11) "everytime i say something, add it to the todo immediately" — Standing rule: capture all user messages as TODO items instantly
-- (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — Investigate: does the site actually set cookies? If so, which ones? Audit cookie usage and update footer/privacy accordingly.
+- (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — DONE: Audited, 4 essential cookies only, no tracking.
+- (2026-04-11) "i can think of getting domain name send email to people to register, connect to lemonfizzy as next steps" — Eric's next steps: (1) Get/configure domain name, (2) Send launch emails to get registrations, (3) Connect LemonSqueezy for payments
 
 ---
 
