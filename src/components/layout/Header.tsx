@@ -49,6 +49,7 @@ export default function Header() {
     { label: t("common.database"), href: l("/database") },
     { label: "Compare", href: l("/compare") },
     { label: "Checklist", href: l("/checklist") },
+    { label: "Business Case", href: l("/business-case") },
     { label: t("common.regulations"), href: l("/regulations") },
     { label: t("common.industries"), href: l("/industries") },
     { label: "Newsfeed", href: l("/newsfeed") },
