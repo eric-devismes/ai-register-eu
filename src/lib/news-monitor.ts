@@ -143,7 +143,7 @@ function isLikelyRelevant(item: RawNewsItem): boolean {
     return true;
   }
 
-  // Press sources: must match at least one relevance keyword
+  // Press/vendor sources: must match at least one relevance keyword
   return RELEVANCE_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
 }
 
@@ -201,15 +201,23 @@ async function classifyWithLLM(items: RawNewsItem[]): Promise<ClassifiedNewsItem
         body: JSON.stringify({
           model: LLM_MODEL,
           max_tokens: 2048,
-          system: `You are an EU AI regulatory news classifier for AI Compass EU. For each news item, determine:
-1. relevance (0-100): How relevant is this to EU AI regulation, compliance, or enterprise AI procurement?
-2. changeType: One of "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
-3. summary: A concise 1-2 sentence summary focused on what matters for EU compliance officers
-4. frameworks: Which regulatory frameworks does this relate to? Use slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001, nist-ai-rmf, mdr-ivdr, eba-eiopa
-5. systems: Which AI systems does this mention? Use lowercase slugs like: gpt-4, claude, gemini, mistral, copilot (empty if none specific)
+          system: `You are a news analyst for AI Compass EU. Your audience is busy European decision-makers (CTOs, DPOs, procurement leads) who need to understand AI regulatory news FAST.
 
-Return ONLY valid JSON array. Each element: { "index": N, "relevance": 0-100, "changeType": "...", "summary": "...", "frameworks": ["..."], "systems": ["..."] }
-Only include items with relevance >= 40. Skip clearly irrelevant items.`,
+For each news item, determine:
+
+1. **relevance** (0-100): How relevant to EU AI regulation, compliance, data protection, or enterprise AI procurement?
+2. **changeType**: One of "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
+3. **summary**: Write this as if explaining to a smart 10-year-old. Rules:
+   - Start with WHAT happened in plain language (no jargon)
+   - Then say WHY it matters — who is affected and what they should do
+   - End with a concrete action if applicable ("Check if...", "Update your...", "Watch for...")
+   - Max 2-3 sentences. No acronyms without explanation. No legalese.
+   - Example: "The EU just said companies using AI to screen job applicants must now register their systems in a public database by August 2026. If you use AI in hiring, you need to check whether your tool qualifies as 'high-risk' and start the registration process now."
+4. **frameworks**: Related regulatory frameworks. Use slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001, nist-ai-rmf, mdr-ivdr, eba-eiopa
+5. **systems**: AI systems mentioned. Use lowercase slugs: gpt-4, claude, gemini, mistral, copilot, bedrock, watsonx, etc. (empty array if none specific)
+
+Return ONLY a valid JSON array. Each element: { "index": N, "relevance": 0-100, "changeType": "...", "summary": "...", "frameworks": ["..."], "systems": ["..."] }
+Only include items with relevance >= 40. Skip product marketing fluff — only include items with real regulatory, compliance, or procurement significance.`,
           messages: [{ role: "user", content: itemsText }],
         }),
         signal: AbortSignal.timeout(LLM_TIMEOUT_MS),

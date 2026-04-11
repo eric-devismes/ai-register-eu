@@ -66,6 +66,7 @@ const TRUST_COLORS: Record<string, string> = {
   official: "bg-emerald-100 text-emerald-700",
   institutional: "bg-blue-100 text-blue-700",
   press: "bg-gray-100 text-gray-600",
+  vendor: "bg-purple-100 text-purple-700",
 };
 
 export function NewsMonitorClient({
