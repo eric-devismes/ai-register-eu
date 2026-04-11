@@ -43,6 +43,8 @@ export const COMPARISON_ATTRIBUTES = [
   { key: "score_gdpr", label: "GDPR Score", category: "Assessment Scores" },
   { key: "score_dora", label: "DORA Score", category: "Assessment Scores" },
   { key: "score_eba-eiopa-guidelines", label: "EBA/EIOPA Score", category: "Assessment Scores" },
+  { key: "score_mdr-ivdr", label: "MDR/IVDR Score", category: "Assessment Scores" },
+  { key: "score_nis2", label: "NIS2 Score", category: "Assessment Scores" },
   { key: "overallScore", label: "Overall Score", category: "Assessment Scores" },
   // Data & Infrastructure
   { key: "dataStorage", label: "Data Storage", category: "Data & Infrastructure" },
@@ -62,11 +64,19 @@ export const COMPARISON_ATTRIBUTES = [
   { key: "modelDocs", label: "Model Documentation", category: "AI Transparency" },
   { key: "explainability", label: "Explainability", category: "AI Transparency" },
   { key: "biasTesting", label: "Bias Testing", category: "AI Transparency" },
-  // Product
-  { key: "type", label: "System Type", category: "Product" },
-  { key: "vendorHq", label: "Vendor HQ", category: "Product" },
-  { key: "euPresence", label: "EU Presence", category: "Product" },
-  { key: "useCases", label: "Key Use Cases", category: "Product" },
+  // Vendor & Product
+  { key: "type", label: "System Type", category: "Vendor & Product" },
+  { key: "vendorHq", label: "Vendor HQ", category: "Vendor & Product" },
+  { key: "euPresence", label: "EU Presence", category: "Vendor & Product" },
+  { key: "fundingStatus", label: "Funding / Ownership", category: "Vendor & Product" },
+  { key: "employeeCount", label: "Company Size", category: "Vendor & Product" },
+  { key: "customerCount", label: "Customer Base", category: "Vendor & Product" },
+  { key: "notableCustomers", label: "Notable Customers", category: "Vendor & Product" },
+  { key: "useCases", label: "Key Use Cases", category: "Vendor & Product" },
+  // Subprocessors & Supply Chain
+  { key: "subprocessors", label: "Subprocessors", category: "Supply Chain" },
+  { key: "deploymentModel", label: "Deployment Model", category: "Supply Chain" },
+  { key: "sourceModel", label: "Source Model", category: "Supply Chain" },
 ];
 
 // ─── System → Plain Object ───────────────────────────────
@@ -111,6 +121,13 @@ function systemToCompareRow(system: Record<string, unknown>, scores: Array<{ fra
     vendorHq: system.vendorHq || "",
     euPresence: system.euPresence || "",
     useCases: system.useCases || "",
+    fundingStatus: system.fundingStatus || "",
+    employeeCount: system.employeeCount || "",
+    customerCount: system.customerCount || "",
+    notableCustomers: system.notableCustomers || "",
+    subprocessors: system.subprocessors || "",
+    deploymentModel: system.deploymentModel || "",
+    sourceModel: system.sourceModel || "",
     assessmentNote: system.assessmentNote || "",
     ...scoreMap,
   };
