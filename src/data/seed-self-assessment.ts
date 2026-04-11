@@ -57,7 +57,7 @@ async function main() {
     dpaDetails:
       "GDPR-compliant privacy policy published at /privacy. Consent recorded with date and text snapshot at subscription. Data Processing Agreements: Vercel DPA (standard), Neon DPA (EU data residency), Anthropic API terms (no training use), Resend DPA (EU SCCs), LemonSqueezy DPA (Merchant of Record). No DPA required from subscribers — AI Compass EU is the data controller, not a processor.",
     slaDetails:
-      "Platform hosted on Vercel with global CDN. Database on Neon with automatic failover. No formal SLA published for the free tier. Pro/Enterprise: best-effort 99.9% uptime. Chatbot availability depends on Anthropic API availability.",
+      "Platform hosted on Vercel with global CDN. Database on Neon with automatic failover. No formal SLA published for the free tier. Pro/Enterprise: best-effort 99.9% uptime. Chatbot availability depends on Anthropic API availability. Incident response plan published at /incident-response. Security policy published at /security.",
     dataPortability:
       "Subscriber data export available via /api/account/export (JSON format). Includes email, preferences, consent record, digest history. CSV and JSON export of AI system data available for Pro subscribers via /api/export. No vendor lock-in — all platform content accessible via public pages.",
     exitTerms:
@@ -65,11 +65,11 @@ async function main() {
     ipTerms:
       "AI Compass EU retains IP in platform, assessment methodology, and editorial content. Regulatory text and framework content is derived from public EU legislation. AI-generated chatbot responses are not claimed as IP. Subscriber data owned by subscribers.",
     certifications:
-      "No formal certifications (early-stage startup). Security measures implemented: bcrypt password hashing (admin), SHA-256 token hashing, TOTP 2FA for admin access, HTTP-only session cookies, input validation and injection detection on all AI endpoints, rate limiting on chatbot and comparison tool. Self-assessed against EU AI Act, GDPR, and platform's own methodology.",
+      "No formal certifications (early-stage startup). Security measures implemented: bcrypt password hashing (admin), SHA-256 token hashing, TOTP 2FA for admin access, HTTP-only session cookies, input validation and injection detection on all AI endpoints, rate limiting on chatbot and comparison tool. Self-assessed against EU AI Act, GDPR, and platform's own methodology. ICT Risk Management framework documented per DORA Chapter II requirements. Incident Response Plan published (P1-P4 classification with SLA timelines). Supply chain risk assessment documented for all subprocessors.",
     encryptionInfo:
       "AES-256 at rest (Neon PostgreSQL, AWS eu-central-1). TLS 1.2+ in transit for all connections. Magic link tokens and session tokens stored as SHA-256 hashes. Admin passwords hashed with bcrypt (cost factor 12). HTTP-only, Secure, SameSite cookies.",
     accessControls:
-      "Admin panel: email/password + optional TOTP 2FA. Role-based access (owner/admin/editor). Subscriber accounts: magic link authentication (passwordless). Session tokens with 30-day expiry, validated against database on each request. Chat rate limiting: anonymous 3/day, free 10/day, pro/enterprise unlimited. Three-layer chatbot security: input guard (injection detection + off-topic filter), rate limiter, LLM prompt hardening.",
+      "Admin panel: email/password + optional TOTP 2FA. Role-based access (owner/admin/editor). Subscriber accounts: magic link authentication (passwordless). Session tokens with 30-day expiry, validated against database on each request. Chat rate limiting: anonymous 3/day, free 10/day, pro/enterprise unlimited. Three-layer chatbot security: input guard (injection detection + off-topic filter), rate limiter, LLM prompt hardening. Security policy and incident handling procedures publicly documented.",
     modelDocs:
       "LLM model used: Claude Haiku 4.5 (claude-haiku-4-5-20251001) via Anthropic API. Max response: 256 tokens (chatbot), 2048 tokens (comparison). System prompt: constrains model to EU AI/GDPR topics only, requires source citations from provided context, prohibits hallucination, refuses prompt injection. RAG architecture: keyword-based retrieval from platform's own regulatory database (frameworks, policy statements, AI systems, changelog). No fine-tuning — uses base Anthropic model with context injection.",
     explainability:
@@ -77,9 +77,9 @@ async function main() {
     biasTesting:
       "AI is used for information retrieval and explanation, not for decisions about individuals. Bias risk is low because: (1) no automated decision-making about people, (2) chatbot answers grounded in regulatory text (not generated from training data), (3) comparison tool ranks systems by compliance data, not demographic factors. Known limitation: regulatory content skewed toward EU perspective (by design — this is an EU-focused platform). English-language content most comprehensive.",
     aiActStatus:
-      "Minimal risk under EU AI Act. The platform uses AI for two features: (1) chatbot providing regulatory information — this is an AI system that interacts with natural persons, classified as 'limited risk' under Article 50, requiring transparency that the user is interacting with AI (implemented via footer notice + chatbot UI). (2) Comparison tool providing procurement recommendations — advisory only, no automated decision-making about individuals. NOT in Annex III high-risk categories: the platform does not perform biometric identification, credit scoring, recruitment, law enforcement, or any other high-risk use case. Risk classification: Minimal to Limited.",
+      "Minimal risk under EU AI Act. The platform uses AI for two features: (1) chatbot providing regulatory information — this is an AI system that interacts with natural persons, classified as 'limited risk' under Article 50, requiring transparency that the user is interacting with AI (implemented via footer notice + chatbot UI). (2) Comparison tool providing procurement recommendations — advisory only, no automated decision-making about individuals. NOT in Annex III high-risk categories: the platform does not perform biometric identification, credit scoring, recruitment, law enforcement, or any other high-risk use case. Risk classification: Minimal to Limited. Transparency measures: AI disclosure in chatbot UI (Article 50), published security and incident response policies.",
     gdprStatus:
-      "Good GDPR compliance posture for data processing scope. Data controller (not processor). Minimal personal data: email, optional name, preferences. Consent recorded per Article 7. Data subject rights implemented: access (Art. 15), portability (Art. 20, JSON export), erasure (Art. 17, immediate deletion), withdrawal of consent (one-click unsubscribe). Magic link auth means no passwords stored. Privacy policy published. Areas for improvement: ChatLog inclusion in data export, formal DPO designation, Anthropic listed in processor table.",
+      "Good GDPR compliance posture for data processing scope. Data controller (not processor). Minimal personal data: email, optional name, preferences. Consent recorded per Article 7. Data subject rights implemented: access (Art. 15), portability (Art. 20, JSON export), erasure (Art. 17, immediate deletion), withdrawal of consent (one-click unsubscribe). Magic link auth means no passwords stored. Privacy policy published. Areas for improvement: ChatLog inclusion in data export, formal DPO designation, Anthropic listed in processor table. Security measures documented in public security policy per Article 32.",
     euResidency:
       "Full EU data residency. Database: Neon PostgreSQL in AWS eu-central-1 (Frankfurt). Hosting: Vercel EU (Frankfurt). No subscriber data stored outside the EU. Chatbot queries sent to Anthropic API (US) contain only the question text + anonymised role label — no email, name, or account identifiers cross the Atlantic. Payment data handled by LemonSqueezy as Merchant of Record (US, but they act as independent controller for payment data).",
     deploymentModel: "cloud",
@@ -105,17 +105,11 @@ async function main() {
     // For a startup processing minimal personal data, this is solid but not perfect.
     "gdpr": "B+",
 
-    // DORA: Not directly applicable (we're not a financial entity).
-    // But we serve financial sector clients — our vendor posture matters to them.
-    // No formal ICT risk management framework, no incident reporting, no TLPT.
-    // Honest: C+ — we're not regulated under DORA but don't meet its standards for our clients.
-    "dora": "C+",
+    // DORA: Improved — ICT risk management framework documented, incident response plan published, supply chain assessment completed. Still gaps: no formal TLPT, no dedicated ICT risk officer.
+    "dora": "B-",
 
-    // NIS2: Not directly applicable (we're not an essential/important entity at current scale).
-    // Basic cybersecurity hygiene: encryption, access controls, rate limiting.
-    // No formal incident response plan, no supply chain risk assessment.
-    // Honest: C — we have basics but not NIS2-grade maturity.
-    "nis2": "C",
+    // NIS2: Improved — cybersecurity hygiene documented, incident response with classification, vulnerability handling process. Gaps: no CSIRT notification process, no formal supply chain security policy beyond assessment.
+    "nis2": "C+",
   };
 
   const frameworks = await prisma.regulatoryFramework.findMany({
@@ -144,7 +138,7 @@ async function main() {
 
   console.log("  ✓ AI Compass EU — self-assessment profile created");
   console.log("    Risk: Minimal");
-  console.log("    EU AI Act: B+ | GDPR: B+ | DORA: C+ | NIS2: C");
+  console.log("    EU AI Act: B+ | GDPR: B+ | DORA: B- | NIS2: C+");
   console.log("    Honest gaps documented in aiActStatus, gdprStatus fields");
   console.log("\nDone — practicing what we preach.");
 }
