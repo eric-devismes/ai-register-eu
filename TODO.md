@@ -30,15 +30,15 @@
 - [x] Glean Enterprise Search (2026-04-11)
 
 ### Priority 2: Add Missing Major Systems
-- [ ] Cohere (enterprise LLM)
-- [ ] Adobe Firefly / Sensei
-- [ ] Zoom AI Companion
+- [x] Cohere (enterprise LLM) (2026-04-11)
+- [x] Adobe Firefly / Sensei (2026-04-11)
+- [x] Zoom AI Companion (2026-04-11)
 - [x] Slack AI (2026-04-11)
-- [ ] Atlassian Intelligence
-- [ ] HubSpot AI
-- [ ] Zendesk AI
-- [ ] Freshworks Freddy AI
-- [ ] Monday.com AI
+- [x] Atlassian Intelligence (2026-04-11)
+- [x] HubSpot AI (2026-04-11)
+- [x] Zendesk AI (2026-04-11)
+- [x] Freshworks Freddy AI (2026-04-11)
+- [x] Monday.com AI (2026-04-11)
 - [x] Canva AI (2026-04-11)
 - [x] Figma AI (2026-04-11)
 - [x] Grammarly Business (2026-04-11)
@@ -100,7 +100,7 @@
 - [x] **LemonSqueezy integration**: Checkout + webhook routes built (2026-04-11)
 - [x] Wire up subscription tiers (Free / Pro / Enterprise) to LemonSqueezy checkout (2026-04-11)
 - [x] Handle webhooks for payment events (subscription created, updated, cancelled, expired, failed) (2026-04-11)
-- [ ] **LemonSqueezy configuration**: Set env vars on Vercel (LEMONSQUEEZY_API_KEY, STORE_ID, VARIANT_ID, WEBHOOK_SECRET)
+- [ ] **LemonSqueezy configuration**: Eric to create product in LS dashboard, then set env vars on Vercel (API_KEY, STORE_ID, VARIANT_ID, WEBHOOK_SECRET)
 - [ ] **Subscription management page**: Let users view/cancel their subscription from dashboard
 
 ## Chatbot
@@ -120,7 +120,7 @@
 
 ## Documentation
 
-- [ ] **Retro-documentation of the site**: Document current architecture, features, data model, APIs, deployment, and configuration
+- [x] **Retro-documentation of the site**: Document current architecture, features, data model, APIs, deployment, and configuration (2026-04-11)
 
 ## DevOps & Quality
 
