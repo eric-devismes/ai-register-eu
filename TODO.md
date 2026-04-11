@@ -152,6 +152,14 @@
 - [x] **Admin: inline record editing**: Edit subscriber fields directly from the admin panel (2026-04-11)
 - [x] **Admin: company drill-down**: Click a company to see all users belonging to it (2026-04-11)
 
+## Newsfeed & Content Pipeline
+
+- [ ] **Automated News Monitoring System**: Continuously monitor EU AI regulatory news sources (EU Official Journal, national DPAs, ENISA, EDPB, major tech press) and auto-ingest into the newsfeed. Pipeline: scrape/fetch → summarize → classify (regulation, enforcement, guidance, industry) → tag relevant frameworks/systems → publish to newsfeed. Could use scheduled tasks + LLM summarization.
+- [ ] **News Source Configuration**: Define curated list of authoritative sources (RSS feeds, API endpoints, web pages to monitor)
+- [ ] **Auto-tagging & Classification**: LLM-powered tagging of news items with relevant regulations, AI systems, industries, and severity/impact level
+
+---
+
 ## Ideas Inbox
 > Add new ideas here — will be triaged into the sections above
 > Every user message is captured here immediately.
@@ -159,6 +167,7 @@
 - (2026-04-11) "everytime i say something, add it to the todo immediately" — Standing rule: capture all user messages as TODO items instantly
 - (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — DONE: Audited, 4 essential cookies only, no tracking.
 - (2026-04-11) "i can think of getting domain name send email to people to register, connect to lemonfizzy as next steps" — Eric's next steps: (1) Get/configure domain name, (2) Send launch emails to get registrations, (3) Connect LemonSqueezy for payments
+- (2026-04-11) "also need a system to continuously monitor news and feed the news feed" — Automated news monitoring + ingestion pipeline for the newsfeed
 
 ---
 
