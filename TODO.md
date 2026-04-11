@@ -59,8 +59,8 @@
 ## Content Enrichment — Regulatory Frameworks
 
 ### Deepen Existing Frameworks
-- [ ] EU AI Act: add 2025-2026 enforcement timeline, prohibited practices detail
-- [ ] GDPR: add practical procurement compliance checklist
+- [x] EU AI Act: add 2025-2026 enforcement timeline, prohibited practices detail (2026-04-11)
+- [x] GDPR: add practical procurement compliance checklist (2026-04-11)
 - [ ] DORA: add vendor assessment template guidance
 - [ ] EBA/EIOPA: add model risk management deep-dive
 - [ ] MDR/IVDR: add SaMD classification decision tree
@@ -68,14 +68,14 @@
 
 ### Add New Frameworks/Standards
 - [x] NIS2 Directive (cybersecurity) (2026-04-11)
-- [ ] Data Act (data sharing obligations)
-- [ ] Digital Services Act / Digital Markets Act
+- [x] Data Act (data sharing obligations) (2026-04-11)
+- [x] Digital Services Act / Digital Markets Act (2026-04-11)
 - [x] ISO 42001 (AI management systems) (2026-04-11)
 - [x] NIST AI RMF (US framework, global relevance) (2026-04-11)
 
 ### Cross-Framework Intelligence
-- [ ] GDPR ↔ AI Act mapping (which articles relate)
-- [ ] DORA ↔ NIS2 overlap guidance
+- [x] GDPR ↔ AI Act mapping (which articles relate) (2026-04-11)
+- [x] DORA ↔ NIS2 overlap guidance (2026-04-11)
 - [ ] Compliance checklist generator per framework combo
 
 ---
