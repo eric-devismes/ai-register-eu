@@ -1,15 +1,18 @@
 /**
  * Grok (xAI) Twitter/X Scanner — Real-time social intelligence.
  *
- * Uses the xAI API (Grok) to scan Twitter/X for EU AI regulatory news.
- * Grok has native access to real-time X posts, making it ideal for
- * catching breaking news, enforcement actions, and vendor announcements
- * that haven't hit RSS feeds yet.
+ * Uses the xAI Responses API with x_search tool for GROUNDED real-time
+ * X/Twitter search. Unlike the old chat completions endpoint, this actually
+ * searches X and returns results backed by real posts with citations.
  *
  * Pipeline:
- *  1. Ask Grok to scan X for recent EU AI regulatory news
- *  2. Grok returns structured items with source tweet URLs
- *  3. Items feed into the same classification + ingestion pipeline
+ *  1. Send search queries to Grok via Responses API with x_search tool
+ *  2. Grok searches X in real time and returns grounded results
+ *  3. Parse structured news items from the grounded response
+ *  4. Items feed into the same classification + ingestion pipeline
+ *
+ * API Reference: POST https://api.x.ai/v1/responses
+ * Tool: x_search (grounded X search with real citations)
  *
  * Requires: XAI_API_KEY env var (sign up at console.x.ai)
  */
@@ -35,116 +38,53 @@ interface GrokNewsItem {
 
 const MONITORED_ACCOUNTS = [
   // EU Official
-  "@EU_Commission", "@EUparliament", "@EU_AIACT",
-  "@EU_Justice", "@DigitalEU",
+  "EU_Commission", "EUparliament", "EU_AIACT",
+  "EU_Justice", "DigitalEU",
   // Regulators / DPAs
-  "@ABOREU", "@ABOREU", "@ABOREU",
-  "@ABOREU", "@EDPB_EDPS", "@CABOREU",
-  "@CABOREU", "@CABOREU",
-  "@CNIL", "@ICOnews",
-  "@ENABOREU",
+  "EDPB_EDPS", "CNIL", "ICOnews",
+  "BfDI_Info", "ENISA_eu",
   // AI Vendors
-  "@OpenAI", "@AnthropicAI", "@MistralAI",
-  "@GoogleAI", "@GoogleDeepMind", "@MSFTResearch",
-  "@MetaAI", "@xaboreu",
-  "@IBMResearch", "@awscloud",
-  "@Aboreu", "@CohereAI",
+  "OpenAI", "AnthropicAI", "MistralAI",
+  "GoogleAI", "GoogleDeepMind", "MSFTResearch",
+  "MetaAI", "xaboreu",
+  "IBMResearch", "awscloud",
+  "Salesforce", "CohereAI",
   // AI Policy / Think Tanks
-  "@FutureofLifeInst", "@ABOREU",
-  "@Stanford_HAI", "@ABOREU",
-  "@OECD_AI", "@AIIndex",
+  "FutureofLifeInst", "Stanford_HAI",
+  "OECD_AI", "AIIndex",
   // Press
-  "@Reuters", "@TechCrunch",
-  "@euaboreu", "@iaboreu",
+  "Reuters", "TechCrunch",
+  "euaboreu", "iaboreu",
 ];
 
 // ─── Search Topics ─────────────────────────────────────
 
 const SEARCH_TOPICS = [
-  "EU AI Act enforcement compliance",
+  "EU AI Act enforcement compliance 2025 2026",
   "GDPR AI automated decision fine penalty",
-  "AI regulation Europe new rules",
+  "AI regulation Europe new rules enforcement",
   "AI vendor compliance certification EU",
-  "AI safety policy Europe",
-  "DORA NIS2 AI cybersecurity",
-  "AI procurement enterprise Europe",
-  "foundation model regulation GPAI",
+  "DORA NIS2 AI cybersecurity regulation",
+  "foundation model regulation GPAI EU",
+  "AI procurement enterprise Europe compliance",
+  "AI Act high-risk prohibited practices",
 ];
 
-// ─── URL Sanitization ──────────────────────────────────
-// Grok hallucinate tweet IDs. This function catches fake URLs and
-// replaces them with real X search links that will actually work.
+// ─── xAI Responses API with x_search ──────────────────
 
-function sanitizeGrokUrl(url: string, sourceLabel: string, title: string): string {
-  if (!url) return "";
-
-  // Detect hallucinated tweet URLs: x.com/user/status/digits or twitter.com/user/status/digits
-  const tweetPattern = /^https?:\/\/(x\.com|twitter\.com)\/\w+\/status\/\d+/i;
-  if (tweetPattern.test(url)) {
-    // Extract username from sourceLabel (e.g., "X/@CNIL" → "CNIL")
-    const userMatch = sourceLabel?.match(/@(\w+)/);
-    const username = userMatch ? userMatch[1] : "";
-
-    // Build a search URL using key terms from the title
-    const keywords = title
-      .replace(/[^\w\s]/g, "")
-      .split(/\s+/)
-      .slice(0, 4)
-      .join(" ");
-
-    const query = username
-      ? `from:${username} ${keywords}`
-      : keywords;
-
-    return `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
-  }
-
-  return url;
-}
-
-// ─── Grok API Call ─────────────────────────────────────
-
-async function queryGrok(apiKey: string): Promise<GrokNewsItem[]> {
-  const accountsList = MONITORED_ACCOUNTS.slice(0, 30).join(", ");
-  const topicsList = SEARCH_TOPICS.join("; ");
-
-  const prompt = `You have real-time access to X/Twitter. Find the most important EU AI regulatory and compliance news from the last 24 hours.
-
-SCAN THESE SOURCES:
-- Official accounts: ${accountsList}
-- Search topics: ${topicsList}
-
-FOR EACH NEWS ITEM, return a JSON object with:
-- title: A sharp, specific headline (max 100 chars). Write it like a Reuters or Politico headline — not generic.
-- summary: Write this like a seasoned EU tech-policy journalist. 2-3 sentences max. Guidelines:
-  * Vary your style — don't follow the same template every time
-  * Cover: what happened, why it's significant, who should care, where it leads
-  * Be direct, use active voice, have a point of view
-  * Match the tone to the gravity of the news — punchy for big stories, measured for routine updates
-  * No bullet points, no "This is significant because...", no consultant-speak
-  * Examples of the tone I want:
-    "France's CNIL just fined a recruitment platform €15M for letting AI reject candidates without human review. If your company uses automated screening in the EU, this is the precedent that should keep you up at night."
-    "Quietly, the EU AI Office published its first compliance templates for high-risk systems. Voluntary for now — but expect them to become the yardstick auditors measure you against."
-- sourceUrl: IMPORTANT — Do NOT fabricate tweet URLs. LLMs hallucinate tweet IDs. Instead:
-  * If the tweet links to an external article, return that article's URL
-  * If there is no external link, return an X search URL like: https://x.com/search?q=from%3Ausername%20keyword&f=live
-  * NEVER return a made-up x.com/user/status/ID — those will 404
-- sourceLabel: "X/@username" format (e.g. "X/@CNIL", "X/@OpenAI")
-- changeType: One of "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
-- relevance: 0-100 (significance for EU AI compliance)
-- frameworks: Slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001
-- systems: Slugs: gpt-4, claude, gemini, mistral, copilot, etc. (empty if none)
-- date: ISO date string
-
-RULES:
-- Only items with real regulatory, compliance, or procurement significance (relevance >= 50)
-- Skip marketing, product launches without compliance angle, memes, hot takes without substance
-- Maximum 10 items, ranked by importance
-- Focus: enforcement actions, regulations, deadlines, fines, guidance, rulings, certifications
-
-Return ONLY a valid JSON array. No markdown, no explanation.`;
-
-  const res = await fetch("https://api.x.ai/v1/chat/completions", {
+/**
+ * Call the xAI Responses API with x_search tool for grounded X search.
+ * The x_search tool allows max 10 handles per request, so we batch.
+ * Results are grounded in real X posts — no hallucination.
+ */
+async function queryGrokWithSearch(
+  apiKey: string,
+  query: string,
+  handles: string[],
+  fromDate: string,
+  toDate: string,
+): Promise<string> {
+  const res = await fetch("https://api.x.ai/v1/responses", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -152,31 +92,204 @@ Return ONLY a valid JSON array. No markdown, no explanation.`;
     },
     body: JSON.stringify({
       model: "grok-3",
-      messages: [
+      input: [
         {
-          role: "system",
-          content: "You are an EU AI regulatory intelligence analyst. You scan X/Twitter for breaking news about AI regulation, compliance, and enforcement in Europe. You always return structured JSON data.",
+          role: "user",
+          content: query,
         },
-        { role: "user", content: prompt },
+      ],
+      tools: [
+        {
+          type: "x_search",
+          ...(handles.length > 0 ? { allowed_x_handles: handles.slice(0, 10) } : {}),
+          from_date: fromDate,
+          to_date: toDate,
+        },
       ],
       temperature: 0.3,
-      max_tokens: 4096,
     }),
-    signal: AbortSignal.timeout(60_000), // Grok may take longer to search X
+    signal: AbortSignal.timeout(90_000), // Grounded search may take longer
   });
 
   if (!res.ok) {
     const errBody = await res.text().catch(() => "");
-    throw new Error(`Grok API ${res.status}: ${errBody.slice(0, 200)}`);
+    throw new Error(`xAI Responses API ${res.status}: ${errBody.slice(0, 300)}`);
   }
 
   const data = await res.json();
-  const text = data?.choices?.[0]?.message?.content || "";
 
-  // Extract JSON array
+  // Responses API returns output as an array of content blocks
+  // Find the text output block(s)
+  const output = data?.output || [];
+  const textParts: string[] = [];
+
+  for (const block of output) {
+    // Direct text content
+    if (block.type === "message" && block.content) {
+      for (const part of block.content) {
+        if (part.type === "output_text" || part.type === "text") {
+          textParts.push(part.text || "");
+        }
+      }
+    }
+    // Some responses have text at the top level
+    if (block.type === "output_text" || block.type === "text") {
+      textParts.push(block.text || "");
+    }
+  }
+
+  return textParts.join("\n");
+}
+
+/**
+ * Run the full Grok scanner pipeline:
+ * 1. Search by monitored accounts (batched in groups of 10)
+ * 2. Search by topic keywords
+ * 3. Parse all results into structured items
+ */
+async function queryGrok(apiKey: string): Promise<GrokNewsItem[]> {
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 2); // 2 days for broader coverage
+
+  const toDate = now.toISOString().split("T")[0];
+  const fromDate = yesterday.toISOString().split("T")[0];
+
+  const allResults: string[] = [];
+
+  // ── Batch 1: Search monitored accounts (max 10 handles per request) ──
+  const handleBatches: string[][] = [];
+  for (let i = 0; i < MONITORED_ACCOUNTS.length; i += 10) {
+    handleBatches.push(MONITORED_ACCOUNTS.slice(i, i + 10));
+  }
+
+  // Run first 2 batches of accounts (20 handles) to stay within rate limits
+  for (const batch of handleBatches.slice(0, 2)) {
+    try {
+      const text = await queryGrokWithSearch(
+        apiKey,
+        `Find the most important posts about EU AI regulation, compliance, enforcement, fines, or AI vendor news from these accounts in the last 48 hours. Focus on: enforcement actions, new regulations, compliance deadlines, fines, guidance documents, and significant vendor compliance announcements. For each noteworthy item, provide the post content, author, and any linked URLs.`,
+        batch,
+        fromDate,
+        toDate,
+      );
+      if (text) allResults.push(text);
+    } catch (err) {
+      console.warn(`[grok-scanner] Account batch failed:`, (err as Error).message);
+    }
+  }
+
+  // ── Batch 2: Search by topics (no handle filter) ──
+  const topicsQuery = SEARCH_TOPICS.slice(0, 4).join(" OR ");
+  try {
+    const text = await queryGrokWithSearch(
+      apiKey,
+      `Search X/Twitter for the most significant news and discussions about: ${topicsQuery}. Focus on posts from the last 48 hours with real regulatory or compliance significance for European businesses using AI. Include enforcement actions, new rules, deadlines, guidance, and major vendor announcements. Provide specific details: who posted, what they said, any URLs shared.`,
+      [], // No handle filter — open search
+      fromDate,
+      toDate,
+    );
+    if (text) allResults.push(text);
+  } catch (err) {
+    console.warn(`[grok-scanner] Topic search failed:`, (err as Error).message);
+  }
+
+  if (allResults.length === 0) {
+    console.warn("[grok-scanner] No results from any Grok query");
+    return [];
+  }
+
+  // ── Parse results into structured items ──
+  return await structureGrokResults(apiKey, allResults.join("\n\n---\n\n"), fromDate, toDate);
+}
+
+/**
+ * Use a second Grok call to structure the raw search results into
+ * our standard GrokNewsItem format. This is a pure text→JSON transform,
+ * not a search — so hallucination risk is minimal since we're working
+ * from grounded search output.
+ */
+async function structureGrokResults(
+  apiKey: string,
+  rawResults: string,
+  _fromDate: string,
+  _toDate: string,
+): Promise<GrokNewsItem[]> {
+  const res = await fetch("https://api.x.ai/v1/responses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "grok-3",
+      input: [
+        {
+          role: "system",
+          content: `You are a structured data extractor. You receive raw X/Twitter search results about EU AI regulation and must extract individual news items into a JSON array. ONLY extract items that are ACTUALLY present in the search results — do NOT invent, fabricate, or hallucinate any items.`,
+        },
+        {
+          role: "user",
+          content: `Extract news items from these X/Twitter search results into a JSON array.
+
+RAW SEARCH RESULTS:
+${rawResults.slice(0, 8000)}
+
+For each distinct news item found in the results above, return:
+{
+  "title": "Sharp headline, max 100 chars — Reuters/Politico style",
+  "summary": "2-3 sentence journalist-quality summary. Vary your style — be direct, opinionated, specific about who should care and what they should do. No templates, no bullet points, no consultant-speak.",
+  "sourceUrl": "Use the ACTUAL URL from the search results. If the post links to an article, use that URL. If only a tweet is available, use https://x.com/search?q=from%3Ausername%20keyword&f=live — NEVER fabricate a tweet status URL.",
+  "sourceLabel": "X/@username format",
+  "changeType": "update|amendment|jurisprudence|new_version|incident|certification|correction",
+  "relevance": 0-100,
+  "frameworks": ["eu-ai-act", "gdpr", "dora", "nis2", "data-act", "dsa-dma", "iso-42001"],
+  "systems": ["gpt-4", "claude", "gemini", "mistral", "copilot", etc.],
+  "date": "ISO date"
+}
+
+RULES:
+- ONLY include items that appear in the search results above
+- Do NOT invent news stories — if there are only 3 real items, return 3
+- relevance >= 50 only
+- Max 10 items, ranked by importance
+- Skip marketing, memes, hot takes without substance
+
+Return ONLY a valid JSON array. No markdown, no explanation.`,
+        },
+      ],
+      temperature: 0.2,
+    }),
+    signal: AbortSignal.timeout(60_000),
+  });
+
+  if (!res.ok) {
+    console.warn(`[grok-scanner] Structure call failed: ${res.status}`);
+    return [];
+  }
+
+  const data = await res.json();
+
+  // Extract text from Responses API output
+  const output = data?.output || [];
+  let text = "";
+  for (const block of output) {
+    if (block.type === "message" && block.content) {
+      for (const part of block.content) {
+        if (part.type === "output_text" || part.type === "text") {
+          text += part.text || "";
+        }
+      }
+    }
+    if (block.type === "output_text" || block.type === "text") {
+      text += block.text || "";
+    }
+  }
+
+  // Extract JSON array from response
   const jsonMatch = text.match(/\[[\s\S]*\]/);
   if (!jsonMatch) {
-    console.warn("[grok-scanner] No JSON array in Grok response");
+    console.warn("[grok-scanner] No JSON array in structure response");
     return [];
   }
 
@@ -186,13 +299,40 @@ Return ONLY a valid JSON array. No markdown, no explanation.`;
       .filter((item) => item.relevance >= 50 && item.title && item.summary)
       .map((item) => ({
         ...item,
-        // Safety net: replace likely-hallucinated tweet URLs with search URLs
-        sourceUrl: sanitizeGrokUrl(item.sourceUrl, item.sourceLabel, item.title),
+        // Final safety: catch any remaining hallucinated tweet URLs
+        sourceUrl: sanitizeFallback(item.sourceUrl, item.sourceLabel, item.title),
       }));
   } catch (err) {
-    console.warn("[grok-scanner] Failed to parse Grok JSON:", (err as Error).message);
+    console.warn("[grok-scanner] Failed to parse structure JSON:", (err as Error).message);
     return [];
   }
+}
+
+/**
+ * Last-resort URL sanitization. With grounded search this should rarely
+ * trigger, but we keep it as a safety net for any remaining
+ * hallucinated tweet status URLs.
+ */
+function sanitizeFallback(url: string, sourceLabel: string, title: string): string {
+  if (!url) return "";
+
+  // Detect tweet status URLs (x.com/user/status/digits) — these are the ones
+  // that tend to be hallucinated even with grounded search
+  const tweetPattern = /^https?:\/\/(x\.com|twitter\.com)\/(\w+)\/status\/\d+/i;
+  const match = url.match(tweetPattern);
+  if (match) {
+    // Replace with a search URL using the username from the URL
+    const username = match[2];
+    const keywords = title
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .slice(0, 3)
+      .join(" ");
+    const query = `from:${username} ${keywords}`;
+    return `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
+  }
+
+  return url;
 }
 
 // ─── Dedup Against Existing Entries ────────────────────
@@ -213,7 +353,6 @@ async function dedup(items: GrokNewsItem[]): Promise<GrokNewsItem[]> {
 
   return items.filter((item) => {
     if (item.sourceUrl && existingUrls.has(item.sourceUrl)) return false;
-    // Fuzzy title dedup: check if first 50 chars match
     if (existingTitles.has(item.title.toLowerCase().slice(0, 50))) return false;
     return true;
   });
@@ -301,12 +440,12 @@ export async function runGrokScanner(): Promise<GrokScanResult> {
   }
 
   const errors: string[] = [];
-  console.log("[grok-scanner] Scanning X/Twitter via Grok...");
+  console.log("[grok-scanner] Scanning X/Twitter via Grok Responses API (grounded search)...");
 
   let rawItems: GrokNewsItem[] = [];
   try {
     rawItems = await queryGrok(apiKey);
-    console.log(`[grok-scanner] Grok returned ${rawItems.length} items`);
+    console.log(`[grok-scanner] Grok returned ${rawItems.length} grounded items`);
   } catch (err) {
     const msg = (err as Error).message;
     console.error("[grok-scanner] Grok API error:", msg);
