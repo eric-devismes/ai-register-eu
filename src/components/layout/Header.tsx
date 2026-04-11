@@ -151,7 +151,13 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                   </svg>
                   <input type="search" placeholder={t("hero.searchPlaceholder")}
-                    className="w-48 rounded-md border border-gray-300 bg-gray-50 py-1.5 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#003399] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#003399]" />
+                    className="w-48 rounded-md border border-gray-300 bg-gray-50 py-1.5 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#003399] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#003399]"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        const q = (e.target as HTMLInputElement).value.trim();
+                        if (q) window.location.href = `/${pathLocale}/database?q=${encodeURIComponent(q)}`;
+                      }
+                    }} />
                 </div>
               </div>
 
