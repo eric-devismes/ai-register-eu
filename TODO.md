@@ -88,9 +88,9 @@
 - [x] Procurement decision matrix export (2026-04-11) — /api/export?compare=slug1,slug2 with 40-row matrix
 
 ### Enterprise Tier — Procurement Intelligence Suite
-- [ ] **Business Case Generator**: auto-generate ROI/TCO business cases for shortlisted AI tools, tailored to company size, industry, and use case
-- [ ] **RFI/RFP Answer Engine**: upload RFI/RFP documents → AI parses all questions/requirements → generates draft answers for each relevant vendor/solution using the platform's intel database
-- [ ] **Podium Recommendations**: after RFP analysis, suggest top 3 best-fit solutions with scoring rationale, strengths/weaknesses per requirement, and comparison matrix
+- [x] **Business Case Generator**: ROI/TCO business cases with 9 sections, Pro+ tier gate (2026-04-11)
+- [x] **RFI/RFP Answer Engine**: paste up to 20 questions, select AI systems, get AI-generated draft answers. Enterprise tier gate. (2026-04-11)
+- [x] **Podium Recommendations**: Gold/Silver/Bronze top-3 AI system picker with fit scoring, strengths/weaknesses, risk flags. Pro+ tier gate. (2026-04-11)
 - [ ] **Vendor Discussion Prep**: generate talking points, negotiation leverage, and red-flag questions for procurement team meetings with vendors
 
 ---
@@ -148,9 +148,9 @@
 
 ## Admin Panel
 
-- [~] **Redesign admin customer management**: Merge Companies and Subscribers into one page with 2 tabs: "Customer Users" and "Companies". Companies = enterprise subscribers. Drill down from company to see its users. Add ability to manually edit customer/user records.
-- [ ] **Admin: inline record editing**: Edit subscriber fields (name, email, tier, role, industry) directly from the admin panel
-- [ ] **Admin: company drill-down**: Click a company to see all users belonging to it, manage company-level settings
+- [x] **Redesign admin customer management**: Merged into /admin/customers with 2 tabs, inline editing, company drill-down (2026-04-11)
+- [x] **Admin: inline record editing**: Edit subscriber fields directly from the admin panel (2026-04-11)
+- [x] **Admin: company drill-down**: Click a company to see all users belonging to it (2026-04-11)
 
 ## Ideas Inbox
 > Add new ideas here — will be triaged into the sections above
