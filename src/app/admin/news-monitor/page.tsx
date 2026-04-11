@@ -21,30 +21,35 @@ export default async function NewsMonitorPage() {
   const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
+  // Match both RSS monitor and Grok scanner authors
+  const autoAuthors = { in: ["AI Compass EU News Monitor", "AI Compass EU Grok Scanner"] };
+
   const [last24h, last7d, totalMonitored, totalManual, recentItems] = await Promise.all([
     prisma.changeLog.count({
-      where: { author: "AI Compass EU News Monitor", date: { gte: oneDayAgo } },
+      where: { author: autoAuthors, createdAt: { gte: oneDayAgo } },
     }),
     prisma.changeLog.count({
-      where: { author: "AI Compass EU News Monitor", date: { gte: sevenDaysAgo } },
+      where: { author: autoAuthors, createdAt: { gte: sevenDaysAgo } },
     }),
     prisma.changeLog.count({
-      where: { author: "AI Compass EU News Monitor" },
+      where: { author: autoAuthors },
     }),
     prisma.changeLog.count({
-      where: { NOT: { author: "AI Compass EU News Monitor" } },
+      where: { NOT: { author: autoAuthors } },
     }),
     prisma.changeLog.findMany({
-      where: { author: "AI Compass EU News Monitor" },
-      orderBy: { date: "desc" },
-      take: 20,
+      where: { author: autoAuthors },
+      orderBy: { createdAt: "desc" },
+      take: 30,
       select: {
         id: true,
         date: true,
         title: true,
+        description: true,
         changeType: true,
         sourceLabel: true,
         sourceUrl: true,
+        author: true,
         framework: { select: { name: true } },
         system: { select: { name: true } },
       },
@@ -83,9 +88,11 @@ export default async function NewsMonitorPage() {
           id: item.id,
           date: item.date.toISOString(),
           title: item.title,
+          description: item.description,
           changeType: item.changeType,
           sourceLabel: item.sourceLabel,
           sourceUrl: item.sourceUrl,
+          author: item.author,
           framework: item.framework?.name || null,
           system: item.system?.name || null,
         }))}
