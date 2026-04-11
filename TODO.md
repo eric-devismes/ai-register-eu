@@ -97,9 +97,11 @@
 
 ## Payments & Subscriptions
 
-- [ ] **LemonSqueezy integration**: Connect LemonSqueezy account to the site for payment processing (replace/complement Stripe)
-- [ ] Wire up subscription tiers (Free / Pro / Enterprise) to LemonSqueezy checkout
-- [ ] Handle webhooks for payment events (subscription created, cancelled, refunded)
+- [x] **LemonSqueezy integration**: Checkout + webhook routes built (2026-04-11)
+- [x] Wire up subscription tiers (Free / Pro / Enterprise) to LemonSqueezy checkout (2026-04-11)
+- [x] Handle webhooks for payment events (subscription created, updated, cancelled, expired, failed) (2026-04-11)
+- [ ] **LemonSqueezy configuration**: Set env vars on Vercel (LEMONSQUEEZY_API_KEY, STORE_ID, VARIANT_ID, WEBHOOK_SECRET)
+- [ ] **Subscription management page**: Let users view/cancel their subscription from dashboard
 
 ## Chatbot
 

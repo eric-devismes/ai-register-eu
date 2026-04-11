@@ -82,13 +82,13 @@ export function PricingCards() {
       return;
     }
 
-    // Pro → Stripe Checkout
+    // Pro → LemonSqueezy Checkout
     setLoading("pro");
     try {
-      const res = await fetch("/api/stripe/checkout", {
+      const res = await fetch("/api/lemonsqueezy/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ locale }),
       });
 
       const data = await res.json();

@@ -8,7 +8,24 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api/"],
+        disallow: ["/admin", "/api/", "/dashboard"],
+      },
+      // Block AI training crawlers to protect proprietary content
+      {
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "CCBot",
+          "Google-Extended",
+          "anthropic-ai",
+          "ClaudeBot",
+          "Bytespider",
+          "Diffbot",
+          "FacebookBot",
+          "Omgilibot",
+          "Applebot-Extended",
+        ],
+        disallow: "/",
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
