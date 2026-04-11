@@ -77,30 +77,38 @@ async function queryGrok(apiKey: string): Promise<GrokNewsItem[]> {
   const accountsList = MONITORED_ACCOUNTS.slice(0, 30).join(", ");
   const topicsList = SEARCH_TOPICS.join("; ");
 
-  const prompt = `You have real-time access to X/Twitter. I need you to find the most important EU AI regulatory and compliance news from the last 24 hours.
+  const prompt = `You have real-time access to X/Twitter. Find the most important EU AI regulatory and compliance news from the last 24 hours.
 
 SCAN THESE SOURCES:
 - Official accounts: ${accountsList}
 - Search topics: ${topicsList}
 
-FOR EACH NEWS ITEM YOU FIND, return:
-- title: A clear headline (max 100 chars)
-- summary: Explain like you're talking to a smart 10-year-old. What happened? Why does it matter? What should companies do about it? Max 2-3 sentences. No jargon.
+FOR EACH NEWS ITEM, return a JSON object with:
+- title: A sharp, specific headline (max 100 chars). Write it like a Reuters or Politico headline — not generic.
+- summary: Write this like a seasoned EU tech-policy journalist. 2-3 sentences max. Guidelines:
+  * Vary your style — don't follow the same template every time
+  * Cover: what happened, why it's significant, who should care, where it leads
+  * Be direct, use active voice, have a point of view
+  * Match the tone to the gravity of the news — punchy for big stories, measured for routine updates
+  * No bullet points, no "This is significant because...", no consultant-speak
+  * Examples of the tone I want:
+    "France's CNIL just fined a recruitment platform €15M for letting AI reject candidates without human review. If your company uses automated screening in the EU, this is the precedent that should keep you up at night."
+    "Quietly, the EU AI Office published its first compliance templates for high-risk systems. Voluntary for now — but expect them to become the yardstick auditors measure you against."
 - sourceUrl: The tweet URL (https://x.com/user/status/ID) or linked article URL
 - sourceLabel: "X/@username" or the publication name
 - changeType: One of "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
-- relevance: 0-100 (how important for EU AI compliance officers)
-- frameworks: Related frameworks as slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001
-- systems: AI systems mentioned as slugs: gpt-4, claude, gemini, mistral, copilot, etc. (empty if none)
-- date: ISO date string of when it was posted
+- relevance: 0-100 (significance for EU AI compliance)
+- frameworks: Slugs: eu-ai-act, gdpr, dora, nis2, data-act, dsa-dma, iso-42001
+- systems: Slugs: gpt-4, claude, gemini, mistral, copilot, etc. (empty if none)
+- date: ISO date string
 
 RULES:
-- Only include items with real regulatory, compliance, or procurement significance (relevance >= 50)
-- Skip vendor marketing, product launches with no compliance angle, memes, opinions without substance
+- Only items with real regulatory, compliance, or procurement significance (relevance >= 50)
+- Skip marketing, product launches without compliance angle, memes, hot takes without substance
 - Maximum 10 items, ranked by importance
-- Focus on: enforcement actions, new regulations, compliance deadlines, fines, guidance documents, court rulings, data protection decisions, vendor compliance certifications
+- Focus: enforcement actions, regulations, deadlines, fines, guidance, rulings, certifications
 
-Return ONLY a valid JSON array of objects with the fields above. No markdown, no explanation.`;
+Return ONLY a valid JSON array. No markdown, no explanation.`;
 
   const res = await fetch("https://api.x.ai/v1/chat/completions", {
     method: "POST",
