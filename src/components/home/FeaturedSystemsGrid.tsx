@@ -85,10 +85,13 @@ export function FeaturedSystemsGrid({
   const locale = useLocale();
   const riskLabel = useRiskLabel();
 
-  const filtered =
+  const allFiltered =
     activeFilter === "All"
       ? systems
       : systems.filter((s) => s.category === activeFilter);
+
+  // Max 6 systems (2 rows of 3) to keep homepage compact
+  const filtered = allFiltered.slice(0, 6);
 
   return (
     <section className="bg-white py-20">
@@ -121,14 +124,14 @@ export function FeaturedSystemsGrid({
           ))}
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid — equal-height cards with aligned sections */}
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((system) => (
             <div
               key={system.id}
-              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-[#003399]/30 hover:shadow-md"
+              className="group grid grid-rows-[auto_1fr_auto_auto_auto] rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-[#003399]/30 hover:shadow-md"
             >
-              {/* Card header */}
+              {/* Row 1: Card header (vendor, name, risk badge) */}
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-[#003399]">
@@ -149,13 +152,13 @@ export function FeaturedSystemsGrid({
                 </Tooltip>
               </div>
 
-              {/* Description — clamped to 3 lines for balanced card heights */}
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-3">
+              {/* Row 2: Description — flex-grows to fill space, aligns tags below */}
+              <p className="mt-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
                 {system.description}
               </p>
 
-              {/* Industry tags */}
-              <div className="mt-4 flex flex-wrap gap-1.5">
+              {/* Row 3: Industry tags — fixed height zone */}
+              <div className="mt-4 flex flex-wrap gap-1.5 min-h-[28px] content-start">
                 {system.industries.map((name) => (
                   <span key={name} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
                     {name}
@@ -163,7 +166,7 @@ export function FeaturedSystemsGrid({
                 ))}
               </div>
 
-              {/* Compliance scores — dynamic per-framework */}
+              {/* Row 4: Compliance scores — aligned across cards */}
               <div className="mt-5 border-t border-gray-100 pt-4">
                 <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-400">
                   {t("featured.complianceScores")}
@@ -203,7 +206,7 @@ export function FeaturedSystemsGrid({
                 </div>
               </div>
 
-              {/* Link to full assessment */}
+              {/* Row 5: Full assessment link — always at bottom */}
               <a
                 href={`/${locale}/systems/${system.slug}`}
                 className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] transition hover:text-[#003399]/70"
