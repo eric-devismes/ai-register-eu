@@ -28,7 +28,7 @@ const systems = [
     type: "AI-Powered Process Automation",
     risk: "Limited",
     description:
-      "Enterprise automation platform combining RPA (robotic process automation) with AI orchestration via Maestro. Automates repetitive tasks across applications, manages AI agents for complex workflows, and provides process mining for identifying automation opportunities. Strong enterprise governance controls and EU data residency.",
+      "Enterprise automation platform combining RPA with AI orchestration via Maestro — a cloud-native agentic orchestration layer that coordinates robots, humans, and AI agents across long-running workflows. Provides process mining, case management, and coding agents. One of the first enterprise vendors to achieve ISO/IEC 42001:2023 (AI management systems) certification. Strong EU roots (founded in Romania), EU data residency, and C5 (German BSI) certification.",
     category: "Other",
     featured: false,
     capabilityType: "autonomous-agents",
@@ -42,15 +42,15 @@ const systems = [
     marketPresence: "Leader",
     customerCount: "10,800+ customers globally",
     notableCustomers:
-      "Deutsche Post DHL (global logistics automation)\nSiemens (manufacturing process automation)\nUBS (financial services compliance)\nNHS (UK healthcare — patient appointment scheduling)\nToyota, Uber, CrowdStrike, Adobe, Xerox",
+      "Fiserv (financial services automation)\nADT (security operations)\nDeloitte (ERP modernization partner)\nDeutsche Post DHL (global logistics automation)\nSiemens (manufacturing process automation)\nUBS (financial services compliance)\nToyota, Uber, CrowdStrike, Adobe",
     customerStories:
       "Deutsche Post DHL automated 500+ processes saving millions in operational costs. UBS uses UiPath for regulatory compliance workflows. Siemens deployed 2,000+ automations across manufacturing operations.",
     useCases:
       "Invoice processing and accounts payable automation\nCustomer onboarding and KYC verification\nRegulatory compliance reporting\nIT helpdesk ticket routing and resolution\nSupply chain document processing\nHR employee lifecycle management\nProcess mining and optimization\nAI agent orchestration via Maestro",
     dataStorage:
-      "EU data residency available via Automation Cloud — dedicated EU tenant in Amsterdam/Frankfurt. On-premise deployment option for full data sovereignty. Customer data not shared across tenants.",
+      "EU data residency available via Automation Cloud — EU data centers with Switzerland and UAE regions added 2025. On-premise deployment option for full data sovereignty. Customer data not shared across tenants.",
     dataProcessing:
-      "Automation Cloud processes data in the selected region. On-premise Server and Orchestrator keep all data within customer infrastructure. AI features (Document Understanding, Communications Mining) can be configured for EU-only processing.",
+      "Automation Cloud processes data in selected region. On-premise Server and Orchestrator keep all data within customer infrastructure. CAVEAT: AI model processing may temporarily route outside selected region if no local LLM endpoint exists — when strict data residency is enforced, some globally deployed models become unavailable.",
     trainingDataUse:
       "Customer data is NOT used for model training. AI models (Document Understanding, Clipboard AI) are pre-trained. Customer can fine-tune models on their own data — fine-tuned models remain customer property.",
     subprocessors:
@@ -66,7 +66,7 @@ const systems = [
     ipTerms:
       "Customer retains IP in all automations, workflows, and processed data. UiPath retains IP in the platform and pre-trained AI models.",
     certifications:
-      "SOC 2 Type II. ISO 27001:2013. ISO 27017 (cloud security). ISO 27018 (PII in cloud). ISO 9001 (quality). HIPAA. FedRAMP (in process). CSA STAR Level 2.",
+      "SOC 1, SOC 2 Type II. ISO 27001. ISO 27017 (cloud security). ISO 27018 (PII in cloud). ISO 9001 (quality). ISO/IEC 42001:2023 (AI management systems — achieved Sep 2025, among first globally). C5 (German BSI cloud security). HITRUST. HIPAA. FedRAMP alignment (2025). CSA STAR Level 2.",
     encryptionInfo:
       "AES-256 at rest. TLS 1.2+ in transit. Customer-managed keys available for Automation Cloud. Hardware security module (HSM) integration for on-premise.",
     accessControls:
@@ -102,27 +102,27 @@ const systems = [
     type: "Enterprise AI Search & Knowledge Management",
     risk: "Limited",
     description:
-      "AI-powered enterprise search platform that unifies knowledge across 100+ enterprise applications (Slack, Google Workspace, Confluence, Salesforce, etc.). Uses proprietary language models fine-tuned on organizational knowledge graphs. Generates answers with citations from internal sources. Strong enterprise security but limited EU data residency options.",
+      "AI-powered work intelligence platform combining enterprise search, AI assistant, and AI agents across 100+ enterprise applications (Slack, Google Workspace, Confluence, Salesforce, etc.). Permission-aware results respect source system access controls. Knowledge graph learns organizational context. On-premises deployment available via Dell partnership (May 2025) for full data sovereignty. $250M+ ARR, growing 150%+ YoY.",
     category: "Other",
     featured: false,
     capabilityType: "search-retrieval",
     vendorHq: "Palo Alto, California, USA",
     euPresence:
-      "Limited direct EU presence. US-headquartered. Data processing primarily in US cloud regions. EU data center options expanding. No EU subsidiary as controller.",
+      "Growing EU presence. EMEA data residency region available. On-premises deployment option via Dell Technologies partnership (May 2025) for full data sovereignty. US-headquartered.",
     foundedYear: 2019,
     employeeCount: "1,000+",
     fundingStatus:
-      "Private — raised $940M+ total. Latest: $260M Series E (Feb 2025) at $4.6B valuation. Backed by Sequoia, Kleiner Perkins, Lightspeed.",
+      "Private — raised $940M+ total. Latest: $260M Series E (Feb 2025) at $4.6B valuation. $250M+ ARR (150%+ YoY growth). Backed by Sequoia, Kleiner Perkins, Lightspeed.",
     marketPresence: "Challenger",
     customerCount: "1,000+ enterprise customers",
     notableCustomers:
-      "Databricks (company-wide knowledge search)\nDuolingo (engineering knowledge management)\nGrammarly (cross-team knowledge sharing)\nOkta, Instacart, Toast, Confluent, HashiCorp",
+      "Booking.com, Comcast, eBay, Intuit, LinkedIn, Pinterest, Samsung, Zillow\nDatabricks (company-wide knowledge search)\nDell, T-Mobile, TIME, GCash, Confluent",
     customerStories:
       "Databricks reported 40% reduction in time spent searching for information. Duolingo uses Glean to unify engineering documentation. Multiple customers report 2-3 hours saved per employee per week.",
     useCases:
       "Enterprise knowledge search across all SaaS applications\nAI-generated answers from internal documents\nEmployee onboarding knowledge access\nIT support ticket resolution\nSales knowledge base for customer-facing teams\nEngineering documentation discovery\nCompliance document retrieval\nMeeting preparation and context gathering",
     dataStorage:
-      "Customer data processed in cloud infrastructure (AWS/GCP). US data centers primary. EU data processing options available upon request for enterprise customers. Data indexed and stored in Glean's search infrastructure.",
+      "SaaS: single-tenant, fully isolated environment. Customer-hosted cloud option (AWS, Azure, GCP). On-premises via Dell partnership (May 2025). EMEA data residency region available. Data indexed and stored in Glean's search infrastructure.",
     dataProcessing:
       "Glean crawls and indexes content from connected applications. Content is processed to build a knowledge graph. LLM inference uses customer content as context for generating answers. Processing primarily in US regions.",
     trainingDataUse:
@@ -140,9 +140,9 @@ const systems = [
     ipTerms:
       "Customer retains all IP in source content. Glean retains IP in search technology, models, and algorithms.",
     certifications:
-      "SOC 2 Type II. ISO 27001. HIPAA BAA available. GDPR-compliant DPA. Annual third-party penetration testing.",
+      "SOC 2 Type II (recertified 2024). ISO/IEC 27001. HIPAA BAA available. GDPR-compliant DPA. FIPS 140-2 compliant key management. Annual third-party penetration testing.",
     encryptionInfo:
-      "AES-256 at rest. TLS 1.2+ in transit. Per-customer encryption keys. Data segregation between customers.",
+      "AES-256 at rest. TLS 1.3 in transit. Per-customer encryption keys via KMS. FIPS 140-2 compliant. Data segregation between customers.",
     accessControls:
       "SAML 2.0 SSO. SCIM provisioning. Permission-aware search (respects source application permissions — users only see content they have access to). Admin console with audit logs. MFA.",
     modelDocs:
@@ -156,7 +156,7 @@ const systems = [
     gdprStatus:
       "DPA available. GDPR compliance documented. EU SCCs for cross-border transfers. Right to deletion supported.",
     euResidency:
-      "Limited. Primarily US-based processing. EU data processing options emerging for enterprise customers. Not fully EU data sovereign — a key limitation for regulated EU organizations.",
+      "Improving. EMEA data residency region available. On-premises deployment via Dell partnership for full sovereignty. Caveat: LLM inference location depends on model hub configuration — verify EU-only model routing is guaranteed.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
     industrySlugs: ["financial-services", "telecommunications"],
