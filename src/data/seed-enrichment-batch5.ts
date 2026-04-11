@@ -34,15 +34,15 @@ const systems = [
     capabilityType: "text-generation",
     vendorHq: "Toronto, Canada",
     euPresence:
-      "No EU headquarters but strong EU deployment options. Models deployable on EU cloud infrastructure (AWS Frankfurt, Google Cloud EU, Oracle EU). Private deployment for full data sovereignty. Partners with EU cloud providers.",
+      "No EU headquarters but strong EU deployment options via SAP-Cohere EU AI Cloud (launched Nov 2025) for sovereign, EU-resident model deployment. Models deployable on EU cloud infrastructure (AWS Frankfurt, Google Cloud EU, Oracle EU). Model Vault enables isolated inference in customer-controlled environments. Offices in London, Paris.",
     foundedYear: 2019,
     employeeCount: "500+",
     fundingStatus:
-      "Private — raised $970M+ total. Series D: $500M (2024) at $5.5B valuation. Backed by Nvidia, Oracle, Salesforce Ventures, Inovia Capital.",
+      "Private — raised $970M+ total. Latest round (Aug 2025) at $6.8B valuation. Backed by Nvidia, Oracle, Salesforce Ventures, Inovia Capital. ~85% of revenue from private deployments.",
     marketPresence: "Challenger",
     customerCount: "1,000+ enterprise customers",
     notableCustomers:
-      "Oracle (deep integration partner)\nMcKinsey & Company\nJasper AI (underlying LLM)\nLivePerson\nHyperscience\nFujitsu\nBCG\nADP",
+      "Oracle (deep integration partner)\nSAP (EU AI Cloud partnership)\nMcKinsey & Company\nCisco\nNVIDIA\nDell\nFujitsu\nRBC\nLG\nNotion\nBell",
     customerStories:
       "Oracle integrated Cohere models across its entire cloud stack. McKinsey uses Cohere for internal knowledge management across 30,000+ consultants. Fujitsu deploys Cohere in Japanese enterprise applications.",
     useCases:
@@ -66,7 +66,7 @@ const systems = [
     ipTerms:
       "Customer retains all IP in generated outputs and fine-tuning data. Cohere retains IP in base models and platform.",
     certifications:
-      "SOC 2 Type II. ISO 27001 (pending 2025). HIPAA BAA available. GDPR-compliant DPA. Annual third-party security audits.",
+      "SOC 2 Type II. ISO 27001. ISO/IEC 42001 (AI management systems — among first LLM providers to achieve). HIPAA BAA available. GDPR-compliant DPA. Annual third-party security audits.",
     encryptionInfo:
       "AES-256 at rest. TLS 1.2+ in transit. Customer-managed encryption keys for VPC deployments. Air-gapped deployment for maximum security.",
     accessControls:
@@ -196,7 +196,7 @@ const systems = [
     dataStorage:
       "EU data residency available — Frankfurt and Amsterdam data centers. Customer selects data region. Meeting recordings stored in selected region. AI Companion data processing location depends on configuration. IMPORTANT: default AI processing may route to US — EU customers must explicitly configure EU data residency.",
     dataProcessing:
-      "Federated AI approach: Zoom uses multiple AI providers (OpenAI, Anthropic, Meta's Llama) plus proprietary models. Meeting content processed by these providers for AI features. CAVEAT: federated approach means customer data flows to multiple third-party AI providers — enterprise admins should verify which providers are active and where they process data.",
+      "Federated AI approach: Zoom uses multiple AI providers (OpenAI, Anthropic, Meta's Llama) plus proprietary models. ZM+ enables AI processing localized to customer's selected region when configured. CAVEAT: federated approach means customer data may flow to multiple third-party AI providers — enterprise admins must explicitly enable ZM+ for EU-local AI processing, which is not the default.",
     trainingDataUse:
       "Zoom updated ToS (Aug 2023, after controversy): customer audio, video, and chat content is NOT used for training AI models without explicit consent. AI Companion features use content only for the requested function (e.g., summary) and discard afterward. Enterprise customers have contractual guarantees.",
     subprocessors:
@@ -226,7 +226,7 @@ const systems = [
     aiActStatus:
       "Meeting summarization: limited risk (transparency obligations). Real-time translation: limited risk. Admin controls to disable AI features support compliance. Zoom is engaging with EU AI Act requirements.",
     gdprStatus:
-      "DPA available. EU data residency. Updated ToS after 2023 controversy — no training on customer data without consent. Right to deletion supported. DPIA guidance available.",
+      "Complex GDPR history. 2023 controversy over ToS allowing AI training on customer data — subsequently updated. Dutch DPA flagged Zoom lacks a lead supervisory authority in the EEA (US-based controller), meaning any EU DPA could intervene. DPA available. EU SCCs. Right to deletion supported.",
     euResidency:
       "EU data residency available (Frankfurt, Amsterdam). C5 certified. CAVEAT: AI Companion uses federated models (OpenAI, Anthropic, Meta) — verify that AI processing stays within EU. Default may route to US for AI inference. Enterprise customers should explicitly configure EU-only AI processing.",
     deploymentModel: "cloud-only",
@@ -342,7 +342,7 @@ const systems = [
     dataStorage:
       "EU data hosting available — Frankfurt (Germany) via AWS. US East (Virginia) default. Customer chooses region during portal setup. Product data stored in selected region. GDPR compliance tools built into platform.",
     dataProcessing:
-      "AI features use OpenAI models and HubSpot-trained models. AI processing occurs in HubSpot's infrastructure. CAVEAT: AI feature processing location may differ from data hosting region — HubSpot states data sent to AI models is not retained for training, but processing location not explicitly EU-guaranteed.",
+      "All LLM-powered Breeze AI features run entirely within Europe for EU-hosted accounts — no cross-border processing, no new vendor data flows. Same compliance posture as core HubSpot. Credit-based system for advanced Breeze features (generation, enrichment, translation).",
     trainingDataUse:
       "Customer data not used for training OpenAI models (contractual agreement). HubSpot may use anonymized/aggregated data to improve its own models. Customers can opt out of data improvement programs. AI-generated content belongs to customer.",
     subprocessors:
@@ -372,15 +372,15 @@ const systems = [
     aiActStatus:
       "CRM AI features: minimal risk. Content generation: limited risk (transparency via labeling). Lead scoring: minimal risk (human oversight maintained). AI chatbot: limited risk. HubSpot monitoring EU AI Act developments.",
     gdprStatus:
-      "Strong GDPR compliance — built GDPR tools into platform early (2018). DPA automatic for all customers. EU data hosting in Frankfurt. Consent management, right to deletion, data portability all supported natively. Cookie management built in.",
+      "Strong GDPR compliance — built GDPR tools into platform early (2018). DPA available with EU-US Data Privacy Framework, Swiss-US DPF, UK Extension, and EU SCCs. EU data hosting in Frankfurt. Consent management, right to deletion, data portability all supported natively. Annual third-party audits.",
     euResidency:
-      "EU data hosting available (Frankfurt). Product data stays in EU. CAVEAT: AI processing via OpenAI may occur outside EU region. HubSpot working on EU-contained AI processing but not fully guaranteed yet.",
+      "Full EU data residency (Frankfurt). All LLM-powered features run entirely within Europe — no cross-border AI processing. Strongest EU AI residency posture among CRM platforms. Product data stays in EU.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
     industrySlugs: ["telecommunications"],
     scores: {
       "eu-ai-act": "B+",
-      gdpr: "A-",
+      gdpr: "A",
     },
   },
 
@@ -398,7 +398,7 @@ const systems = [
     capabilityType: "conversational-ai",
     vendorHq: "San Francisco, USA (subsidiary of Zendesk Inc., private since 2022)",
     euPresence:
-      "EU data center in Frankfurt (Germany). Dublin office. Multiple EU enterprise customers. EU data locality available for account data. Strong GDPR compliance posture.",
+      "EU data center in Dublin (Ireland, built with Irish government support). Multiple EU enterprise customers. EU data locality available for account data. Strong GDPR compliance posture. BCRs approved by Irish DPC.",
     foundedYear: 2007,
     employeeCount: "6,000+",
     fundingStatus:
@@ -412,7 +412,7 @@ const systems = [
     useCases:
       "AI agents for automated customer resolution\nAgent copilot for real-time response suggestions\nIntelligent triage (auto-categorize, prioritize, route)\nGenerative AI for response drafting\nKnowledge base article generation\nSentiment analysis on customer interactions\nWorkflow automation\nQuality assurance and agent performance analytics",
     dataStorage:
-      "EU data center available (Frankfurt, AWS eu-central-1). US data center (AWS us-east). Customer selects region during setup. EU data locality ensures account data stays in EU. Service data stored in selected region.",
+      "EU data center available (Dublin, Ireland). US data center (AWS us-east). Customer selects region during setup. EU data locality ensures account data stays in EU. Service data stored in selected region. ADPP add-on provides enhanced data protection controls.",
     dataProcessing:
       "Zendesk AI models: purpose-built CX models hosted by Zendesk — processing in selected region. Generative AI features: use OpenAI models (processing location not guaranteed EU). CAVEAT: generative AI add-on may process data outside EU even if account data is EU-hosted. Zendesk working on EU-local generative AI processing.",
     trainingDataUse:
@@ -430,13 +430,13 @@ const systems = [
     ipTerms:
       "Customer retains all IP in support content and customer data. AI-generated responses belong to customer. Zendesk retains IP in models and platform.",
     certifications:
-      "SOC 2 Type II. ISO 27001. ISO 27018. ISO 27701 (privacy). HIPAA BAA available. FedRAMP (Moderate). PCI DSS Level 1. CSA STAR. C5 (German BSI). HDS (French Health Data Hosting).",
+      "SOC 2 Type II. ISO 27001:2022. ISO 27017. ISO 27018. ISO 27701 (privacy). ISO/IEC 42001 (AI management systems). CSA STAR AI Levels 1 & 2. HIPAA BAA available. FedRAMP LI-SaaS. PCI DSS Level 1. HDS (French Health Data Hosting). Binding Corporate Rules (BCR) approved by Irish DPC — only second company ever to receive this.",
     encryptionInfo:
-      "AES-256 at rest. TLS 1.2+ in transit. Customer-managed encryption keys (CMEK) available. Advanced encryption options in data protection add-on.",
+      "AES-256 at rest. TLS 1.2+ in transit. Customer-managed encryption keys (BYOK) available via ADPP add-on ($50/agent/month). AI-powered data redaction in ADPP. Advanced encryption options.",
     accessControls:
       "SAML 2.0 SSO. SCIM provisioning. Role-based access control with custom roles. MFA. IP restrictions. Audit logs. Agent workspace permissions. Sandbox environments for testing.",
     modelDocs:
-      "AI documentation published covering triage, agents, and copilot. CX-specific model approach described. Limited transparency on underlying model architecture. Zendesk AI principles published.",
+      "AI documentation published covering triage, agents, and copilot. CX-specific model approach described. Multi-LLM architecture with zero data retention agreements with LLM providers. Zendesk AI principles published.",
     explainability:
       "Triage shows predicted intent, sentiment, and language with confidence scores. Agent copilot shows reasoning behind suggestions. AI agent shows matched knowledge articles. Good operational transparency for CX use case.",
     biasTesting:
@@ -557,7 +557,7 @@ const systems = [
     useCases:
       "AI task generation from natural language descriptions\nFormula builder (natural language to column formulas)\nEmail composition and summarization\nProject status summarization\nText generation for updates and documentation\nWorkflow automation suggestions\nData analysis and dashboard insights\nWork form creation with AI assistance",
     dataStorage:
-      "EU data residency available (Frankfurt, AWS eu-central-1). US (Virginia) default. Customer can request EU data residency during setup. Multi-region available for Enterprise. All customer data stored in selected region.",
+      "EU data region available for Standard and Pro plans (Frankfurt, AWS eu-central-1). US (Virginia) default. IMPORTANT: customer data may also be processed in the US using Standard Contractual Clauses — not a full EU-only processing guarantee. Additional data regions under review.",
     dataProcessing:
       "AI features use OpenAI models via API. Data sent to OpenAI for AI processing. monday.com states OpenAI does not retain data beyond the request. CAVEAT: AI processing via OpenAI occurs outside EU data center — even if data is hosted in EU, AI feature usage sends data to OpenAI's infrastructure.",
     trainingDataUse:
@@ -575,7 +575,7 @@ const systems = [
     ipTerms:
       "Customer retains all IP in work data and content. AI-generated content belongs to customer. monday.com retains IP in platform and AI features.",
     certifications:
-      "SOC 2 Type II. SOC 3. ISO 27001. ISO 27018. ISO 27701 (privacy). HIPAA BAA available. GDPR-compliant DPA. CSA STAR Level 2.",
+      "SOC 1 Type II. SOC 2 Type II. SOC 3. ISO 27001. ISO 27017. ISO 27018. ISO 27032. ISO 27701 (privacy). HIPAA BAA available. GDPR-compliant DPA. Broadest ISO coverage in the work management category.",
     encryptionInfo:
       "AES-256 at rest. TLS 1.2+ in transit. monday.com manages encryption. No customer-managed keys currently.",
     accessControls:
@@ -591,13 +591,13 @@ const systems = [
     gdprStatus:
       "DPA available. EU data residency (Frankfurt). GDPR compliance documented. Right to deletion supported. Data portability tools available. Cookie management built in.",
     euResidency:
-      "EU data hosting available (Frankfurt). Board and workspace data in EU. CAVEAT: AI features use OpenAI — processing occurs outside EU data center. monday.com working on EU-local AI processing. For strict EU data residency, AI features may need to be disabled.",
+      "Partial. EU data region available but customer data may also be processed in US via SCCs. AI features use Azure OpenAI and AWS Bedrock — processing occurs outside EU. For strict EU-only data residency, monday.com does not currently provide a full guarantee. Weakest EU residency posture in this category.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
     industrySlugs: ["telecommunications", "manufacturing"],
     scores: {
       "eu-ai-act": "B",
-      gdpr: "B+",
+      gdpr: "B",
     },
   },
 ];
