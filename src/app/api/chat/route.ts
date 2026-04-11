@@ -98,8 +98,8 @@ async function getAccountContext(subscriberId: string | null, locale: string): P
 
     const tierLabels: Record<string, string> = {
       free: "Free (3 questions/day, basic access)",
-      pro: "Pro €49/month (unlimited questions, full access, CSV exports)",
-      enterprise: "Enterprise €149/month (unlimited, API access, priority support)",
+      pro: "Pro €19/month (unlimited questions, full access, CSV exports)",
+      enterprise: "Enterprise (custom pricing, API access, priority support)",
     };
 
     return [

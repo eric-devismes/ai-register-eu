@@ -284,7 +284,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
               </svg>
             </a>
             <p className="mt-3 text-xs text-gray-400">
-              Starting at EUR 49/month
+              Starting at EUR 19/month
             </p>
           </div>
         </div>

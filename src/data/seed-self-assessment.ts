@@ -37,7 +37,7 @@ async function main() {
     foundedYear: 2025,
     employeeCount: "1-10",
     fundingStatus:
-      "Bootstrapped. No external investors. Revenue model: freemium SaaS (Free / Pro €49/mo / Enterprise €149/mo) + consulting services. Payment processing via LemonSqueezy (Merchant of Record, handles EU VAT).",
+      "Bootstrapped. No external investors. Revenue model: freemium SaaS (Free / Pro €19/mo / Enterprise custom pricing) + consulting services. Payment processing via LemonSqueezy (Merchant of Record, handles EU VAT).",
     marketPresence: "Startup",
     customerCount: "Early stage — growing subscriber base",
     notableCustomers:
