@@ -68,9 +68,9 @@ export default function SubscribePage() {
       <main className="flex-1 bg-white">
         <div className="mx-auto max-w-md px-4 py-24">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900">Sign In</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Log in</h1>
             <p className="mt-2 text-gray-600">
-              Enter your email to receive a sign-in link. No password needed.
+              Enter your email to receive a magic link. No password needed.
             </p>
           </div>
 
@@ -93,8 +93,8 @@ export default function SubscribePage() {
                 className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#003399] focus:ring-[#003399]"
               />
               <span className="text-xs text-gray-600 leading-relaxed">
-                New here? I agree to the <a href="/en/privacy" className="text-[#003399] underline">privacy policy</a> and
-                to receive compliance updates. Existing users can skip this.
+                First time? I agree to the <a href="/en/privacy" className="text-[#003399] underline">privacy policy</a> and
+                to receive compliance updates. Already have an account? Leave unchecked.
               </span>
             </label>
 
@@ -107,13 +107,18 @@ export default function SubscribePage() {
               disabled={status === "loading"}
               className="w-full rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#003399]/90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status === "loading" ? "Sending link..." : "Send sign-in link"}
+              {status === "loading" ? "Sending link..." : "Send magic link"}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-xs text-gray-400">
-            We&apos;ll email you a magic link — click it to sign in. Works for both new and existing accounts.
-          </p>
+          <div className="mt-8 rounded-lg border border-blue-100 bg-blue-50/50 p-4 text-center">
+            <p className="text-sm text-gray-700">
+              <strong>No account yet?</strong> Just enter your email above — your free account is created automatically.
+            </p>
+            <p className="mt-1 text-xs text-gray-500">
+              Free plan: 3 AI questions/day, full database access, compliance checklists.
+            </p>
+          </div>
         </div>
       </main>
       <Footer />
