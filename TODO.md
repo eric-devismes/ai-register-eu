@@ -107,8 +107,8 @@
 
 - [~] **Fix chatbot** — code fixes applied (API key trim, label fix). Root cause: ANTHROPIC_API_KEY empty or has trailing whitespace in Vercel. Eric: verify key in Vercel dashboard.
 - [x] **Account management via chatbot**: Detects account/billing questions, injects subscriber context (tier, status, actions) (2026-04-11)
-- [ ] **Customer support via chatbot**: Handle claims for payment cancellation, refunds, billing issues
-- [ ] **Full customer engagement**: Make the chatbot handle all regular customer cases — easy, self-service, no friction
+- [x] **Customer support via chatbot**: Handles cancellation, refunds, billing with support policies in context (2026-04-11)
+- [x] **Full customer engagement**: Chatbot answers account/billing/support + regulatory questions, with fuller responses (512 tokens) (2026-04-11)
 
 ## Scoring & Methodology
 
