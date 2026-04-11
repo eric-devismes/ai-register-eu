@@ -99,7 +99,7 @@ export const CHANGE_TYPE_BADGES: Record<string, { label: string; color: string }
 // Centralised here so model upgrades only require one change.
 
 export const LLM_MODEL = "claude-haiku-4-5-20251001";
-export const LLM_CHAT_MAX_TOKENS = 256;       // Short answers for chat
+export const LLM_CHAT_MAX_TOKENS = 512;       // Detailed answers for enterprise questions
 export const LLM_COMPARE_MAX_TOKENS = 2048;   // Longer structured output for comparison
 export const LLM_TIMEOUT_MS = 30_000;         // 30 seconds
 

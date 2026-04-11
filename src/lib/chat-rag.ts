@@ -23,10 +23,10 @@
 import { prisma } from "@/lib/db";
 
 // Max characters in the assembled context string.
-// Claude Haiku has 200K tokens, but we want the context to be focused,
-// not exhaustive. 4000 chars ≈ ~1000 tokens — leaves plenty of room
-// for the system prompt and response.
-const MAX_CONTEXT_LENGTH = 4000;
+// Claude Haiku has 200K tokens, but we want the context to be rich enough
+// to answer detailed enterprise questions. 8000 chars ≈ ~2000 tokens —
+// still leaves plenty of room for the system prompt (256 token response).
+const MAX_CONTEXT_LENGTH = 8000;
 
 // ─── Term Extraction ───────────────────────────────────
 
@@ -117,7 +117,11 @@ async function searchStatements(terms: string[]): Promise<string[]> {
   );
 }
 
-/** Search AI systems by vendor name, product name, and description. */
+/**
+ * Search AI systems by vendor, name, description, and enriched fields.
+ * Searches across security, compliance, and data fields to catch queries
+ * like "which tools support encryption" or "GDPR compliant AI tools".
+ */
 async function searchSystems(terms: string[]): Promise<string[]> {
   const systems = await prisma.aISystem.findMany({
     where: {
@@ -125,9 +129,16 @@ async function searchSystems(terms: string[]): Promise<string[]> {
         { name: { contains: terms[0], mode: "insensitive" } },
         { vendor: { contains: terms[0], mode: "insensitive" } },
         { description: { contains: terms[0], mode: "insensitive" } },
+        { dataProcessing: { contains: terms[0], mode: "insensitive" } },
+        { encryptionInfo: { contains: terms[0], mode: "insensitive" } },
+        { accessControls: { contains: terms[0], mode: "insensitive" } },
+        { aiActStatus: { contains: terms[0], mode: "insensitive" } },
+        { gdprStatus: { contains: terms[0], mode: "insensitive" } },
+        { useCases: { contains: terms[0], mode: "insensitive" } },
         ...(terms[1] ? [
           { name: { contains: terms[1], mode: "insensitive" as const } },
           { vendor: { contains: terms[1], mode: "insensitive" as const } },
+          { description: { contains: terms[1], mode: "insensitive" as const } },
         ] : []),
       ],
     },
@@ -137,7 +148,53 @@ async function searchSystems(terms: string[]): Promise<string[]> {
 
   return systems.map((sys) => {
     const scoreStr = sys.scores.map((s) => `${s.framework.name}: ${s.score}`).join(", ");
-    return `AI SYSTEM: ${sys.vendor} ${sys.name} (${sys.type})\nRisk: ${sys.risk}\n${sys.description}\nScores: ${scoreStr}\nData: ${sys.dataStorage}\nEU Residency: ${sys.euResidency}\nCertifications: ${sys.certifications}`;
+
+    // Build rich context — include all available fields for comprehensive answers
+    const parts = [
+      `AI SYSTEM: ${sys.vendor} ${sys.name} (${sys.type})`,
+      `Risk: ${sys.risk} | Deployment: ${sys.deploymentModel || "N/A"} | Source: ${sys.sourceModel || "N/A"}`,
+      sys.description,
+      `Compliance Scores: ${scoreStr}`,
+    ];
+
+    // Vendor profile
+    if (sys.vendorHq) parts.push(`HQ: ${sys.vendorHq}`);
+    if (sys.euPresence) parts.push(`EU Presence: ${sys.euPresence}`);
+    if (sys.employeeCount) parts.push(`Employees: ${sys.employeeCount}`);
+    if (sys.fundingStatus) parts.push(`Funding: ${sys.fundingStatus}`);
+
+    // Data & privacy
+    if (sys.dataStorage) parts.push(`Data Storage: ${sys.dataStorage}`);
+    if (sys.dataProcessing) parts.push(`Data Processing: ${sys.dataProcessing}`);
+    if (sys.trainingDataUse) parts.push(`Training Data: ${sys.trainingDataUse}`);
+    if (sys.subprocessors) parts.push(`Sub-processors: ${sys.subprocessors}`);
+    if (sys.euResidency) parts.push(`EU Residency: ${sys.euResidency}`);
+
+    // Security
+    if (sys.encryptionInfo) parts.push(`Encryption: ${sys.encryptionInfo}`);
+    if (sys.accessControls) parts.push(`Access Controls: ${sys.accessControls}`);
+    if (sys.certifications) parts.push(`Certifications: ${sys.certifications}`);
+
+    // Compliance
+    if (sys.aiActStatus) parts.push(`AI Act Status: ${sys.aiActStatus}`);
+    if (sys.gdprStatus) parts.push(`GDPR Status: ${sys.gdprStatus}`);
+
+    // AI transparency
+    if (sys.modelDocs) parts.push(`Model: ${sys.modelDocs}`);
+    if (sys.explainability) parts.push(`Explainability: ${sys.explainability}`);
+    if (sys.biasTesting) parts.push(`Bias Testing: ${sys.biasTesting}`);
+
+    // Contract & commercial
+    if (sys.dpaDetails) parts.push(`DPA: ${sys.dpaDetails}`);
+    if (sys.slaDetails) parts.push(`SLA: ${sys.slaDetails}`);
+    if (sys.dataPortability) parts.push(`Portability: ${sys.dataPortability}`);
+    if (sys.exitTerms) parts.push(`Exit Terms: ${sys.exitTerms}`);
+
+    // Use cases & customers
+    if (sys.useCases) parts.push(`Use Cases: ${sys.useCases}`);
+    if (sys.notableCustomers) parts.push(`Notable Customers: ${sys.notableCustomers}`);
+
+    return parts.join("\n");
   });
 }
 
