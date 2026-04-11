@@ -20,6 +20,6 @@ _None_
 - **QA bot test script uses wrong field** — QA test for `/api/chat` was sending `{"message":"..."}` but API expects `{"question":"..."}`. API itself is functioning correctly. — internal QA script
 
 ### Fixed this run
-_None_
+- **CLAUDE.md stale price €49** — Fixed to €19/mo. Also fixed same stale price in seed-self-assessment.ts, chat context, business-case/podium/vendor-prep tier-gate CTAs. (2026-04-11)
 
 ---
