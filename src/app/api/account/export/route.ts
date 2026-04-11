@@ -22,17 +22,34 @@ export async function GET() {
     },
   });
 
-  const digestLogs = await prisma.digestLog.findMany({
-    where: { subscriberId: subscriber.id },
-    orderBy: { sentAt: "desc" },
-  });
+  const [digestLogs, chatLogs] = await Promise.all([
+    prisma.digestLog.findMany({
+      where: { subscriberId: subscriber.id },
+      orderBy: { sentAt: "desc" },
+    }),
+    prisma.chatLog.findMany({
+      where: { subscriberId: subscriber.id },
+      orderBy: { createdAt: "desc" },
+      select: {
+        question: true,
+        answer: true,
+        locale: true,
+        blocked: true,
+        createdAt: true,
+      },
+    }),
+  ]);
 
   const exportData = {
     exportDate: new Date().toISOString(),
     exportedBy: "AI Compass EU — GDPR Data Export (Article 20)",
     subscriber: {
       email: fullData?.email,
+      name: fullData?.name || undefined,
       verified: fullData?.verified,
+      role: fullData?.role || undefined,
+      industry: fullData?.industry || undefined,
+      orgSize: fullData?.orgSize || undefined,
       digestEnabled: fullData?.digestEnabled,
       digestFrequency: fullData?.digestFrequency,
       consentDate: fullData?.consentDate,
@@ -43,6 +60,13 @@ export async function GET() {
       frameworks: fullData?.frameworks || [],
       systems: fullData?.systems || [],
     },
+    chatHistory: chatLogs.map((log) => ({
+      question: log.question,
+      answer: log.answer,
+      locale: log.locale,
+      blocked: log.blocked,
+      date: log.createdAt,
+    })),
     digestHistory: digestLogs.map((log) => ({
       sentAt: log.sentAt,
       itemCount: log.itemCount,

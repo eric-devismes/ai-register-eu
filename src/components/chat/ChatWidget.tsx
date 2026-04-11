@@ -38,10 +38,10 @@ export default function ChatWidget() {
       setMessages([{
         role: "assistant",
         content: locale === "fr"
-          ? "Bonjour ! Je suis l'assistant AI Compass EU. Posez-moi vos questions sur les r\u00e9glementations IA europ\u00e9ennes ou les syst\u00e8mes IA \u00e9valu\u00e9s sur notre plateforme."
+          ? "Bonjour ! Je suis un assistant IA (propuls\u00e9 par Claude d'Anthropic). Posez-moi vos questions sur les r\u00e9glementations IA europ\u00e9ennes ou les syst\u00e8mes IA \u00e9valu\u00e9s sur notre plateforme. Mes r\u00e9ponses sont g\u00e9n\u00e9r\u00e9es par IA et fond\u00e9es sur notre base de donn\u00e9es r\u00e9glementaire."
           : locale === "de"
-          ? "Hallo! Ich bin der AI Compass EU Assistent. Stellen Sie mir Fragen zu EU-KI-Vorschriften oder den auf unserer Plattform bewerteten KI-Systemen."
-          : "Hello! I'm the AI Compass EU assistant. Ask me about EU AI regulations or the AI systems assessed on our platform.",
+          ? "Hallo! Ich bin ein KI-Assistent (betrieben von Anthropic Claude). Stellen Sie mir Fragen zu EU-KI-Vorschriften oder den auf unserer Plattform bewerteten KI-Systemen. Meine Antworten sind KI-generiert und basieren auf unserer regulatorischen Datenbank."
+          : "Hello! I'm an AI assistant (powered by Anthropic Claude). Ask me about EU AI regulations or the AI systems assessed on our platform. My responses are AI-generated and grounded in our regulatory database.",
       }]);
     }
   }, [open, messages.length, locale]);

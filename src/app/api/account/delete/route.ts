@@ -13,8 +13,12 @@ export async function DELETE() {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  // Delete all related data
-  await prisma.digestLog.deleteMany({ where: { subscriberId: subscriber.id } });
+  // Delete all related data (GDPR Article 17 — complete erasure)
+  await Promise.all([
+    prisma.digestLog.deleteMany({ where: { subscriberId: subscriber.id } }),
+    prisma.chatLog.deleteMany({ where: { subscriberId: subscriber.id } }),
+    prisma.feedback.deleteMany({ where: { email: subscriber.email } }),
+  ]);
   await prisma.subscriber.delete({ where: { id: subscriber.id } });
 
   // Clear session

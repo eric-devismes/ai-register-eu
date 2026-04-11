@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const lastUpdated = "3 April 2026";
+  const lastUpdated = "11 April 2026";
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     <tr>
-                      <td className="px-4 py-3 font-medium">Email address</td>
+                      <td className="px-4 py-3 font-medium">Email address and optional display name</td>
                       <td className="px-4 py-3">Account creation, magic link authentication, digest delivery</td>
                       <td className="px-4 py-3">Consent (Art. 6(1)(a))</td>
                     </tr>
@@ -62,6 +62,16 @@ export default function PrivacyPage() {
                       <td className="px-4 py-3 font-medium">Topic preferences</td>
                       <td className="px-4 py-3">Personalise your news feed and digest emails (which frameworks and AI systems you follow)</td>
                       <td className="px-4 py-3">Consent (Art. 6(1)(a))</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium">Role, industry, and organisation size</td>
+                      <td className="px-4 py-3">Optional profile fields used to contextualise AI chatbot and comparison tool responses (AI personalisation, not automated decision-making)</td>
+                      <td className="px-4 py-3">Consent (Art. 6(1)(a))</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium">Chatbot conversations</td>
+                      <td className="px-4 py-3">Logged for quality assurance and abuse prevention. Logged-in users&apos; chats are linked to their account. No email or name is included in the AI request.</td>
+                      <td className="px-4 py-3">Legitimate interest (Art. 6(1)(f))</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-3 font-medium">Consent record</td>
@@ -78,8 +88,8 @@ export default function PrivacyPage() {
               </div>
               <p className="mt-4 font-semibold text-gray-900">What we do NOT collect:</p>
               <ul className="mt-2 list-disc pl-5 space-y-1">
-                <li>No names, phone numbers, or physical addresses</li>
-                <li>No payment or financial information (we do not process payments yet)</li>
+                <li>No phone numbers or physical addresses</li>
+                <li>No financial information beyond what LemonSqueezy processes for subscriptions (see Section 7)</li>
                 <li>No browsing history, cookies for tracking, or behavioural profiling</li>
                 <li>No IP address logging beyond standard server access logs</li>
                 <li>No third-party analytics or advertising trackers</li>
@@ -94,6 +104,7 @@ export default function PrivacyPage() {
                 <li><strong>Authentication:</strong> Sending you a magic link to sign in (no password stored)</li>
                 <li><strong>Personalisation:</strong> Showing you news about the frameworks and AI systems you selected</li>
                 <li><strong>Email digest:</strong> Sending you periodic updates about your selected topics</li>
+                <li><strong>AI personalisation:</strong> If you provide your role, industry, or organisation size, the AI chatbot and comparison tool use this context to give you more relevant responses. This is contextual personalisation, not automated decision-making or profiling under GDPR Article 22.</li>
               </ul>
               <p className="mt-3">We will never sell, rent, or share your data with third parties for marketing purposes.</p>
             </section>
@@ -150,6 +161,7 @@ export default function PrivacyPage() {
                 <li><strong>Active accounts:</strong> Data retained for as long as your account exists</li>
                 <li><strong>Deleted accounts:</strong> All data permanently removed immediately upon deletion — no backup retention</li>
                 <li><strong>Digest logs:</strong> Retained for 12 months for delivery monitoring, then automatically purged</li>
+                <li><strong>Chatbot conversations:</strong> Retained for 12 months for quality assurance, then automatically purged</li>
                 <li><strong>Consent records:</strong> Retained as long as the account exists, as required by GDPR Article 7(1)</li>
               </ul>
             </section>
@@ -181,6 +193,18 @@ export default function PrivacyPage() {
                       <td className="px-4 py-3">Email address, email content</td>
                       <td className="px-4 py-3">US (with EU SCCs)</td>
                     </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium">Anthropic (Claude API)</td>
+                      <td className="px-4 py-3">AI inference for chatbot and comparison tool</td>
+                      <td className="px-4 py-3">User questions (no email/name) sent via API with role/industry context. Data not used for model training per Anthropic API terms.</td>
+                      <td className="px-4 py-3">US (with EU SCCs)</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium">LemonSqueezy</td>
+                      <td className="px-4 py-3">Payment processing for Pro subscriptions</td>
+                      <td className="px-4 py-3">Email address and subscription data for payment processing</td>
+                      <td className="px-4 py-3">US (with EU SCCs)</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -191,8 +215,8 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-lg font-bold text-gray-900">8. International Data Transfers</h2>
               <p className="mt-3">
-                Email delivery via Resend may involve processing in the United States.
-                This transfer is protected by EU Standard Contractual Clauses (SCCs) in accordance with GDPR Chapter V.
+                Email delivery via Resend, AI inference via Anthropic, and payment processing via LemonSqueezy may involve processing in the United States.
+                These transfers are protected by EU Standard Contractual Clauses (SCCs) in accordance with GDPR Chapter V.
                 All other data processing occurs within the EU/EEA.
               </p>
             </section>
@@ -215,6 +239,11 @@ export default function PrivacyPage() {
                       <td className="px-4 py-3 font-mono text-xs">subscriber-session</td>
                       <td className="px-4 py-3">Keeps you signed in</td>
                       <td className="px-4 py-3">30 days</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-mono text-xs">chat-fingerprint</td>
+                      <td className="px-4 py-3">Rate limiting for AI chatbot &mdash; prevents abuse. No personal identification.</td>
+                      <td className="px-4 py-3">1 year</td>
                     </tr>
                   </tbody>
                 </table>
