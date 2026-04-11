@@ -239,7 +239,7 @@ For each distinct news item found in the results above, return:
 {
   "title": "Sharp headline, max 100 chars — Reuters/Politico style",
   "summary": "2-3 sentence journalist-quality summary. Vary your style — be direct, opinionated, specific about who should care and what they should do. No templates, no bullet points, no consultant-speak.",
-  "sourceUrl": "Use the ACTUAL URL from the search results. If the post links to an article, use that URL. If only a tweet is available, use https://x.com/search?q=from%3Ausername%20keyword&f=live — NEVER fabricate a tweet status URL.",
+  "sourceUrl": "Priority order: (1) If the post links to an external article, use that article URL. (2) If no article URL, use the user's profile page: https://x.com/username. NEVER fabricate tweet status URLs (x.com/user/status/ID) and NEVER use search URLs (x.com/search?q=...) — both lead to dead ends.",
   "sourceLabel": "X/@username format",
   "changeType": "update|amendment|jurisprudence|new_version|incident|certification|correction",
   "relevance": 0-100,
@@ -309,27 +309,35 @@ Return ONLY a valid JSON array. No markdown, no explanation.`,
 }
 
 /**
- * Last-resort URL sanitization. With grounded search this should rarely
- * trigger, but we keep it as a safety net for any remaining
- * hallucinated tweet status URLs.
+ * Sanitize URLs from Grok output. Even with grounded search, the
+ * structuring step can still hallucinate tweet status URLs.
+ *
+ * Strategy: if the URL is a fabricated tweet (x.com/user/status/digits),
+ * replace it with the user's profile page — which always works.
+ * Search URLs like "from:user keyword" often return empty on X.
  */
-function sanitizeFallback(url: string, sourceLabel: string, title: string): string {
-  if (!url) return "";
+function sanitizeFallback(url: string, sourceLabel: string, _title: string): string {
+  if (!url) {
+    // No URL at all — try to build a profile link from sourceLabel
+    const userMatch = sourceLabel?.match(/@(\w+)/);
+    if (userMatch) return `https://x.com/${userMatch[1]}`;
+    return "";
+  }
 
-  // Detect tweet status URLs (x.com/user/status/digits) — these are the ones
-  // that tend to be hallucinated even with grounded search
+  // Detect hallucinated tweet status URLs (x.com/user/status/digits)
   const tweetPattern = /^https?:\/\/(x\.com|twitter\.com)\/(\w+)\/status\/\d+/i;
   const match = url.match(tweetPattern);
   if (match) {
-    // Replace with a search URL using the username from the URL
-    const username = match[2];
-    const keywords = title
-      .replace(/[^\w\s]/g, "")
-      .split(/\s+/)
-      .slice(0, 3)
-      .join(" ");
-    const query = `from:${username} ${keywords}`;
-    return `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
+    // Link to the user's profile — always works, unlike search URLs
+    return `https://x.com/${match[2]}`;
+  }
+
+  // Detect search URLs (these often return empty results)
+  const searchPattern = /^https?:\/\/(x\.com|twitter\.com)\/search\?/i;
+  if (searchPattern.test(url)) {
+    // Replace with profile link if we can extract a username
+    const userMatch = sourceLabel?.match(/@(\w+)/);
+    if (userMatch) return `https://x.com/${userMatch[1]}`;
   }
 
   return url;
