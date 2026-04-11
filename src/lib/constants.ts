@@ -38,6 +38,41 @@ export const RISK_BADGES: Record<string, string> = {
   Minimal: "bg-green-100 text-green-700 border-green-200",
 };
 
+// ─── Risk Tooltips (clickable explanations) ─────────────
+
+export const RISK_TOOLTIPS: Record<string, { short: string; detail: string }> = {
+  High: {
+    short: "EU AI Act: High-Risk Category",
+    detail:
+      "This AI system operates in a use-case category classified as 'high-risk' by the EU AI Act (e.g., credit scoring, recruitment, medical devices, law enforcement). This does NOT mean the vendor is non-compliant — it means the system must meet stricter requirements: risk management, data governance, human oversight, transparency, and conformity assessment. A high-risk system can still score A+ on compliance.",
+  },
+  Limited: {
+    short: "EU AI Act: Limited Risk",
+    detail:
+      "This AI system falls under the 'limited risk' category of the EU AI Act. It has transparency obligations — users must be informed they are interacting with AI (e.g., chatbots, content generation). Fewer requirements than high-risk, but the vendor must still ensure transparency and user awareness.",
+  },
+  Minimal: {
+    short: "EU AI Act: Minimal Risk",
+    detail:
+      "This AI system is classified as 'minimal risk' under the EU AI Act. No specific regulatory requirements apply beyond existing laws. Most AI systems fall in this category (e.g., spam filters, recommendation engines). Voluntary codes of conduct may apply.",
+  },
+};
+
+// ─── Score Tooltips ────────────────────────────────────
+
+export const SCORE_TOOLTIPS: Record<string, string> = {
+  "A+": "Excellent — exceeds requirements with best-in-class practices",
+  A: "Very good — strong compliance with minor gaps",
+  "A-": "Good — solid compliance posture",
+  "B+": "Above average — meets most requirements",
+  B: "Average — adequate compliance with room for improvement",
+  "B-": "Below average — meets minimum but with significant gaps",
+  "C+": "Needs improvement — partial compliance only",
+  C: "Weak — major compliance gaps identified",
+  "C-": "Poor — significant regulatory risk",
+  D: "Failing — does not meet basic requirements",
+};
+
 // ─── Case Status Styles ─────────────────────────────────
 
 export const STATUS_BADGES: Record<string, string> = {

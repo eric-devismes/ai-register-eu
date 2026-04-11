@@ -10,6 +10,8 @@
 import { useState } from "react";
 import { gradeColor } from "@/lib/scoring";
 import { useT, useLocale } from "@/lib/locale-context";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { RISK_TOOLTIPS, SCORE_TOOLTIPS } from "@/lib/constants";
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -135,9 +137,16 @@ export function FeaturedSystemsGrid({
                   <h3 className="mt-1 text-lg font-bold text-gray-900">{system.name}</h3>
                   <p className="mt-0.5 text-xs text-gray-500">{system.type}</p>
                 </div>
-                <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[system.risk] || RISK_COLORS.High}`}>
-                  {riskLabel(system.risk)} {t("common.risk")}
-                </span>
+                <Tooltip
+                  text={RISK_TOOLTIPS[system.risk]?.short || "EU AI Act Risk Level"}
+                  detail={RISK_TOOLTIPS[system.risk]?.detail}
+                  clickable
+                  position="bottom"
+                >
+                  <span className={`cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[system.risk] || RISK_COLORS.High}`}>
+                    {riskLabel(system.risk)} {t("common.risk")} ⓘ
+                  </span>
+                </Tooltip>
               </div>
 
               {/* Description — clamped to 3 lines for balanced card heights */}
@@ -161,24 +170,35 @@ export function FeaturedSystemsGrid({
                 </p>
                 <div className="flex items-center gap-3 flex-wrap">
                   {/* Overall score first */}
-                  <div className="flex flex-col items-center gap-1">
-                    <span className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold text-white ring-2 ring-gray-200 ${gradeColor(system.overallScore)}`}>
-                      {system.overallScore}
-                    </span>
-                    <span className="text-[10px] font-semibold text-gray-500">{t("featured.overall")}</span>
-                  </div>
+                  <Tooltip
+                    text={`Overall: ${system.overallScore} — ${SCORE_TOOLTIPS[system.overallScore] || "Average across all frameworks"}`}
+                    position="bottom"
+                  >
+                    <div className="flex flex-col items-center gap-1">
+                      <span className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold text-white ring-2 ring-gray-200 ${gradeColor(system.overallScore)}`}>
+                        {system.overallScore}
+                      </span>
+                      <span className="text-[10px] font-semibold text-gray-500">{t("featured.overall")}</span>
+                    </div>
+                  </Tooltip>
 
                   {/* Separator */}
                   <div className="h-8 w-px bg-gray-200" />
 
                   {/* Per-framework scores */}
                   {system.scores.map((s) => (
-                    <div key={s.frameworkSlug} className="flex flex-col items-center gap-1">
-                      <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${gradeColor(s.score)}`}>
-                        {s.score}
-                      </span>
-                      <span className="text-[10px] text-gray-400">{s.frameworkName}</span>
-                    </div>
+                    <Tooltip
+                      key={s.frameworkSlug}
+                      text={`${s.frameworkName}: ${s.score} — ${SCORE_TOOLTIPS[s.score] || "Assessment score"}`}
+                      position="bottom"
+                    >
+                      <div className="flex flex-col items-center gap-1">
+                        <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white ${gradeColor(s.score)}`}>
+                          {s.score}
+                        </span>
+                        <span className="text-[10px] text-gray-400">{s.frameworkName}</span>
+                      </div>
+                    </Tooltip>
                   ))}
                 </div>
               </div>

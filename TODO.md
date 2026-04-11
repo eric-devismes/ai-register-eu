@@ -116,7 +116,7 @@
 
 ## UX Fixes
 
-- [ ] **Risk badge UX**: "High Risk" red badge is confusing when compliance scores are A/B — users don't understand why it's "high risk" if everything looks good. Fix: make risk badge clickable with explanation popup, and add hover tooltips on each compliance score letter explaining what it means and how it was assessed.
+- [x] **Risk badge UX**: "High Risk" red badge is confusing when compliance scores are A/B — users don't understand why it's "high risk" if everything looks good. Fix: make risk badge clickable with explanation popup, and add hover tooltips on each compliance score letter explaining what it means and how it was assessed. (2026-04-11)
 
 ## Documentation
 

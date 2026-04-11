@@ -12,6 +12,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLocale } from "@/lib/locale-context";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { RISK_TOOLTIPS } from "@/lib/constants";
 
 // ─── Types ────────────────────────────────────────────────
 
@@ -101,19 +103,19 @@ function RiskBadge({ risk }: { risk: string }) {
     : risk === "Limited" ? "bg-amber-100 text-amber-700 border-amber-200"
     : "bg-green-100 text-green-700 border-green-200";
 
-  const explanations: Record<string, string> = {
-    High: "EU AI Act classifies this use-case category as high-risk (e.g., credit scoring, recruitment). This reflects the use case, not the vendor's compliance quality.",
-    Limited: "EU AI Act limited risk — transparency obligations apply (e.g., users must know they're interacting with AI).",
-    Minimal: "EU AI Act minimal risk — no specific regulatory requirements beyond existing laws.",
-  };
-
   return (
-    <span
-      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border cursor-help ${color}`}
-      title={explanations[risk] || "EU AI Act risk classification"}
+    <Tooltip
+      text={RISK_TOOLTIPS[risk]?.short || "EU AI Act Risk Level"}
+      detail={RISK_TOOLTIPS[risk]?.detail}
+      clickable
+      position="bottom"
     >
-      {risk} Risk ⓘ
-    </span>
+      <span
+        className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border cursor-pointer ${color}`}
+      >
+        {risk} Risk ⓘ
+      </span>
+    </Tooltip>
   );
 }
 

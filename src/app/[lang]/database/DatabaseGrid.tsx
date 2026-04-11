@@ -12,6 +12,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { gradeColor } from "@/lib/scoring";
 import { Tooltip } from "@/components/ui/Tooltip";
+import { RISK_BADGES, RISK_TOOLTIPS, SCORE_TOOLTIPS } from "@/lib/constants";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 interface Score {
@@ -36,43 +37,6 @@ interface System {
 }
 
 const RISK_FILTERS = ["All", "High", "Limited", "Minimal"];
-
-const RISK_COLORS: Record<string, string> = {
-  High: "bg-red-100 text-red-700 border-red-200",
-  Limited: "bg-amber-100 text-amber-700 border-amber-200",
-  Minimal: "bg-green-100 text-green-700 border-green-200",
-};
-
-const RISK_TOOLTIPS: Record<string, { short: string; detail: string }> = {
-  High: {
-    short: "EU AI Act: High-Risk Category",
-    detail:
-      "This AI system operates in a use-case category classified as 'high-risk' by the EU AI Act (e.g., credit scoring, recruitment, medical devices, law enforcement). This does NOT mean the vendor is non-compliant — it means the system must meet stricter requirements: risk management, data governance, human oversight, transparency, and conformity assessment. A high-risk system can still score A+ on compliance.",
-  },
-  Limited: {
-    short: "EU AI Act: Limited Risk",
-    detail:
-      "This AI system falls under the 'limited risk' category of the EU AI Act. It has transparency obligations — users must be informed they are interacting with AI (e.g., chatbots, content generation). Fewer requirements than high-risk, but the vendor must still ensure transparency and user awareness.",
-  },
-  Minimal: {
-    short: "EU AI Act: Minimal Risk",
-    detail:
-      "This AI system is classified as 'minimal risk' under the EU AI Act. No specific regulatory requirements apply beyond existing laws. Most AI systems fall in this category (e.g., spam filters, recommendation engines). Voluntary codes of conduct may apply.",
-  },
-};
-
-const SCORE_TOOLTIPS: Record<string, string> = {
-  "A+": "Excellent — exceeds requirements with best-in-class practices",
-  A: "Very good — strong compliance with minor gaps",
-  "A-": "Good — solid compliance, some areas for improvement",
-  "B+": "Above average — meets most requirements with notable gaps",
-  B: "Average — meets baseline requirements",
-  "B-": "Below average — meets minimum but with significant gaps",
-  "C+": "Needs improvement — partial compliance only",
-  C: "Weak — major compliance gaps identified",
-  "C-": "Poor — significant regulatory risk",
-  D: "Failing — does not meet basic requirements",
-};
 
 function LockIcon() {
   return (
@@ -198,7 +162,7 @@ export function DatabaseGrid({
                         clickable
                         position="bottom"
                       >
-                        <span className={`inline-block cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_COLORS[s.risk] || RISK_COLORS.High}`}>
+                        <span className={`inline-block cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_BADGES[s.risk] || RISK_BADGES.High}`}>
                           {s.risk} ⓘ
                         </span>
                       </Tooltip>

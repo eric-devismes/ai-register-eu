@@ -14,6 +14,8 @@ import { useState } from "react";
 import Link from "next/link";
 import SpiderChart from "@/components/charts/SpiderChart";
 import { gradeColor } from "@/lib/scoring";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { RISK_BADGES, RISK_TOOLTIPS } from "@/lib/constants";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -229,9 +231,16 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
               <span className="rounded-full bg-white/10 border border-white/20 px-2.5 py-0.5 text-xs text-blue-100">
                 {capLabel}
               </span>
-              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${riskStyles[system.risk] || riskStyles.Limited}`}>
-                {system.risk} Risk
-              </span>
+              <Tooltip
+                text={RISK_TOOLTIPS[system.risk]?.short || "EU AI Act Risk Level"}
+                detail={RISK_TOOLTIPS[system.risk]?.detail}
+                clickable
+                position="bottom"
+              >
+                <span className={`cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${riskStyles[system.risk] || riskStyles.Limited}`}>
+                  {system.risk} Risk ⓘ
+                </span>
+              </Tooltip>
               {system.vendorHq && (
                 <span className="rounded-full bg-white/10 border border-white/20 px-2.5 py-0.5 text-xs text-blue-200">
                   HQ: {system.vendorHq}
