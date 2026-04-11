@@ -424,8 +424,39 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         )}
       </div>
 
+      {/* ── Procurement Tools CTA ── */}
+      <div className="mt-10 rounded-xl border border-blue-100 bg-gradient-to-r from-blue-50 to-white p-6">
+        <h3 className="text-sm font-bold text-[#003399] mb-3">Procurement Tools for {system.vendor} {system.name}</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Link href={`/${locale}/business-case`}
+            className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
+            <span className="text-lg">📊</span>
+            <div>
+              <p className="font-medium text-gray-900">Business Case</p>
+              <p className="text-xs text-gray-500">Generate ROI/TCO report</p>
+            </div>
+          </Link>
+          <Link href={`/${locale}/vendor-prep`}
+            className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
+            <span className="text-lg">🤝</span>
+            <div>
+              <p className="font-medium text-gray-900">Vendor Prep</p>
+              <p className="text-xs text-gray-500">Meeting preparation kit</p>
+            </div>
+          </Link>
+          <Link href={`/${locale}/compare`}
+            className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
+            <span className="text-lg">⚖️</span>
+            <div>
+              <p className="font-medium text-gray-900">Compare</p>
+              <p className="text-xs text-gray-500">Side-by-side analysis</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* ── Disclaimer ── */}
-      <div className="mt-10 rounded-xl bg-amber-50 border border-amber-200 p-4">
+      <div className="mt-6 rounded-xl bg-amber-50 border border-amber-200 p-4">
         <p className="text-xs text-amber-800">
           <strong>Assessment Disclaimer:</strong> Based on publicly available information as of the last review.
           Scores reflect what can be verified from vendor documentation, trust centers, and public certifications.
