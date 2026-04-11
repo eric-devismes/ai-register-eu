@@ -28,6 +28,8 @@ export default function Footer() {
     { label: t("common.methodology"), href: l("/methodology") },
     { label: t("common.pricing"), href: l("/pricing") },
     { label: t("common.privacy"), href: l("/privacy") },
+    { label: "Security", href: l("/security") },
+    { label: "Incident Response", href: l("/incident-response") },
     { label: "Services", href: l("/services") },
     { label: "Terms", href: l("/terms") },
     { label: "Contact", href: l("/contact") },
