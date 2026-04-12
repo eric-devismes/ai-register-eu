@@ -25,7 +25,7 @@ import { getEffectiveTier } from "@/lib/tier-access";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "My Dashboard — AI Compass EU",
+  title: "My Dashboard",
   description: "Your personalized AI compliance dashboard. Track compliance scores, regulatory changes, and alerts for your AI stack.",
 };
 

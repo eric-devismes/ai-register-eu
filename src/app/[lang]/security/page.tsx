@@ -14,7 +14,7 @@ import Footer from "@/components/layout/Footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Security Policy — AI Compass EU",
+    title: "Security Policy",
     description:
       "AI Compass EU security policy: ICT risk management (DORA Chapter II), incident response, supply chain risk assessment, business continuity, and NIS2 alignment.",
   };

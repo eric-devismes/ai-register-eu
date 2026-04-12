@@ -18,7 +18,7 @@ import { prisma } from "@/lib/db";
 import { BusinessCaseClient } from "./BusinessCaseClient";
 
 export const metadata: Metadata = {
-  title: "Business Case Generator | AI Compass EU",
+  title: "Business Case Generator",
   description:
     "Generate board-ready business cases for AI system adoption. Includes EU compliance assessment, cost analysis, ROI projection, and implementation timeline.",
 };

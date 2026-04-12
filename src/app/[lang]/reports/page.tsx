@@ -23,7 +23,7 @@ import Footer from "@/components/layout/Footer";
 import { getEffectiveTier } from "@/lib/tier-access";
 
 export const metadata: Metadata = {
-  title: "Reports & White Papers — AI Compass EU",
+  title: "Reports & White Papers",
   description:
     "Free research reports on AI adoption, compliance, data privacy, and security in Europe. Expert analysis for DPOs, CISOs, and compliance professionals.",
 };

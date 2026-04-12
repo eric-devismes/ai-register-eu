@@ -17,7 +17,7 @@ import { getDictionary, type Locale, isValidLocale } from "@/lib/i18n";
 import { PodiumClient } from "./PodiumClient";
 
 export const metadata: Metadata = {
-  title: "AI System Recommendations | AI Compass EU",
+  title: "AI System Recommendations",
   description:
     "Get personalised top-3 AI system recommendations based on your use case, industry, and compliance requirements. Gold, silver, and bronze podium with scoring rationale.",
 };

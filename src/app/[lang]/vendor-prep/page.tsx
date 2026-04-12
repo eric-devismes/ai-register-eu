@@ -18,7 +18,7 @@ import { prisma } from "@/lib/db";
 import { VendorPrepClient } from "./VendorPrepClient";
 
 export const metadata: Metadata = {
-  title: "Vendor Discussion Prep | AI Compass EU",
+  title: "Vendor Discussion Prep",
   description:
     "Generate talking points, negotiation leverage, and red-flag questions for procurement team meetings with AI vendors. Grounded in independent compliance data.",
 };

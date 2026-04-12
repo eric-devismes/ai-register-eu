@@ -20,7 +20,7 @@ import { FREE_TIER_SYSTEM_SLUGS, getEffectiveTier, type SubscriptionTier } from 
 import { DatabaseGrid } from "./DatabaseGrid";
 
 export const metadata: Metadata = {
-  title: "AI Database — AI Compass EU",
+  title: "AI Database",
   description: "Browse and search AI systems rated for European compliance. Filter by risk level, industry, regulation, and compliance score.",
 };
 

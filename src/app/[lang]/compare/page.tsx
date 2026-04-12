@@ -18,7 +18,7 @@ import { getEffectiveTier } from "@/lib/tier-access";
 import { CompareClient } from "./CompareClient";
 
 export const metadata: Metadata = {
-  title: "AI System Comparison — AI Compass EU",
+  title: "AI System Comparison",
   description: "Describe your use case and get AI-matched, side-by-side comparisons of enterprise AI systems assessed for EU regulatory compliance.",
 };
 

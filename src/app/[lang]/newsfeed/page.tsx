@@ -17,7 +17,7 @@ import { getEffectiveTier } from "@/lib/tier-access";
 import { NewsfeedClient } from "./NewsfeedClient";
 
 export const metadata: Metadata = {
-  title: "AI Compliance Newsfeed — AI Compass EU",
+  title: "AI Compliance Newsfeed",
   description:
     "Latest regulatory updates, enforcement actions, and compliance changes affecting AI systems in Europe. EU AI Act, GDPR, DORA, and more.",
 };

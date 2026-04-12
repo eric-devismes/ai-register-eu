@@ -17,7 +17,7 @@ import { isValidLocale } from "@/lib/i18n";
 import { RFPClient } from "./RFPClient";
 
 export const metadata: Metadata = {
-  title: "RFP/RFI Answer Engine | AI Compass EU",
+  title: "RFP/RFI Answer Engine",
   description:
     "Paste your RFP/RFI questions and generate professional draft answers grounded in AI system compliance intelligence. Enterprise feature for procurement teams.",
 };

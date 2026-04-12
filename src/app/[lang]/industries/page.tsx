@@ -14,7 +14,7 @@ import Footer from "@/components/layout/Footer";
 import { getIndustriesWithCounts } from "@/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Industries — AI Compass EU",
+  title: "Industries",
   description: "Explore AI systems by industry sector. Find compliance-rated tools for your specific sector.",
 };
 

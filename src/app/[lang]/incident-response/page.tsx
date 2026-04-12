@@ -14,7 +14,7 @@ import Footer from "@/components/layout/Footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Incident Response Plan — AI Compass EU",
+    title: "Incident Response Plan",
     description:
       "AI Compass EU incident response plan: incident classification (P1-P4), response timelines, communication protocol, post-incident review, and DORA/NIS2 reporting obligations.",
   };

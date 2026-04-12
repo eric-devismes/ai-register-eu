@@ -9,7 +9,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — AI Compass EU",
+  title: "Privacy Policy",
   description: "How AI Compass EU collects, uses, and protects your personal data. GDPR-compliant privacy practices.",
 };
 

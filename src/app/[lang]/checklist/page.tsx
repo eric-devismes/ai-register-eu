@@ -18,7 +18,7 @@ import { getPublishedFrameworks } from "@/lib/queries";
 import { ChecklistClient } from "./ChecklistClient";
 
 export const metadata: Metadata = {
-  title: "Compliance Checklist Generator — AI Compass EU",
+  title: "Compliance Checklist Generator",
   description:
     "Generate a tailored compliance checklist by combining EU regulatory frameworks. Select AI Act, GDPR, DORA, NIS2, and more to build your complete AI procurement compliance checklist.",
 };

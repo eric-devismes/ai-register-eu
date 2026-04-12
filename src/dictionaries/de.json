@@ -62,30 +62,30 @@
     "overall": "Gesamt",
     "fullAssessment": "Vollständige Bewertung",
     "browseAll": "Alle KI-Systeme durchsuchen",
-    "financial": "Financial",
-    "healthcare": "Healthcare",
-    "insurance": "Insurance",
-    "publicSector": "Public Sector",
-    "hr": "HR"
+    "financial": "Finanzdienstleistungen",
+    "healthcare": "Gesundheitswesen",
+    "insurance": "Versicherungen",
+    "publicSector": "Öffentlicher Sektor",
+    "hr": "Personal"
   },
   "howItWorks": {
-    "title": "How It Works",
-    "subtitle": "Our rigorous, transparent methodology ensures every assessment meets the highest standards of independence and accuracy.",
-    "step1Title": "System Identification",
-    "step1Desc": "We continuously monitor the European market for AI systems used in enterprise environments, identifying and cataloguing new entrants and updates.",
-    "step2Title": "Risk Classification",
-    "step2Desc": "Each system is classified according to the EU AI Act risk tiers and mapped against applicable industry-specific regulations.",
-    "step3Title": "Multi-Framework Assessment",
-    "step3Desc": "Independent analysts evaluate each system against multiple regulatory frameworks using our standardised assessment methodology.",
-    "step4Title": "Rating & Publication",
-    "step4Desc": "Compliance scores are published with full methodology transparency, including detailed breakdowns and evidence references."
+    "title": "So funktioniert es",
+    "subtitle": "Unsere rigorose, transparente Methodik stellt sicher, dass jede Bewertung höchsten Standards an Unabhängigkeit und Genauigkeit entspricht.",
+    "step1Title": "Systemidentifikation",
+    "step1Desc": "Wir beobachten kontinuierlich den europäischen Markt auf KI-Systeme in Unternehmensumgebungen und erfassen neue Anbieter und Aktualisierungen.",
+    "step2Title": "Risikoklassifizierung",
+    "step2Desc": "Jedes System wird gemäß den Risikoklassen des EU AI Acts klassifiziert und branchenspezifischen Vorschriften zugeordnet.",
+    "step3Title": "Multi-Rahmen-Bewertung",
+    "step3Desc": "Unabhängige Analysten bewerten jedes System anhand mehrerer Regulierungsrahmen mit unserer standardisierten Bewertungsmethodik.",
+    "step4Title": "Bewertung & Veröffentlichung",
+    "step4Desc": "Compliance-Bewertungen werden mit vollständiger methodischer Transparenz veröffentlicht, einschließlich detaillierter Aufschlüsselungen und Belegen."
   },
   "cta": {
-    "title": "AI Compliance Intelligence",
-    "subtitle": "Weekly digest of new AI tool ratings, regulatory changes, and compliance analysis.",
-    "placeholder": "Enter your work email",
-    "button": "Subscribe",
-    "disclaimer": "No spam. Unsubscribe at any time. GDPR compliant."
+    "title": "KI-Compliance-Intelligenz",
+    "subtitle": "Wöchentlicher Digest mit neuen KI-Tool-Bewertungen, regulatorischen Änderungen und Compliance-Analysen.",
+    "placeholder": "Geschäftliche E-Mail-Adresse eingeben",
+    "button": "Abonnieren",
+    "disclaimer": "Kein Spam. Jederzeit abbestellbar. DSGVO-konform."
   },
   "frameworks": {
     "title": "Regulatorische Rahmenwerke",

@@ -14,7 +14,7 @@ import Footer from "@/components/layout/Footer";
 import { getPublishedFrameworks } from "@/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Regulatory Frameworks — AI Compass EU",
+  title: "Regulatory Frameworks",
   description: "Explore the EU regulatory frameworks we assess AI systems against: AI Act, GDPR, DORA, and sector-specific regulations.",
 };
 

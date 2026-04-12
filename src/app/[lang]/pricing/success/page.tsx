@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Welcome to Pro! | AI Compass EU",
+  title: "Welcome to Pro!",
   description: "Your Pro subscription is now active.",
 };
 
