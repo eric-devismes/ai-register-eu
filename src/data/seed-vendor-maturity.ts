@@ -73,10 +73,10 @@ const vendorData: VendorData[] = [
     sourceModel: "closed-source",
     foundedYear: 2021,
     employeeCount: "1,500+",
-    fundingStatus: "Private (VC-backed, $60B valuation)",
-    marketPresence: "Challenger",
+    fundingStatus: "Private — raised $67B+ total. Series G $30B (Feb 2026). Valued at $380B post-money. (Superseded by seed-enrichment-top10 for full detail.)",
+    marketPresence: "Leader",
     customerCount: "100,000+ businesses",
-    notableCustomers: "Airtable, Notion, DuckDuckGo, GitLab, Lonely Planet",
+    notableCustomers: "GitLab, Notion, Intuit, Pfizer, Salesforce, Airtable, DuckDuckGo",
     customerStories: "GitLab integrated Claude for code review and security scanning. Notion uses Claude for AI writing assistant. Airtable deployed Claude for enterprise workflow automation.",
   },
   {

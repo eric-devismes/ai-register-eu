@@ -183,6 +183,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
+  const [showExportUpgrade, setShowExportUpgrade] = useState(false);
 
   // ── Phase 1 → Match (direct, no follow-ups) ──────────
   async function handleMatch(e: React.FormEvent) {
@@ -538,15 +539,35 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
               </p>
             </div>
             <div className="flex gap-3">
-              <button
-                onClick={() => {
-                  const slugs = compareData.systems.map((s: CompareSystem) => s.slug).join(",");
-                  window.open(`/api/export?compare=${slugs}`, "_blank");
-                }}
-                className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
-              >
-                Export CSV
-              </button>
+              {hasFullAccess ? (
+                <>
+                  <button
+                    onClick={() => {
+                      const slugs = compareData.systems.map((s: CompareSystem) => s.slug).join(",");
+                      window.open(`/api/export?compare=${slugs}&format=csv`, "_blank");
+                    }}
+                    className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
+                  >
+                    Export CSV
+                  </button>
+                  <button
+                    onClick={() => {
+                      const slugs = compareData.systems.map((s: CompareSystem) => s.slug).join(",");
+                      window.open(`/api/export?compare=${slugs}&format=json`, "_blank");
+                    }}
+                    className="rounded-xl border border-[#003399] px-4 py-2 text-sm font-medium text-[#003399] hover:bg-[#003399]/5 transition-colors"
+                  >
+                    Export JSON
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => setShowExportUpgrade(true)}
+                  className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
+                >
+                  Export Report
+                </button>
+              )}
               <button
                 onClick={() => setPhase("matches")}
                 className="rounded-xl border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
@@ -558,6 +579,35 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
               </button>
             </div>
           </div>
+
+          {/* Upgrade prompt for non-Pro users */}
+          {showExportUpgrade && (
+            <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 flex items-start gap-3">
+              <span className="text-amber-500 text-lg mt-0.5">&#x1f512;</span>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900">
+                  Data exports are a Pro feature
+                </p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Upgrade to Pro to export comparison data as CSV or JSON for procurement workflows, RFPs, and internal reviews.
+                </p>
+                <div className="mt-3 flex gap-3">
+                  <Link
+                    href={`/${locale}/pricing`}
+                    className="inline-flex items-center rounded-lg bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
+                  >
+                    View Pro Plans
+                  </Link>
+                  <button
+                    onClick={() => setShowExportUpgrade(false)}
+                    className="text-sm text-gray-500 hover:text-gray-700"
+                  >
+                    Dismiss
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Procurement tools CTA */}
           <div className="flex flex-wrap gap-3 rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">

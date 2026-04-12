@@ -124,7 +124,7 @@
     "transparency": "AI Transparency",
     "euCompliance": "EU Compliance Status",
     "disclaimer": "Assessment Disclaimer",
-    "disclaimerText": "This assessment is based on publicly available information as of the last review date. Scores reflect what can be verified from vendor documentation, trust centers, and public certifications. For a verified assessment tailored to your specific use case, contact us about our consulting services.",
+    "disclaimerText": "This assessment is based on publicly available information as of the last review date. Scores reflect what can be verified from vendor documentation, trust centers, and public certifications. For a verified assessment tailored to your specific use case, contact us for a tailored assessment.",
     "keyUseCases": "Key Use Cases",
     "storageLocations": "Storage Locations",
     "processingLocations": "Processing Locations",

@@ -7,7 +7,7 @@ import { PricingCards } from "./PricingCards";
 export const metadata: Metadata = {
   title: "Plans & Services",
   description:
-    "AI Compass EU plans and advisory services. Free, Pro, and Enterprise tiers for AI compliance intelligence, plus expert consulting for procurement and compliance.",
+    "AI Compass EU plans and advisory services. Free, Pro, and Enterprise tiers for AI compliance intelligence, for AI compliance intelligence and procurement decisions.",
 };
 
 const services = [
@@ -58,8 +58,8 @@ async function PricingContent({ params }: { params: Promise<{ lang: string }> })
               </h1>
               <p className="mt-4 text-lg text-blue-100 leading-relaxed">
                 Start free with our AI chatbot and compliance data.
-                Upgrade to Pro for full access, or work with our advisory
-                team for tailored procurement and compliance support.
+                Upgrade to Pro for full access, or get enterprise-grade
+                procurement intelligence and compliance tools.
               </p>
             </div>
           </div>
@@ -105,7 +105,7 @@ async function PricingContent({ params }: { params: Promise<{ lang: string }> })
                 href={`/${lang}/contact?category=services`}
                 className="inline-flex items-center rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors"
               >
-                Book a Free Consultation
+                Get in Touch
                 <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>

@@ -42,7 +42,7 @@ interface LLMRecommendation {
 
 // ─── Validation ───────────────────────────────────────────
 
-const VALID_ORG_SIZES = ["startup", "sme", "enterprise", "public-sector"];
+const VALID_ORG_SIZES = ["sme", "mid-enterprise", "large-enterprise", "multinational", "public-sector"];
 
 function validateRequest(body: unknown): { valid: true; data: PodiumRequest } | { valid: false; error: string } {
   if (!body || typeof body !== "object") {

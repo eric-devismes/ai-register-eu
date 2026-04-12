@@ -11,7 +11,7 @@ import { prisma } from "@/lib/db";
 
 const VALID_ROLES = ["dpo", "procurement", "cto", "ciso", "legal", "executive", "other"];
 const VALID_INDUSTRIES = ["financial", "healthcare", "insurance", "public-sector", "hr", "other"];
-const VALID_ORG_SIZES = ["startup", "sme", "enterprise", "public-sector"];
+const VALID_ORG_SIZES = ["sme", "mid-enterprise", "large-enterprise", "multinational", "public-sector"];
 
 export async function PUT(request: Request) {
   const subscriber = await getSubscriber();

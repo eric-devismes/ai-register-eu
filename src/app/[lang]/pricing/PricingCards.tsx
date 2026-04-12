@@ -50,7 +50,7 @@ const tiers = [
     price: null,
     period: null,
     description:
-      "For compliance teams managing AI across the organization. RFP engine, API access, and consulting.",
+      "For compliance teams managing AI across the organization. RFP engine, API access, and dedicated support.",
     highlighted: false,
     features: [
       { text: "Everything in Pro", included: true },
@@ -59,7 +59,7 @@ const tiers = [
       { text: "Multiple team seats with SSO", included: true },
       { text: "Custom compliance reports & bulk export", included: true },
       { text: "Webhook alerts with custom rules", included: true },
-      { text: "Consulting days with EU AI compliance experts", included: true },
+      { text: "Priority compliance guidance from AI experts", included: true },
       { text: "Dedicated account manager & phone support", included: true },
     ],
     action: "enterprise" as const,
@@ -196,7 +196,7 @@ export function PricingCards() {
             Save 20% with annual billing &mdash; Pro at just &euro;182/year.
           </p>
           <p className="text-sm text-gray-500">
-            All prices exclude VAT. Need a tailored enterprise plan with API access and consulting?{" "}
+            All prices exclude VAT. Need a tailored enterprise plan with API access and dedicated support?{" "}
             <a href={`/${locale}/contact`} className="font-medium text-[#003399] hover:underline">
               Let&apos;s talk
             </a>

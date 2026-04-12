@@ -30,7 +30,7 @@ export default function Footer() {
     { label: t("common.privacy"), href: l("/privacy") },
     { label: "Security", href: l("/security") },
     { label: "Incident Response", href: l("/incident-response") },
-    { label: "Services", href: l("/services") },
+    { label: "Pricing", href: l("/pricing") },
     { label: "Terms", href: l("/terms") },
     { label: "Contact", href: l("/contact") },
   ];

@@ -34,16 +34,15 @@ export async function POST(request: Request) {
   lemonSqueezySetup({ apiKey });
 
   const { email, locale, subscriberId } = await request.json();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  let baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000").trim();
+  if (!baseUrl.startsWith("http")) baseUrl = `https://${baseUrl}`;
   const lang = locale || "en";
 
   try {
     const checkout = await createCheckout(storeId, variantId, {
       checkoutData: {
         email: email || undefined,
-        custom: {
-          subscriber_id: subscriberId || "",
-        },
+        ...(subscriberId ? { custom: { subscriber_id: subscriberId } } : {}),
       },
       productOptions: {
         redirectUrl: `${baseUrl}/${lang}/pricing/success`,
@@ -57,10 +56,18 @@ export async function POST(request: Request) {
       },
     });
 
+    if (checkout.error) {
+      console.error("[lemonsqueezy] API error:", JSON.stringify(checkout.error));
+      return NextResponse.json(
+        { error: "LemonSqueezy API error", detail: checkout.error },
+        { status: 500 }
+      );
+    }
+
     const url = checkout.data?.data.attributes.url;
     if (!url) {
       return NextResponse.json(
-        { error: "Failed to create checkout" },
+        { error: "No checkout URL returned", raw: JSON.stringify(checkout.data).slice(0, 500) },
         { status: 500 }
       );
     }
@@ -68,8 +75,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ url });
   } catch (error) {
     console.error("[lemonsqueezy] Checkout creation failed:", error);
+    const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Failed to create checkout" },
+      { error: "Failed to create checkout", detail: message },
       { status: 500 }
     );
   }

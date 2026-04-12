@@ -59,9 +59,10 @@ const INDUSTRIES = [
 ];
 
 const ORG_SIZES = [
-  { value: "startup", label: "Startup (< 50 employees)" },
-  { value: "sme", label: "SME (50-250 employees)" },
-  { value: "enterprise", label: "Enterprise (250+ employees)" },
+  { value: "sme", label: "SME (50–1,000 employees)" },
+  { value: "mid-enterprise", label: "Mid Enterprise (1,000–5,000 employees)" },
+  { value: "large-enterprise", label: "Large Enterprise (5,000–20,000 employees)" },
+  { value: "multinational", label: "Multinational (20,000+ employees)" },
   { value: "public-sector", label: "Public Sector" },
 ];
 
@@ -542,13 +543,16 @@ export function PodiumClient({ tier }: Props) {
               Budget Range
               <span className="ml-1 text-gray-400 font-normal">(optional)</span>
             </label>
-            <input
-              type="text"
-              value={budget}
-              onChange={(e) => setBudget(e.target.value)}
-              placeholder="e.g. EUR 10,000-50,000/year"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[#003399] focus:ring-1 focus:ring-[#003399] transition-colors"
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500">EUR</span>
+              <input
+                type="text"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                placeholder="e.g. 10,000-50,000/year"
+                className="w-full rounded-lg border border-gray-300 pl-12 pr-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[#003399] focus:ring-1 focus:ring-[#003399] transition-colors"
+              />
+            </div>
           </div>
         </div>
       </div>

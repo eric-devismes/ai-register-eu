@@ -16,7 +16,7 @@ import { LLM_MODEL, LLM_CHAT_MAX_TOKENS, LLM_TIMEOUT_MS } from "@/lib/constants"
 export interface UserProfile {
   role?: string;       // "dpo", "procurement", "cto", "ciso", "legal", "executive"
   industry?: string;   // "financial", "healthcare", "insurance", "public-sector", "hr"
-  orgSize?: string;    // "startup", "sme", "enterprise", "public-sector"
+  orgSize?: string;    // "sme", "mid-enterprise", "large-enterprise", "multinational", "public-sector"
 }
 
 export interface LLMRequest {

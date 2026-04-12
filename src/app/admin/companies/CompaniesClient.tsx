@@ -116,9 +116,10 @@ export function CompaniesClient({
             <select value={form.size} onChange={(e) => setForm({ ...form, size: e.target.value })}
               className="rounded-lg border border-gray-300 px-3 py-2 text-sm">
               <option value="">Company size</option>
-              <option value="startup">Startup</option>
-              <option value="sme">SME</option>
-              <option value="enterprise">Enterprise</option>
+              <option value="sme">SME (50–1,000)</option>
+              <option value="mid-enterprise">Mid Enterprise (1,000–5,000)</option>
+              <option value="large-enterprise">Large Enterprise (5,000–20,000)</option>
+              <option value="multinational">Multinational (20,000+)</option>
               <option value="public-sector">Public Sector</option>
             </select>
           </div>

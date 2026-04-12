@@ -97,9 +97,10 @@ const INDUSTRY_OPTIONS = [
 
 const ORG_SIZE_OPTIONS = [
   { value: "", label: "-- None --" },
-  { value: "startup", label: "Startup" },
-  { value: "sme", label: "SME" },
-  { value: "enterprise", label: "Enterprise" },
+  { value: "sme", label: "SME (50–1,000)" },
+  { value: "mid-enterprise", label: "Mid Enterprise (1,000–5,000)" },
+  { value: "large-enterprise", label: "Large Enterprise (5,000–20,000)" },
+  { value: "multinational", label: "Multinational (20,000+)" },
   { value: "public-sector", label: "Public Sector" },
 ];
 
