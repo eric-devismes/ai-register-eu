@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db";
 import { ExpertPanelClient } from "./ExpertPanelClient";
 
 export const metadata = { title: "Expert Panel — Admin" };
+export const dynamic = "force-dynamic";
 
 export default async function ExpertPanelPage() {
   // Fetch recent discussions with responses
