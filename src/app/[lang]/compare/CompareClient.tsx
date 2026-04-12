@@ -9,11 +9,295 @@
  *   3. "compare"  — Side-by-side comparison table
  */
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useLocale } from "@/lib/locale-context";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_TOOLTIPS } from "@/lib/constants";
+
+// ─── Spider chart dimensions ─────────────────────────────
+const RADAR_DIMENSIONS = [
+  { key: "compliance", label: "Compliance", section: "EU Compliance" },
+  { key: "security", label: "Security", section: "Security" },
+  { key: "dataSovereignty", label: "Data Sovereignty", section: "Data & Infrastructure" },
+  { key: "integration", label: "Integration", section: "Supply Chain" },
+  { key: "pricing", label: "Pricing", section: "Vendor & Product" },
+  { key: "euReadiness", label: "EU Readiness", section: "Governance & Legal" },
+] as const;
+
+// ─── Score to numeric conversion ─────────────────────────
+function scoreToNumeric(score: string): number {
+  const map: Record<string, number> = {
+    "A+": 100, "A": 92, "A-": 85,
+    "B+": 78, "B": 70, "B-": 62,
+    "C+": 55, "C": 48, "C-": 40,
+    "D+": 32, "D": 25, "D-": 18,
+    "F": 10, "N/A": 0,
+  };
+  return map[score] ?? 0;
+}
+
+// ─── Derive radar scores from compare data ───────────────
+function deriveRadarScores(system: CompareSystem): number[] {
+  // Compliance: avg of AI Act + GDPR scores
+  const compliance = avg([
+    scoreToNumeric(system["score_eu-ai-act"] || "N/A"),
+    scoreToNumeric(system["score_gdpr"] || "N/A"),
+  ]);
+  // Security: avg of DORA + NIS2
+  const security = avg([
+    scoreToNumeric(system["score_dora"] || "N/A"),
+    scoreToNumeric(system["score_nis2"] || "N/A"),
+  ]);
+  // Data Sovereignty: based on EU residency presence + encryption info
+  const dataSov = system.euResidency?.toLowerCase().includes("eu") ? 85
+    : system.euResidency ? 55 : 30;
+  // Integration: based on deployment model + data portability presence
+  const integration = (system.deploymentModel ? 50 : 25) + (system.dataPortability ? 30 : 0);
+  // Pricing: invert risk (lower risk = better pricing/value)
+  const pricing = system.risk === "Minimal" ? 85 : system.risk === "Limited" ? 65 : 40;
+  // EU Readiness: avg of EBA/EIOPA + MDR/IVDR + overall
+  const euReadiness = avg([
+    scoreToNumeric(system["score_eba-eiopa-guidelines"] || "N/A"),
+    scoreToNumeric(system["score_mdr-ivdr"] || "N/A"),
+    scoreToNumeric(system.overallScore || "N/A"),
+  ]);
+
+  return [compliance, security, dataSov, Math.min(integration, 100), pricing, euReadiness];
+}
+
+function avg(nums: number[]): number {
+  const valid = nums.filter((n) => n > 0);
+  return valid.length ? Math.round(valid.reduce((a, b) => a + b, 0) / valid.length) : 30;
+}
+
+// ─── Overall numeric score for podium ranking ────────────
+function overallNumericScore(system: CompareSystem): number {
+  const scores = deriveRadarScores(system);
+  return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+}
+
+// ─── Brand colors for systems ────────────────────────────
+const SYSTEM_COLORS = [
+  { fill: "rgba(0, 51, 153, 0.20)", stroke: "#003399" },   // EU Blue
+  { fill: "rgba(255, 193, 7, 0.20)", stroke: "#d4a000" },   // Gold
+  { fill: "rgba(205, 127, 50, 0.20)", stroke: "#CD7F32" },  // Bronze
+  { fill: "rgba(16, 185, 129, 0.18)", stroke: "#059669" },   // Emerald
+  { fill: "rgba(139, 92, 246, 0.18)", stroke: "#7c3aed" },   // Purple
+];
+
+// ─── Podium Component ────────────────────────────────────
+
+function Podium({ systems }: { systems: { name: string; vendor: string; score: number; rank: number }[] }) {
+  const medals = ["🥇", "🥈", "🥉"];
+  const medalColors = ["#FFD700", "#C0C0C0", "#CD7F32"];
+  const heights = [160, 200, 120]; // silver, gold, bronze (visual: center tallest)
+
+  // Reorder for visual: 2nd, 1st, 3rd
+  const podiumOrder = systems.length >= 3
+    ? [systems[1], systems[0], systems[2]]
+    : systems.length === 2
+    ? [systems[1], systems[0]]
+    : [systems[0]];
+
+  const visualHeights = systems.length >= 3
+    ? [heights[0], heights[1], heights[2]]
+    : systems.length === 2
+    ? [heights[0], heights[1]]
+    : [heights[1]];
+
+  return (
+    <div className="flex flex-col items-center">
+      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Ranking</h3>
+      <div className="flex items-end justify-center gap-2 sm:gap-3">
+        {podiumOrder.map((sys, i) => (
+          <div key={sys.vendor} className="flex flex-col items-center">
+            {/* Medal + name above podium */}
+            <div className="text-center mb-2">
+              <span className="text-2xl">{medals[sys.rank - 1] || ""}</span>
+              <div className="text-xs font-bold text-gray-800 max-w-[100px] truncate">{sys.vendor}</div>
+              <div className="text-[10px] text-gray-500 max-w-[100px] truncate">{sys.name}</div>
+              <div className="text-xs font-semibold text-gray-600 mt-0.5">{sys.score}pts</div>
+            </div>
+            {/* Podium step */}
+            <div
+              className="w-20 sm:w-24 rounded-t-lg flex items-start justify-center pt-3 transition-all"
+              style={{
+                height: `${visualHeights[i]}px`,
+                backgroundColor: medalColors[sys.rank - 1] || "#e5e7eb",
+                opacity: 0.85,
+              }}
+            >
+              <span className="text-xl font-black text-white drop-shadow-sm">{sys.rank}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Podium base */}
+      <div
+        className="rounded-b-lg bg-gray-200"
+        style={{ width: `${podiumOrder.length * (96 + 12)}px`, height: "6px" }}
+      />
+    </div>
+  );
+}
+
+// ─── Radar/Spider Chart (pure SVG) ───────────────────────
+
+function RadarChart({
+  systems,
+  onDimensionClick,
+}: {
+  systems: { vendor: string; scores: number[]; colorIdx: number }[];
+  onDimensionClick: (sectionKey: string) => void;
+}) {
+  const size = 300;
+  const center = size / 2;
+  const radius = 110;
+  const levels = 4;
+  const dims = RADAR_DIMENSIONS.length;
+
+  // Angle for each dimension (starting from top, clockwise)
+  function angle(i: number) {
+    return (Math.PI * 2 * i) / dims - Math.PI / 2;
+  }
+
+  // Point on radar at given level (0-100) for dimension i
+  function point(i: number, value: number): [number, number] {
+    const r = (value / 100) * radius;
+    return [center + r * Math.cos(angle(i)), center + r * Math.sin(angle(i))];
+  }
+
+  // Build polygon points string
+  function polygon(scores: number[]) {
+    return scores.map((s, i) => point(i, s).join(",")).join(" ");
+  }
+
+  return (
+    <div className="flex flex-col items-center">
+      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">Performance Radar</h3>
+      <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[300px]" role="img" aria-label="Radar chart comparing AI systems">
+        {/* Grid rings */}
+        {Array.from({ length: levels }, (_, l) => {
+          const r = (radius * (l + 1)) / levels;
+          const pts = Array.from({ length: dims }, (_, i) => {
+            const x = center + r * Math.cos(angle(i));
+            const y = center + r * Math.sin(angle(i));
+            return `${x},${y}`;
+          }).join(" ");
+          return (
+            <polygon
+              key={l}
+              points={pts}
+              fill="none"
+              stroke="#e5e7eb"
+              strokeWidth="1"
+            />
+          );
+        })}
+
+        {/* Axis lines */}
+        {Array.from({ length: dims }, (_, i) => {
+          const [x, y] = point(i, 100);
+          return (
+            <line key={i} x1={center} y1={center} x2={x} y2={y} stroke="#d1d5db" strokeWidth="1" />
+          );
+        })}
+
+        {/* System polygons */}
+        {systems.map((sys) => {
+          const colors = SYSTEM_COLORS[sys.colorIdx % SYSTEM_COLORS.length];
+          return (
+            <polygon
+              key={sys.vendor}
+              points={polygon(sys.scores)}
+              fill={colors.fill}
+              stroke={colors.stroke}
+              strokeWidth="2"
+            />
+          );
+        })}
+
+        {/* Dimension labels (clickable) */}
+        {RADAR_DIMENSIONS.map((dim, i) => {
+          const labelRadius = radius + 28;
+          const x = center + labelRadius * Math.cos(angle(i));
+          const y = center + labelRadius * Math.sin(angle(i));
+          return (
+            <text
+              key={dim.key}
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className="text-[10px] font-semibold cursor-pointer hover:opacity-70 transition-opacity"
+              fill="#003399"
+              onClick={() => onDimensionClick(dim.section)}
+              role="button"
+              tabIndex={0}
+            >
+              {dim.label}
+            </text>
+          );
+        })}
+      </svg>
+
+      {/* Legend */}
+      <div className="flex flex-wrap justify-center gap-3 mt-2">
+        {systems.map((sys) => {
+          const colors = SYSTEM_COLORS[sys.colorIdx % SYSTEM_COLORS.length];
+          return (
+            <div key={sys.vendor} className="flex items-center gap-1.5 text-xs text-gray-600">
+              <span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: colors.stroke }} />
+              {sys.vendor}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Collapsible Section ─────────────────────────────────
+
+function CollapsibleSection({
+  title,
+  id,
+  isOpen,
+  onToggle,
+  children,
+}: {
+  title: string;
+  id: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div id={id} className="rounded-xl border border-gray-200 overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between px-5 py-3.5 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+      >
+        <span className="text-sm font-bold text-gray-700">{title}</span>
+        <svg
+          className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="px-5 py-4">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ─── Types ────────────────────────────────────────────────
 
@@ -184,6 +468,31 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
   const [showExportUpgrade, setShowExportUpgrade] = useState(false);
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const toggleSection = useCallback((section: string) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(section)) next.delete(section);
+      else next.add(section);
+      return next;
+    });
+  }, []);
+
+  const scrollToSection = useCallback((section: string) => {
+    // Open the section first, then scroll
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      next.add(section);
+      return next;
+    });
+    // Small delay to let the section render before scrolling
+    setTimeout(() => {
+      const el = sectionRefs.current[section];
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  }, []);
 
   // ── Phase 1 → Match (direct, no follow-ups) ──────────
   async function handleMatch(e: React.FormEvent) {
@@ -525,8 +834,40 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
         </div>
       )}
 
-      {/* ─── Phase 4: Compare Table ───────────────────── */}
-      {phase === "compare" && compareData && (
+      {/* ─── Phase 4: Compare Results ─────────────────── */}
+      {phase === "compare" && compareData && (() => {
+        // Compute podium ranking
+        const ranked = compareData.systems
+          .map((s) => ({
+            ...s,
+            numericScore: overallNumericScore(s),
+          }))
+          .sort((a, b) => b.numericScore - a.numericScore)
+          .map((s, i) => ({ ...s, rank: i + 1 }));
+
+        // Radar data
+        const radarSystems = ranked.map((s, i) => ({
+          vendor: s.vendor,
+          scores: deriveRadarScores(s as unknown as CompareSystem),
+          colorIdx: i,
+        }));
+
+        // Podium data (top 3)
+        const podiumSystems = ranked.slice(0, 3).map((s) => ({
+          name: s.name,
+          vendor: s.vendor,
+          score: s.numericScore,
+          rank: s.rank,
+        }));
+
+        // Group attributes by category for collapsible sections
+        const grouped: Record<string, CompareAttribute[]> = {};
+        for (const attr of compareData.attributes) {
+          if (!grouped[attr.category]) grouped[attr.category] = [];
+          grouped[attr.category].push(attr);
+        }
+
+        return (
         <div className="space-y-6">
           {/* Header */}
           <div className="flex items-center justify-between flex-wrap gap-4">
@@ -538,7 +879,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                 {compareData.systems.length} systems · {compareData.attributes.length} assessment criteria
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               {hasFullAccess ? (
                 <>
                   <button
@@ -609,6 +950,22 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
             </div>
           )}
 
+          {/* ── Podium + Radar Chart ─────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left: Podium */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex items-center justify-center">
+              <Podium systems={podiumSystems} />
+            </div>
+
+            {/* Right: Radar Chart */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex items-center justify-center">
+              <RadarChart
+                systems={radarSystems}
+                onDimensionClick={scrollToSection}
+              />
+            </div>
+          </div>
+
           {/* Procurement tools CTA */}
           <div className="flex flex-wrap gap-3 rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">
             <span className="text-xs text-gray-500 self-center">Next steps:</span>
@@ -642,93 +999,88 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
             );
           })()}
 
-          {/* Comparison Table */}
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-            <table className="w-full text-sm">
-              {/* System headers */}
-              <thead>
-                <tr className="bg-[#0d1b3e]">
-                  <th className="sticky left-0 z-10 bg-[#0d1b3e] text-left px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-400 w-52 min-w-[200px]">
-                    Attribute
-                  </th>
-                  {compareData.systems.map((s) => (
-                    <th key={s.id} className="px-5 py-4 text-left min-w-[220px]">
-                      <Link href={`/${locale}/systems/${s.slug}`} className="hover:underline">
-                        <div className="text-white font-semibold text-sm">{s.vendor}</div>
-                        <div className="text-blue-200 text-xs font-normal mt-0.5">{s.name}</div>
-                      </Link>
-                      <div className="flex items-center gap-2 mt-2">
-                        <ScoreBadge score={s.overallScore} />
-                        <RiskBadge risk={s.risk} />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
+          {/* ── Collapsible comparison sections ──────────── */}
+          <div className="space-y-3">
+            {Object.entries(grouped)
+              .filter(([category]) => categoryFilter === "All" || category === categoryFilter)
+              .map(([category, attrs]) => (
+              <div key={category} ref={(el) => { sectionRefs.current[category] = el; }}>
+                <CollapsibleSection
+                  title={category}
+                  id={`section-${category.replace(/\s+/g, "-").toLowerCase()}`}
+                  isOpen={openSections.has(category)}
+                  onToggle={() => toggleSection(category)}
+                >
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-[#0d1b3e]">
+                          <th className="sticky left-0 z-10 bg-[#0d1b3e] text-left px-5 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400 w-52 min-w-[200px]">
+                            Attribute
+                          </th>
+                          {compareData.systems.map((s) => (
+                            <th key={s.id} className="px-5 py-3 text-left min-w-[220px]">
+                              <Link href={`/${locale}/systems/${s.slug}`} className="hover:underline">
+                                <div className="text-white font-semibold text-sm">{s.vendor}</div>
+                                <div className="text-blue-200 text-xs font-normal mt-0.5">{s.name}</div>
+                              </Link>
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {attrs.map((attr, rowIdx) => {
+                          const isScore = attr.key.startsWith("score_") || attr.key === "overallScore";
+                          return (
+                            <tr
+                              key={attr.key}
+                              className={`border-b border-gray-100 ${rowIdx % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-blue-50/20 transition-colors`}
+                            >
+                              <td className="sticky left-0 z-10 bg-inherit px-5 py-3 text-xs font-semibold text-gray-600 border-r border-gray-100">
+                                {attr.label}
+                              </td>
+                              {compareData.systems.map((s) => {
+                                const val = s[attr.key] || "";
+                                return (
+                                  <td key={`${s.id}-${attr.key}`} className="px-5 py-3 align-top">
+                                    {isScore ? (
+                                      <ScoreBadge score={val || "N/A"} />
+                                    ) : val ? (
+                                      <p className="text-xs text-gray-700 leading-relaxed line-clamp-4 max-w-xs">
+                                        {val}
+                                      </p>
+                                    ) : (
+                                      <span className="text-gray-300 text-xs">—</span>
+                                    )}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </CollapsibleSection>
+              </div>
+            ))}
+          </div>
 
-              <tbody>
-                {(() => {
-                  const filteredAttrs = categoryFilter === "All"
-                    ? compareData.attributes
-                    : compareData.attributes.filter((a) => a.category === categoryFilter);
-
-                  // Group by category
-                  const grouped: Record<string, typeof filteredAttrs> = {};
-                  for (const attr of filteredAttrs) {
-                    if (!grouped[attr.category]) grouped[attr.category] = [];
-                    grouped[attr.category].push(attr);
-                  }
-
-                  return Object.entries(grouped).map(([category, attrs]) => (
-                    <>
-                      {/* Category header row */}
-                      <tr key={`cat-${category}`} className="bg-gray-50">
-                        <td
-                          colSpan={compareData.systems.length + 1}
-                          className="sticky left-0 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-gray-500 border-b border-gray-200"
-                        >
-                          {category}
-                        </td>
-                      </tr>
-
-                      {/* Attribute rows */}
-                      {attrs.map((attr, rowIdx) => {
-                        const isScore = attr.key.startsWith("score_") || attr.key === "overallScore";
-                        return (
-                          <tr
-                            key={attr.key}
-                            className={`border-b border-gray-100 ${rowIdx % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-blue-50/20 transition-colors`}
-                          >
-                            {/* Attribute label */}
-                            <td className="sticky left-0 z-10 bg-inherit px-5 py-3 text-xs font-semibold text-gray-600 border-r border-gray-100">
-                              {attr.label}
-                            </td>
-
-                            {/* Values per system */}
-                            {compareData.systems.map((s) => {
-                              const val = s[attr.key] || "";
-                              return (
-                                <td key={`${s.id}-${attr.key}`} className="px-5 py-3 align-top">
-                                  {isScore ? (
-                                    <ScoreBadge score={val || "N/A"} />
-                                  ) : val ? (
-                                    <p className="text-xs text-gray-700 leading-relaxed line-clamp-4 max-w-xs">
-                                      {val}
-                                    </p>
-                                  ) : (
-                                    <span className="text-gray-300 text-xs">—</span>
-                                  )}
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        );
-                      })}
-                    </>
-                  ));
-                })()}
-              </tbody>
-            </table>
+          {/* Expand/collapse all toggle */}
+          <div className="flex justify-center">
+            <button
+              onClick={() => {
+                const allCategories = Object.keys(grouped);
+                if (openSections.size === allCategories.length) {
+                  setOpenSections(new Set());
+                } else {
+                  setOpenSections(new Set(allCategories));
+                }
+              }}
+              className="text-xs text-[#003399] hover:underline font-medium"
+            >
+              {openSections.size === Object.keys(grouped).length ? "Collapse all sections" : "Expand all sections"}
+            </button>
           </div>
 
           {/* View full profiles */}
@@ -748,7 +1100,8 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
             ))}
           </div>
         </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
