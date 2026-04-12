@@ -432,8 +432,8 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
             className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
             <span className="text-lg">🤝</span>
             <div>
-              <p className="font-medium text-gray-900">Vendor Prep</p>
-              <p className="text-xs text-gray-500">Meeting preparation kit</p>
+              <p className="font-medium text-gray-900">Meeting Prep</p>
+              <p className="text-xs text-gray-500">Vendor meeting briefing kit</p>
             </div>
           </Link>
           <Link href={`/${locale}/compare`}

@@ -60,7 +60,7 @@ export default function Header() {
     // { label: "Business Case", href: l("/business-case"), desc: "ROI/TCO business case" }, // Hidden from nav — route still works
     { label: "RFP Engine", href: l("/rfp-engine"), desc: "AI-powered RFP answers" },
     // { label: "Podium", href: l("/podium"), desc: "Top-3 system recommendations" }, // Hidden from nav — route still works
-{ label: "Vendor Prep", href: l("/vendor-prep"), desc: "Meeting preparation toolkit" },
+    { label: "Meeting Prep", href: l("/vendor-prep"), desc: "Vendor meeting briefing kit" },
     { label: "Reports", href: l("/reports"), desc: "Downloadable analysis reports" },
   ];
 

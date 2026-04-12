@@ -20,7 +20,7 @@
 ## P1 — Revenue & Go-to-Market
 
 - [x] **Gate compare export by tier**: Free users see upgrade prompt, Pro gets CSV+JSON buttons (2026-04-12)
-- [~] **Compare page — Podium + Spider chart integration**: Integrate podium (left) + spider/radar chart (right) into the compare results page. Podium: Gold/Silver/Bronze visual. Spider chart: area overlay per vendor on predefined dimensions, clickable to jump to collapsible sections below. Keep standalone podium feature hidden (not destroyed) for potential future use.
+- [x] **Compare page — Podium + Spider chart integration**: Podium (Gold/Silver/Bronze) + SVG radar chart (6 dimensions) integrated at top of compare results. Clickable dimensions, collapsible sections, responsive layout (2026-04-12)
 - [ ] **Compare page — Feature fit matrix**: AI infers capabilities from the comparison prompt. For each solution: ✅ green = fully met, ⚠️ orange = partially met / needs customization, ❌ red = not met. Instant gap analysis.
 - [ ] **Podium results page redesign**: Visual podium graphic (🥇🥈🥉), structured table below with Strengths/Weaknesses/Risks aligned per system, links to full docs. Award ceremony feel.
 - [ ] **Checklist — Enterprise gate + UX upgrades**: Enterprise-only. (1) Category-level checkbox, (2) all auto-checked by default, (3) MoSCoW colors (Must=red, Should=orange, Nice=green), (4) Excel export. ⚠️ PRIVACY NOTE: platform sees which enterprise is evaluating which vendor — sensitive. Need clear data policy: we do NOT share customer evaluation data with vendors. Add privacy notice to checklist page.

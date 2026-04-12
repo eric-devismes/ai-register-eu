@@ -19,7 +19,9 @@ export interface NewsSource {
   url: string;
   category: "regulation" | "enforcement" | "guidance" | "industry" | "standards";
   trustLevel: "official" | "institutional" | "press" | "vendor";
-  region: "eu" | "global";
+  region: "eu" | "eea" | "global";
+  /** ISO 3166-1 alpha-2 country code (for DPAs / national sources) */
+  country?: string;
   enabled: boolean;
 }
 
@@ -38,7 +40,9 @@ export interface NewsSource {
  */
 
 export const NEWS_SOURCES: NewsSource[] = [
-  // ─── EU Official Sources ─────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  // EU OFFICIAL SOURCES
+  // ═══════════════════════════════════════════════════════
   {
     id: "eurlex-ai",
     name: "EUR-Lex (AI Act updates)",
@@ -54,6 +58,16 @@ export const NEWS_SOURCES: NewsSource[] = [
     name: "European Data Protection Board",
     type: "rss",
     url: "https://www.edpb.europa.eu/rss_en",
+    category: "guidance",
+    trustLevel: "official",
+    region: "eu",
+    enabled: true,
+  },
+  {
+    id: "edps",
+    name: "European Data Protection Supervisor",
+    type: "rss",
+    url: "https://edps.europa.eu/rss_en",
     category: "guidance",
     trustLevel: "official",
     region: "eu",
@@ -82,15 +96,137 @@ export const NEWS_SOURCES: NewsSource[] = [
   {
     id: "ai-office",
     name: "EU AI Office",
+    type: "web",
+    url: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
+    category: "regulation",
+    trustLevel: "official",
+    region: "eu",
+    enabled: true,
+  },
+  {
+    id: "cjeu",
+    name: "CJEU — Court of Justice of the EU",
     type: "rss",
-    url: "https://digital-strategy.ec.europa.eu/en/rss.xml",
+    url: "https://curia.europa.eu/jcms/jcms/Jo2_18503/en/",
     category: "regulation",
     trustLevel: "official",
     region: "eu",
     enabled: true,
   },
 
-  // ─── National DPAs ───────────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  // NATIONAL DPAs — EU MEMBER STATES (27)
+  // ═══════════════════════════════════════════════════════
+
+  // Austria — DSB
+  {
+    id: "dpa-at",
+    name: "DSB (Austria)",
+    type: "web",
+    url: "https://www.dsb.gv.at/aktuelles/aktuelles.html",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "AT",
+    enabled: true,
+  },
+  // Belgium — APD / GBA
+  {
+    id: "dpa-be",
+    name: "APD / GBA (Belgium)",
+    type: "rss",
+    url: "https://www.autoriteprotectiondonnees.be/citoyen/feed",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "BE",
+    enabled: true,
+  },
+  // Bulgaria — CPDP
+  {
+    id: "dpa-bg",
+    name: "CPDP (Bulgaria)",
+    type: "web",
+    url: "https://www.cpdp.bg/en/index.php?p=rubric&aid=3",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "BG",
+    enabled: true,
+  },
+  // Croatia — AZOP
+  {
+    id: "dpa-hr",
+    name: "AZOP (Croatia)",
+    type: "web",
+    url: "https://azop.hr/novosti/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "HR",
+    enabled: true,
+  },
+  // Cyprus — Commissioner for Personal Data Protection
+  {
+    id: "dpa-cy",
+    name: "Commissioner (Cyprus)",
+    type: "web",
+    url: "https://www.dataprotection.gov.cy/dataprotection/dataprotection.nsf/page1i_en/page1i_en",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "CY",
+    enabled: true,
+  },
+  // Czech Republic — UOOU
+  {
+    id: "dpa-cz",
+    name: "UOOU (Czech Republic)",
+    type: "rss",
+    url: "https://www.uoou.cz/en/rss.asp",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "CZ",
+    enabled: true,
+  },
+  // Denmark — Datatilsynet
+  {
+    id: "dpa-dk",
+    name: "Datatilsynet (Denmark)",
+    type: "web",
+    url: "https://www.datatilsynet.dk/english/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "DK",
+    enabled: true,
+  },
+  // Estonia — AKI
+  {
+    id: "dpa-ee",
+    name: "AKI (Estonia)",
+    type: "web",
+    url: "https://www.aki.ee/en/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "EE",
+    enabled: true,
+  },
+  // Finland — Tietosuojavaltuutettu
+  {
+    id: "dpa-fi",
+    name: "Tietosuojavaltuutettu (Finland)",
+    type: "web",
+    url: "https://tietosuoja.fi/en/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "FI",
+    enabled: true,
+  },
+  // France — CNIL
   {
     id: "cnil",
     name: "CNIL (France)",
@@ -99,8 +235,10 @@ export const NEWS_SOURCES: NewsSource[] = [
     category: "enforcement",
     trustLevel: "official",
     region: "eu",
+    country: "FR",
     enabled: true,
   },
+  // Germany — BfDI
   {
     id: "bfdi",
     name: "BfDI (Germany)",
@@ -109,28 +247,46 @@ export const NEWS_SOURCES: NewsSource[] = [
     category: "enforcement",
     trustLevel: "official",
     region: "eu",
+    country: "DE",
     enabled: true,
   },
+  // Greece — HDPA
   {
-    id: "aepd",
-    name: "AEPD (Spain)",
-    type: "rss",
-    url: "https://www.aepd.es/en/rss.xml",
+    id: "dpa-gr",
+    name: "HDPA (Greece)",
+    type: "web",
+    url: "https://www.dpa.gr/en/news",
     category: "enforcement",
     trustLevel: "official",
     region: "eu",
+    country: "GR",
     enabled: true,
   },
+  // Hungary — NAIH
   {
-    id: "ico-uk",
-    name: "ICO (UK)",
-    type: "rss",
-    url: "https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/rss/",
+    id: "dpa-hu",
+    name: "NAIH (Hungary)",
+    type: "web",
+    url: "https://www.naih.hu/news",
     category: "enforcement",
     trustLevel: "official",
-    region: "global",
+    region: "eu",
+    country: "HU",
     enabled: true,
   },
+  // Ireland — DPC
+  {
+    id: "dpa-ie",
+    name: "DPC (Ireland)",
+    type: "web",
+    url: "https://www.dataprotection.ie/en/news-media/latest-news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "IE",
+    enabled: true,
+  },
+  // Italy — Garante
   {
     id: "garante-italy",
     name: "Garante (Italy)",
@@ -139,10 +295,212 @@ export const NEWS_SOURCES: NewsSource[] = [
     category: "enforcement",
     trustLevel: "official",
     region: "eu",
+    country: "IT",
+    enabled: true,
+  },
+  // Latvia — DVI
+  {
+    id: "dpa-lv",
+    name: "DVI (Latvia)",
+    type: "web",
+    url: "https://www.dvi.gov.lv/en/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "LV",
+    enabled: true,
+  },
+  // Lithuania — VDAI
+  {
+    id: "dpa-lt",
+    name: "VDAI (Lithuania)",
+    type: "web",
+    url: "https://vdai.lrv.lt/en/news/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "LT",
+    enabled: true,
+  },
+  // Luxembourg — CNPD
+  {
+    id: "dpa-lu",
+    name: "CNPD (Luxembourg)",
+    type: "web",
+    url: "https://cnpd.public.lu/en/actualites.html",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "LU",
+    enabled: true,
+  },
+  // Malta — IDPC
+  {
+    id: "dpa-mt",
+    name: "IDPC (Malta)",
+    type: "web",
+    url: "https://idpc.org.mt/news/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "MT",
+    enabled: true,
+  },
+  // Netherlands — AP
+  {
+    id: "dpa-nl",
+    name: "AP (Netherlands)",
+    type: "rss",
+    url: "https://www.autoriteitpersoonsgegevens.nl/en/feed/article/rss.xml",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "NL",
+    enabled: true,
+  },
+  // Poland — UODO
+  {
+    id: "dpa-pl",
+    name: "UODO (Poland)",
+    type: "web",
+    url: "https://uodo.gov.pl/en/p/news-and-events",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "PL",
+    enabled: true,
+  },
+  // Portugal — CNPD
+  {
+    id: "dpa-pt",
+    name: "CNPD (Portugal)",
+    type: "web",
+    url: "https://www.cnpd.pt/comunicacao-publica/noticias/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "PT",
+    enabled: true,
+  },
+  // Romania — ANSPDCP
+  {
+    id: "dpa-ro",
+    name: "ANSPDCP (Romania)",
+    type: "web",
+    url: "https://www.dataprotection.ro/?page=news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "RO",
+    enabled: true,
+  },
+  // Slovakia — UOOU
+  {
+    id: "dpa-sk",
+    name: "UOOU (Slovakia)",
+    type: "web",
+    url: "https://dataprotection.gov.sk/uoou/en/content/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "SK",
+    enabled: true,
+  },
+  // Slovenia — IP-RS
+  {
+    id: "dpa-si",
+    name: "IP-RS (Slovenia)",
+    type: "web",
+    url: "https://www.ip-rs.si/en/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "SI",
+    enabled: true,
+  },
+  // Spain — AEPD
+  {
+    id: "aepd",
+    name: "AEPD (Spain)",
+    type: "rss",
+    url: "https://www.aepd.es/en/rss.xml",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "ES",
+    enabled: true,
+  },
+  // Sweden — IMY
+  {
+    id: "dpa-se",
+    name: "IMY (Sweden)",
+    type: "web",
+    url: "https://www.imy.se/en/news/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eu",
+    country: "SE",
     enabled: true,
   },
 
-  // ─── Standards Bodies ────────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  // EEA DPAs (non-EU)
+  // ═══════════════════════════════════════════════════════
+  // Iceland — Persónuvernd
+  {
+    id: "dpa-is",
+    name: "Persónuvernd (Iceland)",
+    type: "web",
+    url: "https://www.personuvernd.is/information-in-english/news",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eea",
+    country: "IS",
+    enabled: true,
+  },
+  // Liechtenstein — DSS
+  {
+    id: "dpa-li",
+    name: "DSS (Liechtenstein)",
+    type: "web",
+    url: "https://www.datenschutzstelle.li/aktuelles",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eea",
+    country: "LI",
+    enabled: true,
+  },
+  // Norway — Datatilsynet
+  {
+    id: "dpa-no",
+    name: "Datatilsynet (Norway)",
+    type: "web",
+    url: "https://www.datatilsynet.no/en/news/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "eea",
+    country: "NO",
+    enabled: true,
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // UK DPA (key reference, post-Brexit)
+  // ═══════════════════════════════════════════════════════
+  {
+    id: "ico-uk",
+    name: "ICO (UK)",
+    type: "rss",
+    url: "https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/rss/",
+    category: "enforcement",
+    trustLevel: "official",
+    region: "global",
+    country: "GB",
+    enabled: true,
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // STANDARDS BODIES
+  // ═══════════════════════════════════════════════════════
   {
     id: "iso-ai",
     name: "ISO — Artificial Intelligence",
@@ -164,10 +522,12 @@ export const NEWS_SOURCES: NewsSource[] = [
     enabled: true,
   },
 
-  // ─── AI Vendor Newsrooms ─────────────────────────────
-  // These are the official blogs/newsrooms of major AI vendors.
+  // ═══════════════════════════════════════════════════════
+  // AI VENDOR NEWSROOMS
+  // Official blogs/newsrooms of major AI vendors.
   // They announce product updates, compliance certifications,
   // EU data residency, and policy positions here.
+  // ═══════════════════════════════════════════════════════
   {
     id: "openai-blog",
     name: "OpenAI Blog",
@@ -259,7 +619,63 @@ export const NEWS_SOURCES: NewsSource[] = [
     enabled: true,
   },
 
-  // ─── Press / Analysis ────────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  // CIVIL SOCIETY / RESEARCH
+  // ═══════════════════════════════════════════════════════
+  {
+    id: "access-now",
+    name: "Access Now",
+    type: "rss",
+    url: "https://www.accessnow.org/feed/",
+    category: "guidance",
+    trustLevel: "institutional",
+    region: "global",
+    enabled: true,
+  },
+  {
+    id: "algorithmwatch",
+    name: "AlgorithmWatch",
+    type: "rss",
+    url: "https://algorithmwatch.org/en/feed/",
+    category: "guidance",
+    trustLevel: "institutional",
+    region: "eu",
+    enabled: true,
+  },
+  {
+    id: "ai-now-institute",
+    name: "AI Now Institute",
+    type: "rss",
+    url: "https://ainowinstitute.org/feed",
+    category: "guidance",
+    trustLevel: "institutional",
+    region: "global",
+    enabled: true,
+  },
+  {
+    id: "future-of-life",
+    name: "Future of Life Institute",
+    type: "rss",
+    url: "https://futureoflife.org/feed/",
+    category: "guidance",
+    trustLevel: "institutional",
+    region: "global",
+    enabled: true,
+  },
+  {
+    id: "efdpo",
+    name: "EFDPO (EU Federation of DPOs)",
+    type: "rss",
+    url: "https://www.efdpo.eu/category/rss-feed/feed/",
+    category: "guidance",
+    trustLevel: "institutional",
+    region: "eu",
+    enabled: true,
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PRESS / ANALYSIS
+  // ═══════════════════════════════════════════════════════
   {
     id: "euractiv-digital",
     name: "Euractiv — Digital",
@@ -318,6 +734,16 @@ export const NEWS_SOURCES: NewsSource[] = [
     category: "industry",
     trustLevel: "press",
     region: "global",
+    enabled: true,
+  },
+  {
+    id: "gdprhub",
+    name: "GDPRhub — Recent Decisions",
+    type: "rss",
+    url: "https://gdprhub.eu/index.php?title=Special:RecentChanges&feed=rss",
+    category: "enforcement",
+    trustLevel: "institutional",
+    region: "eu",
     enabled: true,
   },
 ];

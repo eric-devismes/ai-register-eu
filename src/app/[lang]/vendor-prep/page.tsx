@@ -1,5 +1,5 @@
 /**
- * Vendor Discussion Prep Page
+ * Vendor Meeting Prep Page
  *
  * URL: /[lang]/vendor-prep
  *
@@ -18,9 +18,9 @@ import { prisma } from "@/lib/db";
 import { VendorPrepClient } from "./VendorPrepClient";
 
 export const metadata: Metadata = {
-  title: "Vendor Discussion Prep",
+  title: "Vendor Meeting Prep",
   description:
-    "Generate talking points, negotiation leverage, and red-flag questions for procurement team meetings with AI vendors. Grounded in independent compliance data.",
+    "Prepare for your next vendor meeting with AI-generated talking points, tough questions, and compliance intelligence. Built for the customer, not the vendor.",
 };
 
 interface PageProps {
@@ -52,12 +52,15 @@ export default async function VendorPrepPage({ params }: PageProps) {
                 Enterprise Tool
               </div>
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl font-serif">
-                Vendor Discussion Prep
+                Vendor Meeting Prep
               </h1>
+              <p className="mt-2 text-sm font-medium text-blue-200/80 tracking-wide uppercase">
+                Meeting Briefing Kit
+              </p>
               <p className="mt-4 text-lg text-blue-100 max-w-2xl">
-                Walk into every AI vendor meeting with structured talking points,
-                sharp questions, and negotiation leverage — backed by our independent
-                compliance assessment data.
+                Prepare for your next vendor meeting with AI-generated talking points,
+                tough questions, and compliance intelligence. Built for the customer,
+                not the vendor.
               </p>
             </div>
           </div>

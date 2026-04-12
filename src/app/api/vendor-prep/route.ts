@@ -1,5 +1,5 @@
 /**
- * POST /api/vendor-prep — Generate vendor discussion prep materials.
+ * POST /api/vendor-prep — Generate vendor meeting prep / briefing kit.
  *
  * Pipeline:
  *   1. Parse & validate request body
@@ -9,7 +9,8 @@
  *   5. Call Claude with system data + meeting context
  *   6. Return structured JSON
  *
- * Request:  { systemSlug, meetingType, attendeeRoles, concerns, budget? }
+ * Request:  { systemSlug, meetingType, attendeeRoles, concerns, budget?,
+ *             meetingContext?, meetingTitle?, meetingAgenda?, keyConcerns? }
  * Response: { sections: { id, title, content }[] }
  */
 
@@ -28,6 +29,10 @@ interface VendorPrepRequest {
   attendeeRoles: string[];
   concerns: string[];
   budget?: string;
+  meetingContext?: string;
+  meetingTitle?: string;
+  meetingAgenda?: string;
+  keyConcerns?: string;
 }
 
 interface VendorPrepSection {
@@ -75,6 +80,18 @@ function validateRequest(body: unknown): { valid: true; data: VendorPrepRequest 
   if (b.budget !== undefined && typeof b.budget !== "string") {
     return { valid: false, error: "budget must be a string if provided" };
   }
+  if (b.meetingContext !== undefined && typeof b.meetingContext !== "string") {
+    return { valid: false, error: "meetingContext must be a string if provided" };
+  }
+  if (b.meetingTitle !== undefined && typeof b.meetingTitle !== "string") {
+    return { valid: false, error: "meetingTitle must be a string if provided" };
+  }
+  if (b.meetingAgenda !== undefined && typeof b.meetingAgenda !== "string") {
+    return { valid: false, error: "meetingAgenda must be a string if provided" };
+  }
+  if (b.keyConcerns !== undefined && typeof b.keyConcerns !== "string") {
+    return { valid: false, error: "keyConcerns must be a string if provided" };
+  }
 
   return {
     valid: true,
@@ -84,6 +101,10 @@ function validateRequest(body: unknown): { valid: true; data: VendorPrepRequest 
       attendeeRoles: b.attendeeRoles as string[],
       concerns: (b.concerns as string[]).map((c) => String(c).slice(0, 200)),
       budget: b.budget ? (b.budget as string).slice(0, 200) : undefined,
+      meetingContext: b.meetingContext ? (b.meetingContext as string).slice(0, 2000) : undefined,
+      meetingTitle: b.meetingTitle ? (b.meetingTitle as string).slice(0, 200) : undefined,
+      meetingAgenda: b.meetingAgenda ? (b.meetingAgenda as string).slice(0, 2000) : undefined,
+      keyConcerns: b.keyConcerns ? (b.keyConcerns as string).slice(0, 1000) : undefined,
     },
   };
 }
@@ -126,7 +147,9 @@ function buildSystemPrompt(
     .map((s) => `  - ${s.framework}: ${s.score}`)
     .join("\n");
 
-  return `You are a senior procurement advisor preparing an enterprise team for a vendor meeting about an AI product. Generate structured preparation materials organized by: (1) Key Talking Points per attendee role, (2) Questions to Ask (organized by topic: compliance, security, data, commercial, technical), (3) Negotiation Leverage (what the buyer has going for them based on the vendor's weaknesses), (4) Red Flags to Watch For, (5) Compliance Checklist for the meeting, (6) Follow-up Actions template.
+  return `You are a senior procurement advisor preparing a CUSTOMER team for an upcoming vendor meeting about an AI product. You are on the buyer's side — your job is to arm them with intelligence, tough questions, and structured talking points so they walk in fully prepared.
+
+Generate a complete Meeting Briefing Kit organized as: (1) Structured Talking Points (per agenda item if agenda is provided, otherwise per attendee role), (2) Tough Questions to Ask the Vendor, (3) Negotiation Leverage, (4) Red Flags to Watch For, (5) Pre-filled Intelligence from our database, (6) Compliance Points to Raise, (7) Follow-up Actions template.
 
 AI SYSTEM BEING DISCUSSED:
 - Name: ${system.name}
@@ -141,27 +164,29 @@ ${scoreLines}
 - Applicable Industries: ${system.industries.join(", ")}
 
 YOUR TASK:
-Generate structured vendor meeting preparation materials with exactly these sections. Each section must be practical, specific, and grounded in the system data above. Use the compliance scores to inform leverage points and red flags. Be direct, assertive, and buyer-centric — this is procurement intelligence, not a sales pitch.
+Generate a Meeting Briefing Kit — the output should feel like a practical meeting script that the customer team can print and bring to the meeting. Each section must be specific, actionable, and grounded in the system data above. Use compliance scores to identify leverage points, gaps, and red flags. Be direct, assertive, and buyer-centric — this is procurement intelligence for the customer, not a sales pitch.
 
 OUTPUT FORMAT:
 Return valid JSON with this exact structure:
 {
   "sections": [
-    { "id": "talking-points", "title": "Talking Points by Role", "content": "..." },
-    { "id": "questions", "title": "Questions to Ask", "content": "..." },
+    { "id": "talking-points", "title": "Structured Talking Points", "content": "..." },
+    { "id": "questions", "title": "Tough Questions to Ask the Vendor", "content": "..." },
     { "id": "leverage", "title": "Negotiation Leverage", "content": "..." },
     { "id": "red-flags", "title": "Red Flags to Watch For", "content": "..." },
-    { "id": "compliance-checklist", "title": "Compliance Checklist", "content": "..." },
+    { "id": "intelligence", "title": "Pre-filled Vendor Intelligence", "content": "..." },
+    { "id": "compliance-checklist", "title": "Compliance Points to Raise", "content": "..." },
     { "id": "follow-up", "title": "Follow-up Actions", "content": "..." }
   ]
 }
 
 CONTENT GUIDELINES:
-- Talking Points by Role: For each attendee role, provide 3-5 key points they should raise. Tailor to their domain expertise.
-- Questions to Ask: Organise by topic (Compliance, Security, Data Sovereignty, Commercial Terms, Technical Architecture). 3-5 questions per topic. Include the "why" behind each question.
-- Negotiation Leverage: Identify 4-6 leverage points based on the vendor's compliance gaps, market position, or competitive alternatives. Be specific about what scores or gaps give the buyer power.
-- Red Flags to Watch For: 5-8 warning signs during the meeting (evasive answers, missing certifications, vague commitments). Rate each as High/Medium risk.
-- Compliance Checklist: 8-12 items the team must verify during or after the meeting, based on EU AI Act, GDPR, and any sector-specific regulations. Include checkbox-style formatting.
+- Structured Talking Points: If a meeting agenda is provided, organise talking points PER AGENDA ITEM — for each item, list what to say, what to push back on, and what to note. If no agenda, organise by attendee role (3-5 points per role tailored to their domain).
+- Tough Questions to Ask the Vendor: Organise by topic (Compliance, Security, Data Sovereignty, Commercial Terms, Technical Architecture). 3-5 hard-hitting questions per topic. Include the "why" behind each question — what are you trying to uncover? Frame these as things the vendor won't volunteer.
+- Negotiation Leverage: 4-6 concrete leverage points based on the vendor's compliance gaps, low scores, market position, or competitive alternatives. Be specific about which scores or gaps give the buyer power.
+- Red Flags to Watch For: 5-8 warning signs during the meeting (evasive answers, missing certifications, vague commitments, upsell pressure). Rate each as High/Medium risk with a brief explanation of why it matters.
+- Pre-filled Vendor Intelligence: Summarise what we already know about this vendor from our database — their compliance scores, certifications (or lack thereof), data residency posture, known gaps. This is the "cheat sheet" the buyer can reference during the meeting.
+- Compliance Points to Raise: 8-12 specific compliance items the team must verify during or after the meeting, based on EU AI Act, GDPR, DORA, and any sector-specific regulations. Include checkbox-style formatting.
 - Follow-up Actions: Template with 6-8 concrete next steps after the meeting, with suggested owners and deadlines.
 
 Use markdown formatting within content fields (headers, bullet points, bold).
@@ -180,7 +205,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: validation.error }, { status: 400 });
     }
 
-    const { systemSlug, meetingType, attendeeRoles, concerns, budget } = validation.data;
+    const { systemSlug, meetingType, attendeeRoles, concerns, budget, meetingContext, meetingTitle, meetingAgenda, keyConcerns } = validation.data;
 
     // Step 2: Rate limit check
     const rateLimit = await checkRateLimit();
@@ -223,11 +248,12 @@ export async function POST(request: Request) {
       // Dev mode — return placeholder
       return NextResponse.json({
         sections: [
-          { id: "talking-points", title: "Talking Points by Role", content: `[Dev mode] Talking points for ${attendeeRoles.map(r => ROLE_LABELS[r]).join(", ")} meeting with ${system.vendor}` },
-          { id: "questions", title: "Questions to Ask", content: `[Dev mode] Questions for ${MEETING_TYPE_LABELS[meetingType]} about ${system.name}` },
+          { id: "talking-points", title: "Structured Talking Points", content: `[Dev mode] Talking points for ${attendeeRoles.map(r => ROLE_LABELS[r]).join(", ")} meeting with ${system.vendor}${meetingTitle ? ` — ${meetingTitle}` : ""}` },
+          { id: "questions", title: "Tough Questions to Ask the Vendor", content: `[Dev mode] Questions for ${MEETING_TYPE_LABELS[meetingType]} about ${system.name}` },
           { id: "leverage", title: "Negotiation Leverage", content: `[Dev mode] Leverage points based on overall score: ${overallScore}` },
-          { id: "red-flags", title: "Red Flags to Watch For", content: `[Dev mode] Concerns: ${concerns.join(", ")}` },
-          { id: "compliance-checklist", title: "Compliance Checklist", content: `[Dev mode] Risk classification: ${system.risk}` },
+          { id: "red-flags", title: "Red Flags to Watch For", content: `[Dev mode] Concerns: ${concerns.join(", ")}${keyConcerns ? ` | Key: ${keyConcerns}` : ""}` },
+          { id: "intelligence", title: "Pre-filled Vendor Intelligence", content: `[Dev mode] Intelligence on ${system.vendor} ${system.name} — Score: ${overallScore}, Risk: ${system.risk}` },
+          { id: "compliance-checklist", title: "Compliance Points to Raise", content: `[Dev mode] Risk classification: ${system.risk}` },
           { id: "follow-up", title: "Follow-up Actions", content: `[Dev mode] Follow-up template for ${system.vendor} meeting` },
         ],
       });
@@ -246,14 +272,18 @@ export async function POST(request: Request) {
     });
 
     const roleLabels = attendeeRoles.map((r) => ROLE_LABELS[r] || r).join(", ");
-    const userMessage = `Prepare vendor meeting materials for the following scenario:
+    const userMessage = `Prepare a Meeting Briefing Kit for the following vendor meeting:
 
+${meetingTitle ? `**Meeting Title:** ${meetingTitle}` : ""}
 **Meeting Type:** ${MEETING_TYPE_LABELS[meetingType] || meetingType}
-**Attendees:** ${roleLabels}
-**Key Concerns:** ${concerns.join(", ")}
+**Attendees (our side):** ${roleLabels}
+**Tagged Concerns:** ${concerns.join(", ")}
+${keyConcerns ? `**Key Concerns / Priorities:** ${keyConcerns}` : ""}
 ${budget ? `**Budget Context:** ${budget}` : ""}
+${meetingAgenda ? `\n**Meeting Agenda:**\n${meetingAgenda}` : ""}
+${meetingContext ? `\n**Additional Context from the Customer:**\n${meetingContext}` : ""}
 
-Generate the preparation materials now. Return ONLY valid JSON.`;
+Generate the Meeting Briefing Kit now. Remember: you are on the CUSTOMER's side. Make this actionable and specific. Return ONLY valid JSON.`;
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
@@ -268,7 +298,7 @@ Generate the preparation materials now. Return ONLY valid JSON.`;
         },
         body: JSON.stringify({
           model: LLM_MODEL,
-          max_tokens: 2048,
+          max_tokens: 3000,
           system: systemPrompt,
           messages: [{ role: "user", content: userMessage }],
         }),
