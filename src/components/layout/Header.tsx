@@ -57,10 +57,10 @@ export default function Header() {
   const toolsLinks = [
     { label: "Compare", href: l("/compare"), desc: "Side-by-side system comparison" },
     { label: "Checklist", href: l("/checklist"), desc: "Compliance checklist generator" },
-    { label: "Business Case", href: l("/business-case"), desc: "ROI/TCO business case" },
+    // { label: "Business Case", href: l("/business-case"), desc: "ROI/TCO business case" }, // Hidden from nav — route still works
     { label: "RFP Engine", href: l("/rfp-engine"), desc: "AI-powered RFP answers" },
-    { label: "Podium", href: l("/podium"), desc: "Top-3 system recommendations" },
-    { label: "Vendor Prep", href: l("/vendor-prep"), desc: "Meeting preparation toolkit" },
+    // { label: "Podium", href: l("/podium"), desc: "Top-3 system recommendations" }, // Hidden from nav — route still works
+{ label: "Vendor Prep", href: l("/vendor-prep"), desc: "Meeting preparation toolkit" },
     { label: "Reports", href: l("/reports"), desc: "Downloadable analysis reports" },
   ];
 
