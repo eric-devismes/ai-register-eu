@@ -22,7 +22,12 @@ export const metadata: Metadata = {
     "Latest regulatory updates, enforcement actions, and compliance changes affecting AI systems in Europe. EU AI Act, GDPR, DORA, and more.",
 };
 
-export default async function NewsfeedPage() {
+export default async function NewsfeedPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
   const [entries, tier] = await Promise.all([
     getRecentChangelogs(200),
     getEffectiveTier(),
@@ -65,7 +70,7 @@ export default async function NewsfeedPage() {
         {/* Feed */}
         <section className="py-12">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <NewsfeedClient entries={plainEntries} tier={tier} />
+            <NewsfeedClient entries={plainEntries} tier={tier} lang={lang} />
           </div>
         </section>
       </main>

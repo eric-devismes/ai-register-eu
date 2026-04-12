@@ -5,17 +5,22 @@
 
 ---
 
-## 2026-04-12 QA Run
+## 2026-04-12 QA Run (Evening)
 
 ### Critical
 _None_
 
 ### Warning
-- **Partial i18n on /de** — Several sections untranslated: "How It Works", "AI Compliance Intelligence" (newsletter CTA), and all 5 industry filter labels (Financial, Healthcare, Insurance, Public Sector, HR). — https://ai-register-eu.vercel.app/de ✅ **Fixed** (2026-04-12): Updated de.json with full German translations for `featured.*`, `howItWorks.*`, and `cta.*` keys.
+- **Broken locale links on /regulations page** — Framework cards linked to `/regulations/[slug]` (missing locale prefix), causing locale stripping when clicked. ✅ **Fixed** (2026-04-12): Updated `[lang]/regulations/page.tsx` to accept `params.lang` and use `/${lang}/regulations/${fw.slug}`.
+- **Hardcoded `/en/` links in NewsfeedClient** — Framework and system links in the newsfeed tab were hardcoded to `/en/` regardless of current locale. ✅ **Fixed** (2026-04-12): Added `lang` prop to `NewsfeedClient`, passed from page params, and replaced hardcoded `/en/` with `/${lang}/`.
+- **Database page UI entirely in English on /fr and /de** — Table headers, filter labels, CTAs ("Upgrade to Pro for full assessment" ×75), and system type descriptors all render in English. Significant localization gap. — https://ai-register-eu.vercel.app/de/database
+- **~30-40% of German homepage untranslated** — StatsBar labels, some nav items ("Plans", "Database"), footer section headers, system description snippets all in English. — https://ai-register-eu.vercel.app/de
+- **Page `<title>` not translated on localized pages** — `/fr`, `/de`, `/fr/database`, `/de/database` all show English title tags. — multiple pages
 
 ### Info
 - **`/ratings` redirects to `/methodology`** — intentional (code comment: "content was duplicated"), but no canonical redirect label or SEO signal. — https://ai-register-eu.vercel.app/en/ratings
 - **Duplicate site name in `<title>` tags** — Pages like `/database`, `/regulations`, `/industries`, `/newsfeed` had titles like "AI Database — AI Compass EU" while the root layout template appends "| AI Compass EU" again, resulting in "AI Database — AI Compass EU | AI Compass EU". ✅ **Fixed** (2026-04-12): Removed "— AI Compass EU" and "| AI Compass EU" suffixes from 18 page metadata titles.
+- **Partial i18n on /de** — Several sections untranslated: "How It Works", "AI Compliance Intelligence" (newsletter CTA), and all 5 industry filter labels (Financial, Healthcare, Insurance, Public Sector, HR). — https://ai-register-eu.vercel.app/de ✅ **Fixed** (2026-04-12): Updated de.json with full German translations for `featured.*`, `howItWorks.*`, and `cta.*` keys.
 - **`/api/compare` correctly rejects GET with 405** — POST works correctly. — internal
 
 ---

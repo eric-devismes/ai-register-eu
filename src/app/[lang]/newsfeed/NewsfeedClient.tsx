@@ -116,7 +116,7 @@ function formatDate(iso: string): string {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso));
 }
 
-export function NewsfeedClient({ entries, tier = "anonymous" }: { entries: Entry[]; tier?: string }) {
+export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { entries: Entry[]; tier?: string; lang?: string }) {
   const [tab, setTab] = useState<"news" | "calendar">("news");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
@@ -302,12 +302,12 @@ export function NewsfeedClient({ entries, tier = "anonymous" }: { entries: Entry
                         {typeInfo.label}
                       </span>
                       {entry.framework && (
-                        <Link href={`/en/regulations/${entry.framework.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
+                        <Link href={`/${lang}/regulations/${entry.framework.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
                           {entry.framework.name}
                         </Link>
                       )}
                       {entry.system && (
-                        <Link href={`/en/systems/${entry.system.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
+                        <Link href={`/${lang}/systems/${entry.system.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
                           {entry.system.vendor} {entry.system.name}
                         </Link>
                       )}

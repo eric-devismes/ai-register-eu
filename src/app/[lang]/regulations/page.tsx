@@ -24,7 +24,12 @@ const BADGE_COLORS: Record<string, string> = {
   National: "bg-amber-100 text-amber-700",
 };
 
-export default async function RegulationsPage() {
+export default async function RegulationsPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
   const frameworks = await getPublishedFrameworks();
 
   return (
@@ -55,7 +60,7 @@ export default async function RegulationsPage() {
               {frameworks.map((fw) => (
                 <Link
                   key={fw.id}
-                  href={`/regulations/${fw.slug}`}
+                  href={`/${lang}/regulations/${fw.slug}`}
                   className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-[#003399]/30 hover:shadow-md"
                 >
                   <span className={`inline-block w-fit rounded-full px-3 py-1 text-xs font-semibold ${BADGE_COLORS[fw.badgeType] || BADGE_COLORS.EU}`}>
