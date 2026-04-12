@@ -403,6 +403,7 @@ export const ModelName = {
   Feedback: 'Feedback',
   ExpertDiscussion: 'ExpertDiscussion',
   ExpertResponse: 'ExpertResponse',
+  TelegramMessage: 'TelegramMessage',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -419,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "adminUser" | "company" | "case" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "feedback" | "expertDiscussion" | "expertResponse" | "approvedSource"
+    modelProps: "regulatoryFramework" | "frameworkSection" | "policyStatement" | "industry" | "assessmentScore" | "dimensionScore" | "aISystem" | "changeLog" | "adminUser" | "company" | "case" | "subscriber" | "digestLog" | "translation" | "chatUsage" | "chatLog" | "feedback" | "expertDiscussion" | "expertResponse" | "telegramMessage" | "approvedSource"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1829,6 +1830,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TelegramMessage: {
+      payload: Prisma.$TelegramMessagePayload<ExtArgs>
+      fields: Prisma.TelegramMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TelegramMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TelegramMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.TelegramMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TelegramMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        findMany: {
+          args: Prisma.TelegramMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>[]
+        }
+        create: {
+          args: Prisma.TelegramMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        createMany: {
+          args: Prisma.TelegramMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TelegramMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.TelegramMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        update: {
+          args: Prisma.TelegramMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.TelegramMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TelegramMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TelegramMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.TelegramMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelegramMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.TelegramMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTelegramMessage>
+        }
+        groupBy: {
+          args: Prisma.TelegramMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TelegramMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TelegramMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TelegramMessageCountAggregateOutputType> | number
+        }
+      }
+    }
     ApprovedSource: {
       payload: Prisma.$ApprovedSourcePayload<ExtArgs>
       fields: Prisma.ApprovedSourceFieldRefs
@@ -2270,6 +2345,19 @@ export const ExpertResponseScalarFieldEnum = {
 export type ExpertResponseScalarFieldEnum = (typeof ExpertResponseScalarFieldEnum)[keyof typeof ExpertResponseScalarFieldEnum]
 
 
+export const TelegramMessageScalarFieldEnum = {
+  id: 'id',
+  telegramUpdateId: 'telegramUpdateId',
+  text: 'text',
+  fromName: 'fromName',
+  direction: 'direction',
+  processedAt: 'processedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TelegramMessageScalarFieldEnum = (typeof TelegramMessageScalarFieldEnum)[keyof typeof TelegramMessageScalarFieldEnum]
+
+
 export const ApprovedSourceScalarFieldEnum = {
   id: 'id',
   url: 'url',
@@ -2487,6 +2575,7 @@ export type GlobalOmitConfig = {
   feedback?: Prisma.FeedbackOmit
   expertDiscussion?: Prisma.ExpertDiscussionOmit
   expertResponse?: Prisma.ExpertResponseOmit
+  telegramMessage?: Prisma.TelegramMessageOmit
   approvedSource?: Prisma.ApprovedSourceOmit
 }
 

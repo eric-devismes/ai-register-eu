@@ -140,11 +140,10 @@
 
 ## Expert Agent Panel (Advisory Board) — PRIORITY
 
-- [~] **Multi-agent expert collaboration system**: 11 domain-expert agents (CTO, CISO, DPO, CFO, Legal, HR, Procurement, Ops, Risk, PMO, Business) that collaborate, debate, and bring their domain perspective to decisions
-- [ ] Each agent speaks in user's tone/voice — "digital me" with domain expertise
-- [ ] Agents discuss via shared log, visible to user via Telegram
-- [ ] When agents disagree, user decides as CEO via Telegram response
-- [ ] Domains: Technology, Security, Data/Privacy, Risk/Compliance, Operations, Procurement, HR/Change, Finance, Legal, Project Delivery, Business Stakeholders
+- [x] **Multi-agent expert collaboration system**: 11 domain-expert agents that debate topics in natural chat-style conversation. Two channels: Claude Code (/brainstorm slash command) and Telegram (async). Output reads like a real chat history with timestamps, names, and brief arguments. (2026-04-12)
+- [x] Expert profiles defined with domain expertise and system prompts (2026-04-12)
+- [x] Agents discuss in plain human language — polite, brief, no flattery, no interrupting (2026-04-12)
+- [ ] Telegram async integration — start discussions from Telegram, get chat-style output, reply with CEO decision
 
 ## Admin Panel
 
@@ -158,7 +157,25 @@
 - [x] **News Source Configuration**: 27 sources — EU official (EUR-Lex, EDPB, ENISA, EC), DPAs (CNIL, BfDI, AEPD, ICO, Garante), standards (ISO, NIST), vendors (OpenAI, Anthropic, Google, Microsoft, Mistral, Meta, AWS, Salesforce, IBM), press (Euractiv, IAPP, TechCrunch, Wired, Reuters, AI Act Blog). (2026-04-11)
 - [x] **Auto-tagging & Classification**: LLM classifies relevance 0-100, assigns changeType, tags frameworks + AI systems, generates plain-language actionable summaries. (2026-04-11)
 - [x] **Grok/xAI Twitter Scanner**: Attempted but disabled — Grok produces hallucinated URLs and unverifiable content even with x_search grounding. (2026-04-11)
-- [ ] **Review news sourcing strategy**: Audit current 27 RSS sources (are they the right ones?), review automation quality, evaluate Perplexity API as alternative to Grok for real-time social/web intelligence. Perplexity has grounded search with citations that actually work.
+- [ ] **Review news sourcing strategy**: Don't add Google/Perplexity/Tavily. Board consensus: expand RSS to 60+ sources (missing DPA newsrooms, CJEU case law, national AI committee feeds, EDPS, AI Office). RSS is free, primary sources, no noise. Only add a search API when paying customers ask for it. (2026-04-12)
+- [ ] **Expand RSS sources**: Add ~30-40 missing EU/EEA sources — remaining DPAs (we cover 5 of 30), national AI strategy pages, CJEU case law feed, EDPS newsletter, AI Office updates, parliamentary committee feeds. (2026-04-12)
+- [ ] **Gate newsfeed as lead magnet**: Keep newsfeed page public (SEO), but gate the curated daily digest email behind email signup. Builds email list for nurturing toward paid tiers. (2026-04-12)
+
+---
+
+## Revenue & Business Model
+
+- [ ] **Referral revenue model**: When a customer chooses an AI system based on our assessment, get referral commission from that AI vendor. Research affiliate/referral programs from major AI vendors (OpenAI, Anthropic, Microsoft, Google, etc.). (2026-04-11, from Telegram)
+- [ ] **Hide consulting offering**: Remove or downplay consulting/enterprise tier until CEO leaves current employment. Don't advertise services we can't deliver yet. (2026-04-11, from Telegram)
+- [ ] **Pitch deck — multiple audiences**: Build pitch materials suited to (a) enterprise customers evaluating the platform, (b) potential acquirers, (c) strategic partners. Not investors/angels — injecting funds wouldn't dramatically change what the site can do. (2026-04-11, from Telegram)
+
+## Translation & Localisation
+
+- [ ] **CORE RULE — Translation is non-negotiable**: Every page, every feature, every piece of content MUST be published in ALL supported languages simultaneously. Content is NOT published in English if it's not published in every other language. Make this part of every publishing workflow. (2026-04-11, from Telegram)
+
+## Risk & Compliance (Internal)
+
+- [ ] **Risk assessment for running the site**: Identify operational, legal, reputational, financial risks of operating AI Compass EU. Include remediation plan, controls, and metrics to measure risk. (2026-04-11, from Telegram)
 
 ---
 
@@ -169,9 +186,17 @@
 - (2026-04-11) "everytime i say something, add it to the todo immediately" — Standing rule: capture all user messages as TODO items instantly
 - (2026-04-11) "In the message at the bottom it is said we used cookies. Is that true? are cookies actually created on the user computer?" — DONE: Audited, 4 essential cookies only, no tracking.
 - (2026-04-11) "i can think of getting domain name send email to people to register, connect to lemonfizzy as next steps" — Eric's next steps: (1) Get/configure domain name, (2) Send launch emails to get registrations, (3) Connect LemonSqueezy for payments
-- (2026-04-11) "also need a system to continuously monitor news and feed the news feed" — Automated news monitoring + ingestion pipeline for the newsfeed
-- (2026-04-11) "At the bottom of the home page, there are 2 sections with disclaimer. I'd prefer it to be consolidated in 1 section with 2 disclaimers" — Merge footer disclaimers into one section, both with icon+title format
-- (2026-04-11) "blue on grey is not visible. Use a visible color" — Chatbot response links are blue on dark navy background, nearly invisible. Fix link color to something visible (gold, white, light blue).
+- (2026-04-11) "also need a system to continuously monitor news and feed the news feed" — DONE: Automated news monitoring pipeline built.
+- (2026-04-11) "At the bottom of the home page, there are 2 sections with disclaimer. I'd prefer it to be consolidated in 1 section with 2 disclaimers" — DONE: Merged footer disclaimers.
+- (2026-04-11) "blue on grey is not visible. Use a visible color" — DONE: Changed chatbot link color to gold (#ffc107).
+- (2026-04-11, Telegram) "The site is live, but not fully working and it has not been advertised. I'd like a risk assessment for me to run this site" — Added to Risk & Compliance section.
+- (2026-04-11, Telegram) "Remediation plan to address those risks effectively and controls in place to mitigate and metrics to measure these risks" — Added to Risk & Compliance section.
+- (2026-04-11, Telegram) "Can you build a pitch I can use with a customer or with a potential company that would want to acquire the company?" — Added to Revenue & Business Model section.
+- (2026-04-11, Telegram) "I find it irrelevant to pitch to business angel as injecting funds would not dramatically change what the site can do" — Noted in pitch deck task.
+- (2026-04-11, Telegram) "Setup a process of continuous technology watch on regulations, enterprise AI experience, AI models update, AI software updates" — Covered by Newsfeed & Content Pipeline.
+- (2026-04-11, Telegram) "Later business could be referral. If a customer chooses an AI software based on my site assessment I could get money from that AI vendor" — Added to Revenue & Business Model section.
+- (2026-04-11, Telegram) "Hide the consulting part. Because really I don't have time for that as long as I am still employed" — Added to Revenue & Business Model section.
+- (2026-04-11, Telegram) "Language is a critical value add from my site. I really want all pages and all content to be translated professionally in all languages" — Added as CORE RULE in Translation section.
 
 ---
 

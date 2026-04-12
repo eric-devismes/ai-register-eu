@@ -70,6 +70,7 @@ export const ModelName = {
   Feedback: 'Feedback',
   ExpertDiscussion: 'ExpertDiscussion',
   ExpertResponse: 'ExpertResponse',
+  TelegramMessage: 'TelegramMessage',
   ApprovedSource: 'ApprovedSource'
 } as const
 
@@ -415,6 +416,19 @@ export const ExpertResponseScalarFieldEnum = {
 } as const
 
 export type ExpertResponseScalarFieldEnum = (typeof ExpertResponseScalarFieldEnum)[keyof typeof ExpertResponseScalarFieldEnum]
+
+
+export const TelegramMessageScalarFieldEnum = {
+  id: 'id',
+  telegramUpdateId: 'telegramUpdateId',
+  text: 'text',
+  fromName: 'fromName',
+  direction: 'direction',
+  processedAt: 'processedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TelegramMessageScalarFieldEnum = (typeof TelegramMessageScalarFieldEnum)[keyof typeof TelegramMessageScalarFieldEnum]
 
 
 export const ApprovedSourceScalarFieldEnum = {

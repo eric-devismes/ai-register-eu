@@ -138,6 +138,13 @@ export type ExpertDiscussion = Prisma.ExpertDiscussionModel
  */
 export type ExpertResponse = Prisma.ExpertResponseModel
 /**
+ * Model TelegramMessage
+ * Stores Telegram messages for two-way CEO communication.
+ * Incoming messages from the CEO are stored and read by Claude Code sessions.
+ * Outgoing messages are logged for audit trail.
+ */
+export type TelegramMessage = Prisma.TelegramMessageModel
+/**
  * Model ApprovedSource
  * Admin-curated external source URLs the chatbot can reference.
  */

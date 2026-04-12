@@ -462,6 +462,25 @@ model ExpertResponse {
   @@index([discussionId])
 }
 
+// ─── Telegram Messages ─────────────────────────────────────
+
+/// Stores Telegram messages for two-way CEO communication.
+/// Incoming messages from the CEO are stored and read by Claude Code sessions.
+/// Outgoing messages are logged for audit trail.
+model TelegramMessage {
+  id               String    @id @default(cuid())
+  telegramUpdateId Int       @default(0)                    // Telegram's update_id for dedup
+  text             String                                   // Message content
+  fromName         String    @default("")                   // "Eric DEVISMES" or "AI Compass EU Bot"
+  direction        String    @default("incoming")           // "incoming" (from CEO) or "outgoing" (from bot)
+  processedAt      DateTime?                                // When Claude Code picked it up (null = unread)
+  createdAt        DateTime  @default(now())
+
+  @@unique([telegramUpdateId])
+  @@index([direction, processedAt])                          // Find unprocessed incoming messages
+  @@index([createdAt])
+}
+
 /// Admin-curated external source URLs the chatbot can reference.
 model ApprovedSource {
   id          String   @id @default(cuid())
