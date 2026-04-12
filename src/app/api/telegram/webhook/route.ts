@@ -20,9 +20,9 @@ import { join } from "path";
 
 export const maxDuration = 60;
 
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
-const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || "";
+const TELEGRAM_TOKEN = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
+const TELEGRAM_CHAT_ID = (process.env.TELEGRAM_CHAT_ID || "").trim();
+const ANTHROPIC_KEY = (process.env.ANTHROPIC_API_KEY || "").trim();
 
 // ─── Telegram Send ────────────────────────────────────
 
@@ -249,9 +249,22 @@ export async function GET() {
     where: { direction: "incoming", processedAt: null },
   }).catch(() => 0);
 
+  const recentMessages = await prisma.telegramMessage.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 5,
+    select: { direction: true, text: true, fromName: true, createdAt: true, processedAt: true },
+  }).catch(() => []);
+
   return NextResponse.json({
     status: "ok",
     webhook: webhookInfo?.result?.url || "not set",
     unprocessedMessages: unprocessed,
+    envCheck: {
+      hasTelegramToken: !!TELEGRAM_TOKEN && TELEGRAM_TOKEN.length > 10,
+      hasChatId: !!TELEGRAM_CHAT_ID,
+      chatIdValue: TELEGRAM_CHAT_ID,
+      hasAnthropicKey: !!ANTHROPIC_KEY && ANTHROPIC_KEY.length > 10,
+    },
+    recentMessages,
   });
 }
