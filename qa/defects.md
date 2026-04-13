@@ -5,7 +5,26 @@
 
 ---
 
-## 2026-04-13 QA Run
+## 2026-04-13 QA Run (Evening)
+
+### Critical
+_None_
+
+### Warning
+- **Duplicate Salesforce entry in database** — Two separate DB records exist for Salesforce: `salesforce-agentforce-einstein` (main seed) and `agentforce-einstein-ai` (seed-platform-deep-m365-sfdc.ts). Both visible on `/database` page. The newer `agentforce-einstein-ai` slug has richer use-case data. Need to merge or delete the older record. — https://ai-register-eu.vercel.app/en/database
+- **Pricing page (/fr/pricing, /de/pricing) entirely untranslated** — All tier names, feature list items, badges ("Most Popular"), and CTAs remain in English. The conversion-critical page should be a translation priority. — https://ai-register-eu.vercel.app/fr/pricing
+- **Methodology page body untranslated in /de and /fr** — All 8 dimension names, grading scale, and assessment process text in English. — https://ai-register-eu.vercel.app/de/methodology
+
+### Info
+- **`/en/privacy-policy` returns 404** — Conventional URL pattern not redirected; correct path is `/en/privacy`. External links or email campaigns using `/privacy-policy` would hit 404. Simple redirect recommended. — https://ai-register-eu.vercel.app/en/privacy-policy ✅ **Fixed** (2026-04-13): Added permanent redirects `/privacy-policy` → `/en/privacy` and `/:lang/privacy-policy` → `/:lang/privacy` in next.config.ts.
+- **`/api/compare` correctly rejects GET with 405** — POST-only; behaviour is correct (matches 2026-04-12 finding). — internal
+
+### Fixed this run
+_None_
+
+---
+
+## 2026-04-13 QA Run (Morning)
 
 ### Critical
 _None_

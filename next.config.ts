@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
         destination: "/:lang/regulations/eu-ai-act",
         permanent: true,
       },
+      {
+        source: "/privacy-policy",
+        destination: "/en/privacy",
+        permanent: true,
+      },
+      {
+        source: "/:lang/privacy-policy",
+        destination: "/:lang/privacy",
+        permanent: true,
+      },
     ];
   },
   async headers() {
