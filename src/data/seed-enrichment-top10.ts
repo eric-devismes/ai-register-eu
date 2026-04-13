@@ -302,7 +302,7 @@ const systems = [
     ipTerms:
       "Customer retains all IP in inputs and outputs. Copilot Copyright Commitment — Microsoft assumes legal risk for copyright claims on Copilot outputs.",
     certifications:
-      "ISO 27001, ISO 27018, SOC 2 Type II, SOC 3, C5 (Germany — BSI certified), ENS (Spain), CSA STAR, FedRAMP High, HIPAA BAA, HDS (France). 100+ compliance offerings — most of any cloud provider.",
+      "ISO 27001, ISO 27018, ISO 27017, SOC 2 Type II, SOC 3, C5 (Germany — BSI certified), ENS (Spain), CSA STAR, FedRAMP High, HIPAA BAA, HDS (France), ISO/IEC 42001:2023 (AI Management Systems — achieved July 2025 for Azure AI Foundry Models and Security Copilot). 100+ compliance offerings — most of any cloud provider.",
     encryptionInfo:
       "AES-256 at rest with customer-managed keys (Azure Key Vault). TLS 1.2+ in transit. Double encryption option. Confidential computing available.",
     accessControls:

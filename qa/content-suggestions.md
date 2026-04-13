@@ -56,6 +56,80 @@ Consider prioritising ServiceNow (active Now Assist development) and Workday (Il
 
 ---
 
+## 2026-04-13 — CISO Review (Mon)
+
+**Lens**: Security assessments accuracy, certifications, outdated security info
+
+---
+
+### ✅ Fixed: Microsoft Azure OpenAI — ISO 42001:2023 Missing
+**Status**: Applied (seed-enrichment-top10.ts updated)
+**File**: `src/data/seed-enrichment-top10.ts` (Azure OpenAI entry, certifications field)
+
+Microsoft achieved ISO/IEC 42001:2023 (AI Management Systems) in July 2025 for Azure AI Foundry Models and Microsoft Security Copilot. This was missing from the certifications field. Added alongside existing C5, ENS, ISO 27001 etc.
+
+*Source*: Azure Blog (July 2025), Mastermind IAS-accredited certification body.
+
+---
+
+### ℹ️ Verified: Anthropic Claude — Certifications Already Current
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-top10.ts` (Anthropic entry)
+
+Confirmed that `seed-enrichment-top10.ts` already records:
+- ISO 27001:2022 ✓ (achieved — was "in progress" in older seed-vendors.ts, correctly updated)
+- ISO/IEC 42001:2023 ✓ (rare AI management systems cert)
+- SOC 2 Type II ✓
+
+*Security incident note (not affecting certifications):* On March 31, 2026, Anthropic accidentally exposed ~513K lines of Claude Code source via an `.map` file in npm package `@anthropic-ai/claude-code` v2.1.88. Packaging error (Bun runtime generating full source maps). Anthropic confirmed publicly. This is a developer toolchain incident, not a platform security breach — no customer data exposure. No change to product security ratings warranted at this time.
+
+---
+
+### ℹ️ Verified: Mistral AI — Certifications Already Current
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry)
+
+Confirmed that `seed-enrichment-top10.ts` already records:
+- SOC 2 Type II ✓ (achieved — was "in progress" in older seed-vendors.ts)
+- ISO 27001 ✓ (achieved — was missing in older file)
+- ISO 27701 ✓ (privacy management)
+- ANSSI qualification: still "in progress" (confirmed still pending)
+- HDS (French health data): still "in progress" (confirmed still pending)
+
+---
+
+### ℹ️ Verified: Google Gemini — BSI C5 Already Listed
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-top10.ts` (Google entry)
+
+Confirmed BSI C5 attestation for Gemini (achieved April 2025, announced at Google Cloud Next 2025) is already recorded. Google stated this makes Gemini "the first AI productivity assistant" to achieve BSI C5 attestation. Database correctly reflects this differentiator.
+
+---
+
+### ℹ️ Verified: Amazon Bedrock — AWS European Sovereign Cloud GA Already Recorded
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-batch3.ts` (Bedrock entry)
+
+Confirmed AWS European Sovereign Cloud (Brandenburg, Germany, Jan 2026 GA, EUR 7.8B investment) is already recorded in description, euPresence, and euResidency fields. Bedrock availability on the sovereign cloud is also noted.
+
+---
+
+### 🟡 Suggestion: CISO Alert — Supply Chain Incident Affecting AI Developer Ecosystem
+**Status**: CEO awareness (editorial decision on whether to surface in platform)
+**Scope**: Cross-vendor (Anthropic, OpenAI, Anthropic downstream users)
+
+Two supply-chain incidents from Q1 2026 are CISO-relevant for enterprise AI buyers:
+
+1. **Anthropic Claude Code npm leak (March 31, 2026)**: `@anthropic-ai/claude-code` v2.1.88 accidentally bundled full TypeScript source maps. A North Korean RAT was simultaneously pushed via `axios` (shared npm dependency) in the same 3-hour window. Anthropic confirmed both publicly. Risk window: 00:21–03:29 UTC March 31.
+
+2. **Mercor supply-chain attack (April 2026)**: AI training data startup (serves OpenAI, Anthropic, Meta) hit via LiteLLM supply-chain compromise by group "TeamPCP." Enterprise data potentially exposed.
+
+3. **Enterprise shadow AI risk**: 77% of employees paste corporate data into AI tools; 82% use personal rather than enterprise accounts (Data Privacy Week 2026 report).
+
+These suggest an emerging category for CISO scorecards: **vendor supply chain security practices** (npm package signing, SLSA compliance, etc.). Consider whether to add a supply-chain security dimension to the CISO assessment criteria in a future methodology update.
+
+---
+
 ### 🟡 Suggestion: OpenAI ISO 27001 Status — Confirm or Update
 **Status**: Verify before next DPO rotation (Tue)
 **File**: `src/data/seed-new-content-2026.ts`, line ~57
