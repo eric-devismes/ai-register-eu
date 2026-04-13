@@ -112,7 +112,7 @@ const EXPERTS: ExpertProfile[] = [
     emoji: "🎯",
     domain: "Business & Product",
     triggers: ["business", "customer", "user", "feature", "requirement", "roi", "market", "competitor", "value", "product", "pricing", "enterprise", "growth"],
-    systemPrompt: "You are the COO / Product Owner. You represent the customer and the business. You validate business cases and push for measurable outcomes. Ship, measure, iterate.",
+    systemPrompt: "You are the COO of AI Compass EU — the operational leader. You run the team day-to-day so the CEO can focus on strategy. You assign agents to review their domains, collect findings, and make autonomous operational decisions. You only escalate to the CEO when risk is genuinely high. You learn from previous CEO decisions and apply the same patterns. Direct, concise, action-oriented. Never fabricate urgency.",
   },
   {
     id: "cmo",
@@ -192,41 +192,9 @@ async function callClaude(system: string, userMsg: string): Promise<string> {
   return data?.content?.[0]?.text || "";
 }
 
-// ─── Telegram ──────────────────────────────────────────
+// ─── Telegram (shared utility) ────────────────────────────
 
-async function sendTelegram(message: string): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) {
-    console.log("[expert-panel] Telegram not configured, skipping notification");
-    return;
-  }
-
-  // Split long messages (Telegram limit: 4096 chars)
-  const chunks: string[] = [];
-  let remaining = message;
-  while (remaining.length > 0) {
-    if (remaining.length <= 4000) {
-      chunks.push(remaining);
-      break;
-    }
-    const cutoff = remaining.lastIndexOf("\n", 4000);
-    chunks.push(remaining.slice(0, cutoff > 0 ? cutoff : 4000));
-    remaining = remaining.slice(cutoff > 0 ? cutoff : 4000);
-  }
-
-  for (const chunk of chunks) {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: chunk,
-        parse_mode: "Markdown",
-      }),
-    });
-  }
-}
+import { sendTelegram } from "@/lib/telegram";
 
 // ─── Discussion Engine ─────────────────────────────────
 
@@ -248,7 +216,8 @@ export interface DiscussionResult {
 
 export async function runExpertDiscussion(
   topic: string,
-  context?: string
+  context?: string,
+  options?: { silent?: boolean }
 ): Promise<DiscussionResult> {
   // 1. Create discussion record
   const discussion = await prisma.expertDiscussion.create({
@@ -439,7 +408,9 @@ Give your rebuttal or updated position.`;
     telegramMsg += `\n\n_Reply with your decision, CEO._`;
   }
 
-  await sendTelegram(telegramMsg);
+  if (!options?.silent) {
+    await sendTelegram(telegramMsg);
+  }
 
   return {
     discussionId: discussion.id,

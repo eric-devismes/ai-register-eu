@@ -24,47 +24,9 @@ const TELEGRAM_TOKEN = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
 const TELEGRAM_CHAT_ID = (process.env.TELEGRAM_CHAT_ID || "").trim();
 const ANTHROPIC_KEY = (process.env.ANTHROPIC_API_KEY || "").trim();
 
-// ─── Telegram Send ────────────────────────────────────
+// ─── Telegram Send (shared utility) ──────────────────
 
-async function sendTelegram(text: string): Promise<void> {
-  // Split long messages
-  const chunks: string[] = [];
-  let remaining = text;
-  while (remaining.length > 0) {
-    if (remaining.length <= 4000) {
-      chunks.push(remaining);
-      break;
-    }
-    const cut = remaining.lastIndexOf("\n", 4000);
-    chunks.push(remaining.slice(0, cut > 0 ? cut : 4000));
-    remaining = remaining.slice(cut > 0 ? cut : 4000);
-  }
-
-  for (const chunk of chunks) {
-    await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: chunk,
-        parse_mode: "Markdown",
-      }),
-    });
-  }
-
-  // Log outgoing message
-  try {
-    await prisma.telegramMessage.create({
-      data: {
-        telegramUpdateId: 0,
-        text: text.slice(0, 2000),
-        fromName: "AI Compass EU Bot",
-        direction: "outgoing",
-        processedAt: new Date(),
-      },
-    });
-  } catch { /* non-critical */ }
-}
+import { sendTelegram } from "@/lib/telegram";
 
 // ─── Build Context ────────────────────────────────────
 

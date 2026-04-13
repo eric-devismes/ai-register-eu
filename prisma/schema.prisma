@@ -489,3 +489,87 @@ model ApprovedSource {
   description String   @default("")
   createdAt   DateTime @default(now())
 }
+
+// ─── COO Work Cycles & Daily Digest ─────────────────────────
+
+/// A COO-led work cycle where agents autonomously review their domains.
+/// Runs 3x/day via Vercel Cron. Results feed into the daily digest.
+model WorkCycle {
+  id              String          @id @default(cuid())
+  date            String                                       // "2026-04-14" calendar day
+  cycleNumber     Int                                          // 1=morning, 2=midday, 3=evening
+  status          String          @default("running")          // "running", "completed", "failed"
+  agentsAssigned  Int             @default(0)                  // How many agents worked this cycle
+  findingsCount   Int             @default(0)                  // Total findings across all agents
+  decisionsCount  Int             @default(0)                  // Autonomous decisions made
+  durationMs      Int             @default(0)                  // Execution time
+  error           String          @default("")                 // Error message if failed
+  reports         AgentReport[]
+  decisions       DigestDecision[]
+  createdAt       DateTime        @default(now())
+
+  @@unique([date, cycleNumber])                                // Max 1 run per cycle per day
+  @@index([date])
+}
+
+/// An individual agent's structured report from a work cycle or daily digest.
+model AgentReport {
+  id           String      @id @default(cuid())
+  agentId      String                                          // "cto", "ciso", etc.
+  agentName    String                                          // Display name
+  emoji        String      @default("")
+  done         String      @default("")                        // What was reviewed/done
+  highestRisk  String      @default("")                        // Biggest risk identified
+  action       String      @default("")                        // Most important action
+  advice       String      @default("")                        // Best advice
+  nextStep     String      @default("")                        // Recommended next step
+  hasFindings  Boolean     @default(false)                     // Skip in digest if false
+  rawResponse  String      @default("")                        // Full LLM response for debugging
+
+  workCycle    WorkCycle?  @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
+  workCycleId  String?
+  digest       DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
+  digestId     String?
+  createdAt    DateTime    @default(now())
+
+  @@index([workCycleId])
+  @@index([digestId])
+  @@index([agentId, createdAt])
+}
+
+/// An autonomous decision made by the COO during a work cycle.
+model DigestDecision {
+  id          String      @id @default(cuid())
+  description String                                           // What was decided
+  riskLevel   String                                           // "LOW", "MEDIUM", "HIGH"
+  rationale   String      @default("")                         // Why this decision was made
+  precedent   String      @default("")                         // Reference to similar past CEO decision
+  autonomous  Boolean     @default(true)                       // true = COO decided, false = needs CEO
+
+  workCycle   WorkCycle?  @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
+  workCycleId String?
+  digest      DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
+  digestId    String?
+  createdAt   DateTime    @default(now())
+
+  @@index([workCycleId])
+  @@index([digestId])
+}
+
+/// The daily digest — one per day, sent to CEO at 20:00 Paris time.
+/// Synthesizes all work cycle findings into a single Telegram message.
+model DailyDigest {
+  id                  String          @id @default(cuid())
+  date                String          @unique                  // "2026-04-14" — one per day
+  status              String          @default("running")      // "running", "completed", "failed"
+  executiveSummary    String          @default("")             // COO's 1-2 sentence summary
+  autonomousDecisions Int             @default(0)              // Count of LOW+MEDIUM decisions
+  escalations         Int             @default(0)              // Count of HIGH items for CEO
+  durationMs          Int             @default(0)
+  telegramMessageId   String          @default("")             // For reference
+  reports             AgentReport[]
+  decisions           DigestDecision[]
+  createdAt           DateTime        @default(now())
+
+  @@index([date])
+}

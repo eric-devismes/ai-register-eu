@@ -173,3 +173,25 @@ export type TelegramMessage = Prisma.TelegramMessageModel
  * Admin-curated external source URLs the chatbot can reference.
  */
 export type ApprovedSource = Prisma.ApprovedSourceModel
+/**
+ * Model WorkCycle
+ * A COO-led work cycle where agents autonomously review their domains.
+ * Runs 3x/day via Vercel Cron. Results feed into the daily digest.
+ */
+export type WorkCycle = Prisma.WorkCycleModel
+/**
+ * Model AgentReport
+ * An individual agent's structured report from a work cycle or daily digest.
+ */
+export type AgentReport = Prisma.AgentReportModel
+/**
+ * Model DigestDecision
+ * An autonomous decision made by the COO during a work cycle.
+ */
+export type DigestDecision = Prisma.DigestDecisionModel
+/**
+ * Model DailyDigest
+ * The daily digest — one per day, sent to CEO at 20:00 Paris time.
+ * Synthesizes all work cycle findings into a single Telegram message.
+ */
+export type DailyDigest = Prisma.DailyDigestModel

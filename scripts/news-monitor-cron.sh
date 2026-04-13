@@ -42,22 +42,8 @@ BODY=$(echo "$RESPONSE" | sed '$d')
 echo "HTTP ${HTTP_CODE}"
 echo "$BODY" | head -20
 
-# ─── Notify via Telegram ────────────────────────────────
-
-if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
-  INGESTED=$(echo "$BODY" | grep -o '"ingestedItems":[0-9]*' | cut -d: -f2 || echo "?")
-  SOURCES=$(echo "$BODY" | grep -o '"sourcesFetched":[0-9]*' | cut -d: -f2 || echo "?")
-  RAW=$(echo "$BODY" | grep -o '"rawItems":[0-9]*' | cut -d: -f2 || echo "?")
-  DURATION=$(echo "$BODY" | grep -o '"duration":[0-9]*' | cut -d: -f2 || echo "?")
-
-  MSG="📰 *News Monitor*
-Sources: ${SOURCES} | Raw: ${RAW} | Ingested: ${INGESTED}
-Duration: ${DURATION}ms | HTTP: ${HTTP_CODE}"
-
-  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-    -H "Content-Type: application/json" \
-    -d "{\"chat_id\":\"${TELEGRAM_CHAT_ID}\",\"text\":\"${MSG}\",\"parse_mode\":\"Markdown\"}" \
-    > /dev/null 2>&1 || true
-fi
+# ─── Telegram notification removed ─────────────────────
+# News stats now appear in the daily digest instead of
+# individual Telegram messages. See /api/admin/daily-digest.
 
 echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Done."

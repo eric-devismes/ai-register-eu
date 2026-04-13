@@ -71,7 +71,11 @@ export const ModelName = {
   ExpertDiscussion: 'ExpertDiscussion',
   ExpertResponse: 'ExpertResponse',
   TelegramMessage: 'TelegramMessage',
-  ApprovedSource: 'ApprovedSource'
+  ApprovedSource: 'ApprovedSource',
+  WorkCycle: 'WorkCycle',
+  AgentReport: 'AgentReport',
+  DigestDecision: 'DigestDecision',
+  DailyDigest: 'DailyDigest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -440,6 +444,72 @@ export const ApprovedSourceScalarFieldEnum = {
 } as const
 
 export type ApprovedSourceScalarFieldEnum = (typeof ApprovedSourceScalarFieldEnum)[keyof typeof ApprovedSourceScalarFieldEnum]
+
+
+export const WorkCycleScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  cycleNumber: 'cycleNumber',
+  status: 'status',
+  agentsAssigned: 'agentsAssigned',
+  findingsCount: 'findingsCount',
+  decisionsCount: 'decisionsCount',
+  durationMs: 'durationMs',
+  error: 'error',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkCycleScalarFieldEnum = (typeof WorkCycleScalarFieldEnum)[keyof typeof WorkCycleScalarFieldEnum]
+
+
+export const AgentReportScalarFieldEnum = {
+  id: 'id',
+  agentId: 'agentId',
+  agentName: 'agentName',
+  emoji: 'emoji',
+  done: 'done',
+  highestRisk: 'highestRisk',
+  action: 'action',
+  advice: 'advice',
+  nextStep: 'nextStep',
+  hasFindings: 'hasFindings',
+  rawResponse: 'rawResponse',
+  workCycleId: 'workCycleId',
+  digestId: 'digestId',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentReportScalarFieldEnum = (typeof AgentReportScalarFieldEnum)[keyof typeof AgentReportScalarFieldEnum]
+
+
+export const DigestDecisionScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  riskLevel: 'riskLevel',
+  rationale: 'rationale',
+  precedent: 'precedent',
+  autonomous: 'autonomous',
+  workCycleId: 'workCycleId',
+  digestId: 'digestId',
+  createdAt: 'createdAt'
+} as const
+
+export type DigestDecisionScalarFieldEnum = (typeof DigestDecisionScalarFieldEnum)[keyof typeof DigestDecisionScalarFieldEnum]
+
+
+export const DailyDigestScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  status: 'status',
+  executiveSummary: 'executiveSummary',
+  autonomousDecisions: 'autonomousDecisions',
+  escalations: 'escalations',
+  durationMs: 'durationMs',
+  telegramMessageId: 'telegramMessageId',
+  createdAt: 'createdAt'
+} as const
+
+export type DailyDigestScalarFieldEnum = (typeof DailyDigestScalarFieldEnum)[keyof typeof DailyDigestScalarFieldEnum]
 
 
 export const SortOrder = {
