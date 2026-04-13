@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
         destination: "/en/compare",
         permanent: false,
       },
+      {
+        source: "/regulations/ai-act",
+        destination: "/en/regulations/eu-ai-act",
+        permanent: true,
+      },
+      {
+        source: "/:lang/regulations/ai-act",
+        destination: "/:lang/regulations/eu-ai-act",
+        permanent: true,
+      },
     ];
   },
   async headers() {

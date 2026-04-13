@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "About AI Compass EU",
+  title: "About",
   description:
     "AI Compass EU is an independent, vendor-neutral platform providing AI compliance intelligence for European decision-makers. Learn about our mission and team.",
 };

@@ -5,6 +5,29 @@
 
 ---
 
+## 2026-04-13 QA Run
+
+### Critical
+_None_
+
+### Warning
+- **Database page UI untranslated on /fr and /de** — Table headers, filter labels, CTAs ("Upgrade to Pro" ×75+), and footer counts all in English. Only nav/footer have localized strings. — https://ai-register-eu.vercel.app/fr/database
+- **Regulation detail pages untranslated on /fr and /de** — All body text, section headers (incl. "What this means for your organisation" ×8), and version history in English. — https://ai-register-eu.vercel.app/fr/regulations/eu-ai-act
+- **`/fr/regulations` hero heading in English** — "EU Compliance Frameworks" subtitle not translated. — https://ai-register-eu.vercel.app/fr/regulations
+- **`<html lang="en">` hardcoded for all locales** — Root layout sets `lang="en"` even for /fr and /de pages. Architectural issue: root layout owns the `<html>` tag; locale layout is nested in `<body>`. Requires layout restructure to fix properly.
+- **`/en/` prefix on regulation links from non-prefixed /regulations page** — Links on `/regulations` go to `/en/regulations/...`, creating canonical URL inconsistency.
+- **FR homepage — risk level labels not translated** — "High Risk", "Limited Risk", "Minimal Risk" displayed in English. — https://ai-register-eu.vercel.app/fr
+
+### Info
+- **`/api/compare` correctly rejects GET with 405** — POST-only endpoint; behaviour is correct. — internal
+- **Financial Services industry count (66) seems high** — May reflect over-broad tag mapping. — https://ai-register-eu.vercel.app/industries
+
+### Fixed this run
+- **`/regulations/ai-act` returned 404** — Added redirects in `next.config.ts`: `/regulations/ai-act` → `/en/regulations/eu-ai-act` and `/:lang/regulations/ai-act` → `/:lang/regulations/eu-ai-act`. ✅ Fixed (2026-04-13)
+- **About page title "About AI Compass EU | AI Compass EU"** — Changed metadata title from "About AI Compass EU" to "About" so template renders "About | AI Compass EU". ✅ Fixed (2026-04-13)
+
+---
+
 ## 2026-04-12 QA Run (Evening)
 
 ### Critical
