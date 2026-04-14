@@ -297,6 +297,11 @@
     "standards": "Standards & Frameworks",
     "nationalImpl": "National Implementation",
     "aboutUs": "About Us",
+    "security": "Security",
+    "incidentResponse": "Incident Response",
+    "terms": "Terms",
+    "contact": "Contact",
+    "disclaimerTitle": "Disclaimer",
     "copyright": "\u00a9 2026 AI Compass EU. All rights reserved.",
     "disclaimer": "Disclaimer: AI Compass EU provides information for educational and professional purposes. Our assessments are based on publicly available information and should not be considered legal advice. Consult qualified legal professionals for specific compliance requirements."
   }

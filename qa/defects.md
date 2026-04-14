@@ -5,6 +5,26 @@
 
 ---
 
+## 2026-04-14 QA Run (Evening)
+
+### Critical
+_None_
+
+### Warning
+- **`html lang="en"` hardcoded in root layout for all locales** — `src/app/layout.tsx:33` sets `<html lang="en">` globally. French, German, and all non-English pages are served with `lang="en"`, hurting SEO (hreflang signals conflicted) and accessibility (screen readers announce wrong language). OpenGraph `og:locale` is also hardcoded to `"en_EU"` on line 22. Requires architectural refactor: move `<html>` tag into `[lang]/layout.tsx` or dynamically derive from route params. — https://ai-register-eu.vercel.app/fr https://ai-register-eu.vercel.app/de
+- **Footer `aiTransparencyTitle` and `aiTransparencyBody` untranslated in all non-English locales** — Dictionary keys exist but values remain in English (fallback-copied). Needs DEEPL_API_KEY to be set and `npm run i18n:translate` to run. — https://ai-register-eu.vercel.app/fr https://ai-register-eu.vercel.app/de
+
+### Info
+- **All main pages load 200** — /, /database, /regulations, /pricing, /about, /methodology, /resources, /industries all redirect cleanly and return 200. Footer links (security, incident-response, terms, contact) also 200. ✅
+- **System detail pages load correctly** — /en/systems/anthropic-claude-enterprise, /en/systems/openai-chatgpt-enterprise, /en/systems/microsoft-azure-openai-service all return 200. ✅
+- **Agentforce/Einstein 1 Platform shows N/A overall score** — One card on /database shows empty scores array / N/A. May be a data-completeness gap for that system record.
+
+### Fixed this run
+- **Footer "Disclaimer" title hardcoded in English** — `src/components/layout/Footer.tsx:114` had literal `"Disclaimer"` string instead of `t("footer.disclaimerTitle")`. ✅ Fixed: added `footer.disclaimerTitle` key to `en.json`, wired up `t()` in Footer.tsx, backfilled all 13 locales.
+- **Footer secondary nav links hardcoded in English** — "Security", "Incident Response", "Terms", "Contact" were hardcoded strings instead of `t()` calls. ✅ Fixed: added `footer.security`, `footer.incidentResponse`, `footer.terms`, `footer.contact` to `en.json`, updated Footer.tsx, backfilled all locales.
+
+---
+
 ## 2026-04-14 QA Run
 
 ### Critical

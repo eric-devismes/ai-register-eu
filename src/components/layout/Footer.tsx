@@ -28,10 +28,10 @@ export default function Footer() {
     { label: t("common.methodology"), href: l("/methodology") },
     { label: t("common.pricing"), href: l("/pricing") },
     { label: t("common.privacy"), href: l("/privacy") },
-    { label: "Security", href: l("/security") },
-    { label: "Incident Response", href: l("/incident-response") },
-    { label: "Terms", href: l("/terms") },
-    { label: "Contact", href: l("/contact") },
+    { label: t("footer.security"), href: l("/security") },
+    { label: t("footer.incidentResponse"), href: l("/incident-response") },
+    { label: t("footer.terms"), href: l("/terms") },
+    { label: t("footer.contact"), href: l("/contact") },
   ];
 
   return (
@@ -111,7 +111,7 @@ export default function Footer() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
             </svg>
             <div>
-              <p className="text-xs font-semibold text-[#ffc107]">Disclaimer</p>
+              <p className="text-xs font-semibold text-[#ffc107]">{t("footer.disclaimerTitle")}</p>
               <p className="mt-1 text-[10px] leading-relaxed text-gray-500">
                 {t("footer.disclaimer")}
               </p>

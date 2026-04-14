@@ -229,7 +229,12 @@
     "copyright": "© 2026 AI Compass EU. All rights reserved.",
     "disclaimer": "Disclaimer: AI Compass EU provides information for educational and professional purposes. Our assessments are based on publicly available information and should not be considered legal advice. Consult qualified legal professionals for specific compliance requirements.",
     "aiTransparencyTitle": "AI Transparency Notice",
-    "aiTransparencyBody": "This platform uses AI (Anthropic Claude) for its chatbot assistant and comparison tool. AI-generated responses are grounded in our assessed database and clearly labelled. No personal data is used for AI model training. All AI features comply with the EU AI Act transparency obligations (Article 50) and GDPR requirements for automated processing."
+    "aiTransparencyBody": "This platform uses AI (Anthropic Claude) for its chatbot assistant and comparison tool. AI-generated responses are grounded in our assessed database and clearly labelled. No personal data is used for AI model training. All AI features comply with the EU AI Act transparency obligations (Article 50) and GDPR requirements for automated processing.",
+    "security": "Security",
+    "incidentResponse": "Incident Response",
+    "terms": "Terms",
+    "contact": "Contact",
+    "disclaimerTitle": "Disclaimer"
   },
   "nav": {
     "newsfeed": "Newsfeed",
