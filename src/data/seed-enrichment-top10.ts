@@ -49,9 +49,9 @@ const systems = [
     useCases:
       "Document drafting, summarization, and translation\nCustomer service automation and chatbots\nCode generation and review (Codex/GPT-4)\nData analysis and business intelligence\nContent creation at scale\nMultimodal processing (images, audio, video)\nCustom GPTs for departmental workflows\nRealtime voice API for call centers",
     dataStorage:
-      "OpenAI direct: EU data residency available since Feb 2025 — new API projects only, existing projects cannot migrate. Zero data retention in EU mode. Azure OpenAI: EU Data Zone Standard (EUR) ensures all data stays within EU member states. Regions: Sweden Central (primary), West Europe, France Central.",
+      "OpenAI direct: EU data residency (storage) available since Feb 2025 — new API projects only, existing projects cannot migrate. January 2026 expansion added in-region GPU inference (end-to-end EU processing, not just storage) with zero data retention. Azure OpenAI: EU Data Zone Standard (EUR) ensures all data stays within EU member states. Regions: Sweden Central (primary), West Europe, France Central.",
     dataProcessing:
-      "OpenAI direct: EU residency = data processed in-region with zero retention. Azure: stricter controls with VNETs, private endpoints, specific region locking (e.g., Germany-only). Azure total cost runs 15-40% higher than direct due to support plans, networking, and data transfer.",
+      "OpenAI direct: EU inference residency since Jan 2026 = data stored AND processed in-region with zero retention. Azure: stricter controls with VNETs, private endpoints, specific region locking (e.g., Germany-only). Azure total cost runs 15-40% higher than direct due to support plans, networking, and data transfer.",
     trainingDataUse:
       "Business/Enterprise/API: customer data NOT used for model training — contractually guaranteed. Consumer ChatGPT: conversations may be used unless opted out. Warning on reasoning models (o1/o3): internal reasoning tokens billed as output — a short visible answer can consume 5-10x more tokens than displayed.",
     subprocessors:
@@ -83,7 +83,7 @@ const systems = [
     gdprStatus:
       "DPA available with SCCs. OpenAI Ireland Limited designated as EEA data controller. HIPAA BAA available. Italian GDPR fine (2024) was overturned on appeal. Stronger GDPR posture through Azure than direct.",
     euResidency:
-      "Direct API: EU residency since Feb 2025, new projects only. Azure: full EU data residency with Data Zone Standard (EUR). EU Data Boundary program rolling out. For maximum EU control, Azure OpenAI with regional deployment (e.g., Germany-only) recommended.",
+      "Direct API: EU storage residency since Feb 2025 (new projects only). January 2026: in-region GPU inference added — data now processed AND stored in EU end-to-end for EU-residency projects. Azure: full EU data residency with Data Zone Standard (EUR). EU Data Boundary program rolling out. For maximum EU control, Azure OpenAI with regional deployment (e.g., Germany-only) recommended.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
     industrySlugs: [
@@ -116,7 +116,7 @@ const systems = [
     capabilityType: "generative-ai",
     vendorHq: "San Francisco, USA",
     euPresence:
-      "No EU legal entity or subsidiary. Available via AWS Bedrock (Frankfurt, Paris, Stockholm + 3 EU regions) and GCP Vertex AI (10 EU regions). EU representative not appointed under Art. 27(2) GDPR — Anthropic cites exemption. Irish DPC is competent supervisory authority.",
+      "No EU legal entity or subsidiary. Available via AWS Bedrock (Frankfurt, Paris, Stockholm + 3 EU regions) and GCP Vertex AI (10 EU regions). EU representative not appointed under Art. 27(2) GDPR — Anthropic cites exemption. Irish DPC is competent supervisory authority. M365 Copilot integration: Claude was added as an M365 Copilot subprocessor (Jan 2026) but is EXCLUDED from Microsoft's EU Data Boundary by default — EU tenants must explicitly opt out to prevent EU data leaving the boundary.",
     foundedYear: 2021,
     employeeCount: "1,100+ (2025), growing to ~2,500+ (2026)",
     fundingStatus:

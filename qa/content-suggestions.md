@@ -142,3 +142,87 @@ OpenAI ChatGPT Enterprise entry says `"ISO 27001 in progress (2026 target)"`. It
 **Status**: No action needed — architecture observation
 The database is populated by a chain of seed files (seed-vendors → seed-vendor-maturity → seed-enrichment-top10 → seed-enrichment-batch*). Each runs as upsert and later files overwrite earlier ones. This is working as intended, but the gap between older files (e.g., seed-vendor-maturity.ts showing "$60B valuation" for Anthropic) and newer files can cause confusion when reading seed files directly. Future maintenance: consider adding a "superseded by" comment to older files when their entries are fully covered by enrichment files.
 
+---
+
+## 2026-04-14 — DPO Review (Tue)
+
+**Lens**: GDPR/privacy assessments accuracy, data residency updates, regulation changes
+
+---
+
+### ✅ Fixed: OpenAI — EU Inference Residency Expansion (Jan 2026)
+**Status**: Applied (`seed-enrichment-top10.ts` updated)
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI entry, `dataStorage`, `dataProcessing`, `euResidency`)
+
+OpenAI expanded EU data residency in January 2026 to add **in-region GPU inference** — data is now processed AND stored in-region end-to-end for EU-residency projects (not just storage, as launched Feb 2025). This is a significant improvement to OpenAI's EU compliance posture. Updated three fields to reflect end-to-end EU processing with zero retention.
+
+*Source*: OpenAI announcement + Help Center (January 2026).
+
+---
+
+### ✅ Fixed: OpenAI ChatGPT Enterprise — ISO 27001 Stale "In Progress" Label
+**Status**: Applied (`seed-new-content-2026.ts` updated, line 56)
+**File**: `src/data/seed-new-content-2026.ts` (ChatGPT Enterprise entry, certifications field)
+
+`seed-new-content-2026.ts` still listed "ISO 27001 in progress (2026 target)" — OpenAI has achieved ISO/IEC 27001:2022. Also holds ISO 27017:2015, ISO 27018:2019, ISO 27701:2019. Updated certifications field to reflect all four achieved certs.
+
+*Source*: trust.openai.com / OpenAI security page (verified April 2026).
+*Flagged by*: CISO review (2026-04-13) for DPO follow-up.
+
+---
+
+### ✅ Fixed: Anthropic — M365 Copilot EU Data Boundary Exclusion
+**Status**: Applied (`seed-enrichment-top10.ts` updated)
+**File**: `src/data/seed-enrichment-top10.ts` (Anthropic entry, `euPresence`)
+
+When Anthropic Claude was added as a Microsoft 365 Copilot subprocessor (Jan 2026), it was **excluded from Microsoft's EU Data Boundary by default** — EU tenants must explicitly opt it out to prevent data leaving the EU boundary. This is a critical procurement risk for EU enterprises using M365 Copilot with Claude. Added to `euPresence` field.
+
+*Source*: Ragnar Heil analysis on M365 EU Data Boundary (January 2026).
+
+---
+
+### ℹ️ Verified: OpenAI Italian Garante Fine — Already Correctly Recorded
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI `dpaDetails` and `gdprStatus`)
+
+Database records "Italian GDPR fine (2024) was overturned on appeal" — **confirmed correct**. The EUR 15M fine was annulled by the Court of Rome on March 18, 2026. No update needed.
+
+*Source*: Reuters / Wilson Sonsini (March 2026).
+
+---
+
+### ℹ️ Verified: Mistral AI CNIL Complaint — Still Pending
+**Status**: No action needed (monitoring)
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral `dataProcessing`)
+
+Database records "US processing added Feb 2025 as opt-in only — triggered CNIL GDPR complaint — outcome pending." **Still accurate as of April 2026.** CNIL has not issued a formal decision. Mistral did expand the opt-out to all plan tiers (Feb 2025) and has since built its own French compute infrastructure (18,000 NVIDIA chips, June 2025) and acquired cloud provider Koyeb (Feb 2026). No score change warranted.
+
+*Source*: OECD.AI incident report, WAIMAKERS GDPR guide (April 2026).
+
+---
+
+### ℹ️ Context: GDPR Enforcement Escalation in 2026
+**Status**: CEO awareness — potential editorial for platform
+**Scope**: Platform-wide context / methodology notes
+
+GDPR enforcement has escalated sharply in early 2026:
+- EUR 4.2B in fines in the **first six weeks of 2026** alone
+- 1,200+ formal enforcement decisions YTD (340% increase vs. 2023)
+- Average fine up from EUR 2.3M (2023) to EUR 8.7M (2026)
+- 8 "mega-fines" over EUR 50M in early 2026
+- AI-specific DPA priorities: Article 22 automated decision transparency, consent dark patterns, cross-border vendor flows
+
+This escalating enforcement environment strengthens the platform's value proposition (AI compliance ratings matter more than ever). Consider surfacing this trend on the homepage or in the methodology section.
+
+*Source*: Kiteworks enforcement trends 2026, ComplianceHub.Wiki, GDPR Enforcement Tracker.
+
+---
+
+### ℹ️ Context: EU AI Act — No Enforcement Actions Yet
+**Status**: CEO awareness
+**Scope**: Platform-wide
+
+Prohibited practices (Article 5) became enforceable Feb 2, 2025. Full enforcement for high-risk AI systems begins August 2, 2026. As of April 2026, no formal enforcement actions under Article 5 have been announced by any national authority. Authorities are still building enforcement capacity. Consider adding this context to the EU AI Act framework page (e.g., "enforcement effective, no actions yet").
+
+*Source*: EU Digital Strategy, LegalNodes 2026, Quinn Emanuel briefing.
+

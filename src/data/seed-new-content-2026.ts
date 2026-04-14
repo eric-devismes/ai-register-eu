@@ -53,7 +53,7 @@ const newSystems = [
     dataPortability: "Data export via API and admin dashboard.",
     exitTerms: "Data deletion within 30 days of account termination on request.",
     ipTerms: "Customer owns outputs. OpenAI retains no IP rights to generated content.",
-    certifications: "SOC 2 Type II. ISO 27001 in progress (2026 target).",
+    certifications: "SOC 2 Type II. ISO/IEC 27001:2022 (achieved). ISO 27017:2015. ISO 27018:2019. ISO 27701:2019.",
     encryptionInfo: "AES-256 at rest. TLS 1.2+ in transit.",
     accessControls: "SSO/SAML, SCIM provisioning, role-based access, audit logs for Enterprise.",
     modelDocs:
