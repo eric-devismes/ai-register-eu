@@ -9,6 +9,7 @@
     "i18n:translate": "node scripts/i18n-translate.js",
     "evidence:fetch": "npx tsx --env-file=.env.local scripts/evidence-fetch.ts",
     "evidence:extract": "npx tsx --env-file=.env.local scripts/evidence-extract.ts",
+    "evidence:discover": "npx tsx --env-file=.env.local scripts/discover-sources.ts",
     "seed:evidence-vendors-top10": "npx tsx --env-file=.env.local src/data/seed-evidence-vendors-top10.ts",
     "seed:evidence-vendors-11-20": "npx tsx --env-file=.env.local src/data/seed-evidence-vendors-11-20.ts",
     "prebuild": "npm run i18n:check",
