@@ -10,6 +10,7 @@
     "evidence:fetch": "npx tsx --env-file=.env.local scripts/evidence-fetch.ts",
     "evidence:extract": "npx tsx --env-file=.env.local scripts/evidence-extract.ts",
     "seed:evidence-vendors-top10": "npx tsx --env-file=.env.local src/data/seed-evidence-vendors-top10.ts",
+    "seed:evidence-vendors-11-20": "npx tsx --env-file=.env.local src/data/seed-evidence-vendors-11-20.ts",
     "prebuild": "npm run i18n:check",
     "build": "prisma generate && next build",
     "start": "next start",
