@@ -207,7 +207,13 @@ async function main() {
       continue;
     }
     await prisma.systemClaim.upsert({
-      where: { systemId_field: { systemId: system.id, field: c.field } },
+      where: {
+        systemId_field_status: {
+          systemId: system.id,
+          field: c.field,
+          status: "published",
+        },
+      },
       create: {
         systemId: system.id,
         field: c.field,
