@@ -86,11 +86,35 @@ export interface FetchResult {
   errorMessage: string;
 }
 
-export async function fetchSourceUrl(url: string): Promise<FetchResult> {
+/**
+ * Build the actual URL to GET, given a logical source URL and a fetch strategy.
+ *
+ *   - "direct"      → fetch the URL as-is
+ *   - "jina-reader" → route through https://r.jina.ai/<url>, a public reader
+ *                     proxy that returns clean Markdown for JS-rendered or
+ *                     Cloudflare-protected pages. We use it for sources
+ *                     where direct fetch returns 403/JS-only shells.
+ *
+ * The Source.url stored in the DB stays the *canonical* URL (so the user-facing
+ * SourceChip links to the real page); only the fetcher swaps in the proxy.
+ */
+export function resolveFetchUrl(url: string, strategy: string): string {
+  if (strategy === "jina-reader") {
+    // r.jina.ai accepts the target URL appended verbatim
+    return `https://r.jina.ai/${url}`;
+  }
+  return url;
+}
+
+export async function fetchSourceUrl(
+  url: string,
+  strategy: string = "direct",
+): Promise<FetchResult> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  const effectiveUrl = resolveFetchUrl(url, strategy);
   try {
-    const res = await fetch(url, {
+    const res = await fetch(effectiveUrl, {
       method: "GET",
       headers: {
         "User-Agent": USER_AGENT,
@@ -225,7 +249,7 @@ export async function runEvidenceFetcher(opts?: {
     stats.sourcesChecked++;
     const lastSuccess = source.snapshots[0] ?? null;
     const hasOpenTask = source.reviewTasks.length > 0;
-    const result = await fetchSourceUrl(source.url);
+    const result = await fetchSourceUrl(source.url, source.fetchStrategy);
 
     if (!result.ok) {
       // Record the failure as a snapshot row so the audit trail is complete

@@ -251,6 +251,7 @@ model Source {
   tier        Int      @default(1)                               // 1=trust portal / DPA / subprocessors, 2=vendor docs/marketing, 3=third-party cert registry (ISO, CSA STAR), 4=regulatory filings / incident reports
   active      Boolean  @default(true)                            // Retired sources kept for history but not re-fetched
   notes       String   @default("")                              // Internal analyst notes
+  fetchStrategy String @default("direct")                        // "direct" = plain HTTP GET. "jina-reader" = fetch via https://r.jina.ai/<url> for sites that block bots (Cloudflare challenge, JS-rendered apps). Source.url stays the canonical URL — only the fetcher swaps in the proxy.
   snapshots   SourceSnapshot[]
   claims      SystemClaim[]
   reviewTasks ReviewTask[]                                       // Review tasks targeting this source

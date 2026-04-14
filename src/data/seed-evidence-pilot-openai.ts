@@ -33,6 +33,12 @@ type SeedSource = {
   label: string;
   tier: number;
   notes?: string;
+  /**
+   * "direct" (default) = plain HTTP GET.
+   * "jina-reader" = route via https://r.jina.ai/<url> for sites that
+   * block bots (Cloudflare challenge on openai.com, JS-only shells, etc.)
+   */
+  fetchStrategy?: "direct" | "jina-reader";
 };
 
 const OPENAI_SOURCES: SeedSource[] = [
@@ -41,36 +47,46 @@ const OPENAI_SOURCES: SeedSource[] = [
     label: "OpenAI Trust Portal",
     tier: 1,
     notes: "Primary source for OpenAI's security, compliance, and privacy claims",
+    // openai.com is fronted by Cloudflare and serves bot-challenge 403s
+    // to non-browser UAs. Route via Jina Reader so we get clean Markdown.
+    fetchStrategy: "jina-reader",
   },
   {
     url: "https://openai.com/policies/data-processing-addendum/",
     label: "OpenAI Data Processing Addendum",
     tier: 1,
     notes: "GDPR Art. 28 DPA governing OpenAI API / Enterprise customer data",
+    fetchStrategy: "jina-reader",
   },
   {
     url: "https://openai.com/policies/sub-processor-list/",
     label: "OpenAI Sub-processor List",
     tier: 1,
     notes: "Official sub-processor disclosure for API and ChatGPT Business/Enterprise",
+    fetchStrategy: "jina-reader",
   },
   {
     url: "https://openai.com/enterprise-privacy/",
     label: "OpenAI Enterprise Privacy",
     tier: 1,
     notes: "States that business/enterprise data is not used for training",
+    fetchStrategy: "jina-reader",
   },
   {
     url: "https://openai.com/index/introducing-data-residency-in-europe/",
     label: "OpenAI — Data Residency in Europe (announcement)",
     tier: 2,
     notes: "Feb 2025 announcement of EU data residency for new API projects",
+    fetchStrategy: "jina-reader",
   },
   {
-    url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/data-residency",
-    label: "Microsoft — Azure OpenAI Data Residency",
+    // Microsoft retired the old `/azure/ai-services/openai/how-to/data-residency`
+    // path in 2026; the Foundry deployment-types doc is now the canonical
+    // EU Data Zone reference and is openly fetchable.
+    url: "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
+    label: "Microsoft — Azure / Foundry Deployment Types (EU Data Zone)",
     tier: 2,
-    notes: "Azure OpenAI EU Data Zone and regional deployment options",
+    notes: "Documents Data Zone Standard / Provisioned (EU-only routing) for Azure OpenAI / Foundry models",
   },
 ];
 
@@ -156,7 +172,7 @@ const OPENAI_CLAIMS: SeedClaim[] = [
     value: "Azure OpenAI: full EU data residency with EU Data Zone Standard",
     evidenceQuote:
       "Azure OpenAI offers EU Data Zone deployments that keep customer data and inference within the EU region.",
-    sourceUrl: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/data-residency",
+    sourceUrl: "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
     confidence: "high",
   },
 ];
@@ -190,8 +206,14 @@ async function main() {
         label: s.label,
         tier: s.tier,
         notes: s.notes ?? "",
+        fetchStrategy: s.fetchStrategy ?? "direct",
       },
-      update: { label: s.label, tier: s.tier, notes: s.notes ?? "" },
+      update: {
+        label: s.label,
+        tier: s.tier,
+        notes: s.notes ?? "",
+        fetchStrategy: s.fetchStrategy ?? "direct",
+      },
     });
     sourceByUrl.set(s.url, { id: row.id });
   }

@@ -2761,6 +2761,7 @@ export const SourceScalarFieldEnum = {
   tier: 'tier',
   active: 'active',
   notes: 'notes',
+  fetchStrategy: 'fetchStrategy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
