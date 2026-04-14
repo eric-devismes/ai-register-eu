@@ -18,11 +18,16 @@ import { getAllSystems, getPublishedFrameworks } from "@/lib/queries";
 import { computeOverallScore } from "@/lib/scoring";
 import { FREE_TIER_SYSTEM_SLUGS, getEffectiveTier, type SubscriptionTier } from "@/lib/tier-access";
 import { DatabaseGrid } from "./DatabaseGrid";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "AI Database",
-  description: "Browse and search AI systems rated for European compliance. Filter by risk level, industry, regulation, and compliance score.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "database");
+}
 
 export default async function DatabasePage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q: searchQuery } = await searchParams;

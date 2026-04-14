@@ -21,12 +21,16 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getEffectiveTier } from "@/lib/tier-access";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Reports & White Papers",
-  description:
-    "Free research reports on AI adoption, compliance, data privacy, and security in Europe. Expert analysis for DPOs, CISOs, and compliance professionals.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "reports");
+}
 
 interface Report {
   slug: string;

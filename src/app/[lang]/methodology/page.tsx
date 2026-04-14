@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Methodology",
-  description:
-    "AI Compass EU's transparent scoring methodology. Learn how we assess AI systems across 8 compliance dimensions with evidence-based, reproducible criteria.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "methodology");
+}
 
 const dimensions = [
   {

@@ -50,18 +50,17 @@ export default function Header() {
     { label: t("common.database"), href: l("/database") },
     { label: t("common.regulations"), href: l("/regulations") },
     { label: t("common.industries"), href: l("/industries") },
-    { label: "Newsfeed", href: l("/newsfeed") },
-    { label: "Plans", href: l("/pricing") },
+    { label: t("nav.newsfeed"), href: l("/newsfeed") },
+    { label: t("nav.plans"), href: l("/pricing") },
   ];
 
   const toolsLinks = [
-    { label: "Compare", href: l("/compare"), desc: "Side-by-side system comparison" },
-    { label: "Checklist", href: l("/checklist"), desc: "Compliance checklist generator" },
-    // { label: "Business Case", href: l("/business-case"), desc: "ROI/TCO business case" }, // Hidden from nav — route still works
-    { label: "RFP Engine", href: l("/rfp-engine"), desc: "AI-powered RFP answers" },
-    // { label: "Podium", href: l("/podium"), desc: "Top-3 system recommendations" }, // Hidden from nav — route still works
-    { label: "Meeting Prep", href: l("/vendor-prep"), desc: "Vendor meeting briefing kit" },
-    { label: "Reports", href: l("/reports"), desc: "Downloadable analysis reports" },
+    { label: t("nav.compare"), href: l("/compare"), desc: t("nav.compareDesc") },
+    { label: t("nav.checklist"), href: l("/checklist"), desc: t("nav.checklistDesc") },
+    // Hidden from nav — routes still work
+    { label: t("nav.rfpEngine"), href: l("/rfp-engine"), desc: t("nav.rfpEngineDesc") },
+    { label: t("nav.meetingPrep"), href: l("/vendor-prep"), desc: t("nav.meetingPrepDesc") },
+    { label: t("nav.reports"), href: l("/reports"), desc: t("nav.reportsDesc") },
   ];
 
   return (
@@ -104,7 +103,7 @@ export default function Header() {
               </div>
               <div className="hidden sm:block">
                 <div className="text-lg font-bold text-[#003399] leading-tight">AI Compass EU</div>
-                <div className="text-[10px] text-gray-500 leading-tight">AI Intelligence for European Decision-Makers</div>
+                <div className="text-[10px] text-gray-500 leading-tight">{t("footer.slogan")}</div>
               </div>
             </Link>
 
@@ -123,7 +122,7 @@ export default function Header() {
                 <button
                   className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#003399] hover:bg-blue-50 rounded-md transition-colors"
                 >
-                  Tools
+                  {t("nav.tools")}
                   <svg className={`h-3.5 w-3.5 transition ${toolsOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                   </svg>
@@ -190,7 +189,7 @@ export default function Header() {
                 </Link>
               ))}
               <div className="border-t border-gray-200 pt-2 mt-2">
-                <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wider">Tools</p>
+                <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wider">{t("nav.tools")}</p>
               </div>
               {toolsLinks.map((link) => (
                 <Link key={link.href} href={link.href}

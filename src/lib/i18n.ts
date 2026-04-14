@@ -96,3 +96,28 @@ export async function getDictionary(locale: Locale) {
     return dict.default;
   }
 }
+
+/**
+ * Build a Next.js Metadata object from a dictionary `meta.<page>` entry.
+ * Priority pages call this from generateMetadata so titles/descriptions
+ * localize alongside the UI.
+ */
+export async function getPageMetadata(
+  locale: Locale,
+  pageKey: string
+): Promise<{ title: string; description: string }> {
+  const dict = await getDictionary(locale);
+  const meta = dict?.meta?.[pageKey];
+  if (meta?.title && meta?.description) {
+    return { title: meta.title, description: meta.description };
+  }
+  // Fallback to English if the key is missing (i18n:check will flag this)
+  const fallback = (await import("@/dictionaries/en.json")).default as {
+    meta?: Record<string, { title?: string; description?: string }>;
+  };
+  const en = fallback?.meta?.[pageKey];
+  return {
+    title: en?.title ?? "AI Compass EU",
+    description: en?.description ?? "AI Intelligence for European Decision-Makers",
+  };
+}

@@ -227,6 +227,77 @@
     "nationalImpl": "Mise en œuvre nationale",
     "aboutUs": "À propos",
     "copyright": "© 2026 AI Compass EU. Tous droits réservés.",
-    "disclaimer": "Avertissement : AI Compass EU fournit des informations à des fins éducatives et professionnelles. Nos évaluations sont basées sur des informations publiques et ne constituent pas un avis juridique."
+    "disclaimer": "Avertissement : AI Compass EU fournit des informations à des fins éducatives et professionnelles. Nos évaluations sont basées sur des informations publiques et ne constituent pas un avis juridique.",
+    "aiTransparencyTitle": "AI Transparency Notice",
+    "aiTransparencyBody": "This platform uses AI (Anthropic Claude) for its chatbot assistant and comparison tool. AI-generated responses are grounded in our assessed database and clearly labelled. No personal data is used for AI model training. All AI features comply with the EU AI Act transparency obligations (Article 50) and GDPR requirements for automated processing."
+  },
+  "evidenceBanner": {
+    "title": "Preview — evidence sources under verification",
+    "body": "Claims on this page are being re-verified against each vendor's trust centre, DPA, sub-processor list, and certification registries. Every claim will carry a source link and verification date once the backfill is complete. If you rely on this data for a procurement decision today, verify independently against the vendor's source documents.",
+    "learnMore": "Our sourcing methodology"
+  },
+  "evidence": {
+    "sources": "Evidence sources",
+    "sourceLink": "View source",
+    "verifiedOn": "Verified on",
+    "stale": "Needs review",
+    "unverified": "Unverified",
+    "reportIssue": "Report outdated information",
+    "tierLabel": "Tier {tier}",
+    "tier1": "Trust portal / DPA / sub-processors",
+    "tier2": "Vendor documentation",
+    "tier3": "Third-party certification registry",
+    "tier4": "Regulatory filing / incident report"
+  },
+  "nav": {
+    "newsfeed": "Newsfeed",
+    "plans": "Plans",
+    "tools": "Tools",
+    "compare": "Compare",
+    "compareDesc": "Side-by-side system comparison",
+    "checklist": "Checklist",
+    "checklistDesc": "Compliance checklist generator",
+    "rfpEngine": "RFP Engine",
+    "rfpEngineDesc": "Answer vendor RFPs with pre-filled responses",
+    "meetingPrep": "Meeting Prep",
+    "meetingPrepDesc": "Vendor meeting briefing kit",
+    "reports": "Reports",
+    "reportsDesc": "Research reports & white papers",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "meta": {
+    "home": {
+      "title": "AI Compass EU — AI Intelligence for European Decision-Makers",
+      "description": "Comprehensive, independent assessments of AI systems across the European Union — mapped against the AI Act, GDPR, DORA, and sector-specific regulations."
+    },
+    "database": {
+      "title": "AI Database",
+      "description": "Browse and search AI systems rated for European compliance. Filter by risk level, industry, regulation, and compliance score."
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": "Simple, transparent pricing for AI compliance intelligence. Free tier available; Pro from EUR 19/month."
+    },
+    "about": {
+      "title": "About",
+      "description": "AI Compass EU is the independent European reference for AI tool intelligence — serving DPOs, CISOs, and compliance professionals."
+    },
+    "methodology": {
+      "title": "Methodology",
+      "description": "How we rate AI systems against EU regulations. Transparent, multi-framework assessment with evidence references."
+    },
+    "reports": {
+      "title": "Reports & White Papers",
+      "description": "Free research reports on AI adoption, compliance, data privacy, and security in Europe. Expert analysis for DPOs, CISOs, and compliance professionals."
+    },
+    "regulations": {
+      "title": "Regulations",
+      "description": "The major European regulatory frameworks for AI — AI Act, GDPR, DORA, NIS2, sector rules — with requirements, timelines, and penalties."
+    },
+    "industries": {
+      "title": "Industries",
+      "description": "AI systems by sector. Tailored compliance insights for financial services, healthcare, public sector, HR, manufacturing, and more."
+    }
   }
 }

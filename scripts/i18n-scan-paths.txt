@@ -1,0 +1,14 @@
+# Paths scanned by the JSX hardcoded-English detector (i18n-check.js rule 7).
+#
+# Rollout strategy: start with shared layout components that render on every
+# page, then expand to individual pages once the legacy English strings on
+# those pages have been moved to the dictionary. Pages added to this list
+# without triaging their hardcoded strings will block the build.
+#
+# Current phase: shared components.
+# Next phase (tracked in TODO): app/[lang]/**/page.tsx — 20+ legacy strings
+# to convert to t() calls first.
+#
+# Lines starting with # are comments. Paths are relative to repo root.
+src/components/layout/Header.tsx
+src/components/layout/Footer.tsx

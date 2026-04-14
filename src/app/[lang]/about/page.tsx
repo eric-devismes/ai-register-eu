@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "AI Compass EU is an independent, vendor-neutral platform providing AI compliance intelligence for European decision-makers. Learn about our mission and team.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "about");
+}
 
 const values = [
   {

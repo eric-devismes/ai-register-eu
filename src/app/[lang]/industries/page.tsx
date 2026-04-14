@@ -12,11 +12,16 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getIndustriesWithCounts } from "@/lib/queries";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Industries",
-  description: "Explore AI systems by industry sector. Find compliance-rated tools for your specific sector.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "industries");
+}
 
 export default async function IndustriesPage() {
   const industries = await getIndustriesWithCounts();

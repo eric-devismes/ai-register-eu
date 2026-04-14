@@ -12,11 +12,16 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getPublishedFrameworks } from "@/lib/queries";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Regulatory Frameworks",
-  description: "Explore the EU regulatory frameworks we assess AI systems against: AI Act, GDPR, DORA, and sector-specific regulations.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "regulations");
+}
 
 const BADGE_COLORS: Record<string, string> = {
   EU: "bg-[#003399]/10 text-[#003399]",

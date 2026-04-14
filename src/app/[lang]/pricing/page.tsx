@@ -3,12 +3,16 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { PricingCards } from "./PricingCards";
+import { getPageMetadata, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Plans & Services",
-  description:
-    "AI Compass EU plans and advisory services. Free, Pro, and Enterprise tiers for AI compliance intelligence, for AI compliance intelligence and procurement decisions.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "pricing");
+}
 
 const services = [
   {

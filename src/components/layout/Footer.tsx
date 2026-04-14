@@ -30,7 +30,6 @@ export default function Footer() {
     { label: t("common.privacy"), href: l("/privacy") },
     { label: "Security", href: l("/security") },
     { label: "Incident Response", href: l("/incident-response") },
-    { label: "Pricing", href: l("/pricing") },
     { label: "Terms", href: l("/terms") },
     { label: "Contact", href: l("/contact") },
   ];
@@ -99,12 +98,9 @@ export default function Footer() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" />
             </svg>
             <div>
-              <p className="text-xs font-semibold text-[#ffc107]">AI Transparency Notice</p>
+              <p className="text-xs font-semibold text-[#ffc107]">{t("footer.aiTransparencyTitle")}</p>
               <p className="mt-1 text-[10px] leading-relaxed text-gray-500">
-                This platform uses AI (Anthropic Claude) for its chatbot assistant and comparison tool.
-                AI-generated responses are grounded in our assessed database and clearly labelled.
-                No personal data is used for AI model training. All AI features comply with the EU AI Act
-                transparency obligations (Article 50) and GDPR requirements for automated processing.
+                {t("footer.aiTransparencyBody")}
               </p>
             </div>
           </div>

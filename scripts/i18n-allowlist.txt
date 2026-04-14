@@ -1,0 +1,5 @@
+# JSX text allowlist — strings intentionally not dictionary-ized.
+# One exact string match per line. Lines starting with # are comments.
+# Prefer wrapping in t() and adding to en.json over growing this list.
+#
+# Target: under 50 entries.

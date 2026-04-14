@@ -22,7 +22,9 @@ import {
   getAllReportSlugs,
   FREE_SECTIONS_COUNT,
   REPORT_DISCLAIMER,
+  AUTO_TRANSLATED_DISCLAIMER,
 } from "@/data/reports-content";
+import type { Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -49,8 +51,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const report = getReportBySlug(slug);
+  const { lang, slug } = await params;
+  const report = await getReportBySlug(slug, lang as Locale);
   if (!report) return { title: "Report Not Found" };
 
   return {
@@ -123,7 +125,7 @@ function renderContent(text: string): string {
 
 export default async function ReportDetailPage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const report = getReportBySlug(slug);
+  const report = await getReportBySlug(slug, lang as Locale);
 
   if (!report) notFound();
 
@@ -199,6 +201,13 @@ export default async function ReportDetailPage({ params }: PageProps) {
               <p className="text-sm text-amber-800">{REPORT_DISCLAIMER}</p>
             </div>
           </div>
+
+          {/* Auto-translation disclaimer */}
+          {report.autoTranslated && (
+            <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4">
+              <p className="text-sm text-blue-800">{AUTO_TRANSLATED_DISCLAIMER}</p>
+            </div>
+          )}
 
           {/* Anonymous gate */}
           {isAnonymous && (
