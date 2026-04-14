@@ -184,10 +184,13 @@ function buildExtractorPrompt(sourceLabel: string, sourceUrl: string, rawText: s
 
 ABSOLUTE RULES — VIOLATIONS CAUSE THE OUTPUT TO BE DISCARDED:
 1. Use ONLY the snippet below. Never use prior knowledge of the vendor. If the snippet doesn't say it, you don't claim it.
-2. Every claim MUST include "evidenceQuote": a verbatim substring of the snippet (10-300 characters). This will be programmatically verified — paraphrases are rejected.
-3. Output ONLY claims for fields in the schema below. Skip any field the snippet doesn't address.
-4. If a field is mentioned but ambiguous, set confidence to "low" and let an analyst decide.
-5. Output JSON only — no markdown fences, no commentary, no preamble.
+2. Every claim MUST include "evidenceQuote": a VERBATIM substring of the snippet (10-300 characters). The server programmatically checks that the exact quote string appears character-for-character in the snippet — any paraphrase, reconstruction, or composed sentence will be dropped as a hallucination.
+3. HOW TO PICK A QUOTE: copy-paste a continuous run of characters that actually exists in the snippet. Do not stitch parts of sentences together. Do not translate, rephrase, or fix grammar. Do not add ellipses. Include punctuation and whitespace as they appear.
+4. IF YOU CAN'T FIND A VERBATIM QUOTE that directly supports the value you want to output, OMIT THE FIELD. It is always better to return fewer claims than to invent a supporting quote. Every field in the schema is optional.
+5. Common mistake to avoid: do NOT output "gdprStatus: compliant" or "dpa.available: yes" unless the snippet literally contains the phrase you quote. Boolean-ish fields are the most frequently hallucinated — be especially strict with them.
+6. Output ONLY claims for fields in the schema below. Skip any field the snippet doesn't address.
+7. If a field is mentioned but ambiguous, set confidence to "low" and let an analyst decide.
+8. Output JSON only — no markdown fences, no commentary, no preamble.
 
 FIELD SCHEMA:
 ${fieldList}
