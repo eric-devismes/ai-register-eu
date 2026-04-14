@@ -103,6 +103,50 @@ export function isQuoteGrounded(quote: string, sourceText: string): boolean {
   return normaliseForMatch(sourceText).includes(normaliseForMatch(quote));
 }
 
+/**
+ * Extract the first balanced JSON object from arbitrary LLM output.
+ *
+ * Real-world LLM responses sometimes wrap the JSON in ```json ... ``` fences
+ * or trail a markdown "Rationale:" block after the closing brace. Locating the
+ * first `{` and walking with bracket-depth + string-state tracking finds the
+ * outermost object reliably without dragging in a parser dependency.
+ *
+ * Returns the JSON substring (or the original input untouched if no `{` is
+ * found, so JSON.parse will throw a useful error).
+ */
+export function extractFirstJsonObject(raw: string): string {
+  const start = raw.indexOf("{");
+  if (start === -1) return raw.trim();
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  for (let i = start; i < raw.length; i++) {
+    const ch = raw[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (ch === "\\" && inString) {
+      escape = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (inString) continue;
+    if (ch === "{") depth++;
+    else if (ch === "}") {
+      depth--;
+      if (depth === 0) {
+        return raw.slice(start, i + 1);
+      }
+    }
+  }
+  // Unbalanced — return what we have; the parser will report the real error
+  return raw.slice(start);
+}
+
 // ─── Extractor types ────────────────────────────────────────
 
 export interface ExtractedClaim {
@@ -233,10 +277,10 @@ export async function extractClaimsFromSnapshot(input: {
   }
 
   // Parse — model is told to return strict JSON, but real-world LLMs
-  // sometimes wrap in ```json ... ``` fences. Strip those defensively.
-  const jsonText = raw.trim()
-    .replace(/^```(?:json)?\s*/i, "")
-    .replace(/\s*```$/, "");
+  // sometimes wrap in ```json ... ``` fences or trail a "Rationale:" block
+  // after the JSON object. Be defensive: extract the first balanced top-level
+  // {...} block from the response and parse that.
+  const jsonText = extractFirstJsonObject(raw);
 
   let parsed: { claims?: unknown };
   try {

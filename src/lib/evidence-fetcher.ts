@@ -47,6 +47,10 @@ export function htmlToText(html: string): string {
       .replace(/<br\s*\/?>(?!<)/gi, "\n")
       // Strip remaining tags
       .replace(/<[^>]+>/g, " ")
+      // Strip NUL bytes (\x00) — Postgres TEXT columns reject them with
+      // "invalid byte sequence for encoding UTF8: 0x00". Some vendor pages
+      // embed them in obfuscated tracking blobs.
+      .replace(/\x00/g, "")
       // HTML entity decode (common ones; keep small)
       .replace(/&nbsp;/g, " ")
       .replace(/&amp;/g, "&")
@@ -75,7 +79,9 @@ export function sha256(input: string): string {
 // ─── Fetch a single URL with timeout ────────────────────────
 
 const FETCH_TIMEOUT_MS = 30_000;
-const MAX_BYTES = 2 * 1024 * 1024; // 2 MB cap — trust pages are tiny; protects against rogue downloads
+// 5 MB cap — Google Cloud's sub-processor list is ~2.5 MB (huge HTML table);
+// most trust pages are <100 KB so this still protects against rogue downloads.
+const MAX_BYTES = 5 * 1024 * 1024;
 const USER_AGENT =
   "AI-Compass-EU-EvidenceFetcher/1.0 (+https://ai-compass.eu/methodology; contact: corrections@ai-compass.eu)";
 
