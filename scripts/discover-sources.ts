@@ -175,7 +175,9 @@ function vendorRootGuess(vendor: string): string[] {
   const cleaned = vendor
     .toLowerCase()
     .replace(/[®™©]/g, "")
-    .replace(/\b(inc|corp|corporation|ltd|limited|ag|sa|plc|llc|l\.l\.c\.|gmbh|bv|sarl|as|b\.v\.|s\.a\.|group|enterprise)\b/g, "")
+    // Strip common corporate suffixes before guessing the registrable
+    // domain. "Bloomberg L.P." → "bloomberg"; "Deutsche Bank AG" → "deutsche bank".
+    .replace(/\b(inc|corp|corporation|ltd|limited|ag|sa|sas|se|nv|plc|llc|l\.l\.c\.|l\.p\.|lp|gmbh|bv|sarl|as|b\.v\.|s\.a\.|p\.l\.c\.|group|enterprise|holdings|co)\b/g, "")
     .trim();
 
   // Pre-compute two forms: "base" collapses all non-alphanumerics (e.g.

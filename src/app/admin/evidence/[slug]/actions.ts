@@ -164,6 +164,109 @@ export async function rejectAllDraftsForSystem(formData: FormData) {
 }
 
 /**
+ * Promote every "high"-confidence draft for a system in one click,
+ * but only when it's safe to do so.
+ *
+ * Safety rules — a draft is auto-promoted only if:
+ *   - confidence === "high" (the LLM flagged the source text as
+ *     explicit and unambiguous for this field)
+ *   - there is NO currently-published claim for (systemId, field),
+ *     OR the currently-published value is identical to the draft
+ *     (i.e. a trivial refresh / re-verification)
+ *
+ * Any draft that would overwrite a different published value is
+ * deliberately skipped — overwriting human-approved content requires
+ * a deliberate per-draft approval, not a bulk click.
+ *
+ * Returns via redirect to the same review page; the caller can inspect
+ * which drafts remain (= those that needed human judgment).
+ */
+export async function approveHighConfidenceDrafts(formData: FormData) {
+  await requireAuth();
+  const systemId = String(formData.get("systemId") ?? "");
+  const slug = String(formData.get("slug") ?? "");
+  if (!systemId) return;
+
+  const adminEmail = "analyst:bulk-high-confidence";
+
+  const drafts = await prisma.systemClaim.findMany({
+    where: { systemId, status: "draft", confidence: "high" },
+    select: { id: true, field: true, value: true, sourceId: true, confidence: true },
+  });
+  if (drafts.length === 0) return;
+
+  // Pre-fetch existing published claims on these fields so the safety
+  // gate is one SQL query, not N.
+  const fields = drafts.map((d) => d.field);
+  const publishedByField = new Map<string, { id: string; value: string }>();
+  const existing = await prisma.systemClaim.findMany({
+    where: { systemId, status: "published", field: { in: fields } },
+    select: { id: true, field: true, value: true },
+  });
+  for (const p of existing) publishedByField.set(p.field, { id: p.id, value: p.value });
+
+  let promoted = 0;
+  let skipped = 0;
+
+  for (const d of drafts) {
+    const pub = publishedByField.get(d.field);
+    if (pub && pub.value.trim() !== d.value.trim()) {
+      // A different published value exists — skip, analyst must review.
+      skipped++;
+      continue;
+    }
+
+    await prisma.$transaction(async (tx) => {
+      if (pub) {
+        // Same-value refresh: retire the old one so the new one takes
+        // its place (preserves audit trail even for trivial refreshes).
+        const ts = Date.now();
+        await tx.systemClaim.update({
+          where: { id: pub.id },
+          data: {
+            field: `${d.field}:retired:${ts}`,
+            status: "retired",
+            retiredAt: new Date(ts),
+            retiredReason: `Superseded by high-confidence draft ${d.id} (bulk refresh)`,
+          },
+        });
+      }
+      await tx.systemClaim.update({
+        where: { id: d.id },
+        data: {
+          status: "published",
+          verifiedBy: adminEmail,
+          verifiedAt: new Date(),
+        },
+      });
+      if (d.sourceId) {
+        await tx.reviewTask.updateMany({
+          where: {
+            sourceId: d.sourceId,
+            type: "source-diff",
+            status: "open",
+          },
+          data: {
+            status: "resolved",
+            resolvedAt: new Date(),
+            resolution: `Promoted draft ${d.id} via bulk high-confidence approval`,
+          },
+        });
+      }
+    });
+    promoted++;
+  }
+
+  if (slug) revalidatePath(`/admin/evidence/${slug}`);
+  revalidatePath(`/admin/evidence`);
+  revalidatePath(`/[lang]/systems/${slug}`, "page");
+
+  // Surfacing a toast is out of scope; we use a URL search param the
+  // detail page can read and render into a lightweight banner.
+  if (slug) redirect(`/admin/evidence/${slug}?bulk=promoted:${promoted},skipped:${skipped}`);
+}
+
+/**
  * Re-run the LLM extractor against the latest snapshot of every source
  * for this system. Useful when the prompt was tuned or when a source
  * was just refreshed via the fetcher.

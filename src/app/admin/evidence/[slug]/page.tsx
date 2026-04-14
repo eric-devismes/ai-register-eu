@@ -21,14 +21,17 @@ import {
   rejectDraft,
   rejectAllDraftsForSystem,
   reExtractForSystem,
+  approveHighConfidenceDrafts,
 } from "./actions";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ bulk?: string }>;
 }
 
-export default async function EvidenceReviewPage({ params }: PageProps) {
+export default async function EvidenceReviewPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
+  const { bulk } = await searchParams;
   const system = await prisma.aISystem.findUnique({
     where: { slug },
     select: { id: true, slug: true, vendor: true, name: true },
@@ -120,19 +123,39 @@ export default async function EvidenceReviewPage({ params }: PageProps) {
             </button>
           </form>
           {drafts.length > 0 && (
-            <form action={rejectAllDraftsForSystem}>
-              <input type="hidden" name="systemId" value={system.id} />
-              <input type="hidden" name="slug" value={system.slug} />
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 rounded-lg border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-50"
-              >
-                Reject all
-              </button>
-            </form>
+            <>
+              <form action={approveHighConfidenceDrafts}>
+                <input type="hidden" name="systemId" value={system.id} />
+                <input type="hidden" name="slug" value={system.slug} />
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100"
+                  title="Promote every high-confidence draft that doesn't conflict with a currently-published value. Lower-confidence or conflicting drafts still need per-claim review."
+                >
+                  Approve high-confidence
+                </button>
+              </form>
+              <form action={rejectAllDraftsForSystem}>
+                <input type="hidden" name="systemId" value={system.id} />
+                <input type="hidden" name="slug" value={system.slug} />
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-lg border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-50"
+                >
+                  Reject all
+                </button>
+              </form>
+            </>
           )}
         </div>
       </div>
+
+      {bulk && (
+        <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+          Bulk action complete — <span className="font-mono text-xs">{bulk}</span>
+          . High-confidence drafts with no published conflict were auto-promoted; everything else remains here for per-draft review.
+        </div>
+      )}
 
       {/* Drafts — side-by-side vs published */}
       {drafts.length > 0 && (
