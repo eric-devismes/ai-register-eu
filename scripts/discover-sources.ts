@@ -191,12 +191,31 @@ function vendorRootGuess(vendor: string): string[] {
   if (base) stems.add(base);
   if (dashed) stems.add(dashed);
 
+  // Many vendors use only the first word as their brand domain: "Veeva
+  // Systems" → veeva.com, "Uptake Technologies" → uptake.com, "Zoom Video
+  // Communications" → zoom.us. Add each individual word as a stem too,
+  // filtering out generic descriptors that would create false-positive
+  // matches (e.g. "systems", "technologies", "labs" alone could match
+  // unrelated domains).
+  const GENERIC_WORDS = new Set([
+    "ai", "systems", "technologies", "technology", "labs", "labs", "software",
+    "solutions", "platform", "cloud", "data", "communications", "health",
+    "industrial", "global", "international", "group", "company", "digital",
+    "the", "of", "and", "&",
+  ]);
+  for (const word of cleaned.split(/\s+/)) {
+    const w = word.replace(/[^a-z0-9.-]+/g, "");
+    if (w && w.length >= 3 && !GENERIC_WORDS.has(w)) stems.add(w);
+  }
+
   // Some vendors write their name with a TLD baked in ("C3.ai", "X.ai",
   // "hugging.face"). If the vendor string contains a dot followed by a
   // known TLD, treat the whole thing as already a registrable domain.
   if (/\.(ai|com|io|co|net|dev)$/.test(dashed)) stems.add(dashed);
 
-  const tlds = ["com", "ai", "io", "co", "net", "dev"];
+  // Broad TLD set — vendors use plenty of ccTLDs as their primary brand
+  // domain (zoom.us, ch for Swiss vendors, de for German, etc.)
+  const tlds = ["com", "ai", "io", "co", "net", "dev", "us", "eu", "de", "fr", "uk", "nl", "ch"];
   const guesses = new Set<string>();
   for (const stem of stems) {
     guesses.add(stem);
