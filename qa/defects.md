@@ -5,6 +5,25 @@
 
 ---
 
+## 2026-04-14 QA Run
+
+### Critical
+_None_
+
+### Warning
+- **Incomplete FR/DE translations — database table, regulation cards** — Risk labels ("High", "Limited", "Minimal"), DB column headers, button text ("Upgrade to Pro"), and all 6 regulation framework card descriptions remain in English on /fr and /de. ~40-60% of content untranslated. — https://ai-register-eu.vercel.app/fr/database https://ai-register-eu.vercel.app/de/regulations
+- **"80 AI systems" vs "100+ AI systems" inconsistency** — StatsBar on homepage shows live DB count (~80), while PricingCards say "All 100+ AI systems". Creates trust gap for enterprise buyers comparing the two on the same visit. — https://ai-register-eu.vercel.app/en/pricing
+
+### Info
+- **`/api/compare` correctly returns 405 on GET** — POST-only; expected behaviour. No user-facing issue. — internal
+- **No annual/monthly billing toggle on pricing page** — Save 20% annual offer shown as static text only; no interactive toggle. Common SaaS UX pattern that's absent. — https://ai-register-eu.vercel.app/en/pricing
+- **No team bios on About page** — Platform positions itself as authoritative compliance intelligence; lack of named experts is a trust gap for enterprise procurement. — https://ai-register-eu.vercel.app/en/about
+
+### Fixed this run
+- **Duplicate "Podium — top-3 system recommendations" in Pro tier** — Entry appeared twice in Pro feature list. ✅ Fixed (2026-04-14): Removed duplicate line from `PricingCards.tsx`.
+
+---
+
 ## 2026-04-13 QA Run (Evening)
 
 ### Critical

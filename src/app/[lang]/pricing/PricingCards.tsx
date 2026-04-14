@@ -37,7 +37,6 @@ const tiers = [
       { text: "Unlimited AI compliance chatbot", included: true },
       { text: "Side-by-side comparison with 35+ attributes", included: true },
       { text: "Podium — top-3 system recommendations", included: true },
-      { text: "Podium — top-3 system recommendations", included: true },
       { text: "Vendor Meeting Prep briefing kit", included: true },
       { text: "Export compliance reports (PDF / CSV / JSON)", included: true },
       { text: "Priority email support", included: true },
