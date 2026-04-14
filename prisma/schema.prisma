@@ -307,10 +307,17 @@ model SystemClaim {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 
-  @@unique([systemId, field])                                    // One live claim per (system, field)
+  // One claim row per (system, field, status) — multiple drafts can coexist
+  // alongside a published claim on the same field (each draft sourced from a
+  // different snapshot the extractor processed). Including status in the key
+  // allows draft+published to live side-by-side; the analyst promotes a draft
+  // by flipping status="published" (transactionally, with the old published
+  // row demoted to status="retired" first).
+  @@unique([systemId, field, status])
   @@index([systemId, status])
   @@index([status, verifiedAt])                                   // "Find claims needing refresh"
   @@index([field])
+  @@index([snapshotId])                                           // "Show me drafts from this snapshot"
 }
 
 /// The review queue. Tasks created automatically (fetcher diff, age

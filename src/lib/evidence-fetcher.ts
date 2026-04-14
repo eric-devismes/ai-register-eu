@@ -24,6 +24,7 @@
 
 import crypto from "node:crypto";
 import { prisma } from "@/lib/db";
+import { extractClaimsFromSnapshot, persistDraftClaims } from "@/lib/claim-extractor";
 
 // ─── HTML → text (regex-based, no extra dep) ────────────────
 //
@@ -151,18 +152,32 @@ export interface FetcherStats {
   changed: number;
   fetchErrors: number;
   reviewTasksCreated: number;
+  draftClaimsExtracted: number;
+  extractionErrors: number;
   perSource: Array<{
     sourceId: string;
     url: string;
     status: "unchanged" | "changed" | "first-snapshot" | "fetch-error";
     error?: string;
+    draftClaimsExtracted?: number;
+    rejectedClaims?: number;
   }>;
 }
 
 const REVIEW_DUE_DAYS_ON_DIFF = 7;
 const REVIEW_DUE_DAYS_ON_ERROR = 3;
 
-export async function runEvidenceFetcher(opts?: { systemId?: string }): Promise<FetcherStats> {
+export async function runEvidenceFetcher(opts?: {
+  systemId?: string;
+  /**
+   * Auto-run the LLM claim extractor on every new/changed snapshot. Default
+   * true. Disable for tight loops where you only want to refresh content
+   * hashes (e.g. when re-validating after a schema change). The extractor
+   * needs ANTHROPIC_API_KEY; if absent, extraction is skipped silently.
+   */
+  extract?: boolean;
+}): Promise<FetcherStats> {
+  const shouldExtract = opts?.extract !== false;
   const startedAt = Date.now();
   const stats: FetcherStats = {
     startedAt: new Date(startedAt).toISOString(),
@@ -174,6 +189,8 @@ export async function runEvidenceFetcher(opts?: { systemId?: string }): Promise<
     changed: 0,
     fetchErrors: 0,
     reviewTasksCreated: 0,
+    draftClaimsExtracted: 0,
+    extractionErrors: 0,
     perSource: [],
   };
 
@@ -271,10 +288,12 @@ export async function runEvidenceFetcher(opts?: { systemId?: string }): Promise<
     });
     stats.snapshotsWritten++;
 
+    let perSourceStatus: "changed" | "first-snapshot";
     if (lastSuccess) {
       // True content change — affected claims need re-verification
       const affectedClaimCount = source.claims.length;
       stats.changed++;
+      perSourceStatus = "changed";
       // Same dedupe rule as fetch-error branch: don't pile on if the
       // analyst already has an open task for this source.
       if (!hasOpenTask) {
@@ -292,23 +311,57 @@ export async function runEvidenceFetcher(opts?: { systemId?: string }): Promise<
         });
         stats.reviewTasksCreated++;
       }
-      stats.perSource.push({
-        sourceId: source.id,
-        url: source.url,
-        status: "changed",
-      });
     } else {
       // First successful snapshot — no diff task needed; analysts use this for new claim extraction
-      stats.perSource.push({
-        sourceId: source.id,
-        url: source.url,
-        status: "first-snapshot",
-      });
+      perSourceStatus = "first-snapshot";
     }
 
-    // Wire newly-published claim extraction would happen here in Phase 1b
-    // (LLM extracts SystemClaim drafts from snapshot.rawText; analyst reviews via /admin/evidence)
-    void snapshot;
+    // ─── Auto-extract draft claims from the new snapshot ──────────
+    // The snapshot is fresh content; ask the LLM to pull verifiable
+    // claims out of it. Quotes are validated server-side against the
+    // raw text — hallucinations are dropped. Drafts go into the
+    // review queue; nothing is published without admin approval.
+    let draftClaimsExtracted: number | undefined;
+    let rejectedClaims: number | undefined;
+    if (shouldExtract) {
+      try {
+        const extraction = await extractClaimsFromSnapshot({
+          rawText: result.rawText,
+          sourceLabel: source.label,
+          sourceUrl: source.url,
+        });
+        if (extraction.ok) {
+          const persisted = await persistDraftClaims({
+            systemId: source.systemId,
+            sourceId: source.id,
+            snapshotId: snapshot.id,
+            claims: extraction.claims,
+          });
+          draftClaimsExtracted = persisted.draftsCreated + persisted.draftsUpdated;
+          rejectedClaims = extraction.rejected.length;
+          stats.draftClaimsExtracted += draftClaimsExtracted;
+        } else {
+          stats.extractionErrors++;
+          console.warn(
+            `[evidence-fetcher] extraction failed for ${source.url}: ${extraction.errorMessage}`,
+          );
+        }
+      } catch (err) {
+        stats.extractionErrors++;
+        console.warn(
+          `[evidence-fetcher] extractor threw for ${source.url}:`,
+          err instanceof Error ? err.message : err,
+        );
+      }
+    }
+
+    stats.perSource.push({
+      sourceId: source.id,
+      url: source.url,
+      status: perSourceStatus,
+      draftClaimsExtracted,
+      rejectedClaims,
+    });
   }
 
   const finishedAt = Date.now();

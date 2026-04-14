@@ -8,6 +8,7 @@
     "i18n:check": "node scripts/i18n-check.js",
     "i18n:translate": "node scripts/i18n-translate.js",
     "evidence:fetch": "npx tsx --env-file=.env.local scripts/evidence-fetch.ts",
+    "evidence:extract": "npx tsx --env-file=.env.local scripts/evidence-extract.ts",
     "prebuild": "npm run i18n:check",
     "build": "prisma generate && next build",
     "start": "next start",

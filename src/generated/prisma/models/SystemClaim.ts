@@ -295,7 +295,7 @@ export type SystemClaimOrderByWithRelationInput = {
 
 export type SystemClaimWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  systemId_field?: Prisma.SystemClaimSystemIdFieldCompoundUniqueInput
+  systemId_field_status?: Prisma.SystemClaimSystemIdFieldStatusCompoundUniqueInput
   AND?: Prisma.SystemClaimWhereInput | Prisma.SystemClaimWhereInput[]
   OR?: Prisma.SystemClaimWhereInput[]
   NOT?: Prisma.SystemClaimWhereInput | Prisma.SystemClaimWhereInput[]
@@ -317,7 +317,7 @@ export type SystemClaimWhereUniqueInput = Prisma.AtLeast<{
   source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
   snapshot?: Prisma.XOR<Prisma.SourceSnapshotNullableScalarRelationFilter, Prisma.SourceSnapshotWhereInput> | null
   reviewTasks?: Prisma.ReviewTaskListRelationFilter
-}, "id" | "systemId_field">
+}, "id" | "systemId_field_status">
 
 export type SystemClaimOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -498,9 +498,10 @@ export type SystemClaimOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type SystemClaimSystemIdFieldCompoundUniqueInput = {
+export type SystemClaimSystemIdFieldStatusCompoundUniqueInput = {
   systemId: string
   field: string
+  status: string
 }
 
 export type SystemClaimCountOrderByAggregateInput = {

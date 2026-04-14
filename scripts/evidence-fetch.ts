@@ -17,36 +17,44 @@
 
 import { runEvidenceFetcher } from "../src/lib/evidence-fetcher.ts";
 
-function parseArgs(): { systemId?: string } {
-  const out: { systemId?: string } = {};
+function parseArgs(): { systemId?: string; extract: boolean } {
+  const out: { systemId?: string; extract: boolean } = { extract: true };
   const argv = process.argv.slice(2);
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--system" || argv[i] === "--systemId") {
       out.systemId = argv[i + 1];
       i++;
+    } else if (argv[i] === "--no-extract") {
+      out.extract = false;
     }
   }
   return out;
 }
 
 async function main() {
-  const { systemId } = parseArgs();
+  const { systemId, extract } = parseArgs();
   if (systemId) {
     console.log(`🔎 Evidence fetcher — scoped to systemId=${systemId}`);
   } else {
     console.log("🔎 Evidence fetcher — full sweep over all active sources");
   }
+  if (!extract) console.log("   (claim extraction disabled via --no-extract)");
 
-  const stats = await runEvidenceFetcher(systemId ? { systemId } : undefined);
+  const stats = await runEvidenceFetcher({
+    ...(systemId ? { systemId } : {}),
+    extract,
+  });
 
   console.log("\n📊 Stats");
-  console.log(`   Sources checked:     ${stats.sourcesChecked}`);
-  console.log(`   Snapshots written:   ${stats.snapshotsWritten}`);
-  console.log(`   Unchanged:           ${stats.unchanged}`);
-  console.log(`   Changed:             ${stats.changed}`);
-  console.log(`   Fetch errors:        ${stats.fetchErrors}`);
-  console.log(`   Review tasks opened: ${stats.reviewTasksCreated}`);
-  console.log(`   Duration:            ${stats.durationMs}ms`);
+  console.log(`   Sources checked:       ${stats.sourcesChecked}`);
+  console.log(`   Snapshots written:     ${stats.snapshotsWritten}`);
+  console.log(`   Unchanged:             ${stats.unchanged}`);
+  console.log(`   Changed:               ${stats.changed}`);
+  console.log(`   Fetch errors:          ${stats.fetchErrors}`);
+  console.log(`   Review tasks opened:   ${stats.reviewTasksCreated}`);
+  console.log(`   Draft claims written:  ${stats.draftClaimsExtracted}`);
+  console.log(`   Extraction errors:     ${stats.extractionErrors}`);
+  console.log(`   Duration:              ${stats.durationMs}ms`);
 
   console.log("\n📑 Per-source");
   for (const row of stats.perSource) {
@@ -56,7 +64,10 @@ async function main() {
       row.status === "changed" ? "Δ" :
       "✗";
     const err = row.error ? `  — ${row.error}` : "";
-    console.log(`   ${tag} [${row.status.padEnd(15)}] ${row.url}${err}`);
+    const drafts = row.draftClaimsExtracted !== undefined
+      ? `  drafts=${row.draftClaimsExtracted}${row.rejectedClaims ? ` rejected=${row.rejectedClaims}` : ""}`
+      : "";
+    console.log(`   ${tag} [${row.status.padEnd(15)}] ${row.url}${err}${drafts}`);
   }
 
   console.log("\n✅ Done");
