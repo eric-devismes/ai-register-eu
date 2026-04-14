@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -152,6 +153,15 @@ export default function MethodologyPage() {
                 evidence-based methodology. Our 8 assessment dimensions cover the
                 full spectrum of European AI compliance requirements.
               </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="methodology/sourcing"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white text-[#003399] px-4 py-2 text-sm font-semibold hover:bg-gray-100"
+                >
+                  How we verify every claim
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
