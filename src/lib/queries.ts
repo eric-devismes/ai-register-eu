@@ -62,6 +62,39 @@ export async function getSystemBySlug(slug: string) {
   });
 }
 
+/**
+ * Published evidence-backed claims for a system.
+ * Only returns status="published" — drafts and retired claims are hidden.
+ * Each claim includes its source (url, label, tier) for chip rendering.
+ *
+ * A claim is considered "stale" once verifiedAt > STALE_DAYS old.
+ */
+const STALE_DAYS = 180;
+export async function getSystemClaims(systemId: string) {
+  const rows = await prisma.systemClaim.findMany({
+    where: { systemId, status: "published" },
+    include: { source: true },
+    orderBy: [{ field: "asc" }],
+  });
+  const staleThreshold = Date.now() - STALE_DAYS * 24 * 60 * 60 * 1000;
+  return rows.map((c) => ({
+    id: c.id,
+    field: c.field,
+    value: c.value,
+    evidenceQuote: c.evidenceQuote,
+    confidence: c.confidence,
+    verifiedAt: c.verifiedAt?.toISOString() ?? null,
+    stale: c.verifiedAt ? c.verifiedAt.getTime() < staleThreshold : false,
+    source: c.source
+      ? {
+          url: c.source.url,
+          label: c.source.label,
+          tier: c.source.tier,
+        }
+      : null,
+  }));
+}
+
 // ─── Regulatory Frameworks ───────────────────────────────
 
 /**

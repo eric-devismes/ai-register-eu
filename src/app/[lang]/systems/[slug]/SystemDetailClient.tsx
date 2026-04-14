@@ -17,6 +17,9 @@ import RoleDrillDown from "@/components/systems/RoleDrillDown";
 import { gradeColor } from "@/lib/scoring";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_BADGES, RISK_TOOLTIPS } from "@/lib/constants";
+import EvidenceReviewBanner from "@/components/evidence/EvidenceReviewBanner";
+import SourceChip, { type SourceChipData } from "@/components/evidence/SourceChip";
+import { useT } from "@/lib/locale-context";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -75,11 +78,23 @@ interface SystemData {
   scores: FrameworkScore[];
 }
 
+export interface ClaimRow {
+  id: string;
+  field: string;
+  value: string;
+  evidenceQuote: string;
+  confidence: string;
+  verifiedAt: string | null;
+  stale: boolean;
+  source: { url: string; label: string; tier: number } | null;
+}
+
 interface Props {
   system: SystemData;
   overall: string;
   locale: string;
   dimensionScores?: Record<string, number>;
+  claims?: ClaimRow[];
 }
 
 // ─── Helpers ────────────────────────────────────────────
@@ -216,8 +231,10 @@ function numToGrade(v: number): string {
   return "D";
 }
 
-export default function SystemDetailClient({ system, overall, locale, dimensionScores }: Props) {
+export default function SystemDetailClient({ system, overall, locale, dimensionScores, claims = [] }: Props) {
   const capLabel = capabilityLabels[system.capabilityType] || system.type;
+  const t = useT();
+  const hasClaims = claims.length > 0;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
@@ -229,6 +246,13 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         <span className="mx-2">/</span>
         <span className="text-gray-600">{system.name}</span>
       </nav>
+
+      {/* ── Evidence review banner — shown until claims backfill is complete ── */}
+      {!hasClaims && (
+        <div className="mb-6">
+          <EvidenceReviewBanner />
+        </div>
+      )}
 
       {/* ── Hero Header ── */}
       <div className="rounded-2xl bg-gradient-to-br from-[#0d1b3e] to-[#003399] p-6 sm:p-8 text-white">
@@ -271,6 +295,59 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {/* Description — one-liner, not a wall */}
         <p className="mt-4 text-sm leading-relaxed text-blue-100/80 max-w-3xl">{system.description}</p>
       </div>
+
+      {/* ── Evidence Sources Panel — shown when claims exist ── */}
+      {hasClaims && (
+        <div className="mt-6 rounded-2xl border-2 border-emerald-300 bg-emerald-50/30 p-6">
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                </svg>
+                <h2 className="text-base font-bold text-emerald-900">{t("evidence.sources")}</h2>
+              </div>
+              <p className="mt-1 text-xs text-emerald-800/80 max-w-2xl">
+                {claims.length} claim{claims.length === 1 ? "" : "s"} · every value below links to the original source and the date we verified it
+              </p>
+            </div>
+            <a
+              href={`mailto:corrections@ai-compass.eu?subject=Outdated%20information%20—%20${encodeURIComponent(system.name)}`}
+              className="text-xs font-medium text-emerald-800 underline hover:text-emerald-900"
+            >
+              {t("evidence.reportIssue")} →
+            </a>
+          </div>
+          <ul className="mt-4 divide-y divide-emerald-200/50">
+            {claims.map((c) => (
+              <li key={c.id} className="py-3 first:pt-0 last:pb-0">
+                <div className="flex items-start justify-between gap-3 flex-wrap">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-semibold text-emerald-700/80 uppercase tracking-wider">{c.field.replace(/\./g, " · ")}</p>
+                    <p className="mt-0.5 text-sm text-gray-900 font-medium">{c.value}</p>
+                    <p className="mt-1 text-xs italic text-gray-600 leading-relaxed">
+                      &ldquo;{c.evidenceQuote}&rdquo;
+                    </p>
+                  </div>
+                  {c.source && (
+                    <div className="shrink-0">
+                      <SourceChip
+                        source={{
+                          url: c.source.url,
+                          label: c.source.label,
+                          tier: c.source.tier,
+                          verifiedAt: c.verifiedAt,
+                          stale: c.stale,
+                        } satisfies SourceChipData}
+                      />
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* ── Spider Chart — Compliance Overview ── */}
       {dimensionScores && (

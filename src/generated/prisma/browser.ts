@@ -67,6 +67,36 @@ export type DimensionScore = Prisma.DimensionScoreModel
  */
 export type AISystem = Prisma.AISystemModel
 /**
+ * Model Source
+ * A registry of authoritative URLs per AI system.
+ * Populated by analysts when they onboard a vendor.
+ * The fetcher reads this list and pulls fresh snapshots on a schedule.
+ */
+export type Source = Prisma.SourceModel
+/**
+ * Model SourceSnapshot
+ * A point-in-time snapshot of a Source URL. Enables diff detection:
+ * when contentHash changes, affected claims are queued for re-verification.
+ * Raw text retained so we can show the auditor the exact text we relied on.
+ */
+export type SourceSnapshot = Prisma.SourceSnapshotModel
+/**
+ * Model SystemClaim
+ * One claim per (system × field) — the evidence-backed replacement for
+ * the free-text columns on AISystem (dpaDetails, certifications, etc.).
+ * Every claim carries its evidence quote + source URL + verification date.
+ * Admin approves before the claim goes live on the public page.
+ */
+export type SystemClaim = Prisma.SystemClaimModel
+/**
+ * Model ReviewTask
+ * The review queue. Tasks created automatically (fetcher diff, age
+ * threshold) or manually (analyst onboarding, customer report).
+ * Analysts drain this queue; everything not "done" is either in progress
+ * or overdue.
+ */
+export type ReviewTask = Prisma.ReviewTaskModel
+/**
  * Model ChangeLog
  * A versioned change log entry tracking updates to frameworks or AI systems.
  * Every significant change must reference a trusted source.

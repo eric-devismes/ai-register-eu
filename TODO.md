@@ -10,11 +10,28 @@
 ## CEO Action Required (ask via Telegram if not in session)
 
 - [x] **LemonSqueezy configuration**: Product created (Pro €19/month, test mode), all 4 env vars set on Vercel, webhook configured (2026-04-12)
-- [ ] **Domain name**: Find and register a domain. "AI Compass EU" may already be taken — may need to rename the platform. All branding, metadata, URLs, and LemonSqueezy config depend on this decision. Research alternatives if needed.
+- [ ] **Domain name + site naming** ⚠️ NEEDS BRAINSTORM: Find the right name for the platform and register a domain. Consider: .com, .org, .ai, .eu extensions — scope, future expansion, cost, memorability, ease of typing. "AI Compass EU" may be taken. May need full rebrand. All branding, metadata, URLs, and LemonSqueezy config depend on this. Brainstorm with advisory board.
 
 ## P0 — Core Rules
 
-- [ ] **CORE RULE — Translation is non-negotiable**: Every page, every feature, every piece of content MUST be published in ALL supported languages simultaneously. Content is NOT published in English if it's not published in every other language. Make this part of every publishing workflow. (2026-04-11, from Telegram)
+### 🚨 LAUNCH BLOCKER — Evidence Backbone (Sourcing + Freshness)
+
+> **DO NOT send launch emails, promote the site publicly, or enable LemonSqueezy live-mode until Phase 2 is complete.** Current vendor intel was LLM-authored from training data without primary-source verification. Every published claim on an AI system is currently an unverifiable assertion, which is a credibility and legal-liability risk for a platform sold to DPOs/CISOs.
+>
+> **Strategic framing**: Gartner's moat is brand. Our moat is verifiability — every claim linked to the vendor's own trust center, with the date we checked. Transparency is the differentiator, not a remediation.
+
+- [~] **P0 — Evidence backbone (Phase 0)** (in progress, 2026-04-14): Prisma migration for `Source` / `SourceSnapshot` / `SystemClaim` / `ReviewTask` + OpenAI GPT-4 pilot with real trust-center URLs + source-chip UI component + interim "preview — evidence under verification" site banner. Reference implementation so the backfill team has a shape to follow.
+- [ ] **P0 — Evidence backbone (Phase 1)**: Weekly fetcher cron (Vercel/GitHub Actions) + snapshot storage with contentHash diff detection + LLM claim extractor (extracts from fetched snippet only, includes the exact quote) + admin review queue UI with approve/edit/reject per claim.
+- [ ] **P0 — Evidence backbone (Phase 2)**: Backfill top-20 vendors (OpenAI, Anthropic, Google, Microsoft, Mistral, Cohere, AWS Bedrock, Azure AI, IBM watsonx, Salesforce Einstein, SAP Joule, ServiceNow, Workday, Palantir, Databricks, Snowflake Cortex, UiPath, Adobe Firefly, GitHub Copilot, Perplexity) through the new pipeline. Long-tail systems either sourced or removed — better empty than wrong. **This is the launch gate.**
+- [ ] **P0 — Evidence backbone (Phase 3)**: Ongoing freshness — cron re-verifies claims >90 days old, diff detection auto-queues changed sources, customer "Report outdated" button feeds triage queue. Monthly expert-panel spot-check of 5 random systems per domain.
+- [ ] **P0 — Methodology page rewrite**: Lean into transparency as moat. Three promises visible: every claim has a source, every claim has a date, anyone can challenge any claim. Source hierarchy (Tier 1 trust portal → Tier 4 regulatory filings) published. Refresh cadence + review SLAs public. Ship with Phase 2.
+- [ ] **P0 — Hallucination triage pass**: Before backfill, diff existing seed claims for top-3 vendors against live trust centers. Quantify how bad the LLM-authored content is so we know the cleanup scope. Findings feed the Phase 2 backfill priorities.
+
+### Translation Gate
+
+- [x] **CORE RULE — Translation is non-negotiable** (2026-04-14): Translation gate implemented and wired into prebuild + CI. `npm run i18n:check` blocks builds on missing keys, empty values, placeholder mismatches, hardcoded JSX in scanned files, non-localized metadata, and missing report locales. `npm run i18n:translate` auto-fills via DeepL (falls back to English placeholders when `DEEPL_API_KEY` is absent). Workflow documented in AGENTS.md. See P0 follow-up below for translation debt.
+- [ ] **P0 follow-up — Migrate legacy hardcoded JSX to t()**: ~20 hardcoded English strings in pricing/about/methodology/reports/regulations/industries pages. Wrap in `t()`, add keys to `en.json`, run `npm run i18n:translate`, then add each page path to `scripts/i18n-scan-paths.txt` so the gate covers them. Acknowledged debt from the initial rollout.
+- [ ] **P0 follow-up — Real DeepL backfill**: Current non-English dictionaries and reports were filled with English placeholders (`--fallback` mode) because no `DEEPL_API_KEY` was available locally. Set key, run `npm run i18n:translate`, commit the translated files.
 - [x] **Fix chatbot** — API key confirmed working on Vercel, .trim() applied to all env vars (2026-04-12)
 
 ## P1 — Revenue & Go-to-Market
@@ -25,7 +42,7 @@
 - [ ] **Podium results page redesign**: Visual podium graphic (🥇🥈🥉), structured table below with Strengths/Weaknesses/Risks aligned per system, links to full docs. Award ceremony feel.
 - [ ] **Checklist — Enterprise gate + UX upgrades**: Enterprise-only. (1) Category-level checkbox, (2) all auto-checked by default, (3) MoSCoW colors (Must=red, Should=orange, Nice=green), (4) Excel export. ⚠️ PRIVACY NOTE: platform sees which enterprise is evaluating which vendor — sensitive. Need clear data policy: we do NOT share customer evaluation data with vendors. Add privacy notice to checklist page.
 - [ ] **Business Case Generator — HIDDEN, future consulting tool**: Hide from navigation (don't destroy). Will be used as a consulting deliverable for direct enterprise customers, not self-serve. Future overhaul: (1) Legal disclaimer, (2) richer inputs (skills, budget, timeline, infra), (3) financial modelling (amortization, discount rate, NPV/IRR, TCO 3-5yr), (4) interactive graphs + report with assumptions + soft benefits, (5) confidence levels, (6) admin-operated only. (7) BUG: currently broken — fix when reactivating.
-- [ ] **Vendor Discussion Prep — clarity + meeting script**: (1) Clear positioning: for the CUSTOMER, not vendor. Rename to "Vendor Meeting Prep" or "Meeting Briefing Kit." (2) Input: meeting title, agenda, key concerns — via chat box (natural language). (3) Output: meeting script with talking points, tough questions, red flags, compliance checklist, negotiation leverage. (4) Pre-filled answer intelligence from our DB — flag misalignments between vendor claims and our data as red flags. (5) ROADMAP: scheduled briefing email the day before meeting.
+- [x] **Vendor Meeting Prep — clarity + meeting script** (2026-04-12): Renamed, added meeting context/title/agenda/concerns inputs, conversational chat box, pre-filled vendor intelligence section, buyer-centric positioning. ROADMAP items remaining: post-meeting vendor claim checker, scheduled email briefing.: (1) Clear positioning: for the CUSTOMER, not vendor. Rename to "Vendor Meeting Prep" or "Meeting Briefing Kit." (2) Input: meeting title, agenda, key concerns — via chat box (natural language). (3) Output: meeting script with talking points, tough questions, red flags, compliance checklist, negotiation leverage. (4) Pre-filled answer intelligence from our DB — flag misalignments between vendor claims and our data as red flags. (5) ROADMAP: scheduled briefing email the day before meeting.
 - [x] **Reports & White Papers — create actual content + tier gating**: 5 reports with full content (~22K words), detail pages, tier gating (2 free sections, rest Pro), AI-generated disclaimer (2026-04-12)
 - [x] **Budget range missing currency**: EUR prefix added to podium budget field (2026-04-12)
 - [x] **Recalibrate organization size ranges**: Updated to SME/Mid-Enterprise/Large-Enterprise/Multinational/Public Sector across all forms and APIs (2026-04-12)
@@ -37,8 +54,7 @@
 ## P2 — Content & Quality
 
 - [ ] **Develop detailed scoring/ranking methodology**: Deep discussion with expert agents needed. Must show transparency to customers about how we rank systems, but protect proprietary methodology (don't give away everything for free). Balance: show enough to build trust, keep the secret sauce proprietary. This is a strategic decision requiring advisory board input.
-- [ ] **Review news sourcing strategy**: Don't add Google/Perplexity/Tavily. Board consensus: expand RSS to 60+ sources (missing DPA newsrooms, CJEU case law, national AI committee feeds, EDPS, AI Office). RSS is free, primary sources, no noise. Only add a search API when paying customers ask for it.
-- [ ] **Expand RSS sources**: Add ~30-40 missing EU/EEA sources — remaining DPAs (we cover 5 of 30), national AI strategy pages, CJEU case law feed, EDPS newsletter, AI Office updates, parliamentary committee feeds.
+- [x] **Review news sourcing strategy + expand RSS sources**: Expanded from 27 to 61 sources. All 27 EU DPAs + 3 EEA DPAs + EDPS + CJEU + AI Office + civil society (Access Now, AlgorithmWatch, etc.) (2026-04-12)
 
 ## P3 — Risk & Compliance (Internal)
 

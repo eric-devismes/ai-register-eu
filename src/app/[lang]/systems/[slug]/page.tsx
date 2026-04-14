@@ -10,7 +10,7 @@
 export const dynamic = "force-dynamic";
 
 import { notFound } from "next/navigation";
-import { getSystemBySlug } from "@/lib/queries";
+import { getSystemBySlug, getSystemClaims } from "@/lib/queries";
 import { computeOverallScore, computeAllDimensionScores } from "@/lib/scoring";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -27,6 +27,12 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
   const system = await getSystemBySlug(slug);
 
   if (!system) notFound();
+
+  // Evidence-backed claims (published SystemClaim rows) — these are the
+  // sourced replacements for free-text fields on AISystem. Until the
+  // backfill completes, a system may have zero claims; the UI falls back
+  // to the legacy free-text with the "evidence under verification" banner.
+  const claims = await getSystemClaims(system.id);
 
   const grades = system.scores.map((s) => s.score);
   const overall = computeOverallScore(grades);
@@ -110,7 +116,7 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
     <>
       <Header />
       <main className="flex-1 bg-gray-50">
-        <SystemDetailClient system={systemData} overall={overall} locale={locale} dimensionScores={dimensionScores} />
+        <SystemDetailClient system={systemData} overall={overall} locale={locale} dimensionScores={dimensionScores} claims={claims} />
       </main>
       <Footer />
     </>

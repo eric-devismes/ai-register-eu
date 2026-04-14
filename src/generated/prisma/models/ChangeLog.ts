@@ -537,10 +537,6 @@ export type ChangeLogUncheckedUpdateManyWithoutSystemNestedInput = {
   deleteMany?: Prisma.ChangeLogScalarWhereInput | Prisma.ChangeLogScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type ChangeLogCreateWithoutFrameworkInput = {
   id?: string
   date?: Date | string

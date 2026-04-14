@@ -1,21 +1,32 @@
 /**
  * Prisma Schema — Database structure for AI Compass EU
  *
- * 15 models:
+ * Key models:
  *   - AISystem: AI tools rated for EU compliance
  *   - RegulatoryFramework: EU regulations with structured meta info
  *   - FrameworkSection: Sections/chapters within a regulation
  *   - PolicyStatement: Specific policy requirements with commentary
  *   - Industry: Sectors like Financial Services, Healthcare
  *   - AssessmentScore: Links a system to a framework with a letter grade
- *   - ChangeLog: Versioned history of changes to frameworks and systems
- *   - Subscriber: Public user accounts (email-only, magic link auth, GDPR-compliant)
- *   - DigestLog: Track sent digest emails for GDPR compliance
- *   - Translation: Cached translations of DB content in 14 EU languages
- *   - ChatUsage: Rate limiting for anonymous chat users
- *   - ChatLog: All chat interactions for admin review
  *   - DimensionScore: Per-section scoring for cross-framework reports + spider charts
+ *   - ChangeLog: Versioned history of changes to frameworks and systems
+ *
+ * Evidence backbone (sourcing + freshness):
+ *   - Source: Registry of authoritative URLs per AI system (trust portal, DPA, etc.)
+ *   - SourceSnapshot: Fetcher-captured point-in-time content + hash, for diff detection
+ *   - SystemClaim: Evidence-backed claim per (system × field) with source quote + date
+ *   - ReviewTask: Analyst review queue (new, source-diff, age-refresh, customer-report)
+ *
+ * Auth / users:
+ *   - Subscriber: Public user accounts (email-only, magic link auth, GDPR-compliant)
+ *   - AdminUser: Admin panel access
+ *   - Company / Case: CRM for enterprise relationships
+ *
+ * Ops:
+ *   - Translation: Cached DeepL translations of DB content in 14 EU languages
+ *   - ChatLog / ChatUsage: Chatbot interactions and rate limiting
  *   - ApprovedSource: Admin-curated external URLs the chatbot can reference
+ *   - WorkCycle / AgentReport / DigestDecision / DailyDigest: COO-led agent work cycles
  *
  * The database URL is configured in prisma.config.ts (not here).
  */
@@ -214,8 +225,122 @@ model AISystem {
   companies       Company[]                              // Companies using/evaluating this system
   dimensionScores DimensionScore[]                       // Per-section scores for cross-reports
 
+  // ─── Evidence Backbone ──────────────────────────────
+  sources         Source[]                               // Authoritative URLs for this system
+  claims          SystemClaim[]                          // Evidence-backed claims
+  reviewTasks     ReviewTask[]                           // Open review tasks
+
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
+}
+
+// ─── Evidence Backbone (Sourcing + Freshness) ──────────────────
+// Core principle: every published claim about an AI system must trace back
+// to a fetched source snippet with a date. LLM is a synthesis layer over
+// evidence, never the author. This is the platform's credibility moat.
+
+/// A registry of authoritative URLs per AI system.
+/// Populated by analysts when they onboard a vendor.
+/// The fetcher reads this list and pulls fresh snapshots on a schedule.
+model Source {
+  id          String   @id @default(cuid())
+  system      AISystem @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String
+  url         String                                             // "https://trust.openai.com/compliance"
+  label       String                                             // "OpenAI Trust Portal"
+  tier        Int      @default(1)                               // 1=trust portal / DPA / subprocessors, 2=vendor docs/marketing, 3=third-party cert registry (ISO, CSA STAR), 4=regulatory filings / incident reports
+  active      Boolean  @default(true)                            // Retired sources kept for history but not re-fetched
+  notes       String   @default("")                              // Internal analyst notes
+  snapshots   SourceSnapshot[]
+  claims      SystemClaim[]
+  reviewTasks ReviewTask[]                                       // Review tasks targeting this source
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([systemId, url])                                      // One entry per source URL per system
+  @@index([systemId])
+  @@index([tier])
+}
+
+/// A point-in-time snapshot of a Source URL. Enables diff detection:
+/// when contentHash changes, affected claims are queued for re-verification.
+/// Raw text retained so we can show the auditor the exact text we relied on.
+model SourceSnapshot {
+  id           String   @id @default(cuid())
+  source       Source   @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  sourceId     String
+  fetchedAt    DateTime @default(now())
+  contentHash  String                                            // SHA-256 of rawText, for diff detection
+  rawText      String                                            // Full fetched content (truncated if huge)
+  screenshotUrl String  @default("")                             // Optional: stored screenshot for visual audit
+  status       String   @default("success")                      // "success", "fetch-error", "blocked"
+  errorMessage String   @default("")                             // If status != success
+  claims       SystemClaim[]                                     // Claims extracted from this snapshot
+
+  @@unique([sourceId, fetchedAt])
+  @@index([sourceId, fetchedAt])
+  @@index([contentHash])
+}
+
+/// One claim per (system × field) — the evidence-backed replacement for
+/// the free-text columns on AISystem (dpaDetails, certifications, etc.).
+/// Every claim carries its evidence quote + source URL + verification date.
+/// Admin approves before the claim goes live on the public page.
+model SystemClaim {
+  id            String          @id @default(cuid())
+  system        AISystem        @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId      String
+  field         String                                           // "certifications", "dpa.available", "euResidency.storage", "subprocessors.disclosed", etc. Dotted for nested claims.
+  value         String                                           // The published claim value (short, human-readable)
+  evidenceQuote String                                           // Verbatim quote from the source that supports the value
+  source        Source?         @relation(fields: [sourceId], references: [id])
+  sourceId      String?                                          // Nullable = draft claim not yet linked to evidence
+  snapshot      SourceSnapshot? @relation(fields: [snapshotId], references: [id])
+  snapshotId    String?                                          // Which snapshot produced this extraction
+  verifiedBy    String          @default("")                     // Analyst email / "ai-extractor" / "expert-panel"
+  verifiedAt    DateTime?                                        // When this specific value was last human-confirmed
+  confidence    String          @default("medium")               // "high", "medium", "low" — analyst judgment
+  status        String          @default("draft")                // "draft", "published", "stale" (>180d), "disputed", "retired"
+  retiredAt     DateTime?                                        // If status=retired, when and why
+  retiredReason String          @default("")
+  reviewTasks   ReviewTask[]                                     // Open review tasks targeting this claim
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([systemId, field])                                    // One live claim per (system, field)
+  @@index([systemId, status])
+  @@index([status, verifiedAt])                                   // "Find claims needing refresh"
+  @@index([field])
+}
+
+/// The review queue. Tasks created automatically (fetcher diff, age
+/// threshold) or manually (analyst onboarding, customer report).
+/// Analysts drain this queue; everything not "done" is either in progress
+/// or overdue.
+model ReviewTask {
+  id          String       @id @default(cuid())
+  type        String                                             // "new-system", "source-diff", "age-refresh", "customer-report", "dispute", "spot-check"
+  system      AISystem?    @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String?                                            // Nullable for tasks spanning systems
+  claim       SystemClaim? @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  claimId     String?                                            // Nullable for system-level tasks
+  source      Source?      @relation(fields: [sourceId], references: [id])
+  sourceId    String?                                            // Set for source-diff tasks
+  priority    String       @default("normal")                    // "low", "normal", "high", "urgent"
+  status      String       @default("open")                      // "open", "in-progress", "blocked", "done", "wontfix"
+  assignedTo  AdminUser?   @relation(fields: [assignedToId], references: [id])
+  assignedToId String?
+  dueBy       DateTime?                                          // SLA deadline (e.g. 7d for source-diff)
+  title       String                                             // "Re-verify OpenAI certifications after trust-center update"
+  notes       String       @default("")                          // Analyst notes during resolution
+  resolvedAt  DateTime?
+  resolution  String       @default("")                          // "approved", "rejected", "edited", "deferred"
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([status, dueBy])                                       // Queue ordering
+  @@index([systemId, status])
+  @@index([assignedToId, status])
 }
 
 /// A versioned change log entry tracking updates to frameworks or AI systems.
@@ -260,6 +385,7 @@ model AdminUser {
   active        Boolean  @default(true)       // Deactivate without deleting
   lastLoginAt   DateTime?
   assignedCases Case[]                        // Cases assigned to this admin
+  reviewTasks   ReviewTask[]                  // Evidence-backbone review queue items
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

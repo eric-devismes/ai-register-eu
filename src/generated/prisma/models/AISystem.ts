@@ -536,6 +536,9 @@ export type AISystemWhereInput = {
   subscribers?: Prisma.SubscriberListRelationFilter
   companies?: Prisma.CompanyListRelationFilter
   dimensionScores?: Prisma.DimensionScoreListRelationFilter
+  sources?: Prisma.SourceListRelationFilter
+  claims?: Prisma.SystemClaimListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
 }
 
 export type AISystemOrderByWithRelationInput = {
@@ -589,6 +592,9 @@ export type AISystemOrderByWithRelationInput = {
   subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
   companies?: Prisma.CompanyOrderByRelationAggregateInput
   dimensionScores?: Prisma.DimensionScoreOrderByRelationAggregateInput
+  sources?: Prisma.SourceOrderByRelationAggregateInput
+  claims?: Prisma.SystemClaimOrderByRelationAggregateInput
+  reviewTasks?: Prisma.ReviewTaskOrderByRelationAggregateInput
 }
 
 export type AISystemWhereUniqueInput = Prisma.AtLeast<{
@@ -645,6 +651,9 @@ export type AISystemWhereUniqueInput = Prisma.AtLeast<{
   subscribers?: Prisma.SubscriberListRelationFilter
   companies?: Prisma.CompanyListRelationFilter
   dimensionScores?: Prisma.DimensionScoreListRelationFilter
+  sources?: Prisma.SourceListRelationFilter
+  claims?: Prisma.SystemClaimListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
 }, "id" | "slug">
 
 export type AISystemOrderByWithAggregationInput = {
@@ -800,6 +809,9 @@ export type AISystemCreateInput = {
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateInput = {
@@ -853,6 +865,9 @@ export type AISystemUncheckedCreateInput = {
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUpdateInput = {
@@ -906,6 +921,9 @@ export type AISystemUpdateInput = {
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateInput = {
@@ -959,6 +977,9 @@ export type AISystemUncheckedUpdateInput = {
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemCreateManyInput = {
@@ -1349,6 +1370,50 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type AISystemCreateNestedOneWithoutSourcesInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutSourcesInput, Prisma.AISystemUncheckedCreateWithoutSourcesInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutSourcesInput
+  connect?: Prisma.AISystemWhereUniqueInput
+}
+
+export type AISystemUpdateOneRequiredWithoutSourcesNestedInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutSourcesInput, Prisma.AISystemUncheckedCreateWithoutSourcesInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutSourcesInput
+  upsert?: Prisma.AISystemUpsertWithoutSourcesInput
+  connect?: Prisma.AISystemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AISystemUpdateToOneWithWhereWithoutSourcesInput, Prisma.AISystemUpdateWithoutSourcesInput>, Prisma.AISystemUncheckedUpdateWithoutSourcesInput>
+}
+
+export type AISystemCreateNestedOneWithoutClaimsInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutClaimsInput, Prisma.AISystemUncheckedCreateWithoutClaimsInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutClaimsInput
+  connect?: Prisma.AISystemWhereUniqueInput
+}
+
+export type AISystemUpdateOneRequiredWithoutClaimsNestedInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutClaimsInput, Prisma.AISystemUncheckedCreateWithoutClaimsInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutClaimsInput
+  upsert?: Prisma.AISystemUpsertWithoutClaimsInput
+  connect?: Prisma.AISystemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AISystemUpdateToOneWithWhereWithoutClaimsInput, Prisma.AISystemUpdateWithoutClaimsInput>, Prisma.AISystemUncheckedUpdateWithoutClaimsInput>
+}
+
+export type AISystemCreateNestedOneWithoutReviewTasksInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutReviewTasksInput, Prisma.AISystemUncheckedCreateWithoutReviewTasksInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutReviewTasksInput
+  connect?: Prisma.AISystemWhereUniqueInput
+}
+
+export type AISystemUpdateOneWithoutReviewTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.AISystemCreateWithoutReviewTasksInput, Prisma.AISystemUncheckedCreateWithoutReviewTasksInput>
+  connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutReviewTasksInput
+  upsert?: Prisma.AISystemUpsertWithoutReviewTasksInput
+  disconnect?: Prisma.AISystemWhereInput | boolean
+  delete?: Prisma.AISystemWhereInput | boolean
+  connect?: Prisma.AISystemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AISystemUpdateToOneWithWhereWithoutReviewTasksInput, Prisma.AISystemUpdateWithoutReviewTasksInput>, Prisma.AISystemUncheckedUpdateWithoutReviewTasksInput>
+}
+
 export type AISystemCreateNestedOneWithoutChangelogInput = {
   create?: Prisma.XOR<Prisma.AISystemCreateWithoutChangelogInput, Prisma.AISystemUncheckedCreateWithoutChangelogInput>
   connectOrCreate?: Prisma.AISystemCreateOrConnectWithoutChangelogInput
@@ -1491,6 +1556,9 @@ export type AISystemCreateWithoutIndustriesInput = {
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutIndustriesInput = {
@@ -1543,6 +1611,9 @@ export type AISystemUncheckedCreateWithoutIndustriesInput = {
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutIndustriesInput = {
@@ -1666,6 +1737,9 @@ export type AISystemCreateWithoutScoresInput = {
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutScoresInput = {
@@ -1718,6 +1792,9 @@ export type AISystemUncheckedCreateWithoutScoresInput = {
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutScoresInput = {
@@ -1786,6 +1863,9 @@ export type AISystemUpdateWithoutScoresInput = {
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutScoresInput = {
@@ -1838,6 +1918,9 @@ export type AISystemUncheckedUpdateWithoutScoresInput = {
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemCreateWithoutDimensionScoresInput = {
@@ -1890,6 +1973,9 @@ export type AISystemCreateWithoutDimensionScoresInput = {
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
@@ -1942,6 +2028,9 @@ export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutDimensionScoresInput = {
@@ -2010,6 +2099,9 @@ export type AISystemUpdateWithoutDimensionScoresInput = {
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
@@ -2062,6 +2154,717 @@ export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemCreateWithoutSourcesInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemUncheckedCreateWithoutSourcesInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemCreateOrConnectWithoutSourcesInput = {
+  where: Prisma.AISystemWhereUniqueInput
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutSourcesInput, Prisma.AISystemUncheckedCreateWithoutSourcesInput>
+}
+
+export type AISystemUpsertWithoutSourcesInput = {
+  update: Prisma.XOR<Prisma.AISystemUpdateWithoutSourcesInput, Prisma.AISystemUncheckedUpdateWithoutSourcesInput>
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutSourcesInput, Prisma.AISystemUncheckedCreateWithoutSourcesInput>
+  where?: Prisma.AISystemWhereInput
+}
+
+export type AISystemUpdateToOneWithWhereWithoutSourcesInput = {
+  where?: Prisma.AISystemWhereInput
+  data: Prisma.XOR<Prisma.AISystemUpdateWithoutSourcesInput, Prisma.AISystemUncheckedUpdateWithoutSourcesInput>
+}
+
+export type AISystemUpdateWithoutSourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemUncheckedUpdateWithoutSourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemCreateWithoutClaimsInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemUncheckedCreateWithoutClaimsInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemCreateOrConnectWithoutClaimsInput = {
+  where: Prisma.AISystemWhereUniqueInput
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutClaimsInput, Prisma.AISystemUncheckedCreateWithoutClaimsInput>
+}
+
+export type AISystemUpsertWithoutClaimsInput = {
+  update: Prisma.XOR<Prisma.AISystemUpdateWithoutClaimsInput, Prisma.AISystemUncheckedUpdateWithoutClaimsInput>
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutClaimsInput, Prisma.AISystemUncheckedCreateWithoutClaimsInput>
+  where?: Prisma.AISystemWhereInput
+}
+
+export type AISystemUpdateToOneWithWhereWithoutClaimsInput = {
+  where?: Prisma.AISystemWhereInput
+  data: Prisma.XOR<Prisma.AISystemUpdateWithoutClaimsInput, Prisma.AISystemUncheckedUpdateWithoutClaimsInput>
+}
+
+export type AISystemUpdateWithoutClaimsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemUncheckedUpdateWithoutClaimsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemCreateWithoutReviewTasksInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemUncheckedCreateWithoutReviewTasksInput = {
+  id?: string
+  slug: string
+  vendor: string
+  name: string
+  type: string
+  risk: string
+  capabilityType?: string
+  description: string
+  category: string
+  featured?: boolean
+  vendorHq?: string
+  euPresence?: string
+  useCases?: string
+  dataStorage?: string
+  dataProcessing?: string
+  trainingDataUse?: string
+  subprocessors?: string
+  dpaDetails?: string
+  slaDetails?: string
+  dataPortability?: string
+  exitTerms?: string
+  ipTerms?: string
+  certifications?: string
+  encryptionInfo?: string
+  accessControls?: string
+  modelDocs?: string
+  explainability?: string
+  biasTesting?: string
+  aiActStatus?: string
+  gdprStatus?: string
+  euResidency?: string
+  deploymentModel?: string
+  sourceModel?: string
+  foundedYear?: number | null
+  employeeCount?: string
+  fundingStatus?: string
+  marketPresence?: string
+  customerCount?: string
+  notableCustomers?: string
+  customerStories?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
+  changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+}
+
+export type AISystemCreateOrConnectWithoutReviewTasksInput = {
+  where: Prisma.AISystemWhereUniqueInput
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutReviewTasksInput, Prisma.AISystemUncheckedCreateWithoutReviewTasksInput>
+}
+
+export type AISystemUpsertWithoutReviewTasksInput = {
+  update: Prisma.XOR<Prisma.AISystemUpdateWithoutReviewTasksInput, Prisma.AISystemUncheckedUpdateWithoutReviewTasksInput>
+  create: Prisma.XOR<Prisma.AISystemCreateWithoutReviewTasksInput, Prisma.AISystemUncheckedCreateWithoutReviewTasksInput>
+  where?: Prisma.AISystemWhereInput
+}
+
+export type AISystemUpdateToOneWithWhereWithoutReviewTasksInput = {
+  where?: Prisma.AISystemWhereInput
+  data: Prisma.XOR<Prisma.AISystemUpdateWithoutReviewTasksInput, Prisma.AISystemUncheckedUpdateWithoutReviewTasksInput>
+}
+
+export type AISystemUpdateWithoutReviewTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+}
+
+export type AISystemUncheckedUpdateWithoutReviewTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  vendor?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  risk?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
+  changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemCreateWithoutChangelogInput = {
@@ -2114,6 +2917,9 @@ export type AISystemCreateWithoutChangelogInput = {
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutChangelogInput = {
@@ -2166,6 +2972,9 @@ export type AISystemUncheckedCreateWithoutChangelogInput = {
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutChangelogInput = {
@@ -2234,6 +3043,9 @@ export type AISystemUpdateWithoutChangelogInput = {
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutChangelogInput = {
@@ -2286,6 +3098,9 @@ export type AISystemUncheckedUpdateWithoutChangelogInput = {
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemCreateWithoutCompaniesInput = {
@@ -2338,6 +3153,9 @@ export type AISystemCreateWithoutCompaniesInput = {
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutCompaniesInput = {
@@ -2390,6 +3208,9 @@ export type AISystemUncheckedCreateWithoutCompaniesInput = {
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutCompaniesInput = {
@@ -2463,6 +3284,9 @@ export type AISystemCreateWithoutSubscribersInput = {
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
   companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemUncheckedCreateWithoutSubscribersInput = {
@@ -2515,6 +3339,9 @@ export type AISystemUncheckedCreateWithoutSubscribersInput = {
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
   companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
 }
 
 export type AISystemCreateOrConnectWithoutSubscribersInput = {
@@ -2588,6 +3415,9 @@ export type AISystemUpdateWithoutIndustriesInput = {
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutIndustriesInput = {
@@ -2640,6 +3470,9 @@ export type AISystemUncheckedUpdateWithoutIndustriesInput = {
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutIndustriesInput = {
@@ -2739,6 +3572,9 @@ export type AISystemUpdateWithoutCompaniesInput = {
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutCompaniesInput = {
@@ -2791,6 +3627,9 @@ export type AISystemUncheckedUpdateWithoutCompaniesInput = {
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutCompaniesInput = {
@@ -2890,6 +3729,9 @@ export type AISystemUpdateWithoutSubscribersInput = {
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
   companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutSubscribersInput = {
@@ -2942,6 +3784,9 @@ export type AISystemUncheckedUpdateWithoutSubscribersInput = {
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
   companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
@@ -3003,6 +3848,9 @@ export type AISystemCountOutputType = {
   subscribers: number
   companies: number
   dimensionScores: number
+  sources: number
+  claims: number
+  reviewTasks: number
 }
 
 export type AISystemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3012,6 +3860,9 @@ export type AISystemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   subscribers?: boolean | AISystemCountOutputTypeCountSubscribersArgs
   companies?: boolean | AISystemCountOutputTypeCountCompaniesArgs
   dimensionScores?: boolean | AISystemCountOutputTypeCountDimensionScoresArgs
+  sources?: boolean | AISystemCountOutputTypeCountSourcesArgs
+  claims?: boolean | AISystemCountOutputTypeCountClaimsArgs
+  reviewTasks?: boolean | AISystemCountOutputTypeCountReviewTasksArgs
 }
 
 /**
@@ -3066,6 +3917,27 @@ export type AISystemCountOutputTypeCountDimensionScoresArgs<ExtArgs extends runt
   where?: Prisma.DimensionScoreWhereInput
 }
 
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountSourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SourceWhereInput
+}
+
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountClaimsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SystemClaimWhereInput
+}
+
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountReviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewTaskWhereInput
+}
+
 
 export type AISystemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3118,6 +3990,9 @@ export type AISystemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
   companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
   dimensionScores?: boolean | Prisma.AISystem$dimensionScoresArgs<ExtArgs>
+  sources?: boolean | Prisma.AISystem$sourcesArgs<ExtArgs>
+  claims?: boolean | Prisma.AISystem$claimsArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
   _count?: boolean | Prisma.AISystemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aISystem"]>
 
@@ -3270,6 +4145,9 @@ export type AISystemInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
   companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
   dimensionScores?: boolean | Prisma.AISystem$dimensionScoresArgs<ExtArgs>
+  sources?: boolean | Prisma.AISystem$sourcesArgs<ExtArgs>
+  claims?: boolean | Prisma.AISystem$claimsArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
   _count?: boolean | Prisma.AISystemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AISystemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3284,6 +4162,9 @@ export type $AISystemPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
     companies: Prisma.$CompanyPayload<ExtArgs>[]
     dimensionScores: Prisma.$DimensionScorePayload<ExtArgs>[]
+    sources: Prisma.$SourcePayload<ExtArgs>[]
+    claims: Prisma.$SystemClaimPayload<ExtArgs>[]
+    reviewTasks: Prisma.$ReviewTaskPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3730,6 +4611,9 @@ export interface Prisma__AISystemClient<T, Null = never, ExtArgs extends runtime
   subscribers<T extends Prisma.AISystem$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   companies<T extends Prisma.AISystem$companiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$companiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dimensionScores<T extends Prisma.AISystem$dimensionScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$dimensionScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DimensionScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sources<T extends Prisma.AISystem$sourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$sourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  claims<T extends Prisma.AISystem$claimsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$claimsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SystemClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewTasks<T extends Prisma.AISystem$reviewTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$reviewTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4337,6 +5221,78 @@ export type AISystem$dimensionScoresArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.DimensionScoreScalarFieldEnum | Prisma.DimensionScoreScalarFieldEnum[]
+}
+
+/**
+ * AISystem.sources
+ */
+export type AISystem$sourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Source
+   */
+  select?: Prisma.SourceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Source
+   */
+  omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  where?: Prisma.SourceWhereInput
+  orderBy?: Prisma.SourceOrderByWithRelationInput | Prisma.SourceOrderByWithRelationInput[]
+  cursor?: Prisma.SourceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SourceScalarFieldEnum | Prisma.SourceScalarFieldEnum[]
+}
+
+/**
+ * AISystem.claims
+ */
+export type AISystem$claimsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SystemClaim
+   */
+  select?: Prisma.SystemClaimSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SystemClaim
+   */
+  omit?: Prisma.SystemClaimOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SystemClaimInclude<ExtArgs> | null
+  where?: Prisma.SystemClaimWhereInput
+  orderBy?: Prisma.SystemClaimOrderByWithRelationInput | Prisma.SystemClaimOrderByWithRelationInput[]
+  cursor?: Prisma.SystemClaimWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SystemClaimScalarFieldEnum | Prisma.SystemClaimScalarFieldEnum[]
+}
+
+/**
+ * AISystem.reviewTasks
+ */
+export type AISystem$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReviewTask
+   */
+  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReviewTask
+   */
+  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
+  where?: Prisma.ReviewTaskWhereInput
+  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
 }
 
 /**

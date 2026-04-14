@@ -58,6 +58,10 @@ export const ModelName = {
   AssessmentScore: 'AssessmentScore',
   DimensionScore: 'DimensionScore',
   AISystem: 'AISystem',
+  Source: 'Source',
+  SourceSnapshot: 'SourceSnapshot',
+  SystemClaim: 'SystemClaim',
+  ReviewTask: 'ReviewTask',
   ChangeLog: 'ChangeLog',
   AdminUser: 'AdminUser',
   Company: 'Company',
@@ -228,6 +232,77 @@ export const AISystemScalarFieldEnum = {
 } as const
 
 export type AISystemScalarFieldEnum = (typeof AISystemScalarFieldEnum)[keyof typeof AISystemScalarFieldEnum]
+
+
+export const SourceScalarFieldEnum = {
+  id: 'id',
+  systemId: 'systemId',
+  url: 'url',
+  label: 'label',
+  tier: 'tier',
+  active: 'active',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SourceScalarFieldEnum = (typeof SourceScalarFieldEnum)[keyof typeof SourceScalarFieldEnum]
+
+
+export const SourceSnapshotScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  fetchedAt: 'fetchedAt',
+  contentHash: 'contentHash',
+  rawText: 'rawText',
+  screenshotUrl: 'screenshotUrl',
+  status: 'status',
+  errorMessage: 'errorMessage'
+} as const
+
+export type SourceSnapshotScalarFieldEnum = (typeof SourceSnapshotScalarFieldEnum)[keyof typeof SourceSnapshotScalarFieldEnum]
+
+
+export const SystemClaimScalarFieldEnum = {
+  id: 'id',
+  systemId: 'systemId',
+  field: 'field',
+  value: 'value',
+  evidenceQuote: 'evidenceQuote',
+  sourceId: 'sourceId',
+  snapshotId: 'snapshotId',
+  verifiedBy: 'verifiedBy',
+  verifiedAt: 'verifiedAt',
+  confidence: 'confidence',
+  status: 'status',
+  retiredAt: 'retiredAt',
+  retiredReason: 'retiredReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SystemClaimScalarFieldEnum = (typeof SystemClaimScalarFieldEnum)[keyof typeof SystemClaimScalarFieldEnum]
+
+
+export const ReviewTaskScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  systemId: 'systemId',
+  claimId: 'claimId',
+  sourceId: 'sourceId',
+  priority: 'priority',
+  status: 'status',
+  assignedToId: 'assignedToId',
+  dueBy: 'dueBy',
+  title: 'title',
+  notes: 'notes',
+  resolvedAt: 'resolvedAt',
+  resolution: 'resolution',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewTaskScalarFieldEnum = (typeof ReviewTaskScalarFieldEnum)[keyof typeof ReviewTaskScalarFieldEnum]
 
 
 export const ChangeLogScalarFieldEnum = {

@@ -233,6 +233,7 @@ export type AdminUserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"AdminUser"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdminUser"> | Date | string
   assignedCases?: Prisma.CaseListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
 }
 
 export type AdminUserOrderByWithRelationInput = {
@@ -248,6 +249,7 @@ export type AdminUserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   assignedCases?: Prisma.CaseOrderByRelationAggregateInput
+  reviewTasks?: Prisma.ReviewTaskOrderByRelationAggregateInput
 }
 
 export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
@@ -266,6 +268,7 @@ export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"AdminUser"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdminUser"> | Date | string
   assignedCases?: Prisma.CaseListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
 }, "id" | "email">
 
 export type AdminUserOrderByWithAggregationInput = {
@@ -315,6 +318,7 @@ export type AdminUserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedCases?: Prisma.CaseCreateNestedManyWithoutAssignedToInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutAssignedToInput
 }
 
 export type AdminUserUncheckedCreateInput = {
@@ -330,6 +334,7 @@ export type AdminUserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedCases?: Prisma.CaseUncheckedCreateNestedManyWithoutAssignedToInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type AdminUserUpdateInput = {
@@ -345,6 +350,7 @@ export type AdminUserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedCases?: Prisma.CaseUpdateManyWithoutAssignedToNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutAssignedToNestedInput
 }
 
 export type AdminUserUncheckedUpdateInput = {
@@ -360,6 +366,7 @@ export type AdminUserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedCases?: Prisma.CaseUncheckedUpdateManyWithoutAssignedToNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type AdminUserCreateManyInput = {
@@ -404,6 +411,11 @@ export type AdminUserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type AdminUserNullableScalarRelationFilter = {
+  is?: Prisma.AdminUserWhereInput | null
+  isNot?: Prisma.AdminUserWhereInput | null
+}
+
 export type AdminUserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -446,9 +458,20 @@ export type AdminUserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type AdminUserNullableScalarRelationFilter = {
-  is?: Prisma.AdminUserWhereInput | null
-  isNot?: Prisma.AdminUserWhereInput | null
+export type AdminUserCreateNestedOneWithoutReviewTasksInput = {
+  create?: Prisma.XOR<Prisma.AdminUserCreateWithoutReviewTasksInput, Prisma.AdminUserUncheckedCreateWithoutReviewTasksInput>
+  connectOrCreate?: Prisma.AdminUserCreateOrConnectWithoutReviewTasksInput
+  connect?: Prisma.AdminUserWhereUniqueInput
+}
+
+export type AdminUserUpdateOneWithoutReviewTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.AdminUserCreateWithoutReviewTasksInput, Prisma.AdminUserUncheckedCreateWithoutReviewTasksInput>
+  connectOrCreate?: Prisma.AdminUserCreateOrConnectWithoutReviewTasksInput
+  upsert?: Prisma.AdminUserUpsertWithoutReviewTasksInput
+  disconnect?: Prisma.AdminUserWhereInput | boolean
+  delete?: Prisma.AdminUserWhereInput | boolean
+  connect?: Prisma.AdminUserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUserUpdateToOneWithWhereWithoutReviewTasksInput, Prisma.AdminUserUpdateWithoutReviewTasksInput>, Prisma.AdminUserUncheckedUpdateWithoutReviewTasksInput>
 }
 
 export type AdminUserCreateNestedOneWithoutAssignedCasesInput = {
@@ -467,6 +490,82 @@ export type AdminUserUpdateOneWithoutAssignedCasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUserUpdateToOneWithWhereWithoutAssignedCasesInput, Prisma.AdminUserUpdateWithoutAssignedCasesInput>, Prisma.AdminUserUncheckedUpdateWithoutAssignedCasesInput>
 }
 
+export type AdminUserCreateWithoutReviewTasksInput = {
+  id?: string
+  email: string
+  name?: string
+  passwordHash: string
+  totpSecret?: string
+  totpEnabled?: boolean
+  role?: string
+  active?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignedCases?: Prisma.CaseCreateNestedManyWithoutAssignedToInput
+}
+
+export type AdminUserUncheckedCreateWithoutReviewTasksInput = {
+  id?: string
+  email: string
+  name?: string
+  passwordHash: string
+  totpSecret?: string
+  totpEnabled?: boolean
+  role?: string
+  active?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignedCases?: Prisma.CaseUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type AdminUserCreateOrConnectWithoutReviewTasksInput = {
+  where: Prisma.AdminUserWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdminUserCreateWithoutReviewTasksInput, Prisma.AdminUserUncheckedCreateWithoutReviewTasksInput>
+}
+
+export type AdminUserUpsertWithoutReviewTasksInput = {
+  update: Prisma.XOR<Prisma.AdminUserUpdateWithoutReviewTasksInput, Prisma.AdminUserUncheckedUpdateWithoutReviewTasksInput>
+  create: Prisma.XOR<Prisma.AdminUserCreateWithoutReviewTasksInput, Prisma.AdminUserUncheckedCreateWithoutReviewTasksInput>
+  where?: Prisma.AdminUserWhereInput
+}
+
+export type AdminUserUpdateToOneWithWhereWithoutReviewTasksInput = {
+  where?: Prisma.AdminUserWhereInput
+  data: Prisma.XOR<Prisma.AdminUserUpdateWithoutReviewTasksInput, Prisma.AdminUserUncheckedUpdateWithoutReviewTasksInput>
+}
+
+export type AdminUserUpdateWithoutReviewTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  totpSecret?: Prisma.StringFieldUpdateOperationsInput | string
+  totpEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedCases?: Prisma.CaseUpdateManyWithoutAssignedToNestedInput
+}
+
+export type AdminUserUncheckedUpdateWithoutReviewTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  totpSecret?: Prisma.StringFieldUpdateOperationsInput | string
+  totpEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedCases?: Prisma.CaseUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
 export type AdminUserCreateWithoutAssignedCasesInput = {
   id?: string
   email: string
@@ -479,6 +578,7 @@ export type AdminUserCreateWithoutAssignedCasesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutAssignedToInput
 }
 
 export type AdminUserUncheckedCreateWithoutAssignedCasesInput = {
@@ -493,6 +593,7 @@ export type AdminUserUncheckedCreateWithoutAssignedCasesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type AdminUserCreateOrConnectWithoutAssignedCasesInput = {
@@ -523,6 +624,7 @@ export type AdminUserUpdateWithoutAssignedCasesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutAssignedToNestedInput
 }
 
 export type AdminUserUncheckedUpdateWithoutAssignedCasesInput = {
@@ -537,6 +639,7 @@ export type AdminUserUncheckedUpdateWithoutAssignedCasesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 
@@ -546,10 +649,12 @@ export type AdminUserUncheckedUpdateWithoutAssignedCasesInput = {
 
 export type AdminUserCountOutputType = {
   assignedCases: number
+  reviewTasks: number
 }
 
 export type AdminUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignedCases?: boolean | AdminUserCountOutputTypeCountAssignedCasesArgs
+  reviewTasks?: boolean | AdminUserCountOutputTypeCountReviewTasksArgs
 }
 
 /**
@@ -569,6 +674,13 @@ export type AdminUserCountOutputTypeCountAssignedCasesArgs<ExtArgs extends runti
   where?: Prisma.CaseWhereInput
 }
 
+/**
+ * AdminUserCountOutputType without action
+ */
+export type AdminUserCountOutputTypeCountReviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewTaskWhereInput
+}
+
 
 export type AdminUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -583,6 +695,7 @@ export type AdminUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   updatedAt?: boolean
   assignedCases?: boolean | Prisma.AdminUser$assignedCasesArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AdminUser$reviewTasksArgs<ExtArgs>
   _count?: boolean | Prisma.AdminUserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adminUser"]>
 
@@ -631,6 +744,7 @@ export type AdminUserSelectScalar = {
 export type AdminUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "passwordHash" | "totpSecret" | "totpEnabled" | "role" | "active" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["adminUser"]>
 export type AdminUserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignedCases?: boolean | Prisma.AdminUser$assignedCasesArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AdminUser$reviewTasksArgs<ExtArgs>
   _count?: boolean | Prisma.AdminUserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AdminUserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -640,6 +754,7 @@ export type $AdminUserPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "AdminUser"
   objects: {
     assignedCases: Prisma.$CasePayload<ExtArgs>[]
+    reviewTasks: Prisma.$ReviewTaskPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1048,6 +1163,7 @@ readonly fields: AdminUserFieldRefs;
 export interface Prisma__AdminUserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assignedCases<T extends Prisma.AdminUser$assignedCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$assignedCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewTasks<T extends Prisma.AdminUser$reviewTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$reviewTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1502,6 +1618,30 @@ export type AdminUser$assignedCasesArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.CaseScalarFieldEnum | Prisma.CaseScalarFieldEnum[]
+}
+
+/**
+ * AdminUser.reviewTasks
+ */
+export type AdminUser$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReviewTask
+   */
+  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReviewTask
+   */
+  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
+  where?: Prisma.ReviewTaskWhereInput
+  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
 }
 
 /**
