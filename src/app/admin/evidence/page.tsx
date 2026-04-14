@@ -36,11 +36,21 @@ export default async function EvidenceQueuePage() {
   });
   const systemMap = new Map(systems.map((s) => [s.id, s]));
 
+  // High-confidence draft counts per system — lets the analyst spot the
+  // "safe to bulk-promote" vendors at a glance without clicking in.
+  const highGroups = await prisma.systemClaim.groupBy({
+    by: ["systemId"],
+    where: { status: "draft", confidence: "high" },
+    _count: { _all: true },
+  });
+  const highBySystem = new Map(highGroups.map((g) => [g.systemId, g._count._all]));
+
   // Sort by most recent extraction activity — analyst sees fresh work first
   const sortedDrafts = drafts
     .map((d) => ({
       system: systemMap.get(d.systemId)!,
       draftCount: d._count._all,
+      highCount: highBySystem.get(d.systemId) ?? 0,
       lastUpdated: d._max.updatedAt,
     }))
     .filter((d) => d.system)
@@ -117,35 +127,53 @@ export default async function EvidenceQueuePage() {
                 <tr>
                   <th className="px-6 py-3">Vendor / system</th>
                   <th className="px-6 py-3">Drafts</th>
+                  <th className="px-6 py-3">High-confidence</th>
                   <th className="px-6 py-3">Last extraction</th>
                   <th className="px-6 py-3 text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border-lighter">
-                {sortedDrafts.map((d) => (
-                  <tr key={d.system.id}>
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-text-primary">{d.system.vendor}</div>
-                      <div className="text-xs text-text-muted">{d.system.name}</div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-800">
-                        {d.draftCount} pending
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-xs text-text-muted">
-                      {d.lastUpdated ? formatRelative(d.lastUpdated) : "—"}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <Link
-                        href={`/admin/evidence/${d.system.slug}`}
-                        className="text-xs font-semibold text-eu-blue hover:underline"
-                      >
-                        Review →
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
+                {sortedDrafts.map((d) => {
+                  const highPct = d.draftCount > 0 ? Math.round((d.highCount / d.draftCount) * 100) : 0;
+                  return (
+                    <tr key={d.system.id}>
+                      <td className="px-6 py-4">
+                        <div className="font-medium text-text-primary">{d.system.vendor}</div>
+                        <div className="text-xs text-text-muted">{d.system.name}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-800">
+                          {d.draftCount} pending
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                            highPct >= 80
+                              ? "bg-emerald-100 text-emerald-800"
+                              : highPct >= 40
+                              ? "bg-sky-100 text-sky-800"
+                              : "bg-slate-100 text-slate-700"
+                          }`}
+                          title={`${d.highCount} of ${d.draftCount} drafts are high-confidence — bulk-promote will auto-publish those that don't conflict with existing published values.`}
+                        >
+                          {d.highCount}/{d.draftCount} · {highPct}%
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-xs text-text-muted">
+                        {d.lastUpdated ? formatRelative(d.lastUpdated) : "—"}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <Link
+                          href={`/admin/evidence/${d.system.slug}`}
+                          className="text-xs font-semibold text-eu-blue hover:underline"
+                        >
+                          Review →
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
