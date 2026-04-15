@@ -32,7 +32,12 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
   // sourced replacements for free-text fields on AISystem. Until the
   // backfill completes, a system may have zero claims; the UI falls back
   // to the legacy free-text with the "evidence under verification" banner.
-  const claims = await getSystemClaims(system.id);
+  // Graceful fallback: if the SystemClaim table hasn't been migrated yet in
+  // this environment, return an empty array instead of crashing the page.
+  const claims = await getSystemClaims(system.id).catch((err) => {
+    console.error("[SystemPage] getSystemClaims failed — likely missing DB table:", err?.message ?? err);
+    return [];
+  });
 
   const grades = system.scores.map((s) => s.score);
   const overall = computeOverallScore(grades);
