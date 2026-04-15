@@ -7,6 +7,52 @@
 
 ---
 
+## 🔖 RESUME HERE — Session paused 2026-04-15 ~09:00
+
+**Context**: Evidence backbone backfill paused mid-run. User is restarting their computer. Pick up exactly where we left off.
+
+### Current DB state (queried 2026-04-15)
+- **89 AI systems** in catalog
+- **497 active sources** (vendor trust pages, DPAs, sub-processor lists)
+- **463 unique latest snapshots** → 108 extracted, **355 pending**
+- **535 draft claims** awaiting analyst review across **47 systems**
+- **8 published claims** (live on public pages)
+
+### What's blocking
+**Anthropic API credits are exhausted.** User is topping up — recommended amount: **$20** (finishes the 355-extraction backlog for ~$3, leaves ~12 months of steady-state headroom).
+
+### Two cost guards now in place (committed this session)
+1. **Fetcher hash-skip** (already existed): SHA-256 of page content compared against last success → unchanged pages are skipped, no LLM call. `src/lib/evidence-fetcher.ts:300`
+2. **Extractor hash-skip + run cap** (NEW, commit `cb98ac1`): `scripts/evidence-extract.ts` now checks `systemClaim.findFirst({ sourceId, snapshotId })` before any LLM call. Default `--max 150` run cap. `--force` to re-extract everything (e.g. after prompt tuning).
+
+### Exact restart command (after credit top-up)
+```bash
+cd /Users/ericdevismes/Documents/Claude-Work/PROJECTS/ai-register-eu
+npm run evidence:extract
+# → only touches the 355 pending ones; the 108 already-extracted are skipped automatically
+```
+Expected cost: **~$2–3 total**. Expected duration: **~15–25 min**. Output lands in `/admin/evidence` for human review (NEVER auto-publish).
+
+### After the backfill finishes
+1. Visit `/admin/evidence` — 80–90 systems should now have drafts (up from 47)
+2. Use the bulk-promote button to publish high-confidence drafts per vendor (commit `667e046`)
+3. Remaining P0 work: Phase 3 (freshness cron) + methodology page rewrite (items below)
+4. Send Telegram status update to user once backfill + bulk-promote round 1 are done
+
+### Recent commits this session
+- `cb98ac1` evidence:extract — hash-skip + --force + --max
+- `43b6635` admin queue: high-confidence % badge per vendor
+- `461c712` claim-extractor: stricter anti-hallucination prompt
+- `0980941` discover-sources: vendor brand-word + ccTLDs
+- `667e046` admin evidence: bulk-promote safe high-confidence drafts
+
+### Cost model (for the user's budget planning)
+- Backlog tonight: ~$3
+- Steady state once catalog is stable: ~$1–2/month (weekly cron, ~10–30 pages drift per week across 497 sources)
+- Adding a new vendor to the catalog: ~$0.05 in extraction cost
+
+---
+
 ## CEO Action Required (ask via Telegram if not in session)
 
 - [x] **LemonSqueezy configuration**: Product created (Pro €19/month, test mode), all 4 env vars set on Vercel, webhook configured (2026-04-12)
