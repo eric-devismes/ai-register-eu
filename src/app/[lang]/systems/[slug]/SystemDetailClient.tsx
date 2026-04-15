@@ -451,53 +451,63 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
       <div className="mt-10 space-y-3">
         <h2 className="text-lg font-bold text-gray-900 mb-1">Detailed Profile</h2>
 
-        {/* Data Handling */}
+        {/* Data Handling — dim: sovereignty */}
         {(system.dataStorage || system.dataProcessing || system.trainingDataUse) && (
-          <AccordionSection title="Data Handling" icon={icons.data}>
-            <Field label="Storage Locations" value={system.dataStorage} />
-            <Field label="Processing Locations" value={system.dataProcessing} />
-            <Field label="Training Data Usage" value={system.trainingDataUse} />
-            <Field label="Subprocessors" value={system.subprocessors} />
-          </AccordionSection>
+          <div id="dim-sovereignty" className="scroll-mt-24">
+            <AccordionSection title="Data Handling" icon={icons.data}>
+              <Field label="Storage Locations" value={system.dataStorage} />
+              <Field label="Processing Locations" value={system.dataProcessing} />
+              <Field label="Training Data Usage" value={system.trainingDataUse} />
+              <Field label="Subprocessors" value={system.subprocessors} />
+            </AccordionSection>
+          </div>
         )}
 
-        {/* Contractual */}
+        {/* Contractual — dim: maturity */}
         {(system.dpaDetails || system.slaDetails) && (
-          <AccordionSection title="Contractual Commitments" icon={icons.contract}>
-            <Field label="Data Processing Agreement" value={system.dpaDetails} />
-            <Field label="Service Level Agreements" value={system.slaDetails} />
-            <Field label="Data Portability" value={system.dataPortability} />
-            <Field label="Exit Terms" value={system.exitTerms} />
-            <Field label="IP Terms" value={system.ipTerms} />
-          </AccordionSection>
+          <div id="dim-maturity" className="scroll-mt-24">
+            <AccordionSection title="Contractual Commitments" icon={icons.contract}>
+              <Field label="Data Processing Agreement" value={system.dpaDetails} />
+              <Field label="Service Level Agreements" value={system.slaDetails} />
+              <Field label="Data Portability" value={system.dataPortability} />
+              <Field label="Exit Terms" value={system.exitTerms} />
+              <Field label="IP Terms" value={system.ipTerms} />
+            </AccordionSection>
+          </div>
         )}
 
-        {/* Security */}
+        {/* Security — dim: security */}
         {(system.certifications || system.encryptionInfo) && (
-          <AccordionSection title="Security Posture" icon={icons.security}>
-            <Field label="Certifications" value={system.certifications} />
-            <Field label="Encryption" value={system.encryptionInfo} />
-            <Field label="Access Controls" value={system.accessControls} />
-          </AccordionSection>
+          <div id="dim-security" className="scroll-mt-24">
+            <AccordionSection title="Security Posture" icon={icons.security}>
+              <Field label="Certifications" value={system.certifications} />
+              <Field label="Encryption" value={system.encryptionInfo} />
+              <Field label="Access Controls" value={system.accessControls} />
+            </AccordionSection>
+          </div>
         )}
 
-        {/* AI Transparency */}
+        {/* AI Transparency — dim: transparency */}
         {(system.modelDocs || system.explainability) && (
-          <AccordionSection title="AI Transparency" icon={icons.transparency}>
-            <Field label="Model Documentation" value={system.modelDocs} />
-            <Field label="Explainability" value={system.explainability} />
-            <Field label="Bias Testing" value={system.biasTesting} />
-          </AccordionSection>
+          <div id="dim-transparency" className="scroll-mt-24">
+            <AccordionSection title="AI Transparency" icon={icons.transparency}>
+              <Field label="Model Documentation" value={system.modelDocs} />
+              <Field label="Explainability" value={system.explainability} />
+              <Field label="Bias Testing" value={system.biasTesting} />
+            </AccordionSection>
+          </div>
         )}
 
-        {/* EU Compliance */}
+        {/* EU Compliance — dim: compliance */}
         {(system.aiActStatus || system.gdprStatus) && (
-          <AccordionSection title="EU Compliance Status" icon={icons.eu}>
-            <Field label="EU AI Act" value={system.aiActStatus} />
-            <Field label="GDPR" value={system.gdprStatus} />
-            <Field label="EU Data Residency" value={system.euResidency} />
-            <Field label="EU Presence" value={system.euPresence} />
-          </AccordionSection>
+          <div id="dim-compliance" className="scroll-mt-24">
+            <AccordionSection title="EU Compliance Status" icon={icons.eu}>
+              <Field label="EU AI Act" value={system.aiActStatus} />
+              <Field label="GDPR" value={system.gdprStatus} />
+              <Field label="EU Data Residency" value={system.euResidency} />
+              <Field label="EU Presence" value={system.euPresence} />
+            </AccordionSection>
+          </div>
         )}
       </div>
 

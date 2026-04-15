@@ -104,7 +104,15 @@ export default function SpiderChart({
           const bg = badgeColor(dim.grade);
 
           return (
-            <a key={`badge-${i}`} href={`#dim-${dim.id}`} className="cursor-pointer">
+            <a
+              key={`badge-${i}`}
+              href={`#dim-${dim.id}`}
+              className="cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(`dim-${dim.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
               <rect x={bx - 14} y={by - 10} width={28} height={20} rx={10} fill={bg} />
               <text x={bx} y={by + 1} textAnchor="middle" dominantBaseline="middle"
                 fill="white" fontSize={10} fontWeight={700} fontFamily="Arial, sans-serif">
@@ -128,13 +136,22 @@ export default function SpiderChart({
           const anchor = isLeft ? "end" : isRight ? "start" : "middle";
 
           return (
-            <a key={`label-${i}`} href={`#dim-${d.id}`} className="cursor-pointer">
+            <a
+              key={`label-${i}`}
+              href={`#dim-${d.id}`}
+              className="cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(`dim-${d.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
               {lines.map((line, li) => (
                 <text key={`label-${i}-${li}`}
                   x={lx} y={ly + (li - (lines.length - 1) / 2) * 13}
                   textAnchor={anchor} dominantBaseline="middle"
                   fill="#374151" fontSize={11} fontFamily="Arial, sans-serif"
-                  fontWeight={500}>
+                  fontWeight={500}
+                  className="hover:fill-[#003399] transition-colors">
                   {line}
                 </text>
               ))}
