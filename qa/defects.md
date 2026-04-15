@@ -5,6 +5,26 @@
 
 ---
 
+## 2026-04-15 QA Run (Evening)
+
+### Critical
+- **All `/[lang]/systems/[slug]` pages returning 500** — `PrismaClientKnownRequestError` P2021: `public.SystemClaim` table does not exist in production database. The evidence-backbone schema was added locally but never pushed to Neon. All system detail pages (Anthropic, OpenAI, Microsoft, Google, etc.) were broken for all locales. ✅ **Fixed this run**: Ran `prisma db push` against production Neon DB to create missing tables (`SystemClaim`, `Source`, `SourceSnapshot`, etc.). Also added `.catch()` graceful fallback in `/[lang]/systems/[slug]/page.tsx` to prevent future schema drift from crashing the page. Committed + deployed. — https://ai-register-eu.vercel.app/en/systems/anthropic-claude-enterprise
+
+### Warning
+- **Newsfeed shows future-dated articles (Aug 2026)** — Items dated "2 Aug 2026" appear in the feed as "most recent". With today being 2026-04-15, these entries appear to be pre-seeded future regulatory milestones (EU AI Act enforcement dates) rather than news errors, but the labelling could confuse users who expect live news. Recommend adding a "Scheduled" or "Upcoming" badge for entries dated in the future. — https://ai-register-eu.vercel.app/en/newsfeed
+- **Footer `aiTransparencyTitle` and `aiTransparencyBody` + secondary nav ("Security", "Incident Response", "Terms", "Contact") untranslated in all non-English locales** — Ongoing from previous run. Requires DeepL backfill. — https://ai-register-eu.vercel.app/fr
+
+### Info
+- **Homepage, regulations, methodology, about, pricing, newsfeed, industries all load 200** — Full page load check passed for all major routes. ✅
+- **System detail pages now loading** — Post-fix: Anthropic Claude Enterprise shows B- overall, full framework breakdown, evidence verification banner. ✅
+- **FR/DE database page table headers, filter labels, risk labels, and CTAs still in English** — Ongoing from previous runs. Root cause: DatabaseGrid component translations not wired. Low priority vs critical fix above.
+- **`html lang="en"` hardcoded in root layout** — Ongoing architectural issue from previous runs.
+
+### Fixed this run
+- **All `/[lang]/systems/[slug]` 500 errors** — `prisma db push` applied to production + graceful `.catch()` fallback in page.tsx. Deployed at commit `7309f17`. ✅
+
+---
+
 ## 2026-04-14 QA Run (Evening)
 
 ### Critical
