@@ -689,10 +689,6 @@ export type SystemClaimUncheckedUpdateManyWithoutSnapshotNestedInput = {
   deleteMany?: Prisma.SystemClaimScalarWhereInput | Prisma.SystemClaimScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type SystemClaimCreateNestedOneWithoutReviewTasksInput = {
   create?: Prisma.XOR<Prisma.SystemClaimCreateWithoutReviewTasksInput, Prisma.SystemClaimUncheckedCreateWithoutReviewTasksInput>
   connectOrCreate?: Prisma.SystemClaimCreateOrConnectWithoutReviewTasksInput

@@ -252,6 +252,7 @@ model Source {
   active      Boolean  @default(true)                            // Retired sources kept for history but not re-fetched
   notes       String   @default("")                              // Internal analyst notes
   fetchStrategy String @default("direct")                        // "direct" = plain HTTP GET. "jina-reader" = fetch via https://r.jina.ai/<url> for sites that block bots (Cloudflare challenge, JS-rendered apps). Source.url stays the canonical URL — only the fetcher swaps in the proxy.
+  lastExtractedSnapshotId String?                                 // ID of the most recent snapshot the claim extractor has processed (success or 0-yield). Prevents re-running the LLM on thin pages that legitimately return no claims. Set after every successful API round-trip in scripts/evidence-extract.ts.
   snapshots   SourceSnapshot[]
   claims      SystemClaim[]
   reviewTasks ReviewTask[]                                       // Review tasks targeting this source

@@ -45,6 +45,7 @@ export type SourceMinAggregateOutputType = {
   active: boolean | null
   notes: string | null
   fetchStrategy: string | null
+  lastExtractedSnapshotId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,6 +59,7 @@ export type SourceMaxAggregateOutputType = {
   active: boolean | null
   notes: string | null
   fetchStrategy: string | null
+  lastExtractedSnapshotId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -71,6 +73,7 @@ export type SourceCountAggregateOutputType = {
   active: number
   notes: number
   fetchStrategy: number
+  lastExtractedSnapshotId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -94,6 +97,7 @@ export type SourceMinAggregateInputType = {
   active?: true
   notes?: true
   fetchStrategy?: true
+  lastExtractedSnapshotId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -107,6 +111,7 @@ export type SourceMaxAggregateInputType = {
   active?: true
   notes?: true
   fetchStrategy?: true
+  lastExtractedSnapshotId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -120,6 +125,7 @@ export type SourceCountAggregateInputType = {
   active?: true
   notes?: true
   fetchStrategy?: true
+  lastExtractedSnapshotId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -220,6 +226,7 @@ export type SourceGroupByOutputType = {
   active: boolean
   notes: string
   fetchStrategy: string
+  lastExtractedSnapshotId: string | null
   createdAt: Date
   updatedAt: Date
   _count: SourceCountAggregateOutputType | null
@@ -256,6 +263,7 @@ export type SourceWhereInput = {
   active?: Prisma.BoolFilter<"Source"> | boolean
   notes?: Prisma.StringFilter<"Source"> | string
   fetchStrategy?: Prisma.StringFilter<"Source"> | string
+  lastExtractedSnapshotId?: Prisma.StringNullableFilter<"Source"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Source"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Source"> | Date | string
   system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
@@ -273,6 +281,7 @@ export type SourceOrderByWithRelationInput = {
   active?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   fetchStrategy?: Prisma.SortOrder
+  lastExtractedSnapshotId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   system?: Prisma.AISystemOrderByWithRelationInput
@@ -294,6 +303,7 @@ export type SourceWhereUniqueInput = Prisma.AtLeast<{
   active?: Prisma.BoolFilter<"Source"> | boolean
   notes?: Prisma.StringFilter<"Source"> | string
   fetchStrategy?: Prisma.StringFilter<"Source"> | string
+  lastExtractedSnapshotId?: Prisma.StringNullableFilter<"Source"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Source"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Source"> | Date | string
   system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
@@ -311,6 +321,7 @@ export type SourceOrderByWithAggregationInput = {
   active?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   fetchStrategy?: Prisma.SortOrder
+  lastExtractedSnapshotId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SourceCountOrderByAggregateInput
@@ -332,6 +343,7 @@ export type SourceScalarWhereWithAggregatesInput = {
   active?: Prisma.BoolWithAggregatesFilter<"Source"> | boolean
   notes?: Prisma.StringWithAggregatesFilter<"Source"> | string
   fetchStrategy?: Prisma.StringWithAggregatesFilter<"Source"> | string
+  lastExtractedSnapshotId?: Prisma.StringNullableWithAggregatesFilter<"Source"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Source"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Source"> | Date | string
 }
@@ -344,6 +356,7 @@ export type SourceCreateInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   system: Prisma.AISystemCreateNestedOneWithoutSourcesInput
@@ -361,6 +374,7 @@ export type SourceUncheckedCreateInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedCreateNestedManyWithoutSourceInput
@@ -376,6 +390,7 @@ export type SourceUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   system?: Prisma.AISystemUpdateOneRequiredWithoutSourcesNestedInput
@@ -393,6 +408,7 @@ export type SourceUncheckedUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedUpdateManyWithoutSourceNestedInput
@@ -409,6 +425,7 @@ export type SourceCreateManyInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -421,6 +438,7 @@ export type SourceUpdateManyMutationInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -434,6 +452,7 @@ export type SourceUncheckedUpdateManyInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -462,6 +481,7 @@ export type SourceCountOrderByAggregateInput = {
   active?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   fetchStrategy?: Prisma.SortOrder
+  lastExtractedSnapshotId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -479,6 +499,7 @@ export type SourceMaxOrderByAggregateInput = {
   active?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   fetchStrategy?: Prisma.SortOrder
+  lastExtractedSnapshotId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -492,6 +513,7 @@ export type SourceMinOrderByAggregateInput = {
   active?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   fetchStrategy?: Prisma.SortOrder
+  lastExtractedSnapshotId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -552,6 +574,10 @@ export type SourceUncheckedUpdateManyWithoutSystemNestedInput = {
   deleteMany?: Prisma.SourceScalarWhereInput | Prisma.SourceScalarWhereInput[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type SourceCreateNestedOneWithoutSnapshotsInput = {
   create?: Prisma.XOR<Prisma.SourceCreateWithoutSnapshotsInput, Prisma.SourceUncheckedCreateWithoutSnapshotsInput>
   connectOrCreate?: Prisma.SourceCreateOrConnectWithoutSnapshotsInput
@@ -606,6 +632,7 @@ export type SourceCreateWithoutSystemInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   snapshots?: Prisma.SourceSnapshotCreateNestedManyWithoutSourceInput
@@ -621,6 +648,7 @@ export type SourceUncheckedCreateWithoutSystemInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedCreateNestedManyWithoutSourceInput
@@ -666,6 +694,7 @@ export type SourceScalarWhereInput = {
   active?: Prisma.BoolFilter<"Source"> | boolean
   notes?: Prisma.StringFilter<"Source"> | string
   fetchStrategy?: Prisma.StringFilter<"Source"> | string
+  lastExtractedSnapshotId?: Prisma.StringNullableFilter<"Source"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Source"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Source"> | Date | string
 }
@@ -678,6 +707,7 @@ export type SourceCreateWithoutSnapshotsInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   system: Prisma.AISystemCreateNestedOneWithoutSourcesInput
@@ -694,6 +724,7 @@ export type SourceUncheckedCreateWithoutSnapshotsInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSourceInput
@@ -724,6 +755,7 @@ export type SourceUpdateWithoutSnapshotsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   system?: Prisma.AISystemUpdateOneRequiredWithoutSourcesNestedInput
@@ -740,6 +772,7 @@ export type SourceUncheckedUpdateWithoutSnapshotsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSourceNestedInput
@@ -754,6 +787,7 @@ export type SourceCreateWithoutClaimsInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   system: Prisma.AISystemCreateNestedOneWithoutSourcesInput
@@ -770,6 +804,7 @@ export type SourceUncheckedCreateWithoutClaimsInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedCreateNestedManyWithoutSourceInput
@@ -800,6 +835,7 @@ export type SourceUpdateWithoutClaimsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   system?: Prisma.AISystemUpdateOneRequiredWithoutSourcesNestedInput
@@ -816,6 +852,7 @@ export type SourceUncheckedUpdateWithoutClaimsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedUpdateManyWithoutSourceNestedInput
@@ -830,6 +867,7 @@ export type SourceCreateWithoutReviewTasksInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   system: Prisma.AISystemCreateNestedOneWithoutSourcesInput
@@ -846,6 +884,7 @@ export type SourceUncheckedCreateWithoutReviewTasksInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedCreateNestedManyWithoutSourceInput
@@ -876,6 +915,7 @@ export type SourceUpdateWithoutReviewTasksInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   system?: Prisma.AISystemUpdateOneRequiredWithoutSourcesNestedInput
@@ -892,6 +932,7 @@ export type SourceUncheckedUpdateWithoutReviewTasksInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedUpdateManyWithoutSourceNestedInput
@@ -906,6 +947,7 @@ export type SourceCreateManySystemInput = {
   active?: boolean
   notes?: string
   fetchStrategy?: string
+  lastExtractedSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -918,6 +960,7 @@ export type SourceUpdateWithoutSystemInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   snapshots?: Prisma.SourceSnapshotUpdateManyWithoutSourceNestedInput
@@ -933,6 +976,7 @@ export type SourceUncheckedUpdateWithoutSystemInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   snapshots?: Prisma.SourceSnapshotUncheckedUpdateManyWithoutSourceNestedInput
@@ -948,6 +992,7 @@ export type SourceUncheckedUpdateManyWithoutSystemInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   fetchStrategy?: Prisma.StringFieldUpdateOperationsInput | string
+  lastExtractedSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1010,6 +1055,7 @@ export type SourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   active?: boolean
   notes?: boolean
   fetchStrategy?: boolean
+  lastExtractedSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
@@ -1028,6 +1074,7 @@ export type SourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   active?: boolean
   notes?: boolean
   fetchStrategy?: boolean
+  lastExtractedSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
@@ -1042,6 +1089,7 @@ export type SourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   active?: boolean
   notes?: boolean
   fetchStrategy?: boolean
+  lastExtractedSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
@@ -1056,11 +1104,12 @@ export type SourceSelectScalar = {
   active?: boolean
   notes?: boolean
   fetchStrategy?: boolean
+  lastExtractedSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "systemId" | "url" | "label" | "tier" | "active" | "notes" | "fetchStrategy" | "createdAt" | "updatedAt", ExtArgs["result"]["source"]>
+export type SourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "systemId" | "url" | "label" | "tier" | "active" | "notes" | "fetchStrategy" | "lastExtractedSnapshotId" | "createdAt" | "updatedAt", ExtArgs["result"]["source"]>
 export type SourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   snapshots?: boolean | Prisma.Source$snapshotsArgs<ExtArgs>
@@ -1092,6 +1141,7 @@ export type $SourcePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     active: boolean
     notes: string
     fetchStrategy: string
+    lastExtractedSnapshotId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["source"]>
@@ -1529,6 +1579,7 @@ export interface SourceFieldRefs {
   readonly active: Prisma.FieldRef<"Source", 'Boolean'>
   readonly notes: Prisma.FieldRef<"Source", 'String'>
   readonly fetchStrategy: Prisma.FieldRef<"Source", 'String'>
+  readonly lastExtractedSnapshotId: Prisma.FieldRef<"Source", 'String'>
   readonly createdAt: Prisma.FieldRef<"Source", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Source", 'DateTime'>
 }

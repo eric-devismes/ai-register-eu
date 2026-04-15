@@ -14,15 +14,21 @@
  *
  * COST SAFETY — two independent guards:
  *
- * 1. Hash-skip: by default, skips any source whose latest snapshot has
- *    already produced at least one claim (matched on snapshotId). Makes
- *    the script idempotent across reruns — the weekly cron only pays for
- *    snapshots that genuinely changed since the last run. Pass --force to
- *    re-extract everything (e.g. after tuning the prompt).
+ * 1. Attempt-skip: by default, skips any source whose latest snapshot matches
+ *    source.lastExtractedSnapshotId. That field is stamped after every
+ *    successful API round-trip — including 0-yield extractions — so thin
+ *    pages that legitimately return no claims are NOT re-processed every
+ *    run. Fixes the prior bug where the guard keyed on "any claim persisted"
+ *    and silently re-ran ~150 0-yield pages weekly. Pass --force to re-run
+ *    anyway (e.g. after tuning the prompt).
  *
  * 2. Run cap: MAX_EXTRACTIONS_PER_RUN (default 150) aborts the loop
  *    loudly if crossed, so a runaway invocation never silently blows the
  *    Anthropic credit balance. Override with --max N (or 0 to disable).
+ *
+ * Spend is tracked per run: input/output tokens are tallied and converted
+ * at Haiku 4.5 rates ($1/M in, $5/M out). Printed per-call and in the
+ * summary so cost overruns are visible BEFORE reading the Anthropic dashboard.
  *
  * Drafts are upserted (one per system × field) so running with --force
  * is safe. Published claims are never touched.
@@ -35,6 +41,18 @@ import { extractClaimsFromSnapshot, persistDraftClaims } from "../src/lib/claim-
 // complete in one shot with headroom, but a runaway loop or future growth to
 // 500+ sources can't silently burn through the Anthropic balance.
 const DEFAULT_MAX_EXTRACTIONS_PER_RUN = 150;
+
+// Haiku 4.5 token prices (USD per million tokens). Update when the model
+// changes — kept local to this script so pricing never silently drifts
+// from what the script actually invoices against.
+const HAIKU_INPUT_PRICE_PER_M = 1.0;
+const HAIKU_OUTPUT_PRICE_PER_M = 5.0;
+
+function formatUSD(cents: number): string {
+  // cents here is already a float dollar value; format to 4dp for per-call
+  // detail and 2dp for totals is handled at the call site.
+  return `$${cents.toFixed(4)}`;
+}
 
 function parseArgs(): {
   systemId?: string;
@@ -106,6 +124,8 @@ async function main() {
   let processed = 0;
   let skipped = 0;
   let skippedAlreadyExtracted = 0;
+  let totalInputTokens = 0;
+  let totalOutputTokens = 0;
 
   for (const source of sources) {
     const snap = source.snapshots[0];
@@ -115,18 +135,13 @@ async function main() {
     }
 
     // Idempotency gate: have we already extracted from this exact snapshot?
-    // We check for any SystemClaim (draft OR published) whose snapshotId
-    // matches the latest one. If yes, nothing new to pull — skip the LLM call.
-    // Published claims aren't affected either way (they're never overwritten).
-    if (!force) {
-      const alreadyExtracted = await prisma.systemClaim.findFirst({
-        where: { sourceId: source.id, snapshotId: snap.id },
-        select: { id: true },
-      });
-      if (alreadyExtracted) {
-        skippedAlreadyExtracted++;
-        continue;
-      }
+    // `lastExtractedSnapshotId` is stamped after every successful API round-
+    // trip (including 0-yield). So the second run skips thin pages the first
+    // run already queried — fixing the cost leak where pages that produce no
+    // claims used to get re-processed on every invocation.
+    if (!force && source.lastExtractedSnapshotId === snap.id) {
+      skippedAlreadyExtracted++;
+      continue;
     }
 
     // Run cap: abort loudly before making the next LLM call if we've hit the
@@ -151,6 +166,11 @@ async function main() {
     });
 
     if (!result.ok) {
+      // API or network failure — do NOT stamp lastExtractedSnapshotId, so
+      // the next run retries this source. We DO consume a `processed` slot
+      // conceptually if the error came back from the API (tokens billed),
+      // but since `ok:false` paths in claim-extractor.ts return no tokens,
+      // just log and continue.
       console.log(`✗ extractor error: ${result.errorMessage}`);
       continue;
     }
@@ -162,17 +182,39 @@ async function main() {
       claims: result.claims,
     });
 
+    // Stamp the source as "extracted for this snapshot" — even when 0 claims
+    // came back. This is the fix for the cost leak: thin/empty pages won't
+    // re-run the LLM on every subsequent invocation.
+    await prisma.source.update({
+      where: { id: source.id },
+      data: { lastExtractedSnapshotId: snap.id },
+    });
+
+    // Tally spend. Tokens are undefined only for pathological non-API
+    // errors; default to 0 so the math still adds up.
+    const inTok = result.promptTokens ?? 0;
+    const outTok = result.completionTokens ?? 0;
+    const callCost = (inTok / 1_000_000) * HAIKU_INPUT_PRICE_PER_M
+                   + (outTok / 1_000_000) * HAIKU_OUTPUT_PRICE_PER_M;
+    totalInputTokens += inTok;
+    totalOutputTokens += outTok;
+
     totalDrafts += result.claims.length;
     totalRejected += result.rejected.length;
     processed++;
     console.log(
       `${result.claims.length} claims (${persisted.draftsCreated} new, ${persisted.draftsUpdated} updated)` +
-      (result.rejected.length > 0 ? ` | ${result.rejected.length} rejected` : ""),
+      (result.rejected.length > 0 ? ` | ${result.rejected.length} rejected` : "") +
+      ` | ${(inTok / 1000).toFixed(1)}k in / ${outTok} out / ${formatUSD(callCost)}`,
     );
     for (const r of result.rejected) {
       console.log(`     ⚠ rejected ${r.field}: ${r.reason}`);
     }
   }
+
+  const inputCost = (totalInputTokens / 1_000_000) * HAIKU_INPUT_PRICE_PER_M;
+  const outputCost = (totalOutputTokens / 1_000_000) * HAIKU_OUTPUT_PRICE_PER_M;
+  const totalCost = inputCost + outputCost;
 
   console.log("\n📊 Summary");
   console.log(`   Sources processed:    ${processed}`);
@@ -180,6 +222,8 @@ async function main() {
   console.log(`   Already extracted:    ${skippedAlreadyExtracted} (same snapshotId — use --force to re-run)`);
   console.log(`   Draft claims written: ${totalDrafts}`);
   console.log(`   Claims rejected:      ${totalRejected} (hallucination/invalid)`);
+  console.log(`   Tokens in / out:      ${totalInputTokens.toLocaleString()} / ${totalOutputTokens.toLocaleString()}`);
+  console.log(`   Run spend:            $${totalCost.toFixed(4)} (input $${inputCost.toFixed(4)} + output $${outputCost.toFixed(4)})`);
   console.log("\n✅ Done");
 }
 
