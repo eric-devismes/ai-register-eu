@@ -226,3 +226,100 @@ Prohibited practices (Article 5) became enforceable Feb 2, 2025. Full enforcemen
 
 *Source*: EU Digital Strategy, LegalNodes 2026, Quinn Emanuel briefing.
 
+---
+
+## 2026-04-15 — CTO Review (Wed)
+
+**Lens**: Technical descriptions accuracy, deployment options, model versions, architecture
+
+---
+
+### ✅ Fixed: Anthropic Claude — Context Window Outdated (200K → 1M)
+**Status**: Applied (`seed-enrichment-top10.ts` updated)
+**File**: `src/data/seed-enrichment-top10.ts` (Anthropic entry, `description` and `useCases`)
+
+Anthropic made the 1M token context window available at standard pricing (no premium) for all Opus 4.6 and Sonnet 4.6 users on March 13, 2026. Two fields still referenced "200K tokens" / "200K context window":
+- `description`: Updated "200K tokens" → "1M tokens as of March 2026"
+- `useCases`: Updated "Document analysis and summarization (200K context window)" → "(1M token context window — standard as of March 2026)"
+
+*Note*: The older `seed-vendors.ts` description also says "200K+ context" but this is superseded by the enrichment file on seed runs — no separate fix needed, but worth knowing if running seed-vendors.ts in isolation.
+
+*Source*: Anthropic announcement (March 13, 2026), winbuzzer.com/anthropic-drops-long-context-premium, siliconangle.com Claude Opus 4.6 context article.
+
+---
+
+### 🟡 Suggestion: Mistral AI — Small 4 + Ministral 3 Not in Profile
+**Status**: CEO review needed (follow-up to 2026-04-12 Mistral product gap entry)
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry)
+
+Two additional model families from early 2026 are missing from the profile (the Apr-12 review noted Mistral 3 / Devstral 2 / Voxtral but missed these):
+
+- **Mistral Small 4** (2026): 119B params, 256K context window, unifies reasoning (Magistral), multimodal vision (Pixtral), and agentic coding (Devstral) into one model. Open-source. Claimed "most capable open-source model in its efficiency class." Changes the EU on-prem story: enterprise-class multimodal reasoning from a single open-weight model.
+- **Ministral 3** (2026): Three small dense models at 3B, 7B, and 14B parameters. Edge and on-prem deployment story — lowest-cost EU-sovereign inference. Not yet mentioned under deployment options.
+
+Suggest adding Ministral 3 to the "on-premises AI" use case bullet and noting Small 4 as a unified model tier in the description.
+
+*Source*: serenitiesai.com Mistral models 2026 guide, mistral.ai/models, siliconangle.com Mistral Small 4.
+
+---
+
+### 🟡 Suggestion: OpenAI — GPT-5.x Iterations Not Named; Stargate Norway Missing
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI entry, `name`, `description`, `euResidency`)
+
+Two technical updates worth surfacing:
+
+1. **GPT-5.x sub-versions**: OpenAI has shipped GPT-5.2, 5.3, and 5.4 as of April 2026. The entry name is "GPT-4o / GPT-5 Platform" — updating to reflect active GPT-5.x development cycle signals to buyers that OpenAI is in a rapid release cadence (relevant for regulated industries that need versioned certification). Low-priority rename but keeps the platform accurate.
+
+2. **Stargate Norway EU compute** ($1B, Narvik facility, 100,000 NVIDIA GPUs planned by end 2026): OpenAI's first owned EU sovereign compute capacity — currently referenced as "Stargate" in US context only. When this comes online it will change the direct-API EU residency story materially. Should be added to `euResidency` as a forward-looking note.
+
+*Source*: openai.com/index/introducing-gpt-5-2, openai.com GPT-5.4, cloudsummit.eu GPT-5 enterprise architecture analysis.
+
+---
+
+### 🟡 Suggestion: Gemini — Update Model Family Naming to Gemini 2.5
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (Google entry, `description`, `modelDocs`)
+
+The profile references "Gemini models" generically. As of April 2026, Gemini 2.5 Pro is GA on Vertex AI (with Gemini 2.5 Flash and Flash-Lite also GA). The context window is correctly listed as 1M+ tokens, but:
+
+- `description` could specify "Gemini 2.5 Pro/Flash" to be technically precise
+- `modelDocs` says "Gemini model cards published. Technical reports." — should reference "Gemini 2.5" family specifically
+- Note for procurement teams: Gemini 2.5 Pro has 1M token context now GA; 2M token context is "coming soon" per Google Cloud docs — this is a significant upcoming differentiator vs. Claude (currently 1M)
+
+*Source*: Google Cloud docs Gemini 2.5 Pro, cloud.google.com/blog Gemini 2.5 on Vertex AI GA announcement.
+
+---
+
+### 🟡 Suggestion: ServiceNow — AI Agent Architecture Significantly Outdated
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (ServiceNow entry, `description`, `useCases`, technical fields)
+
+ServiceNow's architecture has evolved substantially since the current profile was last updated (Feb 2026 per the assessment date). Key additions not in the profile:
+
+- **AI Agent Fabric**: Infrastructure layer connecting ServiceNow and third-party AI agents
+- **Agent2Agent (A2A) protocol**: Enables communication between ServiceNow agents and external AI agents
+- **Model Context Protocol (MCP)**: Integrated for tool/data context in agents — relevant for enterprise buyers evaluating MCP-compatible ecosystems
+- **AI Agent Orchestrator**: Coordinates multi-agent workflows across IT, HR, CRM, SecOps
+- **AI Control Tower**: Governance and monitoring across all agent activity (compliance-relevant)
+- **AI Agent Studio**: Natural-language interface to build custom agents (no-code entry point)
+
+These are architecturally significant for CTOs evaluating agentic AI infrastructure. The current profile mentions "virtual agent conversations" but doesn't reflect the multi-agent orchestration capability. This is a candidate for the next full assessment refresh.
+
+*Source*: servicenow.com/platform/now-assist.html, kellton.com ServiceNow Agentic AI 2026 guide.
+
+---
+
+### 🟡 Suggestion: Amazon Bedrock — Amazon Nova Models Not Listed
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (Bedrock entry, `description`, `useCases`)
+
+Amazon Bedrock has added Amazon Nova as a first-party model family — not mentioned anywhere in the profile. Nova 2 Lite, Nova Micro, and Nova Pro are available in EU inference profiles (Frankfurt, Ireland, Paris, Stockholm, Milan, Spain). For EU buyers, Nova models are relevant because:
+- First-party AWS models = single DPA (no third-party model subprocessor)
+- Available in EU inference profiles with guaranteed regional processing
+- Competitive pricing vs. Claude/Gemini on Bedrock
+
+Also: December 2025 expansion added 18 new open-weight models (including Mistral Large 3, Ministral 3, Voxtral) to Bedrock. The multi-model breadth story should be refreshed in the description.
+
+*Source*: aws.amazon.com Bedrock open-weight models announcement (Dec 2025), modelavailability.com EU Frankfurt Bedrock models, aws.amazon.com Bedrock EU Milan/Spain regions (March 2025).
+

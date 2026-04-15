@@ -110,7 +110,7 @@ const systems = [
     type: "Foundation Model Platform",
     risk: "High",
     description:
-      "Safety-first foundation model with Constitutional AI. Best-in-class for coding (80.9% SWE-bench), writing quality, and long-context tasks (200K tokens). No EU entity — EU deployment requires AWS Bedrock or GCP Vertex AI for data residency. Strong certifications including rare ISO 42001 (AI Management Systems). Enterprise plan requires 70-user minimum.",
+      "Safety-first foundation model with Constitutional AI. Best-in-class for coding (80.9% SWE-bench), writing quality, and long-context tasks (1M tokens as of March 2026). No EU entity — EU deployment requires AWS Bedrock or GCP Vertex AI for data residency. Strong certifications including rare ISO 42001 (AI Management Systems). Enterprise plan requires 70-user minimum.",
     category: "Financial",
     featured: true,
     capabilityType: "generative-ai",
@@ -128,7 +128,7 @@ const systems = [
     customerStories:
       "GitLab integrated Claude for DevSecOps workflows. 54% enterprise developer market share for Claude Code. Revenue approaching $14B run rate (early 2026).",
     useCases:
-      "Document analysis and summarization (200K context window)\nCode generation and review (strongest coding benchmarks)\nResearch and data extraction\nCustomer support automation\nContent creation and editing\nComplex reasoning and multi-step analysis\nEnterprise agents via Claude Cowork (Feb 2026)\nMCP-powered tool integrations",
+      "Document analysis and summarization (1M token context window — standard as of March 2026)\nCode generation and review (strongest coding benchmarks)\nResearch and data extraction\nCustomer support automation\nContent creation and editing\nComplex reasoning and multi-step analysis\nEnterprise agents via Claude Cowork (Feb 2026)\nMCP-powered tool integrations",
     dataStorage:
       "Direct API: US-based by default. 'inference_geo' parameter supports only 'us' and 'global' — with 'global', inference may run in Europe but is NOT guaranteed. Workspace data storage is US-only. Via AWS Bedrock: Frankfurt, Paris, Stockholm + 3 EU regions. Via GCP Vertex AI: 10 EU regions. Both guarantee data stays within EU borders.",
     dataProcessing:
