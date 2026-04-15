@@ -1,6 +1,6 @@
 {
   "common": {
-    "home": "Accueil",
+    "home": "Home",
     "database": "Base de données IA",
     "regulations": "Réglementations",
     "industries": "Secteurs",
@@ -22,7 +22,7 @@
     "system": "système",
     "criteria": "critères",
     "effective": "En vigueur",
-    "search": "Rechercher",
+    "search": "Search",
     "filter": "Filtrer",
     "all": "Tous",
     "high": "Haut",
@@ -66,7 +66,7 @@
     "healthcare": "Santé",
     "insurance": "Assurance",
     "publicSector": "Secteur public",
-    "hr": "RH"
+    "hr": "HR"
   },
   "howItWorks": {
     "title": "Comment ça marche",
@@ -84,7 +84,7 @@
     "title": "Intelligence de conformité IA",
     "subtitle": "Digest hebdomadaire des nouvelles évaluations, changements réglementaires et analyses de conformité.",
     "placeholder": "Entrez votre email professionnel",
-    "button": "S'abonner",
+    "button": "Subscribe",
     "disclaimer": "Pas de spam. Désabonnement à tout moment. Conforme au RGPD."
   },
   "frameworks": {
@@ -141,8 +141,8 @@
     "modelDocs": "Documentation du modèle",
     "explainability": "Explicabilité",
     "biasTesting": "Tests de biais",
-    "aiAct": "AI Act de l'UE",
-    "gdpr": "RGPD",
+    "aiAct": "EU AI Act",
+    "gdpr": "GDPR",
     "euResidency": "Résidence des données UE",
     "euPresence": "Présence UE"
   },
@@ -228,81 +228,81 @@
     "aboutUs": "À propos",
     "copyright": "© 2026 AI Compass EU. Tous droits réservés.",
     "disclaimer": "Avertissement : AI Compass EU fournit des informations à des fins éducatives et professionnelles. Nos évaluations sont basées sur des informations publiques et ne constituent pas un avis juridique.",
-    "aiTransparencyTitle": "AI Transparency Notice",
-    "aiTransparencyBody": "This platform uses AI (Anthropic Claude) for its chatbot assistant and comparison tool. AI-generated responses are grounded in our assessed database and clearly labelled. No personal data is used for AI model training. All AI features comply with the EU AI Act transparency obligations (Article 50) and GDPR requirements for automated processing.",
-    "security": "Security",
-    "incidentResponse": "Incident Response",
-    "terms": "Terms",
+    "aiTransparencyTitle": "Avis de transparence IA",
+    "aiTransparencyBody": "Cette plateforme utilise l'IA (Anthropic Claude) pour son assistant chatbot et son outil de comparaison. Les réponses générées par l'IA sont fondées sur notre base de données évaluée et clairement identifiées. Aucune donnée personnelle n'est utilisée pour l'entraînement du modèle IA. Toutes les fonctionnalités IA sont conformes aux obligations de transparence de l'EU AI Act (Article 50) et aux exigences du GDPR pour le traitement automatisé.",
+    "security": "Sécurité",
+    "incidentResponse": "Gestion des incidents",
+    "terms": "Conditions",
     "contact": "Contact",
-    "disclaimerTitle": "Disclaimer"
+    "disclaimerTitle": "Clause de non-responsabilité"
   },
   "evidenceBanner": {
-    "title": "Preview — evidence sources under verification",
-    "body": "Claims on this page are being re-verified against each vendor's trust centre, DPA, sub-processor list, and certification registries. Every claim will carry a source link and verification date once the backfill is complete. If you rely on this data for a procurement decision today, verify independently against the vendor's source documents.",
-    "learnMore": "Our sourcing methodology"
+    "title": "Aperçu — sources de preuves en vérification",
+    "body": "Les affirmations de cette page sont en cours de re-vérification par rapport au centre de confiance de chaque vendeur, aux DPA, aux listes de sous-traitants et aux registres de certification. Chaque affirmation sera accompagnée d'un lien source et d'une date de vérification une fois la vérification complète. Si vous vous fiez à ces données pour une décision d'approvisionnement dès aujourd'hui, vérifiez indépendamment par rapport aux documents sources du vendeur.",
+    "learnMore": "Notre méthodologie de sourcing"
   },
   "evidence": {
-    "sources": "Evidence sources",
-    "sourceLink": "View source",
-    "verifiedOn": "Verified on",
-    "stale": "Needs review",
-    "unverified": "Unverified",
-    "reportIssue": "Report outdated information",
-    "tierLabel": "Tier {tier}",
-    "tier1": "Trust portal / DPA / sub-processors",
-    "tier2": "Vendor documentation",
-    "tier3": "Third-party certification registry",
-    "tier4": "Regulatory filing / incident report"
+    "sources": "Sources de preuves",
+    "sourceLink": "Afficher la source",
+    "verifiedOn": "Vérifiée le",
+    "stale": "À réviser",
+    "unverified": "Non vérifiée",
+    "reportIssue": "Signaler les informations obsolètes",
+    "tierLabel": "Niveau {tier}",
+    "tier1": "Portail de confiance / DPA / sous-traitants",
+    "tier2": "Documentation du vendeur",
+    "tier3": "Registre de certification tiers",
+    "tier4": "Dépôt réglementaire / rapport d'incident"
   },
   "nav": {
-    "newsfeed": "Newsfeed",
+    "newsfeed": "Fil d'actualité",
     "plans": "Plans",
-    "tools": "Tools",
-    "compare": "Compare",
-    "compareDesc": "Side-by-side system comparison",
-    "checklist": "Checklist",
-    "checklistDesc": "Compliance checklist generator",
-    "rfpEngine": "RFP Engine",
-    "rfpEngineDesc": "Answer vendor RFPs with pre-filled responses",
-    "meetingPrep": "Meeting Prep",
-    "meetingPrepDesc": "Vendor meeting briefing kit",
-    "reports": "Reports",
-    "reportsDesc": "Research reports & white papers",
+    "tools": "Outils",
+    "compare": "Comparer",
+    "compareDesc": "Comparaison côte à côte des systèmes",
+    "checklist": "Liste de contrôle",
+    "checklistDesc": "Générateur de liste de conformité",
+    "rfpEngine": "Moteur RFP",
+    "rfpEngineDesc": "Répondre aux RFP des fournisseurs avec des réponses pré-remplies",
+    "meetingPrep": "Préparation de réunion",
+    "meetingPrepDesc": "Kit de présentation pour réunion avec fournisseur",
+    "reports": "Rapports",
+    "reportsDesc": "Rapports de recherche et livres blancs",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Fermer"
   },
   "meta": {
     "home": {
-      "title": "AI Compass EU — AI Intelligence for European Decision-Makers",
-      "description": "Comprehensive, independent assessments of AI systems across the European Union — mapped against the AI Act, GDPR, DORA, and sector-specific regulations."
+      "title": "AI Compass EU — Intelligence IA pour les décideurs européens",
+      "description": "Évaluations complètes et indépendantes des systèmes IA dans l'Union européenne — alignées sur l'AI Act, le GDPR, DORA et les règlementations sectorielles."
     },
     "database": {
-      "title": "AI Database",
-      "description": "Browse and search AI systems rated for European compliance. Filter by risk level, industry, regulation, and compliance score."
+      "title": "Base de données IA",
+      "description": "Parcourez et recherchez les systèmes IA évalués pour la conformité européenne. Filtrez par niveau de risque, secteur d'activité, règlementation et score de conformité."
     },
     "pricing": {
-      "title": "Pricing",
-      "description": "Simple, transparent pricing for AI compliance intelligence. Free tier available; Pro from EUR 19/month."
+      "title": "Tarification",
+      "description": "Tarification simple et transparente pour l'intelligence de conformité IA. Offre gratuite disponible ; Pro à partir de EUR 19/mois."
     },
     "about": {
-      "title": "About",
-      "description": "AI Compass EU is the independent European reference for AI tool intelligence — serving DPOs, CISOs, and compliance professionals."
+      "title": "À propos",
+      "description": "AI Compass EU est la référence indépendante européenne pour l'intelligence des outils IA — au service des DPO, CISO et professionnels de la conformité."
     },
     "methodology": {
-      "title": "Methodology",
-      "description": "How we rate AI systems against EU regulations. Transparent, multi-framework assessment with evidence references."
+      "title": "Méthodologie",
+      "description": "Comment nous évaluons les systèmes IA par rapport aux règlementations européennes. Évaluation transparente multi-cadre avec références probantes."
     },
     "reports": {
-      "title": "Reports & White Papers",
-      "description": "Free research reports on AI adoption, compliance, data privacy, and security in Europe. Expert analysis for DPOs, CISOs, and compliance professionals."
+      "title": "Rapports et livres blancs",
+      "description": "Rapports de recherche gratuits sur l'adoption de l'IA, la conformité, la protection des données et la sécurité en Europe. Analyse d'experts pour les DPO, CISO et professionnels de la conformité."
     },
     "regulations": {
-      "title": "Regulations",
-      "description": "The major European regulatory frameworks for AI — AI Act, GDPR, DORA, NIS2, sector rules — with requirements, timelines, and penalties."
+      "title": "Règlementations",
+      "description": "Les principaux cadres réglementaires européens pour l'IA — AI Act, GDPR, DORA, NIS2, règles sectorielles — avec exigences, calendriers et pénalités."
     },
     "industries": {
-      "title": "Industries",
-      "description": "AI systems by sector. Tailored compliance insights for financial services, healthcare, public sector, HR, manufacturing, and more."
+      "title": "Secteurs d'activité",
+      "description": "Systèmes IA par secteur. Perspectives de conformité adaptées aux services financiers, santé, secteur public, RH, fabrication et autres."
     }
   }
 }
