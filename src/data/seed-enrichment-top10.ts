@@ -144,7 +144,7 @@ const systems = [
     dataPortability:
       "API-based access. No proprietary lock-in to Anthropic format. Conversation export available. MCP (Model Context Protocol) is open standard — partially mitigates lock-in. However, Claude Marketplace centralizes billing and partner relationships.",
     exitTerms:
-      "Enterprise: 70-user minimum, 12-month contract. Data deleted upon termination. No long-term retention. SCIM requires Enterprise tier (not available on Team plan).",
+      "Enterprise: 70-user minimum, 12-month contract. Data deleted upon termination. No long-term retention. SCIM requires Enterprise tier (not available on Team plan). PRICING CHANGE (April 15, 2026): Anthropic switched from flat fee (~$200/user/month) to usage-based billing — $20/seat/month base + standard API rates on top. Could triple costs for heavy users vs. prior flat-rate plans. Evaluate TCO carefully before renewal.",
     ipTerms: "Customer retains all IP in inputs and outputs.",
     certifications:
       "SOC 2 Type II. ISO 27001:2022. ISO/IEC 42001:2023 (AI Management Systems — rare, few vendors have this). HIPAA BAA available. No EU-specific C5 or ENS certification.",
@@ -298,7 +298,7 @@ const systems = [
     dataPortability:
       "Full data export via Azure APIs and portal in standard formats. Microsoft 365: data export tools available. Graph API for programmatic access. Migration tools for moving between cloud providers.",
     exitTerms:
-      "30-day post-termination data retrieval. Data deletion confirmed. Microsoft 365: data retention per contract. Copilot: $30/user/month for M365 Copilot (additional to M365 license).",
+      "30-day post-termination data retrieval. Data deletion confirmed. Microsoft 365: data retention per contract. Copilot pricing (2026): Add-on $18/user/month for existing M365 subscribers. New M365 E7 'Frontier Suite' at $99/user/month (annual, from May 1, 2026) bundles M365 E5 + Copilot + Entra Suite + Agent 365 (15% discount vs. buying separately). M365 suite pricing increases July 1, 2026. Enterprise Copilot requires 300-seat minimum commitment.",
     ipTerms:
       "Customer retains all IP in inputs and outputs. Copilot Copyright Commitment — Microsoft assumes legal risk for copyright claims on Copilot outputs.",
     certifications:

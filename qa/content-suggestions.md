@@ -323,3 +323,105 @@ Also: December 2025 expansion added 18 new open-weight models (including Mistral
 
 *Source*: aws.amazon.com Bedrock open-weight models announcement (Dec 2025), modelavailability.com EU Frankfurt Bedrock models, aws.amazon.com Bedrock EU Milan/Spain regions (March 2025).
 
+---
+
+## 2026-04-16 — Procurement Review (Thu)
+
+**Lens**: Pricing accuracy, contract terms, TCO considerations
+
+---
+
+### ✅ Fixed: Anthropic Claude Enterprise — Usage-Based Billing Shift (April 15, 2026)
+**Status**: Applied (`seed-enrichment-top10.ts` updated, `exitTerms` field)
+**File**: `src/data/seed-enrichment-top10.ts` (Anthropic entry)
+
+On April 15, 2026 (yesterday), Anthropic changed its Claude Enterprise pricing from a flat fee (~$200/user/month) to usage-based billing: **$20/seat/month base + standard API rates** on top. This is the single largest procurement change across any vendor this week. Key implications:
+- Could **triple costs** for heavy-usage enterprise customers vs. prior flat-rate plans
+- Lighter users may benefit (pay only for what they use)
+- Plan includes: extended context (500K tokens on Sonnet 4.6, 1M with Claude Code), audit logs, SCIM, Compliance API, IP allowlisting, HIPAA readiness
+- Announced reason: prior model had some users hitting limits while others underused their allocation
+
+Updated `exitTerms` to reflect the new pricing structure with a procurement warning.
+
+*Source*: Anthropic announcement (April 15, 2026), PYMNTS.com, Kingy AI, Gurufocus.
+
+---
+
+### ✅ Fixed: Microsoft Copilot — Pricing Stale ($30 → $18 add-on, new E7 Suite)
+**Status**: Applied (`seed-enrichment-top10.ts` updated, `exitTerms` field)
+**File**: `src/data/seed-enrichment-top10.ts` (Microsoft entry)
+
+The `exitTerms` field listed `$30/user/month for M365 Copilot` — this is outdated. Corrected:
+- **Current add-on**: $18/user/month (for existing M365 subscribers)
+- **New M365 E7 "Frontier Suite"**: $99/user/month (annual), launching **May 1, 2026** — bundles M365 E5 + Copilot + Entra Suite + Agent 365 at 15% discount vs. buying separately
+- **Enterprise minimum**: 300-seat commitment required for Copilot
+- **M365 suite pricing increases**: July 1, 2026 across Business/Enterprise/Frontline tiers
+
+Updated `exitTerms` to reflect current and upcoming pricing.
+
+*Source*: Microsoft 365 Blog (Dec 2025), ngenioussolutions.com (July 2026 price changes), techjacksolutions.com Copilot pricing 2026.
+
+---
+
+### 🟡 Suggestion: Salesforce Agentforce — Pricing Model Completely Restructured
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-batch3.ts` or Salesforce entry in enrichment files
+
+Salesforce Agentforce has now shipped **3 different pricing models** in ~18 months. Current state (2026):
+1. **Flex Credits**: $0.10/action (20 credits/action, $500/100K credits)
+2. **Conversation-based**: $2/conversation
+3. **Per-user licensing (NEW)**: Agentforce add-on **$125/user/month**; Agentforce 1 Editions **$550+/user/month**
+
+**Adoption concern**: Only ~8,000 of Salesforce's 150,000+ customers have adopted Agentforce — price cited as major impediment. This is a significant competitive positioning data point.
+
+Recommend updating the Salesforce entry to note: (1) pricing model instability as a TCO risk, (2) low adoption rate as a market signal, (3) per-user add-on pricing vs. consumption-based alternatives.
+
+*Source*: SaaStr (Salesforce 3 pricing models), jitendrazaa.com (Agentforce credits guide 2026), eesel.ai (pricing breakdown).
+
+---
+
+### 🟡 Suggestion: Google Workspace — Pricing Increase + Gemini Add-on Eliminated
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (Google entry) or `seed-enrichment-batch3.ts`
+
+Two significant Google pricing changes not in the current profile:
+1. **Workspace prices raised 17-22%** across all Business and Enterprise tiers — Gemini AI features bundled in as justification
+2. **Standalone Gemini Business and Gemini Enterprise add-ons eliminated** for new purchases — replaced by bundled plans (existing customers can keep them)
+3. **Vertex AI Model Optimizer** began charging (previously free) as of April 16, 2026
+
+For EU enterprise procurement teams: Google Workspace TCO has increased, but the bundling may simplify licensing. The elimination of the standalone Gemini add-on changes negotiation leverage.
+
+*Source*: redresscompliance.com Google Workspace Enterprise guide 2026, finout.io Gemini pricing 2026, Google Cloud Vertex AI release notes.
+
+---
+
+### 🟡 Suggestion: OpenAI — New 6-Tier Subscription Structure (2026)
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI entry) / `seed-new-content-2026.ts`
+
+OpenAI now has 6 subscription tiers (up from 4): Free, Go ($8/mo), Plus ($20/mo), Pro ($200/mo), Business ($25/user/month annual), Enterprise (custom). The Business plan minimum dropped to 2 users. GPT-5.4 API pricing: $2.50/M input tokens, $15/M output tokens. Codex pricing updated April 2, 2026 to per-token model.
+
+Model retirement timelines relevant for enterprise contracts:
+- GPT-5.2 Thinking: fully retired June 5, 2026
+- GPT-4o: fully retired across all plans April 3, 2026
+
+EU enterprise buyers should note: "Go" tier at $8/month is new lower entry point — relevant for pilot/POC budget planning.
+
+*Source*: openai.com/business/chatgpt-pricing, finout.io OpenAI pricing 2026, help.openai.com Codex rate card.
+
+---
+
+### ℹ️ Verified: Mistral AI — API Pricing Competitive vs. US Peers
+**Status**: No change needed
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry)
+
+Current Mistral API pricing confirmed accurate for 2026:
+- Mistral Small 3.1: $0.10/$0.30 per M tokens (input/output)
+- Mistral Medium 3: $0.40/$2.00 per M tokens
+- Mistral Large 3: $0.50/$1.50 per M tokens (cheaper output than Google 1.5 Pro at $7.50/M)
+- Enterprise contracts: ~$20K+/month entry point with private/on-prem deployment options
+
+The `description` field already notes Mistral is "significantly cheaper than OpenAI/Anthropic on API pricing" — confirmed accurate. No update needed.
+
+*Source*: costbench.com Mistral AI 2026, pricepertoken.com Mistral models.
+
