@@ -106,18 +106,18 @@ const riskStyles: Record<string, string> = {
   Minimal: "bg-green-100 text-green-700 border-green-200",
 };
 
-const capabilityLabels: Record<string, string> = {
-  "generative-ai": "Generative AI",
-  "supervised-ml": "Supervised Machine Learning",
-  "unsupervised-ml": "Unsupervised Machine Learning",
-  "conversational-ai": "Conversational AI",
-  "autonomous-agents": "Autonomous AI Agents",
-  "search-retrieval": "AI Search & Retrieval",
-  "computer-vision": "Computer Vision",
-  "decision-intelligence": "Decision Intelligence",
-  "nlp": "Natural Language Processing",
-  "ai-infrastructure": "AI Infrastructure",
-  "cybersecurity-ai": "Cybersecurity AI",
+const capabilityKeys: Record<string, string> = {
+  "generative-ai": "system.capability.generativeAi",
+  "supervised-ml": "system.capability.supervisedMl",
+  "unsupervised-ml": "system.capability.unsupervisedMl",
+  "conversational-ai": "system.capability.conversationalAi",
+  "autonomous-agents": "system.capability.autonomousAgents",
+  "search-retrieval": "system.capability.searchRetrieval",
+  "computer-vision": "system.capability.computerVision",
+  "decision-intelligence": "system.capability.decisionIntelligence",
+  "nlp": "system.capability.nlp",
+  "ai-infrastructure": "system.capability.aiInfrastructure",
+  "cybersecurity-ai": "system.capability.cybersecurityAi",
 };
 
 // ─── Accordion Section ──────────────────────────────────
@@ -209,13 +209,13 @@ const icons = {
 
 // ─── Main Component ─────────────────────────────────────
 
-// Dimension labels for the spider chart
-const DIMENSION_CONFIG: { key: string; label: string; grade: (v: number) => string }[] = [
-  { key: "compliance", label: "Regulatory Compliance", grade: numToGrade },
-  { key: "security", label: "Security Posture", grade: numToGrade },
-  { key: "maturity", label: "Vendor Maturity", grade: numToGrade },
-  { key: "sovereignty", label: "Data Sovereignty", grade: numToGrade },
-  { key: "transparency", label: "AI Transparency", grade: numToGrade },
+// Dimension keys for the spider chart — labels resolved via t() at render time
+const DIMENSION_KEYS: { key: string; labelKey: string; grade: (v: number) => string }[] = [
+  { key: "compliance", labelKey: "system.dimension.compliance", grade: numToGrade },
+  { key: "security", labelKey: "system.dimension.security", grade: numToGrade },
+  { key: "maturity", labelKey: "system.dimension.maturity", grade: numToGrade },
+  { key: "sovereignty", labelKey: "system.dimension.sovereignty", grade: numToGrade },
+  { key: "transparency", labelKey: "system.dimension.transparency", grade: numToGrade },
 ];
 
 function numToGrade(v: number): string {
@@ -232,17 +232,17 @@ function numToGrade(v: number): string {
 }
 
 export default function SystemDetailClient({ system, overall, locale, dimensionScores, claims = [] }: Props) {
-  const capLabel = capabilityLabels[system.capabilityType] || system.type;
   const t = useT();
+  const capLabel = capabilityKeys[system.capabilityType] ? t(capabilityKeys[system.capabilityType]) : system.type;
   const hasClaims = claims.length > 0;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-gray-400">
-        <Link href={`/${locale}`} className="hover:text-[#003399]">Home</Link>
+        <Link href={`/${locale}`} className="hover:text-[#003399]">{t("system.breadcrumb.home")}</Link>
         <span className="mx-2">/</span>
-        <Link href={`/${locale}/database`} className="hover:text-[#003399]">Database</Link>
+        <Link href={`/${locale}/database`} className="hover:text-[#003399]">{t("system.breadcrumb.database")}</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-600">{system.name}</span>
       </nav>
@@ -271,12 +271,12 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
                 position="bottom"
               >
                 <span className={`cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${riskStyles[system.risk] || riskStyles.Limited}`}>
-                  {system.risk} Risk ⓘ
+                  {t("system.riskLabel").replace("{risk}", system.risk)} ⓘ
                 </span>
               </Tooltip>
               {system.vendorHq && (
                 <span className="rounded-full bg-white/10 border border-white/20 px-2.5 py-0.5 text-xs text-blue-200">
-                  HQ: {system.vendorHq}
+                  {t("system.hqLabel").replace("{location}", system.vendorHq)}
                 </span>
               )}
             </div>
@@ -286,8 +286,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
               {overall}
             </span>
             <div className="text-right">
-              <p className="text-xs text-blue-200">Overall</p>
-              <p className="text-xs text-blue-200">Score</p>
+              <p className="text-xs text-blue-200">{t("system.overallScore")}</p>
             </div>
           </div>
         </div>
@@ -308,7 +307,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
                 <h2 className="text-base font-bold text-emerald-900">{t("evidence.sources")}</h2>
               </div>
               <p className="mt-1 text-xs text-emerald-800/80 max-w-2xl">
-                {claims.length} claim{claims.length === 1 ? "" : "s"} · every value below links to the original source and the date we verified it
+                {t("system.claimCount").replace("{count}", String(claims.length)).replace("{claims}", claims.length === 1 ? t("system.claimSingular") : t("system.claimPlural"))}
               </p>
             </div>
             <a
@@ -353,12 +352,12 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
       {dimensionScores && (
         <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider text-center mb-4">
-            Compliance Overview
+            {t("system.complianceOverview")}
           </h2>
           <SpiderChart
-            dimensions={DIMENSION_CONFIG.map((d) => ({
+            dimensions={DIMENSION_KEYS.map((d) => ({
               id: d.key,
-              label: d.label,
+              label: t(d.labelKey),
               score: dimensionScores[d.key] || 0,
               grade: d.grade(dimensionScores[d.key] || 0),
             }))}
@@ -371,25 +370,25 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {system.euPresence && (
           <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">EU Presence</p>
+            <p className="text-[10px] font-semibold text-gray-400 uppercase">{t("system.quickFact.euPresence")}</p>
             <p className="mt-0.5 text-sm font-medium text-gray-800 line-clamp-2">{system.euPresence.split(".")[0]}</p>
           </div>
         )}
         {system.certifications && (
           <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">Certifications</p>
+            <p className="text-[10px] font-semibold text-gray-400 uppercase">{t("system.quickFact.certifications")}</p>
             <p className="mt-0.5 text-sm font-medium text-gray-800 line-clamp-2">{system.certifications.split(".")[0]}</p>
           </div>
         )}
         {system.euResidency && (
           <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">EU Data Residency</p>
+            <p className="text-[10px] font-semibold text-gray-400 uppercase">{t("system.quickFact.euDataResidency")}</p>
             <p className="mt-0.5 text-sm font-medium text-gray-800 line-clamp-2">{system.euResidency.split(".")[0]}</p>
           </div>
         )}
         {system.assessedAt && (
           <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">Last Assessed</p>
+            <p className="text-[10px] font-semibold text-gray-400 uppercase">{t("system.quickFact.lastAssessed")}</p>
             <p className="mt-0.5 text-sm font-medium text-gray-800">
               {new Date(system.assessedAt).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}
             </p>
@@ -418,9 +417,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
 
       {/* ── Score Dashboard ── */}
       <div className="mt-10">
-        <h2 className="text-lg font-bold text-gray-900">Compliance Scores</h2>
+        <h2 className="text-lg font-bold text-gray-900">{t("system.complianceScores")}</h2>
         <p className="mt-1 text-sm text-gray-500">
-          Each framework is assessed independently. Click to see the detailed breakdown.
+          {t("system.complianceScoresSubtitle")}
         </p>
 
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -435,7 +434,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
               </span>
               <div className="min-w-0">
                 <p className="text-sm font-semibold text-gray-900 group-hover:text-[#003399] truncate">{s.framework.name}</p>
-                <p className="text-[10px] text-gray-400">{s.framework.criteriaCount} criteria assessed</p>
+                <p className="text-[10px] text-gray-400">{t("system.criteriaAssessed").replace("{count}", String(s.framework.criteriaCount))}</p>
               </div>
             </Link>
           ))}
@@ -449,16 +448,16 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
 
       {/* ── Drill-Down Sections (Accordion) ── */}
       <div className="mt-10 space-y-3">
-        <h2 className="text-lg font-bold text-gray-900 mb-1">Detailed Profile</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-1">{t("system.detailedProfile")}</h2>
 
         {/* Data Handling — dim: sovereignty */}
         {(system.dataStorage || system.dataProcessing || system.trainingDataUse) && (
           <div id="dim-sovereignty" className="scroll-mt-24">
-            <AccordionSection title="Data Handling" icon={icons.data}>
-              <Field label="Storage Locations" value={system.dataStorage} />
-              <Field label="Processing Locations" value={system.dataProcessing} />
-              <Field label="Training Data Usage" value={system.trainingDataUse} />
-              <Field label="Subprocessors" value={system.subprocessors} />
+            <AccordionSection title={t("system.accordion.dataHandling")} icon={icons.data}>
+              <Field label={t("system.field.storageLocations")} value={system.dataStorage} />
+              <Field label={t("system.field.processingLocations")} value={system.dataProcessing} />
+              <Field label={t("system.field.trainingDataUsage")} value={system.trainingDataUse} />
+              <Field label={t("system.field.subprocessors")} value={system.subprocessors} />
             </AccordionSection>
           </div>
         )}
@@ -466,12 +465,12 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {/* Contractual — dim: maturity */}
         {(system.dpaDetails || system.slaDetails) && (
           <div id="dim-maturity" className="scroll-mt-24">
-            <AccordionSection title="Contractual Commitments" icon={icons.contract}>
-              <Field label="Data Processing Agreement" value={system.dpaDetails} />
-              <Field label="Service Level Agreements" value={system.slaDetails} />
-              <Field label="Data Portability" value={system.dataPortability} />
-              <Field label="Exit Terms" value={system.exitTerms} />
-              <Field label="IP Terms" value={system.ipTerms} />
+            <AccordionSection title={t("system.accordion.contractualCommitments")} icon={icons.contract}>
+              <Field label={t("system.field.dpa")} value={system.dpaDetails} />
+              <Field label={t("system.field.sla")} value={system.slaDetails} />
+              <Field label={t("system.field.dataPortability")} value={system.dataPortability} />
+              <Field label={t("system.field.exitTerms")} value={system.exitTerms} />
+              <Field label={t("system.field.ipTerms")} value={system.ipTerms} />
             </AccordionSection>
           </div>
         )}
@@ -479,10 +478,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {/* Security — dim: security */}
         {(system.certifications || system.encryptionInfo) && (
           <div id="dim-security" className="scroll-mt-24">
-            <AccordionSection title="Security Posture" icon={icons.security}>
-              <Field label="Certifications" value={system.certifications} />
-              <Field label="Encryption" value={system.encryptionInfo} />
-              <Field label="Access Controls" value={system.accessControls} />
+            <AccordionSection title={t("system.accordion.securityPosture")} icon={icons.security}>
+              <Field label={t("system.field.certifications")} value={system.certifications} />
+              <Field label={t("system.field.encryption")} value={system.encryptionInfo} />
+              <Field label={t("system.field.accessControls")} value={system.accessControls} />
             </AccordionSection>
           </div>
         )}
@@ -490,10 +489,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {/* AI Transparency — dim: transparency */}
         {(system.modelDocs || system.explainability) && (
           <div id="dim-transparency" className="scroll-mt-24">
-            <AccordionSection title="AI Transparency" icon={icons.transparency}>
-              <Field label="Model Documentation" value={system.modelDocs} />
-              <Field label="Explainability" value={system.explainability} />
-              <Field label="Bias Testing" value={system.biasTesting} />
+            <AccordionSection title={t("system.accordion.aiTransparency")} icon={icons.transparency}>
+              <Field label={t("system.field.modelDocumentation")} value={system.modelDocs} />
+              <Field label={t("system.field.explainability")} value={system.explainability} />
+              <Field label={t("system.field.biasTesting")} value={system.biasTesting} />
             </AccordionSection>
           </div>
         )}
@@ -501,11 +500,11 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {/* EU Compliance — dim: compliance */}
         {(system.aiActStatus || system.gdprStatus) && (
           <div id="dim-compliance" className="scroll-mt-24">
-            <AccordionSection title="EU Compliance Status" icon={icons.eu}>
-              <Field label="EU AI Act" value={system.aiActStatus} />
-              <Field label="GDPR" value={system.gdprStatus} />
-              <Field label="EU Data Residency" value={system.euResidency} />
-              <Field label="EU Presence" value={system.euPresence} />
+            <AccordionSection title={t("system.accordion.euComplianceStatus")} icon={icons.eu}>
+              <Field label={t("system.field.euAiAct")} value={system.aiActStatus} />
+              <Field label={t("system.field.gdpr")} value={system.gdprStatus} />
+              <Field label={t("system.field.euDataResidency")} value={system.euResidency} />
+              <Field label={t("system.field.euPresence")} value={system.euPresence} />
             </AccordionSection>
           </div>
         )}
@@ -513,22 +512,22 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
 
       {/* ── Procurement Tools CTA ── */}
       <div className="mt-10 rounded-xl border border-blue-100 bg-gradient-to-r from-blue-50 to-white p-6">
-        <h3 className="text-sm font-bold text-[#003399] mb-3">Procurement Tools for {system.vendor} {system.name}</h3>
+        <h3 className="text-sm font-bold text-[#003399] mb-3">{t("system.procurementTools").replace("{vendor}", system.vendor).replace("{name}", system.name)}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link href={`/${locale}/vendor-prep`}
             className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
             <span className="text-lg">🤝</span>
             <div>
-              <p className="font-medium text-gray-900">Meeting Prep</p>
-              <p className="text-xs text-gray-500">Vendor meeting briefing kit</p>
+              <p className="font-medium text-gray-900">{t("system.meetingPrep")}</p>
+              <p className="text-xs text-gray-500">{t("system.meetingPrepDesc")}</p>
             </div>
           </Link>
           <Link href={`/${locale}/compare`}
             className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-[#003399] hover:shadow-sm transition">
             <span className="text-lg">⚖️</span>
             <div>
-              <p className="font-medium text-gray-900">Compare</p>
-              <p className="text-xs text-gray-500">Side-by-side analysis</p>
+              <p className="font-medium text-gray-900">{t("system.compare")}</p>
+              <p className="text-xs text-gray-500">{t("system.compareDesc")}</p>
             </div>
           </Link>
         </div>
@@ -537,11 +536,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
       {/* ── Disclaimer ── */}
       <div className="mt-6 rounded-xl bg-amber-50 border border-amber-200 p-4">
         <p className="text-xs text-amber-800">
-          <strong>Assessment Disclaimer:</strong> Based on publicly available information as of the last review.
-          Scores reflect what can be verified from vendor documentation, trust centers, and public certifications.
-          For a verified assessment tailored to your use case,{" "}
+          <strong>{t("system.disclaimerTitle")}</strong> {t("system.disclaimerText")}{" "}
           <Link href={`/${locale}/contact?category=services`} className="underline hover:text-amber-900">
-            contact our consulting team
+            {t("system.disclaimerLink")}
           </Link>.
         </p>
       </div>

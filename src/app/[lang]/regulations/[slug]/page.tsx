@@ -20,6 +20,7 @@ import Header from "@/components/layout/Header";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 import FrameworkPillars from "@/components/ui/FrameworkPillars";
 import Footer from "@/components/layout/Footer";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -51,8 +52,13 @@ function renderMarkdown(md: string): string {
 
 export default async function FrameworkPage({ params }: PageProps) {
   const { lang, slug } = await params;
-  const framework = await getFrameworkBySlug(slug);
+  const locale = lang as Locale;
+  const [framework, dict] = await Promise.all([
+    getFrameworkBySlug(slug),
+    getDictionary(locale),
+  ]);
   if (!framework) notFound();
+  const t = (key: string) => key.split(".").reduce((o: Record<string, unknown>, k: string) => (o?.[k] as Record<string, unknown>) ?? {}, dict as unknown as Record<string, unknown>) as unknown as string;
 
   const badgeClass = BADGE_COLORS[framework.badgeType] || BADGE_COLORS.EU;
   const hasMeta = framework.issuingAuthority || framework.enforcementType || framework.maxPenalty;
@@ -65,9 +71,9 @@ export default async function FrameworkPage({ params }: PageProps) {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-8 text-sm text-gray-400">
-            <Link href="/" className="hover:text-[#003399]">Home</Link>
+            <Link href={`/${lang}`} className="hover:text-[#003399]">{t("common.home")}</Link>
             <span className="mx-2">/</span>
-            <Link href="/regulations" className="hover:text-[#003399]">Regulations</Link>
+            <Link href={`/${lang}/regulations`} className="hover:text-[#003399]">{t("common.regulations")}</Link>
             <span className="mx-2">/</span>
             <span className="text-gray-600">{framework.name}</span>
           </nav>
@@ -89,45 +95,45 @@ export default async function FrameworkPage({ params }: PageProps) {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {framework.issuingAuthority && (
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Issued by</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.issuedBy")}</span>
                     <p className="mt-0.5 text-sm text-gray-900">{framework.issuingAuthority}</p>
                   </div>
                 )}
                 {framework.enforcementType && (
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Type</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.type")}</span>
                     <p className="mt-0.5 text-sm text-gray-900">{framework.enforcementType}</p>
                   </div>
                 )}
                 {framework.maxPenalty && (
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Maximum Penalty</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.maxPenalty")}</span>
                     <p className="mt-0.5 text-sm font-semibold text-red-700">{framework.maxPenalty}</p>
                   </div>
                 )}
                 {framework.applicableRegions && (
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Applicable Regions</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.applicableRegions")}</span>
                     <p className="mt-0.5 text-sm text-gray-900">{framework.applicableRegions}</p>
                   </div>
                 )}
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Effective Date</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.effectiveDate")}</span>
                   <p className="mt-0.5 text-sm text-gray-900">{framework.effectiveDate}</p>
                 </div>
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Assessment Criteria</span>
-                  <p className="mt-0.5 text-sm text-gray-900">{framework.criteriaCount} criteria</p>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.assessmentCriteria")}</span>
+                  <p className="mt-0.5 text-sm text-gray-900">{framework.criteriaCount} {t("common.criteria")}</p>
                 </div>
               </div>
 
               {/* Applicable industries */}
               {framework.industries.length > 0 && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Applicable Industries</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t("frameworks.applicableIndustries")}</span>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {framework.industries.map((ind) => (
-                      <Link key={ind.id} href={`/industries/${ind.slug}`}
+                      <Link key={ind.id} href={`/${lang}/industries/${ind.slug}`}
                         className="rounded-full bg-white border border-gray-200 px-3 py-1 text-xs font-medium text-gray-700 hover:border-[#003399]/30">
                         {ind.name}
                       </Link>
@@ -141,7 +147,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <a href={framework.officialUrl} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm font-medium text-[#003399] hover:underline">
-                    View official regulation text
+                    {t("frameworks.officialText")}
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
@@ -154,7 +160,7 @@ export default async function FrameworkPage({ params }: PageProps) {
           {/* ── Purpose ── */}
           {framework.purpose && (
             <div className="mt-10">
-              <h2 className="text-xl font-bold text-gray-900">Purpose</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("frameworks.purpose")}</h2>
               <p className="mt-3 text-gray-600 leading-relaxed">{framework.purpose}</p>
             </div>
           )}
@@ -184,7 +190,7 @@ export default async function FrameworkPage({ params }: PageProps) {
           {hasSections && (
             <div className="mt-10">
               <h2 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-3">
-                Sections &amp; Requirements
+                {t("frameworks.sections")}
               </h2>
 
               <div className="mt-6 space-y-4">
@@ -195,7 +201,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                     subtitle={section.description}
                     badge={
                       <span className="rounded-full bg-gray-200 px-2 py-0.5 text-[10px] font-semibold text-gray-500">
-                        {section.statements.length} requirement{section.statements.length !== 1 ? "s" : ""}
+                        {section.statements.length} {section.statements.length !== 1 ? t("frameworks.requirements") : t("frameworks.requirement")}
                       </span>
                     }
                     defaultOpen={idx === 0}
@@ -214,7 +220,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                             </div>
                             {stmt.commentary && (
                               <div className="mt-3 rounded-lg bg-amber-50 border border-amber-100 px-4 py-3">
-                                <p className="text-xs font-semibold text-amber-700 mb-1">What this means for your organisation</p>
+                                <p className="text-xs font-semibold text-amber-700 mb-1">{t("frameworks.whatThisMeans")}</p>
                                 <p className="text-sm text-amber-900">{stmt.commentary}</p>
                               </div>
                             )}
@@ -225,7 +231,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                                   <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m9.86-1.135a4.5 4.5 0 0 0-1.242-7.244l-4.5-4.5a4.5 4.5 0 0 0-6.364 6.364l1.757 1.757" />
                                   </svg>
-                                  {stmt.sourceNote || "View source"}
+                                  {stmt.sourceNote || t("common.viewSource")}
                                 </a>
                               </div>
                             )}
@@ -244,7 +250,7 @@ export default async function FrameworkPage({ params }: PageProps) {
           {framework.scores.length > 0 && (
             <div className="mt-16">
               <h2 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-3">
-                Assessed AI Systems
+                {t("frameworks.assessedSystems")}
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {framework.scores.map((s) => (
@@ -267,7 +273,7 @@ export default async function FrameworkPage({ params }: PageProps) {
           {framework.changelog && framework.changelog.length > 0 && (
             <div className="mt-16">
               <h2 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-3">
-                Version History
+                {t("frameworks.versionHistory")}
               </h2>
               <div className="mt-4 space-y-3">
                 {framework.changelog.map((entry) => (
@@ -283,7 +289,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                       {entry.sourceUrl && (
                         <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer"
                           className="mt-1 inline-flex items-center gap-1 text-xs text-[#003399] hover:underline">
-                          {entry.sourceLabel || "Source"}
+                          {entry.sourceLabel || t("common.source")}
                           <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                           </svg>
@@ -298,7 +304,7 @@ export default async function FrameworkPage({ params }: PageProps) {
 
           {/* Last updated footer */}
           <div className="mt-12 pt-6 border-t border-gray-100 text-xs text-gray-400">
-            Last updated: {framework.updatedAt.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+            {t("common.lastUpdated")} {framework.updatedAt.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
           </div>
         </div>
       </main>

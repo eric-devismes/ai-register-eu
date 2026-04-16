@@ -3,7 +3,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
-import { getPageMetadata, type Locale } from "@/lib/i18n";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
   params,
@@ -14,126 +14,117 @@ export async function generateMetadata({
   return getPageMetadata(lang as Locale, "methodology");
 }
 
-const dimensions = [
+// Dimension config — names and criteria resolved via dictionary keys
+const dimensionConfig = [
   {
     number: 1,
-    name: "EU AI Act Readiness",
+    nameKey: "methodology.dim.euAiActReadiness",
     color: "#003399",
-    criteria: [
-      "Risk classification accuracy and documentation",
-      "Conformity assessment completion status",
-      "Technical documentation and record-keeping",
-      "Post-market monitoring procedures",
+    criteriaKeys: [
+      "methodology.criteria.euAiAct1",
+      "methodology.criteria.euAiAct2",
+      "methodology.criteria.euAiAct3",
+      "methodology.criteria.euAiAct4",
     ],
   },
   {
     number: 2,
-    name: "GDPR Compliance",
+    nameKey: "methodology.dim.gdprCompliance",
     color: "#0055cc",
-    criteria: [
-      "Lawful basis for data processing",
-      "Data subject rights implementation",
-      "Data Protection Impact Assessment (DPIA)",
-      "International transfer mechanisms",
+    criteriaKeys: [
+      "methodology.criteria.gdpr1",
+      "methodology.criteria.gdpr2",
+      "methodology.criteria.gdpr3",
+      "methodology.criteria.gdpr4",
     ],
   },
   {
     number: 3,
-    name: "Data Sovereignty",
+    nameKey: "methodology.dim.dataSovereignty",
     color: "#003399",
-    criteria: [
-      "EU/EEA data residency options",
-      "Jurisdictional data control guarantees",
-      "Sub-processor location transparency",
-      "Data portability and deletion capabilities",
+    criteriaKeys: [
+      "methodology.criteria.sovereignty1",
+      "methodology.criteria.sovereignty2",
+      "methodology.criteria.sovereignty3",
+      "methodology.criteria.sovereignty4",
     ],
   },
   {
     number: 4,
-    name: "Transparency & Explainability",
+    nameKey: "methodology.dim.transparencyExplainability",
     color: "#0055cc",
-    criteria: [
-      "Model documentation and data sheets",
-      "Decision explainability mechanisms",
-      "Audit trail completeness",
-      "User-facing transparency measures",
+    criteriaKeys: [
+      "methodology.criteria.transparency1",
+      "methodology.criteria.transparency2",
+      "methodology.criteria.transparency3",
+      "methodology.criteria.transparency4",
     ],
   },
   {
     number: 5,
-    name: "Security & Robustness",
+    nameKey: "methodology.dim.securityRobustness",
     color: "#003399",
-    criteria: [
-      "Cybersecurity certifications and practices",
-      "Adversarial robustness testing",
-      "Incident response procedures",
-      "NIS2 Directive alignment",
+    criteriaKeys: [
+      "methodology.criteria.security1",
+      "methodology.criteria.security2",
+      "methodology.criteria.security3",
+      "methodology.criteria.security4",
     ],
   },
   {
     number: 6,
-    name: "Bias & Fairness",
+    nameKey: "methodology.dim.biasFairness",
     color: "#0055cc",
-    criteria: [
-      "Bias testing across protected characteristics",
-      "Fairness metrics and thresholds",
-      "Ongoing monitoring and remediation",
-      "Training data diversity documentation",
+    criteriaKeys: [
+      "methodology.criteria.bias1",
+      "methodology.criteria.bias2",
+      "methodology.criteria.bias3",
+      "methodology.criteria.bias4",
     ],
   },
   {
     number: 7,
-    name: "Human Oversight",
+    nameKey: "methodology.dim.humanOversight",
     color: "#003399",
-    criteria: [
-      "Human-in-the-loop capability design",
-      "Override and intervention mechanisms",
-      "Meaningful human control provisions",
-      "Operator training and documentation",
+    criteriaKeys: [
+      "methodology.criteria.oversight1",
+      "methodology.criteria.oversight2",
+      "methodology.criteria.oversight3",
+      "methodology.criteria.oversight4",
     ],
   },
   {
     number: 8,
-    name: "Multilingual Quality",
+    nameKey: "methodology.dim.multilingualQuality",
     color: "#0055cc",
-    criteria: [
-      "Coverage of EU official languages",
-      "Performance parity across languages",
-      "Cultural appropriateness testing",
-      "Localization quality assurance",
+    criteriaKeys: [
+      "methodology.criteria.multilingual1",
+      "methodology.criteria.multilingual2",
+      "methodology.criteria.multilingual3",
+      "methodology.criteria.multilingual4",
     ],
   },
 ];
 
-const processSteps = [
-  {
-    step: "Evidence Collection",
-    description:
-      "We gather public documentation, vendor disclosures, certifications, and independent audit reports for each AI system.",
-  },
-  {
-    step: "Expert Assessment",
-    description:
-      "Domain experts evaluate each dimension using standardized rubrics with defined scoring criteria and evidence requirements.",
-  },
-  {
-    step: "Peer Review",
-    description:
-      "A second assessor independently reviews the scoring, and any disagreements are resolved through structured deliberation.",
-  },
-  {
-    step: "Score Calculation",
-    description:
-      "Weighted dimension scores are aggregated into an overall compliance score on a 0-100 scale, with confidence indicators.",
-  },
-  {
-    step: "Continuous Updates",
-    description:
-      "Scores are re-evaluated when regulations change, vendors update their practices, or new evidence becomes available.",
-  },
+// Process step keys
+const processStepKeys = [
+  { stepKey: "methodology.step.evidenceCollection", descKey: "methodology.step.evidenceCollectionDesc" },
+  { stepKey: "methodology.step.expertAssessment", descKey: "methodology.step.expertAssessmentDesc" },
+  { stepKey: "methodology.step.peerReview", descKey: "methodology.step.peerReviewDesc" },
+  { stepKey: "methodology.step.scoreCalculation", descKey: "methodology.step.scoreCalculationDesc" },
+  { stepKey: "methodology.step.continuousUpdates", descKey: "methodology.step.continuousUpdatesDesc" },
 ];
 
-export default function MethodologyPage() {
+export default async function MethodologyPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const locale = lang as Locale;
+  const dict = await getDictionary(locale);
+  const t = (key: string) => key.split(".").reduce((o: Record<string, unknown>, k: string) => (o?.[k] as Record<string, unknown>) ?? {}, dict as unknown as Record<string, unknown>) as unknown as string;
+
   return (
     <>
       <Header />
@@ -143,22 +134,20 @@ export default function MethodologyPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold text-[#ffc107] tracking-wide uppercase">
-                Methodology
+                {t("methodology.badge")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                Transparent Scoring Methodology
+                {t("methodology.heroTitle")}
               </h1>
               <p className="mt-4 text-lg text-blue-100 leading-relaxed">
-                Every rating on AI Compass EU is built on a transparent,
-                evidence-based methodology. Our 8 assessment dimensions cover the
-                full spectrum of European AI compliance requirements.
+                {t("methodology.heroSubtitle")}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="methodology/sourcing"
                   className="inline-flex items-center gap-2 rounded-lg bg-white text-[#003399] px-4 py-2 text-sm font-semibold hover:bg-gray-100"
                 >
-                  How we verify every claim
+                  {t("methodology.verifyLink")}
                   <span aria-hidden>→</span>
                 </Link>
               </div>
@@ -171,25 +160,24 @@ export default function MethodologyPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                Our Assessment Process
+                {t("methodology.processTitle")}
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                A rigorous, multi-step process ensures consistency, accuracy, and
-                fairness across all assessments.
+                {t("methodology.processSubtitle")}
               </p>
             </div>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-              {processSteps.map((item, index) => (
-                <div key={item.step} className="relative text-center">
+              {processStepKeys.map((item, index) => (
+                <div key={item.stepKey} className="relative text-center">
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#003399] text-lg font-bold text-white shadow-sm">
                     {index + 1}
                   </div>
                   <h3 className="mt-4 text-sm font-semibold text-[#0d1b3e]">
-                    {item.step}
+                    {t(item.stepKey)}
                   </h3>
                   <p className="mt-2 text-xs text-gray-600 leading-relaxed">
-                    {item.description}
+                    {t(item.descKey)}
                   </p>
                 </div>
               ))}
@@ -202,19 +190,18 @@ export default function MethodologyPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                8 Assessment Dimensions
+                {t("methodology.dimensionsTitle")}
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                Each AI system is evaluated across 8 weighted dimensions, with
-                specific criteria and evidence requirements for every score.
+                {t("methodology.dimensionsSubtitle")}
               </p>
             </div>
 
             <div className="mt-12 grid gap-4 sm:grid-cols-2">
-              {dimensions.map((dim) => (
+              {dimensionConfig.map((dim) => (
                 <CollapsibleSection
-                  key={dim.name}
-                  title={dim.name}
+                  key={dim.nameKey}
+                  title={t(dim.nameKey)}
                   badge={
                     <span
                       className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
@@ -225,12 +212,12 @@ export default function MethodologyPage() {
                   }
                 >
                   <ul className="px-6 py-4 space-y-2">
-                    {dim.criteria.map((criterion) => (
-                      <li key={criterion} className="flex items-start gap-2 text-sm text-gray-600">
+                    {dim.criteriaKeys.map((criterionKey) => (
+                      <li key={criterionKey} className="flex items-start gap-2 text-sm text-gray-600">
                         <svg className="h-4 w-4 shrink-0 mt-0.5 text-[#003399]/40" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                         </svg>
-                        {criterion}
+                        {t(criterionKey)}
                       </li>
                     ))}
                   </ul>
@@ -241,11 +228,10 @@ export default function MethodologyPage() {
             {/* Grading scale */}
             <div className="mt-16 mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
-                Grading Scale
+                {t("methodology.gradingTitle")}
               </h2>
               <p className="mt-4 text-sm text-gray-600">
-                Each dimension receives a letter grade from A+ (exemplary) to D (non-compliant),
-                weighted and aggregated into an overall score. All ratings include source references.
+                {t("methodology.gradingSubtitle")}
               </p>
             </div>
           </div>

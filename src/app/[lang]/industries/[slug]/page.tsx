@@ -12,13 +12,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { prisma } from "@/lib/db";
 import { computeOverallScore, gradeColor } from "@/lib/scoring";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
 export default async function IndustryDetailPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  const locale = lang as Locale;
+  const dict = await getDictionary(locale);
+  const t = (key: string) => key.split(".").reduce((o: Record<string, unknown>, k: string) => (o?.[k] as Record<string, unknown>) ?? {}, dict as unknown as Record<string, unknown>) as unknown as string;
 
   const industry = await prisma.industry.findUnique({
     where: { slug },
@@ -42,9 +46,9 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         <section className="bg-gradient-to-br from-[#0d1b3e] to-[#003399] text-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <nav className="mb-6 text-sm text-blue-200">
-              <Link href="/" className="hover:text-white">Home</Link>
+              <Link href={`/${lang}`} className="hover:text-white">{t("common.home")}</Link>
               <span className="mx-2">/</span>
-              <Link href="/industries" className="hover:text-white">Industries</Link>
+              <Link href={`/${lang}/industries`} className="hover:text-white">{t("common.industries")}</Link>
               <span className="mx-2">/</span>
               <span className="text-white">{industry.name}</span>
             </nav>
@@ -52,7 +56,7 @@ export default async function IndustryDetailPage({ params }: PageProps) {
               {industry.name}
             </h1>
             <p className="mt-4 text-lg text-blue-100">
-              {industry.systems.length} AI {industry.systems.length === 1 ? "system" : "systems"} assessed for this sector.
+              {t("browseIndustry.detailSubtitle").replace("{count}", String(industry.systems.length)).replace("{systems}", industry.systems.length === 1 ? t("browseIndustry.systemSingular") : t("browseIndustry.systemPlural"))}
             </p>
           </div>
         </section>
@@ -61,7 +65,7 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         <section className="py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {industry.systems.length === 0 ? (
-              <p className="text-center text-gray-500">No systems assessed for this industry yet.</p>
+              <p className="text-center text-gray-500">{t("common.noSystemsYet")}</p>
             ) : (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {industry.systems.map((system) => {
@@ -69,7 +73,7 @@ export default async function IndustryDetailPage({ params }: PageProps) {
                   return (
                     <Link
                       key={system.id}
-                      href={`/systems/${system.slug}`}
+                      href={`/${lang}/systems/${system.slug}`}
                       className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-[#003399]/30 hover:shadow-md"
                     >
                       <div className="flex items-start justify-between">

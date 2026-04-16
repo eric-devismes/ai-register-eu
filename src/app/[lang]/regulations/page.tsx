@@ -12,7 +12,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getPublishedFrameworks } from "@/lib/queries";
-import { getPageMetadata, type Locale } from "@/lib/i18n";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
   params,
@@ -35,7 +35,12 @@ export default async function RegulationsPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const frameworks = await getPublishedFrameworks();
+  const locale = lang as Locale;
+  const [frameworks, dict] = await Promise.all([
+    getPublishedFrameworks(),
+    getDictionary(locale),
+  ]);
+  const t = (key: string) => key.split(".").reduce((o: Record<string, unknown>, k: string) => (o?.[k] as Record<string, unknown>) ?? {}, dict as unknown as Record<string, unknown>) as unknown as string;
 
   return (
     <>
@@ -46,13 +51,13 @@ export default async function RegulationsPage({
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#ffc107]">
-                Regulatory Frameworks
+                {t("frameworks.title")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                EU Compliance Frameworks
+                {t("frameworks.euCompliance")}
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                {frameworks.length} frameworks that define AI compliance requirements in Europe.
+                {t("frameworks.heroSubtitle").replace("{count}", String(frameworks.length))}
               </p>
             </div>
           </div>
@@ -76,11 +81,11 @@ export default async function RegulationsPage({
                     {fw.description}
                   </p>
                   <div className="mt-4 flex items-center gap-4 text-xs text-gray-400">
-                    <span>{fw.criteriaCount} criteria</span>
-                    <span>Effective: {fw.effectiveDate}</span>
+                    <span>{fw.criteriaCount} {t("common.criteria")}</span>
+                    <span>{t("common.effective")}: {fw.effectiveDate}</span>
                   </div>
                   <p className="mt-4 text-sm font-semibold text-[#003399] group-hover:underline">
-                    Read documentation &rarr;
+                    {t("frameworks.readDocs")} &rarr;
                   </p>
                 </Link>
               ))}

@@ -12,7 +12,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getIndustriesWithCounts } from "@/lib/queries";
-import { getPageMetadata, type Locale } from "@/lib/i18n";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
   params,
@@ -23,8 +23,18 @@ export async function generateMetadata({
   return getPageMetadata(lang as Locale, "industries");
 }
 
-export default async function IndustriesPage() {
-  const industries = await getIndustriesWithCounts();
+export default async function IndustriesPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const locale = lang as Locale;
+  const [industries, dict] = await Promise.all([
+    getIndustriesWithCounts(),
+    getDictionary(locale),
+  ]);
+  const t = (key: string) => key.split(".").reduce((o: Record<string, unknown>, k: string) => (o?.[k] as Record<string, unknown>) ?? {}, dict as unknown as Record<string, unknown>) as unknown as string;
 
   return (
     <>
@@ -35,14 +45,13 @@ export default async function IndustriesPage() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#ffc107]">
-                Industries
+                {t("common.industries")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                AI Systems by Sector
+                {t("browseIndustry.heroTitle")}
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                Explore AI systems relevant to your industry with tailored compliance insights
-                across {industries.length} sectors.
+                {t("browseIndustry.heroSubtitle").replace("{count}", String(industries.length))}
               </p>
             </div>
           </div>
@@ -55,7 +64,7 @@ export default async function IndustriesPage() {
               {industries.map((ind) => (
                 <Link
                   key={ind.id}
-                  href={`/industries/${ind.slug}`}
+                  href={`/${lang}/industries/${ind.slug}`}
                   className="group flex flex-col items-center rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm transition hover:border-[#003399]/30 hover:shadow-md"
                 >
                   <span className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl text-2xl font-bold ${ind.colorClass}`}>
@@ -65,10 +74,10 @@ export default async function IndustriesPage() {
                     {ind.name}
                   </h2>
                   <p className="mt-1 text-sm text-gray-500">
-                    {ind._count.systems} {ind._count.systems === 1 ? "system" : "systems"} assessed
+                    {ind._count.systems} {ind._count.systems === 1 ? t("browseIndustry.systemAssessed") : t("browseIndustry.systemsAssessedPlural")}
                   </p>
                   <p className="mt-3 text-xs font-semibold text-[#003399] opacity-0 transition group-hover:opacity-100">
-                    View systems &rarr;
+                    {t("common.viewSystems")} &rarr;
                   </p>
                 </Link>
               ))}
