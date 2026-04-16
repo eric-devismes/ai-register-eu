@@ -10,8 +10,9 @@
 import { createContext, useContext, type ReactNode } from "react";
 import type { Locale } from "@/lib/i18n";
 
-// Dictionary type matches our JSON structure
-type Dict = Record<string, Record<string, string>>;
+// Dictionary type matches our JSON structure (may be nested up to 3 levels)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Dict = Record<string, any>;
 
 interface LocaleContextValue {
   locale: Locale;
@@ -57,8 +58,9 @@ export function useT() {
   const { dict } = useContext(LocaleContext);
 
   return function t(key: string, fallback?: string): string {
-    const [section, ...rest] = key.split(".");
-    const field = rest.join(".");
-    return dict?.[section]?.[field] || fallback || key;
+    const parts = key.split(".");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = parts.reduce((obj: any, k: string) => obj?.[k], dict);
+    return (typeof result === "string" && result) || fallback || key;
   };
 }
