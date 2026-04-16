@@ -107,7 +107,8 @@
     "heroSubtitle": "Avaliamos sistemas de IA contra {count} frameworks regulatórios europeus. Cada framework define requisitos específicos para conformidade com IA.",
     "effectiveDate": "Data de Entrada em Vigor",
     "requirement": "requisito",
-    "requirements": "requisitos"
+    "requirements": "requisitos",
+    "structure": "Estrutura"
   },
   "browseIndustry": {
     "title": "Procurar por Setor",
@@ -242,7 +243,7 @@
   },
   "database": {
     "title": "Procurar e Comparar Sistemas AI",
-    "badge": "AI Database",
+    "badge": "Base de Dados IA",
     "heroSubtitle": "{count} sistemas AI avaliados para conformidade europeia. Filtrar por nível de risco, setor e pontuação de conformidade.",
     "searchPlaceholder": "Procurar por nome, fornecedor ou tipo...",
     "found": "encontrado",
@@ -253,7 +254,7 @@
     "updated": "Atualizado",
     "system": "Sistema",
     "industries": "Setores",
-    "heroLabel": "AI Database",
+    "heroLabel": "Base de Dados IA",
     "heroTitle": "Procurar e Comparar Sistemas AI",
     "systemsFound": "{count} sistemas encontrados",
     "systemFound": "{count} sistema encontrado",
@@ -701,7 +702,7 @@
       "fullAccessNote": "Acesso completo a todos os relatórios, sistemas e ferramentas",
       "backToReports": "Voltar a Relatórios e White Papers"
     },
-    "badge": "Research",
+    "badge": "Investigação",
     "heroTitle": "Relatórios e White Papers",
     "heroSubtitle": "Pesquisa gratuita e aprofundada sobre adoção de IA, conformidade, privacidade de dados e segurança na Europa. Escrita para DPOs, CISOs e profissionais de conformidade que necessitam de inteligência acionável.",
     "freeAccessNotice": "{strong}Acesso gratuito{strongEnd} — crie uma conta para ler relatórios completos.",
@@ -720,7 +721,7 @@
     "categoryIndustry": "Análise do Sector"
   },
   "compare": {
-    "badge": "AI-Powered Matching",
+    "badge": "Matching Alimentado por IA",
     "heroTitle": "Encontre e Compare Sistemas de IA",
     "heroSubtitle": "Descreva o seu caso de uso em inglês simples. Obtenha recomendações de IA a partir da nossa base de dados de sistemas de IA empresariais avaliados e compare-os lado a lado contra critérios de conformidade da UE.",
     "freeNotice": "O acesso gratuito cobre as 5 plataformas de IA mais populares.",
@@ -758,7 +759,7 @@
     "capabilityDecision": "Inteligência de decisão",
     "capabilityWorkflow": "Automação de fluxos de trabalho",
     "capabilityCode": "Geração de código",
-    "capabilityAnalytics": "Analytics / BI",
+    "capabilityAnalytics": "Análise / BI",
     "loadingAnalyse": "Analisando o seu caso de uso contra a nossa base de dados de 50+ sistemas de IA…",
     "loadingCompare": "Carregando dados de comparação…",
     "aiAnalysis": "Análise de IA:",
@@ -851,7 +852,7 @@
     "fullAccessDesc": "Tem acesso completo a todos os sistemas de IA, ferramentas de comparação, exportações e alertas personalizados."
   },
   "vendorPrep": {
-    "badge": "Enterprise Tool",
+    "badge": "Ferramenta Enterprise",
     "heroTitle": "Preparação para Reunião com Fornecedor",
     "heroSubLabel": "Kit de Briefing de Reunião",
     "heroSubtitle": "Prepare-se para a sua próxima reunião com fornecedor com pontos de discussão gerados por IA, questões difíceis e inteligência de conformidade. Construído para o cliente, não para o fornecedor.",
@@ -1122,11 +1123,11 @@
   },
   "systemRoles": {
     "cisoLabel": "CISO",
-    "cisoTitle": "Chief Information Security Officer",
+    "cisoTitle": "Responsável pela Segurança da Informação",
     "dpoLabel": "DPO",
-    "dpoTitle": "Data Protection Officer",
+    "dpoTitle": "Encarregado de Proteção de Dados",
     "architectLabel": "Arquiteto",
-    "architectTitle": "Enterprise Architect",
+    "architectTitle": "Arquiteto Enterprise",
     "procurementLabel": "Aprovisionamento",
     "procurementTitle": "Responsável de Aprovisionamento",
     "keyDataPoints": "Pontos-chave para a perspetiva do {role}.",

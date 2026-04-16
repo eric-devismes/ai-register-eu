@@ -107,7 +107,8 @@
     "heroSubtitle": "Valutiamo sistemi AI rispetto a {count} framework normativi europei. Ogni framework definisce requisiti specifici per la conformità AI.",
     "effectiveDate": "Data di inizio validità",
     "requirement": "requisito",
-    "requirements": "requisiti"
+    "requirements": "requisiti",
+    "structure": "Struttura"
   },
   "browseIndustry": {
     "title": "Sfoglia per Settore",
@@ -750,7 +751,7 @@
     "industryHR": "HR",
     "deploymentAny": "Qualsiasi modalità di distribuzione",
     "deploymentCloud": "Solo cloud",
-    "deploymentSelfHosted": "Self-hosted",
+    "deploymentSelfHosted": "Auto-ospitato",
     "deploymentHybrid": "Ibrido",
     "capabilityAny": "Qualsiasi capacità",
     "capabilityConversational": "AI Conversazionale",

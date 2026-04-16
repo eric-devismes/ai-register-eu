@@ -107,7 +107,8 @@
     "heroSubtitle": "We beoordelen AI-systemen tegen {count} Europese regelgevingskaders. Elk kader definieert specifieke vereisten voor AI-naleving.",
     "effectiveDate": "Ingangsdatum",
     "requirement": "requirement",
-    "requirements": "requirements"
+    "requirements": "requirements",
+    "structure": "Structure"
   },
   "browseIndustry": {
     "title": "Bladeren op sector",
@@ -899,7 +900,7 @@
     "concernPlaceholder": "Typ een zorg en druk Enter...",
     "suggestedLabel": "Aanbevolen:",
     "concernDataSov": "Gegevenssouvereiniteit",
-    "concernVendorLockin": "Vendor lock-in",
+    "concernVendorLockin": "Leveranciersbinding",
     "concernPricingTransparency": "Prijstransparantie",
     "concernEuCompliance": "EU-compliance",
     "concernContractFlexibility": "Contractflexibiliteit",
@@ -933,7 +934,7 @@
     "startingAt": "Vanaf EUR 19/maand",
     "step1PreviewLabel": "1. AI-systeem selecteren",
     "step2PreviewLabel": "2. Uw Use Case beschrijven",
-    "blurredExecutiveSummary": "Executive Summary",
+    "blurredExecutiveSummary": "Managementsamenvatting",
     "selectAISystem": "AI-systeem selecteren",
     "aiSystemLabel": "AI-systeem",
     "searchPlaceholder": "Zoeken op leverancier of systeem naam...",
@@ -1124,7 +1125,7 @@
     "cisoLabel": "CISO",
     "cisoTitle": "Chief Information Security Officer",
     "dpoLabel": "DPO",
-    "dpoTitle": "Data Protection Officer",
+    "dpoTitle": "Functionaris Gegevensbescherming",
     "architectLabel": "Architect",
     "architectTitle": "Enterprise Architect",
     "procurementLabel": "Inkoop",

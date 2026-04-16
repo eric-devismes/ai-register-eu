@@ -107,7 +107,8 @@
     "heroSubtitle": "Posuzujeme AI systémy podle {count} evropských regulačních rámců. Každý rámec definuje specifické požadavky na soulad AI.",
     "effectiveDate": "Datum účinnosti",
     "requirement": "požadavek",
-    "requirements": "požadavky"
+    "requirements": "požadavky",
+    "structure": "Struktura"
   },
   "browseIndustry": {
     "title": "Procházet podle průmyslu",
@@ -755,10 +756,10 @@
     "capabilityAny": "Jakákoliv schopnost",
     "capabilityConversational": "Conversační AI",
     "capabilityDocument": "Zpracování dokumentů",
-    "capabilityDecision": "Decision intelligence",
+    "capabilityDecision": "Rozhodovací inteligence",
     "capabilityWorkflow": "Automatizace pracovních postupů",
     "capabilityCode": "Generování kódu",
-    "capabilityAnalytics": "Analytics / BI",
+    "capabilityAnalytics": "Analýzy / BI",
     "loadingAnalyse": "Analýza vašeho případu použití proti naší databázi 50+ AI systémů…",
     "loadingCompare": "Načítání dat pro porovnání…",
     "aiAnalysis": "AI analýza:",
@@ -772,7 +773,7 @@
     "view": "Zobrazit",
     "systemsSelected": "{count} systém vybrán",
     "systemsSelectedPlural": "{count} systémů vybráno",
-    "maxSystems": "(max 5)",
+    "maxSystems": "(max. 5)",
     "compareSideBySide": "Porovnat vedle sebe",
     "limitedResults": "Vidíte omezené výsledky? Pro odemyká všech 60+ AI systémů.",
     "upgradeProMonth": "Upgradovat na Pro — €19/měsíc",

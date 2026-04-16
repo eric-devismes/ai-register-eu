@@ -107,7 +107,8 @@
     "heroSubtitle": "Αξιολογούμε τα συστήματα AI έναντι {count} ευρωπαϊκών κανονιστικών πλαισίων. Κάθε πλαίσιο ορίζει συγκεκριμένες απαιτήσεις για τη συμμόρφωση AI.",
     "effectiveDate": "Ημερομηνία Ισχύος",
     "requirement": "απαίτηση",
-    "requirements": "απαιτήσεις"
+    "requirements": "απαιτήσεις",
+    "structure": "Δομή"
   },
   "browseIndustry": {
     "title": "Περιήγηση κατά Κλάδο",
@@ -217,7 +218,7 @@
     "tierPro": "Pro",
     "subscription": "Συνδρομή",
     "tierEnterprise": "Enterprise",
-    "tierFree": "Free",
+    "tierFree": "Δωρεάν",
     "renews": "Ανανέωση {date}",
     "activeSubscription": "Ενεργή συνδρομή",
     "proDesc": "Πλήρης πρόσβαση σε όλα τα συστήματα AI, απεριόριστη συνομιλία, εξαγωγές και προειδοποιήσεις πραγματικού χρόνου.",
@@ -442,15 +443,15 @@
       "euPresence": "Παρουσία ΕΕ"
     },
     "capability": {
-      "generativeAi": "Generative AI",
-      "supervisedMl": "Supervised Machine Learning",
-      "unsupervisedMl": "Unsupervised Machine Learning",
+      "generativeAi": "Γενετική τεχνητή νοημοσύνη",
+      "supervisedMl": "Επιβλεπόμενη Μηχανική Μάθηση",
+      "unsupervisedMl": "Μη Επιβλεπόμενη Μηχανική Μάθηση",
       "conversationalAi": "Conversational AI",
-      "autonomousAgents": "Autonomous AI Agents",
+      "autonomousAgents": "Αυτόνομοι Πράκτορες Τεχνητής Νοημοσύνης",
       "searchRetrieval": "AI Search & Retrieval",
       "computerVision": "Computer Vision",
       "decisionIntelligence": "Decision Intelligence",
-      "nlp": "Natural Language Processing",
+      "nlp": "Επεξεργασία Φυσικής Γλώσσας",
       "aiInfrastructure": "Υποδομή AI",
       "cybersecurityAi": "Cybersecurity AI"
     },

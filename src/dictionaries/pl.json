@@ -107,7 +107,8 @@
     "heroSubtitle": "Oceniamy systemy AI względem {count} europejskich ram regulacyjnych. Każda rama definiuje szczegółowe wymagania dotyczące zgodności AI.",
     "effectiveDate": "Data wejścia w życie",
     "requirement": "wymóg",
-    "requirements": "wymogi"
+    "requirements": "wymogi",
+    "structure": "Struktura"
   },
   "browseIndustry": {
     "title": "Przeglądaj po branży",
@@ -851,7 +852,7 @@
     "fullAccessDesc": "Masz pełny dostęp do wszystkich systemów AI, narzędzi porównawczych, eksportów i spersonalizowanych alertów."
   },
   "vendorPrep": {
-    "badge": "Enterprise Tool",
+    "badge": "Narzędzie Enterprise",
     "heroTitle": "Przygotowanie do Spotkania z Dostawcą",
     "heroSubLabel": "Pakiet Briefingu Spotkania",
     "heroSubtitle": "Przygotuj się do następnego spotkania z dostawcą dzięki generowanym przez AI punktom dyskusji, trudnym pytaniom i analizie zgodności. Zbudowane dla klienta, a nie dla dostawcy.",

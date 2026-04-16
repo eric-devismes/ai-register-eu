@@ -107,7 +107,8 @@
     "heroSubtitle": "Evaluamos sistemas de IA contra {count} marcos regulatorios europeos. Cada marco define requisitos específicos para el cumplimiento de IA.",
     "effectiveDate": "Fecha de entrada en vigor",
     "requirement": "requisito",
-    "requirements": "requisitos"
+    "requirements": "requisitos",
+    "structure": "Estructura"
   },
   "browseIndustry": {
     "title": "Explorar por Sector",

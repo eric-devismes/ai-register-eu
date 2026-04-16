@@ -107,7 +107,8 @@
     "heroSubtitle": "Nous évaluons les systèmes IA par rapport à {count} cadres réglementaires européens. Chaque cadre définit des exigences spécifiques pour la conformité IA.",
     "effectiveDate": "Date d'entrée en vigueur",
     "requirement": "exigence",
-    "requirements": "exigences"
+    "requirements": "exigences",
+    "structure": "Structure"
   },
   "browseIndustry": {
     "title": "Parcourir par secteur",
@@ -768,7 +769,7 @@
     "startOver": "Recommencer",
     "whyItMatches": "Pourquoi c'est pertinent",
     "relevantCapability": "Capacité pertinente",
-    "euAiActPrefix": "EU AI Act:",
+    "euAiActPrefix": "EU AI Act :",
     "view": "Afficher",
     "systemsSelected": "{count} système sélectionné",
     "systemsSelectedPlural": "{count} systèmes sélectionnés",
@@ -954,7 +955,7 @@
     "industryHR": "Ressources Humaines",
     "industryLegal": "Juridique",
     "industryEducation": "Éducation",
-    "industryRetail": "Retail & E-commerce",
+    "industryRetail": "Distribution & E-commerce",
     "industryLogistics": "Logistique & Chaîne d'approvisionnement",
     "industryOther": "Autre",
     "orgSize": "Taille de l'organisation",
@@ -981,7 +982,7 @@
     "copyToClipboard": "Copier dans le presse-papiers",
     "copied": "Copié !",
     "downloadPDF": "Télécharger au format PDF",
-    "headerLabel": "AI Compass EU — Business Case",
+    "headerLabel": "AI Compass EU — Étude de cas",
     "generated": "Généré {date}"
   },
   "podium": {
@@ -1081,7 +1082,7 @@
     "presetGeneralDesc": "EU AI Act + GDPR — la base pour tout approvisionnement en outils IA en Europe",
     "presetFinancialLabel": "IA pour les services financiers",
     "presetFinancialDesc": "EU AI Act + GDPR + DORA + EBA/EIOPA — couverture complète des services financiers",
-    "presetHealthcareLabel": "Healthcare AI / MedTech",
+    "presetHealthcareLabel": "IA Santé / MedTech",
     "presetHealthcareDesc": "EU AI Act + GDPR + MDR/IVDR — conformité IA des dispositifs médicaux",
     "presetCriticalLabel": "Infrastructures critiques",
     "presetCriticalDesc": "EU AI Act + GDPR + NIS2 — pour les entités essentielles et importantes",

@@ -107,7 +107,8 @@
     "heroSubtitle": "Vi bedömer AI-system mot {count} europeiska regelramverk. Varje ramverk definierar specifika krav för AI-efterlevnad.",
     "effectiveDate": "Giltighetsdatum",
     "requirement": "krav",
-    "requirements": "krav"
+    "requirements": "krav",
+    "structure": "Struktur"
   },
   "browseIndustry": {
     "title": "Bläddra efter bransch",
@@ -720,7 +721,7 @@
     "categoryIndustry": "Branschanalys"
   },
   "compare": {
-    "badge": "AI-Powered Matching",
+    "badge": "AI-driven matchning",
     "heroTitle": "Hitta & Jämför AI-System",
     "heroSubtitle": "Beskriv ditt användningsfall på enkel engelska. Få AI-matchade rekommendationer från vår databas med bedömda enterprise AI-system, och jämför dem sida vid sida mot EU:s efterlevnadskriterier.",
     "freeNotice": "Gratis åtkomst täcker de 5 mest populära AI-plattformarna.",
@@ -981,11 +982,11 @@
     "copyToClipboard": "Kopiera till urklipp",
     "copied": "Kopierad!",
     "downloadPDF": "Ladda ned som PDF",
-    "headerLabel": "AI Compass EU — Business Case",
+    "headerLabel": "AI Compass EU — Affärsfall",
     "generated": "Genererad {date}"
   },
   "podium": {
-    "badge": "Enterprise Tool",
+    "badge": "Enterprise-verktyg",
     "heroTitle": "AI-systemrekommendationer",
     "heroSubtitle": "Beskriv dina krav och vi analyserar vår hela databas för att rekommendera de 3 bästa AI-systemen — rankade på en guld-, silver- och bronspodium med fullständig poängbegrundelse.",
     "unlockTitle": "Lås upp AI-systemrekommendationer",
@@ -1014,9 +1015,9 @@
     "networkError": "Nätverksfel. Kontrollera din anslutning och försök igen.",
     "newSearchButton": "Ny sökning",
     "analysedSystems": "Analyserade {count} AI-system",
-    "goldLabel": "Gold",
+    "goldLabel": "Guld",
     "silverLabel": "Silver",
-    "bronzeLabel": "Bronze",
+    "bronzeLabel": "Brons",
     "strengthsLabel": "Styrkor",
     "weaknessesLabel": "Svagheter",
     "riskFlagsLabel": "Riskflaggor",
@@ -1027,7 +1028,7 @@
     "disclaimerBody": "AI-genererade rekommendationer baserade på vår regelbundna databas. Verifiera direkt med leverantör innan inköpsbeslut. Poäng och efterlevnadsdata är baserade på allmänt tillgänglig information och kanske inte återspeglar de senaste uppdateringarna från leverantörer."
   },
   "rfp": {
-    "badge": "Enterprise Tool",
+    "badge": "Enterprise-verktyg",
     "heroTitle": "RFP/RFI Answer Engine",
     "heroSubtitle": "Klistra in dina RFP- eller RFI-frågor och få professionella utkastssvar baserade på våra oberoende AI-systembedömningar. EU-efterlevnad, datasäkerhet, certifieringar — allt citeradt med verklig data.",
     "unlockTitle": "Lås upp RFP/RFI Answer Engine",
@@ -1061,7 +1062,7 @@
     "copyAll": "Kopiera allt",
     "copied": "Kopierat!",
     "export": "Exportera",
-    "headerLabel": "AI Compass EU — RFP/RFI Response",
+    "headerLabel": "AI Compass EU — RFP/RFI-svar",
     "questionsAnswered": "{count} fråga besvarad",
     "questionsAnsweredPlural": "{count} frågor besvarade",
     "generated": "Genererad {date}",
@@ -1073,19 +1074,19 @@
     "step3PreviewLabel": "3. Företagskontext"
   },
   "checklist": {
-    "badge": "Compliance Tool",
+    "badge": "Compliance-verktyg",
     "heroTitle": "Compliance Checklist Generator",
     "heroSubtitle": "Välj de regelverk som gäller för din organisation. Få en sammanfattad, handlingsorienterad compliance-checklista med expertkommentarer till varje krav.",
     "quickStartTitle": "Snabbstart — vanliga kombinationer",
-    "presetGeneralLabel": "AI Procurement (General)",
+    "presetGeneralLabel": "AI-inköp (Generell)",
     "presetGeneralDesc": "EU AI Act + GDPR — baslinje för all AI-verktygsupphandling i Europa",
-    "presetFinancialLabel": "Financial Services AI",
+    "presetFinancialLabel": "AI för finansiell sektor",
     "presetFinancialDesc": "EU AI Act + GDPR + DORA + EBA/EIOPA — fullständig täckning för finansiella tjänster",
     "presetHealthcareLabel": "Healthcare AI / MedTech",
     "presetHealthcareDesc": "EU AI Act + GDPR + MDR/IVDR — compliance för medicinteknisk AI",
-    "presetCriticalLabel": "Critical Infrastructure",
+    "presetCriticalLabel": "Kritisk infrastruktur",
     "presetCriticalDesc": "EU AI Act + GDPR + NIS2 — för väsentliga och viktiga enheter",
-    "presetFullLabel": "Full EU Digital Package",
+    "presetFullLabel": "Kompletta EU Digital Package",
     "presetFullDesc": "AI Act + GDPR + DORA + NIS2 + Data Act — maximalt regelräcke",
     "selectIndividually": "Eller välj ramverk individuellt",
     "selectedCount": "({count} valda)",
@@ -1124,7 +1125,7 @@
     "cisoLabel": "CISO",
     "cisoTitle": "Chief Information Security Officer",
     "dpoLabel": "DPO",
-    "dpoTitle": "Data Protection Officer",
+    "dpoTitle": "DPO",
     "architectLabel": "Arkitekt",
     "architectTitle": "Enterprise Architect",
     "procurementLabel": "Inköp",

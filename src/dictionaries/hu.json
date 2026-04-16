@@ -107,7 +107,8 @@
     "heroSubtitle": "AI-rendszereket értékelünk {count} európai szabályozási keretrendszer alapján. Minden keretrendszer konkrét AI-megfelelőségi követelményeket határoz meg.",
     "effectiveDate": "Hatályba lépés dátuma",
     "requirement": "követelmény",
-    "requirements": "követelmények"
+    "requirements": "követelmények",
+    "structure": "Struktúra"
   },
   "browseIndustry": {
     "title": "Keresés iparág szerint",
@@ -1014,9 +1015,9 @@
     "networkError": "Hálózati hiba. Kérjük, ellenőrizze a kapcsolatot és próbálja újra.",
     "newSearchButton": "Új keresés",
     "analysedSystems": "{count} AI rendszer elemezve",
-    "goldLabel": "Gold",
-    "silverLabel": "Silver",
-    "bronzeLabel": "Bronze",
+    "goldLabel": "Arany",
+    "silverLabel": "Ezüst",
+    "bronzeLabel": "Bronz",
     "strengthsLabel": "Erősségek",
     "weaknessesLabel": "Gyengeségek",
     "riskFlagsLabel": "Kockázati jelzések",

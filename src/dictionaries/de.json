@@ -107,7 +107,8 @@
     "heroSubtitle": "Wir bewerten KI-Systeme anhand von {count} europäischen Regelungsrahmen. Jeder Rahmen definiert spezifische Anforderungen für KI-Compliance.",
     "effectiveDate": "Gültig ab",
     "requirement": "Anforderung",
-    "requirements": "Anforderungen"
+    "requirements": "Anforderungen",
+    "structure": "Struktur"
   },
   "browseIndustry": {
     "title": "Nach Branche durchsuchen",
@@ -304,7 +305,7 @@
     "compareDesc": "Nebeneinander-Systemvergleich",
     "checklist": "Checkliste",
     "checklistDesc": "Generator für Compliance-Checklisten",
-    "rfpEngine": "RFP Engine",
+    "rfpEngine": "RFP-Engine",
     "rfpEngineDesc": "Beantworten Sie Anbieter-RFPs mit vorausgefüllten Antworten",
     "meetingPrep": "Meetingsvorbereitung",
     "meetingPrepDesc": "Briefing-Kit für Anbieter-Meetings",

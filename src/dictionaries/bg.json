@@ -107,7 +107,8 @@
     "heroSubtitle": "Ние оценяваме AI системи спрямо {count} европейски нормативни рамки. Всяка рамка определя специфични изисквания за съответствие на AI.",
     "effectiveDate": "Дата на влизане в сила",
     "requirement": "изискване",
-    "requirements": "изисквания"
+    "requirements": "изисквания",
+    "structure": "Структура"
   },
   "browseIndustry": {
     "title": "Преглед по индустрия",
@@ -1067,9 +1068,9 @@
     "networkError": "Грешка в мрежата. Моля, проверете връзката си и опитайте отново.",
     "newSearchButton": "Ново търсене",
     "analysedSystems": "Анализирани {count} AI системи",
-    "goldLabel": "Gold",
-    "silverLabel": "Silver",
-    "bronzeLabel": "Bronze",
+    "goldLabel": "Злато",
+    "silverLabel": "Сребро",
+    "bronzeLabel": "Бронз",
     "strengthsLabel": "Предимства",
     "weaknessesLabel": "Недостатъци",
     "riskFlagsLabel": "Рискови флагове",

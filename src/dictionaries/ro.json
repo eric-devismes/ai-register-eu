@@ -107,7 +107,8 @@
     "heroSubtitle": "Evaluăm sisteme AI în raport cu {count} cadre reglementare europene. Fiecare cadru definește cerințe specifice pentru conformitatea AI.",
     "effectiveDate": "Data Intrării în Vigoare",
     "requirement": "cerință",
-    "requirements": "cerințe"
+    "requirements": "cerințe",
+    "structure": "Structură"
   },
   "browseIndustry": {
     "title": "Răsfoire după Industrie",
@@ -920,7 +921,7 @@
     "print": "Tipărire",
     "headerLabel": "AI Compass EU — Pregătire Întâlnire Furnizor",
     "generated": "Generat {date}",
-    "disclaimerTitle": "Disclaimer",
+    "disclaimerTitle": "Declinare de răspundere",
     "disclaimerBody": "Acest rezumat de întâlnire este generat de AI pe baza datelor de evaluare AI Compass EU. Ar trebui utilizat ca punct de plecare pentru pregătirea întâlnirii cu furnizorul, nu ca sfat juridic sau de achiziții. Verificați toate afirmațiile și scorurile de conformitate direct cu furnizorul."
   },
   "businessCase": {

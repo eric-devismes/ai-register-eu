@@ -165,8 +165,8 @@ export default async function FrameworkPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* ── Overview Content (Markdown) ── */}
-          {framework.content && (
+          {/* ── Overview Content (Markdown) — hidden when sections exist (avoids duplication) ── */}
+          {framework.content && !hasSections && (
             <div className="mt-10 space-y-4"
               dangerouslySetInnerHTML={{ __html: renderMarkdown(framework.content) }}
             />
