@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { useT, useLocale } from "@/lib/locale-context";
 
 interface Framework { id: string; slug: string; name: string }
 interface System { id: string; slug: string; vendor: string; name: string }
@@ -29,7 +30,9 @@ interface Subscriber {
 export default function AccountPage() {
   const router = useRouter();
   const params = useParams();
-  const lang = (params?.lang as string) || "en";
+  const t = useT();
+  const locale = useLocale();
+  const lang = (params?.lang as string) || locale;
   const [loading, setLoading] = useState(true);
   const [subscriber, setSubscriber] = useState<Subscriber | null>(null);
   const [allFrameworks, setAllFrameworks] = useState<Framework[]>([]);
@@ -80,10 +83,10 @@ export default function AccountPage() {
   }
 
   async function handleDelete() {
-    if (!confirm("This will permanently delete your account and all data. This cannot be undone. Continue?")) return;
+    if (!confirm(t("account.deleteConfirm"))) return;
     setDeleting(true);
     await fetch("/api/account/delete", { method: "DELETE" });
-    router.push("/account/deleted");
+    router.push(`/${lang}/account/deleted`);
   }
 
   async function handleManageSubscription() {
@@ -94,10 +97,10 @@ export default function AccountPage() {
       if (data.url) {
         window.open(data.url, "_blank");
       } else {
-        alert(data.error || "Could not open subscription portal");
+        alert(data.error || t("account.couldNotOpenPortal"));
       }
     } catch {
-      alert("Could not connect to payment service");
+      alert(t("account.couldNotConnect"));
     }
     setPortalLoading(false);
   }
@@ -119,24 +122,30 @@ export default function AccountPage() {
     return (
       <>
         <Header />
-        <main className="flex-1 bg-white"><div className="mx-auto max-w-2xl px-4 py-24 text-center text-gray-500">Loading...</div></main>
+        <main className="flex-1 bg-white"><div className="mx-auto max-w-2xl px-4 py-24 text-center text-gray-500">{t("common.loading")}</div></main>
         <Footer />
       </>
     );
   }
+
+  const digestLabels: Record<string, string> = {
+    daily: t("account.daily"),
+    weekly: t("account.weekly"),
+    none: t("account.off"),
+  };
 
   return (
     <>
       <Header />
       <main className="flex-1 bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16">
-          <h1 className="text-2xl font-bold text-gray-900">Your Account</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{t("account.title")}</h1>
           <p className="mt-1 text-sm text-gray-500">{subscriber?.email}</p>
 
           {/* ── Frameworks ── */}
           <div className="mt-10">
-            <h2 className="text-lg font-bold text-gray-900">Regulatory Frameworks</h2>
-            <p className="mt-1 text-sm text-gray-500">Select the frameworks you want updates about.</p>
+            <h2 className="text-lg font-bold text-gray-900">{t("account.frameworks")}</h2>
+            <p className="mt-1 text-sm text-gray-500">{t("account.frameworksSub")}</p>
             <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {allFrameworks.map((fw) => (
                 <label key={fw.id} className={`flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition ${
@@ -152,8 +161,8 @@ export default function AccountPage() {
 
           {/* ── AI Systems ── */}
           <div className="mt-10">
-            <h2 className="text-lg font-bold text-gray-900">AI Systems</h2>
-            <p className="mt-1 text-sm text-gray-500">Select the AI systems you want updates about.</p>
+            <h2 className="text-lg font-bold text-gray-900">{t("account.systems")}</h2>
+            <p className="mt-1 text-sm text-gray-500">{t("account.systemsSub")}</p>
             <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {allSystems.map((sys) => (
                 <label key={sys.id} className={`flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition ${
@@ -172,14 +181,14 @@ export default function AccountPage() {
 
           {/* ── Digest Frequency ── */}
           <div className="mt-10">
-            <h2 className="text-lg font-bold text-gray-900">Email Digest</h2>
+            <h2 className="text-lg font-bold text-gray-900">{t("account.digest")}</h2>
             <div className="mt-4 flex gap-3">
               {["daily", "weekly", "none"].map((freq) => (
                 <button key={freq} onClick={() => setDigestFreq(freq)}
                   className={`rounded-lg px-5 py-2 text-sm font-medium transition ${
                     digestFreq === freq ? "bg-[#003399] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}>
-                  {freq === "none" ? "Off" : freq.charAt(0).toUpperCase() + freq.slice(1)}
+                  {digestLabels[freq]}
                 </button>
               ))}
             </div>
@@ -189,14 +198,14 @@ export default function AccountPage() {
           <div className="mt-8 flex items-center gap-4">
             <button onClick={handleSave} disabled={saving}
               className="rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#003399]/90 disabled:opacity-50">
-              {saving ? "Saving..." : "Save Preferences"}
+              {saving ? t("account.saving") : t("account.savePreferences")}
             </button>
-            {saved && <span className="text-sm text-green-600">Saved!</span>}
+            {saved && <span className="text-sm text-green-600">{t("account.saved")}</span>}
           </div>
 
           {/* ── Subscription ── */}
           <div className="mt-16 border-t border-gray-200 pt-8">
-            <h2 className="text-lg font-bold text-gray-900">Subscription</h2>
+            <h2 className="text-lg font-bold text-gray-900">{t("account.subscription")}</h2>
             <div className="mt-4 rounded-xl border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -206,23 +215,23 @@ export default function AccountPage() {
                       subscriber?.tier === "pro" ? "bg-blue-100 text-blue-700" :
                       "bg-gray-100 text-gray-600"
                     }`}>
-                      {subscriber?.tier === "enterprise" ? "Enterprise" :
-                       subscriber?.tier === "pro" ? "Pro" : "Free"}
+                      {subscriber?.tier === "enterprise" ? t("account.tierEnterprise") :
+                       subscriber?.tier === "pro" ? t("account.tierPro") : t("account.tierFree")}
                     </span>
                     {subscriber?.tier === "pro" && (
                       <span className="text-xs text-gray-500">
                         {subscriber?.tierExpiresAt
-                          ? `Renews ${new Date(subscriber.tierExpiresAt).toLocaleDateString()}`
-                          : "Active subscription"}
+                          ? t("account.renews").replace("{date}", new Date(subscriber.tierExpiresAt).toLocaleDateString())
+                          : t("account.activeSubscription")}
                       </span>
                     )}
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
                     {subscriber?.tier === "pro"
-                      ? "Full access to all AI systems, unlimited chat, exports, and real-time alerts."
+                      ? t("account.proDesc")
                       : subscriber?.tier === "enterprise"
-                      ? "Everything in Pro plus API access, multi-seat, and dedicated support."
-                      : "Access to 5 AI systems. Upgrade to Pro for full access."}
+                      ? t("account.enterpriseDesc")
+                      : t("account.freeDesc")}
                   </p>
                 </div>
               </div>
@@ -233,7 +242,7 @@ export default function AccountPage() {
                     href={`/${lang}/pricing`}
                     className="rounded-lg bg-[#003399] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#003399]/90"
                   >
-                    Upgrade to Pro
+                    {t("account.upgradeToPro")}
                   </a>
                 )}
                 {subscriber?.tier === "pro" && subscriber?.subscriptionId && (
@@ -242,7 +251,7 @@ export default function AccountPage() {
                     disabled={portalLoading}
                     className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
                   >
-                    {portalLoading ? "Loading..." : "Manage Billing"}
+                    {portalLoading ? t("account.manageBillingLoading") : t("account.manageBilling")}
                   </button>
                 )}
                 {subscriber?.tier === "enterprise" && (
@@ -250,7 +259,7 @@ export default function AccountPage() {
                     href={`/${lang}/contact`}
                     className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
                   >
-                    Contact Account Manager
+                    {t("account.contactAccountManager")}
                   </a>
                 )}
               </div>
@@ -259,38 +268,38 @@ export default function AccountPage() {
 
           {/* ── GDPR Controls ── */}
           <div className="mt-16 border-t border-gray-200 pt-8">
-            <h2 className="text-lg font-bold text-gray-900">Your Data Rights (GDPR)</h2>
-            <p className="mt-1 text-sm text-gray-500">We only store your email and topic preferences. No tracking, no profiling.</p>
+            <h2 className="text-lg font-bold text-gray-900">{t("account.gdprTitle")}</h2>
+            <p className="mt-1 text-sm text-gray-500">{t("account.gdprSub")}</p>
 
             <div className="mt-6 space-y-4">
               <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-900">Export my data</p>
-                  <p className="text-xs text-gray-500">Download all data we hold about you (Art. 20)</p>
+                  <p className="text-sm font-medium text-gray-900">{t("account.exportData")}</p>
+                  <p className="text-xs text-gray-500">{t("account.exportSub")}</p>
                 </div>
                 <a href="/api/account/export" className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                  Download JSON
+                  {t("account.downloadJson")}
                 </a>
               </div>
 
               <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-900">Sign out</p>
-                  <p className="text-xs text-gray-500">Clear your session on this device</p>
+                  <p className="text-sm font-medium text-gray-900">{t("account.signOut")}</p>
+                  <p className="text-xs text-gray-500">{t("account.signOutSub")}</p>
                 </div>
                 <button onClick={handleLogout} className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                  Sign out
+                  {t("account.signOut")}
                 </button>
               </div>
 
               <div className="flex items-center justify-between rounded-lg border border-red-100 bg-red-50 p-4">
                 <div>
-                  <p className="text-sm font-medium text-red-700">Delete my account</p>
-                  <p className="text-xs text-red-500">Permanently remove all data. Cannot be undone. (Art. 17)</p>
+                  <p className="text-sm font-medium text-red-700">{t("account.deleteAccount")}</p>
+                  <p className="text-xs text-red-500">{t("account.deleteSub")}</p>
                 </div>
                 <button onClick={handleDelete} disabled={deleting}
                   className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-50">
-                  {deleting ? "Deleting..." : "Delete Account"}
+                  {deleting ? t("account.deleting") : t("account.deleteAccount")}
                 </button>
               </div>
             </div>

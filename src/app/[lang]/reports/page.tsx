@@ -21,7 +21,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getEffectiveTier } from "@/lib/tier-access";
-import { getPageMetadata, type Locale } from "@/lib/i18n";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
   params,
@@ -51,12 +51,12 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
   industry: { bg: "bg-amber-100", text: "text-amber-700" },
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  adoption: "AI Adoption",
-  compliance: "Compliance",
-  security: "Security",
-  "data-privacy": "Data Privacy",
-  industry: "Industry Analysis",
+const CATEGORY_LABEL_KEYS: Record<string, string> = {
+  adoption: "reports.categoryAdoption",
+  compliance: "reports.categoryCompliance",
+  security: "reports.categorySecurity",
+  "data-privacy": "reports.categoryDataPrivacy",
+  industry: "reports.categoryIndustry",
 };
 
 /**
@@ -137,7 +137,22 @@ const reports: Report[] = [
   },
 ];
 
-export default async function ReportsPage() {
+export default async function ReportsPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  const t = (key: string) =>
+    key
+      .split(".")
+      .reduce(
+        (o: Record<string, unknown>, k: string) =>
+          (o?.[k] as Record<string, unknown>) ?? {},
+        dict as unknown as Record<string, unknown>
+      ) as unknown as string;
+
   const tier = await getEffectiveTier();
   const isAnonymous = tier === "anonymous";
   const published = reports.filter((r) => !r.comingSoon);
@@ -152,15 +167,13 @@ export default async function ReportsPage() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#ffc107]">
-                Research
+                {t("reports.badge")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                Reports &amp; White Papers
+                {t("reports.heroTitle")}
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                Free, in-depth research on AI adoption, compliance, data privacy, and
-                security in Europe. Written for DPOs, CISOs, and compliance professionals
-                who need actionable intelligence.
+                {t("reports.heroSubtitle")}
               </p>
             </div>
           </div>
@@ -172,11 +185,15 @@ export default async function ReportsPage() {
             {/* Sign-up gate notice — only for anonymous */}
             {isAnonymous && (
               <div className="mb-8 rounded-xl border border-[#003399]/15 bg-[#003399]/5 p-4 flex items-center justify-between">
-                <p className="text-sm text-[#0d1b3e]">
-                  <strong>Free access</strong> — create an account to read full reports.
-                </p>
-                <a href="/en/subscribe" className="rounded-lg bg-[#003399] px-4 py-2 text-xs font-semibold text-white hover:bg-[#002277] shrink-0">
-                  Create free account
+                <p className="text-sm text-[#0d1b3e]"
+                  dangerouslySetInnerHTML={{
+                    __html: t("reports.freeAccessNotice")
+                      .replace("{strong}", "<strong>")
+                      .replace("{strongEnd}", "</strong>"),
+                  }}
+                />
+                <a href={`/${lang}/subscribe`} className="rounded-lg bg-[#003399] px-4 py-2 text-xs font-semibold text-white hover:bg-[#002277] shrink-0">
+                  {t("reports.createFreeAccount")}
                 </a>
               </div>
             )}
@@ -185,6 +202,7 @@ export default async function ReportsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {published.map((report) => {
                 const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
+                const categoryLabel = t(CATEGORY_LABEL_KEYS[report.category]);
                 return isAnonymous ? (
                     <div
                       key={report.slug}
@@ -192,30 +210,30 @@ export default async function ReportsPage() {
                     >
                       <div className="flex items-center gap-2 mb-3">
                         <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
-                          {CATEGORY_LABELS[report.category]}
+                          {categoryLabel}
                         </span>
                       </div>
                       <h3 className="text-sm font-bold text-[#0d1b3e] line-clamp-2">
                         {report.title}
                       </h3>
                       <p className="mt-2 text-xs text-gray-400 flex-1">
-                        Sign in to read this report
+                        {t("reports.signInToRead")}
                       </p>
                       <div className="mt-3 pt-3 border-t border-gray-100">
-                        <a href="/en/subscribe" className="text-xs font-semibold text-[#003399] hover:underline">
-                          Create free account →
+                        <a href={`/${lang}/subscribe`} className="text-xs font-semibold text-[#003399] hover:underline">
+                          {t("reports.createFreeAccountArrow")}
                         </a>
                       </div>
                     </div>
                   ) : (
                   <Link
                     key={report.slug}
-                    href={`/en/reports/${report.slug}`}
+                    href={`/${lang}/reports/${report.slug}`}
                     className="group flex flex-col rounded-xl border border-gray-200 bg-white p-5 hover:shadow-md hover:border-[#003399]/30 transition-all aspect-square sm:aspect-auto sm:min-h-[220px]"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
-                        {CATEGORY_LABELS[report.category]}
+                        {categoryLabel}
                       </span>
                       <span className="text-[10px] text-gray-400">{report.readingTime}</span>
                     </div>
@@ -226,7 +244,7 @@ export default async function ReportsPage() {
                     <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
                       <span className="text-[10px] text-gray-400">{report.date}</span>
                       <span className="text-xs font-semibold text-[#003399] group-hover:underline">
-                        Read →
+                        {t("reports.readArrow")}
                       </span>
                     </div>
                   </Link>
@@ -236,6 +254,7 @@ export default async function ReportsPage() {
               {/* Coming soon tiles */}
               {upcoming.map((report) => {
                 const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
+                const categoryLabel = t(CATEGORY_LABEL_KEYS[report.category]);
                 return (
                   <div
                     key={report.slug}
@@ -243,10 +262,10 @@ export default async function ReportsPage() {
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${cat.bg} ${cat.text}`}>
-                        {CATEGORY_LABELS[report.category]}
+                        {categoryLabel}
                       </span>
                       <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-[10px] font-semibold text-gray-500">
-                        Coming Soon
+                        {t("reports.comingSoon")}
                       </span>
                     </div>
                     <h3 className="text-sm font-bold text-gray-500 line-clamp-2">{report.title}</h3>
@@ -259,17 +278,16 @@ export default async function ReportsPage() {
             {/* Consulting CTA */}
             <div className="mt-16 rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-8 text-center">
               <h2 className="text-lg font-bold text-[#0d1b3e]">
-                Need a Custom Report for Your Organisation?
+                {t("reports.customReportTitle")}
               </h2>
               <p className="mt-2 text-sm text-gray-600 max-w-lg mx-auto">
-                Our enterprise clients receive tailored compliance reports, vendor assessments,
-                and risk analyses specific to their AI stack and industry.
+                {t("reports.customReportDesc")}
               </p>
               <Link
-                href="/en/contact"
+                href={`/${lang}/contact`}
                 className="mt-5 inline-block rounded-lg bg-[#003399] px-8 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors shadow-sm"
               >
-                Contact Our Advisory Team
+                {t("reports.contactAdvisory")}
               </Link>
             </div>
           </div>

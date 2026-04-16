@@ -170,7 +170,25 @@
     "checkEmailText": "Wir haben einen Anmelde-Link gesendet an",
     "linkExpiry": "Klicken Sie auf den Link, um auf Ihr Konto zuzugreifen. Der Link verfällt in 15 Minuten.",
     "didntReceive": "Nicht erhalten? Überprüfen Sie Ihren Spam-Ordner oder",
-    "tryAgain": "versuchen Sie es erneut"
+    "tryAgain": "versuchen Sie es erneut",
+    "logIn": "Anmelden",
+    "logInSubtitle": "Geben Sie Ihre E-Mail-Adresse ein, um einen Magic Link zu erhalten. Kein Passwort erforderlich.",
+    "sendMagicLink": "Magic Link senden",
+    "sendingLink": "Link wird gesendet...",
+    "consentFirstTime": "Neu hier? Ich akzeptiere {privacyLink} und möchte Compliance-Updates erhalten. Sie haben bereits ein Konto? Nicht ankreuzen.",
+    "noAccountYet": "Noch kein Konto?",
+    "noAccountDesc": "Geben Sie einfach Ihre E-Mail-Adresse oben ein – Ihr kostenloses Konto wird automatisch erstellt.",
+    "freePlanDesc": "Kostenloser Plan: 3 KI-Fragen pro Tag, vollständiger Datenbankzugriff, Compliance-Checklisten.",
+    "sentLinkTo": "Wir haben einen Anmelde-Link an {email} gesendet.",
+    "sentLinkExpiry": "Klicken Sie auf den Link, um auf Ihr Konto zuzugreifen. Der Link verfällt in 15 Minuten.",
+    "didntReceiveIt": "Sie haben ihn nicht erhalten? Überprüfen Sie Ihren Spam-Ordner oder {tryAgainLink}.",
+    "verifyTitle": "E-Mail wird überprüft...",
+    "verifyRedirect": "Falls Sie nicht automatisch weitergeleitet werden, {retryLink}.",
+    "verifyRetryText": "klicken Sie hier, um es erneut zu versuchen",
+    "unsubscribedTitle": "Abgemeldet",
+    "unsubscribedDesc": "Sie erhalten keine Digest-E-Mails von AI Compass EU mehr. Ihr Konto und Ihre Einstellungen bleiben erhalten.",
+    "unsubscribedReEnable": "Möchten Sie Digests wieder aktivieren? {accountLink}.",
+    "unsubscribedAccountLink": "Konto verwalten"
   },
   "account": {
     "title": "Ihr Konto",
@@ -195,7 +213,25 @@
     "deleteAccount": "Mein Konto löschen",
     "deleteSub": "Entfernen Sie alle Daten dauerhaft. Kann nicht rückgängig gemacht werden. (Art. 17)",
     "deleting": "Wird gelöscht...",
-    "deleteConfirm": "Dies wird Ihr Konto und alle Daten dauerhaft löschen. Dies kann nicht rückgängig gemacht werden. Fortfahren?"
+    "deleteConfirm": "Dies wird Ihr Konto und alle Daten dauerhaft löschen. Dies kann nicht rückgängig gemacht werden. Fortfahren?",
+    "tierPro": "Pro",
+    "subscription": "Abonnement",
+    "tierEnterprise": "Enterprise",
+    "tierFree": "Kostenlos",
+    "renews": "Erneuert sich am {date}",
+    "activeSubscription": "Aktives Abonnement",
+    "proDesc": "Vollständiger Zugriff auf alle KI-Systeme, unbegrenzte Chats, Exporte und Echtzeit-Benachrichtigungen.",
+    "enterpriseDesc": "Alles aus Pro plus API-Zugriff, Multi-Seat und dedizierter Support.",
+    "freeDesc": "Zugriff auf 5 KI-Systeme. Führen Sie ein Upgrade auf Pro durch, um vollständigen Zugriff zu erhalten.",
+    "upgradeToPro": "Upgrade auf Pro",
+    "manageBilling": "Abrechnung verwalten",
+    "manageBillingLoading": "Wird geladen...",
+    "contactAccountManager": "Account Manager kontaktieren",
+    "couldNotOpenPortal": "Abonnement-Portal konnte nicht geöffnet werden",
+    "couldNotConnect": "Verbindung zum Zahlungsdienst konnte nicht hergestellt werden",
+    "deletedTitle": "Konto gelöscht",
+    "deletedDesc": "Ihr Konto und alle zugehörigen Daten wurden dauerhaft aus unseren Systemen gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deletedHomepageLink": "Zur Startseite zurückkehren"
   },
   "feed": {
     "title": "Ihr Compliance-Feed",
@@ -272,7 +308,7 @@
     "rfpEngineDesc": "Beantworten Sie Anbieter-RFPs mit vorausgefüllten Antworten",
     "meetingPrep": "Meeting Prep",
     "meetingPrepDesc": "Briefing-Kit für Anbieter-Meetings",
-    "reports": "Reports",
+    "reports": "Berichte",
     "reportsDesc": "Forschungsberichte und White Papers",
     "menu": "Menü",
     "close": "Schließen"
@@ -299,7 +335,7 @@
       "description": "Wie wir KI-Systeme gegen EU-Vorschriften bewerten. Transparente Multi-Framework-Bewertung mit Nachweisreferenzen."
     },
     "reports": {
-      "title": "Reports & White Papers",
+      "title": "Berichte & Whitepaper",
       "description": "Kostenlose Forschungsberichte zu KI-Adoption, Compliance, Datenschutz und Sicherheit in Europa. Fachgerechte Analyse für DPOs, CISOs und Compliance-Fachleute."
     },
     "regulations": {
@@ -616,5 +652,39 @@
     "value4Desc": "Bewertungen werden von Fachexperten anhand standardisierter Bewertungsmaßstäbe durchgeführt, nicht durch automatisierte Datenextraktion oder selbstberichtete Herstellerangaben.",
     "contactTitle": "Kontakt aufnehmen",
     "contactText": "AI Compass EU ist ein unabhängiges Projekt, das in Europa für europäische Entscheidungsträger entwickelt wurde. Für Fragen, Partnerschaftsanfragen oder Presseanfragen kontaktieren Sie uns unter {email}."
+  },
+  "reports": {
+    "detail": {
+      "home": "Home",
+      "reports": "Berichte",
+      "reportNotFound": "Bericht nicht gefunden",
+      "byAuthor": "Von {author}",
+      "createAccountTitle": "Erstellen Sie ein kostenloses Konto, um diesen Bericht zu lesen",
+      "createAccountDesc": "Unsere Forschungsberichte sind kostenlos für registrierte Benutzer verfügbar. Melden Sie sich in Sekunden an, um auf den vollständigen Bericht zuzugreifen.",
+      "createFreeAccount": "Kostenloses Konto erstellen",
+      "tableOfContents": "Inhaltsverzeichnis",
+      "unlockTitle": "Entsperren Sie den vollständigen Bericht",
+      "unlockDesc": "Dieser Bericht hat {count} weitere Abschnitte. Upgraden Sie auf Pro, um die vollständige Analyse zu lesen, einschließlich umsetzbarer Empfehlungen und branchenspezifischer Leitlinien.",
+      "upgradeToPro": "Upgrade auf Pro — EUR 19/Monat",
+      "fullAccessNote": "Vollzugriff auf alle Berichte, Systeme und Tools",
+      "backToReports": "Zurück zu Berichte & White Papers"
+    },
+    "badge": "Research",
+    "heroTitle": "Berichte & Whitepapers",
+    "heroSubtitle": "Kostenlose, ausführliche Forschung zur KI-Adoption, Compliance, Datenschutz und Sicherheit in Europa. Geschrieben für DPOs, CISOs und Compliance-Fachleute, die umsetzbare Erkenntnisse benötigen.",
+    "freeAccessNotice": "{strong}Kostenloser Zugriff{strongEnd} — erstellen Sie ein Konto, um vollständige Berichte zu lesen.",
+    "createFreeAccount": "Kostenloses Konto erstellen",
+    "signInToRead": "Melden Sie sich an, um diesen Bericht zu lesen",
+    "createFreeAccountArrow": "Kostenloses Konto erstellen →",
+    "readArrow": "Lesen →",
+    "comingSoon": "Demnächst verfügbar",
+    "customReportTitle": "Benötigen Sie einen maßgeschneiderten Bericht für Ihre Organisation?",
+    "customReportDesc": "Unsere Enterprise-Kunden erhalten maßgeschneiderte Compliance-Berichte, Vendor-Bewertungen und Risikoanalysen, die speziell auf ihren AI-Stack und ihre Branche abgestimmt sind.",
+    "contactAdvisory": "Kontaktieren Sie unser Beratungsteam",
+    "categoryAdoption": "AI-Adoption",
+    "categoryCompliance": "Compliance",
+    "categorySecurity": "Sicherheit",
+    "categoryDataPrivacy": "Datenschutz",
+    "categoryIndustry": "Branchenanalyse"
   }
 }

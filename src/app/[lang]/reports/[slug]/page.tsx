@@ -24,7 +24,7 @@ import {
   REPORT_DISCLAIMER,
   AUTO_TRANSLATED_DISCLAIMER,
 } from "@/data/reports-content";
-import type { Locale } from "@/lib/i18n";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -38,12 +38,12 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
   industry: { bg: "bg-amber-100", text: "text-amber-700" },
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  adoption: "AI Adoption",
-  compliance: "Compliance",
-  security: "Security",
-  "data-privacy": "Data Privacy",
-  industry: "Industry Analysis",
+const CATEGORY_LABEL_KEYS: Record<string, string> = {
+  adoption: "reports.categoryAdoption",
+  compliance: "reports.categoryCompliance",
+  security: "reports.categorySecurity",
+  "data-privacy": "reports.categoryDataPrivacy",
+  industry: "reports.categoryIndustry",
 };
 
 export async function generateStaticParams() {
@@ -129,10 +129,21 @@ export default async function ReportDetailPage({ params }: PageProps) {
 
   if (!report) notFound();
 
+  const dict = await getDictionary(lang as Locale);
+  const t = (key: string) =>
+    key
+      .split(".")
+      .reduce(
+        (o: Record<string, unknown>, k: string) =>
+          (o?.[k] as Record<string, unknown>) ?? {},
+        dict as unknown as Record<string, unknown>
+      ) as unknown as string;
+
   const tier = await getEffectiveTier();
   const isAnonymous = tier === "anonymous";
   const canReadFull = tier === "pro" || tier === "enterprise";
   const cat = CATEGORY_COLORS[report.category] || CATEGORY_COLORS.compliance;
+  const categoryLabel = t(CATEGORY_LABEL_KEYS[report.category]) || report.category;
 
   // Anonymous users see the page but with a prominent sign-up gate
   // Free users see first 2 sections, rest gated
@@ -148,11 +159,11 @@ export default async function ReportDetailPage({ params }: PageProps) {
             {/* Breadcrumb */}
             <nav className="mb-6 text-sm text-blue-200">
               <Link href={`/${lang}`} className="hover:text-white">
-                Home
+                {t("reports.detail.home")}
               </Link>
               <span className="mx-2">/</span>
               <Link href={`/${lang}/reports`} className="hover:text-white">
-                Reports
+                {t("reports.detail.reports")}
               </Link>
               <span className="mx-2">/</span>
               <span className="text-white line-clamp-1">{report.title}</span>
@@ -163,7 +174,7 @@ export default async function ReportDetailPage({ params }: PageProps) {
               <span
                 className={`rounded-full px-3 py-1 text-xs font-semibold ${cat.bg} ${cat.text}`}
               >
-                {CATEGORY_LABELS[report.category] || report.category}
+                {categoryLabel}
               </span>
               <span className="text-sm text-blue-200">{report.readingTime}</span>
               <span className="text-sm text-blue-200">|</span>
@@ -179,7 +190,9 @@ export default async function ReportDetailPage({ params }: PageProps) {
             </p>
 
             {/* Author */}
-            <p className="mt-4 text-sm text-blue-200">By {report.author}</p>
+            <p className="mt-4 text-sm text-blue-200">
+              {(t("reports.detail.byAuthor") as string).replace("{author}", report.author)}
+            </p>
           </div>
         </section>
 
@@ -213,17 +226,16 @@ export default async function ReportDetailPage({ params }: PageProps) {
           {isAnonymous && (
             <div className="mb-8 rounded-xl border border-[#003399]/15 bg-[#003399]/5 p-6 text-center">
               <h2 className="text-lg font-bold text-[#0d1b3e]">
-                Create a Free Account to Read This Report
+                {t("reports.detail.createAccountTitle")}
               </h2>
               <p className="mt-2 text-sm text-gray-600 max-w-md mx-auto">
-                Our research reports are free for registered users. Sign up in
-                seconds to access the full report.
+                {t("reports.detail.createAccountDesc")}
               </p>
               <Link
                 href={`/${lang}/subscribe`}
                 className="mt-4 inline-block rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors"
               >
-                Create Free Account
+                {t("reports.detail.createFreeAccount")}
               </Link>
             </div>
           )}
@@ -232,7 +244,7 @@ export default async function ReportDetailPage({ params }: PageProps) {
           {!isAnonymous && (
             <nav className="mb-10 rounded-lg border border-gray-200 bg-gray-50 p-5">
               <h2 className="text-sm font-bold uppercase tracking-wide text-gray-500 mb-3">
-                Table of Contents
+                {t("reports.detail.tableOfContents")}
               </h2>
               <ol className="space-y-1.5">
                 {report.sections.map((section, index) => {
@@ -320,23 +332,22 @@ export default async function ReportDetailPage({ params }: PageProps) {
                           />
                         </svg>
                         <h3 className="text-lg font-bold text-[#0d1b3e]">
-                          Unlock the Full Report
+                          {t("reports.detail.unlockTitle")}
                         </h3>
                         <p className="mt-2 text-sm text-gray-600 max-w-md mx-auto">
-                          This report has{" "}
-                          {report.sections.length - FREE_SECTIONS_COUNT} more
-                          sections. Upgrade to Pro to read the complete analysis,
-                          including actionable recommendations and sector-specific
-                          guidance.
+                          {(t("reports.detail.unlockDesc") as string).replace(
+                            "{count}",
+                            String(report.sections.length - FREE_SECTIONS_COUNT)
+                          )}
                         </p>
                         <Link
                           href={`/${lang}/pricing`}
                           className="mt-5 inline-block rounded-lg bg-[#003399] px-8 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors shadow-sm"
                         >
-                          Upgrade to Pro — EUR 19/month
+                          {t("reports.detail.upgradeToPro")}
                         </Link>
                         <p className="mt-2 text-xs text-gray-400">
-                          Full access to all reports, systems, and tools
+                          {t("reports.detail.fullAccessNote")}
                         </p>
                       </div>
                     </div>
@@ -384,7 +395,7 @@ export default async function ReportDetailPage({ params }: PageProps) {
                   d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
                 />
               </svg>
-              Back to Reports &amp; White Papers
+              {t("reports.detail.backToReports")}
             </Link>
           </div>
         </div>
