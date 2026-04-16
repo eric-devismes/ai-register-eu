@@ -298,7 +298,7 @@ const systems = [
     dataPortability:
       "Full data export via Azure APIs and portal in standard formats. Microsoft 365: data export tools available. Graph API for programmatic access. Migration tools for moving between cloud providers.",
     exitTerms:
-      "30-day post-termination data retrieval. Data deletion confirmed. Microsoft 365: data retention per contract. Copilot pricing (2026): Add-on $18/user/month for existing M365 subscribers. New M365 E7 'Frontier Suite' at $99/user/month (annual, from May 1, 2026) bundles M365 E5 + Copilot + Entra Suite + Agent 365 (15% discount vs. buying separately). M365 suite pricing increases July 1, 2026. Enterprise Copilot requires 300-seat minimum commitment.",
+      "30-day post-termination data retrieval. Data deletion confirmed. Microsoft 365: data retention per contract. Copilot pricing (2026): Standalone add-on $30/user/month for existing M365 subscribers; bundled plans from $42.50/user/month. Enterprise minimum: 300-seat commitment. New M365 E7 'Frontier Suite' at $99/user/month (annual, from May 1, 2026) bundles M365 E5 + Copilot + Agent 365 + Entra Suite — 15% discount vs. buying separately. M365 suite pricing increases effective July 1, 2026 across Business/Enterprise/Frontline tiers.",
     ipTerms:
       "Customer retains all IP in inputs and outputs. Copilot Copyright Commitment — Microsoft assumes legal risk for copyright claims on Copilot outputs.",
     certifications:
