@@ -12,6 +12,7 @@ export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { getSystemBySlug, getSystemClaims } from "@/lib/queries";
 import { computeOverallScore, computeAllDimensionScores } from "@/lib/scoring";
+import { getTranslatedField } from "@/lib/get-translation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SystemDetailClient from "./SystemDetailClient";
@@ -61,6 +62,11 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
     biasTesting: system.biasTesting,
   });
 
+  // Translate system description
+  const translatedDescription = await getTranslatedField(
+    "system", system.id, locale, "description", system.description,
+  );
+
   // Serialise for client component (dates → strings, strip Prisma internals)
   const systemData = {
     slug: system.slug,
@@ -68,7 +74,7 @@ export default async function SystemAssessmentPage({ params }: PageProps) {
     name: system.name,
     type: system.type,
     risk: system.risk,
-    description: system.description,
+    description: translatedDescription,
     capabilityType: system.capabilityType,
     vendorHq: system.vendorHq,
     euPresence: system.euPresence,

@@ -226,7 +226,9 @@
     "scores": "Scores",
     "updated": "Updated",
     "system": "System",
-    "industries": "Industries"
+    "industries": "Industries",
+    "heroLabel": "AI Database",
+    "heroTitle": "Search & Compare AI Systems"
   },
   "nav": {
     "newsfeed": "Newsfeed",
