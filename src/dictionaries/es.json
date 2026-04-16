@@ -1,17 +1,17 @@
 {
   "common": {
     "home": "Home",
-    "database": "Base de datos IA",
-    "regulations": "Regulaciones",
+    "database": "Base de Datos de IA",
+    "regulations": "Normativas",
     "industries": "Sectores",
     "pricing": "Precios",
     "about": "Acerca de",
     "methodology": "Metodología",
     "privacy": "Política de Privacidad",
     "signIn": "Iniciar sesión",
-    "logIn": "Iniciar sesión",
-    "myAccount": "Mi cuenta",
-    "signUp": "Regístrese gratis",
+    "logIn": "Conectarse",
+    "myAccount": "Mi Cuenta",
+    "signUp": "Registrarse gratis",
     "learnMore": "Más información",
     "viewAll": "Ver todo",
     "readMore": "Leer más",
@@ -33,31 +33,31 @@
     "save": "Guardar",
     "delete": "Eliminar",
     "risk": "Riesgo",
-    "noSystemsYet": "Todavía no hay sistemas evaluados para este sector.",
+    "noSystemsYet": "Aún no hay sistemas evaluados para esta industria.",
     "viewSystems": "Ver sistemas",
-    "assessed": "evaluado",
+    "assessed": "evaluados",
     "loading": "Cargando..."
   },
   "hero": {
-    "badge": "Independiente y neutral",
-    "title": "La referencia europea para",
-    "titleHighlight": "la inteligencia de herramientas IA",
-    "subtitle": "Evaluaciones completas e independientes de sistemas de IA en la Unión Europea — alineadas con el AI Act, el RGPD, DORA y regulaciones sectoriales.",
-    "ctaDatabase": "Explorar base de datos IA",
-    "ctaMethodology": "Ver metodología",
+    "badge": "Independiente y Neutral Respecto a Proveedores",
+    "title": "La Base de Datos de Referencia Europea para",
+    "titleHighlight": "Inteligencia de Herramientas de IA",
+    "subtitle": "Evaluaciones exhaustivas e independientes de sistemas de IA en toda la Unión Europea — alineadas con la AI Act, GDPR, DORA y regulaciones específicas del sector.",
+    "ctaDatabase": "Explorar Base de Datos de IA",
+    "ctaMethodology": "Ver Metodología",
     "searchPlaceholder": "Buscar sistemas de IA, proveedores o regulaciones...",
-    "searchButton": "Buscar Base de Datos",
-    "popular": "Popular"
+    "searchButton": "Buscar en la Base de Datos",
+    "popular": "Populares"
   },
   "stats": {
-    "aiToolsRated": "herramientas IA evaluadas",
+    "aiToolsRated": "herramientas de IA evaluadas",
     "regulatoryFrameworks": "marcos regulatorios",
-    "industriesCovered": "sectores cubiertos",
+    "industriesCovered": "industrias cubiertas",
     "euMemberStates": "estados miembros de la UE mapeados"
   },
   "featured": {
-    "title": "Sistemas IA destacados",
-    "subtitle": "Evaluaciones independientes de las principales plataformas IA utilizadas en empresas europeas.",
+    "title": "Sistemas de IA Destacados",
+    "subtitle": "Evaluaciones independientes de plataformas de IA líderes utilizadas en industrias europeas.",
     "complianceScores": "Puntuaciones de Cumplimiento",
     "overall": "General",
     "fullAssessment": "Evaluación completa",
@@ -72,23 +72,23 @@
     "title": "Cómo Funciona",
     "subtitle": "Nuestra metodología rigurosa y transparente garantiza que cada evaluación cumpla con los más altos estándares de independencia y precisión.",
     "step1Title": "Identificación del Sistema",
-    "step1Desc": "Monitoreamos continuamente el mercado europeo para identificar sistemas de IA utilizados en entornos empresariales, catalogando nuevos actores y actualizaciones.",
+    "step1Desc": "Monitoreamos continuamente el mercado europeo de sistemas de IA utilizados en entornos empresariales, identificando y catalogando nuevos participantes y actualizaciones.",
     "step2Title": "Clasificación de Riesgos",
-    "step2Desc": "Cada sistema se clasifica según los niveles de riesgo de la EU AI Act y se mapea contra las regulaciones específicas aplicables de cada industria.",
-    "step3Title": "Evaluación Multi-Marco",
+    "step2Desc": "Cada sistema se clasifica de acuerdo con los niveles de riesgo de la EU AI Act y se asigna contra regulaciones específicas del sector aplicables.",
+    "step3Title": "Evaluación Multimarco",
     "step3Desc": "Analistas independientes evalúan cada sistema contra múltiples marcos regulatorios utilizando nuestra metodología de evaluación estandarizada.",
     "step4Title": "Calificación y Publicación",
-    "step4Desc": "Las puntuaciones de cumplimiento se publican con transparencia metodológica completa, incluyendo desglose detallado y referencias de evidencia."
+    "step4Desc": "Las puntuaciones de cumplimiento se publican con transparencia metodológica completa, incluyendo desgloses detallados y referencias de evidencia."
   },
   "cta": {
-    "title": "Inteligencia de Cumplimiento de IA",
+    "title": "Inteligencia de Cumplimiento en IA",
     "subtitle": "Resumen semanal de nuevas calificaciones de herramientas de IA, cambios regulatorios y análisis de cumplimiento.",
-    "placeholder": "Introduzca su email de trabajo",
+    "placeholder": "Ingrese su correo electrónico de trabajo",
     "button": "Subscribe",
-    "disclaimer": "Sin spam. Puedes darte de baja en cualquier momento. Cumple con GDPR."
+    "disclaimer": "Sin spam. Cancele la suscripción en cualquier momento. Cumplimiento GDPR."
   },
   "frameworks": {
-    "title": "Marcos regulatorios",
+    "title": "Marcos Regulatorios",
     "subtitle": "Evaluamos sistemas de IA contra los principales marcos regulatorios europeos.",
     "readDocs": "Leer documentación",
     "sections": "Secciones y Requisitos",
@@ -97,40 +97,40 @@
     "whatThisMeans": "Qué significa esto para tu organización",
     "issuedBy": "Emitido por",
     "type": "Tipo",
-    "maxPenalty": "Sanción Máxima",
+    "maxPenalty": "Penalización Máxima",
     "applicableRegions": "Regiones Aplicables",
     "applicableIndustries": "Sectores Aplicables",
     "assessmentCriteria": "Criterios de Evaluación",
     "purpose": "Propósito",
-    "officialText": "Ver texto oficial de la regulación",
+    "officialText": "Ver texto oficial de la normativa",
     "euCompliance": "Marcos de Cumplimiento de la UE",
     "heroSubtitle": "Evaluamos sistemas de IA contra {count} marcos regulatorios europeos. Cada marco define requisitos específicos para el cumplimiento de IA."
   },
   "browseIndustry": {
-    "title": "Explorar por sector",
-    "subtitle": "Explora sistemas de IA relevantes para tu sector con información de cumplimiento personalizada.",
+    "title": "Explorar por Sector",
+    "subtitle": "Explora sistemas de IA relevantes para tu sector con información de cumplimiento adaptada.",
     "systemsAssessed": "sistemas evaluados",
     "heroTitle": "Sistemas de IA por Sector",
-    "heroSubtitle": "Explora sistemas de IA relevantes para tu industria con información de cumplimiento personalizada en {count} sectores."
+    "heroSubtitle": "Explora sistemas de IA relevantes para tu industria con información de cumplimiento adaptada en {count} sectores."
   },
   "assessment": {
     "complianceAssessment": "Evaluación de Cumplimiento",
     "overallScore": "Puntuación General",
-    "averageAcross": "Promedio entre",
+    "averageAcross": "Promedio en",
     "regulatoryFrameworks": "marcos regulatorios",
-    "dataHandling": "Tratamiento de Datos",
+    "dataHandling": "Gestión de Datos",
     "contractual": "Compromisos Contractuales",
     "security": "Postura de Seguridad",
     "transparency": "Transparencia de IA",
     "euCompliance": "Estado de Cumplimiento de la UE",
     "disclaimer": "Aviso Legal de la Evaluación",
-    "disclaimerText": "Esta evaluación se basa en información disponible públicamente a partir de la fecha de la última revisión. Las puntuaciones reflejan lo que se puede verificar desde la documentación del proveedor, centros de confianza y certificaciones públicas. Para una evaluación verificada adaptada a su caso de uso específico, póngase en contacto con nosotros para una evaluación personalizada.",
+    "disclaimerText": "Esta evaluación se basa en información disponible públicamente a fecha de la última revisión. Las puntuaciones reflejan lo que puede verificarse a partir de documentación del proveedor, centros de confianza y certificaciones públicas. Para una evaluación verificada adaptada a su caso de uso específico, contáctenos para una evaluación personalizada.",
     "keyUseCases": "Casos de Uso Principales",
     "storageLocations": "Ubicaciones de Almacenamiento",
     "processingLocations": "Ubicaciones de Procesamiento",
     "trainingDataUsage": "Uso de Datos de Entrenamiento",
-    "subprocessors": "Subencargados",
-    "dpa": "Acuerdo de Tratamiento de Datos",
+    "subprocessors": "Subprocesadores",
+    "dpa": "Acuerdo de Procesamiento de Datos",
     "sla": "Acuerdos de Nivel de Servicio",
     "dataPortability": "Portabilidad de Datos",
     "exitTerms": "Términos de Salida",
@@ -147,21 +147,21 @@
     "euPresence": "Presencia en la UE"
   },
   "subscribe": {
-    "title": "Recibe Actualizaciones sobre Cumplimiento en IA",
-    "subtitle": "Introduce tu correo electrónico para acceder o crear una cuenta. No necesitas contraseña.",
-    "emailLabel": "Correo electrónico",
+    "title": "Obtén Actualizaciones de Cumplimiento de IA",
+    "subtitle": "Introduce tu correo electrónico para iniciar sesión o crear una cuenta. No se necesita contraseña.",
+    "emailLabel": "Dirección de correo",
     "emailPlaceholder": "tu@empresa.eu",
-    "consent": "Acepto recibir actualizaciones por correo electrónico sobre temas seleccionados de cumplimiento en IA de AI Compass EU. Puedo darme de baja o eliminar mi cuenta en cualquier momento.",
-    "privacyNote": "Almacenamos solo tu correo electrónico y preferencias de temas. Sin seguimiento, sin perfilado.",
+    "consent": "Acepto recibir actualizaciones por correo electrónico sobre temas seleccionados de cumplimiento de IA de AI Compass EU. Puedo darme de baja o eliminar mi cuenta en cualquier momento.",
+    "privacyNote": "Solo almacenamos tu correo electrónico y preferencias de temas. Sin seguimiento, sin perfilado.",
     "readPrivacy": "Lee nuestra",
     "privacyLink": "política de privacidad",
-    "sendLink": "Enviar enlace de acceso",
+    "sendLink": "Enviar enlace de inicio de sesión",
     "sending": "Enviando enlace...",
     "magicLinkNote": "Te enviaremos un enlace mágico. Sin contraseña que recordar.",
-    "checkEmail": "Revisa tu correo electrónico",
-    "checkEmailText": "Hemos enviado un enlace de acceso a",
+    "checkEmail": "Revisa tu correo",
+    "checkEmailText": "Hemos enviado un enlace de inicio de sesión a",
     "linkExpiry": "Haz clic en el enlace para acceder a tu cuenta. El enlace expira en 15 minutos.",
-    "didntReceive": "¿No lo recibiste? Revisa tu carpeta de spam o",
+    "didntReceive": "¿No lo recibiste? Comprueba tu carpeta de spam o",
     "tryAgain": "intenta de nuevo"
   },
   "account": {
@@ -170,9 +170,9 @@
     "frameworksSub": "Selecciona los marcos sobre los que deseas recibir actualizaciones.",
     "systems": "Sistemas de IA",
     "systemsSub": "Selecciona los sistemas de IA sobre los que deseas recibir actualizaciones.",
-    "digest": "Resumen de Correo",
-    "daily": "Diariamente",
-    "weekly": "Semanalmente",
+    "digest": "Resumen de Correos",
+    "daily": "Diario",
+    "weekly": "Semanal",
     "off": "Desactivado",
     "savePreferences": "Guardar Preferencias",
     "saving": "Guardando...",
@@ -180,56 +180,72 @@
     "gdprTitle": "Tus Derechos de Datos (GDPR)",
     "gdprSub": "Solo almacenamos tu correo electrónico y preferencias de temas. Sin seguimiento, sin perfilado.",
     "exportData": "Exportar mis datos",
-    "exportSub": "Descarga todos los datos que almacenamos sobre ti (Art. 20)",
+    "exportSub": "Descarga todos los datos que tenemos sobre ti (Art. 20)",
     "downloadJson": "Descargar JSON",
     "signOut": "Cerrar sesión",
     "signOutSub": "Cierra tu sesión en este dispositivo",
     "deleteAccount": "Eliminar mi cuenta",
-    "deleteSub": "Eliminar permanentemente todos los datos. No se puede deshacer. (Art. 17)",
+    "deleteSub": "Elimina permanentemente todos los datos. No se puede deshacer. (Art. 17)",
     "deleting": "Eliminando...",
     "deleteConfirm": "Esto eliminará permanentemente tu cuenta y todos los datos. No se puede deshacer. ¿Continuar?"
   },
   "feed": {
     "title": "Tu Feed de Cumplimiento",
-    "cta": "Obtén actualizaciones personalizadas de cumplimiento de IA",
-    "ctaSub": "Elige los marcos y herramientas que te importan. Nosotros te entregamos las noticias.",
+    "cta": "Obtén actualizaciones de cumplimiento de IA personalizadas",
+    "ctaSub": "Elige los marcos y herramientas que te importan. Nosotros entregamos las noticias.",
     "noUpdates": "Sin actualizaciones aún para tus temas seleccionados.",
     "managePrefs": "Gestiona tus preferencias"
   },
   "database": {
-    "title": "Buscar y comparar sistemas IA",
+    "title": "Buscar y Comparar Sistemas de IA",
     "badge": "Base de Datos de IA",
-    "heroSubtitle": "{count} sistemas de IA evaluados para cumplimiento europeo. Filtra por nivel de riesgo, sector e índice de cumplimiento.",
+    "heroSubtitle": "{count} sistemas de IA evaluados para cumplimiento europeo. Filtra por nivel de riesgo, industria y puntuación de cumplimiento.",
     "searchPlaceholder": "Busca por nombre, proveedor o tipo...",
-    "found": "encontrados",
+    "found": "encontrado",
     "noMatch": "Ningún sistema coincide con tu búsqueda.",
     "risk": "Riesgo",
     "overall": "General",
     "scores": "Puntuaciones",
     "updated": "Actualizado",
     "system": "Sistema",
-    "industries": "Sectores"
+    "industries": "Industrias",
+    "heroLabel": "Base de Datos de IA",
+    "heroTitle": "Buscar y Comparar Sistemas de IA",
+    "systemsFound": "{count} sistemas encontrados",
+    "systemFound": "{count} sistema encontrado",
+    "availableWithPro": "{count} disponibles con Pro",
+    "noResults": "Ningún sistema coincide con tu búsqueda.",
+    "thSystem": "Sistema",
+    "thRisk": "Riesgo",
+    "thOverall": "General",
+    "thScores": "Puntuaciones",
+    "thIndustries": "Sectores",
+    "thUpdated": "Actualizado",
+    "upgradeCta": "Actualiza a Pro para una evaluación completa",
+    "upgradeBannerTitle": "{count} sistemas de IA adicionales disponibles con evaluaciones de cumplimiento completas",
+    "upgradeBannerSubtitle": "Obtén detalles de puntuaciones desglosadas, herramientas de comparación y un panel de cumplimiento personalizado.",
+    "upgradeButton": "Actualizar a Pro — 19 €/mes"
   },
   "footer": {
-    "tagline": "La plataforma integral para rastrear, analizar y comprender sistemas de IA que operan dentro del marco regulatorio de la Unión Europea.",
-    "slogan": "Inteligencia en IA para Decisores Europeos",
+    "tagline": "La plataforma integral para seguimiento, análisis y comprensión de sistemas de IA que operan dentro del marco regulatorio de la Unión Europea.",
+    "slogan": "Inteligencia de IA para Tomadores de Decisiones Europeos",
     "database": "Base de Datos",
-    "regulations": "Regulaciones",
+    "regulations": "Normativas",
     "platform": "Plataforma",
     "browseAI": "Explorar Sistemas de IA",
     "riskCategories": "Categorías de Riesgo",
-    "complianceTracker": "Rastreador de Cumplimiento",
+    "complianceTracker": "Gestor de Cumplimiento",
     "euAiActOverview": "Descripción General de la EU AI Act",
     "complianceReq": "Requisitos de Cumplimiento",
-    "riskClassification": "Clasificación de Riesgos",
+    "riskClassification": "Clasificación de Riesgo",
     "timeline": "Cronograma y Plazos",
     "standards": "Estándares y Marcos",
     "nationalImpl": "Implementación Nacional",
-    "aboutUs": "Acerca de Nosotros",
+    "aboutUs": "Sobre Nosotros",
     "copyright": "© 2026 AI Compass EU. Todos los derechos reservados.",
-    "disclaimer": "Aviso Legal: AI Compass EU proporciona información con fines educativos y profesionales. Nuestras evaluaciones se basan en información disponible públicamente y no deben considerarse asesoramiento legal. Consulte a profesionales legales calificados para requisitos de cumplimiento específicos.",
-    "aiTransparencyTitle": "Aviso de Transparencia en IA",
-    "aiTransparencyBody": "Esta plataforma utiliza IA (Anthropic Claude) para su asistente chatbot y herramienta de comparación. Las respuestas generadas por IA se basan en nuestra base de datos evaluada y están claramente identificadas. No se utilizan datos personales para el entrenamiento del modelo de IA. Todas las características de IA cumplen con las obligaciones de transparencia del EU AI Act (Artículo 50) y los requisitos del GDPR para el procesamiento automatizado.",
+    "disclaimer": "Aviso Legal: AI Compass EU proporciona información con fines educativos y profesionales. Nuestras evaluaciones se basan en información disponible públicamente y no deben considerarse asesoramiento legal. Consulte a profesionales legales cualificados para requisitos de cumplimiento específicos.",
+    "aiTransparencyTitle": "Aviso de Transparencia de IA",
+    "aiTransparencyBody": "Esta plataforma utiliza IA (Anthropic Claude) para su asistente chatbot y herramienta de comparación. Las respuestas generadas por IA se basan en nuestra base de datos evaluada y están claramente etiquetadas. No se utilizan datos personales para el entrenamiento del modelo de IA. Todas las funciones de IA cumplen con las obligaciones de transparencia de la EU AI Act (Artículo 50) y los requisitos de GDPR para procesamiento automatizado.",
     "security": "Seguridad",
     "incidentResponse": "Respuesta a Incidentes",
     "terms": "Términos",
@@ -237,65 +253,65 @@
     "disclaimerTitle": "Aviso Legal"
   },
   "nav": {
-    "newsfeed": "Feed de noticias",
+    "newsfeed": "Noticias",
     "plans": "Planes",
     "tools": "Herramientas",
     "compare": "Comparar",
     "compareDesc": "Comparación de sistemas lado a lado",
     "checklist": "Lista de verificación",
-    "checklistDesc": "Generador de listas de verificación de cumplimiento",
+    "checklistDesc": "Generador de lista de verificación de cumplimiento normativo",
     "rfpEngine": "RFP Engine",
-    "rfpEngineDesc": "Responda RFPs de proveedores con respuestas rellenadas previamente",
+    "rfpEngineDesc": "Responder RFP de proveedores con respuestas pre-rellenadas",
     "meetingPrep": "Meeting Prep",
     "meetingPrepDesc": "Kit de información para reuniones con proveedores",
     "reports": "Informes",
-    "reportsDesc": "Informes de investigación y documentos técnicos",
+    "reportsDesc": "Informes de investigación y libros blancos",
     "menu": "Menú",
     "close": "Cerrar"
   },
   "meta": {
     "home": {
-      "title": "AI Compass EU — Inteligencia en IA para los responsables de decisiones europeos",
-      "description": "Evaluaciones exhaustivas e independientes de sistemas de IA en toda la Unión Europea, mapeadas contra la AI Act, GDPR, DORA y regulaciones específicas del sector."
+      "title": "AI Compass EU — Inteligencia en IA para Responsables de Decisiones Europeos",
+      "description": "Evaluaciones exhaustivas e independientes de sistemas de IA en toda la Unión Europea — alineadas con el AI Act, GDPR, DORA y regulaciones específicas por sector."
     },
     "database": {
-      "title": "Base de datos de IA",
-      "description": "Explora y busca sistemas de IA clasificados por cumplimiento europeo. Filtra por nivel de riesgo, sector, regulación y puntuación de cumplimiento."
+      "title": "Base de Datos de IA",
+      "description": "Navega y busca sistemas de IA clasificados por cumplimiento europeo. Filtra por nivel de riesgo, sector, regulación y puntuación de cumplimiento."
     },
     "pricing": {
       "title": "Precios",
-      "description": "Precios simples y transparentes para inteligencia de cumplimiento de IA. Nivel gratuito disponible; Pro desde EUR 19/mes."
+      "description": "Precios simples y transparentes para inteligencia en cumplimiento de IA. Nivel gratuito disponible; Pro desde EUR 19/mes."
     },
     "about": {
       "title": "Acerca de",
-      "description": "AI Compass EU es la referencia europea independiente para inteligencia de herramientas de IA, al servicio de DPOs, CISOs y profesionales de cumplimiento."
+      "description": "AI Compass EU es la referencia independiente europea para inteligencia en herramientas de IA — sirviendo a DPOs, CISOs y profesionales de cumplimiento."
     },
     "methodology": {
       "title": "Metodología",
-      "description": "Cómo evaluamos sistemas de IA contra regulaciones de la UE. Evaluación transparente y multimarco con referencias de evidencia."
+      "description": "Cómo clasificamos sistemas de IA según regulaciones de la UE. Evaluación transparente y multifuncional con referencias de evidencia."
     },
     "reports": {
-      "title": "Informes y documentos técnicos",
-      "description": "Informes de investigación gratuitos sobre adopción de IA, cumplimiento, privacidad de datos y seguridad en Europa. Análisis experto para DPOs, CISOs y profesionales de cumplimiento."
+      "title": "Informes y Libros Blancos",
+      "description": "Informes de investigación gratuitos sobre adopción de IA, cumplimiento normativo, privacidad de datos y seguridad en Europa. Análisis experto para DPOs, CISOs y profesionales de cumplimiento."
     },
     "regulations": {
       "title": "Regulaciones",
-      "description": "Los principales marcos regulatorios europeos para IA — AI Act, GDPR, DORA, NIS2, normas sectoriales — con requisitos, plazos y sanciones."
+      "description": "Los principales marcos regulatorios europeos para IA — AI Act, GDPR, DORA, NIS2, normas sectoriales — con requisitos, cronogramas y sanciones."
     },
     "industries": {
       "title": "Sectores",
-      "description": "Sistemas de IA por sector. Información de cumplimiento adaptada para servicios financieros, sanidad, sector público, HR, manufactura y más."
+      "description": "Sistemas de IA por sector. Información personalizada sobre cumplimiento normativo para servicios financieros, sanidad, sector público, recursos humanos, manufactura y más."
     }
   },
   "evidenceBanner": {
     "title": "Vista previa — fuentes de evidencia en verificación",
-    "body": "Las afirmaciones en esta página se están re-verificando contra el centro de confianza de cada proveedor, la DPA, la lista de subprocesadores y registros de certificaciones. Cada afirmación incluirá un enlace de fuente y fecha de verificación una vez se complete el relleno. Si confías en estos datos para una decisión de compra hoy, verifica de forma independiente contra los documentos de fuente del proveedor.",
-    "learnMore": "Nuestra metodología de recopilación"
+    "body": "Las afirmaciones en esta página están siendo re-verificadas contra el centro de confianza de cada proveedor, DPA, lista de sub-procesadores y registros de certificaciones. Cada afirmación llevará un enlace de fuente y fecha de verificación una vez se complete el rellenado. Si confías en estos datos para una decisión de adquisición hoy, verifica de forma independiente contra los documentos fuente del proveedor.",
+    "learnMore": "Nuestra metodología de búsqueda"
   },
   "evidence": {
     "sources": "Fuentes de evidencia",
     "sourceLink": "Ver fuente",
-    "verifiedOn": "Verificado en",
+    "verifiedOn": "Verificado el",
     "stale": "Requiere revisión",
     "unverified": "No verificado",
     "reportIssue": "Reportar información obsoleta",
@@ -306,9 +322,9 @@
     "tier4": "Presentación regulatoria / informe de incidente"
   },
   "cookies": {
-    "message": "Usamos {strong}solo cookies esenciales{strongEnd} (gestión de sesiones, limitación de tasa). Sin seguimiento, sin cookies publicitarias. Nuestros análisis son sin cookies.",
-    "privacyLink": "Política de privacidad",
+    "message": "Utilizamos {strong}solo cookies esenciales{strongEnd} (gestión de sesiones, limitación de velocidad). Sin cookies de seguimiento ni publicidad. Nuestro análisis no requiere cookies.",
+    "privacyLink": "Política de Privacidad",
     "essentialOnly": "Solo esenciales",
-    "acceptAll": "Aceptar todo"
+    "acceptAll": "Aceptar todas"
   }
 }

@@ -228,7 +228,21 @@
     "system": "System",
     "industries": "Industries",
     "heroLabel": "AI Database",
-    "heroTitle": "Search & Compare AI Systems"
+    "heroTitle": "Search & Compare AI Systems",
+    "systemsFound": "{count} systems found",
+    "systemFound": "{count} system found",
+    "availableWithPro": "{count} available with Pro",
+    "noResults": "No systems match your search.",
+    "thSystem": "System",
+    "thRisk": "Risk",
+    "thOverall": "Overall",
+    "thScores": "Scores",
+    "thIndustries": "Industries",
+    "thUpdated": "Updated",
+    "upgradeCta": "Upgrade to Pro for full assessment",
+    "upgradeBannerTitle": "{count} more AI systems available with full compliance assessments",
+    "upgradeBannerSubtitle": "Get detailed scoring breakdowns, comparison tools, and a personalized compliance dashboard.",
+    "upgradeButton": "Upgrade to Pro — €19/month"
   },
   "nav": {
     "newsfeed": "Newsfeed",

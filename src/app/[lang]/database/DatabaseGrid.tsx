@@ -13,6 +13,7 @@ import Link from "next/link";
 import { gradeColor } from "@/lib/scoring";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_BADGES, RISK_TOOLTIPS, SCORE_TOOLTIPS } from "@/lib/constants";
+import { useT, useLocale } from "@/lib/locale-context";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 interface Score {
@@ -57,6 +58,9 @@ export function DatabaseGrid({
 }) {
   const [search, setSearch] = useState(initialSearch);
   const [riskFilter, setRiskFilter] = useState("All");
+  const t = useT();
+  const locale = useLocale();
+  const l = (path: string) => `/${locale}${path}`;
 
   const hasFullAccess = tier === "pro" || tier === "enterprise";
 
@@ -79,7 +83,7 @@ export function DatabaseGrid({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <input
           type="text"
-          placeholder="Search by name, vendor, or type..."
+          placeholder={t("database.searchPlaceholder")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-[#003399] focus:outline-none focus:ring-1 focus:ring-[#003399] sm:max-w-sm"
@@ -95,7 +99,7 @@ export function DatabaseGrid({
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              {f}
+              {t(`common.${f.toLowerCase()}`)}
             </button>
           ))}
         </div>
@@ -103,10 +107,10 @@ export function DatabaseGrid({
 
       {/* Results count */}
       <p className="mt-4 text-sm text-gray-500">
-        {filtered.length} system{filtered.length !== 1 ? "s" : ""} found
+        {(filtered.length !== 1 ? t("database.systemsFound") : t("database.systemFound")).replace("{count}", String(filtered.length))}
         {!hasFullAccess && proCount > 0 && (
           <span className="ml-2 text-[#003399]">
-            &middot; {proCount} available with <Link href="/en/pricing" className="underline hover:text-[#002277]">Pro</Link>
+            &middot; {t("database.availableWithPro").replace("{count}", String(proCount))}
           </span>
         )}
       </p>
@@ -115,18 +119,18 @@ export function DatabaseGrid({
       <div className="mt-6 overflow-hidden rounded-xl border border-gray-200 bg-white">
         {filtered.length === 0 ? (
           <div className="p-12 text-center text-sm text-gray-500">
-            No systems match your search.
+            {t("database.noResults")}
           </div>
         ) : (
           <table className="w-full text-left text-sm">
             <thead className="border-b border-gray-100 bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
               <tr>
-                <th className="px-6 py-3">System</th>
-                <th className="px-6 py-3">Risk</th>
-                <th className="px-6 py-3">Overall</th>
-                <th className="hidden px-6 py-3 lg:table-cell">Scores</th>
-                <th className="hidden px-6 py-3 md:table-cell">Industries</th>
-                <th className="px-6 py-3">Updated</th>
+                <th className="px-6 py-3">{t("database.thSystem")}</th>
+                <th className="px-6 py-3">{t("database.thRisk")}</th>
+                <th className="px-6 py-3">{t("database.thOverall")}</th>
+                <th className="hidden px-6 py-3 lg:table-cell">{t("database.thScores")}</th>
+                <th className="hidden px-6 py-3 md:table-cell">{t("database.thIndustries")}</th>
+                <th className="px-6 py-3">{t("database.thUpdated")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -136,21 +140,21 @@ export function DatabaseGrid({
                   <tr key={s.id} className={`transition ${accessible ? "hover:bg-gray-50" : "hover:bg-blue-50/30"}`}>
                     <td className="px-6 py-4">
                       {accessible ? (
-                        <Link href={`/systems/${s.slug}`} className="group">
+                        <Link href={l(`/systems/${s.slug}`)} className="group">
                           <p className="font-medium text-gray-900 group-hover:text-[#003399]">
                             {s.name}
                           </p>
                           <p className="text-xs text-gray-500">{s.vendor} &middot; {s.type}</p>
                         </Link>
                       ) : (
-                        <Link href="/en/pricing" className="group">
+                        <Link href={l("/pricing")} className="group">
                           <p className="font-medium text-gray-900 group-hover:text-[#003399] flex items-center gap-1.5">
                             {s.name}
                             <LockIcon />
                           </p>
                           <p className="text-xs text-gray-500">{s.vendor} &middot; {s.type}</p>
                           <p className="mt-0.5 text-[10px] text-[#003399] opacity-0 group-hover:opacity-100 transition-opacity">
-                            Upgrade to Pro for full assessment
+                            {t("database.upgradeCta")}
                           </p>
                         </Link>
                       )}
@@ -163,7 +167,7 @@ export function DatabaseGrid({
                         position="bottom"
                       >
                         <span className={`inline-block cursor-pointer rounded-full border px-2.5 py-0.5 text-xs font-semibold ${RISK_BADGES[s.risk] || RISK_BADGES.High}`}>
-                          {s.risk} ⓘ
+                          {t(`common.${s.risk.toLowerCase()}`)} ⓘ
                         </span>
                       </Tooltip>
                     </td>
@@ -239,16 +243,16 @@ export function DatabaseGrid({
       {!hasFullAccess && proCount > 0 && (
         <div className="mt-8 rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-6 text-center">
           <p className="text-sm font-medium text-[#0d1b3e]">
-            {proCount} more AI systems available with full compliance assessments
+            {t("database.upgradeBannerTitle").replace("{count}", String(proCount))}
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            Get detailed scoring breakdowns, comparison tools, and a personalized compliance dashboard.
+            {t("database.upgradeBannerSubtitle")}
           </p>
           <Link
-            href="/en/pricing"
+            href={l("/pricing")}
             className="mt-4 inline-block rounded-lg bg-[#003399] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#002277] transition-colors"
           >
-            Upgrade to Pro &mdash; &euro;19/month
+            {t("database.upgradeButton")}
           </Link>
         </div>
       )}
