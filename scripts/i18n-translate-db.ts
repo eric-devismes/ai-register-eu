@@ -63,12 +63,13 @@ const LOCALE_NAMES: Record<string, string> = {
 };
 const TARGET_LOCALES = Object.keys(LOCALE_NAMES);
 
-// Fields per entity type to translate. Framework/product names stay in English
-// (acronyms/brand names — covered by glossary); only descriptions translate.
-// Industry has no description field in the schema.
+// Fields per entity type to translate. Framework names stay in English (legal
+// references — "EU AI Act", "GDPR"). Product names stay too (brand names).
+// Industry names DO need translation ("Financial Services" → "Services financiers").
 const FIELDS_TO_TRANSLATE: Record<string, string[]> = {
   framework: ["description"],
   system: ["description"],
+  industry: ["name"],
 };
 
 // ─── Anthropic client ──────────────────────────────────────────────────
@@ -269,13 +270,19 @@ async function main() {
   const systems = await prisma.aISystem.findMany({
     select: { id: true, description: true },
   });
+  const industries = await prisma.industry.findMany({
+    select: { id: true, name: true },
+  });
 
-  console.log(`\nLoaded: ${frameworks.length} frameworks, ${systems.length} systems`);
+  console.log(`\nLoaded: ${frameworks.length} frameworks, ${systems.length} systems, ${industries.length} industries`);
 
   let totalTranslated = 0;
 
   const r1 = await backfillEntity("framework", frameworks, force);
   totalTranslated += r1.translated;
+
+  const r2 = await backfillEntity("industry", industries as unknown as { id: string; [k: string]: unknown }[], force);
+  totalTranslated += r2.translated;
 
   const r3 = await backfillEntity("system", systems, force);
   totalTranslated += r3.translated;
