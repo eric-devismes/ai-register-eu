@@ -42,7 +42,7 @@
     "badge": "Independent & Vendor-Neutral",
     "title": "The European Reference Database for",
     "titleHighlight": "AI Tool Intelligence",
-    "subtitle": "Comprehensive, independent assessments of AI systems across the European Union \u2014 mapped against the AI Act, GDPR, DORA, and sector-specific regulations.",
+    "subtitle": "Comprehensive, independent assessments of AI systems across the European Union — mapped against the AI Act, GDPR, DORA, and sector-specific regulations.",
     "ctaDatabase": "Explore AI Database",
     "ctaMethodology": "View Methodology",
     "searchPlaceholder": "Search AI systems, vendors, or regulations...",
@@ -302,7 +302,13 @@
     "terms": "Terms",
     "contact": "Contact",
     "disclaimerTitle": "Disclaimer",
-    "copyright": "\u00a9 2026 AI Compass EU. All rights reserved.",
+    "copyright": "© 2026 AI Compass EU. All rights reserved.",
     "disclaimer": "Disclaimer: AI Compass EU provides information for educational and professional purposes. Our assessments are based on publicly available information and should not be considered legal advice. Consult qualified legal professionals for specific compliance requirements."
+  },
+  "cookies": {
+    "message": "We use {strong}essential cookies only{strongEnd} (session management, rate limiting). No tracking, no advertising cookies. Our analytics are cookie-free.",
+    "privacyLink": "Privacy Policy",
+    "essentialOnly": "Essential only",
+    "acceptAll": "Accept all"
   }
 }

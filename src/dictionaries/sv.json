@@ -304,5 +304,11 @@
     "tier2": "Leverantördokumentation",
     "tier3": "Tredjepartsregistret för certifiering",
     "tier4": "Regulatorisk anmälan / incidentrapport"
+  },
+  "cookies": {
+    "message": "Vi använder {strong}endast nödvändiga cookies{strongEnd} (sessionshantering, hastighetsbegränsning). Ingen spårning, inga reklamcookies. Vår analys är cookiefri.",
+    "privacyLink": "Integritetspolicy",
+    "essentialOnly": "Endast nödvändiga",
+    "acceptAll": "Acceptera alla"
   }
 }

@@ -304,5 +304,11 @@
     "tier2": "Leveranciersdocumentatie",
     "tier3": "Registry voor certificering door derden",
     "tier4": "Regelgevingsfiling / incidentrapport"
+  },
+  "cookies": {
+    "message": "Wij gebruiken {strong}alleen essentiële cookies{strongEnd} (sessiebeheer, snelheidsbeperking). Geen tracking, geen advertentiecookies. Onze analyses zijn cookievrij.",
+    "privacyLink": "Privacybeleid",
+    "essentialOnly": "Alleen essentieel",
+    "acceptAll": "Alles accepteren"
   }
 }

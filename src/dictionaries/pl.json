@@ -304,5 +304,11 @@
     "tier2": "Dokumentacja dostawcy",
     "tier3": "Rejestr certyfikacji trzeciej strony",
     "tier4": "Zgłoszenie regulacyjne / raport o incydencie"
+  },
+  "cookies": {
+    "message": "Używamy {strong}wyłącznie niezbędnych plików cookie{strongEnd} (zarządzanie sesją, ograniczanie szybkości). Bez śledzenia, bez ciasteczek reklamowych. Nasze analizy nie używają ciasteczek.",
+    "privacyLink": "Polityka prywatności",
+    "essentialOnly": "Tylko niezbędne",
+    "acceptAll": "Akceptuj wszystkie"
   }
 }

@@ -304,5 +304,11 @@
     "tier2": "Dokumentace dodavatele",
     "tier3": "Registr certifikací třetích stran",
     "tier4": "Regulační podání / zpráva o incidentu"
+  },
+  "cookies": {
+    "message": "Používáme {strong}pouze nezbytné soubory cookie{strongEnd} (správa relací, omezení rychlosti). Žádné sledování, žádné reklamní soubory cookie. Naše analytika je bez cookies.",
+    "privacyLink": "Zásady ochrany osobních údajů",
+    "essentialOnly": "Pouze nezbytné",
+    "acceptAll": "Přijmout vše"
   }
 }

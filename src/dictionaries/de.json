@@ -304,5 +304,11 @@
     "tier2": "Anbieterdokumentation",
     "tier3": "Zertifizierungsregister von Drittanbietern",
     "tier4": "Behördliche Anmeldung / Vorfallbericht"
+  },
+  "cookies": {
+    "message": "Wir verwenden {strong}ausschließlich essentielle Cookies{strongEnd} (Sitzungsverwaltung, Ratenbegrenzung). Kein Tracking, keine Werbe-Cookies. Unsere Analysen sind cookie-frei.",
+    "privacyLink": "Datenschutzerklärung",
+    "essentialOnly": "Nur Essentielle",
+    "acceptAll": "Alle akzeptieren"
   }
 }

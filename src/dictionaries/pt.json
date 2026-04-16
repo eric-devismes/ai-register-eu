@@ -304,5 +304,11 @@
     "tier2": "Documentação do fornecedor",
     "tier3": "Registo de certificação de terceiros",
     "tier4": "Arquivamento regulatório / relatório de incidente"
+  },
+  "cookies": {
+    "message": "Usamos {strong}apenas cookies essenciais{strongEnd} (gestão de sessão, limitação de taxa). Sem rastreamento, sem cookies de publicidade. As nossas análises não usam cookies.",
+    "privacyLink": "Política de privacidade",
+    "essentialOnly": "Apenas essenciais",
+    "acceptAll": "Aceitar tudo"
   }
 }

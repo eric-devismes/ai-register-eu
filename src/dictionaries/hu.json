@@ -304,5 +304,11 @@
     "tier2": "Szállítói dokumentáció",
     "tier3": "Harmadik féltől származó tanúsítási regiszter",
     "tier4": "Szabályozási bejelentés / incidens jelentés"
+  },
+  "cookies": {
+    "message": "Csak {strong}alapvető sütiket{strongEnd} használunk (munkamenet-kezelés, sebességkorlátozás). Sem nyomkövetés, sem reklám sütik. Elemzéseink sütimentesek.",
+    "privacyLink": "Adatvédelmi irányelvek",
+    "essentialOnly": "Csak alapvető",
+    "acceptAll": "Összes elfogadása"
   }
 }

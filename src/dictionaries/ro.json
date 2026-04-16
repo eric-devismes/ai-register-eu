@@ -304,5 +304,11 @@
     "tier2": "Documentația furnizorului",
     "tier3": "Registrul certificării de la terți",
     "tier4": "Depunere de reglementare / raport de incident"
+  },
+  "cookies": {
+    "message": "Folosim {strong}doar cookie-uri esențiale{strongEnd} (gestionarea sesiunii, limitarea ratei). Fără urmărire, fără cookie-uri publicitare. Analiza noastră este fără cookie-uri.",
+    "privacyLink": "Politica de confidențialitate",
+    "essentialOnly": "Doar esențiale",
+    "acceptAll": "Acceptă tot"
   }
 }

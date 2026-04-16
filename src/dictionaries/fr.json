@@ -304,5 +304,11 @@
       "title": "Secteurs d'activité",
       "description": "Systèmes IA par secteur. Perspectives de conformité adaptées aux services financiers, santé, secteur public, RH, fabrication et autres."
     }
+  },
+  "cookies": {
+    "message": "Nous utilisons {strong}uniquement des cookies essentiels{strongEnd} (gestion de session, limitation du débit). Pas de suivi, pas de cookies publicitaires. Nos analyses sont sans cookies.",
+    "privacyLink": "Politique de confidentialité",
+    "essentialOnly": "Essentiels uniquement",
+    "acceptAll": "Tout accepter"
   }
 }
