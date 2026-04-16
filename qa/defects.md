@@ -5,6 +5,26 @@
 
 ---
 
+## 2026-04-16 QA Run (Evening)
+
+### Critical
+_None this run._
+
+### Warning
+- **`useT()` only resolved 2-level keys — 3-level keys showed as raw i18n key strings** — `src/lib/locale-context.tsx`: `useT()` did `dict[section][field]` where `field = "cards.freeName"`, but the dict is nested 3 levels deep (`dict["pricing"]["cards"]["freeName"]`). Affected: pricing cards (all tier names, descriptions, features), system detail accordion, methodology dimensions, reports detail, meta tags. All 14 locales impacted including English. Keys were visible in raw HTML and (after hydration) in-browser. **✅ Fixed this run**: Updated `useT()` to walk arbitrary-depth key paths via `reduce`. Committed `2c63d32`, deployed. — https://ai-register-eu.vercel.app/en/pricing
+
+### Info
+- **All main pages return 200** — /, /database, /pricing, /about, /methodology, /regulations, /industries, /newsfeed, /reports, /privacy, /terms, /security, /contact all load correctly. ✅
+- **System detail pages load correctly** — `/en/systems/anthropic-claude-enterprise` (B-), `/en/systems/openai-chatgpt-enterprise` loads with full framework breakdown and role-specific perspectives. ✅
+- **FR/DE homepages properly localised** — Navigation, hero, stats, industry browse, regulatory frameworks all in French/German. Vendor product description text (system cards) remaining in English is expected for branded content. ✅
+- **Reports page** — 6 reports showing with correct badges, descriptions, CTAs. 2 "Coming Soon" entries properly labelled. ✅
+- **Newsfeed** — 161 entries, paginated correctly. Future-dated EU AI Act enforcement milestone articles (Aug 2026) still not labelled "Scheduled" — ongoing from 2026-04-15. ✅
+
+### Fixed this run
+- **`useT()` 3-level key lookup crash** — `src/lib/locale-context.tsx` updated to use `reduce` for arbitrary-depth key resolution. ✅ Committed `2c63d32`, deployed.
+
+---
+
 ## 2026-04-16 QA Run (Morning)
 
 ### Critical
