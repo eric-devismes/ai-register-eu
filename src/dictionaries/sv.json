@@ -309,6 +309,18 @@
     "industries": {
       "title": "Branscher",
       "description": "AI-system efter sektor. Skräddarsydda efterlevnadsinsikter för finansiella tjänster, hälsovård, offentlig sektor, HR, tillverkning och mer."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Kontakta AI Compass EU för frågor, partnerförfrågningar, rättelser eller pressförfrågningar."
+    },
+    "pricingSuccess": {
+      "title": "Välkommen till Pro!",
+      "description": "Din Pro-prenumeration är nu aktiv."
+    },
+    "pricingCancel": {
+      "title": "Checkout avbruten",
+      "description": "Din checkout avbröts. Inga debiteringar gjordes."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testning av kulturell lämplighet",
       "multilingual4": "Lokaliseringskvalitetssäkring"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Gratis",
+      "freePrice": "0",
+      "freePeriod": "för alltid",
+      "freeDesc": "Utforska AI-efterlevnadsdata för de mest använda plattformarna. Perfekt för att komma igång.",
+      "freeFeat1": "10 mest använda AI-system med fullständig detalj",
+      "freeFeat2": "AI-efterlevnadschattbot — 3 frågor/dag",
+      "freeFeat3": "Nyhetsfeed & regleringsuppdateringar",
+      "freeFeat4": "Jämför gratissystem sida vid sida",
+      "freeFeat5": "Generator för efterlevnadschecklista",
+      "freeFeat6": "Alla 100+ AI-system med djupa bedömningar",
+      "freeFeat7": "Podium — topp 3-rekommendationer",
+      "freeFeat8": "Exportera efterlevnadsrapporter (CSV / JSON)",
+      "freeCta": "Kom igång gratis",
+      "proPrice": "19",
+      "proPeriod": "/månad",
+      "proDesc": "Fullständig AI-efterlevnadsinformation för DPO:er, efterlevnadschefer och AI-medvetna yrkesverksamma.",
+      "proBadge": "Mest populär",
+      "proFeat1": "Alla 100+ AI-system — fullständiga bedömningar & rollspecifika genomgångar",
+      "proFeat2": "Obegränsad AI-efterlevnadschattbot",
+      "proFeat3": "Jämförelse sida vid sida med 35+ attribut",
+      "proFeat4": "Podium — topp 3-systemrekommendationer",
+      "proFeat5": "Informationspaket för möte med leverantör",
+      "proFeat6": "Exportera efterlevnadsrapporter (PDF / CSV / JSON)",
+      "proFeat7": "Prioriterad e-postsupport",
+      "proCta": "Starta Pro — €19/månad",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "För compliance-team som hanterar AI i hela organisationen. RFP-motor, API-åtkomst och dedikerad support.",
+      "enterpriseCustom": "Anpassad",
+      "enterpriseFeat1": "Allt i Pro",
+      "enterpriseFeat2": "RFP/RFI Answer Engine — AI-skrivna svar",
+      "enterpriseFeat3": "REST API-åtkomst — integrera compliance-data i din stack",
+      "enterpriseFeat4": "Flera teamplatser med SSO",
+      "enterpriseFeat5": "Anpassade compliance-rapporter och massexport",
+      "enterpriseFeat6": "Webhook-aviseringar med anpassade regler",
+      "enterpriseFeat7": "Prioriterad compliance-vägledning från AI-experter",
+      "enterpriseFeat8": "Business Case-konsultation — anpassad ROI/TCO-analys",
+      "enterpriseFeat9": "Dedikerad kontoansvarig och telefonsupport",
+      "enterpriseCta": "Kontakta försäljning",
+      "annualNote": "Spara 20% med årlig fakturering — Pro för endast €182/år.",
+      "vatNote": "Alla priser exklusive moms. Behöver du en anpassad enterprise-plan med API-åtkomst och dedikerad support?",
+      "vatLink": "Låt oss prata",
+      "paymentError": "Betalningssystemet ställs in. Försök igen senare."
+    },
+    "badge": "Planer och tjänster",
+    "heroTitle": "AI Compliance Intelligence & Advisory",
+    "heroSubtitle": "Börja kostnadsfritt med vår AI-chatbot och compliance-data. Uppgradera till Pro för fullständig åtkomst, eller få compliance-verktyg och inköpsinformation i företagsklass.",
+    "advisoryBadge": "Advisory Services",
+    "advisoryTitle": "Expertstöd för dina AI-beslut",
+    "advisorySubtitle": "Tillgängligt som fristående uppdrag eller inkluderat i Enterprise-planer.",
+    "service1Title": "RFI / RFP Assistance",
+    "service1Desc": "Inköpsdokument med EU-kompatibilitetskrav inbyggda från början.",
+    "service2Title": "Compliance Assessment",
+    "service2Desc": "Granska dina AI-system mot AI Act, GDPR och sektorspecifika regleringar.",
+    "service3Title": "Vendor Selection Advisory",
+    "service3Desc": "Expertguidning för att välja AI-leverantörer som uppfyller dina regulatoriska och datasuveränetskrav.",
+    "getInTouch": "Kontakta oss",
+    "success": {
+      "title": "Välkommen till Pro!",
+      "description": "Din prenumeration är aktiv. Du har nu obegränsad åtkomst till alla AI compliance-bedömningar.",
+      "cta": "Utforska databasen"
+    },
+    "cancel": {
+      "title": "Ingen fara",
+      "description": "Din checkout avbröts och ingen debitering gjordes. Du kan uppgradera till Pro när som helst när du är redo.",
+      "ctaPricing": "Tillbaka till prissättning",
+      "ctaDatabase": "Bläddra i databasen"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Skicka ett meddelande till oss",
+      "subtitle": "Fyll i formuläret nedan och vi svarar inom 2 arbetsdagar.",
+      "name": "Namn",
+      "category": "Kategori",
+      "subject": "Ämne",
+      "message": "Meddelande",
+      "catGeneral": "Allmän förfrågan",
+      "catCorrection": "Ratingkorrigering",
+      "catPartnership": "Partnerskap",
+      "catPress": "Press / Media",
+      "catServices": "Tjänsteförfrågan",
+      "successTitle": "Meddelande skickat",
+      "successText": "Tack för att du kontaktade oss. Vi återkommer till dig så snart som möjligt.",
+      "sendAnother": "Skicka ett nytt meddelande",
+      "sending": "Skickar...",
+      "submit": "Skicka meddelande",
+      "genericError": "Något gick fel"
+    },
+    "badge": "Kontakt",
+    "heroTitle": "Kom i kontakt med oss",
+    "heroSubtitle": "Vi välkomnar frågor, feedback och partnerförfrågningar.",
+    "generalTitle": "Allmänna förfrågningar",
+    "generalDesc": "Frågor om plattformen, metodiken eller ditt konto.",
+    "correctionsTitle": "Ratingkorrigeringar",
+    "correctionsDesc": "Om du tror att ett betyg innehåller ett fel eller föråldrad information.",
+    "partnershipsTitle": "Partnerskap",
+    "partnershipsDesc": "För samarbete, forskning eller institutionell licensiering.",
+    "pressTitle": "Press",
+    "pressDesc": "Mediefrågor, intervjuförfrågningar och presskaterial."
+  },
+  "about": {
+    "badge": "Om oss",
+    "heroTitle": "AI Intelligence för europeiska beslutsfattare",
+    "heroSubtitle": "AI Compass EU är den oberoende, leverantörneutrala plattformen som hjälper europeiska organisationer att förstå, utvärdera och distribuera AI-system i enlighet med EU-förordningar.",
+    "missionTitle": "Vår mission",
+    "missionP1": "Det europeiska AI-landskapet utvecklas snabbt. Med EU AI Act i kraft och ett växande lapptäcke av sektorspecifika regleringar står organisationer inför oöverträffad komplexitet när de väljer och implementerar AI-system på ett ansvarsfullt sätt.",
+    "missionP2": "AI Compass EU grundades för att ge klarhet i denna komplexitet. Vi tillhandahåller oberoende compliance-information — transparenta betyg, regulatorisk analys och praktisk vägledning — så att beslutsfattare kan agera med självförtroende.",
+    "valuesTitle": "Våra värderingar",
+    "value1Title": "Oberoende och leverantörsöverstigande",
+    "value1Desc": "Vi accepterar ingen sponsring, annonsering eller leverantörsbetalningar som kan påverka våra betyg. Vår intäkt kommer enbart från prenumerationer.",
+    "value2Title": "Transparens i första hand",
+    "value2Desc": "Varje poäng vi publicerar kan spåras till verifierbar evidens. Vår metodik är fullständigt dokumenterad och öppen för granskning.",
+    "value3Title": "Europeiskt perspektiv",
+    "value3Desc": "Byggt i Europa, för Europa. Vi förstår regulatoriska landskapet, kulturella nyanser och flerspråkiga krav på EU-marknaden.",
+    "value4Title": "Rigorös och evidensbaserad",
+    "value4Desc": "Utvärderingar genomförs av domänexperter med hjälp av standardiserade mallar, inte automatiserad skrapning eller självrapporterade leverantörsanspråk.",
+    "contactTitle": "Kontakta oss",
+    "contactText": "AI Compass EU är ett oberoende projekt byggt i Europa för europeiska beslutsfattare. För frågor, partnerförfrågningar eller pressöverförfrågningar, kontakta oss på {email}."
   }
 }

@@ -309,6 +309,18 @@
     "industries": {
       "title": "Industrieën",
       "description": "AI-systemen per sector. Toegesneden compliance-inzichten voor financiële diensten, gezondheidszorg, openbare sector, HR, productie en meer."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Neem contact op met AI Compass EU voor vragen, partnerschapsverzoeken, correcties of persberichten."
+    },
+    "pricingSuccess": {
+      "title": "Welkom bij Pro!",
+      "description": "Uw Pro-abonnement is nu actief."
+    },
+    "pricingCancel": {
+      "title": "Checkout geannuleerd",
+      "description": "Uw checkout is geannuleerd. Er zijn geen bedragen in rekening gebracht."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testen op culturele geschiktheid",
       "multilingual4": "Kwaliteitsborging bij lokalisatie"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Gratis",
+      "freePrice": "0",
+      "freePeriod": "voor altijd",
+      "freeDesc": "Verken AI-compliancegegevens voor de meest gebruikte platforms. Perfect om aan de slag te gaan.",
+      "freeFeat1": "10 meest gebruikte AI-systemen met volledig detail",
+      "freeFeat2": "AI compliance chatbot — 3 vragen/dag",
+      "freeFeat3": "Nieuwsfeed & regelgeving updates",
+      "freeFeat4": "Vergelijk gratis AI-systemen naast elkaar",
+      "freeFeat5": "Compliance checklist generator",
+      "freeFeat6": "Alle 100+ AI-systemen met diepgaande analyses",
+      "freeFeat7": "Podium — top-3 aanbevelingen",
+      "freeFeat8": "Exporteer compliance-rapporten (CSV / JSON)",
+      "freeCta": "Gratis aan de slag",
+      "proPrice": "19",
+      "proPeriod": "/maand",
+      "proDesc": "Volledige compliance intelligence voor DPOs, compliancemedewerkers en AI-bewuste professionals.",
+      "proBadge": "Meest populair",
+      "proFeat1": "Alle 100+ AI-systemen — volledige analyses & rolspecifieke details",
+      "proFeat2": "Onbeperkte AI compliance chatbot",
+      "proFeat3": "Zijdelingse vergelijking met 35+ attributen",
+      "proFeat4": "Podium — top-3 systeemaanbevelingen",
+      "proFeat5": "Vendor Meeting Prep informatiepakket",
+      "proFeat6": "Exporteer compliance-rapporten (PDF / CSV / JSON)",
+      "proFeat7": "Priority e-mailondersteuning",
+      "proCta": "Start Pro — €19/maand",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Voor complianceteams die AI in de gehele organisatie beheren. RFP-engine, API-toegang en dedicated ondersteuning.",
+      "enterpriseCustom": "Aangepast",
+      "enterpriseFeat1": "Alles in Pro",
+      "enterpriseFeat2": "RFP/RFI Answer Engine — AI-gegenereerde antwoorden",
+      "enterpriseFeat3": "REST API-toegang — integreer compliancegegevens in uw stack",
+      "enterpriseFeat4": "Meerdere teamplaatsen met SSO",
+      "enterpriseFeat5": "Aangepaste compliancerapporten en bulk export",
+      "enterpriseFeat6": "Webhookwaarschuwingen met aangepaste regels",
+      "enterpriseFeat7": "Prioriteit compliancebegeleiding van AI-experts",
+      "enterpriseFeat8": "Business Case-consulting — aangepaste ROI/TCO-analyse",
+      "enterpriseFeat9": "Toegewezen accountmanager en telefonische ondersteuning",
+      "enterpriseCta": "Contact Sales",
+      "annualNote": "Bespaar 20% met jaarlijkse facturering — Pro voor slechts €182/jaar.",
+      "vatNote": "Alle prijzen zijn exclusief VAT. Heeft u een op maat gesneden enterpriseplan met API-toegang en dedicated support nodig?",
+      "vatLink": "Laten we praten",
+      "paymentError": "Het betalingssysteem wordt ingesteld. Probeer het later opnieuw."
+    },
+    "badge": "Abonnementen & Services",
+    "heroTitle": "AI Compliance Intelligence & Advisory",
+    "heroSubtitle": "Begin gratis met onze AI-chatbot en compliancegegevens. Upgrade naar Pro voor volledige toegang, of maak gebruik van enterprise-grade procurementintelligentie en compliancetools.",
+    "advisoryBadge": "Advisory Services",
+    "advisoryTitle": "Deskundige Ondersteuning voor Uw AI-Beslissingen",
+    "advisorySubtitle": "Beschikbaar als afzonderlijke projecten of opgenomen in Enterprise-abonnementen.",
+    "service1Title": "RFI / RFP Ondersteuning",
+    "service1Desc": "Procurementsocumenten met EU-compliancevereisten van het begin af aan ingebouwd.",
+    "service2Title": "Compliancebeoordeling",
+    "service2Desc": "Controleer uw AI-systemen tegen AI Act, GDPR en sector-specifieke regelgeving.",
+    "service3Title": "Advies bij Leveranciersselectie",
+    "service3Desc": "Deskundige begeleiding bij het kiezen van AI-leveranciers die voldoen aan uw regelgevings- en datasouvereiniteitvereisten.",
+    "getInTouch": "Neem Contact op",
+    "success": {
+      "title": "Welkom bij Pro!",
+      "description": "Uw abonnement is actief. U hebt nu onbeperkte toegang tot alle AI-compliancebeoordelingen.",
+      "cta": "Verken de Database"
+    },
+    "cancel": {
+      "title": "Geen probleem",
+      "description": "Uw checkout is geannuleerd en er zijn geen kosten in rekening gebracht. U kunt op elk moment upgraden naar Pro wanneer u klaar bent.",
+      "ctaPricing": "Terug naar Prijzen",
+      "ctaDatabase": "Bladeren door Database"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Stuur ons een bericht",
+      "subtitle": "Vul het onderstaande formulier in en wij reageren binnen 2 werkdagen.",
+      "name": "Naam",
+      "category": "Categorie",
+      "subject": "Onderwerp",
+      "message": "Bericht",
+      "catGeneral": "Algemeen verzoek",
+      "catCorrection": "Beoordeling corrigeren",
+      "catPartnership": "Partnerschap",
+      "catPress": "Pers / Media",
+      "catServices": "Serviceverzoek",
+      "successTitle": "Bericht verzonden",
+      "successText": "Dank je wel dat je contact met ons opneemt. Wij zullen zo snel mogelijk reageren.",
+      "sendAnother": "Nog een bericht verzenden",
+      "sending": "Verzenden...",
+      "submit": "Bericht verzenden",
+      "genericError": "Er is iets fout gegaan"
+    },
+    "badge": "Contact",
+    "heroTitle": "Neem Contact Op",
+    "heroSubtitle": "We verwelkomen vragen, feedback en partnerschapsvragen.",
+    "generalTitle": "Algemene Vragen",
+    "generalDesc": "Vragen over het platform, methodologie of uw account.",
+    "correctionsTitle": "Classificatiecorrecties",
+    "correctionsDesc": "Als u van mening bent dat een beoordeling een fout of verouderde informatie bevat.",
+    "partnershipsTitle": "Partnerschappen",
+    "partnershipsDesc": "Voor samenwerking, onderzoek of institutionele licenties.",
+    "pressTitle": "Pers",
+    "pressDesc": "Mediaverzoeken, interviewaanvragen en persmateriaal."
+  },
+  "about": {
+    "badge": "Over ons",
+    "heroTitle": "AI Intelligence voor Europese Beleidsmakers",
+    "heroSubtitle": "AI Compass EU is het onafhankelijke, leverancier-neutrale platform dat Europese organisaties helpt AI-systemen te begrijpen, evalueren en in te zetten in overeenstemming met EU-regelgeving.",
+    "missionTitle": "Onze Missie",
+    "missionP1": "Het Europese AI-landschap evolueert snel. Met de EU AI Act van kracht en een groeiende verzameling sector-specifieke regelgeving, zien organisaties zich geconfronteerd met ongekende complexiteit bij het verantwoord kiezen en inzetten van AI-systemen.",
+    "missionP2": "AI Compass EU is opgericht om dit ingewikkelde landschap duidelijker te maken. We bieden onafhankelijke compliance intelligence — transparante ratings, regelgevingsanalyse en praktische begeleiding — zodat beleidsmakers met vertrouwen kunnen handelen.",
+    "valuesTitle": "Onze Waarden",
+    "value1Title": "Onafhankelijk & Leverancier-Neutraal",
+    "value1Desc": "We accepteren geen sponsoring, advertenties of leveranciersbetalingen die onze ratings kunnen beïnvloeden. Onze inkomsten komen uitsluitend uit abonnementen.",
+    "value2Title": "Transparantie Voorop",
+    "value2Desc": "Elke score die we publiceren kan worden herleid tot verifieerbare bewijzen. Onze methodologie is volledig gedocumenteerd en onderhevig aan controle.",
+    "value3Title": "Europees Perspectief",
+    "value3Desc": "Gebouwd in Europa, voor Europa. We begrijpen het regelgevingslandschap, culturele nuances en meertalige vereisten van de EU-markt.",
+    "value4Title": "Rigoureus & op Bewijs Gebaseerd",
+    "value4Desc": "Beoordelingen worden uitgevoerd door domeinexperts met behulp van gestandaardiseerde richtlijnen, niet door geautomatiseerde scraping of zelfgerapporteerde leveranciersbeweringen.",
+    "contactTitle": "Neem Contact op",
+    "contactText": "AI Compass EU is een onafhankelijk project gebouwd in Europa voor Europese beleidsmakers. Voor vragen, partnerschapsaanvragen of persverzoeken kunt u contact met ons opnemen via {email}."
   }
 }

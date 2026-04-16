@@ -2,13 +2,37 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Welcome to Pro!",
-  description: "Your Pro subscription is now active.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "pricingSuccess");
+}
 
-export default function PricingSuccessPage() {
+export default function PricingSuccessPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  return <SuccessContent params={params} />;
+}
+
+async function SuccessContent({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  const t = (key: string) =>
+    key
+      .split(".")
+      .reduce(
+        (o: Record<string, unknown>, k: string) =>
+          (o?.[k] as Record<string, unknown>) ?? {},
+        dict as unknown as Record<string, unknown>
+      ) as unknown as string;
+
   return (
     <>
       <Header />
@@ -33,19 +57,18 @@ export default function PricingSuccessPage() {
             </div>
 
             <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#0d1b3e] sm:text-4xl">
-              Welcome to Pro!
+              {t("pricing.success.title")}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
-              Your subscription is active. You now have unlimited access to all
-              AI compliance assessments.
+              {t("pricing.success.description")}
             </p>
 
             <div className="mt-10">
               <Link
-                href="/en/database"
+                href={`/${lang}/database`}
                 className="inline-flex items-center rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#002277]"
               >
-                Explore the Database
+                {t("pricing.success.cta")}
               </Link>
             </div>
           </div>

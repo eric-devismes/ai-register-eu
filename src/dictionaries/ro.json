@@ -309,6 +309,18 @@
     "industries": {
       "title": "Industrii",
       "description": "Sisteme AI pe sector. Perspective de conformitate adaptate pentru servicii financiare, sănătate, sector public, HR, fabricație și altele."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Luați legătura cu AI Compass EU pentru întrebări, cereri de parteneriat, corecții sau solicitări de presă."
+    },
+    "pricingSuccess": {
+      "title": "Bine ați venit la Pro!",
+      "description": "Abonamentul dumneavoastră Pro este acum activ."
+    },
+    "pricingCancel": {
+      "title": "Checkout Anulat",
+      "description": "Checkout-ul dumneavoastră a fost anulat. Nu au fost efectuate plăți."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testare de adecvare culturală",
       "multilingual4": "Asigurare a calității localizării"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Gratuit",
+      "freePrice": "0",
+      "freePeriod": "pentru totdeauna",
+      "freeDesc": "Explorați date de conformitate AI pentru platformele cele mai utilizate. Perfect pentru a începe.",
+      "freeFeat1": "10 sisteme AI cele mai utilizate cu detalii complete",
+      "freeFeat2": "Chatbot conformitate AI — 3 întrebări/zi",
+      "freeFeat3": "Newsfeed și actualizări de reglementări",
+      "freeFeat4": "Comparați sistemele cu plan gratuit side-by-side",
+      "freeFeat5": "Generator de liste de verificare de conformitate",
+      "freeFeat6": "Toate 100+ sistemele AI cu evaluări detaliate",
+      "freeFeat7": "Podium — top 3 recomandări",
+      "freeFeat8": "Exportați rapoarte de conformitate (CSV / JSON)",
+      "freeCta": "Începeți Gratuit",
+      "proPrice": "19",
+      "proPeriod": "/lună",
+      "proDesc": "Informații complete de conformitate AI pentru DPO, responsabili de conformitate și profesioniști conștienți de AI.",
+      "proBadge": "Cel Mai Popular",
+      "proFeat1": "Toate 100+ sistemele AI — evaluări complete și drill-down pe rol",
+      "proFeat2": "Chatbot conformitate AI nelimitat",
+      "proFeat3": "Comparație side-by-side cu 35+ atribute",
+      "proFeat4": "Podium — top 3 recomandări de sisteme",
+      "proFeat5": "Kit de pregătire pentru întâlniri cu furnizori",
+      "proFeat6": "Exportați rapoarte de conformitate (PDF / CSV / JSON)",
+      "proFeat7": "Suport email prioritar",
+      "proCta": "Începeți Pro — €19/lună",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Pentru echipe de conformitate care gestionează AI în întreaga organizație. Motor RFP, acces API și suport dedicat.",
+      "enterpriseCustom": "Personalizat",
+      "enterpriseFeat1": "Tot ce se găsește în Pro",
+      "enterpriseFeat2": "Motor de răspuns RFP/RFI — răspunsuri redactate de AI",
+      "enterpriseFeat3": "Acces REST API — integrați datele de conformitate în infrastructura voastră",
+      "enterpriseFeat4": "Locuri multiple în echipă cu SSO",
+      "enterpriseFeat5": "Rapoarte de conformitate personalizate și export în masă",
+      "enterpriseFeat6": "Alerte webhook cu reguli personalizate",
+      "enterpriseFeat7": "Îndrumare prioritară în conformitate de la experți AI",
+      "enterpriseFeat8": "Consultanță pentru cazul de afaceri — analiză personalizată ROI/TCO",
+      "enterpriseFeat9": "Manager de cont dedicat și suport telefonic",
+      "enterpriseCta": "Contactați vânzări",
+      "annualNote": "Economisiți 20% cu facturare anuală — Pro la doar 182 EUR/an.",
+      "vatNote": "Toate prețurile sunt fără TVA. Aveți nevoie de un plan enterprise personalizat cu acces API și suport dedicat?",
+      "vatLink": "Să discutăm",
+      "paymentError": "Sistemul de plată se configurează. Vă rugăm încercați din nou mai târziu."
+    },
+    "badge": "Planuri & Servicii",
+    "heroTitle": "Inteligență & Consultanță Conformitate AI",
+    "heroSubtitle": "Începeți gratuit cu chatbot-ul nostru AI și date de conformitate. Actualizați la Pro pentru acces complet, sau obțineți inteligență de achiziții și instrumente de conformitate de nivel enterprise.",
+    "advisoryBadge": "Servicii de Consultanță",
+    "advisoryTitle": "Suport Expert pentru Deciziile Dumneavoastră AI",
+    "advisorySubtitle": "Disponibil ca angajamente independente sau inclus în planurile Enterprise.",
+    "service1Title": "Asistență RFI / RFP",
+    "service1Desc": "Documente de achiziție cu cerințe de conformitate UE integrate din start.",
+    "service2Title": "Evaluare Conformitate",
+    "service2Desc": "Auditați sistemele dumneavoastră AI conform AI Act, GDPR și reglementărilor specifice sectorului.",
+    "service3Title": "Consultanță Selecție Furnizori",
+    "service3Desc": "Îndrumări expertiză pentru alegerea furnizorilor AI care îndeplinesc cerințele dumneavoastră de reglementare și suveranitate a datelor.",
+    "getInTouch": "Luați Contact",
+    "success": {
+      "title": "Bun venit la Pro!",
+      "description": "Abonamentul dvs. este activ. Acum aveți acces nelimitat la toate evaluările de conformitate AI.",
+      "cta": "Explorați baza de date"
+    },
+    "cancel": {
+      "title": "Nicio problemă",
+      "description": "Achiziția dvs. a fost anulată și nu au fost efectuate taxe. Vă puteți actualiza la Pro oricând când sunteți gata.",
+      "ctaPricing": "Înapoi la Prețuri",
+      "ctaDatabase": "Răsfoiți baza de date"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Trimiteți-ne un mesaj",
+      "subtitle": "Completați formularul de mai jos și vă vom răspunde în 2 zile lucrătoare.",
+      "name": "Nume",
+      "category": "Categorie",
+      "subject": "Subiect",
+      "message": "Mesaj",
+      "catGeneral": "Întrebare Generală",
+      "catCorrection": "Corecție de Rating",
+      "catPartnership": "Parteneriat",
+      "catPress": "Presă / Media",
+      "catServices": "Întrebare despre Servicii",
+      "successTitle": "Mesaj trimis",
+      "successText": "Mulțumim că v-ați adresat nouă. Vă vom contacta cât mai curând posibil.",
+      "sendAnother": "Trimiteți un alt mesaj",
+      "sending": "Se trimite...",
+      "submit": "Trimiteți Mesajul",
+      "genericError": "A apărut o problemă"
+    },
+    "badge": "Contact",
+    "heroTitle": "Luați legătura cu noi",
+    "heroSubtitle": "Primim cu plăcere întrebări, feedback și cereri de parteneriat.",
+    "generalTitle": "Întrebări Generale",
+    "generalDesc": "Întrebări despre platformă, metodologie sau contul dvs.",
+    "correctionsTitle": "Corecții de Rating",
+    "correctionsDesc": "Dacă credeți că un rating conține o eroare sau informații depășite.",
+    "partnershipsTitle": "Parteneriate",
+    "partnershipsDesc": "Pentru colaborare, cercetare sau licențiere instituțională.",
+    "pressTitle": "Presă",
+    "pressDesc": "Întrebări media, solicitări de interviu și materiale pentru presă."
+  },
+  "about": {
+    "badge": "Despre Noi",
+    "heroTitle": "AI Intelligence pentru Lucrătorii de Decizie Europeni",
+    "heroSubtitle": "AI Compass EU este platforma independentă, vendor-neutră, care ajută organizațiile europene să înțeleagă, să evalueze și să implementeze sisteme de AI în conformitate cu reglementările UE.",
+    "missionTitle": "Misiunea Noastră",
+    "missionP1": "Peisajul european al AI evoluează rapid. Cu EU AI Act în vigoare și o rețea din ce în ce mai complexă de reglementări specifice sectorului, organizațiile se confruntă cu o complexitate fără precedent în alegerea și implementarea responsabilă a sistemelor de AI.",
+    "missionP2": "AI Compass EU a fost fondată pentru a aduce claritate acestei complexități. Oferim informații independente de conformitate — evaluări transparente, analize reglementare și îndrumări practice — astfel încât factorii de decizie să poată acționa cu încredere.",
+    "valuesTitle": "Valorile Noastre",
+    "value1Title": "Independenți & Neutri față de Furnizori",
+    "value1Desc": "Nu acceptăm sponsorizări, publicitate sau plăți de la furnizori care ar putea influența ratingurile noastre. Veniturile noastre provin exclusiv din abonamente.",
+    "value2Title": "Transparență în Primul Rând",
+    "value2Desc": "Fiecare scor pe care îl publicăm poate fi urmărit până la dovezi verificabile. Metodologia noastră este complet documentată și deschisă pentru evaluare.",
+    "value3Title": "Perspectivă Europeană",
+    "value3Desc": "Construit în Europa, pentru Europa. Înțelegem peisajul normativ, nuanțele culturale și cerințele multilingve ale pieței UE.",
+    "value4Title": "Rigoros & Bazat pe Dovezi",
+    "value4Desc": "Evaluările sunt efectuate de experți în domeniu folosind rubrici standardizate, nu scraping automat sau pretențiile furnizorilor autoevaluate.",
+    "contactTitle": "Luați Contact",
+    "contactText": "AI Compass EU este un proiect independent construit în Europa pentru decideții europeni. Pentru întrebări, anchete de parteneriat sau solicitări de presă, contactați-ne la {email}."
   }
 }

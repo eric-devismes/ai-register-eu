@@ -1,74 +1,84 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 
-const tiers = [
+interface TierConfig {
+  nameKey: string;
+  price: string | null;
+  periodKey: string | null;
+  descKey: string;
+  highlighted: boolean;
+  badgeKey?: string;
+  features: { key: string; included: boolean }[];
+  action: "free" | "pro" | "enterprise";
+  ctaKey: string;
+}
+
+const tiers: TierConfig[] = [
   {
-    name: "Free",
+    nameKey: "pricing.cards.freeName",
     price: "0",
-    period: "forever",
-    description:
-      "Explore AI compliance data for the most widely used platforms. Perfect for getting started.",
+    periodKey: "pricing.cards.freePeriod",
+    descKey: "pricing.cards.freeDesc",
     highlighted: false,
     features: [
-      { text: "10 most-used AI systems with full detail", included: true },
-      { text: "AI compliance chatbot — 3 questions/day", included: true },
-      { text: "Newsfeed & regulatory updates", included: true },
-      { text: "Compare free-tier systems side-by-side", included: true },
-      { text: "Compliance checklist generator", included: true },
-      { text: "All 100+ AI systems with deep assessments", included: false },
-      { text: "Podium — top-3 recommendations", included: false },
-      { text: "Export compliance reports (CSV / JSON)", included: false },
+      { key: "pricing.cards.freeFeat1", included: true },
+      { key: "pricing.cards.freeFeat2", included: true },
+      { key: "pricing.cards.freeFeat3", included: true },
+      { key: "pricing.cards.freeFeat4", included: true },
+      { key: "pricing.cards.freeFeat5", included: true },
+      { key: "pricing.cards.freeFeat6", included: false },
+      { key: "pricing.cards.freeFeat7", included: false },
+      { key: "pricing.cards.freeFeat8", included: false },
     ],
-    action: "free" as const,
-    cta: "Get Started Free",
+    action: "free",
+    ctaKey: "pricing.cards.freeCta",
   },
   {
-    name: "Pro",
+    nameKey: "pricing.cards.proName",
     price: "19",
-    period: "/month",
-    description:
-      "Full compliance intelligence for DPOs, compliance officers, and AI-aware professionals.",
+    periodKey: "pricing.cards.proPeriod",
+    descKey: "pricing.cards.proDesc",
     highlighted: true,
-    badge: "Most Popular",
+    badgeKey: "pricing.cards.proBadge",
     features: [
-      { text: "All 100+ AI systems — full assessments & role drill-downs", included: true },
-      { text: "Unlimited AI compliance chatbot", included: true },
-      { text: "Side-by-side comparison with 35+ attributes", included: true },
-      { text: "Podium — top-3 system recommendations", included: true },
-      { text: "Vendor Meeting Prep briefing kit", included: true },
-      { text: "Export compliance reports (PDF / CSV / JSON)", included: true },
-      { text: "Priority email support", included: true },
+      { key: "pricing.cards.proFeat1", included: true },
+      { key: "pricing.cards.proFeat2", included: true },
+      { key: "pricing.cards.proFeat3", included: true },
+      { key: "pricing.cards.proFeat4", included: true },
+      { key: "pricing.cards.proFeat5", included: true },
+      { key: "pricing.cards.proFeat6", included: true },
+      { key: "pricing.cards.proFeat7", included: true },
     ],
-    action: "pro" as const,
-    cta: "Start Pro — \u20ac19/month",
+    action: "pro",
+    ctaKey: "pricing.cards.proCta",
   },
   {
-    name: "Enterprise",
+    nameKey: "pricing.cards.enterpriseName",
     price: null,
-    period: null,
-    description:
-      "For compliance teams managing AI across the organization. RFP engine, API access, and dedicated support.",
+    periodKey: null,
+    descKey: "pricing.cards.enterpriseDesc",
     highlighted: false,
     features: [
-      { text: "Everything in Pro", included: true },
-      { text: "RFP/RFI Answer Engine — AI-drafted responses", included: true },
-      { text: "REST API access — integrate compliance data into your stack", included: true },
-      { text: "Multiple team seats with SSO", included: true },
-      { text: "Custom compliance reports & bulk export", included: true },
-      { text: "Webhook alerts with custom rules", included: true },
-      { text: "Priority compliance guidance from AI experts", included: true },
-      { text: "Business Case consulting — custom ROI/TCO analysis", included: true },
-      { text: "Dedicated account manager & phone support", included: true },
+      { key: "pricing.cards.enterpriseFeat1", included: true },
+      { key: "pricing.cards.enterpriseFeat2", included: true },
+      { key: "pricing.cards.enterpriseFeat3", included: true },
+      { key: "pricing.cards.enterpriseFeat4", included: true },
+      { key: "pricing.cards.enterpriseFeat5", included: true },
+      { key: "pricing.cards.enterpriseFeat6", included: true },
+      { key: "pricing.cards.enterpriseFeat7", included: true },
+      { key: "pricing.cards.enterpriseFeat8", included: true },
+      { key: "pricing.cards.enterpriseFeat9", included: true },
     ],
-    action: "enterprise" as const,
-    cta: "Contact Sales",
+    action: "enterprise",
+    ctaKey: "pricing.cards.enterpriseCta",
   },
 ];
 
 export function PricingCards() {
   const locale = useLocale();
+  const t = useT();
   const [loading, setLoading] = useState<string | null>(null);
 
   async function handleClick(action: "free" | "pro" | "enterprise") {
@@ -95,11 +105,11 @@ export function PricingCards() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(data.error || "Payment system is being set up. Please try again later.");
+        alert(data.error || t("pricing.cards.paymentError"));
         setLoading(null);
       }
     } catch {
-      alert("Payment system is being set up. Please try again later.");
+      alert(t("pricing.cards.paymentError"));
       setLoading(null);
     }
   }
@@ -110,40 +120,40 @@ export function PricingCards() {
         <div className="grid gap-8 lg:grid-cols-3 lg:items-start">
           {tiers.map((tier) => (
             <div
-              key={tier.name}
+              key={tier.action}
               className={`relative rounded-2xl border-2 bg-white p-8 shadow-sm ${
                 tier.highlighted
                   ? "border-[#003399] shadow-lg shadow-[#003399]/10 lg:scale-105"
                   : "border-gray-200"
               }`}
             >
-              {tier.highlighted && tier.badge && (
+              {tier.highlighted && tier.badgeKey && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center rounded-full bg-[#003399] px-4 py-1 text-xs font-semibold text-white shadow-sm">
-                    {tier.badge}
+                    {t(tier.badgeKey)}
                   </span>
                 </div>
               )}
 
               <div className="text-center">
-                <h3 className="text-lg font-semibold text-[#0d1b3e]">{tier.name}</h3>
+                <h3 className="text-lg font-semibold text-[#0d1b3e]">{t(tier.nameKey)}</h3>
                 <div className="mt-4 flex items-baseline justify-center gap-1">
                   {tier.price !== null ? (
                     <>
                       <span className="text-sm font-medium text-gray-500">&euro;</span>
                       <span className="text-5xl font-bold text-[#0d1b3e]">{tier.price}</span>
-                      <span className="text-sm font-medium text-gray-500">{tier.period}</span>
+                      <span className="text-sm font-medium text-gray-500">{t(tier.periodKey!)}</span>
                     </>
                   ) : (
-                    <span className="text-3xl font-bold text-[#0d1b3e]">Custom</span>
+                    <span className="text-3xl font-bold text-[#0d1b3e]">{t("pricing.cards.enterpriseCustom")}</span>
                   )}
                 </div>
-                <p className="mt-3 text-sm text-gray-600">{tier.description}</p>
+                <p className="mt-3 text-sm text-gray-600">{t(tier.descKey)}</p>
               </div>
 
               <ul className="mt-8 space-y-3">
                 {tier.features.map((feature) => (
-                  <li key={feature.text} className="flex items-start gap-3">
+                  <li key={feature.key} className="flex items-start gap-3">
                     {feature.included ? (
                       <svg
                         className={`h-5 w-5 shrink-0 ${tier.highlighted ? "text-[#003399]" : "text-green-500"}`}
@@ -166,7 +176,7 @@ export function PricingCards() {
                       </svg>
                     )}
                     <span className={`text-sm ${feature.included ? "text-gray-700" : "text-gray-400"}`}>
-                      {feature.text}
+                      {t(feature.key)}
                     </span>
                   </li>
                 ))}
@@ -183,7 +193,7 @@ export function PricingCards() {
                       : "bg-white text-[#003399] ring-1 ring-inset ring-[#003399] hover:bg-[#003399]/5"
                   }`}
                 >
-                  {loading === tier.action ? "..." : tier.cta}
+                  {loading === tier.action ? "..." : t(tier.ctaKey)}
                 </button>
               </div>
             </div>
@@ -193,12 +203,12 @@ export function PricingCards() {
         {/* Annual discount + enterprise CTA */}
         <div className="mt-16 mx-auto max-w-2xl text-center space-y-3">
           <p className="text-sm font-medium text-[#0d1b3e]">
-            Save 20% with annual billing &mdash; Pro at just &euro;182/year.
+            {t("pricing.cards.annualNote")}
           </p>
           <p className="text-sm text-gray-500">
-            All prices exclude VAT. Need a tailored enterprise plan with API access and dedicated support?{" "}
+            {t("pricing.cards.vatNote")}{" "}
             <a href={`/${locale}/contact`} className="font-medium text-[#003399] hover:underline">
-              Let&apos;s talk
+              {t("pricing.cards.vatLink")}
             </a>
             .
           </p>

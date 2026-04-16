@@ -30,3 +30,7 @@ yarn-error.log*
 prisma/*.db
 prisma/*.db-journal
 .vercel
+.env.production
+tsconfig.tsbuildinfo
+scripts/check-phase2b-content.ts
+scripts/peek-snapshot.ts

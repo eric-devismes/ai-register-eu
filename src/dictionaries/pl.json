@@ -309,6 +309,18 @@
     "industries": {
       "title": "Branże",
       "description": "Systemy AI według sektora. Dostosowane wskazówki compliance dla usług finansowych, opieki zdrowotnej, sektora publicznego, HR, produkcji i nie tylko."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Skontaktuj się z AI Compass EU w sprawie pytań, propozycji partnerstw, korekt lub zapytań prasowych."
+    },
+    "pricingSuccess": {
+      "title": "Witamy w Pro!",
+      "description": "Twoja subskrypcja Pro jest teraz aktywna."
+    },
+    "pricingCancel": {
+      "title": "Finalizacja zamówienia anulowana",
+      "description": "Finalizacja zamówienia została anulowana. Nie dokonano żadnych opłat."
     }
   },
   "evidenceBanner": {
@@ -338,7 +350,7 @@
   "system": {
     "breadcrumb": {
       "home": "Home",
-      "database": "Database"
+      "database": "Baza danych"
     },
     "field": {
       "euAiAct": "EU AI Act",
@@ -363,15 +375,15 @@
     },
     "capability": {
       "generativeAi": "Generative AI",
-      "supervisedMl": "Supervised Machine Learning",
-      "unsupervisedMl": "Unsupervised Machine Learning",
+      "supervisedMl": "Uczenie maszynowe nadzorowane",
+      "unsupervisedMl": "Uczenie maszynowe nienadzorowane",
       "conversationalAi": "Conversational AI",
-      "autonomousAgents": "Autonomous AI Agents",
-      "searchRetrieval": "AI Search & Retrieval",
+      "autonomousAgents": "Autonomiczne agenty AI",
+      "searchRetrieval": "Wyszukiwanie i pobieranie AI",
       "computerVision": "Computer Vision",
       "decisionIntelligence": "Decision Intelligence",
-      "nlp": "Natural Language Processing",
-      "aiInfrastructure": "AI Infrastructure",
+      "nlp": "Przetwarzanie języka naturalnego",
+      "aiInfrastructure": "Infrastruktura AI",
       "cybersecurityAi": "Cybersecurity AI"
     },
     "dimension": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testowanie odpowiedniości kulturowej",
       "multilingual4": "Zapewnienie jakości lokalizacji"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Bezpłatny",
+      "freePrice": "0",
+      "freePeriod": "na zawsze",
+      "freeDesc": "Poznaj dane dotyczące zgodności AI dla najczęściej używanych platform. Idealne do rozpoczęcia.",
+      "freeFeat1": "10 najczęściej używanych systemów AI ze szczegółami",
+      "freeFeat2": "Chatbot zgodności AI — 3 pytania/dzień",
+      "freeFeat3": "Newsfeed i aktualizacje regulacyjne",
+      "freeFeat4": "Porównaj bezpłatne systemy obok siebie",
+      "freeFeat5": "Generator listy kontrolnej zgodności",
+      "freeFeat6": "Wszystkie 100+ systemy AI z dogłębnymi ocenami",
+      "freeFeat7": "Podium — 3 najlepsze rekomendacje",
+      "freeFeat8": "Eksportuj raporty zgodności (CSV / JSON)",
+      "freeCta": "Rozpocznij Bezpłatnie",
+      "proPrice": "19",
+      "proPeriod": "/miesiąc",
+      "proDesc": "Pełna analiza zgodności dla DPO, specjalistów compliance i profesjonalistów zajmujących się AI.",
+      "proBadge": "Najpopularniejszy",
+      "proFeat1": "Wszystkie 100+ systemy AI — pełne oceny i specjalistyczne przeglądy",
+      "proFeat2": "Nieograniczony chatbot zgodności AI",
+      "proFeat3": "Porównanie obok siebie z 35+ atrybutami",
+      "proFeat4": "Podium — rekomendacje 3 najlepszych systemów",
+      "proFeat5": "Pakiet przygotowawczy do spotkań z dostawcami",
+      "proFeat6": "Export raportów zgodności (PDF / CSV / JSON)",
+      "proFeat7": "Priorytetowe wsparcie email",
+      "proCta": "Uruchom Pro — 19 EUR/miesiąc",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Dla zespołów zgodności zarządzających AI w całej organizacji. Silnik RFP, dostęp do API i dedykowane wsparcie.",
+      "enterpriseCustom": "Na zamówienie",
+      "enterpriseFeat1": "Wszystko z planu Pro",
+      "enterpriseFeat2": "RFP/RFI Answer Engine — odpowiedzi przygotowane przez AI",
+      "enterpriseFeat3": "Dostęp do REST API — zintegruj dane zgodności ze swoim stosem",
+      "enterpriseFeat4": "Wiele stanowisk zespołu z SSO",
+      "enterpriseFeat5": "Niestandardowe raporty zgodności i zbiorcze eksporty",
+      "enterpriseFeat6": "Alerty webhook z regułami niestandardowymi",
+      "enterpriseFeat7": "Priorytetowe wsparcie od ekspertów ds. zgodności",
+      "enterpriseFeat8": "Business Case consulting — niestandardowa analiza ROI/TCO",
+      "enterpriseFeat9": "Dedykowany kierownik konta i wsparcie telefoniczne",
+      "enterpriseCta": "Skontaktuj się ze sprzedażą",
+      "annualNote": "Zaoszczędź 20% przy rozliczeniu rocznym — Pro za jedyne 182 EUR/rok.",
+      "vatNote": "Wszystkie ceny nie obejmują VAT. Potrzebujesz dostosowanego planu Enterprise z dostępem do API i dedykowanym wsparciem?",
+      "vatLink": "Porozmawiajmy",
+      "paymentError": "System płatności jest konfigurowany. Spróbuj ponownie później."
+    },
+    "badge": "Plany i Usługi",
+    "heroTitle": "Analiza Compliance AI i Doradztwo",
+    "heroSubtitle": "Zacznij bezpłatnie z naszym chatbotem AI i danymi compliance. Przenieś się na Pro, aby uzyskać pełny dostęp, lub uzyskaj narzędzia do zamówień i compliance klasy enterprise.",
+    "advisoryBadge": "Usługi Doradcze",
+    "advisoryTitle": "Wsparcie Eksperckie dla Twoich Decyzji AI",
+    "advisorySubtitle": "Dostępne jako samodzielne zaangażowania lub zawarte w planach Enterprise.",
+    "service1Title": "Pomoc w RFI / RFP",
+    "service1Desc": "Dokumenty zamówień z wymaganiami compliance UE wbudowanymi od samego początku.",
+    "service2Title": "Ocena Zgodności",
+    "service2Desc": "Przeprowadź audyt swoich systemów AI pod kątem AI Act, GDPR i przepisów sektorowych.",
+    "service3Title": "Doradztwo w Wyborze Dostawcy",
+    "service3Desc": "Fachowe wskazówki przy wyborze dostawców AI spełniających Twoje wymogi regulacyjne i suwerenności danych.",
+    "getInTouch": "Skontaktuj się z nami",
+    "success": {
+      "title": "Witaj w Pro!",
+      "description": "Twoja subskrypcja jest aktywna. Masz teraz nieograniczony dostęp do wszystkich ocen zgodności AI.",
+      "cta": "Eksploruj bazę danych"
+    },
+    "cancel": {
+      "title": "Bez problemu",
+      "description": "Twój checkout został anulowany i nie dokonano żadnych opłat. Możesz uaktualnić do wersji Pro w dowolnym momencie, gdy będziesz gotowy.",
+      "ctaPricing": "Powrót do Cennika",
+      "ctaDatabase": "Przeglądaj Bazę Danych"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Wyślij nam wiadomość",
+      "subtitle": "Wypełnij poniższy formularz, a odpowiemy w ciągu 2 dni roboczych.",
+      "name": "Imię i nazwisko",
+      "category": "Kategoria",
+      "subject": "Temat",
+      "message": "Wiadomość",
+      "catGeneral": "Zapytanie Ogólne",
+      "catCorrection": "Korekta Oceny",
+      "catPartnership": "Partnerstwo",
+      "catPress": "Prasa / Media",
+      "catServices": "Zapytanie o usługi",
+      "successTitle": "Wiadomość wysłana",
+      "successText": "Dziękujemy za kontakt. Odpowiemy Ci tak szybko, jak to możliwe.",
+      "sendAnother": "Wyślij inną wiadomość",
+      "sending": "Wysyłanie...",
+      "submit": "Wyślij wiadomość",
+      "genericError": "Coś poszło nie tak"
+    },
+    "badge": "Kontakt",
+    "heroTitle": "Skontaktuj się z nami",
+    "heroSubtitle": "Chętnie odpowiadamy na pytania, opinie i zapytania dotyczące partnerstw.",
+    "generalTitle": "Zapytania Ogólne",
+    "generalDesc": "Pytania dotyczące platformy, metodologii lub Twojego konta.",
+    "correctionsTitle": "Korekty Ocen",
+    "correctionsDesc": "Jeśli uważasz, że ocena zawiera błąd lub nieaktualne informacje.",
+    "partnershipsTitle": "Partnerstwa",
+    "partnershipsDesc": "Współpraca, badania lub licencjonowanie instytucjonalne.",
+    "pressTitle": "Prasa",
+    "pressDesc": "Zapytania medialne, prośby o wywiady i materiały prasowe."
+  },
+  "about": {
+    "badge": "O nas",
+    "heroTitle": "Sztuczna Inteligencja dla Europejskich Decydentów",
+    "heroSubtitle": "AI Compass EU to niezależna, neutralna wobec dostawców platforma, która pomaga organizacjom europejskim zrozumieć, ocenić i wdrożyć systemy AI w zgodzie z regulacjami UE.",
+    "missionTitle": "Nasza Misja",
+    "missionP1": "Europejski krajobraz AI rozwija się szybko. Wraz z wejściem w życie ustawy EU AI Act i rosnącą różnorodnością regulacji branżowych, organizacje stają przed bezprecedensową złożonością przy wyborze i odpowiedzialnym wdrażaniu systemów AI.",
+    "missionP2": "AI Compass EU powstała, aby wnieść jasność w tę złożoność. Zapewniamy niezależne analizy compliance — przejrzyste oceny, analizy regulacyjne i praktyczne wskazówki — aby decydenci mogli działać z pewnością.",
+    "valuesTitle": "Nasze Wartości",
+    "value1Title": "Niezależna i Neutralna wobec Dostawców",
+    "value1Desc": "Nie akceptujemy sponsoringu, reklam ani płatności od dostawców, które mogłyby wpłynąć na nasze oceny. Nasze przychody pochodzą wyłącznie z subskrypcji.",
+    "value2Title": "Przejrzystość na Pierwszym Miejscu",
+    "value2Desc": "Każda opublikowana przez nas ocena może być powiązana z weryfikowalnymi dowodami. Nasza metodologia jest w pełni udokumentowana i otwarta na kontrolę.",
+    "value3Title": "Perspektywa Europejska",
+    "value3Desc": "Zbudowana w Europie, dla Europy. Rozumiemy krajobraz regulacyjny, niuanse kulturowe i wielojęzyczne wymagania rynku UE.",
+    "value4Title": "Rygorystyczne i Oparte na Dowodach",
+    "value4Desc": "Oceny przeprowadzane przez ekspertów dziedzinowych przy użyciu standaryzowanych kryteriów, a nie automatycznego skrapowania czy oświadczeń dostawców.",
+    "contactTitle": "Skontaktuj się z Nami",
+    "contactText": "AI Compass EU to niezależny projekt zbudowany w Europie dla europejskich decydentów. W przypadku pytań, zapytań dotyczących partnerstw lub mediów, skontaktuj się z nami pod adresem {email}."
   }
 }

@@ -309,6 +309,18 @@
     "industries": {
       "title": "Odvětví",
       "description": "AI systémy podle sektoru. Přizpůsobené compliance poznatky pro finanční služby, zdravotnictví, veřejný sektor, HR, výrobu a další."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Kontaktujte AI Compass EU s dotazy, požadavky na partnerství, opravami nebo žádostmi pro média."
+    },
+    "pricingSuccess": {
+      "title": "Vítejte v Pro!",
+      "description": "Vaše předplatné Pro je nyní aktivní."
+    },
+    "pricingCancel": {
+      "title": "Nákup zrušen",
+      "description": "Váš nákup byl zrušen. Nebyly účtovány žádné poplatky."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testování kulturní vhodnosti",
       "multilingual4": "Zajištění kvality lokalizace"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Zdarma",
+      "freePrice": "0",
+      "freePeriod": "trvale",
+      "freeDesc": "Prozkoumejte AI compliance data pro nejpoužívanější platformy. Ideální pro začátek.",
+      "freeFeat1": "10 nejpoužívanějších AI systémů s plnými detaily",
+      "freeFeat2": "AI compliance chatbot — 3 otázky/den",
+      "freeFeat3": "Newsfeed & aktualizace regulací",
+      "freeFeat4": "Porovnání bezplatných systémů vedle sebe",
+      "freeFeat5": "Generátor compliance checklistu",
+      "freeFeat6": "Všech 100+ AI systémů s hlubokými posouzeními",
+      "freeFeat7": "Podium — doporučení top-3",
+      "freeFeat8": "Export compliance zpráv (CSV / JSON)",
+      "freeCta": "Začít zdarma",
+      "proPrice": "19",
+      "proPeriod": "/měsíc",
+      "proDesc": "Kompletní compliance intelligence pro DPO, compliance specialisty a AI-aware profesionály.",
+      "proBadge": "Nejpopulárnější",
+      "proFeat1": "Všechny 100+ AI systémy — kompletní hodnocení a role drill-downs",
+      "proFeat2": "Neomezený AI compliance chatbot",
+      "proFeat3": "Porovnání vedle sebe s 35+ atributy",
+      "proFeat4": "Podium — doporučení top-3 systémů",
+      "proFeat5": "Briefing kit přípravy na setkání s dodavatelem",
+      "proFeat6": "Export compliance zpráv (PDF / CSV / JSON)",
+      "proFeat7": "Prioritní email support",
+      "proCta": "Spustit Pro — 19 EUR/měsíc",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Pro compliance týmy spravující AI v celé organizaci. RFP engine, API přístup a dedicated support.",
+      "enterpriseCustom": "Na objednávku",
+      "enterpriseFeat1": "Vše z Pro",
+      "enterpriseFeat2": "RFP/RFI Answer Engine — AI-generované odpovědi",
+      "enterpriseFeat3": "REST API přístup — integrace compliance dat do vaší sady nástrojů",
+      "enterpriseFeat4": "Více sedadel týmu s SSO",
+      "enterpriseFeat5": "Vlastní compliance zprávy a hromadný export",
+      "enterpriseFeat6": "Webhook upozornění s vlastními pravidly",
+      "enterpriseFeat7": "Prioritní compliance guidance od AI expertů",
+      "enterpriseFeat8": "Poradenství Business Case — vlastní analýza ROI/TCO",
+      "enterpriseFeat9": "Dedikovaný account manager a telefonní podpora",
+      "enterpriseCta": "Kontaktovat prodej",
+      "annualNote": "Ušetřete 20 % s roční fakturací — Pro za pouhých 182 EUR/rok.",
+      "vatNote": "Všechny ceny jsou bez DPH. Potřebujete přizpůsobený podnikový plán s přístupem k API a dedikovanou podporou?",
+      "vatLink": "Pojďme si promluvit",
+      "paymentError": "Platební systém se právě nastavuje. Zkuste to prosím později."
+    },
+    "badge": "Plány a služby",
+    "heroTitle": "AI Compliance Intelligence & Advisory",
+    "heroSubtitle": "Začněte zdarma s našim AI chatbotem a compliance daty. Upgradujte na Pro pro plný přístup, nebo získejte compliance nástroje a intelligence pro nákup na úrovni Enterprise.",
+    "advisoryBadge": "Advisory Services",
+    "advisoryTitle": "Odborná podpora pro vaše AI rozhodnutí",
+    "advisorySubtitle": "Dostupné jako samostatné projekty nebo zahrnuté v Enterprise plánech.",
+    "service1Title": "RFI / RFP Assistance",
+    "service1Desc": "Nákupní dokumenty s compliance požadavky EU zabudovanými již od začátku.",
+    "service2Title": "Compliance Assessment",
+    "service2Desc": "Audit vašich AI systémů v souladu s AI Act, GDPR a sektorově specifickými předpisy.",
+    "service3Title": "Vendor Selection Advisory",
+    "service3Desc": "Odborné vedení při výběru AI prodejců, kteří splňují vaše regulační požadavky a požadavky na suverenitu dat.",
+    "getInTouch": "Kontaktujte nás",
+    "success": {
+      "title": "Vítejte v Pro!",
+      "description": "Vaše předplatné je aktivní. Nyní máte neomezený přístup ke všem AI compliance posouzením.",
+      "cta": "Prozkoumat databázi"
+    },
+    "cancel": {
+      "title": "Žádný problém",
+      "description": "Vaše nákup byl zrušen a nebyla provedena žádná platba. Můžete upgradovat na Pro kdykoli, až budete připraveni.",
+      "ctaPricing": "Zpět na Ceny",
+      "ctaDatabase": "Procházet databázi"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Pošlete nám zprávu",
+      "subtitle": "Vyplňte formulář níže a my vám odpovíme do 2 pracovních dnů.",
+      "name": "Jméno",
+      "category": "Kategorie",
+      "subject": "Předmět",
+      "message": "Zpráva",
+      "catGeneral": "Obecný dotaz",
+      "catCorrection": "Oprava hodnocení",
+      "catPartnership": "Partnerství",
+      "catPress": "Tisk / Média",
+      "catServices": "Dotaz na služby",
+      "successTitle": "Zpráva odeslána",
+      "successText": "Děkujeme, že jste nás kontaktovali. Vrátíme se k vám co nejdříve.",
+      "sendAnother": "Odeslat další zprávu",
+      "sending": "Odesílání...",
+      "submit": "Odeslat zprávu",
+      "genericError": "Něco se pokazilo"
+    },
+    "badge": "Kontakt",
+    "heroTitle": "Kontaktujte nás",
+    "heroSubtitle": "Vítáme otázky, zpětnou vazbu a nabídky partnerství.",
+    "generalTitle": "Obecné dotazy",
+    "generalDesc": "Otázky týkající se platformy, metodologie nebo vašeho účtu.",
+    "correctionsTitle": "Opravy hodnocení",
+    "correctionsDesc": "Pokud se domníváte, že hodnocení obsahuje chybu nebo zastaralé informace.",
+    "partnershipsTitle": "Partnerství",
+    "partnershipsDesc": "Pro spolupráci, výzkum nebo institucionální licencování.",
+    "pressTitle": "Tisk",
+    "pressDesc": "Mediální dotazy, žádosti o rozhovory a tiskové materiály."
+  },
+  "about": {
+    "badge": "O nás",
+    "heroTitle": "AI Intelligence pro evropské rozhodující osobnosti",
+    "heroSubtitle": "AI Compass EU je nezávislá, neutrální platforma vůči prodejcům, která pomáhá evropským organizacím pochopit, vyhodnotit a nasadit AI systémy v souladu s regulacemi EU.",
+    "missionTitle": "Naše mise",
+    "missionP1": "Evropská AI krajina se rychle vyvíjí. S EU AI Act v platnosti a rostoucím souborem sektorově specifických regulací čelí organizace bezprecedentní složitosti při výběru a odpovědném nasazení AI systémů.",
+    "missionP2": "AI Compass EU byla založena, aby přinesla jasnost do této složitosti. Poskytujeme nezávislou compliance intelligence — transparentní hodnocení, regulační analýzu a praktické pokyny — aby se rozhodující osobnosti mohly jednat s důvěrou.",
+    "valuesTitle": "Naše hodnoty",
+    "value1Title": "Nezávislé a neutrální vůči prodejcům",
+    "value1Desc": "Nepřijímáme sponzoring, reklamu ani platby od prodejců, které by mohly ovlivnit naše hodnocení. Naše příjmy pochází výhradně z předplatného.",
+    "value2Title": "Transparentnost na prvním místě",
+    "value2Desc": "Každé skóre, které zveřejníme, lze vysledovat na ověřitelné důkazy. Naše metodologie je plně zdokumentována a otevřena kontrole.",
+    "value3Title": "Evropská perspektiva",
+    "value3Desc": "Postaveno v Evropě, pro Evropu. Rozumíme regulační krajině, kulturním nuancím a vícejazyčným požadavkům trhu EU.",
+    "value4Title": "Přísné a založené na důkazech",
+    "value4Desc": "Posouzení provádějí odborníci v dané oblasti pomocí standardizovaných rubrик, nikoli automatizované skrapování nebo vlastní tvrzení prodejců.",
+    "contactTitle": "Kontaktujte nás",
+    "contactText": "AI Compass EU je nezávislý projekt vytvořený v Evropě pro evropské rozhodovací činitele. Máte-li otázky, partnerskouprávní či tiskové dotazy, kontaktujte nás na {email}."
   }
 }

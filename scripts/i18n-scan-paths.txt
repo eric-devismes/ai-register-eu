@@ -12,3 +12,10 @@
 # Lines starting with # are comments. Paths are relative to repo root.
 src/components/layout/Header.tsx
 src/components/layout/Footer.tsx
+src/app/[lang]/about/page.tsx
+src/app/[lang]/pricing/page.tsx
+src/app/[lang]/pricing/PricingCards.tsx
+src/app/[lang]/pricing/success/page.tsx
+src/app/[lang]/pricing/cancel/page.tsx
+src/app/[lang]/contact/page.tsx
+src/app/[lang]/contact/ContactForm.tsx

@@ -309,6 +309,18 @@
     "industries": {
       "title": "Indústrias",
       "description": "Sistemas de IA por sector. Insights de conformidade personalizados para serviços financeiros, saúde, sector público, RH, manufatura e muito mais."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Entre em contacto com AI Compass EU para perguntas, propostas de parcerias, correcções ou pedidos de imprensa."
+    },
+    "pricingSuccess": {
+      "title": "Bem-vindo ao Pro!",
+      "description": "A sua subscrição Pro está agora ativa."
+    },
+    "pricingCancel": {
+      "title": "Checkout Cancelado",
+      "description": "O seu checkout foi cancelado. Não foram efetuados quaisquer encargos."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Testes de adequação cultural",
       "multilingual4": "Garantia de qualidade da localização"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Free",
+      "freePrice": "0",
+      "freePeriod": "para sempre",
+      "freeDesc": "Explore dados de conformidade de IA das plataformas mais utilizadas. Perfeito para começar.",
+      "freeFeat1": "10 sistemas de IA mais utilizados com detalhe completo",
+      "freeFeat2": "Chatbot de conformidade de IA — 3 perguntas/dia",
+      "freeFeat3": "Feed de notícias e atualizações regulatórias",
+      "freeFeat4": "Compare sistemas de nível gratuito lado a lado",
+      "freeFeat5": "Gerador de lista de verificação de conformidade",
+      "freeFeat6": "Todos os 100+ sistemas de IA com avaliações profundas",
+      "freeFeat7": "Podium — recomendações top-3",
+      "freeFeat8": "Exportar relatórios de conformidade (CSV / JSON)",
+      "freeCta": "Começar Gratuitamente",
+      "proPrice": "19",
+      "proPeriod": "/mês",
+      "proDesc": "Inteligência de conformidade completa para DPOs, agentes de conformidade e profissionais conscientes de IA.",
+      "proBadge": "Mais Popular",
+      "proFeat1": "Todos os 100+ sistemas de IA — avaliações completas e análises por função",
+      "proFeat2": "Chatbot de conformidade de IA ilimitado",
+      "proFeat3": "Comparação lado a lado com 35+ atributos",
+      "proFeat4": "Podium — recomendações dos 3 melhores sistemas",
+      "proFeat5": "Kit de preparação para reunião com fornecedor",
+      "proFeat6": "Exportar relatórios de conformidade (PDF / CSV / JSON)",
+      "proFeat7": "Suporte por email prioritário",
+      "proCta": "Começar Pro — €19/mês",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Para equipas de conformidade que gerem IA em toda a organização. Motor RFP, acesso à API e suporte dedicado.",
+      "enterpriseCustom": "Personalizado",
+      "enterpriseFeat1": "Tudo em Pro",
+      "enterpriseFeat2": "Motor de Resposta RFP/RFI — respostas redigidas por IA",
+      "enterpriseFeat3": "Acesso REST API — integre dados de conformidade na sua stack",
+      "enterpriseFeat4": "Múltiplos utilizadores de equipa com SSO",
+      "enterpriseFeat5": "Relatórios de conformidade personalizados e exportação em massa",
+      "enterpriseFeat6": "Alertas webhook com regras personalizadas",
+      "enterpriseFeat7": "Orientação prioritária de conformidade de especialistas em IA",
+      "enterpriseFeat8": "Consultoria Business Case — análise customizada de ROI/TCO",
+      "enterpriseFeat9": "Gestor de conta dedicado e suporte telefónico",
+      "enterpriseCta": "Contactar Vendas",
+      "annualNote": "Poupe 20% com faturação anual — Pro por apenas €182/ano.",
+      "vatNote": "Todos os preços excluem IVA. Precisa de um plano enterprise customizado com acesso à API e suporte dedicado?",
+      "vatLink": "Conversemos",
+      "paymentError": "O sistema de pagamento está a ser configurado. Por favor, tente novamente mais tarde."
+    },
+    "badge": "Planos e Serviços",
+    "heroTitle": "Inteligência e Consultoria de Conformidade de IA",
+    "heroSubtitle": "Comece gratuitamente com o nosso chatbot de IA e dados de conformidade. Faça upgrade para Pro para acesso completo, ou obtenha inteligência de contratação e ferramentas de conformidade de nível empresarial.",
+    "advisoryBadge": "Serviços de Consultoria",
+    "advisoryTitle": "Suporte Especializado para as Suas Decisões de IA",
+    "advisorySubtitle": "Disponível como engajamentos autónomos ou incluído em planos Enterprise.",
+    "service1Title": "Assistência RFI / RFP",
+    "service1Desc": "Documentos de contratação com requisitos de conformidade da UE incorporados desde o início.",
+    "service2Title": "Avaliação de Conformidade",
+    "service2Desc": "Audite os seus sistemas de IA em relação ao AI Act, GDPR e regulamentações específicas do sector.",
+    "service3Title": "Consultoria de Seleção de Fornecedor",
+    "service3Desc": "Orientação especializada na escolha de fornecedores de IA que cumprem os seus requisitos regulatórios e de soberania de dados.",
+    "getInTouch": "Entre em Contacto",
+    "success": {
+      "title": "Bem-vindo ao Pro!",
+      "description": "A sua subscrição está ativa. Agora tem acesso ilimitado a todas as avaliações de conformidade IA.",
+      "cta": "Explorar a Base de Dados"
+    },
+    "cancel": {
+      "title": "Sem Problemas",
+      "description": "A sua transação foi cancelada e nenhuma cobrança foi realizada. Pode fazer upgrade para Pro em qualquer momento quando estiver pronto.",
+      "ctaPricing": "Voltar ao Preço",
+      "ctaDatabase": "Navegar na Base de Dados"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Envie-nos uma mensagem",
+      "subtitle": "Preencha o formulário abaixo e responderemos no prazo de 2 dias úteis.",
+      "name": "Nome",
+      "category": "Categoria",
+      "subject": "Assunto",
+      "message": "Mensagem",
+      "catGeneral": "Consulta Geral",
+      "catCorrection": "Correcção de Avaliação",
+      "catPartnership": "Parceria",
+      "catPress": "Imprensa / Media",
+      "catServices": "Consulta de Serviços",
+      "successTitle": "Mensagem enviada",
+      "successText": "Obrigado por contactar-nos. Responderemos assim que possível.",
+      "sendAnother": "Enviar outra mensagem",
+      "sending": "A enviar...",
+      "submit": "Enviar Mensagem",
+      "genericError": "Algo correu mal"
+    },
+    "badge": "Contacto",
+    "heroTitle": "Entre em Contacto",
+    "heroSubtitle": "Bem-vindas são perguntas, feedback e consultas de parcerias.",
+    "generalTitle": "Consultas Gerais",
+    "generalDesc": "Perguntas sobre a plataforma, metodologia ou a sua conta.",
+    "correctionsTitle": "Correções de Classificação",
+    "correctionsDesc": "Se acredita que uma classificação contém um erro ou informação desatualizada.",
+    "partnershipsTitle": "Parcerias",
+    "partnershipsDesc": "Para colaboração, investigação ou licenciamento institucional.",
+    "pressTitle": "Imprensa",
+    "pressDesc": "Consultas dos media, pedidos de entrevista e materiais de imprensa."
+  },
+  "about": {
+    "badge": "Sobre Nós",
+    "heroTitle": "Inteligência em IA para Decisores Europeus",
+    "heroSubtitle": "AI Compass EU é a plataforma independente e neutra em relação a fornecedores que ajuda as organizações europeias a compreender, avaliar e implementar sistemas de IA em conformidade com as regulações da UE.",
+    "missionTitle": "A Nossa Missão",
+    "missionP1": "A paisagem europeia de IA está a evoluir rapidamente. Com o EU AI Act em vigor e um conjunto crescente de regulações específicas por setor, as organizações enfrentam uma complexidade sem precedentes na escolha e implementação responsável de sistemas de IA.",
+    "missionP2": "AI Compass EU foi fundada para trazer clareza a esta complexidade. Fornecemos inteligência de conformidade independente — classificações transparentes, análise regulatória e orientação prática — para que os decisores possam agir com confiança.",
+    "valuesTitle": "Os Nossos Valores",
+    "value1Title": "Independente e Neutra em Relação a Fornecedores",
+    "value1Desc": "Não aceitamos patrocínios, publicidade ou pagamentos de fornecedores que possam influenciar as nossas classificações. A nossa receita provém exclusivamente de subscrições.",
+    "value2Title": "Transparência em Primeiro Lugar",
+    "value2Desc": "Cada classificação que publicamos pode ser rastreada até à evidência verificável. A nossa metodologia está totalmente documentada e aberta ao escrutínio.",
+    "value3Title": "Perspetiva Europeia",
+    "value3Desc": "Construída na Europa, para a Europa. Compreendemos a paisagem regulatória, as nuances culturais e os requisitos multilingues do mercado da UE.",
+    "value4Title": "Rigorosa e Baseada em Evidência",
+    "value4Desc": "As avaliações são conduzidas por especialistas de domínio utilizando rubricas padronizadas, não raspagem automatizada ou alegações auto-relatadas de fornecedores.",
+    "contactTitle": "Entre em Contacto",
+    "contactText": "AI Compass EU é um projeto independente construído na Europa para decisores europeus. Para dúvidas, consultas de parceria ou pedidos de imprensa, contacte-nos em {email}."
   }
 }

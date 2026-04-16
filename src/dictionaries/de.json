@@ -255,7 +255,7 @@
     "aiTransparencyTitle": "KI-Transparenzmitteilung",
     "aiTransparencyBody": "Diese Plattform nutzt KI (Anthropic Claude) für ihren Chatbot-Assistenten und das Vergleichstool. Von KI generierte Antworten basieren auf unserer bewerteten Datenbank und sind eindeutig gekennzeichnet. Es werden keine personenbezogenen Daten für das KI-Modelltraining verwendet. Alle KI-Funktionen entsprechen den Transparentverpflichtungen des EU AI Act (Artikel 50) und den GDPR-Anforderungen für automatisierte Verarbeitung.",
     "security": "Sicherheit",
-    "incidentResponse": "Incident Response",
+    "incidentResponse": "Vorfallreaktion",
     "terms": "Bedingungen",
     "contact": "Kontakt",
     "disclaimerTitle": "Haftungsausschluss"
@@ -309,6 +309,18 @@
     "industries": {
       "title": "Branchen",
       "description": "KI-Systeme nach Branche. Maßgeschneiderte Compliance-Erkenntnisse für Finanzdienstleistungen, Gesundheitswesen, öffentlichen Sektor, Personalwesen, Fertigung und mehr."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Kontaktieren Sie AI Compass EU für Fragen, Partnerschaftsanfragen, Korrektionen oder Presseanfragen."
+    },
+    "pricingSuccess": {
+      "title": "Willkommen bei Pro!",
+      "description": "Ihr Pro-Abonnement ist jetzt aktiv."
+    },
+    "pricingCancel": {
+      "title": "Checkout abgebrochen",
+      "description": "Ihr Checkout wurde abgebrochen. Es wurden keine Zahlungen eingezogen."
     }
   },
   "evidenceBanner": {
@@ -362,16 +374,16 @@
       "euPresence": "EU-Präsenz"
     },
     "capability": {
-      "generativeAi": "Generative AI",
-      "supervisedMl": "Supervised Machine Learning",
-      "unsupervisedMl": "Unsupervised Machine Learning",
+      "generativeAi": "Generative KI",
+      "supervisedMl": "Überwachtes maschinelles Lernen",
+      "unsupervisedMl": "Unüberwachtes maschinelles Lernen",
       "conversationalAi": "Conversational AI",
-      "autonomousAgents": "Autonomous AI Agents",
-      "searchRetrieval": "AI Search & Retrieval",
+      "autonomousAgents": "Autonome KI-Agenten",
+      "searchRetrieval": "AI-Suche & Retrieval",
       "computerVision": "Computer Vision",
       "decisionIntelligence": "Decision Intelligence",
       "nlp": "Natural Language Processing",
-      "aiInfrastructure": "AI Infrastructure",
+      "aiInfrastructure": "AI-Infrastruktur",
       "cybersecurityAi": "Cybersecurity AI"
     },
     "dimension": {
@@ -481,5 +493,128 @@
       "multilingual3": "Tests zur kulturellen Eignung",
       "multilingual4": "Qualitätssicherung bei der Lokalisierung"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Kostenlos",
+      "freePrice": "0",
+      "freePeriod": "unbegrenzt",
+      "freeDesc": "Erkunden Sie KI-Compliance-Daten für die am häufigsten verwendeten Plattformen. Perfekt zum Einstieg.",
+      "freeFeat1": "10 meistgenutzte KI-Systeme mit vollständigen Details",
+      "freeFeat2": "KI-Compliance-Chatbot — 3 Fragen/Tag",
+      "freeFeat3": "News-Feed & behördliche Updates",
+      "freeFeat4": "Kostenlose Systeme nebeneinander vergleichen",
+      "freeFeat5": "Compliance-Checklisten-Generator",
+      "freeFeat6": "Alle 100+ KI-Systeme mit umfassenden Bewertungen",
+      "freeFeat7": "Podium — Top-3-Empfehlungen",
+      "freeFeat8": "Compliance-Berichte exportieren (CSV / JSON)",
+      "freeCta": "Kostenlos starten",
+      "proPrice": "19",
+      "proPeriod": "/Monat",
+      "proDesc": "Vollständige Compliance-Intelligence für DPOs, Compliance-Manager und KI-bewusste Fachkräfte.",
+      "proBadge": "Am beliebtesten",
+      "proFeat1": "Alle 100+ KI-Systeme — vollständige Bewertungen & rollenspezifische Analysen",
+      "proFeat2": "Unbegrenzter KI-Compliance-Chatbot",
+      "proFeat3": "Nebeneinander-Vergleich mit 35+ Attributen",
+      "proFeat4": "Podium — Top-3-Systemempfehlungen",
+      "proFeat5": "Anbieter-Meeting-Vorbereitung Briefing Kit",
+      "proFeat6": "Compliance-Berichte exportieren (PDF / CSV / JSON)",
+      "proFeat7": "E-Mail-Support mit Priorität",
+      "proCta": "Pro starten — €19/Monat",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Für Compliance-Teams, die KI im gesamten Unternehmen verwalten. RFP-Engine, API-Zugriff und dedizierter Support.",
+      "enterpriseCustom": "Individuell",
+      "enterpriseFeat1": "Alles aus Pro",
+      "enterpriseFeat2": "RFP/RFI-Antwort-Engine — KI-gestützte Antworten",
+      "enterpriseFeat3": "REST API-Zugriff — Compliance-Daten in Ihren Stack integrieren",
+      "enterpriseFeat4": "Mehrere Team-Plätze mit SSO",
+      "enterpriseFeat5": "Benutzerdefinierte Compliance-Berichte & Massen-Export",
+      "enterpriseFeat6": "Webhook-Warnmeldungen mit benutzerdefinierten Regeln",
+      "enterpriseFeat7": "Prioritäre Compliance-Beratung von AI-Experten",
+      "enterpriseFeat8": "Business-Case-Beratung — benutzerdefinierte ROI/TCO-Analyse",
+      "enterpriseFeat9": "Dedizierter Account Manager & Telefon-Support",
+      "enterpriseCta": "Kontakt zum Vertrieb",
+      "annualNote": "Sparen Sie 20 % mit jährlicher Abrechnung — Pro für nur 182 €/Jahr.",
+      "vatNote": "Alle Preise zuzüglich MwSt. Benötigen Sie einen maßgeschneiderten Enterprise-Plan mit API-Zugang und dediziertem Support?",
+      "vatLink": "Lassen Sie uns sprechen",
+      "paymentError": "Zahlungssystem wird eingerichtet. Bitte versuchen Sie es später erneut."
+    },
+    "badge": "Pläne & Services",
+    "heroTitle": "KI-Compliance Intelligence & Beratung",
+    "heroSubtitle": "Starten Sie kostenlos mit unserem KI-Chatbot und Compliance-Daten. Upgraden Sie auf Pro für vollständigen Zugriff, oder nutzen Sie Enterprise-Lösungen für Compliance-Tools und Beschaffungsintelligenz.",
+    "advisoryBadge": "Beratungsservices",
+    "advisoryTitle": "Fachliche Unterstützung für Ihre KI-Entscheidungen",
+    "advisorySubtitle": "Verfügbar als eigenständige Engagements oder in Enterprise-Plänen enthalten.",
+    "service1Title": "RFI / RFP-Unterstützung",
+    "service1Desc": "Beschaffungsdokumente mit EU-Compliance-Anforderungen von Anfang an integriert.",
+    "service2Title": "Compliance-Bewertung",
+    "service2Desc": "Überprüfen Sie Ihre KI-Systeme auf Einhaltung des AI Act, GDPR und branchenspezifischer Vorschriften.",
+    "service3Title": "Anbieterauswahl-Beratung",
+    "service3Desc": "Fachkundige Beratung bei der Auswahl von KI-Anbietern, die Ihre regulatorischen und Datensouveränität-Anforderungen erfüllen.",
+    "getInTouch": "Kontakt aufnehmen",
+    "success": {
+      "title": "Willkommen bei Pro!",
+      "description": "Ihr Abonnement ist aktiv. Sie haben nun unbegrenzten Zugriff auf alle AI-Compliance-Bewertungen.",
+      "cta": "Datenbank erkunden"
+    },
+    "cancel": {
+      "title": "Kein Problem",
+      "description": "Ihr Checkout wurde abgebrochen und es wurden keine Gebühren erhoben. Sie können jederzeit auf Pro upgraden, wenn Sie bereit sind.",
+      "ctaPricing": "Zurück zu Preisen",
+      "ctaDatabase": "Datenbank durchsuchen"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Senden Sie uns eine Nachricht",
+      "subtitle": "Füllen Sie das Formular aus und wir antworten innerhalb von 2 Werktagen.",
+      "name": "Name",
+      "category": "Kategorie",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "catGeneral": "Allgemeine Anfrage",
+      "catCorrection": "Bewertungskorrektur",
+      "catPartnership": "Partnerschaft",
+      "catPress": "Presse / Medien",
+      "catServices": "Dienstleistungsanfrage",
+      "successTitle": "Nachricht gesendet",
+      "successText": "Vielen Dank für Ihre Nachricht. Wir melden uns schnellstmöglich bei Ihnen.",
+      "sendAnother": "Weitere Nachricht senden",
+      "sending": "Wird gesendet...",
+      "submit": "Nachricht senden",
+      "genericError": "Etwas ist schief gelaufen"
+    },
+    "badge": "Kontakt",
+    "heroTitle": "Treten Sie mit uns in Kontakt",
+    "heroSubtitle": "Wir freuen uns über Fragen, Feedback und Partnerschaftsanfragen.",
+    "generalTitle": "Allgemeine Anfragen",
+    "generalDesc": "Fragen zur Plattform, Methodik oder Ihrem Konto.",
+    "correctionsTitle": "Ratingkorrektionen",
+    "correctionsDesc": "Falls Sie glauben, dass ein Rating einen Fehler oder veraltete Informationen enthält.",
+    "partnershipsTitle": "Partnerschaften",
+    "partnershipsDesc": "Für Zusammenarbeit, Forschung oder institutionelle Lizenzierung.",
+    "pressTitle": "Presse",
+    "pressDesc": "Medienanfragen, Interviewanfragen und Pressematerialien."
+  },
+  "about": {
+    "badge": "Über uns",
+    "heroTitle": "AI-Intelligence für europäische Entscheidungsträger",
+    "heroSubtitle": "AI Compass EU ist die unabhängige, herstellerneutrale Plattform, die europäischen Organisationen dabei hilft, KI-Systeme im Einklang mit EU-Vorschriften zu verstehen, zu bewerten und bereitzustellen.",
+    "missionTitle": "Unsere Mission",
+    "missionP1": "Die europäische KI-Landschaft entwickelt sich rasant. Mit dem EU AI Act in Kraft und einem wachsenden Flickenteppich von branchenspezifischen Vorschriften sehen sich Organisationen beispiellosen Herausforderungen bei der verantwortungsvollen Auswahl und Bereitstellung von KI-Systemen gegenüber.",
+    "missionP2": "AI Compass EU wurde gegründet, um Klarheit in diese Komplexität zu bringen. Wir bieten unabhängige Compliance-Intelligence — transparente Bewertungen, Regelungsanalysen und praktische Anleitung — damit Entscheidungsträger mit Sicherheit handeln können.",
+    "valuesTitle": "Unsere Werte",
+    "value1Title": "Unabhängig & Herstellerneutral",
+    "value1Desc": "Wir akzeptieren keine Sponsorings, Werbung oder Herstellerzahlungen, die unsere Bewertungen beeinflussen könnten. Unsere Einnahmen stammen ausschließlich aus Abonnements.",
+    "value2Title": "Transparenz an erster Stelle",
+    "value2Desc": "Jede von uns veröffentlichte Bewertung lässt sich auf überprüfbare Nachweise zurückführen. Unsere Methodik ist vollständig dokumentiert und offen für Überprüfung.",
+    "value3Title": "Europäische Perspektive",
+    "value3Desc": "Entwickelt in Europa, für Europa. Wir verstehen die Regelungslandschaft, kulturellen Besonderheiten und mehrsprachigen Anforderungen des EU-Marktes.",
+    "value4Title": "Streng & evidenzbasiert",
+    "value4Desc": "Bewertungen werden von Fachexperten anhand standardisierter Bewertungsmaßstäbe durchgeführt, nicht durch automatisierte Datenextraktion oder selbstberichtete Herstellerangaben.",
+    "contactTitle": "Kontakt aufnehmen",
+    "contactText": "AI Compass EU ist ein unabhängiges Projekt, das in Europa für europäische Entscheidungsträger entwickelt wurde. Für Fragen, Partnerschaftsanfragen oder Presseanfragen kontaktieren Sie uns unter {email}."
   }
 }

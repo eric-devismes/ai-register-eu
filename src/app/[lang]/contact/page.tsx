@@ -3,14 +3,37 @@ import { Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ContactForm } from "./ContactForm";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Get in touch with AI Compass EU for questions, partnership enquiries, corrections, or press requests.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "contact");
+}
 
-export default function ContactPage() {
+export default function ContactPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  return <ContactContent params={params} />;
+}
+
+async function ContactContent({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  const t = (key: string) =>
+    key
+      .split(".")
+      .reduce(
+        (o: Record<string, unknown>, k: string) =>
+          (o?.[k] as Record<string, unknown>) ?? {},
+        dict as unknown as Record<string, unknown>
+      ) as unknown as string;
+
   return (
     <>
       <Header />
@@ -19,13 +42,13 @@ export default function ContactPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold text-[#ffc107] tracking-wide uppercase">
-                Contact
+                {t("contact.badge")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                Get in Touch
+                {t("contact.heroTitle")}
               </h1>
               <p className="mt-4 text-lg text-blue-100 leading-relaxed">
-                We welcome questions, feedback, and partnership enquiries.
+                {t("contact.heroSubtitle")}
               </p>
             </div>
           </div>
@@ -40,10 +63,10 @@ export default function ContactPage() {
             <div className="mt-16 grid gap-8 sm:grid-cols-2">
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <h2 className="text-lg font-semibold text-[#0d1b3e]">
-                  General Enquiries
+                  {t("contact.generalTitle")}
                 </h2>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                  Questions about the platform, methodology, or your account.
+                  {t("contact.generalDesc")}
                 </p>
                 <a href="mailto:contact@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
                   contact@aicompass.eu
@@ -51,10 +74,10 @@ export default function ContactPage() {
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <h2 className="text-lg font-semibold text-[#0d1b3e]">
-                  Rating Corrections
+                  {t("contact.correctionsTitle")}
                 </h2>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                  If you believe a rating contains an error or outdated information.
+                  {t("contact.correctionsDesc")}
                 </p>
                 <a href="mailto:corrections@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
                   corrections@aicompass.eu
@@ -62,19 +85,21 @@ export default function ContactPage() {
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <h2 className="text-lg font-semibold text-[#0d1b3e]">
-                  Partnerships
+                  {t("contact.partnershipsTitle")}
                 </h2>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                  For collaboration, research, or institutional licensing.
+                  {t("contact.partnershipsDesc")}
                 </p>
                 <a href="mailto:partnerships@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
                   partnerships@aicompass.eu
                 </a>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-[#0d1b3e]">Press</h2>
+                <h2 className="text-lg font-semibold text-[#0d1b3e]">
+                  {t("contact.pressTitle")}
+                </h2>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                  Media enquiries, interview requests, and press materials.
+                  {t("contact.pressDesc")}
                 </p>
                 <a href="mailto:press@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
                   press@aicompass.eu

@@ -309,6 +309,18 @@
     "industries": {
       "title": "Iparágak",
       "description": "AI-rendszerek szektoronként. Személyre szabott compliance insights pénzügyi szolgáltatások, egészségügy, közszféra, HR, gyártás és más területek számára."
+    },
+    "contact": {
+      "title": "Kapcsolat",
+      "description": "Lépjen kapcsolatba az AI Compass EU-val kérdésekhez, partnerségi lehetőségekhez, korrekciókhoz vagy sajtóközleményekhez."
+    },
+    "pricingSuccess": {
+      "title": "Üdvözöljük a Pro-ban!",
+      "description": "Pro előfizetésed már aktív."
+    },
+    "pricingCancel": {
+      "title": "Fizetés Törlve",
+      "description": "Fizetési folyamatra vonatkozó kérés törlve. Nem történt terhelés."
     }
   },
   "evidenceBanner": {
@@ -481,5 +493,128 @@
       "multilingual3": "Kulturális megfelelőségi tesztelés",
       "multilingual4": "Lokalizációs minőségbiztosítás"
     }
+  },
+  "pricing": {
+    "cards": {
+      "proName": "Pro",
+      "freeName": "Free",
+      "freePrice": "0",
+      "freePeriod": "korlátlan",
+      "freeDesc": "Fedezze fel az AI compliance adatokat a legszélesebb körben használt platformokhoz. Tökéletes az induláshoz.",
+      "freeFeat1": "10 leggyakrabban használt AI rendszer teljes részletességgel",
+      "freeFeat2": "AI compliance chatbot — 3 kérdés/nap",
+      "freeFeat3": "Hírek és szabályozási frissítések",
+      "freeFeat4": "Ingyenes szintű rendszerek egymás melletti összehasonlítása",
+      "freeFeat5": "Megfelelőségi ellenőrzőlista generátor",
+      "freeFeat6": "Mind 100+ AI rendszer mélyreható értékeléssel",
+      "freeFeat7": "Podium — top-3 ajánlások",
+      "freeFeat8": "Megfelelőségi jelentések exportálása (CSV / JSON)",
+      "freeCta": "Ingyenes kezdés",
+      "proPrice": "19",
+      "proPeriod": "/hónap",
+      "proDesc": "Teljes megfelelőségi intelligencia DPO-k, compliance tisztviselők és AI-tudatos szakemberek számára.",
+      "proBadge": "Legkedveltebb",
+      "proFeat1": "Mind 100+ AI rendszer — teljes értékelések és szerep-specifikus elemzések",
+      "proFeat2": "Korlátlan AI megfelelőségi chatbot",
+      "proFeat3": "Egymás melletti összehasonlítás 35+ attribútummal",
+      "proFeat4": "Podium — top-3 rendszer ajánlások",
+      "proFeat5": "Szállítói találkozó előkészítő csomag",
+      "proFeat6": "Megfelelőségi jelentések exportálása (PDF / CSV / JSON)",
+      "proFeat7": "Prioritásos email támogatás",
+      "proCta": "Pro indítása — €19/hónap",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "Megfelelőségi csapatoknak, amelyek az AI-t szervezetszerte kezelik. RFP engine, API hozzáférés és dedikált támogatás.",
+      "enterpriseCustom": "Egyedi",
+      "enterpriseFeat1": "Mindaz, ami a Pro-ban",
+      "enterpriseFeat2": "RFP/RFI Válasz Engine — AI által készített válaszok",
+      "enterpriseFeat3": "REST API hozzáférés — megfelelőségi adatok integrálása az Ön rendszerébe",
+      "enterpriseFeat4": "Több csapati ülés SSO-val",
+      "enterpriseFeat5": "Egyéni compliance-jelentések és tömeges export",
+      "enterpriseFeat6": "Webhook-riasztások egyéni szabályokkal",
+      "enterpriseFeat7": "Prioritás compliance-útmutatás AI-szakértőktől",
+      "enterpriseFeat8": "Business Case tanácsadás — egyéni ROI/TCO-elemzés",
+      "enterpriseFeat9": "Dedikált account menedzser és telefonos támogatás",
+      "enterpriseCta": "Lépjen Kapcsolatba az Értékesítéssel",
+      "annualNote": "Spóroljon 20%-ot éves számlázás mellett — Pro mindössze 182 EUR/év.",
+      "vatNote": "Az összes ár ÁFA nélkül. Szüksége van egyéni vállalati tervre API-hozzáféréssel és dedikált támogatással?",
+      "vatLink": "Beszéljünk erről",
+      "paymentError": "A fizetési rendszer beállítása alatt áll. Próbálja később újra."
+    },
+    "badge": "Csomagok és Szolgáltatások",
+    "heroTitle": "AI Compliance Intelligencia és Tanácsadás",
+    "heroSubtitle": "Ingyenes kezdés az AI chatbottal és compliance adatokkal. Frissítsen Pro verzióra teljes hozzáférésért, vagy szerezzen vállalati szintű beszerzési intelligenciát és compliance eszközöket.",
+    "advisoryBadge": "Tanácsadási Szolgáltatások",
+    "advisoryTitle": "Szakértői Támogatás az Ön AI Döntéseihez",
+    "advisorySubtitle": "Elérhető önálló megbízásként vagy az Enterprise csomagba foglalva.",
+    "service1Title": "RFI / RFP Segítség",
+    "service1Desc": "Beszerzési dokumentumok EU compliance követelményekkel integrálva az elejétől.",
+    "service2Title": "Compliance Értékelés",
+    "service2Desc": "Az AI rendszerek auditálása az AI Act, GDPR és szektorszintű szabályozások alapján.",
+    "service3Title": "Szállító Kiválasztási Tanácsadás",
+    "service3Desc": "Szakértői útmutatás az Ön szabályozási és adatszuverenitási követelményeit teljesítő AI szállítók kiválasztásához.",
+    "getInTouch": "Lépjen Kapcsolatba Velünk",
+    "success": {
+      "title": "Üdvözöljük a Pro-ban!",
+      "description": "Az előfizetése aktív. Most már korlátlan hozzáféréssel rendelkezik az összes AI compliance-értékeléshez.",
+      "cta": "Fedezze Fel az Adatbázist"
+    },
+    "cancel": {
+      "title": "Nincs Gond",
+      "description": "A fizetés törlésre került, és nem történt számlázás. Bármikor frissíthet Pro-ra, amikor készen áll.",
+      "ctaPricing": "Vissza az Árképzéshez",
+      "ctaDatabase": "Böngésze az Adatbázist"
+    }
+  },
+  "contact": {
+    "form": {
+      "email": "Email",
+      "title": "Küldjön nekünk egy üzenetet",
+      "subtitle": "Töltse ki az alábbi képernyőt, és 2 munkanap alatt válaszolunk.",
+      "name": "Név",
+      "category": "Kategória",
+      "subject": "Tárgy",
+      "message": "Üzenet",
+      "catGeneral": "Általános érdeklődés",
+      "catCorrection": "Értékelés korrekciója",
+      "catPartnership": "Partnerség",
+      "catPress": "Sajtó / Média",
+      "catServices": "Szolgáltatás érdeklődés",
+      "successTitle": "Üzenet elküldve",
+      "successText": "Köszönjük, hogy megkereste bennünket. Lehető leghamarabb felvesszük Önnel a kapcsolatot.",
+      "sendAnother": "Újabb üzenet küldése",
+      "sending": "Küldés...",
+      "submit": "Üzenet küldése",
+      "genericError": "Valami hiba történt"
+    },
+    "badge": "Kapcsolat",
+    "heroTitle": "Vegye Fel a Kapcsolatot",
+    "heroSubtitle": "Szívesen fogadunk kérdéseket, visszajelzéseket és partnerségi megkereséseket.",
+    "generalTitle": "Általános Megkeresések",
+    "generalDesc": "Kérdések a platformról, a módszertanról vagy az Ön fiókjáról.",
+    "correctionsTitle": "Értékelés Módosítások",
+    "correctionsDesc": "Ha azt gondolja, hogy egy értékelés hibát tartalmaz vagy elavult információ.",
+    "partnershipsTitle": "Partnerségek",
+    "partnershipsDesc": "Együttműködés, kutatás vagy intézményi licencelés céljából.",
+    "pressTitle": "Sajtó",
+    "pressDesc": "Média érdeklődések, interjúkérések és sajtóanyagok."
+  },
+  "about": {
+    "badge": "Rólunk",
+    "heroTitle": "AI intelligencia európai döntéshozók számára",
+    "heroSubtitle": "Az AI Compass EU a független, szállító-semleges platform, amely segít az európai szervezeteknek megérteni, értékelni és telepíteni az AI-rendszereket az EU-s szabályozásoknak megfelelően.",
+    "missionTitle": "Misszionk",
+    "missionP1": "Az európai AI-tájkép gyorsan fejlődik. Az EU AI Act hatályba lépésével és a szektorspecifikus szabályozások növekvő patchwork-jével az szervezetek példa nélküli összetettséggel szembesülnek az AI-rendszerek felelős megválasztása és telepítése során.",
+    "missionP2": "Az AI Compass EU azért jött létre, hogy tisztázzon ezt az összetettséget. Független compliance intelligenciát nyújtunk — átlátható értékeléseket, szabályozási elemzéseket és gyakorlati útmutatást —, hogy a döntéshozók magabiztosan cselekedhetsenek.",
+    "valuesTitle": "Értékeink",
+    "value1Title": "Független és szállító-semleges",
+    "value1Desc": "Nem fogadunk el szponzorációt, hirdetéseket vagy szállítói kifizetéseket, amelyek befolyásolhatnák értékeléseinket. Bevételünk kizárólag az előfizetésekből származik.",
+    "value2Title": "Az átláthatóság az első",
+    "value2Desc": "Minden közzétett pontszám visszavezethető ellenőrizhető bizonyítékokhoz. Módszertanunk teljes mértékben dokumentált és nyitott a kritikára.",
+    "value3Title": "Európai perspektíva",
+    "value3Desc": "Európában építve, Európáért. Megértjük az EU piac szabályozási környezetét, kulturális nuanszait és többnyelvű követelményeit.",
+    "value4Title": "Szigorú és Bizonyítékokon Alapuló",
+    "value4Desc": "Az értékeléseket szakterületi szakértők végzik szabványosított értékelési módszertan alapján, nem automatizált adatgyűjtés vagy szállítói önjelentések alapján.",
+    "contactTitle": "Lépjen Kapcsolatba Velünk",
+    "contactText": "Az AI Compass EU egy független projekt, amely Európában működik európai döntéshozók számára. Kérdésekkel, partnerségi ajánlatokkal vagy sajtóközlemény-kérésekkel forduljon hozzánk a {email} címen."
   }
 }

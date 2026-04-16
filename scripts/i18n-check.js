@@ -245,6 +245,9 @@ const PRIORITY_METADATA_PAGES = [
   "src/app/[lang]/reports/page.tsx",
   "src/app/[lang]/regulations/page.tsx",
   "src/app/[lang]/industries/page.tsx",
+  "src/app/[lang]/contact/page.tsx",
+  "src/app/[lang]/pricing/success/page.tsx",
+  "src/app/[lang]/pricing/cancel/page.tsx",
 ];
 
 function checkMetadata() {

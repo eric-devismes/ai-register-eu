@@ -301,6 +301,18 @@
     "industries": {
       "title": "Industries",
       "description": "AI systems by sector. Tailored compliance insights for financial services, healthcare, public sector, HR, manufacturing, and more."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with AI Compass EU for questions, partnership enquiries, corrections, or press requests."
+    },
+    "pricingSuccess": {
+      "title": "Welcome to Pro!",
+      "description": "Your Pro subscription is now active."
+    },
+    "pricingCancel": {
+      "title": "Checkout Cancelled",
+      "description": "Your checkout was cancelled. No charges were made."
     }
   },
   "footer": {
@@ -480,6 +492,129 @@
       "multilingual2": "Performance parity across languages",
       "multilingual3": "Cultural appropriateness testing",
       "multilingual4": "Localization quality assurance"
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "heroTitle": "AI Intelligence for European Decision-Makers",
+    "heroSubtitle": "AI Compass EU is the independent, vendor-neutral platform that helps European organizations understand, evaluate, and deploy AI systems in compliance with EU regulations.",
+    "missionTitle": "Our Mission",
+    "missionP1": "The European AI landscape is evolving rapidly. With the EU AI Act in force and a growing patchwork of sector-specific regulations, organizations face unprecedented complexity in choosing and deploying AI systems responsibly.",
+    "missionP2": "AI Compass EU was founded to bring clarity to this complexity. We provide independent compliance intelligence — transparent ratings, regulatory analysis, and practical guidance — so that decision-makers can act with confidence.",
+    "valuesTitle": "Our Values",
+    "value1Title": "Independent & Vendor-Neutral",
+    "value1Desc": "We accept no sponsorship, advertising, or vendor payments that could influence our ratings. Our revenue comes solely from subscriptions.",
+    "value2Title": "Transparency First",
+    "value2Desc": "Every score we publish can be traced to verifiable evidence. Our methodology is fully documented and open to scrutiny.",
+    "value3Title": "European Perspective",
+    "value3Desc": "Built in Europe, for Europe. We understand the regulatory landscape, cultural nuances, and multilingual requirements of the EU market.",
+    "value4Title": "Rigorous & Evidence-Based",
+    "value4Desc": "Assessments are conducted by domain experts using standardized rubrics, not automated scraping or self-reported vendor claims.",
+    "contactTitle": "Get in Touch",
+    "contactText": "AI Compass EU is an independent project built in Europe for European decision-makers. For questions, partnership enquiries, or press requests, contact us at {email}."
+  },
+  "pricing": {
+    "badge": "Plans & Services",
+    "heroTitle": "AI Compliance Intelligence & Advisory",
+    "heroSubtitle": "Start free with our AI chatbot and compliance data. Upgrade to Pro for full access, or get enterprise-grade procurement intelligence and compliance tools.",
+    "advisoryBadge": "Advisory Services",
+    "advisoryTitle": "Expert Support for Your AI Decisions",
+    "advisorySubtitle": "Available as standalone engagements or included in Enterprise plans.",
+    "service1Title": "RFI / RFP Assistance",
+    "service1Desc": "Procurement documents with EU compliance requirements built in from the start.",
+    "service2Title": "Compliance Assessment",
+    "service2Desc": "Audit your AI systems against AI Act, GDPR, and sector-specific regulations.",
+    "service3Title": "Vendor Selection Advisory",
+    "service3Desc": "Expert guidance choosing AI vendors that meet your regulatory and data sovereignty requirements.",
+    "getInTouch": "Get in Touch",
+    "cards": {
+      "freeName": "Free",
+      "freePrice": "0",
+      "freePeriod": "forever",
+      "freeDesc": "Explore AI compliance data for the most widely used platforms. Perfect for getting started.",
+      "freeFeat1": "10 most-used AI systems with full detail",
+      "freeFeat2": "AI compliance chatbot — 3 questions/day",
+      "freeFeat3": "Newsfeed & regulatory updates",
+      "freeFeat4": "Compare free-tier systems side-by-side",
+      "freeFeat5": "Compliance checklist generator",
+      "freeFeat6": "All 100+ AI systems with deep assessments",
+      "freeFeat7": "Podium — top-3 recommendations",
+      "freeFeat8": "Export compliance reports (CSV / JSON)",
+      "freeCta": "Get Started Free",
+      "proName": "Pro",
+      "proPrice": "19",
+      "proPeriod": "/month",
+      "proDesc": "Full compliance intelligence for DPOs, compliance officers, and AI-aware professionals.",
+      "proBadge": "Most Popular",
+      "proFeat1": "All 100+ AI systems — full assessments & role drill-downs",
+      "proFeat2": "Unlimited AI compliance chatbot",
+      "proFeat3": "Side-by-side comparison with 35+ attributes",
+      "proFeat4": "Podium — top-3 system recommendations",
+      "proFeat5": "Vendor Meeting Prep briefing kit",
+      "proFeat6": "Export compliance reports (PDF / CSV / JSON)",
+      "proFeat7": "Priority email support",
+      "proCta": "Start Pro — €19/month",
+      "enterpriseName": "Enterprise",
+      "enterpriseDesc": "For compliance teams managing AI across the organization. RFP engine, API access, and dedicated support.",
+      "enterpriseCustom": "Custom",
+      "enterpriseFeat1": "Everything in Pro",
+      "enterpriseFeat2": "RFP/RFI Answer Engine — AI-drafted responses",
+      "enterpriseFeat3": "REST API access — integrate compliance data into your stack",
+      "enterpriseFeat4": "Multiple team seats with SSO",
+      "enterpriseFeat5": "Custom compliance reports & bulk export",
+      "enterpriseFeat6": "Webhook alerts with custom rules",
+      "enterpriseFeat7": "Priority compliance guidance from AI experts",
+      "enterpriseFeat8": "Business Case consulting — custom ROI/TCO analysis",
+      "enterpriseFeat9": "Dedicated account manager & phone support",
+      "enterpriseCta": "Contact Sales",
+      "annualNote": "Save 20% with annual billing — Pro at just €182/year.",
+      "vatNote": "All prices exclude VAT. Need a tailored enterprise plan with API access and dedicated support?",
+      "vatLink": "Let's talk",
+      "paymentError": "Payment system is being set up. Please try again later."
+    },
+    "success": {
+      "title": "Welcome to Pro!",
+      "description": "Your subscription is active. You now have unlimited access to all AI compliance assessments.",
+      "cta": "Explore the Database"
+    },
+    "cancel": {
+      "title": "No Problem",
+      "description": "Your checkout was cancelled and no charges were made. You can upgrade to Pro anytime when you are ready.",
+      "ctaPricing": "Back to Pricing",
+      "ctaDatabase": "Browse Database"
+    }
+  },
+  "contact": {
+    "badge": "Contact",
+    "heroTitle": "Get in Touch",
+    "heroSubtitle": "We welcome questions, feedback, and partnership enquiries.",
+    "generalTitle": "General Enquiries",
+    "generalDesc": "Questions about the platform, methodology, or your account.",
+    "correctionsTitle": "Rating Corrections",
+    "correctionsDesc": "If you believe a rating contains an error or outdated information.",
+    "partnershipsTitle": "Partnerships",
+    "partnershipsDesc": "For collaboration, research, or institutional licensing.",
+    "pressTitle": "Press",
+    "pressDesc": "Media enquiries, interview requests, and press materials.",
+    "form": {
+      "title": "Send us a message",
+      "subtitle": "Fill in the form below and we'll respond within 2 business days.",
+      "name": "Name",
+      "email": "Email",
+      "category": "Category",
+      "subject": "Subject",
+      "message": "Message",
+      "catGeneral": "General Enquiry",
+      "catCorrection": "Rating Correction",
+      "catPartnership": "Partnership",
+      "catPress": "Press / Media",
+      "catServices": "Services Enquiry",
+      "successTitle": "Message sent",
+      "successText": "Thank you for reaching out. We'll get back to you as soon as possible.",
+      "sendAnother": "Send another message",
+      "sending": "Sending...",
+      "submit": "Send Message",
+      "genericError": "Something went wrong"
     }
   }
 }
