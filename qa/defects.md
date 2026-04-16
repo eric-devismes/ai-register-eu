@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-04-16 QA Run (Morning)
+
+### Critical
+_None this run._
+
+### Warning
+- **Newsfeed future-dated articles (Aug 2, 2026) still not labelled "Scheduled"** — Top items in the feed are dated Aug 2026 (EU AI Act enforcement milestones pre-seeded as future dates). No "Scheduled" or "Upcoming" badge shown — looks like stale/future content to users expecting live news. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+- **Stats bar "80 AI tools" vs pricing page "100+"** — Homepage stats bar shows "80 AI tools rated"; Pro tier pricing card says "All 100+ AI systems". Ongoing trust/credibility gap for enterprise buyers who see both on the same visit. Ongoing from 2026-04-14.
+- **FR/DE methodology pages ~95% untranslated** — `/fr/methodology` and `/de/methodology` display dimension names, grading scale, and assessment process entirely in English. Only footer and nav are localised. — https://ai-register-eu.vercel.app/fr/methodology
+- **Footer `aiTransparencyTitle` / `aiTransparencyBody` untranslated in all non-English locales** — "AI Transparency Notice" and disclaimer body still in English on /fr, /de. Ongoing from 2026-04-14.
+
+### Info
+- **All main pages load 200** — /, /database, /regulations, /pricing, /about, /methodology, /resources, /industries, /newsfeed, /privacy all return 200. ✅
+- **System detail pages load correctly** — Anthropic Claude Enterprise (B-), ChatGPT Enterprise (B-), Mistral Large (A-) all render with framework breakdown and evidence verification banner. ✅
+- **Resources page** — All 8 resource cards link to legitimate EU official sources (EUR-Lex, EC, ENISA); no broken links detected. ✅
+- **FR/DE system detail pages** — System detail page `/fr/systems/anthropic-claude-enterprise` loads with compliance scores intact; AI Transparency Notice section still English-only.
+- **About page lacks team bios/credentials** — No named analysts or advisory board disclosed. Ongoing from 2026-04-14 run.
+- **Pricing page Free tier wording confusing** — Free tier lists "10 most-used AI systems" then also "All 100+ AI systems" in the same feature list — contradictory. Needs copy clarification.
+
+### Fixed this run
+- **CookieConsent hardcoded English** — Cookie banner ("We use essential cookies only", "Accept all", "Privacy Policy") was hardcoded in English in `CookieConsent.tsx`. ✅ Fixed: moved 4 strings to `cookies.*` dictionary namespace, backfilled human-quality translations across all 13 non-English locales. Committed `90e2140`, deployed.
+
+---
+
 ## 2026-04-15 QA Run (Evening)
 
 ### Critical
