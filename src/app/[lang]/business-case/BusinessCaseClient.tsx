@@ -11,7 +11,7 @@
  */
 
 import { useState, useMemo } from "react";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 // ─── Types ────────────────────────────────────────────────
@@ -77,6 +77,7 @@ const SECTION_ICONS: Record<string, string> = {
 
 export function BusinessCaseClient({ tier, systems }: Props) {
   const locale = useLocale();
+  const t = useT();
   const hasAccess = tier === "pro" || tier === "enterprise";
 
   // Form state

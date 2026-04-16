@@ -12,6 +12,7 @@
  */
 
 import { useState, useEffect, useMemo } from "react";
+import { useT } from "@/lib/locale-context";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 // ─── Types ────────────────────────────────────────────────
@@ -36,6 +37,7 @@ interface Props {
 // ─── Component ────────────────────────────────────────────
 
 export function RFPClient({ tier, locale }: Props) {
+  const t = useT();
   const hasAccess = tier === "enterprise";
 
   // Systems list

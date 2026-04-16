@@ -10,6 +10,7 @@
  */
 
 import { useState, useCallback, useRef } from "react";
+import { useLocale, useT } from "@/lib/locale-context";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -90,6 +91,8 @@ export function ChecklistClient({
   tier: string;
   frameworkOptions: FrameworkOption[];
 }) {
+  const locale = useLocale();
+  const t = useT();
   const [phase, setPhase] = useState<Phase>("select");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [checklist, setChecklist] = useState<ChecklistFramework[]>([]);
@@ -497,7 +500,7 @@ export function ChecklistClient({
                                           <>
                                             {stmt.commentary.slice(0, 80)}…
                                             <span className="block mt-2 text-blue-600 font-medium">
-                                              <a href="/en/pricing" className="underline">Upgrade to Pro</a> to read full expert commentary
+                                              <a href={`/${locale}/pricing`} className="underline">Upgrade to Pro</a> to read full expert commentary
                                             </span>
                                           </>
                                         )}

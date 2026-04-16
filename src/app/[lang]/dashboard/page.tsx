@@ -22,21 +22,36 @@ import { getRecentChangelogs } from "@/lib/queries";
 import { prisma } from "@/lib/db";
 import { computeOverallScore, gradeColor } from "@/lib/scoring";
 import { getEffectiveTier } from "@/lib/tier-access";
+import { getPageMetadata, getDictionary, type Locale, isValidLocale } from "@/lib/i18n";
 import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "My Dashboard",
-  description: "Your personalized AI compliance dashboard. Track compliance scores, regulatory changes, and alerts for your AI stack.",
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
 
-export default async function DashboardPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  return getPageMetadata(locale as Locale, "dashboard");
+}
+
+export default async function DashboardPage({ params }: PageProps) {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  const dict = await getDictionary(locale as Locale);
+  const t = (key: string) => {
+    const [section, ...rest] = key.split(".");
+    const field = rest.join(".");
+    return dict?.[section]?.[field] || key;
+  };
+
   const [subscriber, tier] = await Promise.all([
     getSubscriber(),
     getEffectiveTier(),
   ]);
 
   if (tier !== "pro" && tier !== "enterprise") {
-    redirect("/en/pricing");
+    redirect(`/${locale}/pricing`);
   }
 
   // Get the user's followed AI systems with scores
@@ -77,17 +92,17 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-[#ffc107] uppercase tracking-wide">
-                  Pro Dashboard
+                  {t("dashboard.badge")}
                 </p>
                 <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
-                  Your AI Compliance Overview
+                  {t("dashboard.heroTitle")}
                 </h1>
               </div>
               <Link
-                href="/en/compare"
+                href={`/${locale}/compare`}
                 className="hidden sm:inline-flex rounded-lg bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/20 transition-colors"
               >
-                Compare Systems
+                {t("dashboard.compareSystems")}
               </Link>
             </div>
           </div>
@@ -101,17 +116,16 @@ export default async function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
               <h2 className="mt-4 text-lg font-semibold text-gray-700">
-                Set Up Your Dashboard
+                {t("dashboard.setupTitle")}
               </h2>
               <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
-                Follow the AI systems your organisation uses to see their compliance scores,
-                recent changes, and alerts — all in one place.
+                {t("dashboard.setupDesc")}
               </p>
               <Link
-                href="/en/database"
+                href={`/${locale}/database`}
                 className="mt-6 inline-block rounded-lg bg-[#003399] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#002277] transition-colors"
               >
-                Browse AI Systems
+                {t("dashboard.browseAISystems")}
               </Link>
             </div>
           ) : (
@@ -120,14 +134,14 @@ export default async function DashboardPage() {
               <div className="lg:col-span-2 space-y-8">
                 {/* Systems grid */}
                 <div>
-                  <h2 className="text-lg font-semibold text-[#0d1b3e] mb-4">Your AI Systems</h2>
+                  <h2 className="text-lg font-semibold text-[#0d1b3e] mb-4">{t("dashboard.yourAISystems")}</h2>
                   <div className="grid gap-4 sm:grid-cols-2">
                     {followedSystems.map((system) => {
                       const overall = computeOverallScore(system.scores.map((sc) => sc.score));
                       return (
                         <Link
                           key={system.id}
-                          href={`/en/systems/${system.slug}`}
+                          href={`/${locale}/systems/${system.slug}`}
                           className="rounded-xl border border-gray-200 bg-white p-5 hover:shadow-md hover:border-[#003399]/30 transition-all group"
                         >
                           <div className="flex items-start justify-between">
@@ -158,10 +172,10 @@ export default async function DashboardPage() {
                     })}
                   </div>
                   <Link
-                    href="/en/database"
+                    href={`/${locale}/database`}
                     className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#003399] hover:underline"
                   >
-                    + Add more systems
+                    {t("dashboard.addMoreSystems")}
                   </Link>
                 </div>
 
@@ -169,7 +183,7 @@ export default async function DashboardPage() {
                 {relevantChanges.length > 0 && (
                   <div>
                     <h2 className="text-lg font-semibold text-[#0d1b3e] mb-4">
-                      Changes Affecting Your Stack
+                      {t("dashboard.changesAffecting")}
                     </h2>
                     <div className="space-y-3">
                       {relevantChanges.map((change) => (
@@ -189,7 +203,7 @@ export default async function DashboardPage() {
                               </span>
                             )}
                             <span className="text-[10px] text-gray-400">
-                              {new Date(change.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                              {new Date(change.date).toLocaleDateString(locale, { day: "numeric", month: "short" })}
                             </span>
                           </div>
                           <p className="text-sm font-medium text-gray-900">{change.title}</p>
@@ -205,56 +219,56 @@ export default async function DashboardPage() {
               <div className="space-y-6">
                 {/* Quick actions */}
                 <div className="rounded-xl border border-gray-200 bg-white p-5">
-                  <h3 className="text-sm font-semibold text-[#0d1b3e] mb-3">Quick Actions</h3>
+                  <h3 className="text-sm font-semibold text-[#0d1b3e] mb-3">{t("dashboard.quickActions")}</h3>
                   <div className="space-y-2">
                     <Link
-                      href="/en/compare"
+                      href={`/${locale}/compare`}
                       className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       <svg className="h-5 w-5 text-[#003399]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
                       </svg>
-                      Compare AI Systems
+                      {t("dashboard.compareAISystems")}
                     </Link>
                     <Link
-                      href="/en/database"
+                      href={`/${locale}/database`}
                       className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       <svg className="h-5 w-5 text-[#003399]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                       </svg>
-                      Browse All Systems
+                      {t("dashboard.browseAllSystems")}
                     </Link>
                     <Link
-                      href="/en/reports"
+                      href={`/${locale}/reports`}
                       className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       <svg className="h-5 w-5 text-[#003399]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                       </svg>
-                      Reports &amp; White Papers
+                      {t("dashboard.reportsWhitePapers")}
                     </Link>
                   </div>
                 </div>
 
                 {/* Latest general news */}
                 <div className="rounded-xl border border-gray-200 bg-white p-5">
-                  <h3 className="text-sm font-semibold text-[#0d1b3e] mb-3">Latest News</h3>
+                  <h3 className="text-sm font-semibold text-[#0d1b3e] mb-3">{t("dashboard.latestNews")}</h3>
                   <div className="space-y-3">
                     {generalChanges.map((change) => (
                       <div key={change.id} className="border-b border-gray-100 pb-2 last:border-0 last:pb-0">
                         <p className="text-xs font-medium text-gray-800 line-clamp-2">{change.title}</p>
                         <p className="text-[10px] text-gray-400 mt-0.5">
-                          {new Date(change.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                          {new Date(change.date).toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" })}
                         </p>
                       </div>
                     ))}
                   </div>
                   <Link
-                    href="/en/newsfeed"
+                    href={`/${locale}/newsfeed`}
                     className="mt-3 inline-flex text-xs font-medium text-[#003399] hover:underline"
                   >
-                    View all news
+                    {t("dashboard.viewAllNews")}
                   </Link>
                 </div>
 
@@ -266,8 +280,7 @@ export default async function DashboardPage() {
                     </span>
                   </div>
                   <p className="text-xs text-gray-600">
-                    You have full access to all AI systems, comparison tools, exports,
-                    and personalized alerts.
+                    {t("dashboard.fullAccessDesc")}
                   </p>
                 </div>
               </div>

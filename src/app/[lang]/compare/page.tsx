@@ -15,16 +15,31 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getEffectiveTier } from "@/lib/tier-access";
+import { getPageMetadata, type Locale, isValidLocale } from "@/lib/i18n";
 import { CompareClient } from "./CompareClient";
 
-export const metadata: Metadata = {
-  title: "AI System Comparison",
-  description: "Describe your use case and get AI-matched, side-by-side comparisons of enterprise AI systems assessed for EU regulatory compliance.",
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
 
-export default async function ComparePage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  return getPageMetadata(locale as Locale, "compare");
+}
+
+export default async function ComparePage({ params }: PageProps) {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
   const tier = await getEffectiveTier();
   const hasFullAccess = tier === "pro" || tier === "enterprise";
+  const { getDictionary } = await import("@/lib/i18n");
+  const dict = await getDictionary(locale as Locale);
+  const t = (key: string) => {
+    const [section, ...rest] = key.split(".");
+    const field = rest.join(".");
+    return dict?.[section]?.[field] || key;
+  };
 
   return (
     <>
@@ -35,21 +50,19 @@ export default async function ComparePage() {
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-blue-200">
-                AI-Powered Matching
+                {t("compare.badge")}
               </div>
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl font-serif">
-                Find &amp; Compare AI Systems
+                {t("compare.heroTitle")}
               </h1>
               <p className="mt-4 text-lg text-blue-100 max-w-2xl">
-                Describe your use case in plain English. Get AI-matched recommendations
-                from our database of assessed enterprise AI systems, then compare them
-                side-by-side against EU compliance criteria.
+                {t("compare.heroSubtitle")}
               </p>
               {!hasFullAccess && (
                 <p className="mt-2 text-sm text-blue-200/70">
-                  Free access covers the 5 most popular AI platforms.{" "}
-                  <a href="/en/pricing" className="underline hover:text-white">Upgrade to Pro</a>{" "}
-                  for all 60+ systems.
+                  {t("compare.freeNotice")}{" "}
+                  <a href={`/${locale}/pricing`} className="underline hover:text-white">{t("compare.freeUpgradeLink")}</a>{" "}
+                  {t("compare.freeUpgradeSuffix")}
                 </p>
               )}
             </div>

@@ -12,7 +12,7 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 // ─── Types ────────────────────────────────────────────────
@@ -110,6 +110,7 @@ const PODIUM_STYLES: Record<number, { border: string; bg: string; accent: string
 
 export function PodiumClient({ tier }: Props) {
   const locale = useLocale();
+  const t = useT();
   const hasAccess = tier === "pro" || tier === "enterprise";
 
   // Form state

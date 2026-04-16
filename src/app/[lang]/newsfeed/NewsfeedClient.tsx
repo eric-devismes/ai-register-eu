@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLocale, useT } from "@/lib/locale-context";
 
 // ─── Upcoming regulatory milestones ─────────────────────
 
@@ -22,56 +23,56 @@ interface Milestone {
 const MILESTONES: Milestone[] = [
   {
     date: "2026-08-02",
-    title: "EU AI Act — High-Risk System Obligations Apply",
+    title: "EU AI Act \u2014 High-Risk System Obligations Apply",
     framework: "EU AI Act",
     description: "Full compliance requirements for high-risk AI systems (Annex III) take effect. Providers and deployers must meet all Chapter 2 obligations.",
     impact: "high",
   },
   {
     date: "2026-08-02",
-    title: "EU AI Act — Deployer Obligations Begin",
+    title: "EU AI Act \u2014 Deployer Obligations Begin",
     framework: "EU AI Act",
     description: "Organisations deploying high-risk AI must implement human oversight, conduct FRIAs, and maintain AI system registries.",
     impact: "high",
   },
   {
     date: "2026-08-02",
-    title: "EU AI Act — Transparency for Limited-Risk Systems",
+    title: "EU AI Act \u2014 Transparency for Limited-Risk Systems",
     framework: "EU AI Act",
     description: "Chatbots, deepfakes, and emotion recognition systems must disclose AI involvement to users (Article 50).",
     impact: "medium",
   },
   {
     date: "2027-02-02",
-    title: "EU AI Act — GPAI Model Obligations",
+    title: "EU AI Act \u2014 GPAI Model Obligations",
     framework: "EU AI Act",
     description: "General-purpose AI model providers must comply with transparency and documentation requirements (Chapter V).",
     impact: "high",
   },
   {
     date: "2027-08-02",
-    title: "EU AI Act — Full Enforcement",
+    title: "EU AI Act \u2014 Full Enforcement",
     framework: "EU AI Act",
-    description: "All remaining provisions apply. National authorities begin full enforcement with penalties up to €35M or 7% of global turnover.",
+    description: "All remaining provisions apply. National authorities begin full enforcement with penalties up to \u20ac35M or 7% of global turnover.",
     impact: "high",
   },
   {
     date: "2026-10-17",
-    title: "NIS2 Directive — Transposition Deadline",
+    title: "NIS2 Directive \u2014 Transposition Deadline",
     framework: "NIS2",
     description: "EU member states must transpose NIS2 into national law. Applies to essential and important entities including AI service providers.",
     impact: "medium",
   },
   {
     date: "2027-01-17",
-    title: "DORA — Full Application",
+    title: "DORA \u2014 Full Application",
     framework: "DORA",
     description: "Digital Operational Resilience Act fully applies to financial entities. ICT risk management, incident reporting, and third-party oversight required.",
     impact: "high",
   },
   {
     date: "2026-12-31",
-    title: "EU Data Act — Full Application",
+    title: "EU Data Act \u2014 Full Application",
     framework: "EU Data Act",
     description: "Rules on fair access to and use of data. Impacts AI systems that generate or process IoT and industrial data.",
     impact: "medium",
@@ -102,25 +103,27 @@ interface Entry {
   system: { slug: string; name: string; vendor: string } | null;
 }
 
-const CHANGE_TYPE_LABELS: Record<string, { label: string; color: string }> = {
-  update: { label: "Update", color: "bg-blue-100 text-blue-700" },
-  amendment: { label: "Amendment", color: "bg-purple-100 text-purple-700" },
-  jurisprudence: { label: "Ruling", color: "bg-amber-100 text-amber-700" },
-  new_version: { label: "New Version", color: "bg-green-100 text-green-700" },
-  incident: { label: "Incident", color: "bg-red-100 text-red-700" },
-  certification: { label: "Certification", color: "bg-emerald-100 text-emerald-700" },
-  correction: { label: "Correction", color: "bg-gray-100 text-gray-700" },
-};
-
-function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso));
-}
-
 export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { entries: Entry[]; tier?: string; lang?: string }) {
+  const locale = useLocale();
+  const t = useT();
   const [tab, setTab] = useState<"news" | "calendar">("news");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
   const isAnonymous = tier === "anonymous";
+
+  const CHANGE_TYPE_LABELS: Record<string, { label: string; color: string }> = {
+    update: { label: t("newsfeed.changeTypeUpdate"), color: "bg-blue-100 text-blue-700" },
+    amendment: { label: t("newsfeed.changeTypeAmendment"), color: "bg-purple-100 text-purple-700" },
+    jurisprudence: { label: t("newsfeed.changeTypeJurisprudence"), color: "bg-amber-100 text-amber-700" },
+    new_version: { label: t("newsfeed.changeTypeNewVersion"), color: "bg-green-100 text-green-700" },
+    incident: { label: t("newsfeed.changeTypeIncident"), color: "bg-red-100 text-red-700" },
+    certification: { label: t("newsfeed.changeTypeCertification"), color: "bg-emerald-100 text-emerald-700" },
+    correction: { label: t("newsfeed.changeTypeCorrection"), color: "bg-gray-100 text-gray-700" },
+  };
+
+  function formatDate(iso: string): string {
+    return new Intl.DateTimeFormat(locale, { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso));
+  }
 
   // Recent = last 7 days
   const sevenDaysAgo = new Date();
@@ -173,7 +176,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
             tab === "news" ? "bg-white text-[#0d1b3e] shadow-sm" : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          News
+          {t("newsfeed.tabNews")}
         </button>
         <button
           onClick={() => setTab("calendar")}
@@ -181,7 +184,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
             tab === "calendar" ? "bg-white text-[#0d1b3e] shadow-sm" : "text-gray-500 hover:text-gray-700"
           }`}
         >
-          Regulatory Calendar
+          {t("newsfeed.tabCalendar")}
         </button>
       </div>
 
@@ -189,7 +192,9 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
       {tab === "calendar" && (
         <div className="space-y-4">
           <p className="text-xs text-gray-400 mb-2">
-            {upcomingMilestones.length} upcoming milestone{upcomingMilestones.length !== 1 ? "s" : ""}
+            {upcomingMilestones.length === 1
+              ? t("newsfeed.upcomingMilestones").replace("{count}", String(upcomingMilestones.length))
+              : t("newsfeed.upcomingMilestonesPlural").replace("{count}", String(upcomingMilestones.length))}
           </p>
 
           {upcomingMilestones.map((m, i) => {
@@ -203,10 +208,10 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       <span className="text-xs font-bold text-gray-900">
-                        {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date(m.date))}
+                        {new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(new Date(m.date))}
                       </span>
                       <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${IMPACT_BADGES[m.impact]}`}>
-                        {m.impact} impact
+                        {t("newsfeed.impactLabel").replace("{impact}", m.impact)}
                       </span>
                       <span className="text-[10px] text-gray-400">{m.framework}</span>
                     </div>
@@ -217,7 +222,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
                     <span className={`text-2xl font-bold ${days <= 30 ? "text-red-600" : days <= 90 ? "text-amber-600" : "text-gray-400"}`}>
                       {days}
                     </span>
-                    <p className="text-[10px] text-gray-400">days</p>
+                    <p className="text-[10px] text-gray-400">{t("newsfeed.days")}</p>
                   </div>
                 </div>
               </div>
@@ -238,7 +243,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search past news..."
+            placeholder={t("newsfeed.searchPlaceholder")}
             className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2.5 text-sm focus:border-[#003399] focus:outline-none focus:ring-1 focus:ring-[#003399]"
           />
         </div>
@@ -251,7 +256,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
                 : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50"
             }`}
           >
-            {showAll ? "Show recent" : `Show all (${entries.length})`}
+            {showAll ? t("newsfeed.showRecent") : t("newsfeed.showAll").replace("{count}", String(entries.length))}
           </button>
         )}
       </div>
@@ -259,24 +264,28 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
       {/* Results count */}
       <p className="text-xs text-gray-400 mb-4">
         {search
-          ? `${filtered.length} result${filtered.length !== 1 ? "s" : ""} for "${search}"`
+          ? (filtered.length === 1
+              ? t("newsfeed.resultsFor").replace("{count}", String(filtered.length)).replace("{query}", search)
+              : t("newsfeed.resultsForPlural").replace("{count}", String(filtered.length)).replace("{query}", search))
           : showAll
-          ? `${filtered.length} entries`
-          : `${recentCount} recent update${recentCount !== 1 ? "s" : ""} (last 7 days)`}
+          ? t("newsfeed.entriesCount").replace("{count}", String(filtered.length))
+          : (recentCount === 1
+              ? t("newsfeed.recentUpdates").replace("{count}", String(recentCount))
+              : t("newsfeed.recentUpdatesPlural").replace("{count}", String(recentCount)))}
       </p>
 
       {/* Entries */}
       {filtered.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-gray-500 text-sm">
-            {search ? "No news matching your search." : "No recent news."}
+            {search ? t("newsfeed.noMatchingNews") : t("newsfeed.noRecentNews")}
           </p>
           {!showAll && !search && (
             <button
               onClick={() => setShowAll(true)}
               className="mt-3 text-sm text-[#003399] underline hover:text-[#002277]"
             >
-              View all past news
+              {t("newsfeed.viewAllPastNews")}
             </button>
           )}
         </div>
@@ -302,12 +311,12 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
                         {typeInfo.label}
                       </span>
                       {entry.framework && (
-                        <Link href={`/${lang}/regulations/${entry.framework.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
+                        <Link href={`/${locale}/regulations/${entry.framework.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
                           {entry.framework.name}
                         </Link>
                       )}
                       {entry.system && (
-                        <Link href={`/${lang}/systems/${entry.system.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
+                        <Link href={`/${locale}/systems/${entry.system.slug}`} className="text-[10px] font-medium text-[#003399] hover:underline">
                           {entry.system.vendor} {entry.system.name}
                         </Link>
                       )}
@@ -316,7 +325,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
                     <h3 className="font-medium text-gray-900 text-sm">{entry.title}</h3>
                     {isAnonymous ? (
                       <p className="mt-1 text-xs text-[#003399]">
-                        <a href="/en/subscribe" className="underline hover:text-[#002277]">Sign in</a> to read the full update
+                        <a href={`/${locale}/subscribe`} className="underline hover:text-[#002277]">{t("common.signIn")}</a> {t("newsfeed.signInToRead")}
                       </p>
                     ) : (
                       <p className="mt-1 text-sm text-gray-600 line-clamp-2">{entry.description}</p>
@@ -324,7 +333,7 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
 
                     {!isAnonymous && entry.sourceUrl && (
                       <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-xs text-[#003399] hover:underline">
-                        {entry.sourceLabel || "Source"}
+                        {entry.sourceLabel || t("common.source")}
                         <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                         </svg>
@@ -341,13 +350,13 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
       {/* Pro upsell */}
       <div className="mt-12 rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-5 text-center">
         <p className="text-sm font-medium text-[#0d1b3e]">
-          Want alerts tailored to your AI stack?
+          {t("newsfeed.proAlertTitle")}
         </p>
         <p className="mt-1 text-xs text-gray-500">
-          Pro subscribers get personalized dashboards and real-time alerts.
+          {t("newsfeed.proAlertDesc")}
         </p>
-        <Link href="/en/pricing" className="mt-3 inline-block rounded-lg bg-[#003399] px-5 py-2 text-xs font-semibold text-white hover:bg-[#002277]">
-          Upgrade to Pro — €19/month
+        <Link href={`/${locale}/pricing`} className="mt-3 inline-block rounded-lg bg-[#003399] px-5 py-2 text-xs font-semibold text-white hover:bg-[#002277]">
+          {t("newsfeed.upgradeProMonth")}
         </Link>
       </div>
       </>}

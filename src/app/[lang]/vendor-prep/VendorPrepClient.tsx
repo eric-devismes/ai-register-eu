@@ -12,7 +12,7 @@
  */
 
 import { useState, useMemo } from "react";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import type { SubscriptionTier } from "@/lib/tier-access";
 
 // ─── Types ────────────────────────────────────────────────
@@ -36,22 +36,7 @@ interface Props {
 
 // ─── Constants ────────────────────────────────────────────
 
-const MEETING_TYPES = [
-  { value: "initial-demo", label: "Initial Demo / Discovery" },
-  { value: "technical-deep-dive", label: "Technical Deep-Dive" },
-  { value: "commercial-negotiation", label: "Commercial Negotiation" },
-  { value: "compliance-review", label: "Compliance Review" },
-  { value: "contract-review", label: "Contract Review" },
-];
-
-const ATTENDEE_ROLES = [
-  { value: "cto", label: "CTO" },
-  { value: "ciso", label: "CISO" },
-  { value: "dpo", label: "DPO" },
-  { value: "procurement", label: "Procurement" },
-  { value: "legal", label: "Legal" },
-  { value: "executive", label: "Executive" },
-];
+// MEETING_TYPES, ATTENDEE_ROLES, and SUGGESTED_CONCERNS are defined inside the component to use t()
 
 const ROLE_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   cto: { bg: "bg-blue-50", text: "text-blue-800", border: "border-blue-200" },
@@ -62,18 +47,7 @@ const ROLE_COLORS: Record<string, { bg: string; text: string; border: string }> 
   executive: { bg: "bg-indigo-50", text: "text-indigo-800", border: "border-indigo-200" },
 };
 
-const SUGGESTED_CONCERNS = [
-  "Data sovereignty",
-  "Vendor lock-in",
-  "Pricing transparency",
-  "EU compliance",
-  "Contract flexibility",
-  "Integration complexity",
-  "SLA guarantees",
-  "Exit strategy",
-  "Sub-processors",
-  "Model transparency",
-];
+// SUGGESTED_CONCERNS moved inside component
 
 // ─── Section Config ──────────────────────────────────────
 
@@ -91,7 +65,38 @@ const SECTION_CONFIG: Record<string, { emoji: string; color: string; bgColor: st
 
 export function VendorPrepClient({ tier, systems }: Props) {
   const locale = useLocale();
+  const t = useT();
   const hasAccess = tier === "pro" || tier === "enterprise";
+
+  const MEETING_TYPES = [
+    { value: "initial-demo", label: t("vendorPrep.meetingTypeInitialDemo") },
+    { value: "technical-deep-dive", label: t("vendorPrep.meetingTypeTechnicalDeepDive") },
+    { value: "commercial-negotiation", label: t("vendorPrep.meetingTypeCommercialNeg") },
+    { value: "compliance-review", label: t("vendorPrep.meetingTypeComplianceReview") },
+    { value: "contract-review", label: t("vendorPrep.meetingTypeContractReview") },
+  ];
+
+  const ATTENDEE_ROLES = [
+    { value: "cto", label: t("vendorPrep.roleCTO") },
+    { value: "ciso", label: t("vendorPrep.roleCISO") },
+    { value: "dpo", label: t("vendorPrep.roleDPO") },
+    { value: "procurement", label: t("vendorPrep.roleProcurement") },
+    { value: "legal", label: t("vendorPrep.roleLegal") },
+    { value: "executive", label: t("vendorPrep.roleExecutive") },
+  ];
+
+  const SUGGESTED_CONCERNS = [
+    t("vendorPrep.concernDataSov"),
+    t("vendorPrep.concernVendorLockin"),
+    t("vendorPrep.concernPricingTransparency"),
+    t("vendorPrep.concernEuCompliance"),
+    t("vendorPrep.concernContractFlexibility"),
+    t("vendorPrep.concernIntegrationComplexity"),
+    t("vendorPrep.concernSlaGuarantees"),
+    t("vendorPrep.concernExitStrategy"),
+    t("vendorPrep.concernSubProcessors"),
+    t("vendorPrep.concernModelTransparency"),
+  ];
 
   // Form state
   const [meetingContext, setMeetingContext] = useState("");
@@ -163,7 +168,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
 
   async function handleGenerate() {
     if (!systemSlug || !meetingType || attendeeRoles.length === 0 || concerns.length === 0) {
-      setError("Please fill in all required fields: system, meeting type, at least one attendee role, and at least one concern.");
+      setError(t("vendorPrep.validationError"));
       return;
     }
 
@@ -197,7 +202,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
 
       setSections(data.sections);
     } catch {
-      setError("Network error. Please check your connection and try again.");
+      setError(t("vendorPrep.networkError"));
     } finally {
       setLoading(false);
     }
@@ -242,13 +247,13 @@ export function VendorPrepClient({ tier, systems }: Props) {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                1. Select AI System
+                {t("vendorPrep.step1Label")}
               </h3>
               <div className="h-10 bg-gray-100 rounded-lg" />
             </div>
             <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                2. Meeting Details
+                {t("vendorPrep.step2Label")}
               </h3>
               <div className="space-y-3">
                 <div className="h-10 bg-gray-100 rounded-lg" />
@@ -259,7 +264,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
           </div>
           <div className="mt-6 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
             <h3 className="font-serif text-xl font-bold text-gray-800 mb-4">
-              Talking Points by Role
+              {t("vendorPrep.blurredTalkingPoints")}
             </h3>
             <div className="space-y-2">
               <div className="h-4 bg-gray-100 rounded w-full" />
@@ -278,23 +283,22 @@ export function VendorPrepClient({ tier, systems }: Props) {
               </svg>
             </div>
             <h2 className="text-xl font-bold text-[#0d1b3e] font-serif">
-              Unlock Vendor Meeting Prep
+              {t("vendorPrep.unlockTitle")}
             </h2>
             <p className="mt-3 text-gray-600 text-sm leading-relaxed">
-              Generate a complete meeting briefing kit with talking points, tough questions,
-              and compliance intelligence for your vendor meetings. Available on Pro and Enterprise plans.
+              {t("vendorPrep.unlockDesc")}
             </p>
             <a
               href={`/${locale}/pricing`}
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#003399] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#002266] transition-colors"
             >
-              Upgrade to Pro
+              {t("vendorPrep.upgradeToPro")}
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </a>
             <p className="mt-3 text-xs text-gray-400">
-              Starting at EUR 19/month
+              {t("vendorPrep.startingAt")}
             </p>
           </div>
         </div>
@@ -316,7 +320,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
-            Prepare Another
+            {t("vendorPrep.prepareAnother")}
           </button>
 
           <div className="flex items-center gap-2">
@@ -327,7 +331,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
               </svg>
-              {copied ? "Copied!" : "Copy All"}
+              {copied ? t("vendorPrep.copied") : t("vendorPrep.copyAll")}
             </button>
             <button
               onClick={handlePrint}
@@ -336,7 +340,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
               </svg>
-              Print
+              {t("vendorPrep.print")}
             </button>
           </div>
         </div>
@@ -346,7 +350,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-[#003399] mb-1">
-                AI Compass EU — Vendor Meeting Prep
+                {t("vendorPrep.headerLabel")}
               </p>
               <h2 className="text-2xl font-bold text-[#0d1b3e] font-serif">
                 {selectedSystem ? `${selectedSystem.vendor} ${selectedSystem.name}` : "AI System"}
@@ -354,7 +358,7 @@ export function VendorPrepClient({ tier, systems }: Props) {
               <p className="mt-1 text-sm text-gray-500">
                 {MEETING_TYPES.find((m) => m.value === meetingType)?.label || meetingType}
                 {" — "}
-                Generated {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+                {t("vendorPrep.generated").replace("{date}", new Date().toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" }))}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {attendeeRoles.map((role) => {
@@ -405,11 +409,9 @@ export function VendorPrepClient({ tier, systems }: Props) {
 
         {/* Disclaimer */}
         <div className="mt-8 rounded-lg bg-amber-50 border border-amber-200 p-4 text-xs text-amber-800 print:mt-4">
-          <p className="font-semibold mb-1">Disclaimer</p>
+          <p className="font-semibold mb-1">{t("vendorPrep.disclaimerTitle")}</p>
           <p>
-            This meeting briefing is generated by AI based on AI Compass EU assessment data.
-            It should be used as a starting point for your vendor meeting preparation, not as legal or procurement advice.
-            Verify all compliance claims and scores directly with the vendor.
+            {t("vendorPrep.disclaimerBody")}
           </p>
         </div>
       </div>
@@ -426,10 +428,10 @@ export function VendorPrepClient({ tier, systems }: Props) {
           <svg className="h-5 w-5 text-[#003399]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
           </svg>
-          Describe Your Meeting
+          {t("vendorPrep.describeYourMeeting")}
         </h3>
         <p className="text-xs text-gray-500 mb-3">
-          The more context you provide, the better your briefing will be. This is optional but highly recommended.
+          {t("vendorPrep.describeHelp")}
         </p>
         <textarea
           value={meetingContext}

@@ -14,20 +14,31 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getRecentChangelogs } from "@/lib/queries";
 import { getEffectiveTier } from "@/lib/tier-access";
+import { getPageMetadata, getDictionary, type Locale, isValidLocale } from "@/lib/i18n";
 import { NewsfeedClient } from "./NewsfeedClient";
 
-export const metadata: Metadata = {
-  title: "AI Compliance Newsfeed",
-  description:
-    "Latest regulatory updates, enforcement actions, and compliance changes affecting AI systems in Europe. EU AI Act, GDPR, DORA, and more.",
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  return getPageMetadata(locale as Locale, "newsfeed");
+}
 
 export default async function NewsfeedPage({
   params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+}: PageProps) {
   const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  const dict = await getDictionary(locale as Locale);
+  const t = (key: string) => {
+    const [section, ...rest] = key.split(".");
+    const field = rest.join(".");
+    return dict?.[section]?.[field] || key;
+  };
+
   const [entries, tier] = await Promise.all([
     getRecentChangelogs(200),
     getEffectiveTier(),
@@ -54,14 +65,13 @@ export default async function NewsfeedPage({
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#ffc107]">
-                Newsfeed
+                {t("newsfeed.badge")}
               </p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                AI Compliance News
+                {t("newsfeed.heroTitle")}
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                Regulatory updates, enforcement actions, and compliance
-                developments affecting AI in Europe.
+                {t("newsfeed.heroSubtitle")}
               </p>
             </div>
           </div>

@@ -10,6 +10,7 @@
  */
 
 import { useState } from "react";
+import { useT } from "@/lib/locale-context";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -97,140 +98,6 @@ const BriefcaseIcon = () => (
 );
 
 /* ------------------------------------------------------------------ */
-/*  Role configurations                                                */
-/* ------------------------------------------------------------------ */
-
-const ROLES: RoleConfig[] = [
-  {
-    key: "ciso",
-    label: "CISO",
-    title: "Chief Information Security Officer",
-    icon: <ShieldIcon />,
-    showScores: true,
-    scoreFilter: ["AI Act", "NIS2", "DORA"],
-    sections: [
-      {
-        heading: "Security Posture",
-        fields: [
-          { label: "Security Certifications", key: "certifications" },
-          { label: "Encryption", key: "encryptionInfo" },
-          { label: "Access Controls", key: "accessControls" },
-        ],
-      },
-      {
-        heading: "Supply Chain & Resilience",
-        fields: [
-          { label: "Sub-processors", key: "subprocessors" },
-          { label: "SLA & Incident Response", key: "slaDetails" },
-          { label: "Deployment Model", key: "deploymentModel" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "dpo",
-    label: "DPO",
-    title: "Data Protection Officer",
-    icon: <LockIcon />,
-    showScores: false,
-    sections: [
-      {
-        heading: "Data Residency & Processing",
-        fields: [
-          { label: "Data Storage Location", key: "dataStorage" },
-          { label: "EU Data Residency", key: "euResidency" },
-          { label: "Data Processing Details", key: "dataProcessing" },
-          { label: "Training Data Use", key: "trainingDataUse" },
-        ],
-      },
-      {
-        heading: "Legal & Compliance",
-        fields: [
-          { label: "GDPR Status", key: "gdprStatus" },
-          { label: "DPA Details", key: "dpaDetails" },
-          { label: "Sub-processors", key: "subprocessors" },
-        ],
-      },
-      {
-        heading: "Data Rights & Fairness",
-        fields: [
-          { label: "Data Portability", key: "dataPortability" },
-          { label: "Bias Testing", key: "biasTesting" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "architect",
-    label: "Architect",
-    title: "Enterprise Architect",
-    icon: <CpuIcon />,
-    showScores: false,
-    sections: [
-      {
-        heading: "Architecture & Deployment",
-        fields: [
-          { label: "Deployment Model", key: "deploymentModel" },
-          { label: "Source Model", key: "sourceModel" },
-          { label: "Use Cases", key: "useCases" },
-        ],
-      },
-      {
-        heading: "Transparency & Documentation",
-        fields: [
-          { label: "Model Documentation", key: "modelDocs" },
-          { label: "Explainability", key: "explainability" },
-        ],
-      },
-      {
-        heading: "Portability & Exit",
-        fields: [
-          { label: "Data Portability", key: "dataPortability" },
-          { label: "Exit Terms", key: "exitTerms" },
-          { label: "SLA Details", key: "slaDetails" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "procurement",
-    label: "Procurement",
-    title: "Procurement Officer",
-    icon: <BriefcaseIcon />,
-    showScores: true,
-    sections: [
-      {
-        heading: "Vendor Profile",
-        fields: [
-          { label: "Vendor HQ", key: "vendorHq" },
-          { label: "EU Presence", key: "euPresence" },
-          { label: "Employee Count", key: "employeeCount" },
-          { label: "Funding Status", key: "fundingStatus" },
-          { label: "Market Presence", key: "marketPresence" },
-        ],
-      },
-      {
-        heading: "Customer Evidence",
-        fields: [
-          { label: "Notable Customers", key: "notableCustomers" },
-          { label: "Customer Stories", key: "customerStories" },
-          { label: "Customer Count", key: "customerCount" },
-        ],
-      },
-      {
-        heading: "Contract & Legal",
-        fields: [
-          { label: "Exit Terms", key: "exitTerms" },
-          { label: "IP Terms", key: "ipTerms" },
-          { label: "SLA Details", key: "slaDetails" },
-          { label: "DPA Details", key: "dpaDetails" },
-        ],
-      },
-    ],
-  },
-];
-
-/* ------------------------------------------------------------------ */
 /*  Score colour helper                                                */
 /* ------------------------------------------------------------------ */
 
@@ -246,14 +113,14 @@ function scoreColor(score: string): string {
 /*  Sub-components                                                     */
 /* ------------------------------------------------------------------ */
 
-function FieldCard({ label, value }: { label: string; value: string | null | undefined }) {
+function FieldCard({ label, value, notAssessedLabel }: { label: string; value: string | null | undefined; notAssessedLabel: string }) {
   const hasValue = value != null && value.trim() !== "";
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4">
       <dt className="text-xs font-semibold uppercase tracking-wide text-[#003399]">{label}</dt>
       <dd className={`mt-1.5 text-sm leading-relaxed ${hasValue ? "text-gray-800" : "italic text-gray-400"}`}>
-        {hasValue ? value : "Not assessed"}
+        {hasValue ? value : notAssessedLabel}
       </dd>
     </div>
   );
@@ -274,6 +141,138 @@ function ScoreBadge({ name, score }: { name: string; score: string }) {
 
 export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
   const [active, setActive] = useState<RoleKey>("ciso");
+  const t = useT();
+
+  const ROLES: RoleConfig[] = [
+    {
+      key: "ciso",
+      label: t("systemRoles.cisoLabel"),
+      title: t("systemRoles.cisoTitle"),
+      icon: <ShieldIcon />,
+      showScores: true,
+      scoreFilter: ["AI Act", "NIS2", "DORA"],
+      sections: [
+        {
+          heading: t("systemRoles.securityPosture"),
+          fields: [
+            { label: t("systemRoles.securityCertifications"), key: "certifications" },
+            { label: t("systemRoles.encryption"), key: "encryptionInfo" },
+            { label: t("systemRoles.accessControls"), key: "accessControls" },
+          ],
+        },
+        {
+          heading: t("systemRoles.supplyChainResilience"),
+          fields: [
+            { label: t("systemRoles.subProcessors"), key: "subprocessors" },
+            { label: t("systemRoles.slaIncidentResponse"), key: "slaDetails" },
+            { label: t("systemRoles.deploymentModel"), key: "deploymentModel" },
+          ],
+        },
+      ],
+    },
+    {
+      key: "dpo",
+      label: t("systemRoles.dpoLabel"),
+      title: t("systemRoles.dpoTitle"),
+      icon: <LockIcon />,
+      showScores: false,
+      sections: [
+        {
+          heading: t("systemRoles.dataResidencyProcessing"),
+          fields: [
+            { label: t("systemRoles.dataStorageLocation"), key: "dataStorage" },
+            { label: t("systemRoles.euDataResidency"), key: "euResidency" },
+            { label: t("systemRoles.dataProcessingDetails"), key: "dataProcessing" },
+            { label: t("systemRoles.trainingDataUse"), key: "trainingDataUse" },
+          ],
+        },
+        {
+          heading: t("systemRoles.legalCompliance"),
+          fields: [
+            { label: t("systemRoles.gdprStatus"), key: "gdprStatus" },
+            { label: t("systemRoles.dpaDetails"), key: "dpaDetails" },
+            { label: t("systemRoles.subProcessors"), key: "subprocessors" },
+          ],
+        },
+        {
+          heading: t("systemRoles.dataRightsFairness"),
+          fields: [
+            { label: t("systemRoles.dataPortability"), key: "dataPortability" },
+            { label: t("systemRoles.biasTesting"), key: "biasTesting" },
+          ],
+        },
+      ],
+    },
+    {
+      key: "architect",
+      label: t("systemRoles.architectLabel"),
+      title: t("systemRoles.architectTitle"),
+      icon: <CpuIcon />,
+      showScores: false,
+      sections: [
+        {
+          heading: t("systemRoles.architectureDeployment"),
+          fields: [
+            { label: t("systemRoles.deploymentModel"), key: "deploymentModel" },
+            { label: t("systemRoles.sourceModel"), key: "sourceModel" },
+            { label: t("systemRoles.useCases"), key: "useCases" },
+          ],
+        },
+        {
+          heading: t("systemRoles.transparencyDocumentation"),
+          fields: [
+            { label: t("systemRoles.modelDocumentation"), key: "modelDocs" },
+            { label: t("systemRoles.explainability"), key: "explainability" },
+          ],
+        },
+        {
+          heading: t("systemRoles.portabilityExit"),
+          fields: [
+            { label: t("systemRoles.dataPortability"), key: "dataPortability" },
+            { label: t("systemRoles.exitTerms"), key: "exitTerms" },
+            { label: t("systemRoles.slaDetails"), key: "slaDetails" },
+          ],
+        },
+      ],
+    },
+    {
+      key: "procurement",
+      label: t("systemRoles.procurementLabel"),
+      title: t("systemRoles.procurementTitle"),
+      icon: <BriefcaseIcon />,
+      showScores: true,
+      sections: [
+        {
+          heading: t("systemRoles.vendorProfile"),
+          fields: [
+            { label: t("systemRoles.vendorHQ"), key: "vendorHq" },
+            { label: t("systemRoles.euPresence"), key: "euPresence" },
+            { label: t("systemRoles.employeeCount"), key: "employeeCount" },
+            { label: t("systemRoles.fundingStatus"), key: "fundingStatus" },
+            { label: t("systemRoles.marketPresence"), key: "marketPresence" },
+          ],
+        },
+        {
+          heading: t("systemRoles.customerEvidence"),
+          fields: [
+            { label: t("systemRoles.notableCustomers"), key: "notableCustomers" },
+            { label: t("systemRoles.customerStories"), key: "customerStories" },
+            { label: t("systemRoles.customerCount"), key: "customerCount" },
+          ],
+        },
+        {
+          heading: t("systemRoles.contractLegal"),
+          fields: [
+            { label: t("systemRoles.exitTerms"), key: "exitTerms" },
+            { label: t("systemRoles.ipTerms"), key: "ipTerms" },
+            { label: t("systemRoles.slaDetails"), key: "slaDetails" },
+            { label: t("systemRoles.dpaDetails"), key: "dpaDetails" },
+          ],
+        },
+      ],
+    },
+  ];
+
   const role = ROLES.find((r) => r.key === active)!;
 
   const filteredScores = role.showScores
@@ -325,7 +324,7 @@ export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
         <div className="mb-6">
           <h3 className="text-lg font-bold text-[#0d1b3e]">{role.title}</h3>
           <p className="mt-1 text-sm text-gray-500">
-            Key data points for the {role.label} perspective.
+            {t("systemRoles.keyDataPoints").replace("{role}", role.label)}
           </p>
         </div>
 
@@ -333,7 +332,7 @@ export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
         {filteredScores.length > 0 && (
           <div className="mb-6">
             <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
-              Compliance Scores
+              {t("systemRoles.complianceScores")}
             </h4>
             <div className="flex flex-wrap gap-2">
               {filteredScores.map((s) => (
@@ -352,7 +351,7 @@ export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
               </h4>
               <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {section.fields.map((f) => (
-                  <FieldCard key={f.key} label={f.label} value={system[f.key]} />
+                  <FieldCard key={f.key} label={f.label} value={system[f.key]} notAssessedLabel={t("systemRoles.notAssessed")} />
                 ))}
               </dl>
             </div>

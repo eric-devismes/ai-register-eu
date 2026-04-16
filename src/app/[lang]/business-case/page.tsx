@@ -13,24 +13,29 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getEffectiveTier } from "@/lib/tier-access";
-import { getDictionary, type Locale, isValidLocale } from "@/lib/i18n";
+import { getDictionary, getPageMetadata, type Locale, isValidLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/db";
 import { BusinessCaseClient } from "./BusinessCaseClient";
-
-export const metadata: Metadata = {
-  title: "Business Case Generator",
-  description:
-    "Generate board-ready business cases for AI system adoption. Includes EU compliance assessment, cost analysis, ROI projection, and implementation timeline.",
-};
 
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isValidLocale(lang) ? lang : "en";
+  return getPageMetadata(locale as Locale, "businessCase");
+}
+
 export default async function BusinessCasePage({ params }: PageProps) {
   const { lang } = await params;
   const locale = isValidLocale(lang) ? lang : "en";
-  await getDictionary(locale as Locale);
+  const dict = await getDictionary(locale as Locale);
+  const t = (key: string) => {
+    const [section, ...rest] = key.split(".");
+    const field = rest.join(".");
+    return dict?.[section]?.[field] || key;
+  };
 
   const tier = await getEffectiveTier();
 
@@ -49,15 +54,13 @@ export default async function BusinessCasePage({ params }: PageProps) {
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-blue-200">
-                Enterprise Tool
+                {t("businessCase.badge")}
               </div>
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl font-serif">
-                Business Case Generator
+                {t("businessCase.heroTitle")}
               </h1>
               <p className="mt-4 text-lg text-blue-100 max-w-2xl">
-                Generate a board-ready business case for any AI system in our database.
-                Includes EU compliance assessment, cost analysis, risk evaluation,
-                and ROI projection — grounded in our independent assessment data.
+                {t("businessCase.heroSubtitle")}
               </p>
             </div>
           </div>

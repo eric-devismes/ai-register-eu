@@ -37,14 +37,10 @@ export default function ChatWidget() {
     if (open && messages.length === 0) {
       setMessages([{
         role: "assistant",
-        content: locale === "fr"
-          ? "Bonjour ! Je suis un assistant IA (propuls\u00e9 par Claude d'Anthropic). Posez-moi vos questions sur les r\u00e9glementations IA europ\u00e9ennes ou les syst\u00e8mes IA \u00e9valu\u00e9s sur notre plateforme. Mes r\u00e9ponses sont g\u00e9n\u00e9r\u00e9es par IA et fond\u00e9es sur notre base de donn\u00e9es r\u00e9glementaire."
-          : locale === "de"
-          ? "Hallo! Ich bin ein KI-Assistent (betrieben von Anthropic Claude). Stellen Sie mir Fragen zu EU-KI-Vorschriften oder den auf unserer Plattform bewerteten KI-Systemen. Meine Antworten sind KI-generiert und basieren auf unserer regulatorischen Datenbank."
-          : "Hello! I'm an AI assistant (powered by Anthropic Claude). Ask me about EU AI regulations or the AI systems assessed on our platform. My responses are AI-generated and grounded in our regulatory database.",
+        content: t("chat.welcomeMessage"),
       }]);
     }
-  }, [open, messages.length, locale]);
+  }, [open, messages.length, t]);
 
   // Scroll chat panel to bottom on new messages (NOT the page)
   useEffect(() => {
@@ -86,7 +82,7 @@ export default function ChatWidget() {
         setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
       }
     } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Please try again." }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: t("chat.errorMessage") }]);
     }
 
     setLoading(false);
@@ -99,33 +95,6 @@ export default function ChatWidget() {
     }
   }
 
-  // Consulting CTA messages
-  const exhaustedMessages: Record<string, { titleAnon: string; titleSub: string; body: string; cta: string; email: string }> = {
-    en: {
-      titleAnon: "You've used your 3 free questions for today — create an account for 10/day",
-      titleSub: "That's it for today — unlimited access with Pro",
-      body: "Need a deeper dive? Our team can analyse your specific use case, map it against the regulations, and give you a clear action plan.",
-      cta: "Raise a case with our team",
-      email: CONSULTING_EMAIL,
-    },
-    fr: {
-      titleAnon: "Vous avez utilis\u00e9 vos 3 questions \u2014 cr\u00e9ez un compte pour 10/jour",
-      titleSub: "C'est tout pour aujourd'hui \u2014 acc\u00e8s illimit\u00e9 avec Pro",
-      body: "Besoin d'aller plus loin ? Notre \u00e9quipe peut analyser votre cas sp\u00e9cifique, le confronter aux r\u00e9glementations et vous donner un plan d'action clair.",
-      cta: "Soumettre un cas \u00e0 notre \u00e9quipe",
-      email: CONSULTING_EMAIL,
-    },
-    de: {
-      titleAnon: "Sie haben Ihre 3 Fragen verbraucht \u2014 Konto erstellen f\u00fcr 10/Tag",
-      titleSub: "Das war's f\u00fcr heute \u2014 unbegrenzter Zugang mit Pro",
-      body: "Brauchen Sie eine tiefere Analyse? Unser Team kann Ihren konkreten Anwendungsfall pr\u00fcfen und Ihnen einen klaren Handlungsplan geben.",
-      cta: "Einen Fall bei unserem Team einreichen",
-      email: CONSULTING_EMAIL,
-    },
-  };
-
-  const exMsg = exhaustedMessages[locale] || exhaustedMessages.en;
-
   return (
     <>
       {/* Floating bubble */}
@@ -133,7 +102,7 @@ export default function ChatWidget() {
         <button
           onClick={() => setOpen(true)}
           className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#003399] text-white shadow-lg transition hover:bg-[#003399]/90 hover:shadow-xl"
-          aria-label="Open chat"
+          aria-label={t("chat.openChat")}
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
@@ -159,8 +128,8 @@ export default function ChatWidget() {
                 <p className="text-sm font-semibold text-white">AI Compass EU</p>
                 <p className="text-[10px] text-blue-200">
                   {remaining !== null && remaining >= 0
-                    ? `${remaining} remaining today`
-                    : "AI Compliance Assistant"}
+                    ? t("chat.remainingToday").replace("{count}", String(remaining))
+                    : t("chat.assistantName")}
                 </p>
               </div>
             </div>
@@ -177,17 +146,17 @@ export default function ChatWidget() {
               if (msg.role === "system" && msg.content === "EXHAUSTED") {
                 return (
                   <div key={i} className="rounded-xl bg-amber-50 border border-amber-200 p-4">
-                    <p className="text-sm font-semibold text-amber-800">{isSubscriber ? exMsg.titleSub : exMsg.titleAnon}</p>
-                    <p className="mt-2 text-xs text-amber-700">{exMsg.body}</p>
+                    <p className="text-sm font-semibold text-amber-800">{isSubscriber ? t("chat.exhaustedSub") : t("chat.exhaustedAnon")}</p>
+                    <p className="mt-2 text-xs text-amber-700">{t("chat.exhaustedBody")}</p>
                     <div className="mt-3 space-y-2">
-                      <a href={`mailto:${exMsg.email}?subject=AI%20Compliance%20Consulting%20Request`}
+                      <a href={`mailto:${CONSULTING_EMAIL}?subject=AI%20Compliance%20Consulting%20Request`}
                         className="block w-full rounded-lg bg-[#003399] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#003399]/90">
-                        {exMsg.cta}
+                        {t("chat.exhaustedCta")}
                       </a>
                       {!isSubscriber && (
                         <a href={`/${locale}/subscribe`}
                           className="block w-full rounded-lg border border-[#003399] px-4 py-2 text-center text-sm font-semibold text-[#003399] hover:bg-[#003399]/5">
-                          {t("common.signUp")} — 10 {locale === "fr" ? "questions/jour" : locale === "de" ? "Fragen/Tag" : "questions/day"}
+                          {t("common.signUp")} &mdash; 10 {t("chat.signUpQuestions")}
                         </a>
                       )}
                     </div>
@@ -232,7 +201,7 @@ export default function ChatWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={locale === "fr" ? "Posez votre question..." : locale === "de" ? "Stellen Sie Ihre Frage..." : "Ask about EU AI regulations..."}
+                  placeholder={t("chat.inputPlaceholder")}
                   maxLength={500}
                   disabled={loading}
                   className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#003399] focus:outline-none focus:ring-1 focus:ring-[#003399] disabled:opacity-50"

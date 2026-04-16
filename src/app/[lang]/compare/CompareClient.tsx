@@ -11,7 +11,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_TOOLTIPS } from "@/lib/constants";
 
@@ -88,8 +88,8 @@ const SYSTEM_COLORS = [
 
 // ─── Podium Component ────────────────────────────────────
 
-function Podium({ systems }: { systems: { name: string; vendor: string; score: number; rank: number }[] }) {
-  const medals = ["🥇", "🥈", "🥉"];
+function Podium({ systems, t }: { systems: { name: string; vendor: string; score: number; rank: number }[]; t: (key: string) => string }) {
+  const medals = ["\uD83E\uDD47", "\uD83E\uDD48", "\uD83E\uDD49"];
   const medalColors = ["#FFD700", "#C0C0C0", "#CD7F32"];
   const heights = [160, 200, 120]; // silver, gold, bronze (visual: center tallest)
 
@@ -108,7 +108,7 @@ function Podium({ systems }: { systems: { name: string; vendor: string; score: n
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Ranking</h3>
+      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">{t("compare.ranking")}</h3>
       <div className="flex items-end justify-center gap-2 sm:gap-3">
         {podiumOrder.map((sys, i) => (
           <div key={sys.vendor} className="flex flex-col items-center">
@@ -147,9 +147,11 @@ function Podium({ systems }: { systems: { name: string; vendor: string; score: n
 function RadarChart({
   systems,
   onDimensionClick,
+  t,
 }: {
   systems: { vendor: string; scores: number[]; colorIdx: number }[];
   onDimensionClick: (sectionKey: string) => void;
+  t: (key: string) => string;
 }) {
   const size = 300;
   const center = size / 2;
@@ -175,7 +177,7 @@ function RadarChart({
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">Performance Radar</h3>
+      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">{t("compare.performanceRadar")}</h3>
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[300px]" role="img" aria-label="Radar chart comparing AI systems">
         {/* Grid rings */}
         {Array.from({ length: levels }, (_, l) => {
@@ -336,37 +338,6 @@ interface CompareSystem {
 
 type Phase = "input" | "loading" | "matches" | "comparing" | "compare";
 
-// ─── Filter options ─────────────────────────────────────
-
-const INDUSTRY_OPTIONS = [
-  { value: "", label: "Any industry" },
-  { value: "financial-services", label: "Financial Services" },
-  { value: "healthcare", label: "Healthcare" },
-  { value: "insurance", label: "Insurance" },
-  { value: "public-sector", label: "Public Sector" },
-  { value: "manufacturing", label: "Manufacturing" },
-  { value: "telecommunications", label: "Telecom" },
-  { value: "energy-utilities", label: "Energy" },
-  { value: "human-resources", label: "HR" },
-];
-
-const DEPLOYMENT_OPTIONS = [
-  { value: "", label: "Any deployment" },
-  { value: "cloud-only", label: "Cloud only" },
-  { value: "self-hosted", label: "Self-hosted" },
-  { value: "hybrid", label: "Hybrid" },
-];
-
-const CAPABILITY_OPTIONS = [
-  { value: "", label: "Any capability" },
-  { value: "conversational-ai", label: "Conversational AI" },
-  { value: "document-processing", label: "Document processing" },
-  { value: "decision-intelligence", label: "Decision intelligence" },
-  { value: "workflow-automation", label: "Workflow automation" },
-  { value: "code-generation", label: "Code generation" },
-  { value: "analytics", label: "Analytics / BI" },
-];
-
 // ─── Score badge ─────────────────────────────────────────
 
 function ScoreBadge({ score }: { score: string }) {
@@ -382,7 +353,7 @@ function ScoreBadge({ score }: { score: string }) {
   );
 }
 
-function RiskBadge({ risk }: { risk: string }) {
+function RiskBadge({ risk, t }: { risk: string; t: (key: string) => string }) {
   const color = risk === "High" ? "bg-red-100 text-red-700 border-red-200"
     : risk === "Limited" ? "bg-amber-100 text-amber-700 border-amber-200"
     : "bg-green-100 text-green-700 border-green-200";
@@ -397,19 +368,19 @@ function RiskBadge({ risk }: { risk: string }) {
       <span
         className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border cursor-pointer ${color}`}
       >
-        {risk} Risk ⓘ
+        {t("compare.riskLabel").replace("{risk}", risk)}
       </span>
     </Tooltip>
   );
 }
 
-function RelevanceBadge({ score }: { score: number }) {
+function RelevanceBadge({ score, t }: { score: number; t: (key: string) => string }) {
   const color = score >= 85 ? "bg-emerald-100 text-emerald-700"
     : score >= 70 ? "bg-blue-100 text-blue-700"
     : "bg-gray-100 text-gray-600";
   return (
     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ${color}`}>
-      {score}% match
+      {t("compare.matchPercent").replace("{score}", String(score))}
     </span>
   );
 }
@@ -418,8 +389,39 @@ function RelevanceBadge({ score }: { score: number }) {
 
 export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
   const locale = useLocale();
+  const t = useT();
   const hasFullAccess = tier === "pro" || tier === "enterprise";
   const isAnonymous = tier === "anonymous";
+
+  // Filter options using t()
+  const INDUSTRY_OPTIONS = [
+    { value: "", label: t("compare.industryAny") },
+    { value: "financial-services", label: t("compare.industryFinancial") },
+    { value: "healthcare", label: t("compare.industryHealthcare") },
+    { value: "insurance", label: t("compare.industryInsurance") },
+    { value: "public-sector", label: t("compare.industryPublicSector") },
+    { value: "manufacturing", label: t("compare.industryManufacturing") },
+    { value: "telecommunications", label: t("compare.industryTelecom") },
+    { value: "energy-utilities", label: t("compare.industryEnergy") },
+    { value: "human-resources", label: t("compare.industryHR") },
+  ];
+
+  const DEPLOYMENT_OPTIONS = [
+    { value: "", label: t("compare.deploymentAny") },
+    { value: "cloud-only", label: t("compare.deploymentCloud") },
+    { value: "self-hosted", label: t("compare.deploymentSelfHosted") },
+    { value: "hybrid", label: t("compare.deploymentHybrid") },
+  ];
+
+  const CAPABILITY_OPTIONS = [
+    { value: "", label: t("compare.capabilityAny") },
+    { value: "conversational-ai", label: t("compare.capabilityConversational") },
+    { value: "document-processing", label: t("compare.capabilityDocument") },
+    { value: "decision-intelligence", label: t("compare.capabilityDecision") },
+    { value: "workflow-automation", label: t("compare.capabilityWorkflow") },
+    { value: "code-generation", label: t("compare.capabilityCode") },
+    { value: "analytics", label: t("compare.capabilityAnalytics") },
+  ];
 
   // Anonymous users see a signup prompt instead of the tool
   if (isAnonymous) {
@@ -428,7 +430,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
         <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm opacity-60 pointer-events-none">
           <div className="space-y-4">
             <div className="h-10 w-full rounded-lg bg-gray-100 animate-pulse" />
-            <div className="text-sm text-gray-400">Describe your AI use case...</div>
+            <div className="text-sm text-gray-400">{t("compare.describeTitle")}...</div>
             <div className="grid grid-cols-3 gap-4 pt-4">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="rounded-lg border border-gray-100 p-4 space-y-2">
@@ -440,14 +442,13 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           </div>
         </div>
         <div className="rounded-2xl border-2 border-[#003399]/20 bg-gradient-to-br from-[#003399]/5 to-[#ffc107]/5 p-8">
-          <h2 className="text-xl font-bold text-[#0d1b3e]">Create a Free Account to Compare</h2>
+          <h2 className="text-xl font-bold text-[#0d1b3e]">{t("compare.createAccountTitle")}</h2>
           <p className="mt-2 text-sm text-gray-600 max-w-md mx-auto">
-            Sign up for free to compare AI systems side-by-side against EU compliance criteria.
-            Upgrade to Pro for access to all 60+ systems.
+            {t("compare.createAccountDesc")}
           </p>
           <a href={`/${locale}/subscribe`}
             className="mt-5 inline-block rounded-lg bg-[#003399] px-8 py-3 text-sm font-semibold text-white hover:bg-[#002277] transition-colors shadow-sm">
-            Create Free Account
+            {t("compare.createAccountButton")}
           </a>
         </div>
       </div>
@@ -524,7 +525,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
       setMatches(data.matches || []);
       setPhase("matches");
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t("chat.errorMessage"));
       setPhase("input");
     }
   }
@@ -555,7 +556,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
       setCompareData(data);
       setPhase("compare");
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t("chat.errorMessage"));
       setPhase("matches");
     }
   }
@@ -591,17 +592,17 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
           <div className="max-w-2xl">
             <h2 className="text-xl font-bold text-gray-900 font-serif mb-2">
-              Describe your use case
+              {t("compare.describeTitle")}
             </h2>
             <p className="text-gray-500 text-sm mb-6">
-              Write in plain English. What problem are you solving? Who are the users? What data is involved? What decisions will the AI make or inform?
+              {t("compare.describeHelp")}
             </p>
 
             <form onSubmit={handleMatch} className="space-y-5">
               <textarea
                 value={useCase}
                 onChange={(e) => setUseCase(e.target.value)}
-                placeholder="Example: We want to automate the first stage of candidate screening for our EU recruitment process. The AI would score CVs and rank candidates before our HR team reviews them. We receive about 500 applications per month across Germany, France, and the Netherlands."
+                placeholder={t("compare.placeholder")}
                 rows={5}
                 className="w-full rounded-xl border border-gray-200 p-4 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#003399] resize-none"
                 required
@@ -645,22 +646,22 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                   type="submit"
                   className="inline-flex items-center gap-2 rounded-xl bg-[#003399] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0d1b3e] transition-colors"
                 >
-                  <span>✦</span>
-                  Find matching AI systems
+                  <span>&#x2726;</span>
+                  {t("compare.describeSubmit")}
                 </button>
-                <p className="text-xs text-gray-400">AI will match your requirements against 60+ assessed systems</p>
+                <p className="text-xs text-gray-400">{t("compare.describeHint")}</p>
               </div>
             </form>
 
             {/* Example prompts */}
             <div className="mt-8 border-t border-gray-100 pt-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Example use cases</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">{t("compare.exampleTitle")}</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {[
-                  "Customer service chatbot for a bank that can handle account queries and flag potential fraud",
-                  "Medical imaging AI to assist radiologists in detecting anomalies in X-rays",
-                  "HR performance management system that analyses employee productivity and suggests development paths",
-                  "Credit scoring AI for consumer lending decisions at a fintech company",
+                  t("compare.example1"),
+                  t("compare.example2"),
+                  t("compare.example3"),
+                  t("compare.example4"),
                 ].map((example) => (
                   <button
                     key={example}
@@ -681,7 +682,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-12 flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-[#003399] border-t-transparent rounded-full animate-spin" />
           <p className="text-gray-500 text-sm">
-            {phase === "loading" ? "Analysing your use case against our database of 50+ AI systems…" : "Loading comparison data…"}
+            {phase === "loading" ? t("compare.loadingAnalyse") : t("compare.loadingCompare")}
           </p>
         </div>
       )}
@@ -693,7 +694,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           {analysis && (
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
               <p className="text-sm text-blue-800 leading-relaxed">
-                <span className="font-semibold">✦ AI Analysis: </span>{analysis}
+                <span className="font-semibold">&#x2726; {t("compare.aiAnalysis")} </span>{analysis}
               </p>
             </div>
           )}
@@ -702,10 +703,10 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-gray-900 font-serif">
-                {matches.length} matching AI systems
+                {t("compare.matchCount").replace("{count}", String(matches.length))}
               </h2>
               <p className="text-sm text-gray-500 mt-0.5">
-                Select up to 5 systems to compare side-by-side
+                {t("compare.selectUpTo5")}
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -714,11 +715,11 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                   onClick={handleCompare}
                   className="inline-flex items-center gap-2 rounded-xl bg-[#003399] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0d1b3e] transition-colors"
                 >
-                  Compare {selectedIds.size} selected →
+                  {t("compare.compareSelected").replace("{count}", String(selectedIds.size))} &rarr;
                 </button>
               )}
               <button onClick={reset} className="text-sm text-gray-400 hover:text-gray-600 underline">
-                Start over
+                {t("compare.startOver")}
               </button>
             </div>
           </div>
@@ -740,17 +741,17 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                   <div className={`flex-shrink-0 mt-0.5 w-5 h-5 rounded border-2 flex items-center justify-center ${
                     selectedIds.has(m.id) ? "bg-[#003399] border-[#003399]" : "border-gray-300"
                   }`}>
-                    {selectedIds.has(m.id) && <span className="text-white text-xs">✓</span>}
+                    {selectedIds.has(m.id) && <span className="text-white text-xs">&#x2713;</span>}
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <span className="font-semibold text-gray-900">{m.vendor}</span>
-                      <span className="text-gray-400">—</span>
+                      <span className="text-gray-400">&mdash;</span>
                       <span className="font-medium text-gray-700">{m.name}</span>
-                      <RelevanceBadge score={m.relevanceScore} />
-                      <RiskBadge risk={m.risk} />
+                      <RelevanceBadge score={m.relevanceScore} t={t} />
+                      <RiskBadge risk={m.risk} t={t} />
                       <ScoreBadge score={m.overallScore} />
                     </div>
 
@@ -759,11 +760,11 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                     {/* Match reason */}
                     <div className="grid sm:grid-cols-2 gap-3">
                       <div>
-                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Why it matches</p>
+                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">{t("compare.whyItMatches")}</p>
                         <p className="text-sm text-gray-700">{m.reason}</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Relevant capability</p>
+                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">{t("compare.relevantCapability")}</p>
                         <p className="text-sm text-gray-700">{m.useCaseMatch}</p>
                       </div>
                     </div>
@@ -771,7 +772,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                     {/* Risk note */}
                     {m.riskNote && (
                       <div className="mt-2 text-xs text-amber-700 bg-amber-50 rounded-lg px-3 py-2 border border-amber-100">
-                        ⚡ EU AI Act: {m.riskNote}
+                        &#x26A1; {t("compare.euAiActPrefix")} {m.riskNote}
                       </div>
                     )}
 
@@ -794,7 +795,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                     onClick={(e) => e.stopPropagation()}
                     className="flex-shrink-0 text-xs text-[#003399] hover:underline mt-0.5"
                   >
-                    View →
+                    {t("compare.view")} &rarr;
                   </Link>
                 </div>
               </div>
@@ -805,14 +806,16 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           {selectedIds.size > 0 && (
             <div className="sticky bottom-4 bg-white rounded-2xl border-2 border-[#003399] shadow-xl p-4 flex items-center justify-between">
               <p className="text-sm font-medium text-gray-700">
-                {selectedIds.size} system{selectedIds.size > 1 ? "s" : ""} selected
-                <span className="text-gray-400 ml-2">(max 5)</span>
+                {selectedIds.size === 1
+                  ? t("compare.systemsSelected").replace("{count}", "1")
+                  : t("compare.systemsSelectedPlural").replace("{count}", String(selectedIds.size))}
+                <span className="text-gray-400 ml-2">{t("compare.maxSystems")}</span>
               </p>
               <button
                 onClick={handleCompare}
                 className="inline-flex items-center gap-2 rounded-xl bg-[#003399] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#0d1b3e] transition-colors"
               >
-                Compare side-by-side →
+                {t("compare.compareSideBySide")} &rarr;
               </button>
             </div>
           )}
@@ -823,13 +826,13 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
       {phase === "matches" && !hasFullAccess && (
         <div className="rounded-xl border border-[#003399]/20 bg-gradient-to-r from-[#003399]/5 to-[#ffc107]/5 p-5 text-center">
           <p className="text-sm font-medium text-[#0d1b3e]">
-            Seeing limited results? Pro unlocks all 60+ AI systems.
+            {t("compare.limitedResults")}
           </p>
           <a
-            href="/en/pricing"
+            href={`/${locale}/pricing`}
             className="mt-2 inline-block rounded-lg bg-[#003399] px-5 py-2 text-xs font-semibold text-white hover:bg-[#002277]"
           >
-            Upgrade to Pro — €19/month
+            {t("compare.upgradeProMonth")}
           </a>
         </div>
       )}
@@ -873,10 +876,10 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <h2 className="text-xl font-bold text-gray-900 font-serif">
-                Side-by-side comparison
+                {t("compare.sideComparison")}
               </h2>
               <p className="text-sm text-gray-500 mt-0.5">
-                {compareData.systems.length} systems · {compareData.attributes.length} assessment criteria
+                {t("compare.systemsCriteria").replace("{systems}", String(compareData.systems.length)).replace("{criteria}", String(compareData.attributes.length))}
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">
@@ -889,7 +892,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                     }}
                     className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
                   >
-                    Export CSV
+                    {t("compare.exportCSV")}
                   </button>
                   <button
                     onClick={() => {
@@ -898,7 +901,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                     }}
                     className="rounded-xl border border-[#003399] px-4 py-2 text-sm font-medium text-[#003399] hover:bg-[#003399]/5 transition-colors"
                   >
-                    Export JSON
+                    {t("compare.exportJSON")}
                   </button>
                 </>
               ) : (
@@ -906,17 +909,17 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                   onClick={() => setShowExportUpgrade(true)}
                   className="rounded-xl bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
                 >
-                  Export Report
+                  {t("compare.exportReport")}
                 </button>
               )}
               <button
                 onClick={() => setPhase("matches")}
                 className="rounded-xl border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50"
               >
-                ← Back to matches
+                &larr; {t("compare.backToMatches")}
               </button>
               <button onClick={reset} className="rounded-xl border border-gray-200 px-4 py-2 text-sm text-gray-500 hover:bg-gray-50">
-                New search
+                {t("compare.newSearch")}
               </button>
             </div>
           </div>
@@ -927,23 +930,23 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
               <span className="text-amber-500 text-lg mt-0.5">&#x1f512;</span>
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">
-                  Data exports are a Pro feature
+                  {t("compare.exportProTitle")}
                 </p>
                 <p className="text-sm text-gray-600 mt-1">
-                  Upgrade to Pro to export comparison data as CSV or JSON for procurement workflows, RFPs, and internal reviews.
+                  {t("compare.exportProDesc")}
                 </p>
                 <div className="mt-3 flex gap-3">
                   <Link
                     href={`/${locale}/pricing`}
                     className="inline-flex items-center rounded-lg bg-[#003399] px-4 py-2 text-sm font-medium text-white hover:bg-[#002277] transition-colors"
                   >
-                    View Pro Plans
+                    {t("compare.viewProPlans")}
                   </Link>
                   <button
                     onClick={() => setShowExportUpgrade(false)}
                     className="text-sm text-gray-500 hover:text-gray-700"
                   >
-                    Dismiss
+                    {t("compare.dismiss")}
                   </button>
                 </div>
               </div>
@@ -954,7 +957,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left: Podium */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex items-center justify-center">
-              <Podium systems={podiumSystems} />
+              <Podium systems={podiumSystems} t={t} />
             </div>
 
             {/* Right: Radar Chart */}
@@ -962,32 +965,33 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
               <RadarChart
                 systems={radarSystems}
                 onDimensionClick={scrollToSection}
+                t={t}
               />
             </div>
           </div>
 
           {/* Procurement tools CTA */}
           <div className="flex flex-wrap gap-3 rounded-lg border border-blue-100 bg-blue-50/50 px-4 py-3">
-            <span className="text-xs text-gray-500 self-center">Next steps:</span>
+            <span className="text-xs text-gray-500 self-center">{t("compare.nextSteps")}</span>
             <Link href={`/${locale}/rfp-engine`} className="text-xs font-medium text-[#003399] hover:underline">
-              Answer RFP Questions →
+              {t("compare.answerRfp")} &rarr;
             </Link>
             <Link href={`/${locale}/vendor-prep`} className="text-xs font-medium text-[#003399] hover:underline">
-              Prepare for Vendor Meeting →
+              {t("compare.prepareVendor")} &rarr;
             </Link>
           </div>
 
           {/* Category filter */}
           {(() => {
-            const categories = ["All", ...Array.from(new Set(compareData.attributes.map((a) => a.category)))];
+            const categories = [t("common.all"), ...Array.from(new Set(compareData.attributes.map((a) => a.category)))];
             return (
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
                   <button
                     key={cat}
-                    onClick={() => setCategoryFilter(cat)}
+                    onClick={() => setCategoryFilter(cat === t("common.all") ? "All" : cat)}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                      categoryFilter === cat
+                      (categoryFilter === "All" && cat === t("common.all")) || categoryFilter === cat
                         ? "bg-[#003399] text-white"
                         : "bg-white text-gray-600 border border-gray-200 hover:border-gray-300"
                     }`}
@@ -1016,7 +1020,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                       <thead>
                         <tr className="bg-[#0d1b3e]">
                           <th className="sticky left-0 z-10 bg-[#0d1b3e] text-left px-5 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400 w-52 min-w-[200px]">
-                            Attribute
+                            {t("compare.attribute")}
                           </th>
                           {compareData.systems.map((s) => (
                             <th key={s.id} className="px-5 py-3 text-left min-w-[220px]">
@@ -1050,7 +1054,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                                         {val}
                                       </p>
                                     ) : (
-                                      <span className="text-gray-300 text-xs">—</span>
+                                      <span className="text-gray-300 text-xs">&mdash;</span>
                                     )}
                                   </td>
                                 );
@@ -1079,7 +1083,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
               }}
               className="text-xs text-[#003399] hover:underline font-medium"
             >
-              {openSections.size === Object.keys(grouped).length ? "Collapse all sections" : "Expand all sections"}
+              {openSections.size === Object.keys(grouped).length ? t("compare.collapseAll") : t("compare.expandAll")}
             </button>
           </div>
 
@@ -1095,7 +1099,7 @@ export function CompareClient({ tier = "anonymous" }: { tier?: string }) {
                   <div className="font-semibold text-sm text-gray-900">{s.vendor}</div>
                   <div className="text-xs text-gray-500">{s.name}</div>
                 </div>
-                <span className="text-[#003399] text-xs font-medium">Full assessment →</span>
+                <span className="text-[#003399] text-xs font-medium">{t("compare.fullAssessment")} &rarr;</span>
               </Link>
             ))}
           </div>
