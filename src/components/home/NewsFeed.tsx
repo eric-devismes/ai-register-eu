@@ -124,7 +124,7 @@ export default function NewsFeed() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xs text-gray-400">
-                        {new Date(item.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                        {new Date(item.date).toLocaleDateString(locale, { day: "numeric", month: "short" })}
                       </span>
                       <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${TYPE_COLORS[item.changeType] || TYPE_COLORS.update}`}>
                         {item.changeType.replace("_", " ")}

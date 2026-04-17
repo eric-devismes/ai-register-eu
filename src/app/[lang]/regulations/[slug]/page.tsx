@@ -280,7 +280,7 @@ export default async function FrameworkPage({ params }: PageProps) {
                   <div key={entry.id} className="flex gap-4 text-sm">
                     <div className="shrink-0 pt-0.5">
                       <span className="text-xs text-gray-400">
-                        {entry.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                        {entry.date.toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" })}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -304,7 +304,7 @@ export default async function FrameworkPage({ params }: PageProps) {
 
           {/* Last updated footer */}
           <div className="mt-12 pt-6 border-t border-gray-100 text-xs text-gray-400">
-            {t("common.lastUpdated")} {framework.updatedAt.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+            {t("common.lastUpdated")} {framework.updatedAt.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" })}
           </div>
         </div>
       </main>

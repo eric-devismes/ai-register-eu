@@ -390,7 +390,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
           <div className="rounded-xl border border-gray-200 bg-white p-3">
             <p className="text-[10px] font-semibold text-gray-400 uppercase">{t("system.quickFact.lastAssessed")}</p>
             <p className="mt-0.5 text-sm font-medium text-gray-800">
-              {new Date(system.assessedAt).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}
+              {new Date(system.assessedAt).toLocaleDateString(locale, { month: "short", year: "numeric" })}
             </p>
           </div>
         )}

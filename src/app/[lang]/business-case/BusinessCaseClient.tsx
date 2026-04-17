@@ -318,7 +318,7 @@ export function BusinessCaseClient({ tier, systems }: Props) {
                 {selectedSystem ? `${selectedSystem.vendor} ${selectedSystem.name}` : "AI System"}
               </h2>
               <p className="mt-1 text-sm text-gray-500">
-                Generated {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+                Generated {new Date().toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" })}
               </p>
             </div>
             <div className="hidden print:block text-right text-xs text-gray-400">

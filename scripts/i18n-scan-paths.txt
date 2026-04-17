@@ -5,9 +5,10 @@
 # those pages have been moved to the dictionary. Pages added to this list
 # without triaging their hardcoded strings will block the build.
 #
-# Current phase: shared components.
-# Next phase (tracked in TODO): app/[lang]/**/page.tsx — 20+ legacy strings
-# to convert to t() calls first.
+# Current phase: shared components + all [lang] pages now wrapped in t().
+# Audited 2026-04-17 — every path below rendered clean against the
+# hardcoded-JSX detector. Expand the list when a new page's legacy
+# strings have been moved to the dictionary.
 #
 # Lines starting with # are comments. Paths are relative to repo root.
 src/components/layout/Header.tsx
@@ -19,3 +20,11 @@ src/app/[lang]/pricing/success/page.tsx
 src/app/[lang]/pricing/cancel/page.tsx
 src/app/[lang]/contact/page.tsx
 src/app/[lang]/contact/ContactForm.tsx
+src/app/[lang]/methodology/page.tsx
+src/app/[lang]/methodology/sourcing/page.tsx
+src/app/[lang]/reports/page.tsx
+src/app/[lang]/reports/[slug]/page.tsx
+src/app/[lang]/regulations/page.tsx
+src/app/[lang]/regulations/[slug]/page.tsx
+src/app/[lang]/industries/page.tsx
+src/app/[lang]/industries/[slug]/page.tsx
