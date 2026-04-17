@@ -697,7 +697,7 @@ async function main() {
   });
 
   const buffer = await Packer.toBuffer(doc);
-  fs.writeFileSync("/Users/ericdevismes/Projects/ai-register-eu/AI-Compass-EU-Assessment-Model-v1.docx", buffer);
+  fs.writeFileSync("/Users/ericdevismes/Documents/Claude-Work/PROJECTS/ai-register-eu/AI-Compass-EU-Assessment-Model-v1.docx", buffer);
   console.log("Done! Written to AI-Compass-EU-Assessment-Model-v1.docx");
 }
 
