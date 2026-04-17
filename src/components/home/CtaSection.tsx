@@ -44,7 +44,7 @@ export default function CtaSection() {
 
           {status === "success" ? (
             <p className="mt-8 text-sm font-medium text-[#ffc107]">
-              Check your inbox — we sent you a confirmation link.
+              {t("cta.confirmationMessage")}
             </p>
           ) : (
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">

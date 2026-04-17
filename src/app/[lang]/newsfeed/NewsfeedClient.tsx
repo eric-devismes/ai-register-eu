@@ -20,63 +20,24 @@ interface Milestone {
   impact: "high" | "medium" | "low";
 }
 
-const MILESTONES: Milestone[] = [
-  {
-    date: "2026-08-02",
-    title: "EU AI Act \u2014 High-Risk System Obligations Apply",
-    framework: "EU AI Act",
-    description: "Full compliance requirements for high-risk AI systems (Annex III) take effect. Providers and deployers must meet all Chapter 2 obligations.",
-    impact: "high",
-  },
-  {
-    date: "2026-08-02",
-    title: "EU AI Act \u2014 Deployer Obligations Begin",
-    framework: "EU AI Act",
-    description: "Organisations deploying high-risk AI must implement human oversight, conduct FRIAs, and maintain AI system registries.",
-    impact: "high",
-  },
-  {
-    date: "2026-08-02",
-    title: "EU AI Act \u2014 Transparency for Limited-Risk Systems",
-    framework: "EU AI Act",
-    description: "Chatbots, deepfakes, and emotion recognition systems must disclose AI involvement to users (Article 50).",
-    impact: "medium",
-  },
-  {
-    date: "2027-02-02",
-    title: "EU AI Act \u2014 GPAI Model Obligations",
-    framework: "EU AI Act",
-    description: "General-purpose AI model providers must comply with transparency and documentation requirements (Chapter V).",
-    impact: "high",
-  },
-  {
-    date: "2027-08-02",
-    title: "EU AI Act \u2014 Full Enforcement",
-    framework: "EU AI Act",
-    description: "All remaining provisions apply. National authorities begin full enforcement with penalties up to \u20ac35M or 7% of global turnover.",
-    impact: "high",
-  },
-  {
-    date: "2026-10-17",
-    title: "NIS2 Directive \u2014 Transposition Deadline",
-    framework: "NIS2",
-    description: "EU member states must transpose NIS2 into national law. Applies to essential and important entities including AI service providers.",
-    impact: "medium",
-  },
-  {
-    date: "2027-01-17",
-    title: "DORA \u2014 Full Application",
-    framework: "DORA",
-    description: "Digital Operational Resilience Act fully applies to financial entities. ICT risk management, incident reporting, and third-party oversight required.",
-    impact: "high",
-  },
-  {
-    date: "2026-12-31",
-    title: "EU Data Act \u2014 Full Application",
-    framework: "EU Data Act",
-    description: "Rules on fair access to and use of data. Impacts AI systems that generate or process IoT and industrial data.",
-    impact: "medium",
-  },
+// Milestone data — titles and descriptions come from the dictionary
+interface MilestoneData {
+  date: string;
+  titleKey: string;
+  framework: string;
+  descKey: string;
+  impact: "high" | "medium" | "low";
+}
+
+const MILESTONE_DATA: MilestoneData[] = [
+  { date: "2026-08-02", titleKey: "newsfeed.milestone1Title", framework: "EU AI Act", descKey: "newsfeed.milestone1Desc", impact: "high" },
+  { date: "2026-08-02", titleKey: "newsfeed.milestone2Title", framework: "EU AI Act", descKey: "newsfeed.milestone2Desc", impact: "high" },
+  { date: "2026-08-02", titleKey: "newsfeed.milestone3Title", framework: "EU AI Act", descKey: "newsfeed.milestone3Desc", impact: "medium" },
+  { date: "2027-02-02", titleKey: "newsfeed.milestone4Title", framework: "EU AI Act", descKey: "newsfeed.milestone4Desc", impact: "high" },
+  { date: "2027-08-02", titleKey: "newsfeed.milestone5Title", framework: "EU AI Act", descKey: "newsfeed.milestone5Desc", impact: "high" },
+  { date: "2026-10-17", titleKey: "newsfeed.milestone6Title", framework: "NIS2", descKey: "newsfeed.milestone6Desc", impact: "medium" },
+  { date: "2027-01-17", titleKey: "newsfeed.milestone7Title", framework: "DORA", descKey: "newsfeed.milestone7Desc", impact: "high" },
+  { date: "2026-12-31", titleKey: "newsfeed.milestone8Title", framework: "EU Data Act", descKey: "newsfeed.milestone8Desc", impact: "medium" },
 ];
 
 const IMPACT_COLORS = {
@@ -155,9 +116,18 @@ export function NewsfeedClient({ entries, tier = "anonymous", lang = "en" }: { e
 
   const recentCount = entries.filter((e) => new Date(e.date) >= sevenDaysAgo).length;
 
+  // Build milestones from data + dictionary
+  const milestones: Milestone[] = MILESTONE_DATA.map((md) => ({
+    date: md.date,
+    title: t(md.titleKey),
+    framework: md.framework,
+    description: t(md.descKey),
+    impact: md.impact,
+  }));
+
   // Sort milestones by date, filter future only
   const now = new Date();
-  const upcomingMilestones = MILESTONES
+  const upcomingMilestones = milestones
     .filter((m) => new Date(m.date) >= now)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 

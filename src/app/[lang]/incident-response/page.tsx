@@ -1,23 +1,21 @@
 /**
  * Incident Response Plan — Public IRP aligned with DORA and NIS2.
  *
- * Documents incident classification (P1-P4), response timelines,
- * communication protocol, post-incident review, and regulatory
- * reporting obligations.
- *
  * URL: /[lang]/incident-response
  */
 
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Incident Response Plan",
-    description:
-      "AI Compass EU incident response plan: incident classification (P1-P4), response timelines, communication protocol, post-incident review, and DORA/NIS2 reporting obligations.",
-  };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return getPageMetadata(lang as Locale, "incidentResponse");
 }
 
 export default async function IncidentResponsePage({
@@ -25,7 +23,17 @@ export default async function IncidentResponsePage({
 }: {
   params: Promise<{ lang: string }>;
 }) {
-  await params;
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  const t = (key: string) =>
+    key
+      .split(".")
+      .reduce(
+        (o: Record<string, unknown>, k: string) =>
+          (o?.[k] as Record<string, unknown>) ?? {},
+        dict as unknown as Record<string, unknown>
+      ) as unknown as string;
+
   const lastUpdated = "11 April 2026";
 
   return (
@@ -37,812 +45,366 @@ export default async function IncidentResponsePage({
           <div className="border-b border-gray-200 pb-8">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#003399]">
-                <svg
-                  className="h-5 w-5 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                  />
+                <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                 </svg>
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Incident Response Plan
-                </h1>
-                <p className="mt-1 text-sm text-gray-500">
-                  Last updated: {lastUpdated}
-                </p>
+                <h1 className="text-3xl font-bold text-gray-900">{t("incident.title")}</h1>
+                <p className="mt-1 text-sm text-gray-500">{(t("incident.lastUpdated") as string).replace("{date}", lastUpdated)}</p>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              This document defines how AI Compass EU detects, classifies,
-              responds to, and learns from security and operational incidents.
-              It is aligned with the Digital Operational Resilience Act (DORA,
-              Chapter III) and the Network and Information Security Directive
-              (NIS2, Article 23).
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-gray-600">{t("incident.introBody")}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">
-                DORA Chapter III
-              </span>
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">
-                NIS2 Article 23
-              </span>
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">
-                GDPR Article 33-34
-              </span>
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">{t("incident.badgeDora")}</span>
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">{t("incident.badgeNis2")}</span>
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-[#003399]">{t("incident.badgeGdpr")}</span>
             </div>
           </div>
 
           <div className="mt-10 space-y-12 text-sm leading-relaxed text-gray-700">
-            {/* ───────────────────────────────────────────────── */}
-            {/* 1. Scope & Purpose                                */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 1. Scope & Purpose */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  1
-                </span>
-                Scope &amp; Purpose
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">1</span>
+                {t("incident.section1Title")}
               </h2>
-
-              <p className="mt-4">
-                This Incident Response Plan (IRP) covers all ICT-related
-                incidents affecting the AI Compass EU platform, including but
-                not limited to:
-              </p>
+              <p className="mt-4">{t("incident.section1Body")}</p>
               <ul className="mt-3 list-disc space-y-1 pl-5 text-gray-600">
-                <li>
-                  Service outages or significant degradation of platform
-                  availability
-                </li>
-                <li>
-                  Security breaches, including unauthorised access to systems or
-                  data
-                </li>
-                <li>
-                  Personal data breaches as defined by GDPR Article 4(12)
-                </li>
-                <li>
-                  Third-party service provider incidents that impact platform
-                  operations
-                </li>
-                <li>
-                  AI-specific incidents (prompt injection exploitation, model
-                  output integrity issues)
-                </li>
+                <li>{t("incident.scope1")}</li>
+                <li>{t("incident.scope2")}</li>
+                <li>{t("incident.scope3")}</li>
+                <li>{t("incident.scope4")}</li>
+                <li>{t("incident.scope5")}</li>
               </ul>
-
-              <p className="mt-4">
-                The objective is to minimise the impact of incidents on users
-                and stakeholders, ensure regulatory compliance, and
-                continuously improve our security posture through structured
-                post-incident learning.
-              </p>
+              <p className="mt-4">{t("incident.section1Objective")}</p>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 2. Incident Classification                        */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 2. Incident Classification */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  2
-                </span>
-                Incident Classification
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">2</span>
+                {t("incident.section2Title")}
               </h2>
+              <p className="mt-4">{t("incident.section2Body")}</p>
 
-              <p className="mt-4">
-                All incidents are classified into one of four priority levels
-                based on their impact on service availability, data integrity,
-                and regulatory implications.
-              </p>
-
-              {/* P1 — Critical */}
+              {/* P1 */}
               <div className="mt-6 rounded-lg border-l-4 border-red-600 bg-red-50 p-5">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white">
-                    P1 — Critical
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white">{t("incident.p1Label")}</span>
                 </div>
-                <p className="mt-3 font-semibold text-gray-900">Definition</p>
-                <p className="mt-1 text-gray-700">
-                  Complete service outage affecting all users, or a confirmed
-                  breach involving personal data or sensitive system
-                  credentials. AI model compromise resulting in harmful or
-                  manipulated outputs at scale.
-                </p>
+                <p className="mt-3 font-semibold text-gray-900">{t("incident.p1Definition")}</p>
+                <p className="mt-1 text-gray-700">{t("incident.p1DefinitionBody")}</p>
                 <div className="mt-3 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Examples
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.examples")}</p>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-gray-600">
-                      <li>Platform completely inaccessible</li>
-                      <li>Database breach with personal data exfiltration</li>
-                      <li>
-                        API keys or credentials leaked publicly
-                      </li>
-                      <li>Successful prompt injection causing harmful outputs</li>
+                      <li>{t("incident.p1Example1")}</li>
+                      <li>{t("incident.p1Example2")}</li>
+                      <li>{t("incident.p1Example3")}</li>
+                      <li>{t("incident.p1Example4")}</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Response Targets
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.responseTargets")}</p>
                     <ul className="mt-1 space-y-1 text-gray-600">
-                      <li>
-                        <strong>Acknowledge:</strong> 1 hour
-                      </li>
-                      <li>
-                        <strong>Mitigate:</strong> 2 hours
-                      </li>
-                      <li>
-                        <strong>Resolve:</strong> 4 hours
-                      </li>
-                      <li>
-                        <strong>Post-mortem:</strong> Within 48 hours
-                      </li>
+                      <li><strong>{t("incident.acknowledge")}</strong> 1 hour</li>
+                      <li><strong>{t("incident.mitigate")}</strong> 2 hours</li>
+                      <li><strong>{t("incident.resolve")}</strong> 4 hours</li>
+                      <li><strong>{t("incident.postMortem")}</strong> Within 48 hours</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              {/* P2 — Major */}
+              {/* P2 */}
               <div className="mt-4 rounded-lg border-l-4 border-orange-500 bg-orange-50 p-5">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">
-                    P2 — Major
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">{t("incident.p2Label")}</span>
                 </div>
-                <p className="mt-3 font-semibold text-gray-900">Definition</p>
-                <p className="mt-1 text-gray-700">
-                  Significant degradation of core platform functionality
-                  affecting a majority of users, or a security event that does
-                  not involve confirmed personal data compromise but requires
-                  immediate investigation.
-                </p>
+                <p className="mt-3 font-semibold text-gray-900">{t("incident.p1Definition")}</p>
+                <p className="mt-1 text-gray-700">{t("incident.p2DefinitionBody")}</p>
                 <div className="mt-3 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Examples
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.examples")}</p>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-gray-600">
-                      <li>Database connectivity issues causing errors</li>
-                      <li>AI chatbot returning incorrect/degraded responses</li>
-                      <li>Authentication system failure</li>
-                      <li>Suspected (unconfirmed) unauthorised access</li>
+                      <li>{t("incident.p2Example1")}</li>
+                      <li>{t("incident.p2Example2")}</li>
+                      <li>{t("incident.p2Example3")}</li>
+                      <li>{t("incident.p2Example4")}</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Response Targets
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.responseTargets")}</p>
                     <ul className="mt-1 space-y-1 text-gray-600">
-                      <li>
-                        <strong>Acknowledge:</strong> 4 hours
-                      </li>
-                      <li>
-                        <strong>Mitigate:</strong> 8 hours
-                      </li>
-                      <li>
-                        <strong>Resolve:</strong> 24 hours
-                      </li>
-                      <li>
-                        <strong>Post-mortem:</strong> Within 5 business days
-                      </li>
+                      <li><strong>{t("incident.acknowledge")}</strong> 4 hours</li>
+                      <li><strong>{t("incident.mitigate")}</strong> 8 hours</li>
+                      <li><strong>{t("incident.resolve")}</strong> 24 hours</li>
+                      <li><strong>{t("incident.postMortem")}</strong> Within 5 business days</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              {/* P3 — Minor */}
+              {/* P3 */}
               <div className="mt-4 rounded-lg border-l-4 border-yellow-500 bg-yellow-50 p-5">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-white">
-                    P3 — Minor
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-white">{t("incident.p3Label")}</span>
                 </div>
-                <p className="mt-3 font-semibold text-gray-900">Definition</p>
-                <p className="mt-1 text-gray-700">
-                  Isolated issue affecting a limited number of users or a
-                  non-critical feature. No data compromise. Service remains
-                  operational with workarounds available.
-                </p>
+                <p className="mt-3 font-semibold text-gray-900">{t("incident.p1Definition")}</p>
+                <p className="mt-1 text-gray-700">{t("incident.p3DefinitionBody")}</p>
                 <div className="mt-3 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Examples
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.examples")}</p>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-gray-600">
-                      <li>Single API endpoint returning errors</li>
-                      <li>Email delivery delays</li>
-                      <li>UI rendering issues on specific browsers</li>
-                      <li>Rate limiter false positives</li>
+                      <li>{t("incident.p3Example1")}</li>
+                      <li>{t("incident.p3Example2")}</li>
+                      <li>{t("incident.p3Example3")}</li>
+                      <li>{t("incident.p3Example4")}</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Response Targets
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.responseTargets")}</p>
                     <ul className="mt-1 space-y-1 text-gray-600">
-                      <li>
-                        <strong>Acknowledge:</strong> 24 hours
-                      </li>
-                      <li>
-                        <strong>Mitigate:</strong> 48 hours
-                      </li>
-                      <li>
-                        <strong>Resolve:</strong> 72 hours
-                      </li>
-                      <li>
-                        <strong>Post-mortem:</strong> Optional
-                      </li>
+                      <li><strong>{t("incident.acknowledge")}</strong> 24 hours</li>
+                      <li><strong>{t("incident.mitigate")}</strong> 48 hours</li>
+                      <li><strong>{t("incident.resolve")}</strong> 72 hours</li>
+                      <li><strong>{t("incident.postMortem")}</strong> {t("incident.optional")}</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              {/* P4 — Informational */}
+              {/* P4 */}
               <div className="mt-4 rounded-lg border-l-4 border-gray-400 bg-gray-50 p-5">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-full bg-gray-500 px-3 py-1 text-xs font-bold text-white">
-                    P4 — Informational
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-gray-500 px-3 py-1 text-xs font-bold text-white">{t("incident.p4Label")}</span>
                 </div>
-                <p className="mt-3 font-semibold text-gray-900">Definition</p>
-                <p className="mt-1 text-gray-700">
-                  Cosmetic defect, proactive security patching, or minor
-                  improvement opportunity. No user impact. Handled as part of
-                  normal development workflow.
-                </p>
+                <p className="mt-3 font-semibold text-gray-900">{t("incident.p1Definition")}</p>
+                <p className="mt-1 text-gray-700">{t("incident.p4DefinitionBody")}</p>
                 <div className="mt-3 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Examples
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.examples")}</p>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-gray-600">
-                      <li>Minor UI inconsistency</li>
-                      <li>Dependency update for non-critical vulnerability</li>
-                      <li>Performance optimisation opportunity</li>
-                      <li>Spelling or content corrections</li>
+                      <li>{t("incident.p4Example1")}</li>
+                      <li>{t("incident.p4Example2")}</li>
+                      <li>{t("incident.p4Example3")}</li>
+                      <li>{t("incident.p4Example4")}</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase text-gray-500">
-                      Response Targets
-                    </p>
+                    <p className="text-xs font-medium uppercase text-gray-500">{t("incident.responseTargets")}</p>
                     <ul className="mt-1 space-y-1 text-gray-600">
-                      <li>
-                        <strong>Acknowledge:</strong> Best effort
-                      </li>
-                      <li>
-                        <strong>Resolve:</strong> Best effort
-                      </li>
-                      <li>
-                        <strong>Post-mortem:</strong> Not required
-                      </li>
+                      <li><strong>{t("incident.acknowledge")}</strong> {t("incident.bestEffort")}</li>
+                      <li><strong>{t("incident.resolve")}</strong> {t("incident.bestEffort")}</li>
+                      <li><strong>{t("incident.postMortem")}</strong> {t("incident.notRequired")}</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 3. Response Lifecycle                              */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 3. Response Lifecycle */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  3
-                </span>
-                Response Lifecycle
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">3</span>
+                {t("incident.section3Title")}
               </h2>
-
-              <p className="mt-4">
-                Every incident follows a structured lifecycle regardless of
-                severity:
-              </p>
-
+              <p className="mt-4">{t("incident.section3Body")}</p>
               <div className="mt-6 space-y-4">
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                      1
+                {([
+                  { num: 1, titleKey: "incident.lifecycle1Title", bodyKey: "incident.lifecycle1Body", last: false },
+                  { num: 2, titleKey: "incident.lifecycle2Title", bodyKey: "incident.lifecycle2Body", last: false },
+                  { num: 3, titleKey: "incident.lifecycle3Title", bodyKey: "incident.lifecycle3Body", last: false },
+                  { num: 4, titleKey: "incident.lifecycle4Title", bodyKey: "incident.lifecycle4Body", last: false },
+                  { num: 5, titleKey: "incident.lifecycle5Title", bodyKey: "incident.lifecycle5Body", last: true },
+                ] as const).map((step) => (
+                  <div key={step.num} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">{step.num}</div>
+                      {!step.last && <div className="mt-1 h-full w-0.5 bg-gray-200" />}
                     </div>
-                    <div className="mt-1 h-full w-0.5 bg-gray-200" />
-                  </div>
-                  <div className="pb-6">
-                    <p className="font-semibold text-gray-900">Detection</p>
-                    <p className="mt-1 text-gray-600">
-                      Incident detected via automated monitoring (Vercel
-                      analytics, error tracking), user report, or third-party
-                      notification. An incident ticket is created immediately.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                      2
-                    </div>
-                    <div className="mt-1 h-full w-0.5 bg-gray-200" />
-                  </div>
-                  <div className="pb-6">
-                    <p className="font-semibold text-gray-900">Triage &amp; Classification</p>
-                    <p className="mt-1 text-gray-600">
-                      The incident is assessed against the classification
-                      matrix (Section 2) and assigned a priority level (P1-P4).
-                      The scope of impact, affected systems, and potential data
-                      exposure are documented.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                      3
-                    </div>
-                    <div className="mt-1 h-full w-0.5 bg-gray-200" />
-                  </div>
-                  <div className="pb-6">
-                    <p className="font-semibold text-gray-900">Containment</p>
-                    <p className="mt-1 text-gray-600">
-                      Immediate actions to limit the blast radius: isolate
-                      affected systems, revoke compromised credentials, disable
-                      vulnerable features, or failover to backup systems.
-                      For AI-specific incidents, the chatbot may be
-                      temporarily disabled.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                      4
-                    </div>
-                    <div className="mt-1 h-full w-0.5 bg-gray-200" />
-                  </div>
-                  <div className="pb-6">
-                    <p className="font-semibold text-gray-900">
-                      Eradication &amp; Recovery
-                    </p>
-                    <p className="mt-1 text-gray-600">
-                      Root cause is identified and eliminated. Affected systems
-                      are restored from known-good state. Data integrity is
-                      verified. Service is gradually restored with monitoring
-                      in place to detect recurrence.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                      5
+                    <div className={step.last ? "" : "pb-6"}>
+                      <p className="font-semibold text-gray-900">{t(step.titleKey)}</p>
+                      <p className="mt-1 text-gray-600">{t(step.bodyKey)}</p>
                     </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">
-                      Post-Incident Review
-                    </p>
-                    <p className="mt-1 text-gray-600">
-                      A blameless post-mortem is conducted (see Section 5).
-                      Findings are documented, lessons learned are extracted,
-                      and preventive measures are implemented.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 4. Communication Protocol                         */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 4. Communication Protocol */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  4
-                </span>
-                Communication Protocol
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">4</span>
+                {t("incident.section4Title")}
               </h2>
-
-              <p className="mt-4">
-                Transparent, timely communication is central to our incident
-                response. Notification scope scales with incident severity.
-              </p>
-
+              <p className="mt-4">{t("incident.section4Body")}</p>
               <div className="mt-6 overflow-hidden rounded-lg border border-gray-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-[#0d1b3e] text-xs uppercase text-white">
                     <tr>
-                      <th className="px-4 py-3">Severity</th>
-                      <th className="px-4 py-3">Internal</th>
-                      <th className="px-4 py-3">Users</th>
-                      <th className="px-4 py-3">Regulators</th>
+                      <th className="px-4 py-3">{t("security.tableSeverity")}</th>
+                      <th className="px-4 py-3">{t("incident.tableInternal")}</th>
+                      <th className="px-4 py-3">{t("incident.tableUsers")}</th>
+                      <th className="px-4 py-3">{t("incident.tableRegulators")}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     <tr className="bg-red-50">
-                      <td className="px-4 py-3 font-bold text-red-700">
-                        P1
-                      </td>
-                      <td className="px-4 py-3">
-                        Immediate alert to platform operator and all technical
-                        staff
-                      </td>
-                      <td className="px-4 py-3">
-                        Status page updated within 1 hour. Email notification
-                        to affected users if personal data involved.
-                      </td>
-                      <td className="px-4 py-3">
-                        DPA notified within 72 hours (GDPR Art. 33). Competent
-                        authority notified per DORA/NIS2 timelines.
-                      </td>
+                      <td className="px-4 py-3 font-bold text-red-700">P1</td>
+                      <td className="px-4 py-3">{t("incident.p1Internal")}</td>
+                      <td className="px-4 py-3">{t("incident.p1Users")}</td>
+                      <td className="px-4 py-3">{t("incident.p1Regulators")}</td>
                     </tr>
                     <tr className="bg-orange-50">
-                      <td className="px-4 py-3 font-bold text-orange-700">
-                        P2
-                      </td>
-                      <td className="px-4 py-3">
-                        Alert to platform operator and relevant technical staff
-                      </td>
-                      <td className="px-4 py-3">
-                        Status page updated within 4 hours. In-app notice if
-                        functionality is degraded.
-                      </td>
-                      <td className="px-4 py-3">
-                        Only if escalated to P1 or if reporting thresholds are
-                        met.
-                      </td>
+                      <td className="px-4 py-3 font-bold text-orange-700">P2</td>
+                      <td className="px-4 py-3">{t("incident.p2Internal")}</td>
+                      <td className="px-4 py-3">{t("incident.p2Users")}</td>
+                      <td className="px-4 py-3">{t("incident.p2Regulators")}</td>
                     </tr>
                     <tr className="bg-yellow-50">
-                      <td className="px-4 py-3 font-bold text-yellow-700">
-                        P3
-                      </td>
-                      <td className="px-4 py-3">
-                        Logged in incident tracker
-                      </td>
-                      <td className="px-4 py-3">
-                        No proactive notification. Fix deployed in next
-                        release.
-                      </td>
-                      <td className="px-4 py-3">Not required.</td>
+                      <td className="px-4 py-3 font-bold text-yellow-700">P3</td>
+                      <td className="px-4 py-3">{t("incident.p3Internal")}</td>
+                      <td className="px-4 py-3">{t("incident.p3Users")}</td>
+                      <td className="px-4 py-3">{t("incident.p3Regulators")}</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-3 font-bold text-gray-600">
-                        P4
-                      </td>
-                      <td className="px-4 py-3">
-                        Logged in backlog
-                      </td>
-                      <td className="px-4 py-3">None.</td>
-                      <td className="px-4 py-3">Not required.</td>
+                      <td className="px-4 py-3 font-bold text-gray-600">P4</td>
+                      <td className="px-4 py-3">{t("incident.p4Internal")}</td>
+                      <td className="px-4 py-3">{t("incident.p4Users")}</td>
+                      <td className="px-4 py-3">{t("incident.p4Regulators")}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
               <div className="mt-4 rounded-lg border-l-4 border-[#ffc107] bg-amber-50 p-4">
-                <p className="font-semibold text-gray-900">
-                  Data Breach Notification (GDPR Art. 34)
-                </p>
-                <p className="mt-1 text-gray-600">
-                  If a personal data breach is likely to result in a high risk
-                  to the rights and freedoms of individuals, affected data
-                  subjects are notified without undue delay via email. The
-                  notification describes the nature of the breach, likely
-                  consequences, measures taken, and the contact point for
-                  further information.
-                </p>
+                <p className="font-semibold text-gray-900">{t("incident.dataBreachTitle")}</p>
+                <p className="mt-1 text-gray-600">{t("incident.dataBreachBody")}</p>
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 5. Post-Incident Review                           */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 5. Post-Incident Review */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  5
-                </span>
-                Post-Incident Review
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">5</span>
+                {t("incident.section5Title")}
               </h2>
-
-              <p className="mt-4">
-                All P1 and P2 incidents require a formal post-incident review
-                (post-mortem). P3 incidents may optionally include a review at
-                the discretion of the platform operator.
-              </p>
-
+              <p className="mt-4">{t("incident.section5Body")}</p>
               <div className="mt-6 space-y-4">
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">
-                    Blameless Culture
-                  </p>
-                  <p className="mt-1 text-gray-600">
-                    Reviews focus on systemic causes, not individual fault. The
-                    goal is to understand what happened, why, and how to
-                    prevent recurrence. Contributing factors are examined
-                    without attribution of blame.
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.blamelessTitle")}</p>
+                  <p className="mt-1 text-gray-600">{t("incident.blamelessBody")}</p>
                 </div>
-
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">
-                    Review Template
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.reviewTemplateTitle")}</p>
                   <div className="mt-2 rounded-lg bg-gray-50 p-4 font-mono text-xs text-gray-600">
-                    <p>
-                      <strong className="text-gray-900">Incident ID:</strong>{" "}
-                      [INC-YYYY-NNN]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Severity:</strong>{" "}
-                      [P1/P2/P3]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Duration:</strong>{" "}
-                      [Detection to resolution]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Impact:</strong>{" "}
-                      [Users affected, data exposed, revenue impact]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Timeline:</strong>{" "}
-                      [Chronological events]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Root Cause:</strong>{" "}
-                      [Technical root cause analysis]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">
-                        Contributing Factors:
-                      </strong>{" "}
-                      [Process/tooling gaps]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">Action Items:</strong>{" "}
-                      [Preventive measures with owners and deadlines]
-                    </p>
-                    <p>
-                      <strong className="text-gray-900">
-                        Lessons Learned:
-                      </strong>{" "}
-                      [What worked, what did not]
-                    </p>
+                    {([
+                      { label: "templateIncidentId", val: "templateIncidentIdVal" },
+                      { label: "templateSeverity", val: "templateSeverityVal" },
+                      { label: "templateDuration", val: "templateDurationVal" },
+                      { label: "templateImpact", val: "templateImpactVal" },
+                      { label: "templateTimeline", val: "templateTimelineVal" },
+                      { label: "templateRootCause", val: "templateRootCauseVal" },
+                      { label: "templateContributing", val: "templateContributingVal" },
+                      { label: "templateActions", val: "templateActionsVal" },
+                      { label: "templateLessons", val: "templateLessonsVal" },
+                    ] as const).map((row) => (
+                      <p key={row.label}>
+                        <strong className="text-gray-900">{t(`incident.${row.label}`)}</strong>{" "}
+                        {t(`incident.${row.val}`)}
+                      </p>
+                    ))}
                   </div>
                 </div>
-
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">
-                    Action Item Tracking
-                  </p>
-                  <p className="mt-1 text-gray-600">
-                    Every post-mortem produces concrete action items with
-                    assigned owners and deadlines. Actions are tracked to
-                    completion. Recurring incident patterns trigger a review of
-                    the underlying architecture or process.
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.actionTrackingTitle")}</p>
+                  <p className="mt-1 text-gray-600">{t("incident.actionTrackingBody")}</p>
                 </div>
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 6. Regulatory Reporting Obligations               */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 6. Regulatory Reporting */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  6
-                </span>
-                Regulatory Reporting Obligations
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">6</span>
+                {t("incident.section6Title")}
               </h2>
-
               <div className="mt-6 space-y-6">
-                {/* DORA */}
                 <div className="rounded-lg border border-blue-200 bg-blue-50 p-5">
-                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">
-                    DORA — Regulation (EU) 2022/2554
-                  </p>
-                  <p className="mt-2 font-semibold text-gray-900">
-                    ICT-Related Incident Reporting (Articles 19-20)
-                  </p>
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">{t("incident.doraRef")}</p>
+                  <p className="mt-2 font-semibold text-gray-900">{t("incident.doraTitle")}</p>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-600">
-                    <li>
-                      <strong>Initial notification:</strong> Submitted to the
-                      competent authority by end of business day of
-                      classification (or within 4 hours if classified during
-                      business hours)
-                    </li>
-                    <li>
-                      <strong>Intermediate report:</strong> Within 72 hours of
-                      initial notification, including root cause analysis and
-                      estimated recovery timeline
-                    </li>
-                    <li>
-                      <strong>Final report:</strong> Within 1 month of the
-                      incident, including full root cause analysis, impact
-                      assessment, and remedial actions taken
-                    </li>
-                    <li>
-                      Reports follow the standardised templates prescribed by
-                      the European Supervisory Authorities (ESAs)
-                    </li>
+                    <li>{t("incident.doraInitial")}</li>
+                    <li>{t("incident.doraIntermediate")}</li>
+                    <li>{t("incident.doraFinal")}</li>
+                    <li>{t("incident.doraTemplates")}</li>
                   </ul>
                 </div>
-
-                {/* NIS2 */}
                 <div className="rounded-lg border border-blue-200 bg-blue-50 p-5">
-                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">
-                    NIS2 — Directive (EU) 2022/2555
-                  </p>
-                  <p className="mt-2 font-semibold text-gray-900">
-                    Incident Notification (Article 23)
-                  </p>
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">{t("incident.nis2Ref")}</p>
+                  <p className="mt-2 font-semibold text-gray-900">{t("incident.nis2Title")}</p>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-600">
-                    <li>
-                      <strong>Early warning:</strong> Within 24 hours of
-                      becoming aware of a significant incident, to the
-                      relevant CSIRT or competent authority
-                    </li>
-                    <li>
-                      <strong>Incident notification:</strong> Within 72 hours,
-                      including initial assessment of severity, impact, and
-                      indicators of compromise
-                    </li>
-                    <li>
-                      <strong>Final report:</strong> Within 1 month (or upon
-                      incident resolution), including detailed description,
-                      root cause, mitigation measures, and cross-border impact
-                    </li>
-                    <li>
-                      If the incident affects users in other EU Member States,
-                      the relevant single points of contact are notified
-                    </li>
+                    <li>{t("incident.nis2EarlyWarning")}</li>
+                    <li>{t("incident.nis2Notification")}</li>
+                    <li>{t("incident.nis2Final")}</li>
+                    <li>{t("incident.nis2CrossBorder")}</li>
                   </ul>
                 </div>
-
-                {/* GDPR */}
                 <div className="rounded-lg border border-blue-200 bg-blue-50 p-5">
-                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">
-                    GDPR — Regulation (EU) 2016/679
-                  </p>
-                  <p className="mt-2 font-semibold text-gray-900">
-                    Personal Data Breach Notification (Articles 33-34)
-                  </p>
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#003399]">{t("incident.gdprRef")}</p>
+                  <p className="mt-2 font-semibold text-gray-900">{t("incident.gdprTitle")}</p>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-600">
-                    <li>
-                      <strong>To supervisory authority:</strong> Within 72
-                      hours of becoming aware of a personal data breach, unless
-                      the breach is unlikely to result in a risk to the rights
-                      and freedoms of natural persons
-                    </li>
-                    <li>
-                      <strong>To data subjects:</strong> Without undue delay if
-                      the breach is likely to result in a high risk to rights
-                      and freedoms
-                    </li>
-                    <li>
-                      Notification includes: nature of breach, categories and
-                      approximate number of data subjects, likely consequences,
-                      and measures taken or proposed
-                    </li>
+                    <li>{t("incident.gdprAuthority")}</li>
+                    <li>{t("incident.gdprSubjects")}</li>
+                    <li>{t("incident.gdprContent")}</li>
                   </ul>
                 </div>
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 7. Testing & Maintenance                          */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 7. Plan Testing */}
             <section>
               <h2 className="flex items-center gap-2 text-lg font-bold text-[#0d1b3e]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">
-                  7
-                </span>
-                Plan Testing &amp; Maintenance
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#003399] text-xs font-bold text-white">7</span>
+                {t("incident.section7Title")}
               </h2>
-
               <div className="mt-6 space-y-4">
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">Annual Review</p>
-                  <p className="mt-1 text-gray-600">
-                    This IRP is reviewed at least annually and updated to
-                    reflect changes in infrastructure, third-party providers,
-                    regulatory requirements, or lessons learned from incidents.
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.annualReviewTitle")}</p>
+                  <p className="mt-1 text-gray-600">{t("incident.annualReviewBody")}</p>
                 </div>
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">
-                    Tabletop Exercises
-                  </p>
-                  <p className="mt-1 text-gray-600">
-                    Incident response scenarios are rehearsed at least annually
-                    through tabletop exercises. Scenarios cover realistic threat
-                    situations including data breach, supply chain compromise,
-                    and AI-specific incidents.
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.tabletopTitle")}</p>
+                  <p className="mt-1 text-gray-600">{t("incident.tabletopBody")}</p>
                 </div>
                 <div className="rounded-lg border border-gray-200 p-4">
-                  <p className="font-semibold text-gray-900">
-                    Post-Incident Updates
-                  </p>
-                  <p className="mt-1 text-gray-600">
-                    After any P1 or P2 incident, this plan is reviewed and
-                    updated if gaps are identified during the post-mortem
-                    process.
-                  </p>
+                  <p className="font-semibold text-gray-900">{t("incident.postIncidentUpdatesTitle")}</p>
+                  <p className="mt-1 text-gray-600">{t("incident.postIncidentUpdatesBody")}</p>
                 </div>
               </div>
             </section>
 
-            {/* ───────────────────────────────────────────────── */}
-            {/* 8. Contact                                        */}
-            {/* ───────────────────────────────────────────────── */}
+            {/* 8. Contact */}
             <section className="rounded-lg border-2 border-[#003399] bg-blue-50 p-6">
-              <h2 className="text-lg font-bold text-[#0d1b3e]">
-                Report an Incident
-              </h2>
-              <p className="mt-2 text-gray-700">
-                To report a security incident, suspected data breach, or
-                platform issue requiring urgent attention:
-              </p>
+              <h2 className="text-lg font-bold text-[#0d1b3e]">{t("incident.contactTitle")}</h2>
+              <p className="mt-2 text-gray-700">{t("incident.contactBody")}</p>
               <p className="mt-3">
-                <a
-                  href="mailto:incidents@aicompass.eu"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0d1b3e]"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                    />
+                <a href="mailto:incidents@aicompass.eu" className="inline-flex items-center gap-2 rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0d1b3e]">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
                   incidents@aicompass.eu
                 </a>
               </p>
               <p className="mt-4 text-gray-600">
-                For general security questions or to report a vulnerability,
-                contact{" "}
-                <a
-                  href="mailto:security@aicompass.eu"
-                  className="text-[#003399] hover:underline"
-                >
-                  security@aicompass.eu
-                </a>
-                . See our{" "}
-                <a
-                  href="/en/security"
-                  className="text-[#003399] hover:underline"
-                >
-                  Security Policy
-                </a>{" "}
-                for full details.
+                {(t("incident.contactSecurityBody") as string).split("{securityLink}")[0]}
+                <a href="mailto:security@aicompass.eu" className="text-[#003399] hover:underline">security@aicompass.eu</a>
+                {((t("incident.contactSecurityBody") as string).split("{securityLink}")[1] || "").split("{policyLink}")[0]}
+                <a href={`/${lang}/security`} className="text-[#003399] hover:underline">{t("incident.contactSecurityLinkText")}</a>
+                {((t("incident.contactSecurityBody") as string).split("{securityLink}")[1] || "").split("{policyLink}")[1]}
               </p>
-              <p className="mt-4 text-xs text-gray-500">
-                When reporting an incident, please include: a description of the
-                issue, when you first observed it, which features are affected,
-                and any relevant screenshots or error messages.
-              </p>
+              <p className="mt-4 text-xs text-gray-500">{t("incident.contactFooter")}</p>
             </section>
           </div>
         </div>
