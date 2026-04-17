@@ -60,6 +60,51 @@ Expected cost: **~$2–3 total**. Expected duration: **~15–25 min**. Output la
 
 ## P0 — Core Rules
 
+### Procurement catalog — add missing enterprise AI vendors (2 waves)
+
+> **Context (2026-04-17)**: Catalog triaged to 74 active / 15 inactive. CEO criterion: only procurement-path enterprise tools (like ServiceNow), no consumer/creative/dev-self-serve. Below are vendors CEO and assistant identified as missing from the 89 seeded — widely deployed in EU enterprises, peer of ServiceNow/Salesforce/Workday. Add with full evidence backbone (primary-source URLs, SystemClaim extraction) per the launch gate — do not ship profiles without sources.
+
+**Wave 1 — must-add platform peers (10)**
+- [ ] **Celonis** (process mining + AI, HQ Munich, Gartner leader, European champion)
+- [ ] **Dataiku** (MLOps Gartner leader, origine française)
+- [ ] **Automation Anywhere** (RPA peer d'UiPath)
+- [ ] **Appian AI** (low-code BPM, très utilisé assurance/banque EU)
+- [ ] **NICE CXone** (contact center leader enterprise)
+- [ ] **Genesys Cloud AI** (contact center leader enterprise)
+- [ ] **ABBYY Vantage** (IDP leader, origine européenne)
+- [ ] **Collibra** (data governance, HQ Belgique, critique AI Act)
+- [ ] **OneTrust AI** (privacy/compliance, directement AI Act/GDPR)
+- [ ] **Informatica CLAIRE** (MDM/data governance enterprise)
+
+**Wave 2 — coding + MLOps + vertical (10)**
+- [ ] **Tabnine** (enterprise code AI, on-prem / sovereignty-friendly)
+- [ ] **Sourcegraph Cody** (enterprise code AI, self-hosted option)
+- [ ] **JetBrains AI Assistant** (enterprise coding)
+- [ ] **DataRobot** (MLOps Gartner leader)
+- [ ] **H2O.ai** (MLOps)
+- [ ] **Alation** (data catalog)
+- [ ] **Hugging Face Enterprise Hub** (model hub, origine FR/US)
+- [ ] **BlackLine AI** (accounting/finance automation, Gartner leader)
+- [ ] **Gong.io** (revenue intelligence)
+- [ ] **Blue Prism / SS&C** (RPA peer)
+
+**EU sovereign champions to visibilise separately**
+- [ ] **LightOn** (FR) — LLM enterprise sovereign
+- [ ] **Pigment** (FR) — FP&A
+- [ ] **ContentSquare** (FR) — digital experience analytics
+- [ ] **Sana Labs** (SE) — enterprise knowledge
+- [ ] **Silo AI** (FI, acquis AMD) — infra AI
+
+**Doublons à consolider** (detected 2026-04-17, do after waves):
+- Salesforce: `salesforce-agentforce-einstein` + `agentforce-einstein-ai`
+- SAP: `sap-joule` + `sap-joule-enterprise`
+- Workday: `workday-ai-talent` + `workday-illuminate-ai`
+- Palo Alto: 2× `...cortex-xsiam`
+- OpenAI: `openai-chatgpt-enterprise` + `openai-gpt4`
+- Anthropic: `anthropic-claude-api` + `anthropic-claude-enterprise`
+- Mistral: `mistral-large-2` + `mistral-ai`
+- Tempus: `tempus-ai` + `tempus-ai-health`
+
 ### 🚨 LAUNCH BLOCKER — Evidence Backbone (Sourcing + Freshness)
 
 > **DO NOT send launch emails, promote the site publicly, or enable LemonSqueezy live-mode until Phase 2 is complete.** Current vendor intel was LLM-authored from training data without primary-source verification. Every published claim on an AI system is currently an unverifiable assertion, which is a credibility and legal-liability risk for a platform sold to DPOs/CISOs.
