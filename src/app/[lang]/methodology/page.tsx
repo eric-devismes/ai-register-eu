@@ -155,6 +155,169 @@ export default async function MethodologyPage({
           </div>
         </section>
 
+        {/* Three Promises — trust proof */}
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("methodology.promises.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("methodology.promises.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("methodology.promises.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {[
+                { titleKey: "methodology.promises.sourceTitle", descKey: "methodology.promises.sourceDesc" },
+                { titleKey: "methodology.promises.dateTitle", descKey: "methodology.promises.dateDesc" },
+                { titleKey: "methodology.promises.challengeTitle", descKey: "methodology.promises.challengeDesc" },
+              ].map((p, i) => (
+                <div
+                  key={p.titleKey}
+                  className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#003399] text-lg font-bold text-white">
+                    {i + 1}
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-[#0d1b3e]">
+                    {t(p.titleKey)}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                    {t(p.descKey)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Source Hierarchy — 4 tiers */}
+        <section className="py-16 lg:py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("methodology.sourceTiers.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("methodology.sourceTiers.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("methodology.sourceTiers.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 space-y-4">
+              {[
+                { n: 1, labelKey: "methodology.sourceTiers.tier1Label", descKey: "methodology.sourceTiers.tier1Desc", exKey: "methodology.sourceTiers.tier1Examples" },
+                { n: 2, labelKey: "methodology.sourceTiers.tier2Label", descKey: "methodology.sourceTiers.tier2Desc", exKey: "methodology.sourceTiers.tier2Examples" },
+                { n: 3, labelKey: "methodology.sourceTiers.tier3Label", descKey: "methodology.sourceTiers.tier3Desc", exKey: "methodology.sourceTiers.tier3Examples" },
+                { n: 4, labelKey: "methodology.sourceTiers.tier4Label", descKey: "methodology.sourceTiers.tier4Desc", exKey: "methodology.sourceTiers.tier4Examples" },
+              ].map((tier) => (
+                <div
+                  key={tier.n}
+                  className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 sm:flex-row sm:items-start"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-sm font-bold text-[#003399]">
+                    T{tier.n}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-base font-semibold text-[#0d1b3e]">
+                      {t(tier.labelKey)}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+                      {t(tier.descKey)}
+                    </p>
+                    <p className="mt-2 text-xs text-gray-500 italic">
+                      {t(tier.exKey)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Refresh cadence */}
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("methodology.refresh.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("methodology.refresh.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("methodology.refresh.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {[
+                { titleKey: "methodology.refresh.weeklyTitle", descKey: "methodology.refresh.weeklyDesc" },
+                { titleKey: "methodology.refresh.quarterlyTitle", descKey: "methodology.refresh.quarterlyDesc" },
+                { titleKey: "methodology.refresh.escalationTitle", descKey: "methodology.refresh.escalationDesc" },
+              ].map((r) => (
+                <div
+                  key={r.titleKey}
+                  className="rounded-xl border border-gray-200 bg-white p-6"
+                >
+                  <h3 className="text-base font-semibold text-[#0d1b3e]">
+                    {t(r.titleKey)}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                    {t(r.descKey)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Challenge a claim */}
+        <section className="py-16 lg:py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("methodology.challengeClaim.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("methodology.challengeClaim.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("methodology.challengeClaim.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {[
+                { n: 1, titleKey: "methodology.challengeClaim.step1Title", descKey: "methodology.challengeClaim.step1Desc" },
+                { n: 2, titleKey: "methodology.challengeClaim.step2Title", descKey: "methodology.challengeClaim.step2Desc" },
+                { n: 3, titleKey: "methodology.challengeClaim.step3Title", descKey: "methodology.challengeClaim.step3Desc" },
+              ].map((s) => (
+                <div
+                  key={s.n}
+                  className="relative rounded-xl border border-gray-200 bg-white p-6"
+                >
+                  <div className="absolute -top-3 left-6 flex h-7 w-7 items-center justify-center rounded-full bg-[#ffc107] text-xs font-bold text-[#0d1b3e]">
+                    {s.n}
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-[#0d1b3e]">
+                    {t(s.titleKey)}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                    {t(s.descKey)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Assessment Process */}
         <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

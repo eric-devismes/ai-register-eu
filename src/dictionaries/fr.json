@@ -586,6 +586,56 @@
       "multilingual2": "Parité de performance entre les langues",
       "multilingual3": "Tests d'adéquation culturelle",
       "multilingual4": "Assurance qualité de la localisation"
+    },
+    "promises": {
+      "badge": "What you can verify about us",
+      "title": "Three promises we'd stake our credibility on",
+      "subtitle": "Every rating on AI Compass EU is a statement a DPO, CISO, or procurement lead might act on in their next vendor review. We treat it accordingly.",
+      "sourceTitle": "Every claim has a source",
+      "sourceDesc": "No vendor fact appears on AI Compass EU without a direct link to the vendor's own trust portal, sub-processor list, DPA, or regulatory filing. If we can't point at the original, we don't publish it.",
+      "dateTitle": "Every claim has a date",
+      "dateDesc": "Trust pages change. Certifications expire. Sub-processor lists shift. We stamp every claim with the date we verified it, and we re-verify on a published cadence.",
+      "challengeTitle": "Anyone can challenge any claim",
+      "challengeDesc": "Spotted a stale fact or an outdated certification? Open the claim, click Report outdated, and an analyst has 48 business hours to respond. This is a public commitment, not a back-office SLA."
+    },
+    "sourceTiers": {
+      "badge": "Source hierarchy",
+      "title": "We publish the tier of every source we cite",
+      "subtitle": "Not all sources carry the same weight. We grade them so you know how much to trust any given claim.",
+      "tier1Label": "Tier 1 — Vendor Trust Portal",
+      "tier1Desc": "Primary vendor-authored documents: trust portal pages, DPAs, sub-processor lists, compliance attestations. Highest authority for facts about a vendor's own practices.",
+      "tier1Examples": "Examples: trust.openai.com, Microsoft Trust Center, AWS Compliance Reports",
+      "tier2Label": "Tier 2 — Vendor Product Documentation",
+      "tier2Desc": "Technical documentation the vendor publishes and maintains as operational reference. Authoritative on configuration and capability, slightly less so on compliance posture.",
+      "tier2Examples": "Examples: official product docs, security whitepapers, published release notes",
+      "tier3Label": "Tier 3 — Vendor Corporate Communications",
+      "tier3Desc": "Dated, authored statements from the vendor. Less formal than Tier 1 but still traceable and attributable — useful for direction of travel, weaker for precise current state.",
+      "tier3Examples": "Examples: press releases, earnings call transcripts, corporate blog posts",
+      "tier4Label": "Tier 4 — Regulatory Filings",
+      "tier4Desc": "Third-party regulatory or judicial documents. Used to establish compliance status, enforcement history, or legal interpretation.",
+      "tier4Examples": "Examples: EU AI Act conformity declarations, GDPR regulator decisions, court judgments"
+    },
+    "refresh": {
+      "badge": "Refresh cadence",
+      "title": "What we check, and how often",
+      "subtitle": "Vendor postures change. We chase the changes, we don't wait for them.",
+      "weeklyTitle": "Weekly diff detection",
+      "weeklyDesc": "Every Monday our fetcher re-reads every Tier 1 source in our catalogue. Content-hash changes auto-queue into analyst review within 24 hours.",
+      "quarterlyTitle": "90-day claim re-verification",
+      "quarterlyDesc": "Any published claim older than 90 days is automatically flagged for re-check, even when the source page hasn't changed. Expired sources fail loudly, they don't go stale silently.",
+      "escalationTitle": "Customer-initiated escalation — 48h SLA",
+      "escalationDesc": "When you click Report outdated on a claim, an analyst responds within 48 business hours with one of three outcomes: a correction, a confirmation, or a structured explanation of why the claim still stands."
+    },
+    "challengeClaim": {
+      "badge": "Push back",
+      "title": "How to challenge any claim on this platform",
+      "subtitle": "Our credibility depends on being correctable. This is the route.",
+      "step1Title": "Find the claim",
+      "step1Desc": "Every vendor profile lists sourced claims. Each carries a small Report outdated link next to the source chip.",
+      "step2Title": "Tell us what's wrong",
+      "step2Desc": "One form: which claim, what you think is incorrect, and a pointer to evidence. Two minutes.",
+      "step3Title": "Public response within 48 hours",
+      "step3Desc": "An analyst reviews, updates the claim if needed, and the correction history becomes part of the public record. We publish what we got wrong."
     }
   },
   "pricing": {
