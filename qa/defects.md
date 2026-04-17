@@ -5,7 +5,30 @@
 
 ---
 
-## 2026-04-17 QA Run
+## 2026-04-17 QA Run (Evening)
+
+### Critical
+_None this run._
+
+### Warning
+- **`/api/chat` returns 500 for malformed requests (missing `question` field)** — Sending `{"test":true}` caused `guardQuestion(undefined)` to throw, falling through to the catch block with a 500. Should be 400 (Bad Request). **✅ Fixed this run**: Added input validation guard before pipeline in `src/app/api/chat/route.ts` — returns 400 with `{error:"Missing required field: question"}` for empty/missing question. — https://ai-register-eu.vercel.app/api/chat
+- **Ongoing: Newsfeed future-dated articles (Aug 2026) no "Scheduled" badge** — Top items in the feed are dated Aug 2026 with no "Upcoming" or "Scheduled" label. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+- **Ongoing: Stats bar "80 AI tools" vs pricing page "100+" inconsistency** — Homepage shows 80, Pro tier copy says "100+". Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+
+### Info
+- **All 6 core pages return 200** — /, /database, /regulations, /pricing, /about, /methodology all load cleanly. ✅
+- **FR/DE locales fully operational** — /fr, /fr/database, /fr/about, /de, /de/database, /de/pricing all render with correct translated content. ✅
+- **System detail pages working** — `/en/systems/anthropic-claude-enterprise` (B-), `/en/systems/openai-chatgpt-enterprise` (B-), `/en/systems/amazon-bedrock-aws` (B+) all load with full framework breakdown. ✅
+- **"Home" + "Subscribe" nav/CTA labels in English** — Confirmed intentional: both are in `scripts/i18n-glossary.json` as glossary-protected terms. Not a bug. ✅
+- **FR/DE pricing pages correct** — €0/€19/custom pricing displayed correctly with proper French/German copy. ✅
+- **i18n check: 0 errors, 6613 untranslated warnings** — Build-blocking gate passes; warnings are pre-existing untranslated strings (DeepL backfill needed when key is available). ✅
+
+### Fixed this run
+- **`/api/chat` 500 on malformed request** — Added early validation: empty/missing `question` now returns HTTP 400 before hitting the pipeline. `src/app/api/chat/route.ts:149–151`. ✅
+
+---
+
+## 2026-04-17 QA Run (Morning)
 
 ### Critical
 _None this run._

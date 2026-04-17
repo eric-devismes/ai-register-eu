@@ -148,6 +148,10 @@ export async function POST(request: Request) {
     const question = body.question as string;
     const locale = (isValidLocale(body.locale) ? body.locale : "en") as Locale;
 
+    if (!question || typeof question !== "string" || question.trim().length === 0) {
+      return NextResponse.json({ error: "Missing required field: question" }, { status: 400 });
+    }
+
     // Step 0: Get subscriber ID early — needed for logging and profile lookup
     const subId = await getSubscriberId();
 
