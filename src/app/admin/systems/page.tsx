@@ -8,6 +8,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { computeOverallScore } from "@/lib/scoring";
 import { DeleteSystemButton } from "./DeleteButton";
+import { StatusToggle } from "./StatusToggle";
 
 export default async function SystemsListPage() {
   const systems = await prisma.aISystem.findMany({
@@ -41,6 +42,7 @@ export default async function SystemsListPage() {
             <thead className="border-b border-border-lighter bg-surface-alt text-xs uppercase tracking-wider text-text-muted">
               <tr>
                 <th className="px-6 py-3">System</th>
+                <th className="px-6 py-3">Status</th>
                 <th className="px-6 py-3">Risk</th>
                 <th className="px-6 py-3">Overall</th>
                 <th className="px-6 py-3">Scores</th>
@@ -58,6 +60,9 @@ export default async function SystemsListPage() {
                     <td className="px-6 py-4">
                       <p className="font-medium text-text-primary">{system.name}</p>
                       <p className="text-xs text-text-muted">{system.vendor}</p>
+                    </td>
+                    <td className="px-6 py-4">
+                      <StatusToggle id={system.id} status={system.status} />
                     </td>
                     <td className="px-6 py-4">
                       <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold ${

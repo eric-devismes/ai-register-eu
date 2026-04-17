@@ -17,7 +17,7 @@ import { prisma } from "@/lib/db";
  */
 export async function getFeaturedSystems() {
   return prisma.aISystem.findMany({
-    where: { featured: true },
+    where: { featured: true, status: "active" },
     orderBy: { name: "asc" },
     include: {
       industries: true,
@@ -34,6 +34,7 @@ export async function getFeaturedSystems() {
  */
 export async function getAllSystems() {
   return prisma.aISystem.findMany({
+    where: { status: "active" },
     orderBy: [{ vendor: "asc" }, { name: "asc" }],
     include: {
       industries: true,
@@ -47,10 +48,10 @@ export async function getAllSystems() {
 /**
  * Get a single AI system by its URL slug.
  * Includes full details: industries, scores with framework info.
- * Returns null if not found.
+ * Returns null if not found or inactive (public lookup).
  */
 export async function getSystemBySlug(slug: string) {
-  return prisma.aISystem.findUnique({
+  const system = await prisma.aISystem.findUnique({
     where: { slug },
     include: {
       industries: true,
@@ -60,6 +61,8 @@ export async function getSystemBySlug(slug: string) {
       },
     },
   });
+  if (!system || system.status !== "active") return null;
+  return system;
 }
 
 /**
@@ -150,8 +153,8 @@ export async function getFrameworkBySlug(slug: string) {
  */
 export async function getSystemFrameworkReport(systemSlug: string, frameworkSlug: string) {
   const [system, framework] = await Promise.all([
-    prisma.aISystem.findUnique({
-      where: { slug: systemSlug },
+    prisma.aISystem.findFirst({
+      where: { slug: systemSlug, status: "active" },
       include: {
         scores: {
           include: { framework: true },
@@ -210,6 +213,12 @@ export async function getSystemChangelog(systemId: string) {
  */
 export async function getRecentChangelogs(limit = 50) {
   return prisma.changeLog.findMany({
+    where: {
+      OR: [
+        { systemId: null },
+        { system: { status: "active" } },
+      ],
+    },
     orderBy: { date: "desc" },
     take: limit,
     include: {
@@ -230,7 +239,7 @@ export async function getIndustriesWithCounts() {
     orderBy: { name: "asc" },
     include: {
       _count: {
-        select: { systems: true },
+        select: { systems: { where: { status: "active" } } },
       },
     },
   });
@@ -274,7 +283,7 @@ export async function getFrameworksWithSections(slugs: string[]) {
  */
 export async function getSiteStats() {
   const [systemCount, frameworkCount, industryCount] = await Promise.all([
-    prisma.aISystem.count(),
+    prisma.aISystem.count({ where: { status: "active" } }),
     prisma.regulatoryFramework.count({ where: { published: true } }),
     prisma.industry.count(),
   ]);

@@ -41,12 +41,12 @@ export type PolicyStatementMinAggregateOutputType = {
   reference: string | null
   statement: string | null
   commentary: string | null
-  sourceUrl: string | null
-  sourceNote: string | null
   sortOrder: number | null
   sectionId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  sourceNote: string | null
+  sourceUrl: string | null
 }
 
 export type PolicyStatementMaxAggregateOutputType = {
@@ -54,12 +54,12 @@ export type PolicyStatementMaxAggregateOutputType = {
   reference: string | null
   statement: string | null
   commentary: string | null
-  sourceUrl: string | null
-  sourceNote: string | null
   sortOrder: number | null
   sectionId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  sourceNote: string | null
+  sourceUrl: string | null
 }
 
 export type PolicyStatementCountAggregateOutputType = {
@@ -67,12 +67,12 @@ export type PolicyStatementCountAggregateOutputType = {
   reference: number
   statement: number
   commentary: number
-  sourceUrl: number
-  sourceNote: number
   sortOrder: number
   sectionId: number
   createdAt: number
   updatedAt: number
+  sourceNote: number
+  sourceUrl: number
   _all: number
 }
 
@@ -90,12 +90,12 @@ export type PolicyStatementMinAggregateInputType = {
   reference?: true
   statement?: true
   commentary?: true
-  sourceUrl?: true
-  sourceNote?: true
   sortOrder?: true
   sectionId?: true
   createdAt?: true
   updatedAt?: true
+  sourceNote?: true
+  sourceUrl?: true
 }
 
 export type PolicyStatementMaxAggregateInputType = {
@@ -103,12 +103,12 @@ export type PolicyStatementMaxAggregateInputType = {
   reference?: true
   statement?: true
   commentary?: true
-  sourceUrl?: true
-  sourceNote?: true
   sortOrder?: true
   sectionId?: true
   createdAt?: true
   updatedAt?: true
+  sourceNote?: true
+  sourceUrl?: true
 }
 
 export type PolicyStatementCountAggregateInputType = {
@@ -116,12 +116,12 @@ export type PolicyStatementCountAggregateInputType = {
   reference?: true
   statement?: true
   commentary?: true
-  sourceUrl?: true
-  sourceNote?: true
   sortOrder?: true
   sectionId?: true
   createdAt?: true
   updatedAt?: true
+  sourceNote?: true
+  sourceUrl?: true
   _all?: true
 }
 
@@ -216,12 +216,12 @@ export type PolicyStatementGroupByOutputType = {
   reference: string
   statement: string
   commentary: string
-  sourceUrl: string
-  sourceNote: string
   sortOrder: number
   sectionId: string
   createdAt: Date
   updatedAt: Date
+  sourceNote: string
+  sourceUrl: string
   _count: PolicyStatementCountAggregateOutputType | null
   _avg: PolicyStatementAvgAggregateOutputType | null
   _sum: PolicyStatementSumAggregateOutputType | null
@@ -252,12 +252,12 @@ export type PolicyStatementWhereInput = {
   reference?: Prisma.StringFilter<"PolicyStatement"> | string
   statement?: Prisma.StringFilter<"PolicyStatement"> | string
   commentary?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
   sortOrder?: Prisma.IntFilter<"PolicyStatement"> | number
   sectionId?: Prisma.StringFilter<"PolicyStatement"> | string
   createdAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
+  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
+  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
   section?: Prisma.XOR<Prisma.FrameworkSectionScalarRelationFilter, Prisma.FrameworkSectionWhereInput>
 }
 
@@ -266,12 +266,12 @@ export type PolicyStatementOrderByWithRelationInput = {
   reference?: Prisma.SortOrder
   statement?: Prisma.SortOrder
   commentary?: Prisma.SortOrder
-  sourceUrl?: Prisma.SortOrder
-  sourceNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sourceNote?: Prisma.SortOrder
+  sourceUrl?: Prisma.SortOrder
   section?: Prisma.FrameworkSectionOrderByWithRelationInput
 }
 
@@ -283,12 +283,12 @@ export type PolicyStatementWhereUniqueInput = Prisma.AtLeast<{
   reference?: Prisma.StringFilter<"PolicyStatement"> | string
   statement?: Prisma.StringFilter<"PolicyStatement"> | string
   commentary?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
   sortOrder?: Prisma.IntFilter<"PolicyStatement"> | number
   sectionId?: Prisma.StringFilter<"PolicyStatement"> | string
   createdAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
+  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
+  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
   section?: Prisma.XOR<Prisma.FrameworkSectionScalarRelationFilter, Prisma.FrameworkSectionWhereInput>
 }, "id">
 
@@ -297,12 +297,12 @@ export type PolicyStatementOrderByWithAggregationInput = {
   reference?: Prisma.SortOrder
   statement?: Prisma.SortOrder
   commentary?: Prisma.SortOrder
-  sourceUrl?: Prisma.SortOrder
-  sourceNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sourceNote?: Prisma.SortOrder
+  sourceUrl?: Prisma.SortOrder
   _count?: Prisma.PolicyStatementCountOrderByAggregateInput
   _avg?: Prisma.PolicyStatementAvgOrderByAggregateInput
   _max?: Prisma.PolicyStatementMaxOrderByAggregateInput
@@ -318,12 +318,12 @@ export type PolicyStatementScalarWhereWithAggregatesInput = {
   reference?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
   statement?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
   commentary?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
-  sourceUrl?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
-  sourceNote?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
   sortOrder?: Prisma.IntWithAggregatesFilter<"PolicyStatement"> | number
   sectionId?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PolicyStatement"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PolicyStatement"> | Date | string
+  sourceNote?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
+  sourceUrl?: Prisma.StringWithAggregatesFilter<"PolicyStatement"> | string
 }
 
 export type PolicyStatementCreateInput = {
@@ -331,11 +331,11 @@ export type PolicyStatementCreateInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
   section: Prisma.FrameworkSectionCreateNestedOneWithoutStatementsInput
 }
 
@@ -344,12 +344,12 @@ export type PolicyStatementUncheckedCreateInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   sectionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
 }
 
 export type PolicyStatementUpdateInput = {
@@ -357,11 +357,11 @@ export type PolicyStatementUpdateInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
   section?: Prisma.FrameworkSectionUpdateOneRequiredWithoutStatementsNestedInput
 }
 
@@ -370,12 +370,12 @@ export type PolicyStatementUncheckedUpdateInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PolicyStatementCreateManyInput = {
@@ -383,12 +383,12 @@ export type PolicyStatementCreateManyInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   sectionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
 }
 
 export type PolicyStatementUpdateManyMutationInput = {
@@ -396,11 +396,11 @@ export type PolicyStatementUpdateManyMutationInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PolicyStatementUncheckedUpdateManyInput = {
@@ -408,12 +408,12 @@ export type PolicyStatementUncheckedUpdateManyInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PolicyStatementListRelationFilter = {
@@ -431,12 +431,12 @@ export type PolicyStatementCountOrderByAggregateInput = {
   reference?: Prisma.SortOrder
   statement?: Prisma.SortOrder
   commentary?: Prisma.SortOrder
-  sourceUrl?: Prisma.SortOrder
-  sourceNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sourceNote?: Prisma.SortOrder
+  sourceUrl?: Prisma.SortOrder
 }
 
 export type PolicyStatementAvgOrderByAggregateInput = {
@@ -448,12 +448,12 @@ export type PolicyStatementMaxOrderByAggregateInput = {
   reference?: Prisma.SortOrder
   statement?: Prisma.SortOrder
   commentary?: Prisma.SortOrder
-  sourceUrl?: Prisma.SortOrder
-  sourceNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sourceNote?: Prisma.SortOrder
+  sourceUrl?: Prisma.SortOrder
 }
 
 export type PolicyStatementMinOrderByAggregateInput = {
@@ -461,12 +461,12 @@ export type PolicyStatementMinOrderByAggregateInput = {
   reference?: Prisma.SortOrder
   statement?: Prisma.SortOrder
   commentary?: Prisma.SortOrder
-  sourceUrl?: Prisma.SortOrder
-  sourceNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sourceNote?: Prisma.SortOrder
+  sourceUrl?: Prisma.SortOrder
 }
 
 export type PolicyStatementSumOrderByAggregateInput = {
@@ -520,11 +520,11 @@ export type PolicyStatementCreateWithoutSectionInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
 }
 
 export type PolicyStatementUncheckedCreateWithoutSectionInput = {
@@ -532,11 +532,11 @@ export type PolicyStatementUncheckedCreateWithoutSectionInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
 }
 
 export type PolicyStatementCreateOrConnectWithoutSectionInput = {
@@ -573,12 +573,12 @@ export type PolicyStatementScalarWhereInput = {
   reference?: Prisma.StringFilter<"PolicyStatement"> | string
   statement?: Prisma.StringFilter<"PolicyStatement"> | string
   commentary?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
-  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
   sortOrder?: Prisma.IntFilter<"PolicyStatement"> | number
   sectionId?: Prisma.StringFilter<"PolicyStatement"> | string
   createdAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PolicyStatement"> | Date | string
+  sourceNote?: Prisma.StringFilter<"PolicyStatement"> | string
+  sourceUrl?: Prisma.StringFilter<"PolicyStatement"> | string
 }
 
 export type PolicyStatementCreateManySectionInput = {
@@ -586,11 +586,11 @@ export type PolicyStatementCreateManySectionInput = {
   reference?: string
   statement: string
   commentary?: string
-  sourceUrl?: string
-  sourceNote?: string
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceNote?: string
+  sourceUrl?: string
 }
 
 export type PolicyStatementUpdateWithoutSectionInput = {
@@ -598,11 +598,11 @@ export type PolicyStatementUpdateWithoutSectionInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PolicyStatementUncheckedUpdateWithoutSectionInput = {
@@ -610,11 +610,11 @@ export type PolicyStatementUncheckedUpdateWithoutSectionInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PolicyStatementUncheckedUpdateManyWithoutSectionInput = {
@@ -622,11 +622,11 @@ export type PolicyStatementUncheckedUpdateManyWithoutSectionInput = {
   reference?: Prisma.StringFieldUpdateOperationsInput | string
   statement?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceNote?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -636,12 +636,12 @@ export type PolicyStatementSelect<ExtArgs extends runtime.Types.Extensions.Inter
   reference?: boolean
   statement?: boolean
   commentary?: boolean
-  sourceUrl?: boolean
-  sourceNote?: boolean
   sortOrder?: boolean
   sectionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  sourceNote?: boolean
+  sourceUrl?: boolean
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["policyStatement"]>
 
@@ -650,12 +650,12 @@ export type PolicyStatementSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   reference?: boolean
   statement?: boolean
   commentary?: boolean
-  sourceUrl?: boolean
-  sourceNote?: boolean
   sortOrder?: boolean
   sectionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  sourceNote?: boolean
+  sourceUrl?: boolean
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["policyStatement"]>
 
@@ -664,12 +664,12 @@ export type PolicyStatementSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   reference?: boolean
   statement?: boolean
   commentary?: boolean
-  sourceUrl?: boolean
-  sourceNote?: boolean
   sortOrder?: boolean
   sectionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  sourceNote?: boolean
+  sourceUrl?: boolean
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["policyStatement"]>
 
@@ -678,15 +678,15 @@ export type PolicyStatementSelectScalar = {
   reference?: boolean
   statement?: boolean
   commentary?: boolean
-  sourceUrl?: boolean
-  sourceNote?: boolean
   sortOrder?: boolean
   sectionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  sourceNote?: boolean
+  sourceUrl?: boolean
 }
 
-export type PolicyStatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reference" | "statement" | "commentary" | "sourceUrl" | "sourceNote" | "sortOrder" | "sectionId" | "createdAt" | "updatedAt", ExtArgs["result"]["policyStatement"]>
+export type PolicyStatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reference" | "statement" | "commentary" | "sortOrder" | "sectionId" | "createdAt" | "updatedAt" | "sourceNote" | "sourceUrl", ExtArgs["result"]["policyStatement"]>
 export type PolicyStatementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
 }
@@ -707,12 +707,12 @@ export type $PolicyStatementPayload<ExtArgs extends runtime.Types.Extensions.Int
     reference: string
     statement: string
     commentary: string
-    sourceUrl: string
-    sourceNote: string
     sortOrder: number
     sectionId: string
     createdAt: Date
     updatedAt: Date
+    sourceNote: string
+    sourceUrl: string
   }, ExtArgs["result"]["policyStatement"]>
   composites: {}
 }
@@ -1141,12 +1141,12 @@ export interface PolicyStatementFieldRefs {
   readonly reference: Prisma.FieldRef<"PolicyStatement", 'String'>
   readonly statement: Prisma.FieldRef<"PolicyStatement", 'String'>
   readonly commentary: Prisma.FieldRef<"PolicyStatement", 'String'>
-  readonly sourceUrl: Prisma.FieldRef<"PolicyStatement", 'String'>
-  readonly sourceNote: Prisma.FieldRef<"PolicyStatement", 'String'>
   readonly sortOrder: Prisma.FieldRef<"PolicyStatement", 'Int'>
   readonly sectionId: Prisma.FieldRef<"PolicyStatement", 'String'>
   readonly createdAt: Prisma.FieldRef<"PolicyStatement", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PolicyStatement", 'DateTime'>
+  readonly sourceNote: Prisma.FieldRef<"PolicyStatement", 'String'>
+  readonly sourceUrl: Prisma.FieldRef<"PolicyStatement", 'String'>
 }
     
 

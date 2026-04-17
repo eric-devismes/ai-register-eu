@@ -214,8 +214,8 @@ export type DigestDecisionWhereInput = {
   workCycleId?: Prisma.StringNullableFilter<"DigestDecision"> | string | null
   digestId?: Prisma.StringNullableFilter<"DigestDecision"> | string | null
   createdAt?: Prisma.DateTimeFilter<"DigestDecision"> | Date | string
-  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
   digest?: Prisma.XOR<Prisma.DailyDigestNullableScalarRelationFilter, Prisma.DailyDigestWhereInput> | null
+  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
 }
 
 export type DigestDecisionOrderByWithRelationInput = {
@@ -228,8 +228,8 @@ export type DigestDecisionOrderByWithRelationInput = {
   workCycleId?: Prisma.SortOrderInput | Prisma.SortOrder
   digestId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  workCycle?: Prisma.WorkCycleOrderByWithRelationInput
   digest?: Prisma.DailyDigestOrderByWithRelationInput
+  workCycle?: Prisma.WorkCycleOrderByWithRelationInput
 }
 
 export type DigestDecisionWhereUniqueInput = Prisma.AtLeast<{
@@ -245,8 +245,8 @@ export type DigestDecisionWhereUniqueInput = Prisma.AtLeast<{
   workCycleId?: Prisma.StringNullableFilter<"DigestDecision"> | string | null
   digestId?: Prisma.StringNullableFilter<"DigestDecision"> | string | null
   createdAt?: Prisma.DateTimeFilter<"DigestDecision"> | Date | string
-  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
   digest?: Prisma.XOR<Prisma.DailyDigestNullableScalarRelationFilter, Prisma.DailyDigestWhereInput> | null
+  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
 }, "id">
 
 export type DigestDecisionOrderByWithAggregationInput = {
@@ -287,8 +287,8 @@ export type DigestDecisionCreateInput = {
   precedent?: string
   autonomous?: boolean
   createdAt?: Date | string
-  workCycle?: Prisma.WorkCycleCreateNestedOneWithoutDecisionsInput
   digest?: Prisma.DailyDigestCreateNestedOneWithoutDecisionsInput
+  workCycle?: Prisma.WorkCycleCreateNestedOneWithoutDecisionsInput
 }
 
 export type DigestDecisionUncheckedCreateInput = {
@@ -311,8 +311,8 @@ export type DigestDecisionUpdateInput = {
   precedent?: Prisma.StringFieldUpdateOperationsInput | string
   autonomous?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workCycle?: Prisma.WorkCycleUpdateOneWithoutDecisionsNestedInput
   digest?: Prisma.DailyDigestUpdateOneWithoutDecisionsNestedInput
+  workCycle?: Prisma.WorkCycleUpdateOneWithoutDecisionsNestedInput
 }
 
 export type DigestDecisionUncheckedUpdateInput = {
@@ -702,8 +702,8 @@ export type DigestDecisionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["digestDecision"]>
 
 export type DigestDecisionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -716,8 +716,8 @@ export type DigestDecisionSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["digestDecision"]>
 
 export type DigestDecisionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -730,8 +730,8 @@ export type DigestDecisionSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["digestDecision"]>
 
 export type DigestDecisionSelectScalar = {
@@ -748,23 +748,23 @@ export type DigestDecisionSelectScalar = {
 
 export type DigestDecisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "riskLevel" | "rationale" | "precedent" | "autonomous" | "workCycleId" | "digestId" | "createdAt", ExtArgs["result"]["digestDecision"]>
 export type DigestDecisionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }
 export type DigestDecisionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }
 export type DigestDecisionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.DigestDecision$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.DigestDecision$workCycleArgs<ExtArgs>
 }
 
 export type $DigestDecisionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DigestDecision"
   objects: {
-    workCycle: Prisma.$WorkCyclePayload<ExtArgs> | null
     digest: Prisma.$DailyDigestPayload<ExtArgs> | null
+    workCycle: Prisma.$WorkCyclePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1170,8 +1170,8 @@ readonly fields: DigestDecisionFieldRefs;
  */
 export interface Prisma__DigestDecisionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  workCycle<T extends Prisma.DigestDecision$workCycleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DigestDecision$workCycleArgs<ExtArgs>>): Prisma.Prisma__WorkCycleClient<runtime.Types.Result.GetResult<Prisma.$WorkCyclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   digest<T extends Prisma.DigestDecision$digestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DigestDecision$digestArgs<ExtArgs>>): Prisma.Prisma__DailyDigestClient<runtime.Types.Result.GetResult<Prisma.$DailyDigestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  workCycle<T extends Prisma.DigestDecision$workCycleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DigestDecision$workCycleArgs<ExtArgs>>): Prisma.Prisma__WorkCycleClient<runtime.Types.Result.GetResult<Prisma.$WorkCyclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1611,25 +1611,6 @@ export type DigestDecisionDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * DigestDecision.workCycle
- */
-export type DigestDecision$workCycleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WorkCycle
-   */
-  select?: Prisma.WorkCycleSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WorkCycle
-   */
-  omit?: Prisma.WorkCycleOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WorkCycleInclude<ExtArgs> | null
-  where?: Prisma.WorkCycleWhereInput
-}
-
-/**
  * DigestDecision.digest
  */
 export type DigestDecision$digestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1646,6 +1627,25 @@ export type DigestDecision$digestArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.DailyDigestInclude<ExtArgs> | null
   where?: Prisma.DailyDigestWhereInput
+}
+
+/**
+ * DigestDecision.workCycle
+ */
+export type DigestDecision$workCycleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkCycle
+   */
+  select?: Prisma.WorkCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkCycle
+   */
+  omit?: Prisma.WorkCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkCycleInclude<ExtArgs> | null
+  where?: Prisma.WorkCycleWhereInput
 }
 
 /**

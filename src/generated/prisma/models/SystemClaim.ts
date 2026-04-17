@@ -265,10 +265,10 @@ export type SystemClaimWhereInput = {
   retiredReason?: Prisma.StringFilter<"SystemClaim"> | string
   createdAt?: Prisma.DateTimeFilter<"SystemClaim"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SystemClaim"> | Date | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
-  source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
-  snapshot?: Prisma.XOR<Prisma.SourceSnapshotNullableScalarRelationFilter, Prisma.SourceSnapshotWhereInput> | null
   reviewTasks?: Prisma.ReviewTaskListRelationFilter
+  snapshot?: Prisma.XOR<Prisma.SourceSnapshotNullableScalarRelationFilter, Prisma.SourceSnapshotWhereInput> | null
+  source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }
 
 export type SystemClaimOrderByWithRelationInput = {
@@ -287,10 +287,10 @@ export type SystemClaimOrderByWithRelationInput = {
   retiredReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  system?: Prisma.AISystemOrderByWithRelationInput
-  source?: Prisma.SourceOrderByWithRelationInput
-  snapshot?: Prisma.SourceSnapshotOrderByWithRelationInput
   reviewTasks?: Prisma.ReviewTaskOrderByRelationAggregateInput
+  snapshot?: Prisma.SourceSnapshotOrderByWithRelationInput
+  source?: Prisma.SourceOrderByWithRelationInput
+  system?: Prisma.AISystemOrderByWithRelationInput
 }
 
 export type SystemClaimWhereUniqueInput = Prisma.AtLeast<{
@@ -313,10 +313,10 @@ export type SystemClaimWhereUniqueInput = Prisma.AtLeast<{
   retiredReason?: Prisma.StringFilter<"SystemClaim"> | string
   createdAt?: Prisma.DateTimeFilter<"SystemClaim"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SystemClaim"> | Date | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
-  source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
-  snapshot?: Prisma.XOR<Prisma.SourceSnapshotNullableScalarRelationFilter, Prisma.SourceSnapshotWhereInput> | null
   reviewTasks?: Prisma.ReviewTaskListRelationFilter
+  snapshot?: Prisma.XOR<Prisma.SourceSnapshotNullableScalarRelationFilter, Prisma.SourceSnapshotWhereInput> | null
+  source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }, "id" | "systemId_field_status">
 
 export type SystemClaimOrderByWithAggregationInput = {
@@ -374,10 +374,10 @@ export type SystemClaimCreateInput = {
   retiredReason?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
-  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
-  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutClaimInput
+  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
+  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
+  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
 }
 
 export type SystemClaimUncheckedCreateInput = {
@@ -412,10 +412,10 @@ export type SystemClaimUpdateInput = {
   retiredReason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
-  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
-  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutClaimNestedInput
+  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
+  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
 }
 
 export type SystemClaimUncheckedUpdateInput = {
@@ -718,9 +718,9 @@ export type SystemClaimCreateWithoutSystemInput = {
   retiredReason?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
-  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutClaimInput
+  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
+  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
 }
 
 export type SystemClaimUncheckedCreateWithoutSystemInput = {
@@ -801,9 +801,9 @@ export type SystemClaimCreateWithoutSourceInput = {
   retiredReason?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
-  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutClaimInput
+  snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
+  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
 }
 
 export type SystemClaimUncheckedCreateWithoutSourceInput = {
@@ -863,9 +863,9 @@ export type SystemClaimCreateWithoutSnapshotInput = {
   retiredReason?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
-  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutClaimInput
+  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
+  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
 }
 
 export type SystemClaimUncheckedCreateWithoutSnapshotInput = {
@@ -925,9 +925,9 @@ export type SystemClaimCreateWithoutReviewTasksInput = {
   retiredReason?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
-  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
   snapshot?: Prisma.SourceSnapshotCreateNestedOneWithoutClaimsInput
+  source?: Prisma.SourceCreateNestedOneWithoutClaimsInput
+  system: Prisma.AISystemCreateNestedOneWithoutClaimsInput
 }
 
 export type SystemClaimUncheckedCreateWithoutReviewTasksInput = {
@@ -977,9 +977,9 @@ export type SystemClaimUpdateWithoutReviewTasksInput = {
   retiredReason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
-  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
   snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
+  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
 }
 
 export type SystemClaimUncheckedUpdateWithoutReviewTasksInput = {
@@ -1030,9 +1030,9 @@ export type SystemClaimUpdateWithoutSystemInput = {
   retiredReason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
-  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutClaimNestedInput
+  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
+  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
 }
 
 export type SystemClaimUncheckedUpdateWithoutSystemInput = {
@@ -1100,9 +1100,9 @@ export type SystemClaimUpdateWithoutSourceInput = {
   retiredReason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
-  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutClaimNestedInput
+  snapshot?: Prisma.SourceSnapshotUpdateOneWithoutClaimsNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
 }
 
 export type SystemClaimUncheckedUpdateWithoutSourceInput = {
@@ -1170,9 +1170,9 @@ export type SystemClaimUpdateWithoutSnapshotInput = {
   retiredReason?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
-  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutClaimNestedInput
+  source?: Prisma.SourceUpdateOneWithoutClaimsNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutClaimsNestedInput
 }
 
 export type SystemClaimUncheckedUpdateWithoutSnapshotInput = {
@@ -1257,10 +1257,10 @@ export type SystemClaimSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   retiredReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
-  snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
   reviewTasks?: boolean | Prisma.SystemClaim$reviewTasksArgs<ExtArgs>
+  snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SystemClaimCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["systemClaim"]>
 
@@ -1280,9 +1280,9 @@ export type SystemClaimSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   retiredReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
   snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["systemClaim"]>
 
 export type SystemClaimSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1301,9 +1301,9 @@ export type SystemClaimSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   retiredReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
   snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["systemClaim"]>
 
 export type SystemClaimSelectScalar = {
@@ -1326,30 +1326,30 @@ export type SystemClaimSelectScalar = {
 
 export type SystemClaimOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "systemId" | "field" | "value" | "evidenceQuote" | "sourceId" | "snapshotId" | "verifiedBy" | "verifiedAt" | "confidence" | "status" | "retiredAt" | "retiredReason" | "createdAt" | "updatedAt", ExtArgs["result"]["systemClaim"]>
 export type SystemClaimInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
-  snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
   reviewTasks?: boolean | Prisma.SystemClaim$reviewTasksArgs<ExtArgs>
+  snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SystemClaimCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SystemClaimIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
   snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 export type SystemClaimIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
-  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
   snapshot?: boolean | Prisma.SystemClaim$snapshotArgs<ExtArgs>
+  source?: boolean | Prisma.SystemClaim$sourceArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 
 export type $SystemClaimPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SystemClaim"
   objects: {
-    system: Prisma.$AISystemPayload<ExtArgs>
-    source: Prisma.$SourcePayload<ExtArgs> | null
-    snapshot: Prisma.$SourceSnapshotPayload<ExtArgs> | null
     reviewTasks: Prisma.$ReviewTaskPayload<ExtArgs>[]
+    snapshot: Prisma.$SourceSnapshotPayload<ExtArgs> | null
+    source: Prisma.$SourcePayload<ExtArgs> | null
+    system: Prisma.$AISystemPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1761,10 +1761,10 @@ readonly fields: SystemClaimFieldRefs;
  */
 export interface Prisma__SystemClaimClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  source<T extends Prisma.SystemClaim$sourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SystemClaim$sourceArgs<ExtArgs>>): Prisma.Prisma__SourceClient<runtime.Types.Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  snapshot<T extends Prisma.SystemClaim$snapshotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SystemClaim$snapshotArgs<ExtArgs>>): Prisma.Prisma__SourceSnapshotClient<runtime.Types.Result.GetResult<Prisma.$SourceSnapshotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   reviewTasks<T extends Prisma.SystemClaim$reviewTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SystemClaim$reviewTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  snapshot<T extends Prisma.SystemClaim$snapshotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SystemClaim$snapshotArgs<ExtArgs>>): Prisma.Prisma__SourceSnapshotClient<runtime.Types.Result.GetResult<Prisma.$SourceSnapshotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  source<T extends Prisma.SystemClaim$sourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SystemClaim$sourceArgs<ExtArgs>>): Prisma.Prisma__SourceClient<runtime.Types.Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2210,22 +2210,27 @@ export type SystemClaimDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * SystemClaim.source
+ * SystemClaim.reviewTasks
  */
-export type SystemClaim$sourceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type SystemClaim$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Source
+   * Select specific fields to fetch from the ReviewTask
    */
-  select?: Prisma.SourceSelect<ExtArgs> | null
+  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Source
+   * Omit specific fields from the ReviewTask
    */
-  omit?: Prisma.SourceOmit<ExtArgs> | null
+  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SourceInclude<ExtArgs> | null
-  where?: Prisma.SourceWhereInput
+  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
+  where?: Prisma.ReviewTaskWhereInput
+  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
 }
 
 /**
@@ -2248,27 +2253,22 @@ export type SystemClaim$snapshotArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * SystemClaim.reviewTasks
+ * SystemClaim.source
  */
-export type SystemClaim$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type SystemClaim$sourceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ReviewTask
+   * Select specific fields to fetch from the Source
    */
-  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
+  select?: Prisma.SourceSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ReviewTask
+   * Omit specific fields from the Source
    */
-  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
+  omit?: Prisma.SourceOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
-  where?: Prisma.ReviewTaskWhereInput
-  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewTaskWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  where?: Prisma.SourceWhereInput
 }
 
 /**

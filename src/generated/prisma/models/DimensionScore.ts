@@ -184,8 +184,8 @@ export type DimensionScoreWhereInput = {
   commentary?: Prisma.StringFilter<"DimensionScore"> | string
   systemId?: Prisma.StringFilter<"DimensionScore"> | string
   sectionId?: Prisma.StringFilter<"DimensionScore"> | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
   section?: Prisma.XOR<Prisma.FrameworkSectionScalarRelationFilter, Prisma.FrameworkSectionWhereInput>
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }
 
 export type DimensionScoreOrderByWithRelationInput = {
@@ -194,8 +194,8 @@ export type DimensionScoreOrderByWithRelationInput = {
   commentary?: Prisma.SortOrder
   systemId?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
-  system?: Prisma.AISystemOrderByWithRelationInput
   section?: Prisma.FrameworkSectionOrderByWithRelationInput
+  system?: Prisma.AISystemOrderByWithRelationInput
 }
 
 export type DimensionScoreWhereUniqueInput = Prisma.AtLeast<{
@@ -208,8 +208,8 @@ export type DimensionScoreWhereUniqueInput = Prisma.AtLeast<{
   commentary?: Prisma.StringFilter<"DimensionScore"> | string
   systemId?: Prisma.StringFilter<"DimensionScore"> | string
   sectionId?: Prisma.StringFilter<"DimensionScore"> | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
   section?: Prisma.XOR<Prisma.FrameworkSectionScalarRelationFilter, Prisma.FrameworkSectionWhereInput>
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }, "id" | "systemId_sectionId">
 
 export type DimensionScoreOrderByWithAggregationInput = {
@@ -238,8 +238,8 @@ export type DimensionScoreCreateInput = {
   id?: string
   score: string
   commentary?: string
-  system: Prisma.AISystemCreateNestedOneWithoutDimensionScoresInput
   section: Prisma.FrameworkSectionCreateNestedOneWithoutDimensionScoresInput
+  system: Prisma.AISystemCreateNestedOneWithoutDimensionScoresInput
 }
 
 export type DimensionScoreUncheckedCreateInput = {
@@ -254,8 +254,8 @@ export type DimensionScoreUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.StringFieldUpdateOperationsInput | string
   commentary?: Prisma.StringFieldUpdateOperationsInput | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutDimensionScoresNestedInput
   section?: Prisma.FrameworkSectionUpdateOneRequiredWithoutDimensionScoresNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutDimensionScoresNestedInput
 }
 
 export type DimensionScoreUncheckedUpdateInput = {
@@ -566,8 +566,8 @@ export type DimensionScoreSelect<ExtArgs extends runtime.Types.Extensions.Intern
   commentary?: boolean
   systemId?: boolean
   sectionId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dimensionScore"]>
 
 export type DimensionScoreSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -576,8 +576,8 @@ export type DimensionScoreSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   commentary?: boolean
   systemId?: boolean
   sectionId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dimensionScore"]>
 
 export type DimensionScoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -586,8 +586,8 @@ export type DimensionScoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   commentary?: boolean
   systemId?: boolean
   sectionId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dimensionScore"]>
 
 export type DimensionScoreSelectScalar = {
@@ -600,23 +600,23 @@ export type DimensionScoreSelectScalar = {
 
 export type DimensionScoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "score" | "commentary" | "systemId" | "sectionId", ExtArgs["result"]["dimensionScore"]>
 export type DimensionScoreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 export type DimensionScoreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 export type DimensionScoreIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   section?: boolean | Prisma.FrameworkSectionDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 
 export type $DimensionScorePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DimensionScore"
   objects: {
-    system: Prisma.$AISystemPayload<ExtArgs>
     section: Prisma.$FrameworkSectionPayload<ExtArgs>
+    system: Prisma.$AISystemPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1018,8 +1018,8 @@ readonly fields: DimensionScoreFieldRefs;
  */
 export interface Prisma__DimensionScoreClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   section<T extends Prisma.FrameworkSectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FrameworkSectionDefaultArgs<ExtArgs>>): Prisma.Prisma__FrameworkSectionClient<runtime.Types.Result.GetResult<Prisma.$FrameworkSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

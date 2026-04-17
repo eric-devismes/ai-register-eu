@@ -1,36 +1,3 @@
-/**
- * Prisma Schema — Database structure for AI Compass EU
- *
- * Key models:
- *   - AISystem: AI tools rated for EU compliance
- *   - RegulatoryFramework: EU regulations with structured meta info
- *   - FrameworkSection: Sections/chapters within a regulation
- *   - PolicyStatement: Specific policy requirements with commentary
- *   - Industry: Sectors like Financial Services, Healthcare
- *   - AssessmentScore: Links a system to a framework with a letter grade
- *   - DimensionScore: Per-section scoring for cross-framework reports + spider charts
- *   - ChangeLog: Versioned history of changes to frameworks and systems
- *
- * Evidence backbone (sourcing + freshness):
- *   - Source: Registry of authoritative URLs per AI system (trust portal, DPA, etc.)
- *   - SourceSnapshot: Fetcher-captured point-in-time content + hash, for diff detection
- *   - SystemClaim: Evidence-backed claim per (system × field) with source quote + date
- *   - ReviewTask: Analyst review queue (new, source-diff, age-refresh, customer-report)
- *
- * Auth / users:
- *   - Subscriber: Public user accounts (email-only, magic link auth, GDPR-compliant)
- *   - AdminUser: Admin panel access
- *   - Company / Case: CRM for enterprise relationships
- *
- * Ops:
- *   - Translation: Cached DeepL translations of DB content in 14 EU languages
- *   - ChatLog / ChatUsage: Chatbot interactions and rate limiting
- *   - ApprovedSource: Admin-curated external URLs the chatbot can reference
- *   - WorkCycle / AgentReport / DigestDecision / DailyDigest: COO-led agent work cycles
- *
- * The database URL is configured in prisma.config.ts (not here).
- */
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -46,71 +13,66 @@ datasource db {
 /// Contains meta information (issuing authority, enforcement type, penalties,
 /// applicable regions) plus structured sections and policy statements.
 model RegulatoryFramework {
-  id            String            @id @default(cuid())
-  slug          String            @unique
-  name          String                                 // "EU AI Act"
-  description   String                                 // Short summary for homepage cards
-  content       String            @default("")         // General overview/introduction (Markdown)
-  badgeType     String                                 // "EU", "Sector", or "National"
-  criteriaCount Int               @default(0)          // Number of assessment criteria
-  effectiveDate String            @default("")         // "Aug 2025", "May 2018", etc.
-  published     Boolean           @default(true)       // Only published ones show on frontend
+  id                String             @id @default(cuid())
+  slug              String             @unique
+  name              String
+  description       String
+  content           String             @default("")
+  badgeType         String
+  criteriaCount     Int                @default(0)
+  effectiveDate     String             @default("")
+  published         Boolean            @default(true)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  applicableRegions String             @default("")
+  enforcementType   String             @default("")
+  issuingAuthority  String             @default("")
+  maxPenalty        String             @default("")
+  officialUrl       String             @default("")
+  purpose           String             @default("")
+  scores            AssessmentScore[]
+  changelog         ChangeLog[]
+  sections          FrameworkSection[]
+  industries        Industry[]         @relation("IndustryToRegulatoryFramework")
+  subscribers       Subscriber[]       @relation("RegulatoryFrameworkToSubscriber")
 
-  // ─── Meta Information ──────────────────────────────
-  issuingAuthority  String  @default("")               // "European Parliament & Council"
-  enforcementType   String  @default("")               // "Legal — Binding with penalties" / "Recommendation" / "Guideline"
-  maxPenalty        String  @default("")               // "Up to €35M or 7% of global turnover"
-  applicableRegions String  @default("")               // "All EU/EEA member states"
-  purpose           String  @default("")               // Overall purpose of this regulation
-  officialUrl       String  @default("")               // Link to official regulation text
-
-  // ─── Relations ─────────────────────────────────────
-  industries    Industry[]                             // Many-to-many: which industries this applies to
-  sections      FrameworkSection[]                     // Ordered sections/chapters
-  scores        AssessmentScore[]                      // All scores given under this framework
-  changelog     ChangeLog[]                            // Version history
-  subscribers   Subscriber[]                           // Users following this framework
-
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
-
-  @@index([published])                                   // Filter queries on homepage
-  @@index([name])                                        // Search/sort by name
+  @@index([published])
+  @@index([name])
 }
 
 /// A section or chapter within a regulatory framework.
 /// Example: "Risk Management System" under the EU AI Act.
 /// Contains ordered policy statements.
 model FrameworkSection {
-  id          String              @id @default(cuid())
-  title       String                                   // "Chapter 2: Risk Management System"
-  description String              @default("")         // Overview of what this section covers
-  sortOrder   Int                 @default(0)          // Controls display order (lower = first)
-  framework   RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
-  frameworkId String
-  statements      PolicyStatement[]                    // Ordered policy statements
-  dimensionScores DimensionScore[]                     // Per-system scores for this section
+  id              String              @id @default(cuid())
+  title           String
+  description     String              @default("")
+  sortOrder       Int                 @default(0)
+  frameworkId     String
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
+  dimensionScores DimensionScore[]
+  framework       RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  statements      PolicyStatement[]
 }
 
 /// A specific policy requirement within a framework section.
 /// Contains the actual requirement text and a plain-language commentary
 /// explaining what it means for organisations.
 model PolicyStatement {
-  id          String           @id @default(cuid())
-  reference   String           @default("")            // "Article 9(1)" or "Recital 47"
-  statement   String                                   // The actual policy requirement text
-  commentary  String           @default("")            // Plain-language explanation for organisations
-  sourceUrl   String           @default("")            // URL to official legal text / source
-  sourceNote  String           @default("")            // "EUR-Lex, Regulation 2024/1689, Art. 9"
-  sortOrder   Int              @default(0)             // Display order within section
-  section     FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-  sectionId   String
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  id         String           @id @default(cuid())
+  reference  String           @default("")
+  statement  String
+  commentary String           @default("")
+  sortOrder  Int              @default(0)
+  sectionId  String
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  sourceNote String           @default("")
+  sourceUrl  String           @default("")
+  section    FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 
-  @@index([sectionId])                                   // FK lookup when loading section statements
+  @@index([sectionId])
 }
 
 /// An industry sector (e.g., Financial Services, Healthcare).
@@ -118,148 +80,124 @@ model PolicyStatement {
 model Industry {
   id         String                @id @default(cuid())
   slug       String                @unique
-  name       String                                    // "Financial Services"
-  colorClass String                @default("")        // Tailwind classes: "bg-blue-100 text-blue-700"
-  iconName   String                @default("building")// Icon identifier for frontend
-  systems    AISystem[]                                // Many-to-many with AISystem
-  frameworks RegulatoryFramework[]                     // Many-to-many: which frameworks apply to this industry
+  name       String
+  colorClass String                @default("")
+  iconName   String                @default("building")
   createdAt  DateTime              @default(now())
   updatedAt  DateTime              @updatedAt
+  systems    AISystem[]            @relation("AISystemToIndustry")
+  frameworks RegulatoryFramework[] @relation("IndustryToRegulatoryFramework")
 }
 
 /// A compliance score linking one AI system to one regulatory framework.
 /// Each system can have at most one score per framework.
 model AssessmentScore {
   id          String              @id @default(cuid())
-  score       String                                   // Letter grade: "A+", "B-", etc.
-  system      AISystem            @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  score       String
   systemId    String
-  framework   RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
   frameworkId String
-  @@unique([systemId, frameworkId])                    // One score per system per framework
+  framework   RegulatoryFramework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  system      AISystem            @relation(fields: [systemId], references: [id], onDelete: Cascade)
+
+  @@unique([systemId, frameworkId])
 }
 
 /// Per-section (dimension) score for cross-framework reports and spider charts.
 /// Links one AI system to one framework section with a letter grade + commentary.
 /// The spider chart uses these scores as axes — larger area = better compliance.
 model DimensionScore {
-  id          String           @id @default(cuid())
-  score       String                                   // Letter grade: "A-", "C+", etc.
-  commentary  String           @default("")            // Why this score — displayed in the report
-  system      AISystem         @relation(fields: [systemId], references: [id], onDelete: Cascade)
-  systemId    String
-  section     FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-  sectionId   String
-  @@unique([systemId, sectionId])                      // One score per system per section
+  id         String           @id @default(cuid())
+  score      String
+  commentary String           @default("")
+  systemId   String
+  sectionId  String
+  section    FrameworkSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  system     AISystem         @relation(fields: [systemId], references: [id], onDelete: Cascade)
+
+  @@unique([systemId, sectionId])
 }
 
 /// An AI system rated for EU regulatory compliance.
 /// Each entry appears as a card on the website with per-framework scores.
 /// Extended fields provide the full vendor profile shown on the assessment page.
 model AISystem {
-  id          String            @id @default(cuid())
-  slug        String            @unique                // URL-friendly name
-  vendor      String                                   // Company name (e.g. "Microsoft")
-  name        String                                   // Product name (e.g. "Azure OpenAI")
-  type        String                                   // Category label (e.g. "Foundation Model")
-  risk        String                                   // "High", "Limited", or "Minimal"
-  capabilityType String @default("")                   // Meta AI taxonomy: "generative-ai", "supervised-ml", "unsupervised-ml", "conversational-ai", "autonomous-agents", "search-retrieval", "computer-vision", "decision-intelligence", "nlp"
-  description String                                   // What the system does
-  category    String                                   // Filter category on homepage
-  featured    Boolean           @default(false)        // Show on homepage?
-  industries  Industry[]                               // Many-to-many: which sectors it applies to
-  scores      AssessmentScore[]                        // Per-framework compliance scores
-
-  // ─── Vendor Profile ────────────────────────────────
-  vendorHq       String   @default("")                 // "Redmond, USA"
-  euPresence     String   @default("")                 // "Yes — subsidiaries across EU..."
-  useCases       String   @default("")                 // Newline-separated list
-
-  // ─── Data Handling ─────────────────────────────────
-  dataStorage     String  @default("")
-  dataProcessing  String  @default("")
-  trainingDataUse String  @default("")
-  subprocessors   String  @default("")
-
-  // ─── Contractual ───────────────────────────────────
-  dpaDetails      String  @default("")
-  slaDetails      String  @default("")
-  dataPortability String  @default("")
-  exitTerms       String  @default("")
-  ipTerms         String  @default("")
-
-  // ─── Security ──────────────────────────────────────
-  certifications  String  @default("")
-  encryptionInfo  String  @default("")
-  accessControls  String  @default("")
-
-  // ─── AI Transparency ──────────────────────────────
-  modelDocs       String  @default("")
-  explainability  String  @default("")
-  biasTesting     String  @default("")
-
-  // ─── EU Compliance ─────────────────────────────────
-  aiActStatus     String  @default("")
-  gdprStatus      String  @default("")
-  euResidency     String  @default("")
-
-  // ─── Capability & Deployment ────────────────────────
-  deploymentModel String  @default("")               // "cloud-only", "self-hosted", "hybrid"
-  sourceModel     String  @default("")               // "open-source", "closed-source", "open-weights", "partial-open"
-
-  // ─── Vendor Maturity & Market ─────────────────────
-  foundedYear       Int?                              // Year vendor was founded
-  employeeCount     String  @default("")              // "50,000+", "200-500", etc.
-  fundingStatus     String  @default("")              // "Public", "Private", "VC-backed ($1.2B)"
-  marketPresence    String  @default("")              // "Leader", "Challenger", "Niche", "Emerging"
-  customerCount     String  @default("")              // "10,000+", "500+", etc.
-  notableCustomers  String  @default("")              // "Deutsche Bank, NHS, Airbus"
-  customerStories   String  @default("")              // Brief success story summaries
-
-  // ─── Assessment metadata ───────────────────────────
-  assessedAt      DateTime?
-  assessmentNote  String   @default("")
-
-  changelog       ChangeLog[]                            // Version history for this system
-  subscribers     Subscriber[]                           // Users following this system
-  companies       Company[]                              // Companies using/evaluating this system
-  dimensionScores DimensionScore[]                       // Per-section scores for cross-reports
-
-  // ─── Evidence Backbone ──────────────────────────────
-  sources         Source[]                               // Authoritative URLs for this system
-  claims          SystemClaim[]                          // Evidence-backed claims
-  reviewTasks     ReviewTask[]                           // Open review tasks
-
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id               String            @id @default(cuid())
+  slug             String            @unique
+  vendor           String
+  name             String
+  type             String
+  risk             String
+  description      String
+  category         String
+  status           String            @default("active")
+  featured         Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  accessControls   String            @default("")
+  aiActStatus      String            @default("")
+  assessedAt       DateTime?
+  assessmentNote   String            @default("")
+  biasTesting      String            @default("")
+  certifications   String            @default("")
+  dataPortability  String            @default("")
+  dataProcessing   String            @default("")
+  dataStorage      String            @default("")
+  dpaDetails       String            @default("")
+  encryptionInfo   String            @default("")
+  euPresence       String            @default("")
+  euResidency      String            @default("")
+  exitTerms        String            @default("")
+  explainability   String            @default("")
+  gdprStatus       String            @default("")
+  ipTerms          String            @default("")
+  modelDocs        String            @default("")
+  slaDetails       String            @default("")
+  subprocessors    String            @default("")
+  trainingDataUse  String            @default("")
+  useCases         String            @default("")
+  vendorHq         String            @default("")
+  capabilityType   String            @default("")
+  customerCount    String            @default("")
+  customerStories  String            @default("")
+  deploymentModel  String            @default("")
+  employeeCount    String            @default("")
+  foundedYear      Int?
+  fundingStatus    String            @default("")
+  marketPresence   String            @default("")
+  notableCustomers String            @default("")
+  sourceModel      String            @default("")
+  scores           AssessmentScore[]
+  changelog        ChangeLog[]
+  dimensionScores  DimensionScore[]
+  reviewTasks      ReviewTask[]
+  sources          Source[]
+  claims           SystemClaim[]
+  companies        Company[]         @relation("AISystemToCompany")
+  industries       Industry[]        @relation("AISystemToIndustry")
+  subscribers      Subscriber[]      @relation("AISystemToSubscriber")
 }
-
-// ─── Evidence Backbone (Sourcing + Freshness) ──────────────────
-// Core principle: every published claim about an AI system must trace back
-// to a fetched source snippet with a date. LLM is a synthesis layer over
-// evidence, never the author. This is the platform's credibility moat.
 
 /// A registry of authoritative URLs per AI system.
 /// Populated by analysts when they onboard a vendor.
 /// The fetcher reads this list and pulls fresh snapshots on a schedule.
 model Source {
-  id          String   @id @default(cuid())
-  system      AISystem @relation(fields: [systemId], references: [id], onDelete: Cascade)
-  systemId    String
-  url         String                                             // "https://trust.openai.com/compliance"
-  label       String                                             // "OpenAI Trust Portal"
-  tier        Int      @default(1)                               // 1=trust portal / DPA / subprocessors, 2=vendor docs/marketing, 3=third-party cert registry (ISO, CSA STAR), 4=regulatory filings / incident reports
-  active      Boolean  @default(true)                            // Retired sources kept for history but not re-fetched
-  notes       String   @default("")                              // Internal analyst notes
-  fetchStrategy String @default("direct")                        // "direct" = plain HTTP GET. "jina-reader" = fetch via https://r.jina.ai/<url> for sites that block bots (Cloudflare challenge, JS-rendered apps). Source.url stays the canonical URL — only the fetcher swaps in the proxy.
-  lastExtractedSnapshotId String?                                 // ID of the most recent snapshot the claim extractor has processed (success or 0-yield). Prevents re-running the LLM on thin pages that legitimately return no claims. Set after every successful API round-trip in scripts/evidence-extract.ts.
-  snapshots   SourceSnapshot[]
-  claims      SystemClaim[]
-  reviewTasks ReviewTask[]                                       // Review tasks targeting this source
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                      String           @id @default(cuid())
+  systemId                String
+  url                     String
+  label                   String
+  tier                    Int              @default(1)
+  active                  Boolean          @default(true)
+  notes                   String           @default("")
+  createdAt               DateTime         @default(now())
+  updatedAt               DateTime         @updatedAt
+  fetchStrategy           String           @default("direct")
+  lastExtractedSnapshotId String?
+  reviewTasks             ReviewTask[]
+  system                  AISystem         @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  snapshots               SourceSnapshot[]
+  claims                  SystemClaim[]
 
-  @@unique([systemId, url])                                      // One entry per source URL per system
+  @@unique([systemId, url])
   @@index([systemId])
   @@index([tier])
 }
@@ -268,16 +206,16 @@ model Source {
 /// when contentHash changes, affected claims are queued for re-verification.
 /// Raw text retained so we can show the auditor the exact text we relied on.
 model SourceSnapshot {
-  id           String   @id @default(cuid())
-  source       Source   @relation(fields: [sourceId], references: [id], onDelete: Cascade)
-  sourceId     String
-  fetchedAt    DateTime @default(now())
-  contentHash  String                                            // SHA-256 of rawText, for diff detection
-  rawText      String                                            // Full fetched content (truncated if huge)
-  screenshotUrl String  @default("")                             // Optional: stored screenshot for visual audit
-  status       String   @default("success")                      // "success", "fetch-error", "blocked"
-  errorMessage String   @default("")                             // If status != success
-  claims       SystemClaim[]                                     // Claims extracted from this snapshot
+  id            String        @id @default(cuid())
+  sourceId      String
+  fetchedAt     DateTime      @default(now())
+  contentHash   String
+  rawText       String
+  screenshotUrl String        @default("")
+  status        String        @default("success")
+  errorMessage  String        @default("")
+  source        Source        @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  claims        SystemClaim[]
 
   @@unique([sourceId, fetchedAt])
   @@index([sourceId, fetchedAt])
@@ -290,36 +228,30 @@ model SourceSnapshot {
 /// Admin approves before the claim goes live on the public page.
 model SystemClaim {
   id            String          @id @default(cuid())
-  system        AISystem        @relation(fields: [systemId], references: [id], onDelete: Cascade)
   systemId      String
-  field         String                                           // "certifications", "dpa.available", "euResidency.storage", "subprocessors.disclosed", etc. Dotted for nested claims.
-  value         String                                           // The published claim value (short, human-readable)
-  evidenceQuote String                                           // Verbatim quote from the source that supports the value
-  source        Source?         @relation(fields: [sourceId], references: [id])
-  sourceId      String?                                          // Nullable = draft claim not yet linked to evidence
-  snapshot      SourceSnapshot? @relation(fields: [snapshotId], references: [id])
-  snapshotId    String?                                          // Which snapshot produced this extraction
-  verifiedBy    String          @default("")                     // Analyst email / "ai-extractor" / "expert-panel"
-  verifiedAt    DateTime?                                        // When this specific value was last human-confirmed
-  confidence    String          @default("medium")               // "high", "medium", "low" — analyst judgment
-  status        String          @default("draft")                // "draft", "published", "stale" (>180d), "disputed", "retired"
-  retiredAt     DateTime?                                        // If status=retired, when and why
+  field         String
+  value         String
+  evidenceQuote String
+  sourceId      String?
+  snapshotId    String?
+  verifiedBy    String          @default("")
+  verifiedAt    DateTime?
+  confidence    String          @default("medium")
+  status        String          @default("draft")
+  retiredAt     DateTime?
   retiredReason String          @default("")
-  reviewTasks   ReviewTask[]                                     // Open review tasks targeting this claim
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
+  reviewTasks   ReviewTask[]
+  snapshot      SourceSnapshot? @relation(fields: [snapshotId], references: [id])
+  source        Source?         @relation(fields: [sourceId], references: [id])
+  system        AISystem        @relation(fields: [systemId], references: [id], onDelete: Cascade)
 
-  // One claim row per (system, field, status) — multiple drafts can coexist
-  // alongside a published claim on the same field (each draft sourced from a
-  // different snapshot the extractor processed). Including status in the key
-  // allows draft+published to live side-by-side; the analyst promotes a draft
-  // by flipping status="published" (transactionally, with the old published
-  // row demoted to status="retired" first).
   @@unique([systemId, field, status])
   @@index([systemId, status])
-  @@index([status, verifiedAt])                                   // "Find claims needing refresh"
+  @@index([status, verifiedAt])
   @@index([field])
-  @@index([snapshotId])                                           // "Show me drafts from this snapshot"
+  @@index([snapshotId])
 }
 
 /// The review queue. Tasks created automatically (fetcher diff, age
@@ -327,27 +259,27 @@ model SystemClaim {
 /// Analysts drain this queue; everything not "done" is either in progress
 /// or overdue.
 model ReviewTask {
-  id          String       @id @default(cuid())
-  type        String                                             // "new-system", "source-diff", "age-refresh", "customer-report", "dispute", "spot-check"
-  system      AISystem?    @relation(fields: [systemId], references: [id], onDelete: Cascade)
-  systemId    String?                                            // Nullable for tasks spanning systems
-  claim       SystemClaim? @relation(fields: [claimId], references: [id], onDelete: Cascade)
-  claimId     String?                                            // Nullable for system-level tasks
-  source      Source?      @relation(fields: [sourceId], references: [id])
-  sourceId    String?                                            // Set for source-diff tasks
-  priority    String       @default("normal")                    // "low", "normal", "high", "urgent"
-  status      String       @default("open")                      // "open", "in-progress", "blocked", "done", "wontfix"
-  assignedTo  AdminUser?   @relation(fields: [assignedToId], references: [id])
+  id           String       @id @default(cuid())
+  type         String
+  systemId     String?
+  claimId      String?
+  sourceId     String?
+  priority     String       @default("normal")
+  status       String       @default("open")
   assignedToId String?
-  dueBy       DateTime?                                          // SLA deadline (e.g. 7d for source-diff)
-  title       String                                             // "Re-verify OpenAI certifications after trust-center update"
-  notes       String       @default("")                          // Analyst notes during resolution
-  resolvedAt  DateTime?
-  resolution  String       @default("")                          // "approved", "rejected", "edited", "deferred"
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  dueBy        DateTime?
+  title        String
+  notes        String       @default("")
+  resolvedAt   DateTime?
+  resolution   String       @default("")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  assignedTo   AdminUser?   @relation(fields: [assignedToId], references: [id])
+  claim        SystemClaim? @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  source       Source?      @relation(fields: [sourceId], references: [id])
+  system       AISystem?    @relation(fields: [systemId], references: [id], onDelete: Cascade)
 
-  @@index([status, dueBy])                                       // Queue ordering
+  @@index([status, dueBy])
   @@index([systemId, status])
   @@index([assignedToId, status])
 }
@@ -357,143 +289,113 @@ model ReviewTask {
 /// Displayed publicly as "Version History" on framework and assessment pages.
 model ChangeLog {
   id          String               @id @default(cuid())
-  date        DateTime             @default(now())       // When the change occurred
-  title       String                                     // "GDPR Amendment: AI-specific guidance added"
-  description String                                     // What changed and why
-  changeType  String               @default("update")    // "update", "amendment", "jurisprudence", "new_version", "incident", "certification", "correction"
-  sourceUrl   String               @default("")          // URL to the trusted source
-  sourceLabel String               @default("")          // "EUR-Lex", "Vendor Blog", "CJEU Ruling C-123/25"
-  author      String               @default("")          // Who made the change (e.g., "AI Compass EU Editorial")
-
-  // Polymorphic: a changelog entry belongs to either a framework or a system (or both)
-  framework   RegulatoryFramework? @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  date        DateTime             @default(now())
+  title       String
+  description String
+  changeType  String               @default("update")
+  sourceUrl   String               @default("")
+  sourceLabel String               @default("")
+  author      String               @default("")
   frameworkId String?
-  system      AISystem?            @relation(fields: [systemId], references: [id], onDelete: Cascade)
   systemId    String?
-
   createdAt   DateTime             @default(now())
+  framework   RegulatoryFramework? @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  system      AISystem?            @relation(fields: [systemId], references: [id], onDelete: Cascade)
 
-  @@index([date])                                        // Sort by date (newsfeed, dashboard)
-  @@index([frameworkId])                                  // Filter changelog by framework
-  @@index([systemId])                                     // Filter changelog by system
+  @@index([date])
+  @@index([frameworkId])
+  @@index([systemId])
 }
-
-// ─── Admin Users ────────────────────────────────────────────
 
 /// Admin users who can access the admin panel.
 /// Roles: "owner" (unrestricted), "admin" (full admin), "editor" (content only).
 /// Owner also bypasses all public-site tier restrictions (full testing access).
 model AdminUser {
-  id            String   @id @default(cuid())
-  email         String   @unique
-  name          String   @default("")
-  passwordHash  String                        // bcrypt hash
-  totpSecret    String   @default("")         // base32-encoded TOTP secret (empty = not set up)
-  totpEnabled   Boolean  @default(false)      // Whether 2FA is active
-  role          String   @default("editor")   // "owner", "admin", "editor"
-  active        Boolean  @default(true)       // Deactivate without deleting
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String       @default("")
+  passwordHash  String
+  totpSecret    String       @default("")
+  totpEnabled   Boolean      @default(false)
+  role          String       @default("editor")
+  active        Boolean      @default(true)
   lastLoginAt   DateTime?
-  assignedCases Case[]                        // Cases assigned to this admin
-  reviewTasks   ReviewTask[]                  // Evidence-backbone review queue items
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  assignedCases Case[]
+  reviewTasks   ReviewTask[]
 }
-
-// ─── Companies ──────────────────────────────────────────────
 
 /// Company / Organisation — groups subscribers and tracks AI system usage.
 /// Used by the admin CRM to manage customer relationships.
 model Company {
-  id            String       @id @default(cuid())
-  name          String                                  // "Deutsche Bank AG"
-  domain        String       @default("")               // "deutschebank.com" — for auto-matching subscribers
-  industry      String       @default("")               // "financial", "healthcare", etc.
-  country       String       @default("")               // "Germany", "France", etc.
-  size          String       @default("")               // "startup", "sme", "enterprise", "public-sector"
-  tier          String       @default("free")           // Highest tier among company subscribers
-  notes         String       @default("")               // Internal notes (admin only)
-
-  subscribers   Subscriber[]                             // People from this company
-  cases         Case[]                                   // Support cases
-  aiSystems     AISystem[]                               // AI systems this company uses/evaluates
-
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  id          String       @id @default(cuid())
+  name        String
+  domain      String       @default("")
+  industry    String       @default("")
+  country     String       @default("")
+  size        String       @default("")
+  tier        String       @default("free")
+  notes       String       @default("")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  cases       Case[]
+  subscribers Subscriber[]
+  aiSystems   AISystem[]   @relation("AISystemToCompany")
 }
-
-// ─── Cases (Support / Consulting) ───────────────────────────
 
 /// Case — A support request, consulting inquiry, or tracked interaction.
 /// Managed by admins. Linked to a subscriber and optionally a company.
 model Case {
-  id            String       @id @default(cuid())
-  title         String                                   // "RFI Assistance — AI Act compliance"
-  description   String       @default("")               // Detail of the request
-  status        String       @default("open")           // "open", "in_progress", "waiting", "resolved", "closed"
-  priority      String       @default("normal")         // "low", "normal", "high", "urgent"
-  category      String       @default("general")        // "general", "consulting", "billing", "technical", "compliance"
-
-  // Relationships
-  subscriber    Subscriber?  @relation(fields: [subscriberId], references: [id])
-  subscriberId  String?
-  company       Company?     @relation(fields: [companyId], references: [id])
-  companyId     String?
-  assignedTo    AdminUser?   @relation(fields: [assignedToId], references: [id])
-  assignedToId  String?
-
-  // Tracking
-  resolvedAt    DateTime?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  id           String      @id @default(cuid())
+  title        String
+  description  String      @default("")
+  status       String      @default("open")
+  priority     String      @default("normal")
+  category     String      @default("general")
+  subscriberId String?
+  companyId    String?
+  assignedToId String?
+  resolvedAt   DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  assignedTo   AdminUser?  @relation(fields: [assignedToId], references: [id])
+  company      Company?    @relation(fields: [companyId], references: [id])
+  subscriber   Subscriber? @relation(fields: [subscriberId], references: [id])
 }
-
-// ─── Subscribers ────────────────────────────────────────────
 
 /// GDPR-compliant: stores only email + preferences + consent record.
 /// No passwords, no names, no tracking, no profiling.
 model Subscriber {
-  id              String                @id @default(cuid())
-  email           String                @unique
-  name            String                @default("")          // Display name (optional)
-  verified        Boolean               @default(false)       // Email confirmed via magic link
-  digestEnabled   Boolean               @default(true)        // Receives daily digest
-  digestFrequency String                @default("daily")     // "daily" | "weekly" | "none"
-
-  // ─── User Profile (for tailored responses) ──────
-  role            String                @default("")          // "dpo", "procurement", "cto", "ciso", "legal", "executive", "other"
-  industry        String                @default("")          // "financial", "healthcare", "insurance", "public-sector", "hr", "other"
-  platforms       String                @default("")          // Comma-separated slugs of AI systems they use/evaluate
-  orgSize         String                @default("")          // "startup", "sme", "enterprise", "public-sector"
-
-  // ─── Company link ──────────────────────────────
-  company         Company?              @relation(fields: [companyId], references: [id])
-  companyId       String?
-  cases           Case[]                                      // Support cases from this subscriber
-
-  // GDPR consent record
-  consentDate     DateTime?                                   // When they gave consent
-  consentText     String                @default("")          // Snapshot of what they consented to
-
-  // Preferences (many-to-many)
-  frameworks      RegulatoryFramework[]                       // Frameworks they follow
-  systems         AISystem[]                                  // AI systems they follow
-
-  // Subscription tier
-  tier                 String    @default("free")             // "free", "pro", "enterprise"
+  id                   String                @id @default(cuid())
+  email                String                @unique
+  verified             Boolean               @default(false)
+  digestEnabled        Boolean               @default(true)
+  digestFrequency      String                @default("daily")
+  consentDate          DateTime?
+  consentText          String                @default("")
+  magicToken           String?
+  magicTokenExp        DateTime?
+  sessionToken         String?
+  sessionExp           DateTime?
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
   stripeCustomerId     String?
   stripeSubscriptionId String?
+  tier                 String                @default("free")
   tierExpiresAt        DateTime?
+  industry             String                @default("")
+  orgSize              String                @default("")
+  platforms            String                @default("")
+  role                 String                @default("")
+  companyId            String?
+  name                 String                @default("")
+  cases                Case[]
+  company              Company?              @relation(fields: [companyId], references: [id])
+  systems              AISystem[]            @relation("AISystemToSubscriber")
+  frameworks           RegulatoryFramework[] @relation("RegulatoryFrameworkToSubscriber")
 
-  // Magic link auth tokens
-  magicToken      String?                                     // Hashed magic link token
-  magicTokenExp   DateTime?                                   // Token expiry (15 min)
-  sessionToken    String?                                     // Hashed session token
-  sessionExp      DateTime?                                   // Session expiry (30 days)
-
-  createdAt       DateTime              @default(now())
-  updatedAt       DateTime              @updatedAt
-
-  @@index([stripeCustomerId])                                // Stripe webhook lookups
+  @@index([stripeCustomerId])
 }
 
 /// Tracks sent digest emails for GDPR compliance and delivery monitoring.
@@ -501,10 +403,10 @@ model DigestLog {
   id           String   @id @default(cuid())
   subscriberId String
   sentAt       DateTime @default(now())
-  itemCount    Int                                            // How many items were in the digest
-  status       String   @default("sent")                     // "sent" | "failed" | "bounced"
+  itemCount    Int
+  status       String   @default("sent")
 
-  @@index([subscriberId])                                    // Lookup digest history per subscriber
+  @@index([subscriberId])
 }
 
 /// Cached translations of database content in EU languages.
@@ -512,23 +414,25 @@ model DigestLog {
 /// Generic table: any entity type + field can be translated.
 model Translation {
   id         String   @id @default(cuid())
-  entityType String                                           // "framework", "system", "section", "statement", "industry", "changelog"
-  entityId   String                                           // ID of the source entity
-  locale     String                                           // "fr", "de", "pl", "ro", etc.
-  field      String                                           // "name", "description", "content", "statement", etc.
-  value      String                                           // The translated text
+  entityType String
+  entityId   String
+  locale     String
+  field      String
+  value      String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  @@unique([entityType, entityId, locale, field])             // One translation per entity+locale+field
+
+  @@unique([entityType, entityId, locale, field])
 }
 
 /// Rate limiting for the chatbot — tracks daily question count per anonymous visitor.
 /// Uses a fingerprint cookie (survives page reload) to prevent abuse.
 model ChatUsage {
-  id          String   @id @default(cuid())
-  fingerprint String                                           // Cookie-based fingerprint
-  date        String                                           // "2026-04-03" (calendar day)
-  count       Int      @default(0)                             // Questions asked today
+  id          String @id @default(cuid())
+  fingerprint String
+  date        String
+  count       Int    @default(0)
+
   @@unique([fingerprint, date])
 }
 
@@ -536,16 +440,16 @@ model ChatUsage {
 model ChatLog {
   id           String   @id @default(cuid())
   fingerprint  String
-  subscriberId String?                                         // If logged in
+  subscriberId String?
   question     String
   answer       String
   locale       String
-  blocked      Boolean  @default(false)                        // Was this blocked?
-  blockReason  String   @default("")                           // "injection", "off-topic", "rate-limit"
+  blocked      Boolean  @default(false)
+  blockReason  String   @default("")
   createdAt    DateTime @default(now())
 
-  @@index([fingerprint])                                       // Admin lookup by fingerprint
-  @@index([createdAt])                                         // Sort/filter by date in admin panel
+  @@index([fingerprint])
+  @@index([createdAt])
 }
 
 /// Feedback submitted via the contact form.
@@ -553,29 +457,27 @@ model Feedback {
   id        String   @id @default(cuid())
   name      String
   email     String
-  category  String                          // "general", "correction", "partnership", "press"
+  category  String
   subject   String
   message   String
-  status    String   @default("new")        // "new", "read", "responded"
+  status    String   @default("new")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-// ─── Expert Panel (Advisory Board) ──────────────────────────
 
 /// A discussion thread where domain experts debate a topic.
 /// The CEO (user) receives the summary via Telegram and makes the call.
 model ExpertDiscussion {
   id          String           @id @default(cuid())
-  topic       String                                   // The question being discussed
-  context     String           @default("")            // Additional context provided
-  status      String           @default("in_progress") // "in_progress", "awaiting_ceo", "decided", "closed"
-  consensus   Boolean          @default(false)         // Did experts reach consensus?
-  summary     String           @default("")            // AI-generated meeting summary
-  ceoDecision String           @default("")            // CEO's final decision text
-  responses   ExpertResponse[]
+  topic       String
+  context     String           @default("")
+  status      String           @default("in_progress")
+  consensus   Boolean          @default(false)
+  summary     String           @default("")
+  ceoDecision String           @default("")
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
+  responses   ExpertResponse[]
 
   @@index([status])
   @@index([createdAt])
@@ -585,87 +487,81 @@ model ExpertDiscussion {
 model ExpertResponse {
   id           String           @id @default(cuid())
   discussionId String
-  discussion   ExpertDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
-  expertId     String                                   // "cto", "ciso", "dpo", etc.
-  expertName   String                                   // Display name: "CTO", "CISO"
-  emoji        String           @default("")            // "🔧", "🛡️", etc.
-  round        Int              @default(1)             // 1 = initial take, 2 = rebuttal
-  response     String                                   // The expert's actual response
-  position     String           @default("neutral")     // "agree", "disagree", "concern", "neutral"
+  expertId     String
+  expertName   String
+  emoji        String           @default("")
+  round        Int              @default(1)
+  response     String
+  position     String           @default("neutral")
   createdAt    DateTime         @default(now())
+  discussion   ExpertDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
 
   @@index([discussionId])
 }
-
-// ─── Telegram Messages ─────────────────────────────────────
 
 /// Stores Telegram messages for two-way CEO communication.
 /// Incoming messages from the CEO are stored and read by Claude Code sessions.
 /// Outgoing messages are logged for audit trail.
 model TelegramMessage {
   id               String    @id @default(cuid())
-  telegramUpdateId Int       @default(0)                    // Telegram's update_id for dedup
-  text             String                                   // Message content
-  fromName         String    @default("")                   // "Eric DEVISMES" or "AI Compass EU Bot"
-  direction        String    @default("incoming")           // "incoming" (from CEO) or "outgoing" (from bot)
-  processedAt      DateTime?                                // When Claude Code picked it up (null = unread)
+  telegramUpdateId Int       @unique @default(0)
+  text             String
+  fromName         String    @default("")
+  direction        String    @default("incoming")
+  processedAt      DateTime?
   createdAt        DateTime  @default(now())
 
-  @@unique([telegramUpdateId])
-  @@index([direction, processedAt])                          // Find unprocessed incoming messages
+  @@index([direction, processedAt])
   @@index([createdAt])
 }
 
 /// Admin-curated external source URLs the chatbot can reference.
 model ApprovedSource {
   id          String   @id @default(cuid())
-  url         String   @unique                                 // "https://artificialintelligenceact.eu"
-  name        String                                           // "EU AI Act Official"
+  url         String   @unique
+  name        String
   description String   @default("")
   createdAt   DateTime @default(now())
 }
 
-// ─── COO Work Cycles & Daily Digest ─────────────────────────
-
 /// A COO-led work cycle where agents autonomously review their domains.
 /// Runs 3x/day via Vercel Cron. Results feed into the daily digest.
 model WorkCycle {
-  id              String          @id @default(cuid())
-  date            String                                       // "2026-04-14" calendar day
-  cycleNumber     Int                                          // 1=morning, 2=midday, 3=evening
-  status          String          @default("running")          // "running", "completed", "failed"
-  agentsAssigned  Int             @default(0)                  // How many agents worked this cycle
-  findingsCount   Int             @default(0)                  // Total findings across all agents
-  decisionsCount  Int             @default(0)                  // Autonomous decisions made
-  durationMs      Int             @default(0)                  // Execution time
-  error           String          @default("")                 // Error message if failed
-  reports         AgentReport[]
-  decisions       DigestDecision[]
-  createdAt       DateTime        @default(now())
+  id             String           @id @default(cuid())
+  date           String
+  cycleNumber    Int
+  status         String           @default("running")
+  agentsAssigned Int              @default(0)
+  findingsCount  Int              @default(0)
+  decisionsCount Int              @default(0)
+  durationMs     Int              @default(0)
+  error          String           @default("")
+  createdAt      DateTime         @default(now())
+  reports        AgentReport[]
+  decisions      DigestDecision[]
 
-  @@unique([date, cycleNumber])                                // Max 1 run per cycle per day
+  @@unique([date, cycleNumber])
   @@index([date])
 }
 
 /// An individual agent's structured report from a work cycle or daily digest.
 model AgentReport {
-  id           String      @id @default(cuid())
-  agentId      String                                          // "cto", "ciso", etc.
-  agentName    String                                          // Display name
-  emoji        String      @default("")
-  done         String      @default("")                        // What was reviewed/done
-  highestRisk  String      @default("")                        // Biggest risk identified
-  action       String      @default("")                        // Most important action
-  advice       String      @default("")                        // Best advice
-  nextStep     String      @default("")                        // Recommended next step
-  hasFindings  Boolean     @default(false)                     // Skip in digest if false
-  rawResponse  String      @default("")                        // Full LLM response for debugging
-
-  workCycle    WorkCycle?  @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
-  workCycleId  String?
-  digest       DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
-  digestId     String?
-  createdAt    DateTime    @default(now())
+  id          String       @id @default(cuid())
+  agentId     String
+  agentName   String
+  emoji       String       @default("")
+  done        String       @default("")
+  highestRisk String       @default("")
+  action      String       @default("")
+  advice      String       @default("")
+  nextStep    String       @default("")
+  hasFindings Boolean      @default(false)
+  rawResponse String       @default("")
+  workCycleId String?
+  digestId    String?
+  createdAt   DateTime     @default(now())
+  digest      DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
+  workCycle   WorkCycle?   @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
 
   @@index([workCycleId])
   @@index([digestId])
@@ -674,18 +570,17 @@ model AgentReport {
 
 /// An autonomous decision made by the COO during a work cycle.
 model DigestDecision {
-  id          String      @id @default(cuid())
-  description String                                           // What was decided
-  riskLevel   String                                           // "LOW", "MEDIUM", "HIGH"
-  rationale   String      @default("")                         // Why this decision was made
-  precedent   String      @default("")                         // Reference to similar past CEO decision
-  autonomous  Boolean     @default(true)                       // true = COO decided, false = needs CEO
-
-  workCycle   WorkCycle?  @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
+  id          String       @id @default(cuid())
+  description String
+  riskLevel   String
+  rationale   String       @default("")
+  precedent   String       @default("")
+  autonomous  Boolean      @default(true)
   workCycleId String?
-  digest      DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
   digestId    String?
-  createdAt   DateTime    @default(now())
+  createdAt   DateTime     @default(now())
+  digest      DailyDigest? @relation(fields: [digestId], references: [id], onDelete: Cascade)
+  workCycle   WorkCycle?   @relation(fields: [workCycleId], references: [id], onDelete: Cascade)
 
   @@index([workCycleId])
   @@index([digestId])
@@ -694,17 +589,17 @@ model DigestDecision {
 /// The daily digest — one per day, sent to CEO at 20:00 Paris time.
 /// Synthesizes all work cycle findings into a single Telegram message.
 model DailyDigest {
-  id                  String          @id @default(cuid())
-  date                String          @unique                  // "2026-04-14" — one per day
-  status              String          @default("running")      // "running", "completed", "failed"
-  executiveSummary    String          @default("")             // COO's 1-2 sentence summary
-  autonomousDecisions Int             @default(0)              // Count of LOW+MEDIUM decisions
-  escalations         Int             @default(0)              // Count of HIGH items for CEO
-  durationMs          Int             @default(0)
-  telegramMessageId   String          @default("")             // For reference
+  id                  String           @id @default(cuid())
+  date                String           @unique
+  status              String           @default("running")
+  executiveSummary    String           @default("")
+  autonomousDecisions Int              @default(0)
+  escalations         Int              @default(0)
+  durationMs          Int              @default(0)
+  telegramMessageId   String           @default("")
+  createdAt           DateTime         @default(now())
   reports             AgentReport[]
   decisions           DigestDecision[]
-  createdAt           DateTime        @default(now())
 
   @@index([date])
 }

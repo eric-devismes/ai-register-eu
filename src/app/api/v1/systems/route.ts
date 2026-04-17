@@ -21,8 +21,8 @@ export async function GET(request: NextRequest) {
 
   if (slug) {
     // Single system
-    const system = await prisma.aISystem.findUnique({
-      where: { slug },
+    const system = await prisma.aISystem.findFirst({
+      where: { slug, status: "active" },
       include: {
         scores: { include: { framework: { select: { slug: true, name: true } } } },
         industries: { select: { slug: true, name: true } },
@@ -62,6 +62,7 @@ export async function GET(request: NextRequest) {
 
   // List all systems
   const systems = await prisma.aISystem.findMany({
+    where: { status: "active" },
     include: {
       scores: { include: { framework: { select: { slug: true, name: true } } } },
       industries: { select: { slug: true, name: true } },

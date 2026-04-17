@@ -57,6 +57,7 @@ export default async function DashboardPage({ params }: PageProps) {
   // Get the user's followed AI systems with scores
   const followedSystems = subscriber ? await prisma.aISystem.findMany({
     where: {
+      status: "active",
       subscribers: { some: { id: subscriber.id } },
     },
     include: {

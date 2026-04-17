@@ -48,14 +48,14 @@ export type RegulatoryFrameworkMinAggregateOutputType = {
   criteriaCount: number | null
   effectiveDate: string | null
   published: boolean | null
-  issuingAuthority: string | null
-  enforcementType: string | null
-  maxPenalty: string | null
-  applicableRegions: string | null
-  purpose: string | null
-  officialUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  applicableRegions: string | null
+  enforcementType: string | null
+  issuingAuthority: string | null
+  maxPenalty: string | null
+  officialUrl: string | null
+  purpose: string | null
 }
 
 export type RegulatoryFrameworkMaxAggregateOutputType = {
@@ -68,14 +68,14 @@ export type RegulatoryFrameworkMaxAggregateOutputType = {
   criteriaCount: number | null
   effectiveDate: string | null
   published: boolean | null
-  issuingAuthority: string | null
-  enforcementType: string | null
-  maxPenalty: string | null
-  applicableRegions: string | null
-  purpose: string | null
-  officialUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  applicableRegions: string | null
+  enforcementType: string | null
+  issuingAuthority: string | null
+  maxPenalty: string | null
+  officialUrl: string | null
+  purpose: string | null
 }
 
 export type RegulatoryFrameworkCountAggregateOutputType = {
@@ -88,14 +88,14 @@ export type RegulatoryFrameworkCountAggregateOutputType = {
   criteriaCount: number
   effectiveDate: number
   published: number
-  issuingAuthority: number
-  enforcementType: number
-  maxPenalty: number
-  applicableRegions: number
-  purpose: number
-  officialUrl: number
   createdAt: number
   updatedAt: number
+  applicableRegions: number
+  enforcementType: number
+  issuingAuthority: number
+  maxPenalty: number
+  officialUrl: number
+  purpose: number
   _all: number
 }
 
@@ -118,14 +118,14 @@ export type RegulatoryFrameworkMinAggregateInputType = {
   criteriaCount?: true
   effectiveDate?: true
   published?: true
-  issuingAuthority?: true
-  enforcementType?: true
-  maxPenalty?: true
-  applicableRegions?: true
-  purpose?: true
-  officialUrl?: true
   createdAt?: true
   updatedAt?: true
+  applicableRegions?: true
+  enforcementType?: true
+  issuingAuthority?: true
+  maxPenalty?: true
+  officialUrl?: true
+  purpose?: true
 }
 
 export type RegulatoryFrameworkMaxAggregateInputType = {
@@ -138,14 +138,14 @@ export type RegulatoryFrameworkMaxAggregateInputType = {
   criteriaCount?: true
   effectiveDate?: true
   published?: true
-  issuingAuthority?: true
-  enforcementType?: true
-  maxPenalty?: true
-  applicableRegions?: true
-  purpose?: true
-  officialUrl?: true
   createdAt?: true
   updatedAt?: true
+  applicableRegions?: true
+  enforcementType?: true
+  issuingAuthority?: true
+  maxPenalty?: true
+  officialUrl?: true
+  purpose?: true
 }
 
 export type RegulatoryFrameworkCountAggregateInputType = {
@@ -158,14 +158,14 @@ export type RegulatoryFrameworkCountAggregateInputType = {
   criteriaCount?: true
   effectiveDate?: true
   published?: true
-  issuingAuthority?: true
-  enforcementType?: true
-  maxPenalty?: true
-  applicableRegions?: true
-  purpose?: true
-  officialUrl?: true
   createdAt?: true
   updatedAt?: true
+  applicableRegions?: true
+  enforcementType?: true
+  issuingAuthority?: true
+  maxPenalty?: true
+  officialUrl?: true
+  purpose?: true
   _all?: true
 }
 
@@ -265,14 +265,14 @@ export type RegulatoryFrameworkGroupByOutputType = {
   criteriaCount: number
   effectiveDate: string
   published: boolean
-  issuingAuthority: string
-  enforcementType: string
-  maxPenalty: string
-  applicableRegions: string
-  purpose: string
-  officialUrl: string
   createdAt: Date
   updatedAt: Date
+  applicableRegions: string
+  enforcementType: string
+  issuingAuthority: string
+  maxPenalty: string
+  officialUrl: string
+  purpose: string
   _count: RegulatoryFrameworkCountAggregateOutputType | null
   _avg: RegulatoryFrameworkAvgAggregateOutputType | null
   _sum: RegulatoryFrameworkSumAggregateOutputType | null
@@ -308,18 +308,18 @@ export type RegulatoryFrameworkWhereInput = {
   criteriaCount?: Prisma.IntFilter<"RegulatoryFramework"> | number
   effectiveDate?: Prisma.StringFilter<"RegulatoryFramework"> | string
   published?: Prisma.BoolFilter<"RegulatoryFramework"> | boolean
-  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
   createdAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
-  industries?: Prisma.IndustryListRelationFilter
-  sections?: Prisma.FrameworkSectionListRelationFilter
+  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
   scores?: Prisma.AssessmentScoreListRelationFilter
   changelog?: Prisma.ChangeLogListRelationFilter
+  sections?: Prisma.FrameworkSectionListRelationFilter
+  industries?: Prisma.IndustryListRelationFilter
   subscribers?: Prisma.SubscriberListRelationFilter
 }
 
@@ -333,18 +333,18 @@ export type RegulatoryFrameworkOrderByWithRelationInput = {
   criteriaCount?: Prisma.SortOrder
   effectiveDate?: Prisma.SortOrder
   published?: Prisma.SortOrder
-  issuingAuthority?: Prisma.SortOrder
-  enforcementType?: Prisma.SortOrder
-  maxPenalty?: Prisma.SortOrder
-  applicableRegions?: Prisma.SortOrder
-  purpose?: Prisma.SortOrder
-  officialUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  industries?: Prisma.IndustryOrderByRelationAggregateInput
-  sections?: Prisma.FrameworkSectionOrderByRelationAggregateInput
+  applicableRegions?: Prisma.SortOrder
+  enforcementType?: Prisma.SortOrder
+  issuingAuthority?: Prisma.SortOrder
+  maxPenalty?: Prisma.SortOrder
+  officialUrl?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
   scores?: Prisma.AssessmentScoreOrderByRelationAggregateInput
   changelog?: Prisma.ChangeLogOrderByRelationAggregateInput
+  sections?: Prisma.FrameworkSectionOrderByRelationAggregateInput
+  industries?: Prisma.IndustryOrderByRelationAggregateInput
   subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
 }
 
@@ -361,18 +361,18 @@ export type RegulatoryFrameworkWhereUniqueInput = Prisma.AtLeast<{
   criteriaCount?: Prisma.IntFilter<"RegulatoryFramework"> | number
   effectiveDate?: Prisma.StringFilter<"RegulatoryFramework"> | string
   published?: Prisma.BoolFilter<"RegulatoryFramework"> | boolean
-  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
   createdAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
-  industries?: Prisma.IndustryListRelationFilter
-  sections?: Prisma.FrameworkSectionListRelationFilter
+  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
   scores?: Prisma.AssessmentScoreListRelationFilter
   changelog?: Prisma.ChangeLogListRelationFilter
+  sections?: Prisma.FrameworkSectionListRelationFilter
+  industries?: Prisma.IndustryListRelationFilter
   subscribers?: Prisma.SubscriberListRelationFilter
 }, "id" | "slug">
 
@@ -386,14 +386,14 @@ export type RegulatoryFrameworkOrderByWithAggregationInput = {
   criteriaCount?: Prisma.SortOrder
   effectiveDate?: Prisma.SortOrder
   published?: Prisma.SortOrder
-  issuingAuthority?: Prisma.SortOrder
-  enforcementType?: Prisma.SortOrder
-  maxPenalty?: Prisma.SortOrder
-  applicableRegions?: Prisma.SortOrder
-  purpose?: Prisma.SortOrder
-  officialUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  applicableRegions?: Prisma.SortOrder
+  enforcementType?: Prisma.SortOrder
+  issuingAuthority?: Prisma.SortOrder
+  maxPenalty?: Prisma.SortOrder
+  officialUrl?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
   _count?: Prisma.RegulatoryFrameworkCountOrderByAggregateInput
   _avg?: Prisma.RegulatoryFrameworkAvgOrderByAggregateInput
   _max?: Prisma.RegulatoryFrameworkMaxOrderByAggregateInput
@@ -414,14 +414,14 @@ export type RegulatoryFrameworkScalarWhereWithAggregatesInput = {
   criteriaCount?: Prisma.IntWithAggregatesFilter<"RegulatoryFramework"> | number
   effectiveDate?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
   published?: Prisma.BoolWithAggregatesFilter<"RegulatoryFramework"> | boolean
-  issuingAuthority?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
-  enforcementType?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
-  maxPenalty?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
-  applicableRegions?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
-  purpose?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
-  officialUrl?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RegulatoryFramework"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RegulatoryFramework"> | Date | string
+  applicableRegions?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
+  enforcementType?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
+  issuingAuthority?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
+  maxPenalty?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
+  officialUrl?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
+  purpose?: Prisma.StringWithAggregatesFilter<"RegulatoryFramework"> | string
 }
 
 export type RegulatoryFrameworkCreateInput = {
@@ -434,18 +434,18 @@ export type RegulatoryFrameworkCreateInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutFrameworksInput
 }
 
@@ -459,18 +459,18 @@ export type RegulatoryFrameworkUncheckedCreateInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
@@ -484,18 +484,18 @@ export type RegulatoryFrameworkUpdateInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -509,18 +509,18 @@ export type RegulatoryFrameworkUncheckedUpdateInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -534,14 +534,14 @@ export type RegulatoryFrameworkCreateManyInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
 }
 
 export type RegulatoryFrameworkUpdateManyMutationInput = {
@@ -554,14 +554,14 @@ export type RegulatoryFrameworkUpdateManyMutationInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RegulatoryFrameworkUncheckedUpdateManyInput = {
@@ -574,14 +574,14 @@ export type RegulatoryFrameworkUncheckedUpdateManyInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RegulatoryFrameworkCountOrderByAggregateInput = {
@@ -594,14 +594,14 @@ export type RegulatoryFrameworkCountOrderByAggregateInput = {
   criteriaCount?: Prisma.SortOrder
   effectiveDate?: Prisma.SortOrder
   published?: Prisma.SortOrder
-  issuingAuthority?: Prisma.SortOrder
-  enforcementType?: Prisma.SortOrder
-  maxPenalty?: Prisma.SortOrder
-  applicableRegions?: Prisma.SortOrder
-  purpose?: Prisma.SortOrder
-  officialUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  applicableRegions?: Prisma.SortOrder
+  enforcementType?: Prisma.SortOrder
+  issuingAuthority?: Prisma.SortOrder
+  maxPenalty?: Prisma.SortOrder
+  officialUrl?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
 }
 
 export type RegulatoryFrameworkAvgOrderByAggregateInput = {
@@ -618,14 +618,14 @@ export type RegulatoryFrameworkMaxOrderByAggregateInput = {
   criteriaCount?: Prisma.SortOrder
   effectiveDate?: Prisma.SortOrder
   published?: Prisma.SortOrder
-  issuingAuthority?: Prisma.SortOrder
-  enforcementType?: Prisma.SortOrder
-  maxPenalty?: Prisma.SortOrder
-  applicableRegions?: Prisma.SortOrder
-  purpose?: Prisma.SortOrder
-  officialUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  applicableRegions?: Prisma.SortOrder
+  enforcementType?: Prisma.SortOrder
+  issuingAuthority?: Prisma.SortOrder
+  maxPenalty?: Prisma.SortOrder
+  officialUrl?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
 }
 
 export type RegulatoryFrameworkMinOrderByAggregateInput = {
@@ -638,14 +638,14 @@ export type RegulatoryFrameworkMinOrderByAggregateInput = {
   criteriaCount?: Prisma.SortOrder
   effectiveDate?: Prisma.SortOrder
   published?: Prisma.SortOrder
-  issuingAuthority?: Prisma.SortOrder
-  enforcementType?: Prisma.SortOrder
-  maxPenalty?: Prisma.SortOrder
-  applicableRegions?: Prisma.SortOrder
-  purpose?: Prisma.SortOrder
-  officialUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  applicableRegions?: Prisma.SortOrder
+  enforcementType?: Prisma.SortOrder
+  issuingAuthority?: Prisma.SortOrder
+  maxPenalty?: Prisma.SortOrder
+  officialUrl?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
 }
 
 export type RegulatoryFrameworkSumOrderByAggregateInput = {
@@ -822,17 +822,17 @@ export type RegulatoryFrameworkCreateWithoutSectionsInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutFrameworksInput
 }
 
@@ -846,17 +846,17 @@ export type RegulatoryFrameworkUncheckedCreateWithoutSectionsInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
@@ -886,17 +886,17 @@ export type RegulatoryFrameworkUpdateWithoutSectionsInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -910,17 +910,17 @@ export type RegulatoryFrameworkUncheckedUpdateWithoutSectionsInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -934,17 +934,17 @@ export type RegulatoryFrameworkCreateWithoutIndustriesInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutFrameworksInput
 }
 
@@ -958,17 +958,17 @@ export type RegulatoryFrameworkUncheckedCreateWithoutIndustriesInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
@@ -1006,14 +1006,14 @@ export type RegulatoryFrameworkScalarWhereInput = {
   criteriaCount?: Prisma.IntFilter<"RegulatoryFramework"> | number
   effectiveDate?: Prisma.StringFilter<"RegulatoryFramework"> | string
   published?: Prisma.BoolFilter<"RegulatoryFramework"> | boolean
-  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
-  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
   createdAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RegulatoryFramework"> | Date | string
+  applicableRegions?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  enforcementType?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  issuingAuthority?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  maxPenalty?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  officialUrl?: Prisma.StringFilter<"RegulatoryFramework"> | string
+  purpose?: Prisma.StringFilter<"RegulatoryFramework"> | string
 }
 
 export type RegulatoryFrameworkCreateWithoutScoresInput = {
@@ -1026,17 +1026,17 @@ export type RegulatoryFrameworkCreateWithoutScoresInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutFrameworksInput
 }
 
@@ -1050,17 +1050,17 @@ export type RegulatoryFrameworkUncheckedCreateWithoutScoresInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
@@ -1090,17 +1090,17 @@ export type RegulatoryFrameworkUpdateWithoutScoresInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   changelog?: Prisma.ChangeLogUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1114,17 +1114,17 @@ export type RegulatoryFrameworkUncheckedUpdateWithoutScoresInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1138,17 +1138,17 @@ export type RegulatoryFrameworkCreateWithoutChangelogInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberCreateNestedManyWithoutFrameworksInput
 }
 
@@ -1162,17 +1162,17 @@ export type RegulatoryFrameworkUncheckedCreateWithoutChangelogInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
   subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
@@ -1202,17 +1202,17 @@ export type RegulatoryFrameworkUpdateWithoutChangelogInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1226,17 +1226,17 @@ export type RegulatoryFrameworkUncheckedUpdateWithoutChangelogInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1250,18 +1250,18 @@ export type RegulatoryFrameworkCreateWithoutSubscribersInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutFrameworksInput
 }
 
 export type RegulatoryFrameworkUncheckedCreateWithoutSubscribersInput = {
@@ -1274,18 +1274,18 @@ export type RegulatoryFrameworkUncheckedCreateWithoutSubscribersInput = {
   criteriaCount?: number
   effectiveDate?: string
   published?: boolean
-  issuingAuthority?: string
-  enforcementType?: string
-  maxPenalty?: string
-  applicableRegions?: string
-  purpose?: string
-  officialUrl?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
-  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  applicableRegions?: string
+  enforcementType?: string
+  issuingAuthority?: string
+  maxPenalty?: string
+  officialUrl?: string
+  purpose?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutFrameworkInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutFrameworkInput
+  sections?: Prisma.FrameworkSectionUncheckedCreateNestedManyWithoutFrameworkInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutFrameworksInput
 }
 
 export type RegulatoryFrameworkCreateOrConnectWithoutSubscribersInput = {
@@ -1319,17 +1319,17 @@ export type RegulatoryFrameworkUpdateWithoutIndustriesInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
   subscribers?: Prisma.SubscriberUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1343,17 +1343,17 @@ export type RegulatoryFrameworkUncheckedUpdateWithoutIndustriesInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
   subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
@@ -1367,14 +1367,14 @@ export type RegulatoryFrameworkUncheckedUpdateManyWithoutIndustriesInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RegulatoryFrameworkUpdateWithoutSubscribersInput = {
@@ -1387,18 +1387,18 @@ export type RegulatoryFrameworkUpdateWithoutSubscribersInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutFrameworksNestedInput
 }
 
 export type RegulatoryFrameworkUncheckedUpdateWithoutSubscribersInput = {
@@ -1411,18 +1411,18 @@ export type RegulatoryFrameworkUncheckedUpdateWithoutSubscribersInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
-  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutFrameworkNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutFrameworkNestedInput
+  sections?: Prisma.FrameworkSectionUncheckedUpdateManyWithoutFrameworkNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutFrameworksNestedInput
 }
 
 export type RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersInput = {
@@ -1435,14 +1435,14 @@ export type RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersInput = {
   criteriaCount?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveDate?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
-  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
-  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
-  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
-  purpose?: Prisma.StringFieldUpdateOperationsInput | string
-  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applicableRegions?: Prisma.StringFieldUpdateOperationsInput | string
+  enforcementType?: Prisma.StringFieldUpdateOperationsInput | string
+  issuingAuthority?: Prisma.StringFieldUpdateOperationsInput | string
+  maxPenalty?: Prisma.StringFieldUpdateOperationsInput | string
+  officialUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1451,18 +1451,18 @@ export type RegulatoryFrameworkUncheckedUpdateManyWithoutSubscribersInput = {
  */
 
 export type RegulatoryFrameworkCountOutputType = {
-  industries: number
-  sections: number
   scores: number
   changelog: number
+  sections: number
+  industries: number
   subscribers: number
 }
 
 export type RegulatoryFrameworkCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  industries?: boolean | RegulatoryFrameworkCountOutputTypeCountIndustriesArgs
-  sections?: boolean | RegulatoryFrameworkCountOutputTypeCountSectionsArgs
   scores?: boolean | RegulatoryFrameworkCountOutputTypeCountScoresArgs
   changelog?: boolean | RegulatoryFrameworkCountOutputTypeCountChangelogArgs
+  sections?: boolean | RegulatoryFrameworkCountOutputTypeCountSectionsArgs
+  industries?: boolean | RegulatoryFrameworkCountOutputTypeCountIndustriesArgs
   subscribers?: boolean | RegulatoryFrameworkCountOutputTypeCountSubscribersArgs
 }
 
@@ -1479,8 +1479,15 @@ export type RegulatoryFrameworkCountOutputTypeDefaultArgs<ExtArgs extends runtim
 /**
  * RegulatoryFrameworkCountOutputType without action
  */
-export type RegulatoryFrameworkCountOutputTypeCountIndustriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.IndustryWhereInput
+export type RegulatoryFrameworkCountOutputTypeCountScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssessmentScoreWhereInput
+}
+
+/**
+ * RegulatoryFrameworkCountOutputType without action
+ */
+export type RegulatoryFrameworkCountOutputTypeCountChangelogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChangeLogWhereInput
 }
 
 /**
@@ -1493,15 +1500,8 @@ export type RegulatoryFrameworkCountOutputTypeCountSectionsArgs<ExtArgs extends 
 /**
  * RegulatoryFrameworkCountOutputType without action
  */
-export type RegulatoryFrameworkCountOutputTypeCountScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssessmentScoreWhereInput
-}
-
-/**
- * RegulatoryFrameworkCountOutputType without action
- */
-export type RegulatoryFrameworkCountOutputTypeCountChangelogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ChangeLogWhereInput
+export type RegulatoryFrameworkCountOutputTypeCountIndustriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IndustryWhereInput
 }
 
 /**
@@ -1522,18 +1522,18 @@ export type RegulatoryFrameworkSelect<ExtArgs extends runtime.Types.Extensions.I
   criteriaCount?: boolean
   effectiveDate?: boolean
   published?: boolean
-  issuingAuthority?: boolean
-  enforcementType?: boolean
-  maxPenalty?: boolean
-  applicableRegions?: boolean
-  purpose?: boolean
-  officialUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  industries?: boolean | Prisma.RegulatoryFramework$industriesArgs<ExtArgs>
-  sections?: boolean | Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>
+  applicableRegions?: boolean
+  enforcementType?: boolean
+  issuingAuthority?: boolean
+  maxPenalty?: boolean
+  officialUrl?: boolean
+  purpose?: boolean
   scores?: boolean | Prisma.RegulatoryFramework$scoresArgs<ExtArgs>
   changelog?: boolean | Prisma.RegulatoryFramework$changelogArgs<ExtArgs>
+  sections?: boolean | Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>
+  industries?: boolean | Prisma.RegulatoryFramework$industriesArgs<ExtArgs>
   subscribers?: boolean | Prisma.RegulatoryFramework$subscribersArgs<ExtArgs>
   _count?: boolean | Prisma.RegulatoryFrameworkCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["regulatoryFramework"]>
@@ -1548,14 +1548,14 @@ export type RegulatoryFrameworkSelectCreateManyAndReturn<ExtArgs extends runtime
   criteriaCount?: boolean
   effectiveDate?: boolean
   published?: boolean
-  issuingAuthority?: boolean
-  enforcementType?: boolean
-  maxPenalty?: boolean
-  applicableRegions?: boolean
-  purpose?: boolean
-  officialUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  applicableRegions?: boolean
+  enforcementType?: boolean
+  issuingAuthority?: boolean
+  maxPenalty?: boolean
+  officialUrl?: boolean
+  purpose?: boolean
 }, ExtArgs["result"]["regulatoryFramework"]>
 
 export type RegulatoryFrameworkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1568,14 +1568,14 @@ export type RegulatoryFrameworkSelectUpdateManyAndReturn<ExtArgs extends runtime
   criteriaCount?: boolean
   effectiveDate?: boolean
   published?: boolean
-  issuingAuthority?: boolean
-  enforcementType?: boolean
-  maxPenalty?: boolean
-  applicableRegions?: boolean
-  purpose?: boolean
-  officialUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  applicableRegions?: boolean
+  enforcementType?: boolean
+  issuingAuthority?: boolean
+  maxPenalty?: boolean
+  officialUrl?: boolean
+  purpose?: boolean
 }, ExtArgs["result"]["regulatoryFramework"]>
 
 export type RegulatoryFrameworkSelectScalar = {
@@ -1588,22 +1588,22 @@ export type RegulatoryFrameworkSelectScalar = {
   criteriaCount?: boolean
   effectiveDate?: boolean
   published?: boolean
-  issuingAuthority?: boolean
-  enforcementType?: boolean
-  maxPenalty?: boolean
-  applicableRegions?: boolean
-  purpose?: boolean
-  officialUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  applicableRegions?: boolean
+  enforcementType?: boolean
+  issuingAuthority?: boolean
+  maxPenalty?: boolean
+  officialUrl?: boolean
+  purpose?: boolean
 }
 
-export type RegulatoryFrameworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "description" | "content" | "badgeType" | "criteriaCount" | "effectiveDate" | "published" | "issuingAuthority" | "enforcementType" | "maxPenalty" | "applicableRegions" | "purpose" | "officialUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["regulatoryFramework"]>
+export type RegulatoryFrameworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "description" | "content" | "badgeType" | "criteriaCount" | "effectiveDate" | "published" | "createdAt" | "updatedAt" | "applicableRegions" | "enforcementType" | "issuingAuthority" | "maxPenalty" | "officialUrl" | "purpose", ExtArgs["result"]["regulatoryFramework"]>
 export type RegulatoryFrameworkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  industries?: boolean | Prisma.RegulatoryFramework$industriesArgs<ExtArgs>
-  sections?: boolean | Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>
   scores?: boolean | Prisma.RegulatoryFramework$scoresArgs<ExtArgs>
   changelog?: boolean | Prisma.RegulatoryFramework$changelogArgs<ExtArgs>
+  sections?: boolean | Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>
+  industries?: boolean | Prisma.RegulatoryFramework$industriesArgs<ExtArgs>
   subscribers?: boolean | Prisma.RegulatoryFramework$subscribersArgs<ExtArgs>
   _count?: boolean | Prisma.RegulatoryFrameworkCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1613,10 +1613,10 @@ export type RegulatoryFrameworkIncludeUpdateManyAndReturn<ExtArgs extends runtim
 export type $RegulatoryFrameworkPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RegulatoryFramework"
   objects: {
-    industries: Prisma.$IndustryPayload<ExtArgs>[]
-    sections: Prisma.$FrameworkSectionPayload<ExtArgs>[]
     scores: Prisma.$AssessmentScorePayload<ExtArgs>[]
     changelog: Prisma.$ChangeLogPayload<ExtArgs>[]
+    sections: Prisma.$FrameworkSectionPayload<ExtArgs>[]
+    industries: Prisma.$IndustryPayload<ExtArgs>[]
     subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1629,14 +1629,14 @@ export type $RegulatoryFrameworkPayload<ExtArgs extends runtime.Types.Extensions
     criteriaCount: number
     effectiveDate: string
     published: boolean
-    issuingAuthority: string
-    enforcementType: string
-    maxPenalty: string
-    applicableRegions: string
-    purpose: string
-    officialUrl: string
     createdAt: Date
     updatedAt: Date
+    applicableRegions: string
+    enforcementType: string
+    issuingAuthority: string
+    maxPenalty: string
+    officialUrl: string
+    purpose: string
   }, ExtArgs["result"]["regulatoryFramework"]>
   composites: {}
 }
@@ -2031,10 +2031,10 @@ readonly fields: RegulatoryFrameworkFieldRefs;
  */
 export interface Prisma__RegulatoryFrameworkClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  industries<T extends Prisma.RegulatoryFramework$industriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sections<T extends Prisma.RegulatoryFramework$sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FrameworkSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   scores<T extends Prisma.RegulatoryFramework$scoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$scoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   changelog<T extends Prisma.RegulatoryFramework$changelogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$changelogArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChangeLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sections<T extends Prisma.RegulatoryFramework$sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FrameworkSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  industries<T extends Prisma.RegulatoryFramework$industriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscribers<T extends Prisma.RegulatoryFramework$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFramework$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2074,14 +2074,14 @@ export interface RegulatoryFrameworkFieldRefs {
   readonly criteriaCount: Prisma.FieldRef<"RegulatoryFramework", 'Int'>
   readonly effectiveDate: Prisma.FieldRef<"RegulatoryFramework", 'String'>
   readonly published: Prisma.FieldRef<"RegulatoryFramework", 'Boolean'>
-  readonly issuingAuthority: Prisma.FieldRef<"RegulatoryFramework", 'String'>
-  readonly enforcementType: Prisma.FieldRef<"RegulatoryFramework", 'String'>
-  readonly maxPenalty: Prisma.FieldRef<"RegulatoryFramework", 'String'>
-  readonly applicableRegions: Prisma.FieldRef<"RegulatoryFramework", 'String'>
-  readonly purpose: Prisma.FieldRef<"RegulatoryFramework", 'String'>
-  readonly officialUrl: Prisma.FieldRef<"RegulatoryFramework", 'String'>
   readonly createdAt: Prisma.FieldRef<"RegulatoryFramework", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"RegulatoryFramework", 'DateTime'>
+  readonly applicableRegions: Prisma.FieldRef<"RegulatoryFramework", 'String'>
+  readonly enforcementType: Prisma.FieldRef<"RegulatoryFramework", 'String'>
+  readonly issuingAuthority: Prisma.FieldRef<"RegulatoryFramework", 'String'>
+  readonly maxPenalty: Prisma.FieldRef<"RegulatoryFramework", 'String'>
+  readonly officialUrl: Prisma.FieldRef<"RegulatoryFramework", 'String'>
+  readonly purpose: Prisma.FieldRef<"RegulatoryFramework", 'String'>
 }
     
 
@@ -2475,54 +2475,6 @@ export type RegulatoryFrameworkDeleteManyArgs<ExtArgs extends runtime.Types.Exte
 }
 
 /**
- * RegulatoryFramework.industries
- */
-export type RegulatoryFramework$industriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Industry
-   */
-  select?: Prisma.IndustrySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Industry
-   */
-  omit?: Prisma.IndustryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.IndustryInclude<ExtArgs> | null
-  where?: Prisma.IndustryWhereInput
-  orderBy?: Prisma.IndustryOrderByWithRelationInput | Prisma.IndustryOrderByWithRelationInput[]
-  cursor?: Prisma.IndustryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.IndustryScalarFieldEnum | Prisma.IndustryScalarFieldEnum[]
-}
-
-/**
- * RegulatoryFramework.sections
- */
-export type RegulatoryFramework$sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the FrameworkSection
-   */
-  select?: Prisma.FrameworkSectionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the FrameworkSection
-   */
-  omit?: Prisma.FrameworkSectionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FrameworkSectionInclude<ExtArgs> | null
-  where?: Prisma.FrameworkSectionWhereInput
-  orderBy?: Prisma.FrameworkSectionOrderByWithRelationInput | Prisma.FrameworkSectionOrderByWithRelationInput[]
-  cursor?: Prisma.FrameworkSectionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.FrameworkSectionScalarFieldEnum | Prisma.FrameworkSectionScalarFieldEnum[]
-}
-
-/**
  * RegulatoryFramework.scores
  */
 export type RegulatoryFramework$scoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2568,6 +2520,54 @@ export type RegulatoryFramework$changelogArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.ChangeLogScalarFieldEnum | Prisma.ChangeLogScalarFieldEnum[]
+}
+
+/**
+ * RegulatoryFramework.sections
+ */
+export type RegulatoryFramework$sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FrameworkSection
+   */
+  select?: Prisma.FrameworkSectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FrameworkSection
+   */
+  omit?: Prisma.FrameworkSectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FrameworkSectionInclude<ExtArgs> | null
+  where?: Prisma.FrameworkSectionWhereInput
+  orderBy?: Prisma.FrameworkSectionOrderByWithRelationInput | Prisma.FrameworkSectionOrderByWithRelationInput[]
+  cursor?: Prisma.FrameworkSectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FrameworkSectionScalarFieldEnum | Prisma.FrameworkSectionScalarFieldEnum[]
+}
+
+/**
+ * RegulatoryFramework.industries
+ */
+export type RegulatoryFramework$industriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Industry
+   */
+  select?: Prisma.IndustrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Industry
+   */
+  omit?: Prisma.IndustryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IndustryInclude<ExtArgs> | null
+  where?: Prisma.IndustryWhereInput
+  orderBy?: Prisma.IndustryOrderByWithRelationInput | Prisma.IndustryOrderByWithRelationInput[]
+  cursor?: Prisma.IndustryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IndustryScalarFieldEnum | Prisma.IndustryScalarFieldEnum[]
 }
 
 /**

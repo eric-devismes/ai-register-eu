@@ -265,10 +265,10 @@ export type ReviewTaskWhereInput = {
   resolution?: Prisma.StringFilter<"ReviewTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ReviewTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ReviewTask"> | Date | string
-  system?: Prisma.XOR<Prisma.AISystemNullableScalarRelationFilter, Prisma.AISystemWhereInput> | null
+  assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   claim?: Prisma.XOR<Prisma.SystemClaimNullableScalarRelationFilter, Prisma.SystemClaimWhereInput> | null
   source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
-  assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  system?: Prisma.XOR<Prisma.AISystemNullableScalarRelationFilter, Prisma.AISystemWhereInput> | null
 }
 
 export type ReviewTaskOrderByWithRelationInput = {
@@ -287,10 +287,10 @@ export type ReviewTaskOrderByWithRelationInput = {
   resolution?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  system?: Prisma.AISystemOrderByWithRelationInput
+  assignedTo?: Prisma.AdminUserOrderByWithRelationInput
   claim?: Prisma.SystemClaimOrderByWithRelationInput
   source?: Prisma.SourceOrderByWithRelationInput
-  assignedTo?: Prisma.AdminUserOrderByWithRelationInput
+  system?: Prisma.AISystemOrderByWithRelationInput
 }
 
 export type ReviewTaskWhereUniqueInput = Prisma.AtLeast<{
@@ -312,10 +312,10 @@ export type ReviewTaskWhereUniqueInput = Prisma.AtLeast<{
   resolution?: Prisma.StringFilter<"ReviewTask"> | string
   createdAt?: Prisma.DateTimeFilter<"ReviewTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ReviewTask"> | Date | string
-  system?: Prisma.XOR<Prisma.AISystemNullableScalarRelationFilter, Prisma.AISystemWhereInput> | null
+  assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   claim?: Prisma.XOR<Prisma.SystemClaimNullableScalarRelationFilter, Prisma.SystemClaimWhereInput> | null
   source?: Prisma.XOR<Prisma.SourceNullableScalarRelationFilter, Prisma.SourceWhereInput> | null
-  assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  system?: Prisma.XOR<Prisma.AISystemNullableScalarRelationFilter, Prisma.AISystemWhereInput> | null
 }, "id">
 
 export type ReviewTaskOrderByWithAggregationInput = {
@@ -372,10 +372,10 @@ export type ReviewTaskCreateInput = {
   resolution?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
+  assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
   claim?: Prisma.SystemClaimCreateNestedOneWithoutReviewTasksInput
   source?: Prisma.SourceCreateNestedOneWithoutReviewTasksInput
-  assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
+  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
 }
 
 export type ReviewTaskUncheckedCreateInput = {
@@ -408,10 +408,10 @@ export type ReviewTaskUpdateInput = {
   resolution?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
+  assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
   claim?: Prisma.SystemClaimUpdateOneWithoutReviewTasksNestedInput
   source?: Prisma.SourceUpdateOneWithoutReviewTasksNestedInput
-  assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
+  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
 }
 
 export type ReviewTaskUncheckedUpdateInput = {
@@ -726,9 +726,9 @@ export type ReviewTaskCreateWithoutSystemInput = {
   resolution?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
   claim?: Prisma.SystemClaimCreateNestedOneWithoutReviewTasksInput
   source?: Prisma.SourceCreateNestedOneWithoutReviewTasksInput
-  assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
 }
 
 export type ReviewTaskUncheckedCreateWithoutSystemInput = {
@@ -807,9 +807,9 @@ export type ReviewTaskCreateWithoutSourceInput = {
   resolution?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
-  claim?: Prisma.SystemClaimCreateNestedOneWithoutReviewTasksInput
   assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
+  claim?: Prisma.SystemClaimCreateNestedOneWithoutReviewTasksInput
+  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
 }
 
 export type ReviewTaskUncheckedCreateWithoutSourceInput = {
@@ -867,9 +867,9 @@ export type ReviewTaskCreateWithoutClaimInput = {
   resolution?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
-  source?: Prisma.SourceCreateNestedOneWithoutReviewTasksInput
   assignedTo?: Prisma.AdminUserCreateNestedOneWithoutReviewTasksInput
+  source?: Prisma.SourceCreateNestedOneWithoutReviewTasksInput
+  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
 }
 
 export type ReviewTaskUncheckedCreateWithoutClaimInput = {
@@ -927,9 +927,9 @@ export type ReviewTaskCreateWithoutAssignedToInput = {
   resolution?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
   claim?: Prisma.SystemClaimCreateNestedOneWithoutReviewTasksInput
   source?: Prisma.SourceCreateNestedOneWithoutReviewTasksInput
+  system?: Prisma.AISystemCreateNestedOneWithoutReviewTasksInput
 }
 
 export type ReviewTaskUncheckedCreateWithoutAssignedToInput = {
@@ -1004,9 +1004,9 @@ export type ReviewTaskUpdateWithoutSystemInput = {
   resolution?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
   claim?: Prisma.SystemClaimUpdateOneWithoutReviewTasksNestedInput
   source?: Prisma.SourceUpdateOneWithoutReviewTasksNestedInput
-  assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
 }
 
 export type ReviewTaskUncheckedUpdateWithoutSystemInput = {
@@ -1072,9 +1072,9 @@ export type ReviewTaskUpdateWithoutSourceInput = {
   resolution?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
-  claim?: Prisma.SystemClaimUpdateOneWithoutReviewTasksNestedInput
   assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
+  claim?: Prisma.SystemClaimUpdateOneWithoutReviewTasksNestedInput
+  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
 }
 
 export type ReviewTaskUncheckedUpdateWithoutSourceInput = {
@@ -1140,9 +1140,9 @@ export type ReviewTaskUpdateWithoutClaimInput = {
   resolution?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
-  source?: Prisma.SourceUpdateOneWithoutReviewTasksNestedInput
   assignedTo?: Prisma.AdminUserUpdateOneWithoutReviewTasksNestedInput
+  source?: Prisma.SourceUpdateOneWithoutReviewTasksNestedInput
+  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
 }
 
 export type ReviewTaskUncheckedUpdateWithoutClaimInput = {
@@ -1208,9 +1208,9 @@ export type ReviewTaskUpdateWithoutAssignedToInput = {
   resolution?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
   claim?: Prisma.SystemClaimUpdateOneWithoutReviewTasksNestedInput
   source?: Prisma.SourceUpdateOneWithoutReviewTasksNestedInput
+  system?: Prisma.AISystemUpdateOneWithoutReviewTasksNestedInput
 }
 
 export type ReviewTaskUncheckedUpdateWithoutAssignedToInput = {
@@ -1265,10 +1265,10 @@ export type ReviewTaskSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   resolution?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }, ExtArgs["result"]["reviewTask"]>
 
 export type ReviewTaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1287,10 +1287,10 @@ export type ReviewTaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   resolution?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }, ExtArgs["result"]["reviewTask"]>
 
 export type ReviewTaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1309,10 +1309,10 @@ export type ReviewTaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   resolution?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }, ExtArgs["result"]["reviewTask"]>
 
 export type ReviewTaskSelectScalar = {
@@ -1335,31 +1335,31 @@ export type ReviewTaskSelectScalar = {
 
 export type ReviewTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "systemId" | "claimId" | "sourceId" | "priority" | "status" | "assignedToId" | "dueBy" | "title" | "notes" | "resolvedAt" | "resolution" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewTask"]>
 export type ReviewTaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }
 export type ReviewTaskIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }
 export type ReviewTaskIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
+  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
   claim?: boolean | Prisma.ReviewTask$claimArgs<ExtArgs>
   source?: boolean | Prisma.ReviewTask$sourceArgs<ExtArgs>
-  assignedTo?: boolean | Prisma.ReviewTask$assignedToArgs<ExtArgs>
+  system?: boolean | Prisma.ReviewTask$systemArgs<ExtArgs>
 }
 
 export type $ReviewTaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ReviewTask"
   objects: {
-    system: Prisma.$AISystemPayload<ExtArgs> | null
+    assignedTo: Prisma.$AdminUserPayload<ExtArgs> | null
     claim: Prisma.$SystemClaimPayload<ExtArgs> | null
     source: Prisma.$SourcePayload<ExtArgs> | null
-    assignedTo: Prisma.$AdminUserPayload<ExtArgs> | null
+    system: Prisma.$AISystemPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1771,10 +1771,10 @@ readonly fields: ReviewTaskFieldRefs;
  */
 export interface Prisma__ReviewTaskClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  system<T extends Prisma.ReviewTask$systemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$systemArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  assignedTo<T extends Prisma.ReviewTask$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$assignedToArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   claim<T extends Prisma.ReviewTask$claimArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$claimArgs<ExtArgs>>): Prisma.Prisma__SystemClaimClient<runtime.Types.Result.GetResult<Prisma.$SystemClaimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   source<T extends Prisma.ReviewTask$sourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$sourceArgs<ExtArgs>>): Prisma.Prisma__SourceClient<runtime.Types.Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  assignedTo<T extends Prisma.ReviewTask$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$assignedToArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  system<T extends Prisma.ReviewTask$systemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReviewTask$systemArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2220,22 +2220,22 @@ export type ReviewTaskDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * ReviewTask.system
+ * ReviewTask.assignedTo
  */
-export type ReviewTask$systemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ReviewTask$assignedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AISystem
+   * Select specific fields to fetch from the AdminUser
    */
-  select?: Prisma.AISystemSelect<ExtArgs> | null
+  select?: Prisma.AdminUserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AISystem
+   * Omit specific fields from the AdminUser
    */
-  omit?: Prisma.AISystemOmit<ExtArgs> | null
+  omit?: Prisma.AdminUserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AISystemInclude<ExtArgs> | null
-  where?: Prisma.AISystemWhereInput
+  include?: Prisma.AdminUserInclude<ExtArgs> | null
+  where?: Prisma.AdminUserWhereInput
 }
 
 /**
@@ -2277,22 +2277,22 @@ export type ReviewTask$sourceArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * ReviewTask.assignedTo
+ * ReviewTask.system
  */
-export type ReviewTask$assignedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ReviewTask$systemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AdminUser
+   * Select specific fields to fetch from the AISystem
    */
-  select?: Prisma.AdminUserSelect<ExtArgs> | null
+  select?: Prisma.AISystemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AdminUser
+   * Omit specific fields from the AISystem
    */
-  omit?: Prisma.AdminUserOmit<ExtArgs> | null
+  omit?: Prisma.AISystemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AdminUserInclude<ExtArgs> | null
-  where?: Prisma.AdminUserWhereInput
+  include?: Prisma.AISystemInclude<ExtArgs> | null
+  where?: Prisma.AISystemWhereInput
 }
 
 /**

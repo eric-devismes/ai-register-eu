@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
-import { locales } from "@/lib/i18n";
+import { activeLocales as locales } from "@/lib/i18n";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://aicompass.eu";
@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic system pages
   try {
     const systems = await prisma.aISystem.findMany({
+      where: { status: "active" },
       select: { slug: true, assessedAt: true },
     });
 

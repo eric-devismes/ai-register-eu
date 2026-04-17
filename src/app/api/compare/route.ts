@@ -264,7 +264,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Maximum 10 systems" }, { status: 400 });
       }
       const systems = await prisma.aISystem.findMany({
-        where: { id: { in: systemIds } },
+        where: { id: { in: systemIds }, status: "active" },
         include: {
           scores: { include: { framework: true } },
           industries: true,
@@ -318,6 +318,7 @@ export async function POST(request: Request) {
     // the LLM summary and for enriching match results afterwards.
     // Single query instead of two separate fetches.
     const allSystems = await prisma.aISystem.findMany({
+      where: { status: "active" },
       include: {
         scores: { include: { framework: { select: { slug: true, name: true } } } },
         industries: { select: { name: true } },

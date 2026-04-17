@@ -226,8 +226,8 @@ export async function POST(request: Request) {
     }
 
     // Step 4: Fetch AI system from database
-    const system = await prisma.aISystem.findUnique({
-      where: { slug: systemSlug },
+    const system = await prisma.aISystem.findFirst({
+      where: { slug: systemSlug, status: "active" },
       include: {
         scores: { include: { framework: { select: { slug: true, name: true } } } },
         industries: { select: { name: true } },

@@ -43,44 +43,45 @@ export type AISystemMinAggregateOutputType = {
   name: string | null
   type: string | null
   risk: string | null
-  capabilityType: string | null
   description: string | null
   category: string | null
+  status: string | null
   featured: boolean | null
-  vendorHq: string | null
-  euPresence: string | null
-  useCases: string | null
-  dataStorage: string | null
-  dataProcessing: string | null
-  trainingDataUse: string | null
-  subprocessors: string | null
-  dpaDetails: string | null
-  slaDetails: string | null
-  dataPortability: string | null
-  exitTerms: string | null
-  ipTerms: string | null
-  certifications: string | null
-  encryptionInfo: string | null
-  accessControls: string | null
-  modelDocs: string | null
-  explainability: string | null
-  biasTesting: string | null
-  aiActStatus: string | null
-  gdprStatus: string | null
-  euResidency: string | null
-  deploymentModel: string | null
-  sourceModel: string | null
-  foundedYear: number | null
-  employeeCount: string | null
-  fundingStatus: string | null
-  marketPresence: string | null
-  customerCount: string | null
-  notableCustomers: string | null
-  customerStories: string | null
-  assessedAt: Date | null
-  assessmentNote: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accessControls: string | null
+  aiActStatus: string | null
+  assessedAt: Date | null
+  assessmentNote: string | null
+  biasTesting: string | null
+  certifications: string | null
+  dataPortability: string | null
+  dataProcessing: string | null
+  dataStorage: string | null
+  dpaDetails: string | null
+  encryptionInfo: string | null
+  euPresence: string | null
+  euResidency: string | null
+  exitTerms: string | null
+  explainability: string | null
+  gdprStatus: string | null
+  ipTerms: string | null
+  modelDocs: string | null
+  slaDetails: string | null
+  subprocessors: string | null
+  trainingDataUse: string | null
+  useCases: string | null
+  vendorHq: string | null
+  capabilityType: string | null
+  customerCount: string | null
+  customerStories: string | null
+  deploymentModel: string | null
+  employeeCount: string | null
+  foundedYear: number | null
+  fundingStatus: string | null
+  marketPresence: string | null
+  notableCustomers: string | null
+  sourceModel: string | null
 }
 
 export type AISystemMaxAggregateOutputType = {
@@ -90,44 +91,45 @@ export type AISystemMaxAggregateOutputType = {
   name: string | null
   type: string | null
   risk: string | null
-  capabilityType: string | null
   description: string | null
   category: string | null
+  status: string | null
   featured: boolean | null
-  vendorHq: string | null
-  euPresence: string | null
-  useCases: string | null
-  dataStorage: string | null
-  dataProcessing: string | null
-  trainingDataUse: string | null
-  subprocessors: string | null
-  dpaDetails: string | null
-  slaDetails: string | null
-  dataPortability: string | null
-  exitTerms: string | null
-  ipTerms: string | null
-  certifications: string | null
-  encryptionInfo: string | null
-  accessControls: string | null
-  modelDocs: string | null
-  explainability: string | null
-  biasTesting: string | null
-  aiActStatus: string | null
-  gdprStatus: string | null
-  euResidency: string | null
-  deploymentModel: string | null
-  sourceModel: string | null
-  foundedYear: number | null
-  employeeCount: string | null
-  fundingStatus: string | null
-  marketPresence: string | null
-  customerCount: string | null
-  notableCustomers: string | null
-  customerStories: string | null
-  assessedAt: Date | null
-  assessmentNote: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accessControls: string | null
+  aiActStatus: string | null
+  assessedAt: Date | null
+  assessmentNote: string | null
+  biasTesting: string | null
+  certifications: string | null
+  dataPortability: string | null
+  dataProcessing: string | null
+  dataStorage: string | null
+  dpaDetails: string | null
+  encryptionInfo: string | null
+  euPresence: string | null
+  euResidency: string | null
+  exitTerms: string | null
+  explainability: string | null
+  gdprStatus: string | null
+  ipTerms: string | null
+  modelDocs: string | null
+  slaDetails: string | null
+  subprocessors: string | null
+  trainingDataUse: string | null
+  useCases: string | null
+  vendorHq: string | null
+  capabilityType: string | null
+  customerCount: string | null
+  customerStories: string | null
+  deploymentModel: string | null
+  employeeCount: string | null
+  foundedYear: number | null
+  fundingStatus: string | null
+  marketPresence: string | null
+  notableCustomers: string | null
+  sourceModel: string | null
 }
 
 export type AISystemCountAggregateOutputType = {
@@ -137,44 +139,45 @@ export type AISystemCountAggregateOutputType = {
   name: number
   type: number
   risk: number
-  capabilityType: number
   description: number
   category: number
+  status: number
   featured: number
-  vendorHq: number
-  euPresence: number
-  useCases: number
-  dataStorage: number
-  dataProcessing: number
-  trainingDataUse: number
-  subprocessors: number
-  dpaDetails: number
-  slaDetails: number
-  dataPortability: number
-  exitTerms: number
-  ipTerms: number
-  certifications: number
-  encryptionInfo: number
-  accessControls: number
-  modelDocs: number
-  explainability: number
-  biasTesting: number
-  aiActStatus: number
-  gdprStatus: number
-  euResidency: number
-  deploymentModel: number
-  sourceModel: number
-  foundedYear: number
-  employeeCount: number
-  fundingStatus: number
-  marketPresence: number
-  customerCount: number
-  notableCustomers: number
-  customerStories: number
-  assessedAt: number
-  assessmentNote: number
   createdAt: number
   updatedAt: number
+  accessControls: number
+  aiActStatus: number
+  assessedAt: number
+  assessmentNote: number
+  biasTesting: number
+  certifications: number
+  dataPortability: number
+  dataProcessing: number
+  dataStorage: number
+  dpaDetails: number
+  encryptionInfo: number
+  euPresence: number
+  euResidency: number
+  exitTerms: number
+  explainability: number
+  gdprStatus: number
+  ipTerms: number
+  modelDocs: number
+  slaDetails: number
+  subprocessors: number
+  trainingDataUse: number
+  useCases: number
+  vendorHq: number
+  capabilityType: number
+  customerCount: number
+  customerStories: number
+  deploymentModel: number
+  employeeCount: number
+  foundedYear: number
+  fundingStatus: number
+  marketPresence: number
+  notableCustomers: number
+  sourceModel: number
   _all: number
 }
 
@@ -194,44 +197,45 @@ export type AISystemMinAggregateInputType = {
   name?: true
   type?: true
   risk?: true
-  capabilityType?: true
   description?: true
   category?: true
+  status?: true
   featured?: true
-  vendorHq?: true
-  euPresence?: true
-  useCases?: true
-  dataStorage?: true
-  dataProcessing?: true
-  trainingDataUse?: true
-  subprocessors?: true
-  dpaDetails?: true
-  slaDetails?: true
-  dataPortability?: true
-  exitTerms?: true
-  ipTerms?: true
-  certifications?: true
-  encryptionInfo?: true
-  accessControls?: true
-  modelDocs?: true
-  explainability?: true
-  biasTesting?: true
-  aiActStatus?: true
-  gdprStatus?: true
-  euResidency?: true
-  deploymentModel?: true
-  sourceModel?: true
-  foundedYear?: true
-  employeeCount?: true
-  fundingStatus?: true
-  marketPresence?: true
-  customerCount?: true
-  notableCustomers?: true
-  customerStories?: true
-  assessedAt?: true
-  assessmentNote?: true
   createdAt?: true
   updatedAt?: true
+  accessControls?: true
+  aiActStatus?: true
+  assessedAt?: true
+  assessmentNote?: true
+  biasTesting?: true
+  certifications?: true
+  dataPortability?: true
+  dataProcessing?: true
+  dataStorage?: true
+  dpaDetails?: true
+  encryptionInfo?: true
+  euPresence?: true
+  euResidency?: true
+  exitTerms?: true
+  explainability?: true
+  gdprStatus?: true
+  ipTerms?: true
+  modelDocs?: true
+  slaDetails?: true
+  subprocessors?: true
+  trainingDataUse?: true
+  useCases?: true
+  vendorHq?: true
+  capabilityType?: true
+  customerCount?: true
+  customerStories?: true
+  deploymentModel?: true
+  employeeCount?: true
+  foundedYear?: true
+  fundingStatus?: true
+  marketPresence?: true
+  notableCustomers?: true
+  sourceModel?: true
 }
 
 export type AISystemMaxAggregateInputType = {
@@ -241,44 +245,45 @@ export type AISystemMaxAggregateInputType = {
   name?: true
   type?: true
   risk?: true
-  capabilityType?: true
   description?: true
   category?: true
+  status?: true
   featured?: true
-  vendorHq?: true
-  euPresence?: true
-  useCases?: true
-  dataStorage?: true
-  dataProcessing?: true
-  trainingDataUse?: true
-  subprocessors?: true
-  dpaDetails?: true
-  slaDetails?: true
-  dataPortability?: true
-  exitTerms?: true
-  ipTerms?: true
-  certifications?: true
-  encryptionInfo?: true
-  accessControls?: true
-  modelDocs?: true
-  explainability?: true
-  biasTesting?: true
-  aiActStatus?: true
-  gdprStatus?: true
-  euResidency?: true
-  deploymentModel?: true
-  sourceModel?: true
-  foundedYear?: true
-  employeeCount?: true
-  fundingStatus?: true
-  marketPresence?: true
-  customerCount?: true
-  notableCustomers?: true
-  customerStories?: true
-  assessedAt?: true
-  assessmentNote?: true
   createdAt?: true
   updatedAt?: true
+  accessControls?: true
+  aiActStatus?: true
+  assessedAt?: true
+  assessmentNote?: true
+  biasTesting?: true
+  certifications?: true
+  dataPortability?: true
+  dataProcessing?: true
+  dataStorage?: true
+  dpaDetails?: true
+  encryptionInfo?: true
+  euPresence?: true
+  euResidency?: true
+  exitTerms?: true
+  explainability?: true
+  gdprStatus?: true
+  ipTerms?: true
+  modelDocs?: true
+  slaDetails?: true
+  subprocessors?: true
+  trainingDataUse?: true
+  useCases?: true
+  vendorHq?: true
+  capabilityType?: true
+  customerCount?: true
+  customerStories?: true
+  deploymentModel?: true
+  employeeCount?: true
+  foundedYear?: true
+  fundingStatus?: true
+  marketPresence?: true
+  notableCustomers?: true
+  sourceModel?: true
 }
 
 export type AISystemCountAggregateInputType = {
@@ -288,44 +293,45 @@ export type AISystemCountAggregateInputType = {
   name?: true
   type?: true
   risk?: true
-  capabilityType?: true
   description?: true
   category?: true
+  status?: true
   featured?: true
-  vendorHq?: true
-  euPresence?: true
-  useCases?: true
-  dataStorage?: true
-  dataProcessing?: true
-  trainingDataUse?: true
-  subprocessors?: true
-  dpaDetails?: true
-  slaDetails?: true
-  dataPortability?: true
-  exitTerms?: true
-  ipTerms?: true
-  certifications?: true
-  encryptionInfo?: true
-  accessControls?: true
-  modelDocs?: true
-  explainability?: true
-  biasTesting?: true
-  aiActStatus?: true
-  gdprStatus?: true
-  euResidency?: true
-  deploymentModel?: true
-  sourceModel?: true
-  foundedYear?: true
-  employeeCount?: true
-  fundingStatus?: true
-  marketPresence?: true
-  customerCount?: true
-  notableCustomers?: true
-  customerStories?: true
-  assessedAt?: true
-  assessmentNote?: true
   createdAt?: true
   updatedAt?: true
+  accessControls?: true
+  aiActStatus?: true
+  assessedAt?: true
+  assessmentNote?: true
+  biasTesting?: true
+  certifications?: true
+  dataPortability?: true
+  dataProcessing?: true
+  dataStorage?: true
+  dpaDetails?: true
+  encryptionInfo?: true
+  euPresence?: true
+  euResidency?: true
+  exitTerms?: true
+  explainability?: true
+  gdprStatus?: true
+  ipTerms?: true
+  modelDocs?: true
+  slaDetails?: true
+  subprocessors?: true
+  trainingDataUse?: true
+  useCases?: true
+  vendorHq?: true
+  capabilityType?: true
+  customerCount?: true
+  customerStories?: true
+  deploymentModel?: true
+  employeeCount?: true
+  foundedYear?: true
+  fundingStatus?: true
+  marketPresence?: true
+  notableCustomers?: true
+  sourceModel?: true
   _all?: true
 }
 
@@ -422,44 +428,45 @@ export type AISystemGroupByOutputType = {
   name: string
   type: string
   risk: string
-  capabilityType: string
   description: string
   category: string
+  status: string
   featured: boolean
-  vendorHq: string
-  euPresence: string
-  useCases: string
-  dataStorage: string
-  dataProcessing: string
-  trainingDataUse: string
-  subprocessors: string
-  dpaDetails: string
-  slaDetails: string
-  dataPortability: string
-  exitTerms: string
-  ipTerms: string
-  certifications: string
-  encryptionInfo: string
-  accessControls: string
-  modelDocs: string
-  explainability: string
-  biasTesting: string
-  aiActStatus: string
-  gdprStatus: string
-  euResidency: string
-  deploymentModel: string
-  sourceModel: string
-  foundedYear: number | null
-  employeeCount: string
-  fundingStatus: string
-  marketPresence: string
-  customerCount: string
-  notableCustomers: string
-  customerStories: string
-  assessedAt: Date | null
-  assessmentNote: string
   createdAt: Date
   updatedAt: Date
+  accessControls: string
+  aiActStatus: string
+  assessedAt: Date | null
+  assessmentNote: string
+  biasTesting: string
+  certifications: string
+  dataPortability: string
+  dataProcessing: string
+  dataStorage: string
+  dpaDetails: string
+  encryptionInfo: string
+  euPresence: string
+  euResidency: string
+  exitTerms: string
+  explainability: string
+  gdprStatus: string
+  ipTerms: string
+  modelDocs: string
+  slaDetails: string
+  subprocessors: string
+  trainingDataUse: string
+  useCases: string
+  vendorHq: string
+  capabilityType: string
+  customerCount: string
+  customerStories: string
+  deploymentModel: string
+  employeeCount: string
+  foundedYear: number | null
+  fundingStatus: string
+  marketPresence: string
+  notableCustomers: string
+  sourceModel: string
   _count: AISystemCountAggregateOutputType | null
   _avg: AISystemAvgAggregateOutputType | null
   _sum: AISystemSumAggregateOutputType | null
@@ -492,53 +499,54 @@ export type AISystemWhereInput = {
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
-  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
+  status?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
-  vendorHq?: Prisma.StringFilter<"AISystem"> | string
-  euPresence?: Prisma.StringFilter<"AISystem"> | string
-  useCases?: Prisma.StringFilter<"AISystem"> | string
-  dataStorage?: Prisma.StringFilter<"AISystem"> | string
-  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
-  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
-  subprocessors?: Prisma.StringFilter<"AISystem"> | string
-  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
-  slaDetails?: Prisma.StringFilter<"AISystem"> | string
-  dataPortability?: Prisma.StringFilter<"AISystem"> | string
-  exitTerms?: Prisma.StringFilter<"AISystem"> | string
-  ipTerms?: Prisma.StringFilter<"AISystem"> | string
-  certifications?: Prisma.StringFilter<"AISystem"> | string
-  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
-  accessControls?: Prisma.StringFilter<"AISystem"> | string
-  modelDocs?: Prisma.StringFilter<"AISystem"> | string
-  explainability?: Prisma.StringFilter<"AISystem"> | string
-  biasTesting?: Prisma.StringFilter<"AISystem"> | string
-  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
-  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
-  euResidency?: Prisma.StringFilter<"AISystem"> | string
-  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
-  sourceModel?: Prisma.StringFilter<"AISystem"> | string
-  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
-  employeeCount?: Prisma.StringFilter<"AISystem"> | string
-  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
-  marketPresence?: Prisma.StringFilter<"AISystem"> | string
-  customerCount?: Prisma.StringFilter<"AISystem"> | string
-  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
-  customerStories?: Prisma.StringFilter<"AISystem"> | string
-  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
-  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
-  industries?: Prisma.IndustryListRelationFilter
+  accessControls?: Prisma.StringFilter<"AISystem"> | string
+  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
+  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
+  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
+  biasTesting?: Prisma.StringFilter<"AISystem"> | string
+  certifications?: Prisma.StringFilter<"AISystem"> | string
+  dataPortability?: Prisma.StringFilter<"AISystem"> | string
+  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
+  dataStorage?: Prisma.StringFilter<"AISystem"> | string
+  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
+  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
+  euPresence?: Prisma.StringFilter<"AISystem"> | string
+  euResidency?: Prisma.StringFilter<"AISystem"> | string
+  exitTerms?: Prisma.StringFilter<"AISystem"> | string
+  explainability?: Prisma.StringFilter<"AISystem"> | string
+  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
+  ipTerms?: Prisma.StringFilter<"AISystem"> | string
+  modelDocs?: Prisma.StringFilter<"AISystem"> | string
+  slaDetails?: Prisma.StringFilter<"AISystem"> | string
+  subprocessors?: Prisma.StringFilter<"AISystem"> | string
+  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
+  useCases?: Prisma.StringFilter<"AISystem"> | string
+  vendorHq?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
   scores?: Prisma.AssessmentScoreListRelationFilter
   changelog?: Prisma.ChangeLogListRelationFilter
-  subscribers?: Prisma.SubscriberListRelationFilter
-  companies?: Prisma.CompanyListRelationFilter
   dimensionScores?: Prisma.DimensionScoreListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
   sources?: Prisma.SourceListRelationFilter
   claims?: Prisma.SystemClaimListRelationFilter
-  reviewTasks?: Prisma.ReviewTaskListRelationFilter
+  companies?: Prisma.CompanyListRelationFilter
+  industries?: Prisma.IndustryListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
 }
 
 export type AISystemOrderByWithRelationInput = {
@@ -548,53 +556,54 @@ export type AISystemOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
-  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  vendorHq?: Prisma.SortOrder
-  euPresence?: Prisma.SortOrder
-  useCases?: Prisma.SortOrder
-  dataStorage?: Prisma.SortOrder
-  dataProcessing?: Prisma.SortOrder
-  trainingDataUse?: Prisma.SortOrder
-  subprocessors?: Prisma.SortOrder
-  dpaDetails?: Prisma.SortOrder
-  slaDetails?: Prisma.SortOrder
-  dataPortability?: Prisma.SortOrder
-  exitTerms?: Prisma.SortOrder
-  ipTerms?: Prisma.SortOrder
-  certifications?: Prisma.SortOrder
-  encryptionInfo?: Prisma.SortOrder
-  accessControls?: Prisma.SortOrder
-  modelDocs?: Prisma.SortOrder
-  explainability?: Prisma.SortOrder
-  biasTesting?: Prisma.SortOrder
-  aiActStatus?: Prisma.SortOrder
-  gdprStatus?: Prisma.SortOrder
-  euResidency?: Prisma.SortOrder
-  deploymentModel?: Prisma.SortOrder
-  sourceModel?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  employeeCount?: Prisma.SortOrder
-  fundingStatus?: Prisma.SortOrder
-  marketPresence?: Prisma.SortOrder
-  customerCount?: Prisma.SortOrder
-  notableCustomers?: Prisma.SortOrder
-  customerStories?: Prisma.SortOrder
-  assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  industries?: Prisma.IndustryOrderByRelationAggregateInput
+  accessControls?: Prisma.SortOrder
+  aiActStatus?: Prisma.SortOrder
+  assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessmentNote?: Prisma.SortOrder
+  biasTesting?: Prisma.SortOrder
+  certifications?: Prisma.SortOrder
+  dataPortability?: Prisma.SortOrder
+  dataProcessing?: Prisma.SortOrder
+  dataStorage?: Prisma.SortOrder
+  dpaDetails?: Prisma.SortOrder
+  encryptionInfo?: Prisma.SortOrder
+  euPresence?: Prisma.SortOrder
+  euResidency?: Prisma.SortOrder
+  exitTerms?: Prisma.SortOrder
+  explainability?: Prisma.SortOrder
+  gdprStatus?: Prisma.SortOrder
+  ipTerms?: Prisma.SortOrder
+  modelDocs?: Prisma.SortOrder
+  slaDetails?: Prisma.SortOrder
+  subprocessors?: Prisma.SortOrder
+  trainingDataUse?: Prisma.SortOrder
+  useCases?: Prisma.SortOrder
+  vendorHq?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
   scores?: Prisma.AssessmentScoreOrderByRelationAggregateInput
   changelog?: Prisma.ChangeLogOrderByRelationAggregateInput
-  subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
-  companies?: Prisma.CompanyOrderByRelationAggregateInput
   dimensionScores?: Prisma.DimensionScoreOrderByRelationAggregateInput
+  reviewTasks?: Prisma.ReviewTaskOrderByRelationAggregateInput
   sources?: Prisma.SourceOrderByRelationAggregateInput
   claims?: Prisma.SystemClaimOrderByRelationAggregateInput
-  reviewTasks?: Prisma.ReviewTaskOrderByRelationAggregateInput
+  companies?: Prisma.CompanyOrderByRelationAggregateInput
+  industries?: Prisma.IndustryOrderByRelationAggregateInput
+  subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
 }
 
 export type AISystemWhereUniqueInput = Prisma.AtLeast<{
@@ -607,53 +616,54 @@ export type AISystemWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
-  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
+  status?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
-  vendorHq?: Prisma.StringFilter<"AISystem"> | string
-  euPresence?: Prisma.StringFilter<"AISystem"> | string
-  useCases?: Prisma.StringFilter<"AISystem"> | string
-  dataStorage?: Prisma.StringFilter<"AISystem"> | string
-  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
-  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
-  subprocessors?: Prisma.StringFilter<"AISystem"> | string
-  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
-  slaDetails?: Prisma.StringFilter<"AISystem"> | string
-  dataPortability?: Prisma.StringFilter<"AISystem"> | string
-  exitTerms?: Prisma.StringFilter<"AISystem"> | string
-  ipTerms?: Prisma.StringFilter<"AISystem"> | string
-  certifications?: Prisma.StringFilter<"AISystem"> | string
-  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
-  accessControls?: Prisma.StringFilter<"AISystem"> | string
-  modelDocs?: Prisma.StringFilter<"AISystem"> | string
-  explainability?: Prisma.StringFilter<"AISystem"> | string
-  biasTesting?: Prisma.StringFilter<"AISystem"> | string
-  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
-  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
-  euResidency?: Prisma.StringFilter<"AISystem"> | string
-  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
-  sourceModel?: Prisma.StringFilter<"AISystem"> | string
-  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
-  employeeCount?: Prisma.StringFilter<"AISystem"> | string
-  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
-  marketPresence?: Prisma.StringFilter<"AISystem"> | string
-  customerCount?: Prisma.StringFilter<"AISystem"> | string
-  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
-  customerStories?: Prisma.StringFilter<"AISystem"> | string
-  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
-  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
-  industries?: Prisma.IndustryListRelationFilter
+  accessControls?: Prisma.StringFilter<"AISystem"> | string
+  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
+  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
+  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
+  biasTesting?: Prisma.StringFilter<"AISystem"> | string
+  certifications?: Prisma.StringFilter<"AISystem"> | string
+  dataPortability?: Prisma.StringFilter<"AISystem"> | string
+  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
+  dataStorage?: Prisma.StringFilter<"AISystem"> | string
+  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
+  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
+  euPresence?: Prisma.StringFilter<"AISystem"> | string
+  euResidency?: Prisma.StringFilter<"AISystem"> | string
+  exitTerms?: Prisma.StringFilter<"AISystem"> | string
+  explainability?: Prisma.StringFilter<"AISystem"> | string
+  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
+  ipTerms?: Prisma.StringFilter<"AISystem"> | string
+  modelDocs?: Prisma.StringFilter<"AISystem"> | string
+  slaDetails?: Prisma.StringFilter<"AISystem"> | string
+  subprocessors?: Prisma.StringFilter<"AISystem"> | string
+  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
+  useCases?: Prisma.StringFilter<"AISystem"> | string
+  vendorHq?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
   scores?: Prisma.AssessmentScoreListRelationFilter
   changelog?: Prisma.ChangeLogListRelationFilter
-  subscribers?: Prisma.SubscriberListRelationFilter
-  companies?: Prisma.CompanyListRelationFilter
   dimensionScores?: Prisma.DimensionScoreListRelationFilter
+  reviewTasks?: Prisma.ReviewTaskListRelationFilter
   sources?: Prisma.SourceListRelationFilter
   claims?: Prisma.SystemClaimListRelationFilter
-  reviewTasks?: Prisma.ReviewTaskListRelationFilter
+  companies?: Prisma.CompanyListRelationFilter
+  industries?: Prisma.IndustryListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
 }, "id" | "slug">
 
 export type AISystemOrderByWithAggregationInput = {
@@ -663,44 +673,45 @@ export type AISystemOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
-  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  vendorHq?: Prisma.SortOrder
-  euPresence?: Prisma.SortOrder
-  useCases?: Prisma.SortOrder
-  dataStorage?: Prisma.SortOrder
-  dataProcessing?: Prisma.SortOrder
-  trainingDataUse?: Prisma.SortOrder
-  subprocessors?: Prisma.SortOrder
-  dpaDetails?: Prisma.SortOrder
-  slaDetails?: Prisma.SortOrder
-  dataPortability?: Prisma.SortOrder
-  exitTerms?: Prisma.SortOrder
-  ipTerms?: Prisma.SortOrder
-  certifications?: Prisma.SortOrder
-  encryptionInfo?: Prisma.SortOrder
-  accessControls?: Prisma.SortOrder
-  modelDocs?: Prisma.SortOrder
-  explainability?: Prisma.SortOrder
-  biasTesting?: Prisma.SortOrder
-  aiActStatus?: Prisma.SortOrder
-  gdprStatus?: Prisma.SortOrder
-  euResidency?: Prisma.SortOrder
-  deploymentModel?: Prisma.SortOrder
-  sourceModel?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  employeeCount?: Prisma.SortOrder
-  fundingStatus?: Prisma.SortOrder
-  marketPresence?: Prisma.SortOrder
-  customerCount?: Prisma.SortOrder
-  notableCustomers?: Prisma.SortOrder
-  customerStories?: Prisma.SortOrder
-  assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessControls?: Prisma.SortOrder
+  aiActStatus?: Prisma.SortOrder
+  assessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessmentNote?: Prisma.SortOrder
+  biasTesting?: Prisma.SortOrder
+  certifications?: Prisma.SortOrder
+  dataPortability?: Prisma.SortOrder
+  dataProcessing?: Prisma.SortOrder
+  dataStorage?: Prisma.SortOrder
+  dpaDetails?: Prisma.SortOrder
+  encryptionInfo?: Prisma.SortOrder
+  euPresence?: Prisma.SortOrder
+  euResidency?: Prisma.SortOrder
+  exitTerms?: Prisma.SortOrder
+  explainability?: Prisma.SortOrder
+  gdprStatus?: Prisma.SortOrder
+  ipTerms?: Prisma.SortOrder
+  modelDocs?: Prisma.SortOrder
+  slaDetails?: Prisma.SortOrder
+  subprocessors?: Prisma.SortOrder
+  trainingDataUse?: Prisma.SortOrder
+  useCases?: Prisma.SortOrder
+  vendorHq?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
   _count?: Prisma.AISystemCountOrderByAggregateInput
   _avg?: Prisma.AISystemAvgOrderByAggregateInput
   _max?: Prisma.AISystemMaxOrderByAggregateInput
@@ -718,44 +729,45 @@ export type AISystemScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   type?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   risk?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  capabilityType?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   description?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   category?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  status?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   featured?: Prisma.BoolWithAggregatesFilter<"AISystem"> | boolean
-  vendorHq?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  euPresence?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  useCases?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  dataStorage?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  dataProcessing?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  trainingDataUse?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  subprocessors?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  dpaDetails?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  slaDetails?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  dataPortability?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  exitTerms?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  ipTerms?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  certifications?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  encryptionInfo?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  accessControls?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  modelDocs?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  explainability?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  biasTesting?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  aiActStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  gdprStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  euResidency?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  deploymentModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  sourceModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  foundedYear?: Prisma.IntNullableWithAggregatesFilter<"AISystem"> | number | null
-  employeeCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  fundingStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  marketPresence?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  customerCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  notableCustomers?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  customerStories?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
-  assessedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AISystem"> | Date | string | null
-  assessmentNote?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AISystem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AISystem"> | Date | string
+  accessControls?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  aiActStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  assessedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AISystem"> | Date | string | null
+  assessmentNote?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  biasTesting?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  certifications?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  dataPortability?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  dataProcessing?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  dataStorage?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  dpaDetails?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  encryptionInfo?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  euPresence?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  euResidency?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  exitTerms?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  explainability?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  gdprStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  ipTerms?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  modelDocs?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  slaDetails?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  subprocessors?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  trainingDataUse?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  useCases?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  vendorHq?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  customerCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  customerStories?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  employeeCount?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableWithAggregatesFilter<"AISystem"> | number | null
+  fundingStatus?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringWithAggregatesFilter<"AISystem"> | string
 }
 
 export type AISystemCreateInput = {
@@ -765,53 +777,54 @@ export type AISystemCreateInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateInput = {
@@ -821,53 +834,54 @@ export type AISystemUncheckedCreateInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUpdateInput = {
@@ -877,53 +891,54 @@ export type AISystemUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateInput = {
@@ -933,53 +948,54 @@ export type AISystemUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateManyInput = {
@@ -989,44 +1005,45 @@ export type AISystemCreateManyInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
 }
 
 export type AISystemUpdateManyMutationInput = {
@@ -1036,44 +1053,45 @@ export type AISystemUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AISystemUncheckedUpdateManyInput = {
@@ -1083,44 +1101,45 @@ export type AISystemUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AISystemListRelationFilter = {
@@ -1145,44 +1164,45 @@ export type AISystemCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
-  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  vendorHq?: Prisma.SortOrder
-  euPresence?: Prisma.SortOrder
-  useCases?: Prisma.SortOrder
-  dataStorage?: Prisma.SortOrder
-  dataProcessing?: Prisma.SortOrder
-  trainingDataUse?: Prisma.SortOrder
-  subprocessors?: Prisma.SortOrder
-  dpaDetails?: Prisma.SortOrder
-  slaDetails?: Prisma.SortOrder
-  dataPortability?: Prisma.SortOrder
-  exitTerms?: Prisma.SortOrder
-  ipTerms?: Prisma.SortOrder
-  certifications?: Prisma.SortOrder
-  encryptionInfo?: Prisma.SortOrder
-  accessControls?: Prisma.SortOrder
-  modelDocs?: Prisma.SortOrder
-  explainability?: Prisma.SortOrder
-  biasTesting?: Prisma.SortOrder
-  aiActStatus?: Prisma.SortOrder
-  gdprStatus?: Prisma.SortOrder
-  euResidency?: Prisma.SortOrder
-  deploymentModel?: Prisma.SortOrder
-  sourceModel?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  employeeCount?: Prisma.SortOrder
-  fundingStatus?: Prisma.SortOrder
-  marketPresence?: Prisma.SortOrder
-  customerCount?: Prisma.SortOrder
-  notableCustomers?: Prisma.SortOrder
-  customerStories?: Prisma.SortOrder
-  assessedAt?: Prisma.SortOrder
-  assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessControls?: Prisma.SortOrder
+  aiActStatus?: Prisma.SortOrder
+  assessedAt?: Prisma.SortOrder
+  assessmentNote?: Prisma.SortOrder
+  biasTesting?: Prisma.SortOrder
+  certifications?: Prisma.SortOrder
+  dataPortability?: Prisma.SortOrder
+  dataProcessing?: Prisma.SortOrder
+  dataStorage?: Prisma.SortOrder
+  dpaDetails?: Prisma.SortOrder
+  encryptionInfo?: Prisma.SortOrder
+  euPresence?: Prisma.SortOrder
+  euResidency?: Prisma.SortOrder
+  exitTerms?: Prisma.SortOrder
+  explainability?: Prisma.SortOrder
+  gdprStatus?: Prisma.SortOrder
+  ipTerms?: Prisma.SortOrder
+  modelDocs?: Prisma.SortOrder
+  slaDetails?: Prisma.SortOrder
+  subprocessors?: Prisma.SortOrder
+  trainingDataUse?: Prisma.SortOrder
+  useCases?: Prisma.SortOrder
+  vendorHq?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
 }
 
 export type AISystemAvgOrderByAggregateInput = {
@@ -1196,44 +1216,45 @@ export type AISystemMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
-  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  vendorHq?: Prisma.SortOrder
-  euPresence?: Prisma.SortOrder
-  useCases?: Prisma.SortOrder
-  dataStorage?: Prisma.SortOrder
-  dataProcessing?: Prisma.SortOrder
-  trainingDataUse?: Prisma.SortOrder
-  subprocessors?: Prisma.SortOrder
-  dpaDetails?: Prisma.SortOrder
-  slaDetails?: Prisma.SortOrder
-  dataPortability?: Prisma.SortOrder
-  exitTerms?: Prisma.SortOrder
-  ipTerms?: Prisma.SortOrder
-  certifications?: Prisma.SortOrder
-  encryptionInfo?: Prisma.SortOrder
-  accessControls?: Prisma.SortOrder
-  modelDocs?: Prisma.SortOrder
-  explainability?: Prisma.SortOrder
-  biasTesting?: Prisma.SortOrder
-  aiActStatus?: Prisma.SortOrder
-  gdprStatus?: Prisma.SortOrder
-  euResidency?: Prisma.SortOrder
-  deploymentModel?: Prisma.SortOrder
-  sourceModel?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  employeeCount?: Prisma.SortOrder
-  fundingStatus?: Prisma.SortOrder
-  marketPresence?: Prisma.SortOrder
-  customerCount?: Prisma.SortOrder
-  notableCustomers?: Prisma.SortOrder
-  customerStories?: Prisma.SortOrder
-  assessedAt?: Prisma.SortOrder
-  assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessControls?: Prisma.SortOrder
+  aiActStatus?: Prisma.SortOrder
+  assessedAt?: Prisma.SortOrder
+  assessmentNote?: Prisma.SortOrder
+  biasTesting?: Prisma.SortOrder
+  certifications?: Prisma.SortOrder
+  dataPortability?: Prisma.SortOrder
+  dataProcessing?: Prisma.SortOrder
+  dataStorage?: Prisma.SortOrder
+  dpaDetails?: Prisma.SortOrder
+  encryptionInfo?: Prisma.SortOrder
+  euPresence?: Prisma.SortOrder
+  euResidency?: Prisma.SortOrder
+  exitTerms?: Prisma.SortOrder
+  explainability?: Prisma.SortOrder
+  gdprStatus?: Prisma.SortOrder
+  ipTerms?: Prisma.SortOrder
+  modelDocs?: Prisma.SortOrder
+  slaDetails?: Prisma.SortOrder
+  subprocessors?: Prisma.SortOrder
+  trainingDataUse?: Prisma.SortOrder
+  useCases?: Prisma.SortOrder
+  vendorHq?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
 }
 
 export type AISystemMinOrderByAggregateInput = {
@@ -1243,44 +1264,45 @@ export type AISystemMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   risk?: Prisma.SortOrder
-  capabilityType?: Prisma.SortOrder
   description?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   featured?: Prisma.SortOrder
-  vendorHq?: Prisma.SortOrder
-  euPresence?: Prisma.SortOrder
-  useCases?: Prisma.SortOrder
-  dataStorage?: Prisma.SortOrder
-  dataProcessing?: Prisma.SortOrder
-  trainingDataUse?: Prisma.SortOrder
-  subprocessors?: Prisma.SortOrder
-  dpaDetails?: Prisma.SortOrder
-  slaDetails?: Prisma.SortOrder
-  dataPortability?: Prisma.SortOrder
-  exitTerms?: Prisma.SortOrder
-  ipTerms?: Prisma.SortOrder
-  certifications?: Prisma.SortOrder
-  encryptionInfo?: Prisma.SortOrder
-  accessControls?: Prisma.SortOrder
-  modelDocs?: Prisma.SortOrder
-  explainability?: Prisma.SortOrder
-  biasTesting?: Prisma.SortOrder
-  aiActStatus?: Prisma.SortOrder
-  gdprStatus?: Prisma.SortOrder
-  euResidency?: Prisma.SortOrder
-  deploymentModel?: Prisma.SortOrder
-  sourceModel?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  employeeCount?: Prisma.SortOrder
-  fundingStatus?: Prisma.SortOrder
-  marketPresence?: Prisma.SortOrder
-  customerCount?: Prisma.SortOrder
-  notableCustomers?: Prisma.SortOrder
-  customerStories?: Prisma.SortOrder
-  assessedAt?: Prisma.SortOrder
-  assessmentNote?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessControls?: Prisma.SortOrder
+  aiActStatus?: Prisma.SortOrder
+  assessedAt?: Prisma.SortOrder
+  assessmentNote?: Prisma.SortOrder
+  biasTesting?: Prisma.SortOrder
+  certifications?: Prisma.SortOrder
+  dataPortability?: Prisma.SortOrder
+  dataProcessing?: Prisma.SortOrder
+  dataStorage?: Prisma.SortOrder
+  dpaDetails?: Prisma.SortOrder
+  encryptionInfo?: Prisma.SortOrder
+  euPresence?: Prisma.SortOrder
+  euResidency?: Prisma.SortOrder
+  exitTerms?: Prisma.SortOrder
+  explainability?: Prisma.SortOrder
+  gdprStatus?: Prisma.SortOrder
+  ipTerms?: Prisma.SortOrder
+  modelDocs?: Prisma.SortOrder
+  slaDetails?: Prisma.SortOrder
+  subprocessors?: Prisma.SortOrder
+  trainingDataUse?: Prisma.SortOrder
+  useCases?: Prisma.SortOrder
+  vendorHq?: Prisma.SortOrder
+  capabilityType?: Prisma.SortOrder
+  customerCount?: Prisma.SortOrder
+  customerStories?: Prisma.SortOrder
+  deploymentModel?: Prisma.SortOrder
+  employeeCount?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
+  fundingStatus?: Prisma.SortOrder
+  marketPresence?: Prisma.SortOrder
+  notableCustomers?: Prisma.SortOrder
+  sourceModel?: Prisma.SortOrder
 }
 
 export type AISystemSumOrderByAggregateInput = {
@@ -1358,16 +1380,16 @@ export type AISystemUpdateOneRequiredWithoutDimensionScoresNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AISystemUpdateToOneWithWhereWithoutDimensionScoresInput, Prisma.AISystemUpdateWithoutDimensionScoresInput>, Prisma.AISystemUncheckedUpdateWithoutDimensionScoresInput>
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type AISystemCreateNestedOneWithoutSourcesInput = {
@@ -1513,52 +1535,53 @@ export type AISystemCreateWithoutIndustriesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutIndustriesInput = {
@@ -1568,52 +1591,53 @@ export type AISystemUncheckedCreateWithoutIndustriesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutIndustriesInput = {
@@ -1647,44 +1671,45 @@ export type AISystemScalarWhereInput = {
   name?: Prisma.StringFilter<"AISystem"> | string
   type?: Prisma.StringFilter<"AISystem"> | string
   risk?: Prisma.StringFilter<"AISystem"> | string
-  capabilityType?: Prisma.StringFilter<"AISystem"> | string
   description?: Prisma.StringFilter<"AISystem"> | string
   category?: Prisma.StringFilter<"AISystem"> | string
+  status?: Prisma.StringFilter<"AISystem"> | string
   featured?: Prisma.BoolFilter<"AISystem"> | boolean
-  vendorHq?: Prisma.StringFilter<"AISystem"> | string
-  euPresence?: Prisma.StringFilter<"AISystem"> | string
-  useCases?: Prisma.StringFilter<"AISystem"> | string
-  dataStorage?: Prisma.StringFilter<"AISystem"> | string
-  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
-  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
-  subprocessors?: Prisma.StringFilter<"AISystem"> | string
-  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
-  slaDetails?: Prisma.StringFilter<"AISystem"> | string
-  dataPortability?: Prisma.StringFilter<"AISystem"> | string
-  exitTerms?: Prisma.StringFilter<"AISystem"> | string
-  ipTerms?: Prisma.StringFilter<"AISystem"> | string
-  certifications?: Prisma.StringFilter<"AISystem"> | string
-  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
-  accessControls?: Prisma.StringFilter<"AISystem"> | string
-  modelDocs?: Prisma.StringFilter<"AISystem"> | string
-  explainability?: Prisma.StringFilter<"AISystem"> | string
-  biasTesting?: Prisma.StringFilter<"AISystem"> | string
-  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
-  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
-  euResidency?: Prisma.StringFilter<"AISystem"> | string
-  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
-  sourceModel?: Prisma.StringFilter<"AISystem"> | string
-  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
-  employeeCount?: Prisma.StringFilter<"AISystem"> | string
-  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
-  marketPresence?: Prisma.StringFilter<"AISystem"> | string
-  customerCount?: Prisma.StringFilter<"AISystem"> | string
-  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
-  customerStories?: Prisma.StringFilter<"AISystem"> | string
-  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
-  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
   createdAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AISystem"> | Date | string
+  accessControls?: Prisma.StringFilter<"AISystem"> | string
+  aiActStatus?: Prisma.StringFilter<"AISystem"> | string
+  assessedAt?: Prisma.DateTimeNullableFilter<"AISystem"> | Date | string | null
+  assessmentNote?: Prisma.StringFilter<"AISystem"> | string
+  biasTesting?: Prisma.StringFilter<"AISystem"> | string
+  certifications?: Prisma.StringFilter<"AISystem"> | string
+  dataPortability?: Prisma.StringFilter<"AISystem"> | string
+  dataProcessing?: Prisma.StringFilter<"AISystem"> | string
+  dataStorage?: Prisma.StringFilter<"AISystem"> | string
+  dpaDetails?: Prisma.StringFilter<"AISystem"> | string
+  encryptionInfo?: Prisma.StringFilter<"AISystem"> | string
+  euPresence?: Prisma.StringFilter<"AISystem"> | string
+  euResidency?: Prisma.StringFilter<"AISystem"> | string
+  exitTerms?: Prisma.StringFilter<"AISystem"> | string
+  explainability?: Prisma.StringFilter<"AISystem"> | string
+  gdprStatus?: Prisma.StringFilter<"AISystem"> | string
+  ipTerms?: Prisma.StringFilter<"AISystem"> | string
+  modelDocs?: Prisma.StringFilter<"AISystem"> | string
+  slaDetails?: Prisma.StringFilter<"AISystem"> | string
+  subprocessors?: Prisma.StringFilter<"AISystem"> | string
+  trainingDataUse?: Prisma.StringFilter<"AISystem"> | string
+  useCases?: Prisma.StringFilter<"AISystem"> | string
+  vendorHq?: Prisma.StringFilter<"AISystem"> | string
+  capabilityType?: Prisma.StringFilter<"AISystem"> | string
+  customerCount?: Prisma.StringFilter<"AISystem"> | string
+  customerStories?: Prisma.StringFilter<"AISystem"> | string
+  deploymentModel?: Prisma.StringFilter<"AISystem"> | string
+  employeeCount?: Prisma.StringFilter<"AISystem"> | string
+  foundedYear?: Prisma.IntNullableFilter<"AISystem"> | number | null
+  fundingStatus?: Prisma.StringFilter<"AISystem"> | string
+  marketPresence?: Prisma.StringFilter<"AISystem"> | string
+  notableCustomers?: Prisma.StringFilter<"AISystem"> | string
+  sourceModel?: Prisma.StringFilter<"AISystem"> | string
 }
 
 export type AISystemCreateWithoutScoresInput = {
@@ -1694,52 +1719,53 @@ export type AISystemCreateWithoutScoresInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutScoresInput = {
@@ -1749,52 +1775,53 @@ export type AISystemUncheckedCreateWithoutScoresInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutScoresInput = {
@@ -1820,52 +1847,53 @@ export type AISystemUpdateWithoutScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutScoresInput = {
@@ -1875,52 +1903,53 @@ export type AISystemUncheckedUpdateWithoutScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutDimensionScoresInput = {
@@ -1930,52 +1959,53 @@ export type AISystemCreateWithoutDimensionScoresInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
@@ -1985,52 +2015,53 @@ export type AISystemUncheckedCreateWithoutDimensionScoresInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutDimensionScoresInput = {
@@ -2056,52 +2087,53 @@ export type AISystemUpdateWithoutDimensionScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
@@ -2111,52 +2143,53 @@ export type AISystemUncheckedUpdateWithoutDimensionScoresInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutSourcesInput = {
@@ -2166,52 +2199,53 @@ export type AISystemCreateWithoutSourcesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
-  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutSourcesInput = {
@@ -2221,52 +2255,53 @@ export type AISystemUncheckedCreateWithoutSourcesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
-  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
   reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutSourcesInput = {
@@ -2292,52 +2327,53 @@ export type AISystemUpdateWithoutSourcesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
-  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutSourcesInput = {
@@ -2347,52 +2383,53 @@ export type AISystemUncheckedUpdateWithoutSourcesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
-  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
   reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutClaimsInput = {
@@ -2402,52 +2439,53 @@ export type AISystemCreateWithoutClaimsInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
-  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutClaimsInput = {
@@ -2457,52 +2495,53 @@ export type AISystemUncheckedCreateWithoutClaimsInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
-  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutClaimsInput = {
@@ -2528,52 +2567,53 @@ export type AISystemUpdateWithoutClaimsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
-  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutClaimsInput = {
@@ -2583,52 +2623,53 @@ export type AISystemUncheckedUpdateWithoutClaimsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
-  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutReviewTasksInput = {
@@ -2638,52 +2679,53 @@ export type AISystemCreateWithoutReviewTasksInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutReviewTasksInput = {
@@ -2693,52 +2735,53 @@ export type AISystemUncheckedCreateWithoutReviewTasksInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutReviewTasksInput = {
@@ -2764,52 +2807,53 @@ export type AISystemUpdateWithoutReviewTasksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutReviewTasksInput = {
@@ -2819,52 +2863,53 @@ export type AISystemUncheckedUpdateWithoutReviewTasksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutChangelogInput = {
@@ -2874,52 +2919,53 @@ export type AISystemCreateWithoutChangelogInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutChangelogInput = {
@@ -2929,52 +2975,53 @@ export type AISystemUncheckedCreateWithoutChangelogInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutChangelogInput = {
@@ -3000,52 +3047,53 @@ export type AISystemUpdateWithoutChangelogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutChangelogInput = {
@@ -3055,52 +3103,53 @@ export type AISystemUncheckedUpdateWithoutChangelogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemCreateWithoutCompaniesInput = {
@@ -3110,52 +3159,53 @@ export type AISystemCreateWithoutCompaniesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutCompaniesInput = {
@@ -3165,52 +3215,53 @@ export type AISystemUncheckedCreateWithoutCompaniesInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutCompaniesInput = {
@@ -3241,52 +3292,53 @@ export type AISystemCreateWithoutSubscribersInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogCreateNestedManyWithoutSystemInput
-  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemUncheckedCreateWithoutSubscribersInput = {
@@ -3296,52 +3348,53 @@ export type AISystemUncheckedCreateWithoutSubscribersInput = {
   name: string
   type: string
   risk: string
-  capabilityType?: string
   description: string
   category: string
+  status?: string
   featured?: boolean
-  vendorHq?: string
-  euPresence?: string
-  useCases?: string
-  dataStorage?: string
-  dataProcessing?: string
-  trainingDataUse?: string
-  subprocessors?: string
-  dpaDetails?: string
-  slaDetails?: string
-  dataPortability?: string
-  exitTerms?: string
-  ipTerms?: string
-  certifications?: string
-  encryptionInfo?: string
-  accessControls?: string
-  modelDocs?: string
-  explainability?: string
-  biasTesting?: string
-  aiActStatus?: string
-  gdprStatus?: string
-  euResidency?: string
-  deploymentModel?: string
-  sourceModel?: string
-  foundedYear?: number | null
-  employeeCount?: string
-  fundingStatus?: string
-  marketPresence?: string
-  customerCount?: string
-  notableCustomers?: string
-  customerStories?: string
-  assessedAt?: Date | string | null
-  assessmentNote?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
+  accessControls?: string
+  aiActStatus?: string
+  assessedAt?: Date | string | null
+  assessmentNote?: string
+  biasTesting?: string
+  certifications?: string
+  dataPortability?: string
+  dataProcessing?: string
+  dataStorage?: string
+  dpaDetails?: string
+  encryptionInfo?: string
+  euPresence?: string
+  euResidency?: string
+  exitTerms?: string
+  explainability?: string
+  gdprStatus?: string
+  ipTerms?: string
+  modelDocs?: string
+  slaDetails?: string
+  subprocessors?: string
+  trainingDataUse?: string
+  useCases?: string
+  vendorHq?: string
+  capabilityType?: string
+  customerCount?: string
+  customerStories?: string
+  deploymentModel?: string
+  employeeCount?: string
+  foundedYear?: number | null
+  fundingStatus?: string
+  marketPresence?: string
+  notableCustomers?: string
+  sourceModel?: string
   scores?: Prisma.AssessmentScoreUncheckedCreateNestedManyWithoutSystemInput
   changelog?: Prisma.ChangeLogUncheckedCreateNestedManyWithoutSystemInput
-  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSystemInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutSystemInput
   claims?: Prisma.SystemClaimUncheckedCreateNestedManyWithoutSystemInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedCreateNestedManyWithoutSystemInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutAiSystemsInput
+  industries?: Prisma.IndustryUncheckedCreateNestedManyWithoutSystemsInput
 }
 
 export type AISystemCreateOrConnectWithoutSubscribersInput = {
@@ -3372,52 +3425,53 @@ export type AISystemUpdateWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutIndustriesInput = {
@@ -3427,52 +3481,53 @@ export type AISystemUncheckedUpdateWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutIndustriesInput = {
@@ -3482,44 +3537,45 @@ export type AISystemUncheckedUpdateManyWithoutIndustriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AISystemUpdateWithoutCompaniesInput = {
@@ -3529,52 +3585,53 @@ export type AISystemUpdateWithoutCompaniesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutCompaniesInput = {
@@ -3584,52 +3641,53 @@ export type AISystemUncheckedUpdateWithoutCompaniesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutCompaniesInput = {
@@ -3639,44 +3697,45 @@ export type AISystemUncheckedUpdateManyWithoutCompaniesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AISystemUpdateWithoutSubscribersInput = {
@@ -3686,52 +3745,53 @@ export type AISystemUpdateWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUpdateManyWithoutSystemNestedInput
-  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateWithoutSubscribersInput = {
@@ -3741,52 +3801,53 @@ export type AISystemUncheckedUpdateWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
   scores?: Prisma.AssessmentScoreUncheckedUpdateManyWithoutSystemNestedInput
   changelog?: Prisma.ChangeLogUncheckedUpdateManyWithoutSystemNestedInput
-  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSystemNestedInput
+  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
   sources?: Prisma.SourceUncheckedUpdateManyWithoutSystemNestedInput
   claims?: Prisma.SystemClaimUncheckedUpdateManyWithoutSystemNestedInput
-  reviewTasks?: Prisma.ReviewTaskUncheckedUpdateManyWithoutSystemNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutAiSystemsNestedInput
+  industries?: Prisma.IndustryUncheckedUpdateManyWithoutSystemsNestedInput
 }
 
 export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
@@ -3796,44 +3857,45 @@ export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   risk?: Prisma.StringFieldUpdateOperationsInput | string
-  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
-  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  useCases?: Prisma.StringFieldUpdateOperationsInput | string
-  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
-  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
-  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
-  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
-  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
-  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
-  certifications?: Prisma.StringFieldUpdateOperationsInput | string
-  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
-  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
-  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
-  explainability?: Prisma.StringFieldUpdateOperationsInput | string
-  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
-  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
-  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
-  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
-  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
-  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
-  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
-  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessControls?: Prisma.StringFieldUpdateOperationsInput | string
+  aiActStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  assessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assessmentNote?: Prisma.StringFieldUpdateOperationsInput | string
+  biasTesting?: Prisma.StringFieldUpdateOperationsInput | string
+  certifications?: Prisma.StringFieldUpdateOperationsInput | string
+  dataPortability?: Prisma.StringFieldUpdateOperationsInput | string
+  dataProcessing?: Prisma.StringFieldUpdateOperationsInput | string
+  dataStorage?: Prisma.StringFieldUpdateOperationsInput | string
+  dpaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  encryptionInfo?: Prisma.StringFieldUpdateOperationsInput | string
+  euPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  euResidency?: Prisma.StringFieldUpdateOperationsInput | string
+  exitTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  explainability?: Prisma.StringFieldUpdateOperationsInput | string
+  gdprStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  ipTerms?: Prisma.StringFieldUpdateOperationsInput | string
+  modelDocs?: Prisma.StringFieldUpdateOperationsInput | string
+  slaDetails?: Prisma.StringFieldUpdateOperationsInput | string
+  subprocessors?: Prisma.StringFieldUpdateOperationsInput | string
+  trainingDataUse?: Prisma.StringFieldUpdateOperationsInput | string
+  useCases?: Prisma.StringFieldUpdateOperationsInput | string
+  vendorHq?: Prisma.StringFieldUpdateOperationsInput | string
+  capabilityType?: Prisma.StringFieldUpdateOperationsInput | string
+  customerCount?: Prisma.StringFieldUpdateOperationsInput | string
+  customerStories?: Prisma.StringFieldUpdateOperationsInput | string
+  deploymentModel?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeCount?: Prisma.StringFieldUpdateOperationsInput | string
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fundingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  marketPresence?: Prisma.StringFieldUpdateOperationsInput | string
+  notableCustomers?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceModel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -3842,27 +3904,27 @@ export type AISystemUncheckedUpdateManyWithoutSubscribersInput = {
  */
 
 export type AISystemCountOutputType = {
-  industries: number
   scores: number
   changelog: number
-  subscribers: number
-  companies: number
   dimensionScores: number
+  reviewTasks: number
   sources: number
   claims: number
-  reviewTasks: number
+  companies: number
+  industries: number
+  subscribers: number
 }
 
 export type AISystemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  industries?: boolean | AISystemCountOutputTypeCountIndustriesArgs
   scores?: boolean | AISystemCountOutputTypeCountScoresArgs
   changelog?: boolean | AISystemCountOutputTypeCountChangelogArgs
-  subscribers?: boolean | AISystemCountOutputTypeCountSubscribersArgs
-  companies?: boolean | AISystemCountOutputTypeCountCompaniesArgs
   dimensionScores?: boolean | AISystemCountOutputTypeCountDimensionScoresArgs
+  reviewTasks?: boolean | AISystemCountOutputTypeCountReviewTasksArgs
   sources?: boolean | AISystemCountOutputTypeCountSourcesArgs
   claims?: boolean | AISystemCountOutputTypeCountClaimsArgs
-  reviewTasks?: boolean | AISystemCountOutputTypeCountReviewTasksArgs
+  companies?: boolean | AISystemCountOutputTypeCountCompaniesArgs
+  industries?: boolean | AISystemCountOutputTypeCountIndustriesArgs
+  subscribers?: boolean | AISystemCountOutputTypeCountSubscribersArgs
 }
 
 /**
@@ -3873,13 +3935,6 @@ export type AISystemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the AISystemCountOutputType
    */
   select?: Prisma.AISystemCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * AISystemCountOutputType without action
- */
-export type AISystemCountOutputTypeCountIndustriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.IndustryWhereInput
 }
 
 /**
@@ -3899,22 +3954,15 @@ export type AISystemCountOutputTypeCountChangelogArgs<ExtArgs extends runtime.Ty
 /**
  * AISystemCountOutputType without action
  */
-export type AISystemCountOutputTypeCountSubscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriberWhereInput
-}
-
-/**
- * AISystemCountOutputType without action
- */
-export type AISystemCountOutputTypeCountCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CompanyWhereInput
-}
-
-/**
- * AISystemCountOutputType without action
- */
 export type AISystemCountOutputTypeCountDimensionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DimensionScoreWhereInput
+}
+
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountReviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewTaskWhereInput
 }
 
 /**
@@ -3934,8 +3982,22 @@ export type AISystemCountOutputTypeCountClaimsArgs<ExtArgs extends runtime.Types
 /**
  * AISystemCountOutputType without action
  */
-export type AISystemCountOutputTypeCountReviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewTaskWhereInput
+export type AISystemCountOutputTypeCountCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyWhereInput
+}
+
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountIndustriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IndustryWhereInput
+}
+
+/**
+ * AISystemCountOutputType without action
+ */
+export type AISystemCountOutputTypeCountSubscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriberWhereInput
 }
 
 
@@ -3946,53 +4008,54 @@ export type AISystemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   type?: boolean
   risk?: boolean
-  capabilityType?: boolean
   description?: boolean
   category?: boolean
+  status?: boolean
   featured?: boolean
-  vendorHq?: boolean
-  euPresence?: boolean
-  useCases?: boolean
-  dataStorage?: boolean
-  dataProcessing?: boolean
-  trainingDataUse?: boolean
-  subprocessors?: boolean
-  dpaDetails?: boolean
-  slaDetails?: boolean
-  dataPortability?: boolean
-  exitTerms?: boolean
-  ipTerms?: boolean
-  certifications?: boolean
-  encryptionInfo?: boolean
-  accessControls?: boolean
-  modelDocs?: boolean
-  explainability?: boolean
-  biasTesting?: boolean
-  aiActStatus?: boolean
-  gdprStatus?: boolean
-  euResidency?: boolean
-  deploymentModel?: boolean
-  sourceModel?: boolean
-  foundedYear?: boolean
-  employeeCount?: boolean
-  fundingStatus?: boolean
-  marketPresence?: boolean
-  customerCount?: boolean
-  notableCustomers?: boolean
-  customerStories?: boolean
-  assessedAt?: boolean
-  assessmentNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  industries?: boolean | Prisma.AISystem$industriesArgs<ExtArgs>
+  accessControls?: boolean
+  aiActStatus?: boolean
+  assessedAt?: boolean
+  assessmentNote?: boolean
+  biasTesting?: boolean
+  certifications?: boolean
+  dataPortability?: boolean
+  dataProcessing?: boolean
+  dataStorage?: boolean
+  dpaDetails?: boolean
+  encryptionInfo?: boolean
+  euPresence?: boolean
+  euResidency?: boolean
+  exitTerms?: boolean
+  explainability?: boolean
+  gdprStatus?: boolean
+  ipTerms?: boolean
+  modelDocs?: boolean
+  slaDetails?: boolean
+  subprocessors?: boolean
+  trainingDataUse?: boolean
+  useCases?: boolean
+  vendorHq?: boolean
+  capabilityType?: boolean
+  customerCount?: boolean
+  customerStories?: boolean
+  deploymentModel?: boolean
+  employeeCount?: boolean
+  foundedYear?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  notableCustomers?: boolean
+  sourceModel?: boolean
   scores?: boolean | Prisma.AISystem$scoresArgs<ExtArgs>
   changelog?: boolean | Prisma.AISystem$changelogArgs<ExtArgs>
-  subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
-  companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
   dimensionScores?: boolean | Prisma.AISystem$dimensionScoresArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
   sources?: boolean | Prisma.AISystem$sourcesArgs<ExtArgs>
   claims?: boolean | Prisma.AISystem$claimsArgs<ExtArgs>
-  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
+  companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
+  industries?: boolean | Prisma.AISystem$industriesArgs<ExtArgs>
+  subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
   _count?: boolean | Prisma.AISystemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aISystem"]>
 
@@ -4003,44 +4066,45 @@ export type AISystemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   type?: boolean
   risk?: boolean
-  capabilityType?: boolean
   description?: boolean
   category?: boolean
+  status?: boolean
   featured?: boolean
-  vendorHq?: boolean
-  euPresence?: boolean
-  useCases?: boolean
-  dataStorage?: boolean
-  dataProcessing?: boolean
-  trainingDataUse?: boolean
-  subprocessors?: boolean
-  dpaDetails?: boolean
-  slaDetails?: boolean
-  dataPortability?: boolean
-  exitTerms?: boolean
-  ipTerms?: boolean
-  certifications?: boolean
-  encryptionInfo?: boolean
-  accessControls?: boolean
-  modelDocs?: boolean
-  explainability?: boolean
-  biasTesting?: boolean
-  aiActStatus?: boolean
-  gdprStatus?: boolean
-  euResidency?: boolean
-  deploymentModel?: boolean
-  sourceModel?: boolean
-  foundedYear?: boolean
-  employeeCount?: boolean
-  fundingStatus?: boolean
-  marketPresence?: boolean
-  customerCount?: boolean
-  notableCustomers?: boolean
-  customerStories?: boolean
-  assessedAt?: boolean
-  assessmentNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessControls?: boolean
+  aiActStatus?: boolean
+  assessedAt?: boolean
+  assessmentNote?: boolean
+  biasTesting?: boolean
+  certifications?: boolean
+  dataPortability?: boolean
+  dataProcessing?: boolean
+  dataStorage?: boolean
+  dpaDetails?: boolean
+  encryptionInfo?: boolean
+  euPresence?: boolean
+  euResidency?: boolean
+  exitTerms?: boolean
+  explainability?: boolean
+  gdprStatus?: boolean
+  ipTerms?: boolean
+  modelDocs?: boolean
+  slaDetails?: boolean
+  subprocessors?: boolean
+  trainingDataUse?: boolean
+  useCases?: boolean
+  vendorHq?: boolean
+  capabilityType?: boolean
+  customerCount?: boolean
+  customerStories?: boolean
+  deploymentModel?: boolean
+  employeeCount?: boolean
+  foundedYear?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  notableCustomers?: boolean
+  sourceModel?: boolean
 }, ExtArgs["result"]["aISystem"]>
 
 export type AISystemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -4050,44 +4114,45 @@ export type AISystemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   type?: boolean
   risk?: boolean
-  capabilityType?: boolean
   description?: boolean
   category?: boolean
+  status?: boolean
   featured?: boolean
-  vendorHq?: boolean
-  euPresence?: boolean
-  useCases?: boolean
-  dataStorage?: boolean
-  dataProcessing?: boolean
-  trainingDataUse?: boolean
-  subprocessors?: boolean
-  dpaDetails?: boolean
-  slaDetails?: boolean
-  dataPortability?: boolean
-  exitTerms?: boolean
-  ipTerms?: boolean
-  certifications?: boolean
-  encryptionInfo?: boolean
-  accessControls?: boolean
-  modelDocs?: boolean
-  explainability?: boolean
-  biasTesting?: boolean
-  aiActStatus?: boolean
-  gdprStatus?: boolean
-  euResidency?: boolean
-  deploymentModel?: boolean
-  sourceModel?: boolean
-  foundedYear?: boolean
-  employeeCount?: boolean
-  fundingStatus?: boolean
-  marketPresence?: boolean
-  customerCount?: boolean
-  notableCustomers?: boolean
-  customerStories?: boolean
-  assessedAt?: boolean
-  assessmentNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessControls?: boolean
+  aiActStatus?: boolean
+  assessedAt?: boolean
+  assessmentNote?: boolean
+  biasTesting?: boolean
+  certifications?: boolean
+  dataPortability?: boolean
+  dataProcessing?: boolean
+  dataStorage?: boolean
+  dpaDetails?: boolean
+  encryptionInfo?: boolean
+  euPresence?: boolean
+  euResidency?: boolean
+  exitTerms?: boolean
+  explainability?: boolean
+  gdprStatus?: boolean
+  ipTerms?: boolean
+  modelDocs?: boolean
+  slaDetails?: boolean
+  subprocessors?: boolean
+  trainingDataUse?: boolean
+  useCases?: boolean
+  vendorHq?: boolean
+  capabilityType?: boolean
+  customerCount?: boolean
+  customerStories?: boolean
+  deploymentModel?: boolean
+  employeeCount?: boolean
+  foundedYear?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  notableCustomers?: boolean
+  sourceModel?: boolean
 }, ExtArgs["result"]["aISystem"]>
 
 export type AISystemSelectScalar = {
@@ -4097,57 +4162,58 @@ export type AISystemSelectScalar = {
   name?: boolean
   type?: boolean
   risk?: boolean
-  capabilityType?: boolean
   description?: boolean
   category?: boolean
+  status?: boolean
   featured?: boolean
-  vendorHq?: boolean
-  euPresence?: boolean
-  useCases?: boolean
-  dataStorage?: boolean
-  dataProcessing?: boolean
-  trainingDataUse?: boolean
-  subprocessors?: boolean
-  dpaDetails?: boolean
-  slaDetails?: boolean
-  dataPortability?: boolean
-  exitTerms?: boolean
-  ipTerms?: boolean
-  certifications?: boolean
-  encryptionInfo?: boolean
-  accessControls?: boolean
-  modelDocs?: boolean
-  explainability?: boolean
-  biasTesting?: boolean
-  aiActStatus?: boolean
-  gdprStatus?: boolean
-  euResidency?: boolean
-  deploymentModel?: boolean
-  sourceModel?: boolean
-  foundedYear?: boolean
-  employeeCount?: boolean
-  fundingStatus?: boolean
-  marketPresence?: boolean
-  customerCount?: boolean
-  notableCustomers?: boolean
-  customerStories?: boolean
-  assessedAt?: boolean
-  assessmentNote?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessControls?: boolean
+  aiActStatus?: boolean
+  assessedAt?: boolean
+  assessmentNote?: boolean
+  biasTesting?: boolean
+  certifications?: boolean
+  dataPortability?: boolean
+  dataProcessing?: boolean
+  dataStorage?: boolean
+  dpaDetails?: boolean
+  encryptionInfo?: boolean
+  euPresence?: boolean
+  euResidency?: boolean
+  exitTerms?: boolean
+  explainability?: boolean
+  gdprStatus?: boolean
+  ipTerms?: boolean
+  modelDocs?: boolean
+  slaDetails?: boolean
+  subprocessors?: boolean
+  trainingDataUse?: boolean
+  useCases?: boolean
+  vendorHq?: boolean
+  capabilityType?: boolean
+  customerCount?: boolean
+  customerStories?: boolean
+  deploymentModel?: boolean
+  employeeCount?: boolean
+  foundedYear?: boolean
+  fundingStatus?: boolean
+  marketPresence?: boolean
+  notableCustomers?: boolean
+  sourceModel?: boolean
 }
 
-export type AISystemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "vendor" | "name" | "type" | "risk" | "capabilityType" | "description" | "category" | "featured" | "vendorHq" | "euPresence" | "useCases" | "dataStorage" | "dataProcessing" | "trainingDataUse" | "subprocessors" | "dpaDetails" | "slaDetails" | "dataPortability" | "exitTerms" | "ipTerms" | "certifications" | "encryptionInfo" | "accessControls" | "modelDocs" | "explainability" | "biasTesting" | "aiActStatus" | "gdprStatus" | "euResidency" | "deploymentModel" | "sourceModel" | "foundedYear" | "employeeCount" | "fundingStatus" | "marketPresence" | "customerCount" | "notableCustomers" | "customerStories" | "assessedAt" | "assessmentNote" | "createdAt" | "updatedAt", ExtArgs["result"]["aISystem"]>
+export type AISystemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "vendor" | "name" | "type" | "risk" | "description" | "category" | "status" | "featured" | "createdAt" | "updatedAt" | "accessControls" | "aiActStatus" | "assessedAt" | "assessmentNote" | "biasTesting" | "certifications" | "dataPortability" | "dataProcessing" | "dataStorage" | "dpaDetails" | "encryptionInfo" | "euPresence" | "euResidency" | "exitTerms" | "explainability" | "gdprStatus" | "ipTerms" | "modelDocs" | "slaDetails" | "subprocessors" | "trainingDataUse" | "useCases" | "vendorHq" | "capabilityType" | "customerCount" | "customerStories" | "deploymentModel" | "employeeCount" | "foundedYear" | "fundingStatus" | "marketPresence" | "notableCustomers" | "sourceModel", ExtArgs["result"]["aISystem"]>
 export type AISystemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  industries?: boolean | Prisma.AISystem$industriesArgs<ExtArgs>
   scores?: boolean | Prisma.AISystem$scoresArgs<ExtArgs>
   changelog?: boolean | Prisma.AISystem$changelogArgs<ExtArgs>
-  subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
-  companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
   dimensionScores?: boolean | Prisma.AISystem$dimensionScoresArgs<ExtArgs>
+  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
   sources?: boolean | Prisma.AISystem$sourcesArgs<ExtArgs>
   claims?: boolean | Prisma.AISystem$claimsArgs<ExtArgs>
-  reviewTasks?: boolean | Prisma.AISystem$reviewTasksArgs<ExtArgs>
+  companies?: boolean | Prisma.AISystem$companiesArgs<ExtArgs>
+  industries?: boolean | Prisma.AISystem$industriesArgs<ExtArgs>
+  subscribers?: boolean | Prisma.AISystem$subscribersArgs<ExtArgs>
   _count?: boolean | Prisma.AISystemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AISystemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4156,15 +4222,15 @@ export type AISystemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $AISystemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AISystem"
   objects: {
-    industries: Prisma.$IndustryPayload<ExtArgs>[]
     scores: Prisma.$AssessmentScorePayload<ExtArgs>[]
     changelog: Prisma.$ChangeLogPayload<ExtArgs>[]
-    subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
-    companies: Prisma.$CompanyPayload<ExtArgs>[]
     dimensionScores: Prisma.$DimensionScorePayload<ExtArgs>[]
+    reviewTasks: Prisma.$ReviewTaskPayload<ExtArgs>[]
     sources: Prisma.$SourcePayload<ExtArgs>[]
     claims: Prisma.$SystemClaimPayload<ExtArgs>[]
-    reviewTasks: Prisma.$ReviewTaskPayload<ExtArgs>[]
+    companies: Prisma.$CompanyPayload<ExtArgs>[]
+    industries: Prisma.$IndustryPayload<ExtArgs>[]
+    subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4173,44 +4239,45 @@ export type $AISystemPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     type: string
     risk: string
-    capabilityType: string
     description: string
     category: string
+    status: string
     featured: boolean
-    vendorHq: string
-    euPresence: string
-    useCases: string
-    dataStorage: string
-    dataProcessing: string
-    trainingDataUse: string
-    subprocessors: string
-    dpaDetails: string
-    slaDetails: string
-    dataPortability: string
-    exitTerms: string
-    ipTerms: string
-    certifications: string
-    encryptionInfo: string
-    accessControls: string
-    modelDocs: string
-    explainability: string
-    biasTesting: string
-    aiActStatus: string
-    gdprStatus: string
-    euResidency: string
-    deploymentModel: string
-    sourceModel: string
-    foundedYear: number | null
-    employeeCount: string
-    fundingStatus: string
-    marketPresence: string
-    customerCount: string
-    notableCustomers: string
-    customerStories: string
-    assessedAt: Date | null
-    assessmentNote: string
     createdAt: Date
     updatedAt: Date
+    accessControls: string
+    aiActStatus: string
+    assessedAt: Date | null
+    assessmentNote: string
+    biasTesting: string
+    certifications: string
+    dataPortability: string
+    dataProcessing: string
+    dataStorage: string
+    dpaDetails: string
+    encryptionInfo: string
+    euPresence: string
+    euResidency: string
+    exitTerms: string
+    explainability: string
+    gdprStatus: string
+    ipTerms: string
+    modelDocs: string
+    slaDetails: string
+    subprocessors: string
+    trainingDataUse: string
+    useCases: string
+    vendorHq: string
+    capabilityType: string
+    customerCount: string
+    customerStories: string
+    deploymentModel: string
+    employeeCount: string
+    foundedYear: number | null
+    fundingStatus: string
+    marketPresence: string
+    notableCustomers: string
+    sourceModel: string
   }, ExtArgs["result"]["aISystem"]>
   composites: {}
 }
@@ -4605,15 +4672,15 @@ readonly fields: AISystemFieldRefs;
  */
 export interface Prisma__AISystemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  industries<T extends Prisma.AISystem$industriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   scores<T extends Prisma.AISystem$scoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$scoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   changelog<T extends Prisma.AISystem$changelogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$changelogArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChangeLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscribers<T extends Prisma.AISystem$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  companies<T extends Prisma.AISystem$companiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$companiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dimensionScores<T extends Prisma.AISystem$dimensionScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$dimensionScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DimensionScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewTasks<T extends Prisma.AISystem$reviewTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$reviewTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sources<T extends Prisma.AISystem$sourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$sourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   claims<T extends Prisma.AISystem$claimsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$claimsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SystemClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviewTasks<T extends Prisma.AISystem$reviewTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$reviewTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  companies<T extends Prisma.AISystem$companiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$companiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  industries<T extends Prisma.AISystem$industriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscribers<T extends Prisma.AISystem$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystem$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4649,44 +4716,45 @@ export interface AISystemFieldRefs {
   readonly name: Prisma.FieldRef<"AISystem", 'String'>
   readonly type: Prisma.FieldRef<"AISystem", 'String'>
   readonly risk: Prisma.FieldRef<"AISystem", 'String'>
-  readonly capabilityType: Prisma.FieldRef<"AISystem", 'String'>
   readonly description: Prisma.FieldRef<"AISystem", 'String'>
   readonly category: Prisma.FieldRef<"AISystem", 'String'>
+  readonly status: Prisma.FieldRef<"AISystem", 'String'>
   readonly featured: Prisma.FieldRef<"AISystem", 'Boolean'>
-  readonly vendorHq: Prisma.FieldRef<"AISystem", 'String'>
-  readonly euPresence: Prisma.FieldRef<"AISystem", 'String'>
-  readonly useCases: Prisma.FieldRef<"AISystem", 'String'>
-  readonly dataStorage: Prisma.FieldRef<"AISystem", 'String'>
-  readonly dataProcessing: Prisma.FieldRef<"AISystem", 'String'>
-  readonly trainingDataUse: Prisma.FieldRef<"AISystem", 'String'>
-  readonly subprocessors: Prisma.FieldRef<"AISystem", 'String'>
-  readonly dpaDetails: Prisma.FieldRef<"AISystem", 'String'>
-  readonly slaDetails: Prisma.FieldRef<"AISystem", 'String'>
-  readonly dataPortability: Prisma.FieldRef<"AISystem", 'String'>
-  readonly exitTerms: Prisma.FieldRef<"AISystem", 'String'>
-  readonly ipTerms: Prisma.FieldRef<"AISystem", 'String'>
-  readonly certifications: Prisma.FieldRef<"AISystem", 'String'>
-  readonly encryptionInfo: Prisma.FieldRef<"AISystem", 'String'>
-  readonly accessControls: Prisma.FieldRef<"AISystem", 'String'>
-  readonly modelDocs: Prisma.FieldRef<"AISystem", 'String'>
-  readonly explainability: Prisma.FieldRef<"AISystem", 'String'>
-  readonly biasTesting: Prisma.FieldRef<"AISystem", 'String'>
-  readonly aiActStatus: Prisma.FieldRef<"AISystem", 'String'>
-  readonly gdprStatus: Prisma.FieldRef<"AISystem", 'String'>
-  readonly euResidency: Prisma.FieldRef<"AISystem", 'String'>
-  readonly deploymentModel: Prisma.FieldRef<"AISystem", 'String'>
-  readonly sourceModel: Prisma.FieldRef<"AISystem", 'String'>
-  readonly foundedYear: Prisma.FieldRef<"AISystem", 'Int'>
-  readonly employeeCount: Prisma.FieldRef<"AISystem", 'String'>
-  readonly fundingStatus: Prisma.FieldRef<"AISystem", 'String'>
-  readonly marketPresence: Prisma.FieldRef<"AISystem", 'String'>
-  readonly customerCount: Prisma.FieldRef<"AISystem", 'String'>
-  readonly notableCustomers: Prisma.FieldRef<"AISystem", 'String'>
-  readonly customerStories: Prisma.FieldRef<"AISystem", 'String'>
-  readonly assessedAt: Prisma.FieldRef<"AISystem", 'DateTime'>
-  readonly assessmentNote: Prisma.FieldRef<"AISystem", 'String'>
   readonly createdAt: Prisma.FieldRef<"AISystem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AISystem", 'DateTime'>
+  readonly accessControls: Prisma.FieldRef<"AISystem", 'String'>
+  readonly aiActStatus: Prisma.FieldRef<"AISystem", 'String'>
+  readonly assessedAt: Prisma.FieldRef<"AISystem", 'DateTime'>
+  readonly assessmentNote: Prisma.FieldRef<"AISystem", 'String'>
+  readonly biasTesting: Prisma.FieldRef<"AISystem", 'String'>
+  readonly certifications: Prisma.FieldRef<"AISystem", 'String'>
+  readonly dataPortability: Prisma.FieldRef<"AISystem", 'String'>
+  readonly dataProcessing: Prisma.FieldRef<"AISystem", 'String'>
+  readonly dataStorage: Prisma.FieldRef<"AISystem", 'String'>
+  readonly dpaDetails: Prisma.FieldRef<"AISystem", 'String'>
+  readonly encryptionInfo: Prisma.FieldRef<"AISystem", 'String'>
+  readonly euPresence: Prisma.FieldRef<"AISystem", 'String'>
+  readonly euResidency: Prisma.FieldRef<"AISystem", 'String'>
+  readonly exitTerms: Prisma.FieldRef<"AISystem", 'String'>
+  readonly explainability: Prisma.FieldRef<"AISystem", 'String'>
+  readonly gdprStatus: Prisma.FieldRef<"AISystem", 'String'>
+  readonly ipTerms: Prisma.FieldRef<"AISystem", 'String'>
+  readonly modelDocs: Prisma.FieldRef<"AISystem", 'String'>
+  readonly slaDetails: Prisma.FieldRef<"AISystem", 'String'>
+  readonly subprocessors: Prisma.FieldRef<"AISystem", 'String'>
+  readonly trainingDataUse: Prisma.FieldRef<"AISystem", 'String'>
+  readonly useCases: Prisma.FieldRef<"AISystem", 'String'>
+  readonly vendorHq: Prisma.FieldRef<"AISystem", 'String'>
+  readonly capabilityType: Prisma.FieldRef<"AISystem", 'String'>
+  readonly customerCount: Prisma.FieldRef<"AISystem", 'String'>
+  readonly customerStories: Prisma.FieldRef<"AISystem", 'String'>
+  readonly deploymentModel: Prisma.FieldRef<"AISystem", 'String'>
+  readonly employeeCount: Prisma.FieldRef<"AISystem", 'String'>
+  readonly foundedYear: Prisma.FieldRef<"AISystem", 'Int'>
+  readonly fundingStatus: Prisma.FieldRef<"AISystem", 'String'>
+  readonly marketPresence: Prisma.FieldRef<"AISystem", 'String'>
+  readonly notableCustomers: Prisma.FieldRef<"AISystem", 'String'>
+  readonly sourceModel: Prisma.FieldRef<"AISystem", 'String'>
 }
     
 
@@ -5080,30 +5148,6 @@ export type AISystemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * AISystem.industries
- */
-export type AISystem$industriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Industry
-   */
-  select?: Prisma.IndustrySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Industry
-   */
-  omit?: Prisma.IndustryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.IndustryInclude<ExtArgs> | null
-  where?: Prisma.IndustryWhereInput
-  orderBy?: Prisma.IndustryOrderByWithRelationInput | Prisma.IndustryOrderByWithRelationInput[]
-  cursor?: Prisma.IndustryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.IndustryScalarFieldEnum | Prisma.IndustryScalarFieldEnum[]
-}
-
-/**
  * AISystem.scores
  */
 export type AISystem$scoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5152,54 +5196,6 @@ export type AISystem$changelogArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * AISystem.subscribers
- */
-export type AISystem$subscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscriber
-   */
-  select?: Prisma.SubscriberSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscriber
-   */
-  omit?: Prisma.SubscriberOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriberInclude<ExtArgs> | null
-  where?: Prisma.SubscriberWhereInput
-  orderBy?: Prisma.SubscriberOrderByWithRelationInput | Prisma.SubscriberOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriberWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriberScalarFieldEnum | Prisma.SubscriberScalarFieldEnum[]
-}
-
-/**
- * AISystem.companies
- */
-export type AISystem$companiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Company
-   */
-  select?: Prisma.CompanySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Company
-   */
-  omit?: Prisma.CompanyOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CompanyInclude<ExtArgs> | null
-  where?: Prisma.CompanyWhereInput
-  orderBy?: Prisma.CompanyOrderByWithRelationInput | Prisma.CompanyOrderByWithRelationInput[]
-  cursor?: Prisma.CompanyWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CompanyScalarFieldEnum | Prisma.CompanyScalarFieldEnum[]
-}
-
-/**
  * AISystem.dimensionScores
  */
 export type AISystem$dimensionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5221,6 +5217,30 @@ export type AISystem$dimensionScoresArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.DimensionScoreScalarFieldEnum | Prisma.DimensionScoreScalarFieldEnum[]
+}
+
+/**
+ * AISystem.reviewTasks
+ */
+export type AISystem$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReviewTask
+   */
+  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReviewTask
+   */
+  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
+  where?: Prisma.ReviewTaskWhereInput
+  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
 }
 
 /**
@@ -5272,27 +5292,75 @@ export type AISystem$claimsArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * AISystem.reviewTasks
+ * AISystem.companies
  */
-export type AISystem$reviewTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AISystem$companiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ReviewTask
+   * Select specific fields to fetch from the Company
    */
-  select?: Prisma.ReviewTaskSelect<ExtArgs> | null
+  select?: Prisma.CompanySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ReviewTask
+   * Omit specific fields from the Company
    */
-  omit?: Prisma.ReviewTaskOmit<ExtArgs> | null
+  omit?: Prisma.CompanyOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReviewTaskInclude<ExtArgs> | null
-  where?: Prisma.ReviewTaskWhereInput
-  orderBy?: Prisma.ReviewTaskOrderByWithRelationInput | Prisma.ReviewTaskOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewTaskWhereUniqueInput
+  include?: Prisma.CompanyInclude<ExtArgs> | null
+  where?: Prisma.CompanyWhereInput
+  orderBy?: Prisma.CompanyOrderByWithRelationInput | Prisma.CompanyOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ReviewTaskScalarFieldEnum | Prisma.ReviewTaskScalarFieldEnum[]
+  distinct?: Prisma.CompanyScalarFieldEnum | Prisma.CompanyScalarFieldEnum[]
+}
+
+/**
+ * AISystem.industries
+ */
+export type AISystem$industriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Industry
+   */
+  select?: Prisma.IndustrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Industry
+   */
+  omit?: Prisma.IndustryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IndustryInclude<ExtArgs> | null
+  where?: Prisma.IndustryWhereInput
+  orderBy?: Prisma.IndustryOrderByWithRelationInput | Prisma.IndustryOrderByWithRelationInput[]
+  cursor?: Prisma.IndustryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IndustryScalarFieldEnum | Prisma.IndustryScalarFieldEnum[]
+}
+
+/**
+ * AISystem.subscribers
+ */
+export type AISystem$subscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscriber
+   */
+  select?: Prisma.SubscriberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscriber
+   */
+  omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  where?: Prisma.SubscriberWhereInput
+  orderBy?: Prisma.SubscriberOrderByWithRelationInput | Prisma.SubscriberOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriberScalarFieldEnum | Prisma.SubscriberScalarFieldEnum[]
 }
 
 /**

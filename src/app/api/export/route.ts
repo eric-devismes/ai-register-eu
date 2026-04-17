@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Fetch systems
-  const where = slug ? { slug } : {};
+  const where = slug ? { slug, status: "active" } : { status: "active" };
   const systems = await prisma.aISystem.findMany({
     where,
     include: {
@@ -183,7 +183,7 @@ const MATRIX_ROWS = [
 
 async function exportComparisonMatrix(slugList: string[], format: string) {
   const systems = await prisma.aISystem.findMany({
-    where: { slug: { in: slugList } },
+    where: { slug: { in: slugList }, status: "active" },
     include: {
       scores: { include: { framework: { select: { slug: true, name: true } } } },
       industries: { select: { name: true } },

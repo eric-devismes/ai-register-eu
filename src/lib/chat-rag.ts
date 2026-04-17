@@ -125,6 +125,7 @@ async function searchStatements(terms: string[]): Promise<string[]> {
 async function searchSystems(terms: string[]): Promise<string[]> {
   const systems = await prisma.aISystem.findMany({
     where: {
+      status: "active",
       OR: [
         { name: { contains: terms[0], mode: "insensitive" } },
         { vendor: { contains: terms[0], mode: "insensitive" } },

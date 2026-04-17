@@ -175,8 +175,8 @@ export type AssessmentScoreWhereInput = {
   score?: Prisma.StringFilter<"AssessmentScore"> | string
   systemId?: Prisma.StringFilter<"AssessmentScore"> | string
   frameworkId?: Prisma.StringFilter<"AssessmentScore"> | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
   framework?: Prisma.XOR<Prisma.RegulatoryFrameworkScalarRelationFilter, Prisma.RegulatoryFrameworkWhereInput>
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }
 
 export type AssessmentScoreOrderByWithRelationInput = {
@@ -184,8 +184,8 @@ export type AssessmentScoreOrderByWithRelationInput = {
   score?: Prisma.SortOrder
   systemId?: Prisma.SortOrder
   frameworkId?: Prisma.SortOrder
-  system?: Prisma.AISystemOrderByWithRelationInput
   framework?: Prisma.RegulatoryFrameworkOrderByWithRelationInput
+  system?: Prisma.AISystemOrderByWithRelationInput
 }
 
 export type AssessmentScoreWhereUniqueInput = Prisma.AtLeast<{
@@ -197,8 +197,8 @@ export type AssessmentScoreWhereUniqueInput = Prisma.AtLeast<{
   score?: Prisma.StringFilter<"AssessmentScore"> | string
   systemId?: Prisma.StringFilter<"AssessmentScore"> | string
   frameworkId?: Prisma.StringFilter<"AssessmentScore"> | string
-  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
   framework?: Prisma.XOR<Prisma.RegulatoryFrameworkScalarRelationFilter, Prisma.RegulatoryFrameworkWhereInput>
+  system?: Prisma.XOR<Prisma.AISystemScalarRelationFilter, Prisma.AISystemWhereInput>
 }, "id" | "systemId_frameworkId">
 
 export type AssessmentScoreOrderByWithAggregationInput = {
@@ -224,8 +224,8 @@ export type AssessmentScoreScalarWhereWithAggregatesInput = {
 export type AssessmentScoreCreateInput = {
   id?: string
   score: string
-  system: Prisma.AISystemCreateNestedOneWithoutScoresInput
   framework: Prisma.RegulatoryFrameworkCreateNestedOneWithoutScoresInput
+  system: Prisma.AISystemCreateNestedOneWithoutScoresInput
 }
 
 export type AssessmentScoreUncheckedCreateInput = {
@@ -238,8 +238,8 @@ export type AssessmentScoreUncheckedCreateInput = {
 export type AssessmentScoreUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.StringFieldUpdateOperationsInput | string
-  system?: Prisma.AISystemUpdateOneRequiredWithoutScoresNestedInput
   framework?: Prisma.RegulatoryFrameworkUpdateOneRequiredWithoutScoresNestedInput
+  system?: Prisma.AISystemUpdateOneRequiredWithoutScoresNestedInput
 }
 
 export type AssessmentScoreUncheckedUpdateInput = {
@@ -529,8 +529,8 @@ export type AssessmentScoreSelect<ExtArgs extends runtime.Types.Extensions.Inter
   score?: boolean
   systemId?: boolean
   frameworkId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessmentScore"]>
 
 export type AssessmentScoreSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -538,8 +538,8 @@ export type AssessmentScoreSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   score?: boolean
   systemId?: boolean
   frameworkId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessmentScore"]>
 
 export type AssessmentScoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -547,8 +547,8 @@ export type AssessmentScoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   score?: boolean
   systemId?: boolean
   frameworkId?: boolean
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessmentScore"]>
 
 export type AssessmentScoreSelectScalar = {
@@ -560,23 +560,23 @@ export type AssessmentScoreSelectScalar = {
 
 export type AssessmentScoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "score" | "systemId" | "frameworkId", ExtArgs["result"]["assessmentScore"]>
 export type AssessmentScoreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 export type AssessmentScoreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 export type AssessmentScoreIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
+  system?: boolean | Prisma.AISystemDefaultArgs<ExtArgs>
 }
 
 export type $AssessmentScorePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AssessmentScore"
   objects: {
-    system: Prisma.$AISystemPayload<ExtArgs>
     framework: Prisma.$RegulatoryFrameworkPayload<ExtArgs>
+    system: Prisma.$AISystemPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -977,8 +977,8 @@ readonly fields: AssessmentScoreFieldRefs;
  */
 export interface Prisma__AssessmentScoreClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   framework<T extends Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>>): Prisma.Prisma__RegulatoryFrameworkClient<runtime.Types.Result.GetResult<Prisma.$RegulatoryFrameworkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  system<T extends Prisma.AISystemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AISystemDefaultArgs<ExtArgs>>): Prisma.Prisma__AISystemClient<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

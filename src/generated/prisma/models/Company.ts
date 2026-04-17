@@ -223,8 +223,8 @@ export type CompanyWhereInput = {
   notes?: Prisma.StringFilter<"Company"> | string
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  subscribers?: Prisma.SubscriberListRelationFilter
   cases?: Prisma.CaseListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
   aiSystems?: Prisma.AISystemListRelationFilter
 }
 
@@ -239,8 +239,8 @@ export type CompanyOrderByWithRelationInput = {
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
   cases?: Prisma.CaseOrderByRelationAggregateInput
+  subscribers?: Prisma.SubscriberOrderByRelationAggregateInput
   aiSystems?: Prisma.AISystemOrderByRelationAggregateInput
 }
 
@@ -258,8 +258,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.StringFilter<"Company"> | string
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  subscribers?: Prisma.SubscriberListRelationFilter
   cases?: Prisma.CaseListRelationFilter
+  subscribers?: Prisma.SubscriberListRelationFilter
   aiSystems?: Prisma.AISystemListRelationFilter
 }, "id">
 
@@ -306,8 +306,8 @@ export type CompanyCreateInput = {
   notes?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutCompanyInput
   cases?: Prisma.CaseCreateNestedManyWithoutCompanyInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutCompanyInput
   aiSystems?: Prisma.AISystemCreateNestedManyWithoutCompaniesInput
 }
 
@@ -322,8 +322,8 @@ export type CompanyUncheckedCreateInput = {
   notes?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutCompanyInput
   cases?: Prisma.CaseUncheckedCreateNestedManyWithoutCompanyInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutCompanyInput
   aiSystems?: Prisma.AISystemUncheckedCreateNestedManyWithoutCompaniesInput
 }
 
@@ -338,8 +338,8 @@ export type CompanyUpdateInput = {
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscribers?: Prisma.SubscriberUpdateManyWithoutCompanyNestedInput
   cases?: Prisma.CaseUpdateManyWithoutCompanyNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutCompanyNestedInput
   aiSystems?: Prisma.AISystemUpdateManyWithoutCompaniesNestedInput
 }
 
@@ -354,8 +354,8 @@ export type CompanyUncheckedUpdateInput = {
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutCompanyNestedInput
   cases?: Prisma.CaseUncheckedUpdateManyWithoutCompanyNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutCompanyNestedInput
   aiSystems?: Prisma.AISystemUncheckedUpdateManyWithoutCompaniesNestedInput
 }
 
@@ -533,8 +533,8 @@ export type CompanyCreateWithoutAiSystemsInput = {
   notes?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscribers?: Prisma.SubscriberCreateNestedManyWithoutCompanyInput
   cases?: Prisma.CaseCreateNestedManyWithoutCompanyInput
+  subscribers?: Prisma.SubscriberCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAiSystemsInput = {
@@ -548,8 +548,8 @@ export type CompanyUncheckedCreateWithoutAiSystemsInput = {
   notes?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutCompanyInput
   cases?: Prisma.CaseUncheckedCreateNestedManyWithoutCompanyInput
+  subscribers?: Prisma.SubscriberUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAiSystemsInput = {
@@ -752,8 +752,8 @@ export type CompanyUpdateWithoutAiSystemsInput = {
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscribers?: Prisma.SubscriberUpdateManyWithoutCompanyNestedInput
   cases?: Prisma.CaseUpdateManyWithoutCompanyNestedInput
+  subscribers?: Prisma.SubscriberUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAiSystemsInput = {
@@ -767,8 +767,8 @@ export type CompanyUncheckedUpdateWithoutAiSystemsInput = {
   notes?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutCompanyNestedInput
   cases?: Prisma.CaseUncheckedUpdateManyWithoutCompanyNestedInput
+  subscribers?: Prisma.SubscriberUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutAiSystemsInput = {
@@ -790,14 +790,14 @@ export type CompanyUncheckedUpdateManyWithoutAiSystemsInput = {
  */
 
 export type CompanyCountOutputType = {
-  subscribers: number
   cases: number
+  subscribers: number
   aiSystems: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscribers?: boolean | CompanyCountOutputTypeCountSubscribersArgs
   cases?: boolean | CompanyCountOutputTypeCountCasesArgs
+  subscribers?: boolean | CompanyCountOutputTypeCountSubscribersArgs
   aiSystems?: boolean | CompanyCountOutputTypeCountAiSystemsArgs
 }
 
@@ -814,15 +814,15 @@ export type CompanyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountSubscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriberWhereInput
+export type CompanyCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CaseWhereInput
 }
 
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CaseWhereInput
+export type CompanyCountOutputTypeCountSubscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriberWhereInput
 }
 
 /**
@@ -844,8 +844,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  subscribers?: boolean | Prisma.Company$subscribersArgs<ExtArgs>
   cases?: boolean | Prisma.Company$casesArgs<ExtArgs>
+  subscribers?: boolean | Prisma.Company$subscribersArgs<ExtArgs>
   aiSystems?: boolean | Prisma.Company$aiSystemsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
@@ -891,8 +891,8 @@ export type CompanySelectScalar = {
 
 export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "domain" | "industry" | "country" | "size" | "tier" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscribers?: boolean | Prisma.Company$subscribersArgs<ExtArgs>
   cases?: boolean | Prisma.Company$casesArgs<ExtArgs>
+  subscribers?: boolean | Prisma.Company$subscribersArgs<ExtArgs>
   aiSystems?: boolean | Prisma.Company$aiSystemsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -902,8 +902,8 @@ export type CompanyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Company"
   objects: {
-    subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
     cases: Prisma.$CasePayload<ExtArgs>[]
+    subscribers: Prisma.$SubscriberPayload<ExtArgs>[]
     aiSystems: Prisma.$AISystemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1311,8 +1311,8 @@ readonly fields: CompanyFieldRefs;
  */
 export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  subscribers<T extends Prisma.Company$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cases<T extends Prisma.Company$casesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$casesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscribers<T extends Prisma.Company$subscribersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$subscribersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aiSystems<T extends Prisma.Company$aiSystemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$aiSystemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AISystemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1746,30 +1746,6 @@ export type CompanyDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Company.subscribers
- */
-export type Company$subscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscriber
-   */
-  select?: Prisma.SubscriberSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscriber
-   */
-  omit?: Prisma.SubscriberOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriberInclude<ExtArgs> | null
-  where?: Prisma.SubscriberWhereInput
-  orderBy?: Prisma.SubscriberOrderByWithRelationInput | Prisma.SubscriberOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriberWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriberScalarFieldEnum | Prisma.SubscriberScalarFieldEnum[]
-}
-
-/**
  * Company.cases
  */
 export type Company$casesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1791,6 +1767,30 @@ export type Company$casesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.CaseScalarFieldEnum | Prisma.CaseScalarFieldEnum[]
+}
+
+/**
+ * Company.subscribers
+ */
+export type Company$subscribersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscriber
+   */
+  select?: Prisma.SubscriberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscriber
+   */
+  omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  where?: Prisma.SubscriberWhereInput
+  orderBy?: Prisma.SubscriberOrderByWithRelationInput | Prisma.SubscriberOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriberScalarFieldEnum | Prisma.SubscriberScalarFieldEnum[]
 }
 
 /**

@@ -239,9 +239,9 @@ export type CaseWhereInput = {
   resolvedAt?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  subscriber?: Prisma.XOR<Prisma.SubscriberNullableScalarRelationFilter, Prisma.SubscriberWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  subscriber?: Prisma.XOR<Prisma.SubscriberNullableScalarRelationFilter, Prisma.SubscriberWhereInput> | null
 }
 
 export type CaseOrderByWithRelationInput = {
@@ -257,9 +257,9 @@ export type CaseOrderByWithRelationInput = {
   resolvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  subscriber?: Prisma.SubscriberOrderByWithRelationInput
-  company?: Prisma.CompanyOrderByWithRelationInput
   assignedTo?: Prisma.AdminUserOrderByWithRelationInput
+  company?: Prisma.CompanyOrderByWithRelationInput
+  subscriber?: Prisma.SubscriberOrderByWithRelationInput
 }
 
 export type CaseWhereUniqueInput = Prisma.AtLeast<{
@@ -278,9 +278,9 @@ export type CaseWhereUniqueInput = Prisma.AtLeast<{
   resolvedAt?: Prisma.DateTimeNullableFilter<"Case"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Case"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Case"> | Date | string
-  subscriber?: Prisma.XOR<Prisma.SubscriberNullableScalarRelationFilter, Prisma.SubscriberWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   assignedTo?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  subscriber?: Prisma.XOR<Prisma.SubscriberNullableScalarRelationFilter, Prisma.SubscriberWhereInput> | null
 }, "id">
 
 export type CaseOrderByWithAggregationInput = {
@@ -329,9 +329,9 @@ export type CaseCreateInput = {
   resolvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
-  company?: Prisma.CompanyCreateNestedOneWithoutCasesInput
   assignedTo?: Prisma.AdminUserCreateNestedOneWithoutAssignedCasesInput
+  company?: Prisma.CompanyCreateNestedOneWithoutCasesInput
+  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
 }
 
 export type CaseUncheckedCreateInput = {
@@ -359,9 +359,9 @@ export type CaseUpdateInput = {
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutCasesNestedInput
   assignedTo?: Prisma.AdminUserUpdateOneWithoutAssignedCasesNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutCasesNestedInput
+  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
 }
 
 export type CaseUncheckedUpdateInput = {
@@ -612,8 +612,8 @@ export type CaseCreateWithoutAssignedToInput = {
   resolvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
   company?: Prisma.CompanyCreateNestedOneWithoutCasesInput
+  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
 }
 
 export type CaseUncheckedCreateWithoutAssignedToInput = {
@@ -684,8 +684,8 @@ export type CaseCreateWithoutCompanyInput = {
   resolvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
   assignedTo?: Prisma.AdminUserCreateNestedOneWithoutAssignedCasesInput
+  subscriber?: Prisma.SubscriberCreateNestedOneWithoutCasesInput
 }
 
 export type CaseUncheckedCreateWithoutCompanyInput = {
@@ -738,8 +738,8 @@ export type CaseCreateWithoutSubscriberInput = {
   resolvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutCasesInput
   assignedTo?: Prisma.AdminUserCreateNestedOneWithoutAssignedCasesInput
+  company?: Prisma.CompanyCreateNestedOneWithoutCasesInput
 }
 
 export type CaseUncheckedCreateWithoutSubscriberInput = {
@@ -806,8 +806,8 @@ export type CaseUpdateWithoutAssignedToInput = {
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
   company?: Prisma.CompanyUpdateOneWithoutCasesNestedInput
+  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
 }
 
 export type CaseUncheckedUpdateWithoutAssignedToInput = {
@@ -862,8 +862,8 @@ export type CaseUpdateWithoutCompanyInput = {
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
   assignedTo?: Prisma.AdminUserUpdateOneWithoutAssignedCasesNestedInput
+  subscriber?: Prisma.SubscriberUpdateOneWithoutCasesNestedInput
 }
 
 export type CaseUncheckedUpdateWithoutCompanyInput = {
@@ -918,8 +918,8 @@ export type CaseUpdateWithoutSubscriberInput = {
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutCasesNestedInput
   assignedTo?: Prisma.AdminUserUpdateOneWithoutAssignedCasesNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutCasesNestedInput
 }
 
 export type CaseUncheckedUpdateWithoutSubscriberInput = {
@@ -965,9 +965,9 @@ export type CaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   resolvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -983,9 +983,9 @@ export type CaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   resolvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1001,9 +1001,9 @@ export type CaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   resolvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }, ExtArgs["result"]["case"]>
 
 export type CaseSelectScalar = {
@@ -1023,27 +1023,27 @@ export type CaseSelectScalar = {
 
 export type CaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "status" | "priority" | "category" | "subscriberId" | "companyId" | "assignedToId" | "resolvedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["case"]>
 export type CaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }
 export type CaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }
 export type CaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
-  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
   assignedTo?: boolean | Prisma.Case$assignedToArgs<ExtArgs>
+  company?: boolean | Prisma.Case$companyArgs<ExtArgs>
+  subscriber?: boolean | Prisma.Case$subscriberArgs<ExtArgs>
 }
 
 export type $CasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Case"
   objects: {
-    subscriber: Prisma.$SubscriberPayload<ExtArgs> | null
-    company: Prisma.$CompanyPayload<ExtArgs> | null
     assignedTo: Prisma.$AdminUserPayload<ExtArgs> | null
+    company: Prisma.$CompanyPayload<ExtArgs> | null
+    subscriber: Prisma.$SubscriberPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1452,9 +1452,9 @@ readonly fields: CaseFieldRefs;
  */
 export interface Prisma__CaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  subscriber<T extends Prisma.Case$subscriberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$subscriberArgs<ExtArgs>>): Prisma.Prisma__SubscriberClient<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  company<T extends Prisma.Case$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignedTo<T extends Prisma.Case$assignedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$assignedToArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  company<T extends Prisma.Case$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  subscriber<T extends Prisma.Case$subscriberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Case$subscriberArgs<ExtArgs>>): Prisma.Prisma__SubscriberClient<runtime.Types.Result.GetResult<Prisma.$SubscriberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1897,22 +1897,22 @@ export type CaseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Case.subscriber
+ * Case.assignedTo
  */
-export type Case$subscriberArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Case$assignedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Subscriber
+   * Select specific fields to fetch from the AdminUser
    */
-  select?: Prisma.SubscriberSelect<ExtArgs> | null
+  select?: Prisma.AdminUserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Subscriber
+   * Omit specific fields from the AdminUser
    */
-  omit?: Prisma.SubscriberOmit<ExtArgs> | null
+  omit?: Prisma.AdminUserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SubscriberInclude<ExtArgs> | null
-  where?: Prisma.SubscriberWhereInput
+  include?: Prisma.AdminUserInclude<ExtArgs> | null
+  where?: Prisma.AdminUserWhereInput
 }
 
 /**
@@ -1935,22 +1935,22 @@ export type Case$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Case.assignedTo
+ * Case.subscriber
  */
-export type Case$assignedToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Case$subscriberArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AdminUser
+   * Select specific fields to fetch from the Subscriber
    */
-  select?: Prisma.AdminUserSelect<ExtArgs> | null
+  select?: Prisma.SubscriberSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AdminUser
+   * Omit specific fields from the Subscriber
    */
-  omit?: Prisma.AdminUserOmit<ExtArgs> | null
+  omit?: Prisma.SubscriberOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AdminUserInclude<ExtArgs> | null
-  where?: Prisma.AdminUserWhereInput
+  include?: Prisma.SubscriberInclude<ExtArgs> | null
+  where?: Prisma.SubscriberWhereInput
 }
 
 /**

@@ -163,3 +163,19 @@ export async function deleteSystem(id: string) {
   revalidatePath("/admin/systems");
   revalidatePath("/");
 }
+
+export async function toggleSystemStatus(id: string) {
+  await requireAuth();
+  const current = await prisma.aISystem.findUnique({
+    where: { id },
+    select: { status: true },
+  });
+  if (!current) return;
+  const next = current.status === "active" ? "inactive" : "active";
+  await prisma.aISystem.update({
+    where: { id },
+    data: { status: next },
+  });
+  revalidatePath("/admin/systems");
+  revalidatePath("/");
+}

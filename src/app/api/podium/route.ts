@@ -174,6 +174,7 @@ export async function POST(request: Request) {
 
     // Step 3: Fetch ALL AI systems with scores
     const systems = await prisma.aISystem.findMany({
+      where: { status: "active" },
       include: {
         scores: { include: { framework: { select: { slug: true, name: true } } } },
         industries: { select: { name: true } },

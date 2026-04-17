@@ -20,6 +20,7 @@ export async function GET() {
       select: { id: true, slug: true, name: true },
     }),
     prisma.aISystem.findMany({
+      where: { status: "active" },
       orderBy: [{ vendor: "asc" }, { name: "asc" }],
       select: { id: true, slug: true, vendor: true, name: true },
     }),

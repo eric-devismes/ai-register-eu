@@ -234,9 +234,9 @@ export type FrameworkSectionWhereInput = {
   frameworkId?: Prisma.StringFilter<"FrameworkSection"> | string
   createdAt?: Prisma.DateTimeFilter<"FrameworkSection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FrameworkSection"> | Date | string
+  dimensionScores?: Prisma.DimensionScoreListRelationFilter
   framework?: Prisma.XOR<Prisma.RegulatoryFrameworkScalarRelationFilter, Prisma.RegulatoryFrameworkWhereInput>
   statements?: Prisma.PolicyStatementListRelationFilter
-  dimensionScores?: Prisma.DimensionScoreListRelationFilter
 }
 
 export type FrameworkSectionOrderByWithRelationInput = {
@@ -247,9 +247,9 @@ export type FrameworkSectionOrderByWithRelationInput = {
   frameworkId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dimensionScores?: Prisma.DimensionScoreOrderByRelationAggregateInput
   framework?: Prisma.RegulatoryFrameworkOrderByWithRelationInput
   statements?: Prisma.PolicyStatementOrderByRelationAggregateInput
-  dimensionScores?: Prisma.DimensionScoreOrderByRelationAggregateInput
 }
 
 export type FrameworkSectionWhereUniqueInput = Prisma.AtLeast<{
@@ -263,9 +263,9 @@ export type FrameworkSectionWhereUniqueInput = Prisma.AtLeast<{
   frameworkId?: Prisma.StringFilter<"FrameworkSection"> | string
   createdAt?: Prisma.DateTimeFilter<"FrameworkSection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FrameworkSection"> | Date | string
+  dimensionScores?: Prisma.DimensionScoreListRelationFilter
   framework?: Prisma.XOR<Prisma.RegulatoryFrameworkScalarRelationFilter, Prisma.RegulatoryFrameworkWhereInput>
   statements?: Prisma.PolicyStatementListRelationFilter
-  dimensionScores?: Prisma.DimensionScoreListRelationFilter
 }, "id">
 
 export type FrameworkSectionOrderByWithAggregationInput = {
@@ -303,9 +303,9 @@ export type FrameworkSectionCreateInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSectionInput
   framework: Prisma.RegulatoryFrameworkCreateNestedOneWithoutSectionsInput
   statements?: Prisma.PolicyStatementCreateNestedManyWithoutSectionInput
-  dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSectionInput
 }
 
 export type FrameworkSectionUncheckedCreateInput = {
@@ -316,8 +316,8 @@ export type FrameworkSectionUncheckedCreateInput = {
   frameworkId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  statements?: Prisma.PolicyStatementUncheckedCreateNestedManyWithoutSectionInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSectionInput
+  statements?: Prisma.PolicyStatementUncheckedCreateNestedManyWithoutSectionInput
 }
 
 export type FrameworkSectionUpdateInput = {
@@ -327,9 +327,9 @@ export type FrameworkSectionUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSectionNestedInput
   framework?: Prisma.RegulatoryFrameworkUpdateOneRequiredWithoutSectionsNestedInput
   statements?: Prisma.PolicyStatementUpdateManyWithoutSectionNestedInput
-  dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSectionNestedInput
 }
 
 export type FrameworkSectionUncheckedUpdateInput = {
@@ -340,8 +340,8 @@ export type FrameworkSectionUncheckedUpdateInput = {
   frameworkId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  statements?: Prisma.PolicyStatementUncheckedUpdateManyWithoutSectionNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSectionNestedInput
+  statements?: Prisma.PolicyStatementUncheckedUpdateManyWithoutSectionNestedInput
 }
 
 export type FrameworkSectionCreateManyInput = {
@@ -503,8 +503,8 @@ export type FrameworkSectionCreateWithoutFrameworkInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  statements?: Prisma.PolicyStatementCreateNestedManyWithoutSectionInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSectionInput
+  statements?: Prisma.PolicyStatementCreateNestedManyWithoutSectionInput
 }
 
 export type FrameworkSectionUncheckedCreateWithoutFrameworkInput = {
@@ -514,8 +514,8 @@ export type FrameworkSectionUncheckedCreateWithoutFrameworkInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  statements?: Prisma.PolicyStatementUncheckedCreateNestedManyWithoutSectionInput
   dimensionScores?: Prisma.DimensionScoreUncheckedCreateNestedManyWithoutSectionInput
+  statements?: Prisma.PolicyStatementUncheckedCreateNestedManyWithoutSectionInput
 }
 
 export type FrameworkSectionCreateOrConnectWithoutFrameworkInput = {
@@ -564,8 +564,8 @@ export type FrameworkSectionCreateWithoutStatementsInput = {
   sortOrder?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  framework: Prisma.RegulatoryFrameworkCreateNestedOneWithoutSectionsInput
   dimensionScores?: Prisma.DimensionScoreCreateNestedManyWithoutSectionInput
+  framework: Prisma.RegulatoryFrameworkCreateNestedOneWithoutSectionsInput
 }
 
 export type FrameworkSectionUncheckedCreateWithoutStatementsInput = {
@@ -602,8 +602,8 @@ export type FrameworkSectionUpdateWithoutStatementsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  framework?: Prisma.RegulatoryFrameworkUpdateOneRequiredWithoutSectionsNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSectionNestedInput
+  framework?: Prisma.RegulatoryFrameworkUpdateOneRequiredWithoutSectionsNestedInput
 }
 
 export type FrameworkSectionUncheckedUpdateWithoutStatementsInput = {
@@ -693,8 +693,8 @@ export type FrameworkSectionUpdateWithoutFrameworkInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  statements?: Prisma.PolicyStatementUpdateManyWithoutSectionNestedInput
   dimensionScores?: Prisma.DimensionScoreUpdateManyWithoutSectionNestedInput
+  statements?: Prisma.PolicyStatementUpdateManyWithoutSectionNestedInput
 }
 
 export type FrameworkSectionUncheckedUpdateWithoutFrameworkInput = {
@@ -704,8 +704,8 @@ export type FrameworkSectionUncheckedUpdateWithoutFrameworkInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  statements?: Prisma.PolicyStatementUncheckedUpdateManyWithoutSectionNestedInput
   dimensionScores?: Prisma.DimensionScoreUncheckedUpdateManyWithoutSectionNestedInput
+  statements?: Prisma.PolicyStatementUncheckedUpdateManyWithoutSectionNestedInput
 }
 
 export type FrameworkSectionUncheckedUpdateManyWithoutFrameworkInput = {
@@ -723,13 +723,13 @@ export type FrameworkSectionUncheckedUpdateManyWithoutFrameworkInput = {
  */
 
 export type FrameworkSectionCountOutputType = {
-  statements: number
   dimensionScores: number
+  statements: number
 }
 
 export type FrameworkSectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  statements?: boolean | FrameworkSectionCountOutputTypeCountStatementsArgs
   dimensionScores?: boolean | FrameworkSectionCountOutputTypeCountDimensionScoresArgs
+  statements?: boolean | FrameworkSectionCountOutputTypeCountStatementsArgs
 }
 
 /**
@@ -745,15 +745,15 @@ export type FrameworkSectionCountOutputTypeDefaultArgs<ExtArgs extends runtime.T
 /**
  * FrameworkSectionCountOutputType without action
  */
-export type FrameworkSectionCountOutputTypeCountStatementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PolicyStatementWhereInput
+export type FrameworkSectionCountOutputTypeCountDimensionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DimensionScoreWhereInput
 }
 
 /**
  * FrameworkSectionCountOutputType without action
  */
-export type FrameworkSectionCountOutputTypeCountDimensionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DimensionScoreWhereInput
+export type FrameworkSectionCountOutputTypeCountStatementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PolicyStatementWhereInput
 }
 
 
@@ -765,9 +765,9 @@ export type FrameworkSectionSelect<ExtArgs extends runtime.Types.Extensions.Inte
   frameworkId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dimensionScores?: boolean | Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
   statements?: boolean | Prisma.FrameworkSection$statementsArgs<ExtArgs>
-  dimensionScores?: boolean | Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>
   _count?: boolean | Prisma.FrameworkSectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["frameworkSection"]>
 
@@ -805,9 +805,9 @@ export type FrameworkSectionSelectScalar = {
 
 export type FrameworkSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "sortOrder" | "frameworkId" | "createdAt" | "updatedAt", ExtArgs["result"]["frameworkSection"]>
 export type FrameworkSectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  dimensionScores?: boolean | Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>
   framework?: boolean | Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>
   statements?: boolean | Prisma.FrameworkSection$statementsArgs<ExtArgs>
-  dimensionScores?: boolean | Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>
   _count?: boolean | Prisma.FrameworkSectionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FrameworkSectionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -820,9 +820,9 @@ export type FrameworkSectionIncludeUpdateManyAndReturn<ExtArgs extends runtime.T
 export type $FrameworkSectionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "FrameworkSection"
   objects: {
+    dimensionScores: Prisma.$DimensionScorePayload<ExtArgs>[]
     framework: Prisma.$RegulatoryFrameworkPayload<ExtArgs>
     statements: Prisma.$PolicyStatementPayload<ExtArgs>[]
-    dimensionScores: Prisma.$DimensionScorePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1226,9 +1226,9 @@ readonly fields: FrameworkSectionFieldRefs;
  */
 export interface Prisma__FrameworkSectionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  dimensionScores<T extends Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DimensionScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   framework<T extends Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegulatoryFrameworkDefaultArgs<ExtArgs>>): Prisma.Prisma__RegulatoryFrameworkClient<runtime.Types.Result.GetResult<Prisma.$RegulatoryFrameworkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   statements<T extends Prisma.FrameworkSection$statementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FrameworkSection$statementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PolicyStatementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  dimensionScores<T extends Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FrameworkSection$dimensionScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DimensionScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1666,30 +1666,6 @@ export type FrameworkSectionDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * FrameworkSection.statements
- */
-export type FrameworkSection$statementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PolicyStatement
-   */
-  select?: Prisma.PolicyStatementSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PolicyStatement
-   */
-  omit?: Prisma.PolicyStatementOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PolicyStatementInclude<ExtArgs> | null
-  where?: Prisma.PolicyStatementWhereInput
-  orderBy?: Prisma.PolicyStatementOrderByWithRelationInput | Prisma.PolicyStatementOrderByWithRelationInput[]
-  cursor?: Prisma.PolicyStatementWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PolicyStatementScalarFieldEnum | Prisma.PolicyStatementScalarFieldEnum[]
-}
-
-/**
  * FrameworkSection.dimensionScores
  */
 export type FrameworkSection$dimensionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1711,6 +1687,30 @@ export type FrameworkSection$dimensionScoresArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.DimensionScoreScalarFieldEnum | Prisma.DimensionScoreScalarFieldEnum[]
+}
+
+/**
+ * FrameworkSection.statements
+ */
+export type FrameworkSection$statementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PolicyStatement
+   */
+  select?: Prisma.PolicyStatementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PolicyStatement
+   */
+  omit?: Prisma.PolicyStatementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PolicyStatementInclude<ExtArgs> | null
+  where?: Prisma.PolicyStatementWhereInput
+  orderBy?: Prisma.PolicyStatementOrderByWithRelationInput | Prisma.PolicyStatementOrderByWithRelationInput[]
+  cursor?: Prisma.PolicyStatementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PolicyStatementScalarFieldEnum | Prisma.PolicyStatementScalarFieldEnum[]
 }
 
 /**

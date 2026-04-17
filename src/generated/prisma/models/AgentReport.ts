@@ -254,8 +254,8 @@ export type AgentReportWhereInput = {
   workCycleId?: Prisma.StringNullableFilter<"AgentReport"> | string | null
   digestId?: Prisma.StringNullableFilter<"AgentReport"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AgentReport"> | Date | string
-  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
   digest?: Prisma.XOR<Prisma.DailyDigestNullableScalarRelationFilter, Prisma.DailyDigestWhereInput> | null
+  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
 }
 
 export type AgentReportOrderByWithRelationInput = {
@@ -273,8 +273,8 @@ export type AgentReportOrderByWithRelationInput = {
   workCycleId?: Prisma.SortOrderInput | Prisma.SortOrder
   digestId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  workCycle?: Prisma.WorkCycleOrderByWithRelationInput
   digest?: Prisma.DailyDigestOrderByWithRelationInput
+  workCycle?: Prisma.WorkCycleOrderByWithRelationInput
 }
 
 export type AgentReportWhereUniqueInput = Prisma.AtLeast<{
@@ -295,8 +295,8 @@ export type AgentReportWhereUniqueInput = Prisma.AtLeast<{
   workCycleId?: Prisma.StringNullableFilter<"AgentReport"> | string | null
   digestId?: Prisma.StringNullableFilter<"AgentReport"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AgentReport"> | Date | string
-  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
   digest?: Prisma.XOR<Prisma.DailyDigestNullableScalarRelationFilter, Prisma.DailyDigestWhereInput> | null
+  workCycle?: Prisma.XOR<Prisma.WorkCycleNullableScalarRelationFilter, Prisma.WorkCycleWhereInput> | null
 }, "id">
 
 export type AgentReportOrderByWithAggregationInput = {
@@ -352,8 +352,8 @@ export type AgentReportCreateInput = {
   hasFindings?: boolean
   rawResponse?: string
   createdAt?: Date | string
-  workCycle?: Prisma.WorkCycleCreateNestedOneWithoutReportsInput
   digest?: Prisma.DailyDigestCreateNestedOneWithoutReportsInput
+  workCycle?: Prisma.WorkCycleCreateNestedOneWithoutReportsInput
 }
 
 export type AgentReportUncheckedCreateInput = {
@@ -386,8 +386,8 @@ export type AgentReportUpdateInput = {
   hasFindings?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rawResponse?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workCycle?: Prisma.WorkCycleUpdateOneWithoutReportsNestedInput
   digest?: Prisma.DailyDigestUpdateOneWithoutReportsNestedInput
+  workCycle?: Prisma.WorkCycleUpdateOneWithoutReportsNestedInput
 }
 
 export type AgentReportUncheckedUpdateInput = {
@@ -882,8 +882,8 @@ export type AgentReportSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["agentReport"]>
 
 export type AgentReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -901,8 +901,8 @@ export type AgentReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["agentReport"]>
 
 export type AgentReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -920,8 +920,8 @@ export type AgentReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   workCycleId?: boolean
   digestId?: boolean
   createdAt?: boolean
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }, ExtArgs["result"]["agentReport"]>
 
 export type AgentReportSelectScalar = {
@@ -943,23 +943,23 @@ export type AgentReportSelectScalar = {
 
 export type AgentReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "agentId" | "agentName" | "emoji" | "done" | "highestRisk" | "action" | "advice" | "nextStep" | "hasFindings" | "rawResponse" | "workCycleId" | "digestId" | "createdAt", ExtArgs["result"]["agentReport"]>
 export type AgentReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }
 export type AgentReportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }
 export type AgentReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
   digest?: boolean | Prisma.AgentReport$digestArgs<ExtArgs>
+  workCycle?: boolean | Prisma.AgentReport$workCycleArgs<ExtArgs>
 }
 
 export type $AgentReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AgentReport"
   objects: {
-    workCycle: Prisma.$WorkCyclePayload<ExtArgs> | null
     digest: Prisma.$DailyDigestPayload<ExtArgs> | null
+    workCycle: Prisma.$WorkCyclePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1370,8 +1370,8 @@ readonly fields: AgentReportFieldRefs;
  */
 export interface Prisma__AgentReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  workCycle<T extends Prisma.AgentReport$workCycleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentReport$workCycleArgs<ExtArgs>>): Prisma.Prisma__WorkCycleClient<runtime.Types.Result.GetResult<Prisma.$WorkCyclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   digest<T extends Prisma.AgentReport$digestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentReport$digestArgs<ExtArgs>>): Prisma.Prisma__DailyDigestClient<runtime.Types.Result.GetResult<Prisma.$DailyDigestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  workCycle<T extends Prisma.AgentReport$workCycleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentReport$workCycleArgs<ExtArgs>>): Prisma.Prisma__WorkCycleClient<runtime.Types.Result.GetResult<Prisma.$WorkCyclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1816,25 +1816,6 @@ export type AgentReportDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * AgentReport.workCycle
- */
-export type AgentReport$workCycleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WorkCycle
-   */
-  select?: Prisma.WorkCycleSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WorkCycle
-   */
-  omit?: Prisma.WorkCycleOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WorkCycleInclude<ExtArgs> | null
-  where?: Prisma.WorkCycleWhereInput
-}
-
-/**
  * AgentReport.digest
  */
 export type AgentReport$digestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1851,6 +1832,25 @@ export type AgentReport$digestArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.DailyDigestInclude<ExtArgs> | null
   where?: Prisma.DailyDigestWhereInput
+}
+
+/**
+ * AgentReport.workCycle
+ */
+export type AgentReport$workCycleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkCycle
+   */
+  select?: Prisma.WorkCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkCycle
+   */
+  omit?: Prisma.WorkCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkCycleInclude<ExtArgs> | null
+  where?: Prisma.WorkCycleWhereInput
 }
 
 /**

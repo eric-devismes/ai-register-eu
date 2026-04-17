@@ -41,6 +41,7 @@ export default async function BusinessCasePage({ params }: PageProps) {
 
   // Fetch systems list for the dropdown (lightweight — only slug, vendor, name)
   const systems = await prisma.aISystem.findMany({
+    where: { status: "active" },
     orderBy: [{ vendor: "asc" }, { name: "asc" }],
     select: { slug: true, vendor: true, name: true },
   });
