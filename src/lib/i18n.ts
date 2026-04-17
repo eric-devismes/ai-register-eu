@@ -3,6 +3,12 @@
  *
  * Primary: English. Auto-translated to 13 additional languages.
  * Covers 95%+ of the EU population.
+ *
+ * `locales` is the full supported set (stays stable — dictionaries and DB
+ * translations persist for all of them). `activeLocales` is the subset
+ * currently exposed publicly: routing, language switcher, sitemap, and the
+ * i18n translation gate all derive from it. Flip a locale between active
+ * and inactive by editing `activeLocales` below — no data is lost.
  */
 
 export const defaultLocale = "en";
@@ -25,6 +31,20 @@ export const locales = [
 ] as const;
 
 export type Locale = (typeof locales)[number];
+
+/**
+ * Locales currently exposed on the public site. Inactive locales keep their
+ * dictionary files on disk but are excluded from routing, switcher, and
+ * sitemap, and the translation gate ignores them. Launch set: FR, EN, DE,
+ * IT, ES (covers the EU enterprise buyer heartland).
+ */
+export const activeLocales = ["en", "fr", "de", "es", "it"] as const satisfies readonly Locale[];
+
+export type ActiveLocale = (typeof activeLocales)[number];
+
+export function isActiveLocale(value: string): value is ActiveLocale {
+  return (activeLocales as readonly string[]).includes(value);
+}
 
 /** Display names for each locale (in their own language) */
 export const localeNames: Record<Locale, string> = {

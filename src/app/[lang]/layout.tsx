@@ -5,13 +5,13 @@
  * to all child components via LocaleProvider context.
  */
 
-import { locales, type Locale, isValidLocale, getDictionary } from "@/lib/i18n";
+import { activeLocales, type Locale, isActiveLocale, getDictionary } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/locale-context";
 import { notFound } from "next/navigation";
 import ChatWidget from "@/components/chat/ChatWidget";
 
 export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
+  return activeLocales.map((lang) => ({ lang }));
 }
 
 interface LayoutProps {
@@ -22,7 +22,7 @@ interface LayoutProps {
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { lang } = await params;
 
-  if (!isValidLocale(lang)) {
+  if (!isActiveLocale(lang)) {
     notFound();
   }
 

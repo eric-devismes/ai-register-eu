@@ -23,6 +23,9 @@ const DICT_DIR = path.join(ROOT, "src", "dictionaries");
 const REPORTS_DIR = path.join(ROOT, "src", "data", "reports");
 const GLOSSARY_FILE = path.join(__dirname, "i18n-glossary.json");
 
+// Must mirror `activeLocales` in src/lib/i18n.ts.
+const ACTIVE_LOCALES = ["en", "fr", "de", "es", "it"];
+
 // Load .env.local if present (simple parser, no new dep)
 function loadEnvLocal() {
   const envPath = path.join(ROOT, ".env.local");
@@ -70,10 +73,14 @@ function writeJson(p, obj) {
 }
 
 function discoverLocales() {
-  return fs
+  // Only backfill active locales (FR/EN/DE/IT/ES). Inactive dictionaries
+  // stay on disk untouched — flip `ACTIVE_LOCALES` + `src/lib/i18n.ts` to
+  // re-enable and the next run picks them back up.
+  const onDisk = fs
     .readdirSync(DICT_DIR)
     .filter((f) => f.endsWith(".json"))
     .map((f) => f.replace(/\.json$/, ""));
+  return ACTIVE_LOCALES.filter((l) => onDisk.includes(l));
 }
 
 function leafKeys(obj, prefix = "") {

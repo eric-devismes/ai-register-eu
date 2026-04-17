@@ -26,6 +26,10 @@ const SCAN_PATHS_FILE = path.join(__dirname, "i18n-scan-paths.txt");
 const ALLOWLIST_FILE = path.join(__dirname, "i18n-allowlist.txt");
 const GLOSSARY_FILE = path.join(__dirname, "i18n-glossary.json");
 
+// Must mirror `activeLocales` in src/lib/i18n.ts.
+// Inactive locales keep their .json files on disk but the gate ignores them.
+const ACTIVE_LOCALES = ["en", "fr", "de", "es", "it"];
+
 // ─── Helpers ─────────────────────────────────────────────────────────
 
 function loadJson(p) {
@@ -42,11 +46,13 @@ function loadLines(p) {
 }
 
 function discoverLocales() {
-  return fs
+  // Only gate active locales. Inactive ones stay on disk but skip the gate —
+  // they'd otherwise flag thousands of missing-key errors while paused.
+  const onDisk = fs
     .readdirSync(DICT_DIR)
     .filter((f) => f.endsWith(".json"))
-    .map((f) => f.replace(/\.json$/, ""))
-    .sort();
+    .map((f) => f.replace(/\.json$/, ""));
+  return ACTIVE_LOCALES.filter((l) => onDisk.includes(l)).sort();
 }
 
 /** Recursively enumerate leaf key paths (a.b.c) in a nested object. */

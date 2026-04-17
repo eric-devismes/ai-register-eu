@@ -8,7 +8,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { locales, localeNames, type Locale } from "@/lib/i18n";
+import { locales, activeLocales, localeNames, type Locale } from "@/lib/i18n";
 
 /** Flat-design SVG flags — simple geometric representations */
 function FlagIcon({ locale, size = 16 }: { locale: Locale; size?: number }) {
@@ -172,7 +172,7 @@ export default function LanguageSwitcher() {
 
       {open && (
         <div className="absolute right-0 top-full mt-1 z-50 w-48 rounded-lg border border-gray-700 bg-[#0d1b3e] shadow-lg py-1">
-          {locales.map((locale) => (
+          {activeLocales.map((locale) => (
             <a
               key={locale}
               href={`/${locale}${pathWithoutLocale}`}
