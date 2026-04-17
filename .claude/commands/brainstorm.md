@@ -35,29 +35,29 @@ Feed the research findings into the discussion so experts cite real numbers, rea
 
 ## The Advisory Board
 
-14 experts, each with 20+ years of domain expertise, strong opinions, and good generalist common sense:
+14 experts, each modelled on a real industry-leading operator. Before generating the discussion, **read `agents/expert-profiles.ts`** to refresh each expert's full profile: persona (real person the agent embodies), voice, blind spot, friction lines with other board members, and expanded system prompt. Stay in character per expert — this is a real team, not a chorus.
 
 **Technology & Operations:**
-- 🔧 **CTO** — Technology, architecture, platform decisions, scalability, tech debt
-- 🛡️ **CISO** — Security, threats, encryption, access control, incident response
-- ⚙️ **VP Ops** — Reliability, monitoring, SLAs, deployment, operations
+- 🔧 **CTO** — *inspired by Adrian Cockcroft (ex-Netflix)* — tech, architecture, scale
+- 🛡️ **CISO** — *inspired by Window Snyder (ex-Apple, Square, Fastly)* — product security
+- ⚙️ **VP Ops** — *inspired by Ben Treynor Sloss (Google SRE)* — reliability, SLOs
 
 **Compliance & Legal:**
-- 🔒 **DPO** — GDPR, privacy, data flows, consent, cross-border transfers
-- ⚖️ **CRO (Risk)** — Compliance, audit, risk frameworks, controls, governance
-- ⚖️ **Legal** — Contracts, liability, IP, licensing, regulatory interpretation
+- 🔒 **DPO** — *inspired by Bojana Bellamy (CIPL)* — GDPR, Schrems II, cross-border
+- ⚖️ **CRO (Risk)** — *inspired by Rolf von Rössing (ex-ISACA, KPMG)* — ISO/SOC controls + audit evidence
+- ⚖️ **Legal** — *inspired by Horacio Gutierrez (Spotify GC, ex-Microsoft)* — EU regulation + antitrust narrative
 
 **Business & Revenue:**
-- 💰 **CFO** — Costs, ROI, budget, unit economics, financial discipline
-- 📋 **CPO (Procurement)** — Vendor deals, contracts, TCO, exit terms, negotiation
-- 🎯 **COO (Business)** — Customer value, market positioning, product strategy
-- 📈 **CMO (Marketing)** — Brand, positioning, content strategy, SEO, thought leadership, demand generation
-- 💼 **VP Sales** — Pipeline, conversion, enterprise deals, pricing strategy, customer acquisition
-- 📱 **Social & Community Lead** — Social media presence, community building, audience growth, influencer relations, content distribution
+- 💰 **CFO** — *inspired by Amy Hood (Microsoft)* — unit economics, gross margin, segment reporting
+- 📋 **CPO (Procurement)** — *inspired by Christof Kostka (Siemens CPO)* — TCO, exit terms, renewal leverage
+- 🎯 **COO (Business)** — *inspired by Olivier Pomel (Datadog)* — engineering-led GTM, PLG-to-enterprise
+- 📈 **CMO (Marketing)** — *inspired by Jon Miller (Marketo, Gainsight)* — funnel ops, ABM, thought leadership
+- 💼 **VP Sales** — *inspired by John McMahon (MEDDIC, 5× IPO)* — enterprise qualification
+- 📱 **Social & Community** — *inspired by Brian Balfour (Reforge)* — growth loops, channel-product fit
 
 **People & Delivery:**
-- 👥 **CHRO (HR)** — Team readiness, adoption, training, change management
-- 📊 **PMO** — Project planning, timelines, dependencies, resource allocation
+- 👥 **CHRO (HR)** — *inspired by Diane Gherson (ex-IBM)* — adoption, skill gaps, change at scale
+- 📊 **PMO** — *inspired by Harold Kerzner (PMI textbook author)* — critical path, dependencies, tollgates
 
 ## How to run the discussion
 
@@ -70,20 +70,20 @@ Feed the research findings into the discussion so experts cite real numbers, rea
    - The conversation flows naturally, like a real meeting
    - At least one expert should challenge the premise of the question itself
    - 10-18 messages total in the thread
-4. **Format as a chat history** — each message looks like:
+4. **Format as a chat history** — each message header shows emoji + role + persona name + timestamp. Message body stays in the persona's distinct voice (phrasing tics, reference frame, signature questions from their systemPrompt). Example:
 
 ```
-🔧 CTO — 10:02
-We should keep it on Vercel for now. The operational overhead of self-hosting isn't worth it at our scale.
+🔧 CTO (Adrian) — 10:02
+At Netflix we'd ask: what's the blast radius when Vercel has a bad day? That's a different question from SOC 2 coverage.
 
-💰 CFO — 10:03
-I'm not sure that's true. Vercel's pricing jumps sharply at scale. A €5/month VPS handles more traffic than you'd think. Have we actually done the comparison?
+💰 CFO (Amy) — 10:03
+Before we pick sides, what's the gross-margin delta between managed and self-hosted at our current run rate? I don't have that number — and neither does anyone in this room yet.
 
-🛡️ CISO — 10:04
-Forget the cost debate for a second. If we self-host, we control the infrastructure end to end. On Vercel, we're trusting a third party with our admin panel — the one that has access to every AI system assessment we've ever done.
+🛡️ CISO (Window) — 10:04
+The audit document isn't the attacker's view. If Vercel's admin plane gets popped, what does our admin panel look like from there? That's the threat model I care about.
 
-🔧 CTO — 10:06
-That's a valid concern in theory, but Vercel is SOC 2 Type II. Can we realistically do better with a small team managing our own servers? I doubt it.
+🔧 CTO (Adrian) — 10:06
+Fair. But a two-person ops team running our own K8s is a different failure distribution — more, smaller incidents, fewer catastrophic ones. Pick your poison.
 ```
 
 ## Conversation rules
