@@ -384,7 +384,7 @@ const systems = [
     type: "AI Code Assistant",
     risk: "High",
     description:
-      "~42% market share in AI code assistants. Business: $19/user/month, Enterprise: $39/user/month (requires GitHub Enterprise Cloud). Business/Enterprise code NOT used for model training. EU data residency for repository content since 2025, expanding to EFTA (May 2026). However, Copilot AI inference may still process through non-EU servers — compliance gap for strict data sovereignty. Coding Agent not yet supported with data residency enabled.",
+      "~37–42% market share in AI code assistants (growing competition from Cursor at $2B ARR). Business: $19/user/month, Enterprise: $39/user/month (requires GitHub Enterprise Cloud). Business/Enterprise code NOT used for model training. Full EU data residency for both AI inference AND repository content available as of April 2026 (FedRAMP Moderate also added). EU region expanding to EFTA countries (Norway, Switzerland) May 1, 2026. Coding Agent not yet supported with data residency enabled.",
     category: "Financial",
     featured: false,
     capabilityType: "generative-ai",
@@ -406,7 +406,7 @@ const systems = [
     dataStorage:
       "Business/Enterprise: code processed but not stored by GitHub. EU data residency for repository content and metadata. EFTA expansion May 2026.",
     dataProcessing:
-      "AI inference may still process through non-EU servers — compliance gap. Coding Agent not supported with data residency enabled. EU region expanding but not complete.",
+      "Full EU inference residency available as of April 13, 2026 — all AI inference processing stays within EU designated geography when data residency is enabled. Coding Agent not supported with data residency enabled (limitation). EFTA expansion (Norway, Switzerland) May 1, 2026.",
     trainingDataUse:
       "Business/Enterprise: code NOT used for training — contractually guaranteed. Individual/Free: code may be used for model improvement. Enterprise tier: private model fine-tuning with strict data isolation.",
     subprocessors: "Microsoft/OpenAI infrastructure. Published subprocessor list.",
@@ -417,7 +417,7 @@ const systems = [
       "Code stays in customer repos. No lock-in on code itself. Copilot suggestions are ephemeral. Enterprise customizations (knowledge bases) may not be portable.",
     exitTerms: "Code fully owned by customer. Copilot is an add-on — removing it doesn't affect repositories.",
     ipTerms: "Customer retains all IP. Copyright filter available to block suggestions matching public code.",
-    certifications: "SOC 2 Type I, ISO 27001 (via Microsoft).",
+    certifications: "SOC 2 Type II (Azure infrastructure), ISO 27001, FedRAMP Moderate (April 2026), HIPAA eligibility for Enterprise (with BAA).",
     encryptionInfo: "AES-256 at rest. TLS 1.2 in transit.",
     accessControls: "SSO/SAML, organization policies, seat management, audit logs. Enterprise: SCIM provisioning.",
     modelDocs: "Copilot documentation. Limited model card information (uses OpenAI models).",
@@ -427,7 +427,7 @@ const systems = [
       "Classification depends on use case. High risk if used for security-critical code generation. General coding assistance likely limited risk.",
     gdprStatus: "Microsoft DPA. Business/Enterprise privacy protections. EU data residency partial.",
     euResidency:
-      "Repository content: EU data residency available. AI inference: NOT fully EU-resident — gap for strict sovereignty. EFTA expansion May 2026. Coding Agent unsupported with data residency.",
+      "Full EU data residency for both AI inference AND repository content/metadata available (April 2026). Enterprise/Business admins enable from Copilot settings. EFTA expansion (Norway, Switzerland) May 1, 2026. Coding Agent unsupported with data residency enabled — limitation for autonomous coding workflows.",
     deploymentModel: "cloud-only",
     sourceModel: "closed-source",
     industrySlugs: ["financial-services", "telecommunications", "manufacturing"],

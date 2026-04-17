@@ -5,6 +5,27 @@
 
 ---
 
+## 2026-04-17 QA Run
+
+### Critical
+_None this run._
+
+### Warning
+- **Ongoing: Newsfeed future-dated articles (Aug 2026) no "Scheduled" badge** — Top items in the feed are dated Aug 2026 with no "Upcoming" or "Scheduled" label. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+- **Ongoing: Stats bar "80 AI tools" vs pricing page "100+" inconsistency** — Homepage shows 80, Pro tier copy says "100+". Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+
+### Info
+- **All 6 core pages return 200** — /, /database, /regulations, /pricing, /about, /methodology all load cleanly. ✅
+- **FR/DE locales fully operational** — /fr, /fr/database, /fr/methodology, /de, /de/database, /de/methodology all return 200 with correct translated content. ✅
+- **"Home" nav label in English across all locales** — Confirmed intentional: `"Home"` is in `scripts/i18n-glossary.json` as a glossary-protected term. Not a bug. ✅
+- **API endpoints /api/compare and /api/chat return 405 on GET** — POST-only; expected and correct. ✅
+- **FR/DE translation quality high this run** — Navigation, hero, stats, industry browse, regulatory frameworks, methodology all properly translated in French and German. No regression from prior fixes. ✅
+
+### Fixed this run
+_None (no new code-fixable issues found)._
+
+---
+
 ## 2026-04-16 QA Run (Evening)
 
 ### Critical

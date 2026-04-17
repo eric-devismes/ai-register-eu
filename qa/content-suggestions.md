@@ -425,3 +425,134 @@ The `description` field already notes Mistral is "significantly cheaper than Ope
 
 *Source*: costbench.com Mistral AI 2026, pricepertoken.com Mistral models.
 
+---
+
+## 2026-04-17 — Business Review (Fri)
+
+**Lens**: Use cases relevance, customer stories, competitive positioning gaps
+
+---
+
+### ✅ Fixed: GitHub Copilot — EU Inference Residency Now Available (April 13, 2026)
+**Status**: Applied (`seed-enrichment-batch3.ts` updated: `description`, `dataProcessing`, `euResidency`, `certifications`)
+**File**: `src/data/seed-enrichment-batch3.ts` (GitHub Copilot Enterprise entry)
+
+GitHub announced full EU data residency for AI inference on April 13, 2026 — all inference processing now stays within the EU designated geography when data residency is enabled (not just repository content). FedRAMP Moderate compliance also added. Previous profile said "AI inference: NOT fully EU-resident — compliance gap." This was accurate before April 13 but is now wrong.
+
+Also updated `certifications` from "SOC 2 Type I, ISO 27001 (via Microsoft)" to correctly reflect SOC 2 Type II (Azure infrastructure), FedRAMP Moderate (April 2026), and HIPAA eligibility for Enterprise.
+
+Remaining limitation: Coding Agent is not supported with data residency enabled — left in the profile as it remains accurate.
+
+Also updated `description` to note Cursor ($2B ARR) as a significant competitive challenge — market share slipping from ~42% to ~37%.
+
+*Source*: github.blog/changelog/2026-04-13 (EU data residency + FedRAMP announcement), github.blog/changelog/2026-03-31 (EFTA expansion May 2026).
+
+---
+
+### 🟡 Correction: Salesforce Agentforce Adoption Figure Stale (April 16 Entry)
+**Status**: CEO awareness — April 16 suggestion needs a correction note
+**File**: `qa/content-suggestions.md`, 2026-04-16 entry
+
+The April 16 procurement suggestion stated "Only ~8,000 of Salesforce's 150,000+ customers have adopted Agentforce." This was an older figure. As of Q3 FY2026 (October 2025), Salesforce reported 18,500 Agentforce use cases and 9,500 paid deals — up 50% QoQ and generating ~$540M ARR (330% YoY). The profile should reflect the more current figure if/when the Agentforce competitive positioning is updated. The "pricing instability" concern in the April 16 entry remains valid and stands.
+
+*Source*: Salesforce Q3 FY2026 earnings (diginomica.com, agentledgrowth.com).
+
+---
+
+### 🟡 Suggestion: Microsoft Copilot — Low Adoption ROI Context Missing
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (Microsoft Azure OpenAI / M365 Copilot entry)
+
+Enterprise adoption data that is missing from the profile and highly relevant to EU procurement teams:
+- Only **3.3% of M365 users** have paid for the Copilot add-on (as of early 2026)
+- **34% daily-active-user rate** at 90 days (i.e., 66% of licensed users not using it daily)
+- **74% of companies cannot show measurable AI ROI** from Copilot
+- Only 15M paid Copilot seats across Microsoft's 400M+ M365 base
+
+For EU buyers this is a procurement caution: Copilot licensing cost is high (add-on at $18/user/month + upcoming M365 price increases in July 2026), but real-world usage and ROI realization lag significantly. Adding a "Business case note" to the use cases or notes field would serve EU buyers well.
+
+*Source*: stackmatix.com Copilot adoption 2026, copilotconsulting.com benchmarks 2026.
+
+---
+
+### 🟡 Suggestion: Mistral AI — Named European Customer Wins Missing
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry, `customerStories`, `notableCustomers`)
+
+Mistral's profile lacks named customer references, making it look weaker versus Microsoft/Google/SAP whose notable customers are listed. Known EU enterprise deployments:
+- **BNP Paribas** and **AXA** — financial services automation and document processing
+- **Stellantis** — next-generation in-car AI assistant
+- **Veolia** — environmental optimization (GreenUp strategy)
+- **French government** — job placement and education tools
+- **Luxembourg sovereign data economy** initiative
+- **Accenture** — multi-year strategic collaboration announced February 2026 for EU enterprise clients
+
+These are substantive references that strengthen Mistral's positioning as the leading EU-sovereign enterprise AI choice. Adding them to `notableCustomers` and `customerStories` would materially improve the profile.
+
+Current Mistral business metrics: €11.7B valuation, $400M+ ARR run-rate, 10.8M desktop visits/month (March 2026).
+
+*Source*: Accenture newsroom (February 2026), ESG.ai Mistral analysis, cloudsummit.eu $14B valuation article, AIBusiness.com sovereign AI pioneer.
+
+---
+
+### 🟡 Suggestion: SAP Joule — Adoption Gap and Q1 2026 Capability Update
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` or vendor entry (SAP Joule)
+
+Two updates:
+
+**1. Adoption reality check**: 60% of companies are skipping Joule AI during S/4HANA migrations due to transformation complexity. This is procurement-relevant context — SAP Joule is not a "plug in and go" capability; it requires S/4HANA cloud migration readiness. The profile's use cases imply easy deployment which may set wrong expectations. Consider adding a deployment prerequisite note.
+
+**2. Q1 2026 capability expansion (GA milestones)**:
+- **40+ specialized agents** now available (Tender Analysis Agent, Project Setup Agent, etc.)
+- **2,400+ Joule Skills** across SAP applications
+- **Joule Studio GA** (Q1 2026) — custom agent builder for enterprises
+
+These should be reflected in `useCases` and `description` to show the platform has matured significantly beyond the "AI assistant embedded in SAP" framing.
+
+*Source*: CIO.com "Companies skipping SAP's Joule AI" (November 2025), SAP News Q1 2026 release highlights.
+
+---
+
+### 🟡 Suggestion: IBM watsonx — Enterprise Customer Reference Wins Missing
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (IBM watsonx entry, `notableCustomers`, `customerStories`)
+
+IBM watsonx has $12B+ in generative AI bookings as of early 2026, with named enterprise customers that strengthen its credibility as an enterprise-grade choice:
+- **JPMorgan** and **BNY Mellon** (financial services)
+- **Mayo Clinic** (healthcare)
+- **Vodafone** and **T-Mobile** (telecoms)
+
+These are not in the current profile. IBM's Q4 2025 software revenue hit $9B (+14% YoY), driven significantly by watsonx — this scale differentiates it from competitors making "AI for enterprise" claims.
+
+The competitive angle: IBM's positioning as "AI for business not general-purpose AI" and "industrial-grade AI for sensitive/regulated data" is not clearly communicated in our current profile. This is a genuine differentiator for EU compliance-focused buyers.
+
+*Source*: IBM earnings Q4 2025, Sekolapedia watsonx momentum February 2026, Medium IBM AI competitive advantage analysis.
+
+---
+
+### ℹ️ Market Context: EU AI Adoption Significantly Trails US — Platform Value Prop
+**Status**: CEO awareness — potential editorial for platform homepage or methodology
+**Scope**: Platform-wide
+
+ECB SAFE survey and Eurostat data confirm a wide EU–US AI adoption gap:
+- **EU**: 20% of enterprises using AI (Eurostat 2025), 38% at "advanced adoption" stage (ECB SAFE)
+- **US**: 43% of workers using generative AI for work (Jan–Feb 2026)
+- EU adoption up 6.5 percentage points in one year — acceleration is underway
+
+This data reinforces the platform's value proposition: EU enterprise buyers are in an early-to-mid adoption phase and need compliance-first guidance. Consider surfacing this context on the homepage alongside the GDPR enforcement escalation data noted in the DPO review (April 14).
+
+*Source*: ECB Economic Bulletin (ecb.europa.eu), CEPR VoxEU EU vs US AI adoption (2026), Eurostat AI enterprise survey 2025.
+
+---
+
+### ℹ️ Competitive Context: Cursor vs. GitHub Copilot — Market Share Shift
+**Status**: CEO awareness
+**Scope**: Platform-wide / AI code assistant category
+
+Cursor (by Anysphere) has grown to $2B+ ARR in Q1 2026 — up from $200M ARR a year ago. This represents a direct competitive challenge to GitHub Copilot's enterprise code AI dominance. GitHub Copilot's market share is now estimated at 37–42% (down from the ~42% cited in the profile). Cursor's 60% enterprise revenue mix shows it is not just a developer tool but a growing enterprise concern.
+
+This shift is worth noting in the GitHub Copilot entry as context for buyers evaluating "build vs. expand" decisions on coding AI tooling. Already reflected in the `description` fix applied above.
+
+*Source*: groundy.com GitHub Copilot vs Cursor vs Claude Code 2026, affiliatebooster.com GitHub Copilot statistics 2026.
+
