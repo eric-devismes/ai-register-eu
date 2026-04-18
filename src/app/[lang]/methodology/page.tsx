@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import PairedAccordionGrid from "@/components/ui/PairedAccordionGrid";
 import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
@@ -360,33 +360,14 @@ export default async function MethodologyPage({
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2">
-              {dimensionConfig.map((dim) => (
-                <CollapsibleSection
-                  key={dim.nameKey}
-                  title={t(dim.nameKey)}
-                  badge={
-                    <span
-                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                      style={{ backgroundColor: dim.color }}
-                    >
-                      {dim.number}
-                    </span>
-                  }
-                >
-                  <ul className="px-6 py-4 space-y-2">
-                    {dim.criteriaKeys.map((criterionKey) => (
-                      <li key={criterionKey} className="flex items-start gap-2 text-sm text-gray-600">
-                        <svg className="h-4 w-4 shrink-0 mt-0.5 text-[#003399]/40" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg>
-                        {t(criterionKey)}
-                      </li>
-                    ))}
-                  </ul>
-                </CollapsibleSection>
-              ))}
-            </div>
+            <PairedAccordionGrid
+              dimensions={dimensionConfig.map((dim) => ({
+                number: dim.number,
+                color: dim.color,
+                title: t(dim.nameKey),
+                criteria: dim.criteriaKeys.map((k) => t(k)),
+              }))}
+            />
 
             {/* Grading scale */}
             <div className="mt-16 mx-auto max-w-2xl text-center">
