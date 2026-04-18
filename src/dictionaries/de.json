@@ -682,7 +682,9 @@
       "annualNote": "Sparen Sie 20 % mit jährlicher Abrechnung — Pro für nur 182 €/Jahr.",
       "vatNote": "Alle Preise zuzüglich MwSt. Benötigen Sie einen maßgeschneiderten Enterprise-Plan mit API-Zugang und dediziertem Support?",
       "vatLink": "Lassen Sie uns sprechen",
-      "paymentError": "Zahlungssystem wird eingerichtet. Bitte versuchen Sie es später erneut."
+      "paymentError": "Zahlungssystem wird eingerichtet. Bitte versuchen Sie es später erneut.",
+      "enterprisePriceFrom": "From",
+      "enterprisePeriod": "/month · 3 seats"
     },
     "badge": "Pläne & Services",
     "heroTitle": "KI-Compliance Intelligence & Beratung",

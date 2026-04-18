@@ -7,6 +7,7 @@ interface TierConfig {
   nameKey: string;
   price: string | null;
   periodKey: string | null;
+  priceFromKey?: string;
   descKey: string;
   highlighted: boolean;
   badgeKey?: string;
@@ -56,8 +57,9 @@ const tiers: TierConfig[] = [
   },
   {
     nameKey: "pricing.cards.enterpriseName",
-    price: null,
-    periodKey: null,
+    price: "199",
+    periodKey: "pricing.cards.enterprisePeriod",
+    priceFromKey: "pricing.cards.enterprisePriceFrom",
     descKey: "pricing.cards.enterpriseDesc",
     highlighted: false,
     features: [
@@ -140,6 +142,9 @@ export function PricingCards() {
                 <div className="mt-4 flex items-baseline justify-center gap-1">
                   {tier.price !== null ? (
                     <>
+                      {tier.priceFromKey && (
+                        <span className="text-sm font-medium text-gray-500">{t(tier.priceFromKey)}</span>
+                      )}
                       <span className="text-sm font-medium text-gray-500">&euro;</span>
                       <span className="text-5xl font-bold text-[#0d1b3e]">{tier.price}</span>
                       <span className="text-sm font-medium text-gray-500">{t(tier.periodKey!)}</span>

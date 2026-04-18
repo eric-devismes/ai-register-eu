@@ -682,7 +682,9 @@
       "annualNote": "Risparmia il 20% con fatturazione annuale — Pro a soli €182/anno.",
       "vatNote": "Tutti i prezzi sono esclusi IVA. Hai bisogno di un piano enterprise personalizzato con accesso API e supporto dedicato?",
       "vatLink": "Parliamone",
-      "paymentError": "Il sistema di pagamento è in corso di configurazione. Per favore riprova più tardi."
+      "paymentError": "Il sistema di pagamento è in corso di configurazione. Per favore riprova più tardi.",
+      "enterprisePriceFrom": "From",
+      "enterprisePeriod": "/month · 3 seats"
     },
     "badge": "Piani e Servizi",
     "heroTitle": "Conformità all'AI e Consulenza Intelligente",

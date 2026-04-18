@@ -682,7 +682,9 @@
       "annualNote": "Ahorra 20% con facturación anual — Pro por solo €182/año.",
       "vatNote": "Todos los precios excluyen IVA. ¿Necesita un plan empresarial personalizado con acceso a API y soporte dedicado?",
       "vatLink": "Hablemos",
-      "paymentError": "El sistema de pago se está configurando. Por favor, inténtelo más tarde."
+      "paymentError": "El sistema de pago se está configurando. Por favor, inténtelo más tarde.",
+      "enterprisePriceFrom": "From",
+      "enterprisePeriod": "/month · 3 seats"
     },
     "badge": "Planes y Servicios",
     "heroTitle": "Inteligencia de Cumplimiento de IA y Asesoría",

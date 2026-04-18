@@ -682,7 +682,9 @@
       "annualNote": "Économisez 20 % avec la facturation annuelle — Pro à seulement 182 €/an.",
       "vatNote": "Tous les prix hors TVA. Vous avez besoin d'un plan entreprise sur mesure avec accès API et support dédié ?",
       "vatLink": "Parlons-en",
-      "paymentError": "Le système de paiement est en cours de configuration. Veuillez réessayer plus tard."
+      "paymentError": "Le système de paiement est en cours de configuration. Veuillez réessayer plus tard.",
+      "enterprisePriceFrom": "From",
+      "enterprisePeriod": "/month · 3 seats"
     },
     "badge": "Plans et services",
     "heroTitle": "Intelligence et conseil en conformité IA",
