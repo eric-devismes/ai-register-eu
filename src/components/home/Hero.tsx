@@ -18,22 +18,34 @@ import { renderMarkdownInline } from "@/lib/utils/markdown";
 
 const suggestions: Record<string, string[]> = {
   en: [
-    "What is the EU AI Act?",
-    "Which AI tools are high-risk under the AI Act?",
-    "What are the GDPR rules for AI systems?",
-    "What does DORA require for AI in banking?",
+    "Is OpenAI Enterprise AI Act compliant?",
+    "Which AI vendors offer full EU data residency?",
+    "Compare Microsoft Copilot vs Google Vertex AI",
+    "Who's ready for the AI Act August 2026 deadline?",
   ],
   fr: [
-    "Qu'est-ce que l'AI Act europ\u00e9en ?",
-    "Quels outils IA sont \u00e0 haut risque selon l'AI Act ?",
-    "Quelles sont les r\u00e8gles RGPD pour les syst\u00e8mes IA ?",
-    "Que demande DORA pour l'IA en banque ?",
+    "OpenAI Enterprise est-il conforme à l'AI Act ?",
+    "Quels fournisseurs IA offrent une résidence données EU complète ?",
+    "Comparer Microsoft Copilot et Google Vertex AI",
+    "Qui est prêt pour l'échéance AI Act d'août 2026 ?",
   ],
   de: [
-    "Was ist der EU AI Act?",
-    "Welche KI-Tools sind laut AI Act hochriskant?",
-    "Welche DSGVO-Regeln gelten f\u00fcr KI-Systeme?",
-    "Was verlangt DORA f\u00fcr KI im Bankwesen?",
+    "Ist OpenAI Enterprise AI-Act-konform?",
+    "Welche KI-Anbieter bieten vollständige EU-Datenresidenz?",
+    "Microsoft Copilot vs Google Vertex AI vergleichen",
+    "Wer ist bereit für die AI-Act-Frist August 2026?",
+  ],
+  es: [
+    "¿OpenAI Enterprise cumple con la AI Act?",
+    "¿Qué proveedores de IA ofrecen residencia completa de datos en la UE?",
+    "Comparar Microsoft Copilot y Google Vertex AI",
+    "¿Quién está listo para el plazo de agosto 2026 de la AI Act?",
+  ],
+  it: [
+    "OpenAI Enterprise è conforme all'AI Act?",
+    "Quali fornitori di IA offrono residenza dati UE completa?",
+    "Confrontare Microsoft Copilot e Google Vertex AI",
+    "Chi è pronto per la scadenza AI Act agosto 2026?",
   ],
 };
 
@@ -235,7 +247,7 @@ export default function Hero() {
             )}
 
             {/* Secondary links */}
-            <div className="mt-5 flex items-center justify-center gap-6">
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <a
                 href={`/${locale}/database`}
                 className="group inline-flex items-center gap-1.5 text-sm font-medium text-blue-200/70 transition hover:text-white"
@@ -247,6 +259,16 @@ export default function Hero() {
                 <svg className="h-3 w-3 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
+              </a>
+              <span className="text-blue-200/20">|</span>
+              <a
+                href={`/${locale}/pricing`}
+                className="group inline-flex items-center gap-1.5 rounded-full bg-[#ffc107]/15 px-3 py-1 text-sm font-semibold text-[#ffc107] transition hover:bg-[#ffc107]/25"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+                {t("hero.ctaPricing")}
               </a>
               <span className="text-blue-200/20">|</span>
               <a

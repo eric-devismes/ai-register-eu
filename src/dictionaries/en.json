@@ -39,12 +39,13 @@
     "loading": "Loading..."
   },
   "hero": {
-    "badge": "Independent & Vendor-Neutral",
-    "title": "The European Reference Database for",
-    "titleHighlight": "AI Tool Intelligence",
-    "subtitle": "Comprehensive, independent assessments of AI systems across the European Union — mapped against the AI Act, GDPR, DORA, and sector-specific regulations.",
+    "badge": "For DPOs, CISOs & procurement teams",
+    "title": "Know which AI vendors meet",
+    "titleHighlight": "the EU AI Act, GDPR & DORA",
+    "subtitle": "Every vendor claim is sourced, dated, and challengeable. Make AI procurement decisions your auditor can trust — with evidence they can verify.",
     "ctaDatabase": "Explore AI Database",
     "ctaMethodology": "View Methodology",
+    "ctaPricing": "See pricing",
     "searchPlaceholder": "Search AI systems, vendors, or regulations...",
     "searchButton": "Search Database",
     "popular": "Popular"
@@ -343,8 +344,8 @@
   },
   "meta": {
     "home": {
-      "title": "AI Compass EU — AI Intelligence for European Decision-Makers",
-      "description": "Comprehensive, independent assessments of AI systems across the European Union — mapped against the AI Act, GDPR, DORA, and sector-specific regulations."
+      "title": "AI Compass EU — AI Act, GDPR & DORA vendor intelligence for European procurement",
+      "description": "Independent, sourced assessments of 70+ AI vendors against the EU AI Act, GDPR, DORA and sector rules. Built for DPOs, CISOs, and procurement teams making compliance-sensitive AI buying decisions."
     },
     "database": {
       "title": "AI Database",

@@ -125,19 +125,23 @@ export async function getDictionary(locale: Locale) {
 export async function getPageMetadata(
   locale: Locale,
   pageKey: string
-): Promise<{ title: string; description: string }> {
+): Promise<{ title: string | { absolute: string }; description: string }> {
   const dict = await getDictionary(locale);
   const meta = dict?.meta?.[pageKey];
   if (meta?.title && meta?.description) {
-    return { title: meta.title, description: meta.description };
+    // Homepage title already includes the brand name; use absolute to skip the
+    // root layout template ("%s | AI Compass EU") that would otherwise append it.
+    const title = pageKey === "home" ? { absolute: meta.title } : meta.title;
+    return { title, description: meta.description };
   }
   // Fallback to English if the key is missing (i18n:check will flag this)
   const fallback = (await import("@/dictionaries/en.json")).default as {
     meta?: Record<string, { title?: string; description?: string }>;
   };
   const en = fallback?.meta?.[pageKey];
+  const fallbackTitle = en?.title ?? "AI Compass EU";
   return {
-    title: en?.title ?? "AI Compass EU",
+    title: pageKey === "home" ? { absolute: fallbackTitle } : fallbackTitle,
     description: en?.description ?? "AI Intelligence for European Decision-Makers",
   };
 }

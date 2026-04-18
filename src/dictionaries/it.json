@@ -47,7 +47,8 @@
     "ctaMethodology": "Visualizza Metodologia",
     "searchPlaceholder": "Cerca sistemi AI, fornitori o normative...",
     "searchButton": "Cerca nel Database",
-    "popular": "Popolari"
+    "popular": "Popolari",
+    "ctaPricing": "See pricing"
   },
   "stats": {
     "aiToolsRated": "strumenti AI valutati",
