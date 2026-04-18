@@ -5,6 +5,29 @@
 
 ---
 
+## 2026-04-18 QA Run (Morning)
+
+### Critical
+_None this run._
+
+### Warning
+- **Ongoing: `html lang="en"` hardcoded for all locales** — Live `/fr` page confirmed serving `<html lang="en">`. Architectural issue: root layout owns `<html>` tag. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
+- **Ongoing: Stats bar vs pricing page count inconsistency** — Live EN homepage stats bar shows "10 most-used AI systems" (free tier wording) vs pricing page "100+" language. Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+- **Ongoing: Newsfeed future-dated articles (Aug 2026) no "Scheduled" badge** — Top items dated Aug 2026 with no label. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+
+### Info
+- **All 7 core pages + 12 locale variants return 200** — /, /database, /regulations, /pricing, /about, /methodology, /resources all 200. /fr, /de variants all clean. ✅
+- **All footer links return 200** — /privacy, /security, /incident-response, /terms, /contact, /regulations/eu-ai-act, /regulations/gdpr, /regulations/dora all 200. ✅
+- **`/api/compare` POST working correctly** — Returns rich 8-vendor ranked response with use-case matching scores. ✅
+- **`/api/chat` returning 200** — Rate-limit response (`remaining: 3, blocked: true`) working as expected for unauthenticated requests. ✅
+- **i18n check: 0 errors, 2216 warnings** — Build gate passes. Warnings are pre-existing untranslated glossary/brand terms. ✅
+- **FR/DE translations complete on all tested pages** — No English bleed-through detected on /fr or /de homepages, pricing, database, or methodology. ✅
+
+### Fixed this run
+- **Homepage title duplicated brand name** — "AI Compass EU — AI Intelligence for European Decision-Makers | AI Compass EU" was produced because the root-layout `%s | AI Compass EU` template was appended to a title already starting with "AI Compass EU". Fixed: `getPageMetadata` now returns `{ absolute: title }` for `pageKey === "home"`, bypassing the template. Committed `58a8686`, pushed. — https://ai-register-eu.vercel.app/en ✅
+
+---
+
 ## 2026-04-17 QA Run (Evening)
 
 ### Critical
