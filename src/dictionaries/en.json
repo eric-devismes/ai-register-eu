@@ -507,6 +507,8 @@
     "claimCount": "{count} {claims} · every value below links to the original source and the date we verified it",
     "claimSingular": "claim",
     "claimPlural": "claims",
+    "evidenceCommitment": "All facts sourced from vendor trust portals and official documentation, re-verified regularly.",
+    "reportError": "Spot an error? Open a case →",
     "complianceOverview": "Compliance Overview",
     "quickFact": {
       "euPresence": "EU Presence",

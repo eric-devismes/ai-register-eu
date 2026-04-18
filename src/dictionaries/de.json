@@ -519,7 +519,9 @@
     "compareDesc": "Nebeneinander-Analyse",
     "disclaimerTitle": "Haftungsausschluss der Bewertung:",
     "disclaimerText": "Basierend auf öffentlich verfügbaren Informationen zum Zeitpunkt der letzten Überprüfung. Bewertungen spiegeln wider, was in Lieferantendokumentationen, Trust Centers und öffentlichen Zertifizierungen verifiziert werden kann. Für eine verifizierte, auf Ihren Anwendungsfall zugeschnittene Bewertung",
-    "disclaimerLink": "Kontaktieren Sie unser Beratungsteam"
+    "disclaimerLink": "Kontaktieren Sie unser Beratungsteam",
+    "evidenceCommitment": "All facts sourced from vendor trust portals and official documentation, re-verified regularly.",
+    "reportError": "Spot an error? Open a case →"
   },
   "methodology": {
     "badge": "Methodik",

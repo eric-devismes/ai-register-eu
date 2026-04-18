@@ -519,7 +519,9 @@
     "compareDesc": "Analyse comparative",
     "disclaimerTitle": "Clause de non-responsabilité de l'évaluation :",
     "disclaimerText": "Basé sur les informations disponibles publiquement à la date du dernier examen. Les scores reflètent ce qui peut être vérifié à partir de la documentation du fournisseur, des centres de confiance et des certifications publiques. Pour une évaluation vérifiée adaptée à votre cas d'usage,",
-    "disclaimerLink": "contactez notre équipe de conseil"
+    "disclaimerLink": "contactez notre équipe de conseil",
+    "evidenceCommitment": "All facts sourced from vendor trust portals and official documentation, re-verified regularly.",
+    "reportError": "Spot an error? Open a case →"
   },
   "methodology": {
     "badge": "Méthodologie",

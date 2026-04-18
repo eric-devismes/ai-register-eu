@@ -519,7 +519,9 @@
     "compareDesc": "Análisis lado a lado",
     "disclaimerTitle": "Aviso Legal de Evaluación:",
     "disclaimerText": "Basado en información disponible públicamente a la fecha de la última revisión. Las puntuaciones reflejan lo que puede verificarse a partir de la documentación del proveedor, centros de confianza y certificaciones públicas. Para una evaluación verificada adaptada a tu caso de uso,",
-    "disclaimerLink": "contacta con nuestro equipo de consultoría"
+    "disclaimerLink": "contacta con nuestro equipo de consultoría",
+    "evidenceCommitment": "All facts sourced from vendor trust portals and official documentation, re-verified regularly.",
+    "reportError": "Spot an error? Open a case →"
   },
   "methodology": {
     "badge": "Metodología",

@@ -519,7 +519,9 @@
     "compareDesc": "Analisi affiancata",
     "disclaimerTitle": "Disclaimer di Valutazione:",
     "disclaimerText": "Basato su informazioni pubblicamente disponibili alla data dell'ultima revisione. I punteggi riflettono quanto può essere verificato dalla documentazione del fornitore, dai trust center e dalle certificazioni pubbliche. Per una valutazione verificata personalizzata al vostro caso d'uso,",
-    "disclaimerLink": "contattare il nostro team di consulenza"
+    "disclaimerLink": "contattare il nostro team di consulenza",
+    "evidenceCommitment": "All facts sourced from vendor trust portals and official documentation, re-verified regularly.",
+    "reportError": "Spot an error? Open a case →"
   },
   "methodology": {
     "badge": "Metodologia",
