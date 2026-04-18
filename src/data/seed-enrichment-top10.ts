@@ -187,7 +187,7 @@ const systems = [
     type: "Foundation Model Platform (EU-Sovereign)",
     risk: "High",
     description:
-      "The strongest EU-sovereign AI option. Paris-headquartered, French law governs, all data processed in EU by default. Open-weight models (Mistral 7B, Mixtral) enable on-prem deployment with zero vendor lock-in. Significantly cheaper than OpenAI/Anthropic on API pricing. Weaker enterprise tooling and smaller ecosystem compared to US competitors. Key partner for EU government sovereign AI initiatives.",
+      "The strongest EU-sovereign AI option. Paris-headquartered, French law governs, all data processed in EU by default. Open-weight models (Mistral Small 4, Ministral 3, Mixtral) enable on-prem deployment with zero vendor lock-in. $400M ARR as of January 2026, $13.8B valuation, and $830M raised to build a 44 MW Paris data center — fastest-growing EU-native AI company. Significantly cheaper than OpenAI/Anthropic on API pricing. Weaker enterprise tooling and smaller ecosystem compared to US competitors. Key partner for EU government sovereign AI initiatives.",
     category: "Public Sector",
     featured: true,
     capabilityType: "generative-ai",
@@ -197,7 +197,7 @@ const systems = [
     foundedYear: 2023,
     employeeCount: "862+ (Feb 2026)",
     fundingStatus:
-      "Private — raised ~$3.05B across 7 rounds in 29 months. Series C at EUR 12B valuation (Sept 2025). ASML invested $1.5B (owns 11%). Key investors: Andreessen Horowitz, General Catalyst, Lightspeed, BPI France, NVIDIA, DST Global, BNP Paribas, Xavier Niel. Targeting EUR 1B ARR in 2026.",
+      "Private — raised ~$3.88B+ total: equity (~$3.05B across 7 rounds) + $830M debt financing (March 30, 2026, for new Paris data center). Current valuation: $13.8B (March 2026). ARR: $400M run-rate as of January 2026 (up from ~$20M in early 2025). ASML invested $1.5B (owns 11%). Key investors: Andreessen Horowitz, General Catalyst, Lightspeed, BPI France, NVIDIA, DST Global, BNP Paribas, Xavier Niel. Accenture multi-year strategic partnership (February 2026).",
     marketPresence: "Challenger",
     customerCount: "Revenue tripled within 100 days of Le Chat enterprise launch (mid-2025)",
     notableCustomers:
@@ -207,7 +207,7 @@ const systems = [
     useCases:
       "Sovereign AI for EU government and public sector\nMultilingual document processing (strong in EU languages)\nEnterprise chatbots and assistants (Le Chat)\nOn-premises AI for regulated industries (via open-weight models)\nCode generation (Codestral — competitive with Copilot)\nCustom model fine-tuning on proprietary data\nRAG and knowledge retrieval\nAgent workflows (Mistral Agents)",
     dataStorage:
-      "Primary: Sweden and Ireland via GCP (both EU). Mistral Compute (June 2025): 18,000 NVIDIA chips hosted in France, reducing GCP dependence. On-premises via open-weight models (Mistral Large 3, Mixtral). Partners: Scaleway, OVHcloud — EU-sovereign cloud. US processing added Feb 2025 as opt-in only.",
+      "Primary: Sweden and Ireland via GCP (both EU). Mistral Compute (June 2025): 18,000 NVIDIA chips hosted in France, reducing GCP dependence. New Paris data center (March 2026): 13,800 NVIDIA GB300 NVL72 GPUs, 44 MW capacity — funded by $830M debt raise; eliminates GCP dependency for flagship model inference. On-premises via open-weight models (Mistral Small 4, Ministral 3, Mistral Large 3, Mixtral). Cloud provider Koyeb acquired (Feb 2026) for serverless GPU infrastructure. Partners: Scaleway, OVHcloud — EU-sovereign cloud. US processing added Feb 2025 as opt-in only.",
     dataProcessing:
       "EU by default — no opt-in required. US processing is opt-in (added Feb 2025, triggered CNIL GDPR complaint — outcome pending). On-prem option for complete data control and air-gapped environments. Not subject to US CLOUD Act — material differentiator for EU government and regulated-industry procurement.",
     trainingDataUse:

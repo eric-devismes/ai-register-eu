@@ -556,3 +556,42 @@ This shift is worth noting in the GitHub Copilot entry as context for buyers eva
 
 *Source*: groundy.com GitHub Copilot vs Cursor vs Claude Code 2026, affiliatebooster.com GitHub Copilot statistics 2026.
 
+---
+
+## 2026-04-18 — General Review (Sat)
+
+**Lens**: Broken content, outdated dates, cross-file inconsistencies
+
+---
+
+### ✅ Fixed: Mistral AI — Funding, Valuation, ARR, and Paris Data Center Outdated
+**Status**: Applied (`seed-enrichment-top10.ts` updated: `fundingStatus`, `dataStorage`, `description`)
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry)
+
+Three fields were stale following Mistral's major March 2026 announcements:
+
+1. **`fundingStatus`** — Added $830M debt financing (March 30, 2026) for Paris data center; updated total raised to ~$3.88B+; updated valuation from EUR 12B to **$13.8B**; replaced "Targeting EUR 1B ARR in 2026" with confirmed **$400M ARR run-rate as of January 2026**; added Accenture multi-year strategic partnership (February 2026).
+
+2. **`dataStorage`** — Added new **Paris data center** (March 2026): 13,800 NVIDIA GB300 NVL72 GPUs, 44 MW capacity. Updated on-prem model references from Mistral 7B/Mixtral → Mistral Small 4/Ministral 3/Mistral Large 3/Mixtral. Added Koyeb acquisition (Feb 2026) for serverless GPU infrastructure.
+
+3. **`description`** — Updated model family references (Mistral 7B/Mixtral → Mistral Small 4/Ministral 3/Mixtral); added $400M ARR, $13.8B valuation, and Paris data center as key proof points for EU-sovereign positioning.
+
+*Source*: TechCrunch (March 30, 2026 debt raise), Mistral AI news, Accenture newsroom (February 2026).
+
+---
+
+### ℹ️ Verified: All Key April 2026 Milestone Dates — Accurate
+**Status**: No action needed
+**Verified facts**:
+- Anthropic usage-based pricing switch (April 15, 2026) ✓ — already fixed in Apr-16 entry
+- GitHub Copilot EU inference residency (April 13, 2026) ✓ — already fixed in Apr-17 entry
+- Snowflake AI Credits 61.5% reduction (April 1, 2026) ✓ — seed data accurate
+- Microsoft M365 Frontier Suite launch (May 1, 2026) ✓ — already fixed in Apr-16 entry
+- OpenAI EU in-region GPU inference (January 2026) ✓ — already fixed in Apr-14 entry
+
+No further changes needed for these milestone dates.
+
+*Source*: Web verification pass, April 18, 2026.
+
+---
+
