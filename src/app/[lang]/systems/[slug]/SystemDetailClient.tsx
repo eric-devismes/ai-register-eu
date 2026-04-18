@@ -166,11 +166,27 @@ function AccordionSection({
 
 // ─── Field row ──────────────────────────────────────────
 
-function Field({ label, value }: { label: string; value: string }) {
+function Field({ label, value, sourceUrl }: { label: string; value: string; sourceUrl?: string }) {
   if (!value) return null;
   return (
     <div className="py-2.5 border-b border-gray-50 last:border-0">
-      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{label}</span>
+      <div className="flex items-center gap-1.5">
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{label}</span>
+        {sourceUrl && (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Primary source"
+            className="inline-flex items-center text-emerald-600 hover:text-emerald-800 transition"
+            aria-label={`Source for ${label}`}
+          >
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
+        )}
+      </div>
       <p className="mt-0.5 text-sm text-gray-700 leading-relaxed">{value}</p>
     </div>
   );
@@ -231,10 +247,39 @@ function numToGrade(v: number): string {
   return "D";
 }
 
+// Maps a system field name to the claim prefix(es) that back it.
+const FIELD_TO_CLAIM_PREFIX: Record<string, string> = {
+  certifications: "certifications",
+  dpaDetails: "dpa",
+  subprocessors: "subprocessors",
+  trainingDataUse: "trainingDataUse",
+  euResidency: "euResidency",
+  dataStorage: "euResidency",
+  dataProcessing: "euResidency",
+  encryptionInfo: "encryption",
+  accessControls: "accessControls",
+  aiActStatus: "aiActStatus",
+  gdprStatus: "gdprStatus",
+  dataPortability: "dataPortability",
+  exitTerms: "exitTerms",
+};
+
 export default function SystemDetailClient({ system, overall, locale, dimensionScores, claims = [] }: Props) {
   const t = useT();
   const capLabel = capabilityKeys[system.capabilityType] ? t(capabilityKeys[system.capabilityType]) : system.type;
   const hasClaims = claims.length > 0;
+
+  // Build prefix → first available source URL from published claims
+  const prefixToUrl = new Map<string, string>();
+  for (const c of claims) {
+    if (!c.source?.url) continue;
+    const prefix = c.field.split(".")[0];
+    if (!prefixToUrl.has(prefix)) prefixToUrl.set(prefix, c.source.url);
+  }
+  const src = (fieldName: string) => {
+    const prefix = FIELD_TO_CLAIM_PREFIX[fieldName];
+    return prefix ? prefixToUrl.get(prefix) : undefined;
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
@@ -454,10 +499,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {(system.dataStorage || system.dataProcessing || system.trainingDataUse) && (
           <div id="dim-sovereignty" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.dataHandling")} icon={icons.data}>
-              <Field label={t("system.field.storageLocations")} value={system.dataStorage} />
-              <Field label={t("system.field.processingLocations")} value={system.dataProcessing} />
-              <Field label={t("system.field.trainingDataUsage")} value={system.trainingDataUse} />
-              <Field label={t("system.field.subprocessors")} value={system.subprocessors} />
+              <Field label={t("system.field.storageLocations")} value={system.dataStorage} sourceUrl={src("dataStorage")} />
+              <Field label={t("system.field.processingLocations")} value={system.dataProcessing} sourceUrl={src("dataProcessing")} />
+              <Field label={t("system.field.trainingDataUsage")} value={system.trainingDataUse} sourceUrl={src("trainingDataUse")} />
+              <Field label={t("system.field.subprocessors")} value={system.subprocessors} sourceUrl={src("subprocessors")} />
             </AccordionSection>
           </div>
         )}
@@ -466,10 +511,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {(system.dpaDetails || system.slaDetails) && (
           <div id="dim-maturity" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.contractualCommitments")} icon={icons.contract}>
-              <Field label={t("system.field.dpa")} value={system.dpaDetails} />
+              <Field label={t("system.field.dpa")} value={system.dpaDetails} sourceUrl={src("dpaDetails")} />
               <Field label={t("system.field.sla")} value={system.slaDetails} />
-              <Field label={t("system.field.dataPortability")} value={system.dataPortability} />
-              <Field label={t("system.field.exitTerms")} value={system.exitTerms} />
+              <Field label={t("system.field.dataPortability")} value={system.dataPortability} sourceUrl={src("dataPortability")} />
+              <Field label={t("system.field.exitTerms")} value={system.exitTerms} sourceUrl={src("exitTerms")} />
               <Field label={t("system.field.ipTerms")} value={system.ipTerms} />
             </AccordionSection>
           </div>
@@ -479,9 +524,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {(system.certifications || system.encryptionInfo) && (
           <div id="dim-security" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.securityPosture")} icon={icons.security}>
-              <Field label={t("system.field.certifications")} value={system.certifications} />
-              <Field label={t("system.field.encryption")} value={system.encryptionInfo} />
-              <Field label={t("system.field.accessControls")} value={system.accessControls} />
+              <Field label={t("system.field.certifications")} value={system.certifications} sourceUrl={src("certifications")} />
+              <Field label={t("system.field.encryption")} value={system.encryptionInfo} sourceUrl={src("encryptionInfo")} />
+              <Field label={t("system.field.accessControls")} value={system.accessControls} sourceUrl={src("accessControls")} />
             </AccordionSection>
           </div>
         )}
@@ -501,9 +546,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         {(system.aiActStatus || system.gdprStatus) && (
           <div id="dim-compliance" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.euComplianceStatus")} icon={icons.eu}>
-              <Field label={t("system.field.euAiAct")} value={system.aiActStatus} />
-              <Field label={t("system.field.gdpr")} value={system.gdprStatus} />
-              <Field label={t("system.field.euDataResidency")} value={system.euResidency} />
+              <Field label={t("system.field.euAiAct")} value={system.aiActStatus} sourceUrl={src("aiActStatus")} />
+              <Field label={t("system.field.gdpr")} value={system.gdprStatus} sourceUrl={src("gdprStatus")} />
+              <Field label={t("system.field.euDataResidency")} value={system.euResidency} sourceUrl={src("euResidency")} />
               <Field label={t("system.field.euPresence")} value={system.euPresence} />
             </AccordionSection>
           </div>
