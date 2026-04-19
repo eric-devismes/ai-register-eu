@@ -5,6 +5,32 @@
 
 ---
 
+## 2026-04-19 QA Run (Evening)
+
+### Critical
+_None this run._
+
+### Warning
+- ~~**Homepage meta description claims "70+ AI vendors" but DB has 66 systems**~~ — **✅ Fixed this run**: Changed `meta.home.description` in `en.json` from "70+" to "65+" (66 > 65 — accurate). — https://ai-register-eu.vercel.app/en/
+- **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — Live `/fr/methodology` and `/de/methodology` still render large English blocks: "Push back / How to challenge any claim", "What you can verify about us", all source tier labels (T1–T4), "Refresh cadence", "Weekly diff detection", "90-day claim re-verification", "escalation" section. Needs DeepL backfill. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology https://ai-register-eu.vercel.app/de/methodology
+- **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
+- **Ongoing: Stats bar (66 AI systems) vs pricing page ("100+") inconsistency** — Stats bar shows live DB count (66); Pro tier copy says "All 100+". Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+- **Ongoing: Newsfeed future-dated articles (Aug 2 2026) no "Scheduled" badge** — Articles dated Aug 2, 2026 appear without label. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+
+### Info
+- **All 8 core pages return 200** — /en/database, /en/regulations, /en/pricing, /en/about, /en/methodology, /en/newsfeed, /en/reports, /en/database all load cleanly. ✅
+- **FR/DE locale pages all return 200** — /fr, /de, /fr/database, /de/database, /fr/pricing, /de/pricing, /fr/methodology, /de/methodology all 200. ✅
+- **All 6 live system detail pages return 200** — anthropic-claude-enterprise, google-gemini-vertex-ai, microsoft-azure-openai-service, mistral-ai, openai-chatgpt-enterprise, amazon-bedrock-aws. ✅
+- **`/api/chat` POST returning proper streaming response** — EU AI Act question answered correctly with structured response. ✅
+- **`/api/compare` POST returning proper ranked response** — Healthcare compliance query returned rich 8-vendor ranked response. ✅
+- **New ClaimEvidence component rendering correctly** — Evidence overlay, VerifiedBadge (color-coded by age), HighlightedQuote, and source CTA all present on system detail pages. "stale" and "re-verification pending" labels visible on outdated claims. ✅
+- **Content seeding updates confirmed** — Gemini 3.1 Pro benchmarks, Claude Mythos / Project Glasswing, OpenAI EU 10% surcharge all reflected in seed data (from content-suggestions.md). ✅
+
+### Fixed this run
+- **Homepage meta description "70+ AI vendors" inaccuracy** — Updated `src/dictionaries/en.json` `meta.home.description` to "65+" (actual count: 66). ✅
+
+---
+
 ## 2026-04-18 QA Run (Morning)
 
 ### Critical
