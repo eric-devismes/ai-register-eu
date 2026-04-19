@@ -51,7 +51,7 @@ const systems = [
     dataStorage:
       "OpenAI direct: EU data residency (storage) available since Feb 2025 — new API projects only, existing projects cannot migrate. January 2026 expansion added in-region GPU inference (end-to-end EU processing, not just storage) with zero data retention. Azure OpenAI: EU Data Zone Standard (EUR) ensures all data stays within EU member states. Regions: Sweden Central (primary), West Europe, France Central.",
     dataProcessing:
-      "OpenAI direct: EU inference residency since Jan 2026 = data stored AND processed in-region with zero retention. Azure: stricter controls with VNETs, private endpoints, specific region locking (e.g., Germany-only). Azure total cost runs 15-40% higher than direct due to support plans, networking, and data transfer.",
+      "OpenAI direct: EU inference residency since Jan 2026 = data stored AND processed in-region with zero retention. EU Regional Processing adds 10% surcharge for all models released after March 5, 2026 (including the full GPT-5.4 family) — factor into TCO for EU deployments. Azure: stricter controls with VNETs, private endpoints, specific region locking (e.g., Germany-only). Azure total cost runs 15-40% higher than direct due to support plans, networking, and data transfer.",
     trainingDataUse:
       "Business/Enterprise/API: customer data NOT used for model training — contractually guaranteed. Consumer ChatGPT: conversations may be used unless opted out. Warning on reasoning models (o1/o3): internal reasoning tokens billed as output — a short visible answer can consume 5-10x more tokens than displayed.",
     subprocessors:
@@ -128,7 +128,7 @@ const systems = [
     customerStories:
       "GitLab integrated Claude for DevSecOps workflows. 54% enterprise developer market share for Claude Code. Revenue approaching $14B run rate (early 2026).",
     useCases:
-      "Document analysis and summarization (1M token context window — standard as of March 2026)\nCode generation and review (strongest coding benchmarks)\nResearch and data extraction\nCustomer support automation\nContent creation and editing\nComplex reasoning and multi-step analysis\nEnterprise agents via Claude Cowork (Feb 2026)\nMCP-powered tool integrations",
+      "Document analysis and summarization (1M token context window — standard as of March 2026)\nCode generation and review (strongest coding benchmarks)\nResearch and data extraction\nCustomer support automation\nContent creation and editing\nComplex reasoning and multi-step analysis\nEnterprise agents via Claude Cowork (Feb 2026)\nMCP-powered tool integrations\nClaude Mythos Preview (April 2026) — frontier cybersecurity model, gated via Project Glasswing to 52 vetted orgs; preview pricing $25/M input / $125/M output tokens",
     dataStorage:
       "Direct API: US-based by default. 'inference_geo' parameter supports only 'us' and 'global' — with 'global', inference may run in Europe but is NOT guaranteed. Workspace data storage is US-only. Via AWS Bedrock: Frankfurt, Paris, Stockholm + 3 EU regions. Via GCP Vertex AI: 10 EU regions. Both guarantee data stays within EU borders.",
     dataProcessing:
@@ -345,7 +345,7 @@ const systems = [
     type: "Foundation Model Platform + Cloud AI",
     risk: "High",
     description:
-      "Multimodal AI (text, image, video, code) via Vertex AI for enterprise and embedded across Google Workspace. Gemini models with 1M+ token context window — largest in the market. Strong for organizations already in the Google ecosystem. Sovereign Controls for EU. Obtained BSI C5 certification for Gemini — ahead of OpenAI on EU-specific compliance.",
+      "Multimodal AI (text, image, video, code) via Vertex AI for enterprise and embedded across Google Workspace. Gemini 3.1 Pro (preview since February 2026, tops reasoning benchmarks: GPQA Diamond 94.3%) with 1M token context window. Strong for organizations already in the Google ecosystem. Sovereign Controls for EU. Obtained BSI C5 certification for Gemini — ahead of OpenAI on EU-specific compliance. 750M+ monthly active Gemini app users; 8M+ paid Gemini Enterprise seats across 2,800 companies.",
     category: "Financial",
     featured: true,
     capabilityType: "generative-ai",
@@ -356,7 +356,7 @@ const systems = [
     employeeCount: "180,000+ (Alphabet)",
     fundingStatus: "Public (NASDAQ: GOOGL). Market cap ~$2T+.",
     marketPresence: "Leader",
-    customerCount: "Millions of Google Workspace users. GCP: growing enterprise base.",
+    customerCount: "750M+ monthly active Gemini app users (Q4 2025); 2B+ monthly AI Overviews users; 8M+ paid Gemini Enterprise seats across 2,800 companies. GCP: growing enterprise base.",
     notableCustomers:
       "Deutsche Bank, Renault, Airbus, Carrefour, LVMH (EU enterprises)\nWayfair, Uber, Mercedes-Benz, Best Buy, Dun & Bradstreet",
     customerStories:

@@ -5,7 +5,58 @@
 
 ---
 
-## 2026-04-12 — General Review (Sat)
+## 2026-04-19 — General Review (Sun)
+
+**Lens**: Broken content, outdated dates, cross-file inconsistencies
+
+---
+
+### ✅ Fixed: Google Gemini — Stale Description, User Count, and Model Version
+**Status**: Applied (`seed-enrichment-top10.ts` + `seed-platform-deep-sap-ibm-google.ts` updated; top10 seed re-run successfully)
+
+Three fields were outdated following Gemini 3.1 and user-count announcements:
+
+1. **`description`** — Removed "1M+ token context window — largest in the market" (no longer accurate; other frontier models now match or exceed). Updated to reference **Gemini 3.1 Pro** (preview since February 19, 2026; GPQA Diamond benchmark: 94.3%, tops reasoning leaderboard). Added user-count proof points (750M MAU, 8M+ paid Enterprise seats).
+
+2. **`customerCount`** — Updated from vague "Millions of Google Workspace users" to: **"750M+ monthly active Gemini app users (Q4 2025); 2B+ monthly AI Overviews users; 8M+ paid Gemini Enterprise seats across 2,800 companies."**
+
+3. **`seed-platform-deep-sap-ibm-google.ts` (useCases + aiActStatus)** — Updated "Gemini 1.5/2.0/Ultra" → **"Gemini 3.1 Pro/Flash/Flash-Lite (2026)"** in Vertex AI use-case description; added Flash-Lite pricing ($0.25/M input tokens); updated systemic risk text from "Gemini Ultra" to "Gemini 3.1 Pro".
+
+*Source*: androidheadlines.com (750M MAU, Feb 2026); Google Cloud Blog; artificialanalysis.ai Gemini 3.1 Pro benchmarks.
+
+---
+
+### ✅ Fixed: Anthropic Claude — Claude Mythos Preview / Project Glasswing Missing
+**Status**: Applied (`seed-enrichment-top10.ts` updated; seed re-run successfully)
+
+Added Claude Mythos Preview (announced April 7, 2026) to the useCases field. Relevant for enterprise security buyers:
+- Gated via **Project Glasswing** (Anthropic's defensive cybersecurity initiative) to 52 vetted organizations
+- Preview pricing: **$25/M input / $125/M output tokens** (1.7× more expensive than Opus 4.6)
+- Available via Claude API, AWS Bedrock, GCP Vertex AI, and Microsoft Foundry
+- $100M in usage credits committed for Project Glasswing participants
+
+*Source*: Anthropic project-glasswing page; llm-stats.com; almcorp.com Project Glasswing analysis.
+
+---
+
+### ✅ Fixed: OpenAI — EU Regional Processing 10% Surcharge Not Documented
+**Status**: Applied (`seed-enrichment-top10.ts` updated; seed re-run successfully)
+
+Added EU data residency pricing note to `dataProcessing` field: **EU Regional Processing adds 10% surcharge for all models released after March 5, 2026** (covers the full GPT-5.4 family). This is a material TCO consideration for EU buyers evaluating direct OpenAI API vs. Azure OpenAI for new deployments.
+
+*Source*: OpenAI API pricing page; benchlm.ai GPT-5.4 pricing guide.
+
+---
+
+### ℹ️ Tech Debt: `seed-platform-deep-sap-ibm-google.ts` — Pre-existing Seed Failure
+**Status**: Not blocking; CEO awareness
+**Scope**: Internal / DB seed scripts
+
+The platform-deep seed for SAP/IBM/Google fails with Prisma P2025 (`AISystemToIndustry` disconnect) before reaching the Google system update. This is a pre-existing issue — the seed script attempts to `set: []` industry relations on records that don't have them. The string-content changes to this file (Gemini model version update) are saved in source but not yet in the database. Fix: update seed to use `upsert` or skip `industries` disconnect when none exist.
+
+---
+
+## 2026-04-18 — General Review (Sat)
 
 **Lens**: Broken content, outdated dates, cross-file inconsistencies
 
