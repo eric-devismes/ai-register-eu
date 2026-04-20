@@ -172,9 +172,40 @@ function EvidenceOverlay({ claim, onClose }: { claim: ClaimRow; onClose: () => v
             <p className="text-xs text-gray-400 text-center">No source URL available for this claim.</p>
           )}
         </div>
+
+        {/* Challenge link — honours methodology page promise of 48h response */}
+        <div className="px-6 pb-5 -mt-2 text-center">
+          <a
+            href={reportMailto(claim)}
+            className="text-xs text-gray-400 hover:text-gray-700 hover:underline transition"
+          >
+            Report this claim as outdated →
+          </a>
+        </div>
       </div>
     </div>
   );
+}
+
+// ─── Challenge mailto ────────────────────────────────────
+
+function reportMailto(claim: ClaimRow): string {
+  const subject = `Outdated claim — ${claim.field}`;
+  const body = [
+    "Hi — I'd like to flag the following claim as outdated or incorrect.",
+    "",
+    `Claim ID: ${claim.id}`,
+    `Field: ${claim.field}`,
+    `Value shown: ${claim.value}`,
+    `Source: ${claim.source?.url ?? "(none)"}`,
+    `Verified: ${claim.verifiedAt ?? "(unverified)"}`,
+    "",
+    "What's wrong:",
+    "",
+    "Evidence (link or quote):",
+    "",
+  ].join("\n");
+  return `mailto:eric.devismes@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 // ─── Claim chip (inline link style) ─────────────────────
