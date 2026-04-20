@@ -11,12 +11,16 @@
 
 import { useState } from "react";
 import { useT } from "@/lib/locale-context";
+import type { ClaimRow } from "@/types/claims";
+import { FIELD_TO_CLAIM_PREFIX } from "@/types/claims";
+import { ClaimChip, VerifiedBadge } from "@/components/evidence/ClaimEvidence";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
 interface RoleDrillDownProps {
+  claims?: ClaimRow[];
   system: {
     certifications?: string | null;
     encryptionInfo?: string | null;
@@ -113,14 +117,38 @@ function scoreColor(score: string): string {
 /*  Sub-components                                                     */
 /* ------------------------------------------------------------------ */
 
-function FieldCard({ label, value, notAssessedLabel }: { label: string; value: string | null | undefined; notAssessedLabel: string }) {
+function FieldCard({ label, value, notAssessedLabel, fieldClaims }: {
+  label: string;
+  value: string | null | undefined;
+  notAssessedLabel: string;
+  fieldClaims?: ClaimRow[];
+}) {
   const hasValue = value != null && value.trim() !== "";
+  const hasChips = fieldClaims && fieldClaims.length > 0;
+  const verifiedAt = hasChips
+    ? fieldClaims.reduce<string | null>((latest, c) => {
+        if (!c.verifiedAt) return latest;
+        return !latest || c.verifiedAt > latest ? c.verifiedAt : latest;
+      }, null)
+    : null;
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4">
-      <dt className="text-xs font-semibold uppercase tracking-wide text-[#003399]">{label}</dt>
-      <dd className={`mt-1.5 text-sm leading-relaxed ${hasValue ? "text-gray-800" : "italic text-gray-400"}`}>
-        {hasValue ? value : notAssessedLabel}
+      <div className="flex items-center gap-2">
+        <dt className="text-xs font-semibold uppercase tracking-wide text-[#003399]">{label}</dt>
+        {verifiedAt && <VerifiedBadge dateStr={verifiedAt} />}
+      </div>
+      <dd className={`mt-1.5 text-sm leading-relaxed ${hasValue || hasChips ? "text-gray-800" : "italic text-gray-400"}`}>
+        {hasChips ? (
+          <span>
+            {fieldClaims.map((c, i) => (
+              <span key={c.id} className="inline">
+                {i > 0 && <span className="text-gray-300 mx-1.5 select-none">·</span>}
+                <ClaimChip claim={c} />
+              </span>
+            ))}
+          </span>
+        ) : hasValue ? value : notAssessedLabel}
       </dd>
     </div>
   );
@@ -139,9 +167,22 @@ function ScoreBadge({ name, score }: { name: string; score: string }) {
 /*  Main component                                                     */
 /* ------------------------------------------------------------------ */
 
-export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
+export default function RoleDrillDown({ system, scores, claims = [] }: RoleDrillDownProps) {
   const [active, setActive] = useState<RoleKey>("ciso");
   const t = useT();
+
+  // Build prefix → all non-stale claims
+  const prefixToClaims = new Map<string, ClaimRow[]>();
+  for (const c of claims) {
+    if (c.stale) continue;
+    const prefix = c.field.split(".")[0];
+    if (!prefixToClaims.has(prefix)) prefixToClaims.set(prefix, []);
+    prefixToClaims.get(prefix)!.push(c);
+  }
+  const claimsFor = (key: string): ClaimRow[] => {
+    const prefix = FIELD_TO_CLAIM_PREFIX[key];
+    return prefix ? (prefixToClaims.get(prefix) ?? []) : [];
+  };
 
   const ROLES: RoleConfig[] = [
     {
@@ -351,7 +392,7 @@ export default function RoleDrillDown({ system, scores }: RoleDrillDownProps) {
               </h4>
               <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {section.fields.map((f) => (
-                  <FieldCard key={f.key} label={f.label} value={system[f.key]} notAssessedLabel={t("systemRoles.notAssessed")} />
+                  <FieldCard key={f.key} label={f.label} value={system[f.key]} notAssessedLabel={t("systemRoles.notAssessed")} fieldClaims={claimsFor(f.key)} />
                 ))}
               </dl>
             </div>

@@ -10,7 +10,7 @@
  * Opens in a new tab — no iframe needed.
  */
 
-import type { ClaimRow } from "@/app/[lang]/systems/[slug]/SystemDetailClient";
+import type { ClaimRow } from "@/types/claims";
 
 // ─── Category display names ──────────────────────────────
 

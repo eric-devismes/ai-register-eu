@@ -18,8 +18,10 @@ import { gradeColor } from "@/lib/scoring";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { RISK_BADGES, RISK_TOOLTIPS } from "@/lib/constants";
 import EvidenceReviewBanner from "@/components/evidence/EvidenceReviewBanner";
-import EvidenceTable from "@/components/evidence/EvidenceTable";
+import { ClaimChip, VerifiedBadge } from "@/components/evidence/ClaimEvidence";
 import { useT } from "@/lib/locale-context";
+import type { ClaimRow } from "@/types/claims";
+import { FIELD_TO_CLAIM_PREFIX } from "@/types/claims";
 
 // ─── Types ──────────────────────────────────────────────
 
@@ -78,16 +80,7 @@ interface SystemData {
   scores: FrameworkScore[];
 }
 
-export interface ClaimRow {
-  id: string;
-  field: string;
-  value: string;
-  evidenceQuote: string;
-  confidence: string;
-  verifiedAt: string | null;
-  stale: boolean;
-  source: { url: string; label: string; tier: number } | null;
-}
+export type { ClaimRow };
 
 interface Props {
   system: SystemData;
@@ -119,27 +112,6 @@ const capabilityKeys: Record<string, string> = {
   "ai-infrastructure": "system.capability.aiInfrastructure",
   "cybersecurity-ai": "system.capability.cybersecurityAi",
 };
-
-// ─── Verified-at badge ─────────────────────────────────
-
-function VerifiedBadge({ dateStr }: { dateStr: string | null }) {
-  if (!dateStr) return null;
-  const days = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86_400_000);
-  const color = days <= 30
-    ? "text-emerald-600 bg-emerald-50 border-emerald-200"
-    : days <= 90
-    ? "text-amber-600 bg-amber-50 border-amber-200"
-    : "text-red-600 bg-red-50 border-red-200";
-  const label = new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-  return (
-    <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium ${color}`}>
-      <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-      </svg>
-      {label}
-    </span>
-  );
-}
 
 // ─── Accordion Section ──────────────────────────────────
 
@@ -190,17 +162,38 @@ function AccordionSection({
 
 // ─── Field row ──────────────────────────────────────────
 
-function Field({ label, value, sourceUrl, stale }: {
+function Field({ label, value, sourceUrl, stale, fieldClaims }: {
   label: string;
   value: string;
   sourceUrl?: string;
   stale?: boolean;
+  fieldClaims?: ClaimRow[];
 }) {
   if (!value) return null;
+  const hasChips = fieldClaims && fieldClaims.length > 0;
+  const fieldVerifiedAt = hasChips
+    ? fieldClaims.reduce<string | null>((latest, c) => {
+        if (!c.verifiedAt) return latest;
+        return !latest || c.verifiedAt > latest ? c.verifiedAt : latest;
+      }, null)
+    : null;
+
   return (
     <div className="py-2.5 border-b border-gray-50 last:border-0">
-      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{label}</span>
-      {stale ? (
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{label}</span>
+        {fieldVerifiedAt && <VerifiedBadge dateStr={fieldVerifiedAt} />}
+      </div>
+      {hasChips ? (
+        <p className="mt-1 text-sm text-gray-700 leading-relaxed">
+          {fieldClaims.map((c, i) => (
+            <span key={c.id} className="inline">
+              {i > 0 && <span className="text-gray-300 mx-1.5 select-none">·</span>}
+              <ClaimChip claim={c} />
+            </span>
+          ))}
+        </p>
+      ) : stale ? (
         <p className="mt-0.5 text-sm text-gray-400 italic">Not currently verifiable — pending re-check</p>
       ) : sourceUrl ? (
         <a
@@ -273,23 +266,6 @@ function numToGrade(v: number): string {
   return "D";
 }
 
-// Maps a system field name to the claim prefix(es) that back it.
-const FIELD_TO_CLAIM_PREFIX: Record<string, string> = {
-  certifications: "certifications",
-  dpaDetails: "dpa",
-  subprocessors: "subprocessors",
-  trainingDataUse: "trainingDataUse",
-  euResidency: "euResidency",
-  dataStorage: "euResidency",
-  dataProcessing: "euResidency",
-  encryptionInfo: "encryption",
-  accessControls: "accessControls",
-  aiActStatus: "aiActStatus",
-  gdprStatus: "gdprStatus",
-  dataPortability: "dataPortability",
-  exitTerms: "exitTerms",
-};
-
 function toFragment(url: string, quote: string): string {
   try { return `${url}#:~:text=${encodeURIComponent(quote.trim().slice(0, 120))}`; }
   catch { return url; }
@@ -300,13 +276,27 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
   const capLabel = capabilityKeys[system.capabilityType] ? t(capabilityKeys[system.capabilityType]) : system.type;
   const hasClaims = claims.length > 0;
 
-  // Build prefix → best claim (first non-stale, else first)
+  // Build prefix → best claim (first non-stale, else first) — for src() / isStale() / sectionVerified()
   const prefixToClaim = new Map<string, ClaimRow>();
+  // Build prefix → all claims — for chip rendering
+  const prefixToClaims = new Map<string, ClaimRow[]>();
   for (const c of claims) {
     const prefix = c.field.split(".")[0];
     const existing = prefixToClaim.get(prefix);
     if (!existing || existing.stale) prefixToClaim.set(prefix, c);
+    if (!prefixToClaims.has(prefix)) prefixToClaims.set(prefix, []);
+    prefixToClaims.get(prefix)!.push(c);
   }
+
+  // Returns all non-stale published claims for a field (for chip rendering).
+  // Falls back to stale claims if that's all we have (stale chips still show the overlay).
+  const claimsFor = (fieldName: string): ClaimRow[] => {
+    const prefix = FIELD_TO_CLAIM_PREFIX[fieldName];
+    if (!prefix) return [];
+    const all = prefixToClaims.get(prefix) ?? [];
+    const fresh = all.filter((c) => !c.stale);
+    return fresh.length > 0 ? fresh : [];
+  };
 
   // Source link for a field — text-fragment URL if claim has quote, else plain URL.
   // Returns undefined if claim is stale (we hide stale data).
@@ -503,7 +493,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
 
       {/* ── Role-Based Drill-Down ── */}
       <div className="mt-10">
-        <RoleDrillDown system={system} scores={system.scores} />
+        <RoleDrillDown system={system} scores={system.scores} claims={claims} />
       </div>
 
       {/* ── Drill-Down Sections (Accordion) ── */}
@@ -515,10 +505,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
           <div id="dim-sovereignty" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.dataHandling")} icon={icons.data}
               verifiedAt={sectionVerified(["dataStorage","dataProcessing","trainingDataUse","subprocessors"])}>
-              <Field label={t("system.field.storageLocations")} value={system.dataStorage} sourceUrl={src("dataStorage")} stale={isStale("dataStorage")} />
-              <Field label={t("system.field.processingLocations")} value={system.dataProcessing} sourceUrl={src("dataProcessing")} stale={isStale("dataProcessing")} />
-              <Field label={t("system.field.trainingDataUsage")} value={system.trainingDataUse} sourceUrl={src("trainingDataUse")} stale={isStale("trainingDataUse")} />
-              <Field label={t("system.field.subprocessors")} value={system.subprocessors} sourceUrl={src("subprocessors")} stale={isStale("subprocessors")} />
+              <Field label={t("system.field.storageLocations")} value={system.dataStorage} sourceUrl={src("dataStorage")} stale={isStale("dataStorage")} fieldClaims={claimsFor("dataStorage")} />
+              <Field label={t("system.field.processingLocations")} value={system.dataProcessing} sourceUrl={src("dataProcessing")} stale={isStale("dataProcessing")} fieldClaims={claimsFor("dataProcessing")} />
+              <Field label={t("system.field.trainingDataUsage")} value={system.trainingDataUse} sourceUrl={src("trainingDataUse")} stale={isStale("trainingDataUse")} fieldClaims={claimsFor("trainingDataUse")} />
+              <Field label={t("system.field.subprocessors")} value={system.subprocessors} sourceUrl={src("subprocessors")} stale={isStale("subprocessors")} fieldClaims={claimsFor("subprocessors")} />
             </AccordionSection>
           </div>
         )}
@@ -528,10 +518,10 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
           <div id="dim-maturity" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.contractualCommitments")} icon={icons.contract}
               verifiedAt={sectionVerified(["dpaDetails","dataPortability","exitTerms"])}>
-              <Field label={t("system.field.dpa")} value={system.dpaDetails} sourceUrl={src("dpaDetails")} stale={isStale("dpaDetails")} />
+              <Field label={t("system.field.dpa")} value={system.dpaDetails} sourceUrl={src("dpaDetails")} stale={isStale("dpaDetails")} fieldClaims={claimsFor("dpaDetails")} />
               <Field label={t("system.field.sla")} value={system.slaDetails} />
-              <Field label={t("system.field.dataPortability")} value={system.dataPortability} sourceUrl={src("dataPortability")} stale={isStale("dataPortability")} />
-              <Field label={t("system.field.exitTerms")} value={system.exitTerms} sourceUrl={src("exitTerms")} stale={isStale("exitTerms")} />
+              <Field label={t("system.field.dataPortability")} value={system.dataPortability} sourceUrl={src("dataPortability")} stale={isStale("dataPortability")} fieldClaims={claimsFor("dataPortability")} />
+              <Field label={t("system.field.exitTerms")} value={system.exitTerms} sourceUrl={src("exitTerms")} stale={isStale("exitTerms")} fieldClaims={claimsFor("exitTerms")} />
               <Field label={t("system.field.ipTerms")} value={system.ipTerms} />
             </AccordionSection>
           </div>
@@ -542,9 +532,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
           <div id="dim-security" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.securityPosture")} icon={icons.security}
               verifiedAt={sectionVerified(["certifications","encryptionInfo","accessControls"])}>
-              <Field label={t("system.field.certifications")} value={system.certifications} sourceUrl={src("certifications")} stale={isStale("certifications")} />
-              <Field label={t("system.field.encryption")} value={system.encryptionInfo} sourceUrl={src("encryptionInfo")} stale={isStale("encryptionInfo")} />
-              <Field label={t("system.field.accessControls")} value={system.accessControls} sourceUrl={src("accessControls")} stale={isStale("accessControls")} />
+              <Field label={t("system.field.certifications")} value={system.certifications} sourceUrl={src("certifications")} stale={isStale("certifications")} fieldClaims={claimsFor("certifications")} />
+              <Field label={t("system.field.encryption")} value={system.encryptionInfo} sourceUrl={src("encryptionInfo")} stale={isStale("encryptionInfo")} fieldClaims={claimsFor("encryptionInfo")} />
+              <Field label={t("system.field.accessControls")} value={system.accessControls} sourceUrl={src("accessControls")} stale={isStale("accessControls")} fieldClaims={claimsFor("accessControls")} />
             </AccordionSection>
           </div>
         )}
@@ -565,9 +555,9 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
           <div id="dim-compliance" className="scroll-mt-24">
             <AccordionSection title={t("system.accordion.euComplianceStatus")} icon={icons.eu}
               verifiedAt={sectionVerified(["aiActStatus","gdprStatus","euResidency"])}>
-              <Field label={t("system.field.euAiAct")} value={system.aiActStatus} sourceUrl={src("aiActStatus")} stale={isStale("aiActStatus")} />
-              <Field label={t("system.field.gdpr")} value={system.gdprStatus} sourceUrl={src("gdprStatus")} stale={isStale("gdprStatus")} />
-              <Field label={t("system.field.euDataResidency")} value={system.euResidency} sourceUrl={src("euResidency")} stale={isStale("euResidency")} />
+              <Field label={t("system.field.euAiAct")} value={system.aiActStatus} sourceUrl={src("aiActStatus")} stale={isStale("aiActStatus")} fieldClaims={claimsFor("aiActStatus")} />
+              <Field label={t("system.field.gdpr")} value={system.gdprStatus} sourceUrl={src("gdprStatus")} stale={isStale("gdprStatus")} fieldClaims={claimsFor("gdprStatus")} />
+              <Field label={t("system.field.euDataResidency")} value={system.euResidency} sourceUrl={src("euResidency")} stale={isStale("euResidency")} fieldClaims={claimsFor("euResidency")} />
               <Field label={t("system.field.euPresence")} value={system.euPresence} />
             </AccordionSection>
           </div>
