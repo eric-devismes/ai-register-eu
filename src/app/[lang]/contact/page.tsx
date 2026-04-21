@@ -79,8 +79,8 @@ async function ContactContent({ params }: { params: Promise<{ lang: string }> })
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {t("contact.correctionsDesc")}
                 </p>
-                <a href="mailto:corrections@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
-                  corrections@aicompass.eu
+                <a href="mailto:corrections@ai-compass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
+                  corrections@ai-compass.eu
                 </a>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">

@@ -5,6 +5,55 @@
 
 ---
 
+## 2026-04-21 QA Run (Morning)
+
+### Critical
+_None this run._
+
+### Warning
+- **NEW: Email domain inconsistency on contact page** — `contact/page.tsx` used `corrections@aicompass.eu` (no hyphen) while all other references (`SystemDetailClient.tsx`, `methodology/sourcing/page.tsx`, `evidence-fetcher.ts`) use `corrections@ai-compass.eu` (with hyphen). Users clicking the contact page corrections link were being directed to the wrong domain. **✅ Fixed this run**: Updated `src/app/[lang]/contact/page.tsx` to use `corrections@ai-compass.eu`. — https://ai-register-eu.vercel.app/en/contact
+- **NEW: `not-found.tsx` hardcodes "Browse 100+ AI systems"** — The 404 page description under "AI Database" says "Browse 100+ AI systems" but actual DB count is 66. Also a hardcoded English string (no `t()` wrapper), though `not-found.tsx` is outside `[lang]` routing so full i18n is architecturally constrained. The count inaccuracy is the more pressing issue. — https://ai-register-eu.vercel.app/en/404
+- **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — English blocks persist on /fr/methodology and /de/methodology. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology
+- **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
+- **Ongoing: Stats bar (66 systems) vs pricing page ("100+") inconsistency** — Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+- **Ongoing: Newsfeed future-dated articles (Aug 2 2026) shown without "Scheduled" badge** — "1 recent update (last 7 days)" count includes future-dated entries (filter uses regulatory effective date, not publish date). Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+
+### Info
+- **All main pages load correctly** — / (→307→/en), /en/database, /en/regulations, /en/pricing, /en/about, /en/methodology, /en/newsfeed, /en/resources, /en/industries, /en/reports, /fr/methodology, /de/methodology all return 200. ✅
+- **FR/DE locale pages return 200** — /fr, /de, /fr/database, /de/database, /fr/pricing, /de/pricing all clean. ✅
+- **API endpoints working** — `/api/chat` POST returns structured EU AI Act answer; `/api/compare` POST returns ranked healthcare compliance vendor list. ✅
+- **System detail pages confirmed** — anthropic-claude-enterprise, google-gemini-vertex-ai, openai-chatgpt-enterprise, amazon-bedrock-aws, veeva-vault-ai all return 200. microsoft-azure-openai-service 200. ✅
+- **ClaimChip "Report outdated" link** — Wired correctly to `mailto:corrections@ai-compass.eu?subject=Error%20report%20—%20{system.name}`. Uses mailto: requiring an email client — acceptable for corrections workflow. ✅
+- **Sitemap and robots.txt both return 200** ✅
+- **No new critical issues found this run.**
+
+### Fixed this run
+- **Email domain inconsistency on contact page** — `corrections@aicompass.eu` corrected to `corrections@ai-compass.eu` in `src/app/[lang]/contact/page.tsx`. ✅
+
+---
+
+## 2026-04-20 QA Run (Morning)
+
+### Critical
+_None this run._
+
+### Warning
+- **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — English blocks persist on /fr/methodology and /de/methodology. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology
+- **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
+- **Ongoing: Stats bar (66 systems) vs pricing page ("100+") inconsistency** — Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+- **Ongoing: Newsfeed future-dated articles (Aug 2 2026) shown without "Scheduled" badge** — "1 recent update (last 7 days)" count includes future-dated entries (filter uses regulatory effective date, not publish date). Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+
+### Info
+- **All main pages load correctly** — / (→307→/en), /en/database, /en/regulations, /en/pricing, /en/about, /en/methodology, /en/newsfeed, /en/resources, /en/industries all return 200. ✅
+- **FR/DE locale pages return 200** — /fr, /de, /fr/database, /de/pricing all clean. ✅
+- **FR/DE homepages fully translated** — No English UI bleed-through detected on /fr or /de homepages. ✅
+- **System detail pages confirmed at correct URL pattern** — /en/systems/[slug] returns 200 for all 5 visible systems (claude-enterprise, gemini, chatgpt-enterprise, azure-openai, mistral-ai). ✅
+- **`/api/chat` working** — Returns structured answer with remaining-credits count. ✅
+- **Sitemap and robots.txt both return 200** ✅
+- **No new critical issues found this run.**
+
+---
+
 ## 2026-04-19 QA Run (Evening)
 
 ### Critical
