@@ -5,6 +5,32 @@
 
 ---
 
+## 2026-04-21 QA Run (Evening)
+
+### Critical
+_None this run._
+
+### Warning
+- **NEW: System & regulation detail pages use generic page title** — All `/en/systems/[slug]` and `/en/regulations/[slug]` pages served `<title>AI Compass EU — AI Intelligence for European Decision-Makers</title>` (root layout fallback) instead of system/framework-specific titles. Neither page had a `generateMetadata` export. SEO impact: search engines cannot distinguish individual detail pages. **✅ Fixed this run**: Added `generateMetadata` to both `src/app/[lang]/systems/[slug]/page.tsx` and `src/app/[lang]/regulations/[slug]/page.tsx`. Committed `3d733d1`, pushed. — https://ai-register-eu.vercel.app/en/systems/anthropic-claude-enterprise
+- **Ongoing: Stats bar (66 systems) vs pricing page ("100+") inconsistency** — `pricing.cards.proFeat1` and `freeFeat6` in `en.json` both say "100+"; live DB has 66. Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
+- **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — English blocks persist on /fr/methodology and /de/methodology. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology
+- **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
+- **Ongoing: Newsfeed future-dated articles (Aug 2 2026) shown without "Scheduled" badge** — "1 recent update (last 7 days)" count includes future-dated entries. Ongoing from 2026-04-15. — https://ai-register-eu.vercel.app/en/newsfeed
+
+### Info
+- **All main pages load correctly** — /, /en/database, /en/regulations, /en/pricing, /en/about, /en/methodology, /en/newsfeed, /en/compare, /en/reports all return 200. ✅
+- **FR/DE locale pages return 200** — /fr, /de, /fr/database, /de/database, /fr/pricing, /de/pricing, /fr/about, /de/about all clean. ✅
+- **Regulations detail pages return 200** — /en/regulations/eu-ai-act, /en/regulations/gdpr, /en/regulations/dora all 200. ✅
+- **Industry pages return 200** — /en/industries/financial-services, /en/industries/healthcare clean. ✅
+- **All 5 free-tier system detail pages return 200** — anthropic-claude-enterprise, google-gemini-vertex-ai, microsoft-azure-openai-service, mistral-ai, openai-chatgpt-enterprise confirmed. ✅
+- **FR/DE translations quality** — French and German homepages, pricing, and about pages fully translated; technical acronyms (API, CSV, SSO, webhook) left in English as expected. ✅
+- **No new critical issues found this run.**
+
+### Fixed this run
+- **Generic page titles on system and regulation detail pages** — Added `generateMetadata` to both `/[lang]/systems/[slug]/page.tsx` and `/[lang]/regulations/[slug]/page.tsx`. Titles now read e.g. "Claude Enterprise | AI Compass EU". Committed `3d733d1`. ✅
+
+---
+
 ## 2026-04-21 QA Run (Morning)
 
 ### Critical
