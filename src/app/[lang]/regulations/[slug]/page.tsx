@@ -12,6 +12,7 @@
 
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getFrameworkBySlug } from "@/lib/queries";
@@ -24,6 +25,16 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const framework = await getFrameworkBySlug(slug);
+  if (!framework) return {};
+  return {
+    title: `${framework.name} | AI Compass EU`,
+    description: framework.description?.slice(0, 160) || `EU regulatory framework: ${framework.name}. Compliance requirements and AI system assessments.`,
+  };
 }
 
 const BADGE_COLORS: Record<string, string> = {

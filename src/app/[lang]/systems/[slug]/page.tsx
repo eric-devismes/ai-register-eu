@@ -9,6 +9,7 @@
 
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getSystemBySlug, getSystemClaims } from "@/lib/queries";
 import { computeOverallScore, computeAllDimensionScores } from "@/lib/scoring";
@@ -20,6 +21,16 @@ import type { Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const system = await getSystemBySlug(slug);
+  if (!system) return {};
+  return {
+    title: `${system.name} | AI Compass EU`,
+    description: `EU compliance assessment for ${system.name} by ${system.vendor}. Scores across EU AI Act, GDPR, DORA, and more.`,
+  };
 }
 
 export default async function SystemAssessmentPage({ params }: PageProps) {
