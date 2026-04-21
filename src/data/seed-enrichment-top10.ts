@@ -364,7 +364,7 @@ const systems = [
     useCases:
       "Enterprise search and knowledge management\nDocument analysis and generation\nCode assistance (Gemini Code Assist)\nCustomer support chatbots\nData analytics and visualization\nMultimodal content processing (1M+ context)\nGoogle Workspace AI integration\nCustom model fine-tuning on Vertex AI",
     dataStorage:
-      "EU regions: Belgium (europe-west1), Netherlands (europe-west4), Germany (europe-west3), Finland (europe-north1). Customer selects region.",
+      "EU regions: Belgium (europe-west1), Netherlands (europe-west4), Germany (europe-west3/de-central1), Finland (europe-north1), Italy (europe-west12). Customer selects region.",
     dataProcessing:
       "Vertex AI processes in customer-selected region. Some Workspace AI features may process outside EU — check specific feature documentation. Sovereign Controls available for strictest requirements.",
     trainingDataUse:
@@ -379,7 +379,7 @@ const systems = [
     exitTerms: "60-day data retrieval post-termination.",
     ipTerms: "Customer retains IP in outputs generated via Vertex AI.",
     certifications:
-      "ISO 27001, ISO 27017, ISO 27018, SOC 2 Type II, SOC 3, C5 (BSI Germany — obtained for Gemini specifically), HDS (France). FedRAMP High.",
+      "ISO 27001, ISO 27017, ISO 27018, ISO 27701 (Privacy Information Management — May 2025), ISO 42001 (AI Management System — May 2025), SOC 2 Type II, SOC 3, C5 (BSI Germany — obtained for Gemini specifically), HDS (France). FedRAMP High.",
     encryptionInfo:
       "AES-256 at rest with customer-managed keys (Cloud KMS). TLS 1.3 in transit. Confidential Computing available.",
     accessControls:

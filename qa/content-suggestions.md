@@ -5,6 +5,82 @@
 
 ---
 
+## 2026-04-21 — DPO Review (Tue)
+
+**Lens**: GDPR/privacy assessments, data residency, regulation changes
+
+---
+
+### ✅ Fixed: Google Gemini — ISO 27701 + ISO 42001 Missing from Certifications
+**Status**: Applied (`seed-enrichment-top10.ts` updated; seed re-run successfully)
+**File**: `src/data/seed-enrichment-top10.ts` (Google entry, `certifications` field)
+
+Google confirmed ISO 27701 (Privacy Information Management) and ISO 42001 (AI Management System) for Vertex AI / Gemini as of May 2025. Neither was in our certifications list. Both are DPO-relevant: ISO 27701 extends GDPR accountability; ISO 42001 demonstrates AI governance maturity. Added inline with existing certifications.
+
+*Source*: datastudios.org — Google Gemini enterprise compliance standards (fetched 2026-04-21)
+
+---
+
+### ✅ Fixed: Google Gemini — Two New EU Processing Regions
+**Status**: Applied (`seed-enrichment-top10.ts` updated; seed re-run successfully)
+**File**: `src/data/seed-enrichment-top10.ts` (Google entry, `dataStorage` field)
+
+Added two new EU regions now available for Vertex AI deployments: `europe-west12` (Italy) and `de-central1` (Germany). Italy was missing entirely; Germany now shows dual-region options. Material for DPO data residency mapping.
+
+*Source*: Google Cloud documentation (fetched 2026-04-21)
+
+---
+
+### ✅ Fixed: Salesforce Agentforce — EU Cloud Code of Conduct Level 2 Missing
+**Status**: Applied (`seed-platform-deep-m365-sfdc.ts` updated; seed re-run successfully)
+**File**: `src/data/seed-platform-deep-m365-sfdc.ts` (Salesforce entry, `certifications` field)
+
+Salesforce confirmed Agentforce received EU Cloud Code of Conduct Level 2 compliance certification (2025). This is the EU's standardized cloud compliance framework under GDPR. Adds meaningful weight to Salesforce's GDPR story — especially for public sector buyers who require EU Cloud CoC compliance. Note: ServiceNow already had this in our data.
+
+*Source*: Salesforce newsroom — "Agentforce Gets Second-Level Compliance with EU Cloud Code of Conduct" (fetched 2026-04-21)
+
+---
+
+### 🟡 Suggestion: EU AI Act August 2, 2026 Enforcement Deadline — Add Urgency Signals
+**Status**: CEO review needed
+**Scope**: All systems marked `risk: "High"`
+
+The EU AI Act **Annex III high-risk AI system requirements become enforceable August 2, 2026** (4 months from now). Required by that date: conformity assessments, technical documentation, CE marking, and EU database registration for high-risk systems. This affects HR AI (Workday, Personio, HireVue), financial AI (Copilot, Azure OpenAI), and public-sector AI across our entire catalog.
+
+Additionally: the **European Commission missed its February 2, 2026 deadline** to provide Article 6 guidance on high-risk classification — creating ongoing legal uncertainty for deployers.
+
+Suggest: (a) add an "Enforcement Countdown" badge or banner to High-risk system cards, (b) seed a newsfeed entry about the approaching deadline, (c) update `aiActStatus` for all high-risk systems to note "compliance assessment required by Aug 2, 2026".
+
+*Source*: secureprivacy.ai EU AI Act 2026 guide; IAPP — "European Commission misses deadline for AI Act guidance" (fetched 2026-04-21)
+
+---
+
+### 🟡 Suggestion: EDPB Releases First EU-Wide DPIA Template (April 14, 2026)
+**Status**: CEO review — candidate newsfeed item
+**Scope**: `src/data/` newsfeed entries
+
+On April 14, 2026, the EDPB published the **first harmonized EU-wide DPIA template**, open for public consultation until June 9, 2026. Specifically designed for AI system assessments. This is directly relevant to every enterprise deploying high-risk AI tools covered in our database. Recommend adding as a newsfeed item (regulatory milestone, not future-dated).
+
+*Source*: EDPB website (fetched 2026-04-21)
+
+---
+
+### 🟡 Suggestion: OpenAI — Italy GDPR Fine Overturned; gdprStatus Already Updated
+**Status**: Verified current — no change needed
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI entry)
+
+Italy's Court of Rome annulled the €15M Garante fine on March 18, 2026. Our `dpaDetails` and `gdprStatus` fields already reference this ("Italian GDPR fine (2024) was overturned on appeal"). Confirmed no update needed.
+
+---
+
+### ℹ️ Regulatory Context: GDPR Enforcement Intensifying — €1.15B Fines in 2025
+**Status**: Background awareness
+**Scope**: Platform messaging
+
+2025 saw €1.15 billion in total GDPR fines. Key AI-adjacent cases: TikTok (€530M for unauthorized China data access), LinkedIn (€310M for behavioral profiling). The enforcement environment for AI data practices is sharply stricter — reinforces the platform's value proposition for enterprise buyers evaluating compliance risk.
+
+---
+
 ## 2026-04-19 — General Review (Sun)
 
 **Lens**: Broken content, outdated dates, cross-file inconsistencies

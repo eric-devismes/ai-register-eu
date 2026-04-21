@@ -146,7 +146,7 @@ const salesforceProfile = {
   dataPortability: "Full CRM data exportable via Data Export Service and API.",
   exitTerms: "Data export before contract end; deletion within 30 days post-export.",
   ipTerms: "Customer owns all CRM data and AI-generated content produced from it.",
-  certifications: "ISO 27001, ISO 27017, ISO 27018, SOC 2 Type II, SOC 3, C5, HDS (France).",
+  certifications: "ISO 27001, ISO 27017, ISO 27018, SOC 2 Type II, SOC 3, C5, HDS (France), EU Cloud Code of Conduct Level 2 (Agentforce — 2025).",
   encryptionInfo:
     "AES-256 at rest with Shield Platform Encryption (customer-managed keys). TLS 1.2+ in transit. Einstein Trust Layer adds additional tokenisation layer for LLM-bound data.",
   accessControls:
