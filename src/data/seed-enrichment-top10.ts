@@ -152,7 +152,7 @@ const systems = [
     accessControls:
       "SSO/SAML: Team and Enterprise plans. SCIM 2.0: Enterprise only (70-user minimum, 12-month contract — excludes smaller orgs). RBAC, MFA, API key management. Audit logging: Enterprise plan only.",
     modelDocs:
-      "Model cards for Claude 4 family (Opus, Sonnet, Haiku). Constitutional AI methodology documented. Responsible Scaling Policy published. Model behavior and safety evaluations transparent.",
+      "Model cards for Claude 4 family (Opus 4.7 — released April 16, 2026; Sonnet 4.6; Haiku 4.5). Constitutional AI methodology documented. Responsible Scaling Policy published. Model behavior and safety evaluations transparent.",
     explainability:
       "Chain-of-thought reasoning visible in outputs. Strong instruction following for generating explanations. No formal feature attribution tooling (no SHAP/LIME equivalent). Better natural language explanations than competitors.",
     biasTesting:

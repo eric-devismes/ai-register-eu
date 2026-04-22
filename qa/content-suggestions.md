@@ -5,6 +5,84 @@
 
 ---
 
+## 2026-04-22 — CTO Review (Wed)
+
+**Lens**: Technical descriptions accuracy, deployment options, model versions, architecture
+
+---
+
+### ✅ Fixed: Anthropic Claude — Claude Opus 4.7 Not in modelDocs
+**Status**: Applied (`seed-enrichment-top10.ts` updated; seed queued to run)
+**File**: `src/data/seed-enrichment-top10.ts` (Anthropic entry, `modelDocs` field)
+
+Claude Opus 4.7 was released April 16, 2026 — one day after the last CTO review. The `modelDocs` field still listed "Claude 4 family (Opus, Sonnet, Haiku)" without version numbers. Updated to "Opus 4.7 — released April 16, 2026; Sonnet 4.6; Haiku 4.5" for precision. The 1M token context window at standard pricing was already correctly documented.
+
+*Source*: Anthropic model release notes (April 16, 2026).
+
+---
+
+### ✅ Verified: Amazon Bedrock — European Sovereign Cloud Already Recorded
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-batch3.ts` (Bedrock entry)
+
+Confirmed AWS European Sovereign Cloud (Brandenburg, Germany, Jan 15, 2026 GA) is already recorded. Bedrock is listed as an initial service. The `euResidency` field correctly states "launched January 2026 in Brandenburg, Germany." — confirmed accurate.
+
+*Previously confirmed*: CISO review (2026-04-13) verified this was already in the data.
+
+---
+
+### ✅ Verified: Mistral — Certifications Already Current; ANSSI Still Pending
+**Status**: No action needed
+**File**: `src/data/seed-enrichment-top10.ts` (Mistral entry)
+
+Confirmed SOC 2 Type II and ISO 27001 are already marked as achieved. ANSSI qualification is still "in progress" — web search confirms no completion announcement found. HDS (French health data) also still in progress.
+
+---
+
+### 🟡 Suggestion: OpenAI — GPT-4o Retired April 3, 2026; Platform Name Stale
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` (OpenAI entry, `name` and `description`)
+
+GPT-4o was fully retired across all plans on April 3, 2026. The system `name` is "GPT-4o / GPT-5 Platform" — the GPT-4o reference is now technically stale. The active flagship models are GPT-5.x (5.2, 5.3, 5.4). Recommend renaming to "GPT-5 Platform / ChatGPT Enterprise" and removing GPT-4o from the description except as historical context.
+
+Also: GPT-5.2 Thinking is scheduled for retirement June 5, 2026 — relevant for buyers evaluating API stability.
+
+*Source*: OpenAI model retirement announcements; help.openai.com (April 2026).
+
+---
+
+### 🟡 Suggestion: ServiceNow — Microsoft 365 Copilot Integration Not in Profile
+**Status**: CEO review needed
+**File**: `src/data/seed-enrichment-top10.ts` or ServiceNow entry in enrichment files
+
+ServiceNow was named Microsoft Partner of the Year for ISV Innovation (2025) for its M365 Copilot integration. The integration enables AI agents to work across ServiceNow and M365 workflows. Not reflected in the current profile's `useCases` or `accessControls` fields. Relevant for EU enterprise buyers running both M365 and ServiceNow (extremely common in financial services and public sector).
+
+Also: ServiceNow AI Models v2.0 (Small Language Model v2.0 + Large Language Model v2.0) released in 2026 — improved speed and accuracy for Now Assist. Current profile still references the original model versions.
+
+*Source*: ServiceNow newsroom (Microsoft partnership announcement, 2025); ServiceNow Now Assist release notes.
+
+---
+
+### 🔁 Escalating: Amazon Bedrock — Amazon Nova Models Still Not in Profile
+**Status**: CEO review needed (originally flagged 2026-04-15, not yet applied)
+**File**: `src/data/seed-enrichment-batch3.ts` (Bedrock entry)
+
+Amazon Nova first-party model family (Nova 2 Lite, Micro, Pro) is still absent from the Bedrock profile, despite being available across EU inference regions (Frankfurt, Ireland, Paris, Stockholm, Milan, Spain). Key enterprise buyer implication: Nova models operate under a single AWS DPA with no third-party model subprocessor — stronger data governance than using Claude/Gemini/Mistral via Bedrock. December 2025 also added 18 new open-weight models including Mistral Large 3, Ministral 3, and Voxtral.
+
+Flagging as escalated — this is now 7 days pending.
+
+---
+
+### 🔁 Escalating: ServiceNow — AI Agent Architecture Overhaul Still Not in Profile
+**Status**: CEO review needed (originally flagged 2026-04-15, not yet applied)
+**File**: ServiceNow entry in enrichment files
+
+Six major architecture components from 2025-2026 remain absent: AI Agent Fabric, Agent2Agent (A2A) protocol, Model Context Protocol (MCP) integration, AI Agent Orchestrator, AI Control Tower (governance/monitoring), and AI Agent Studio (no-code builder). The current profile describes "virtual agent conversations" which significantly underrepresents what ServiceNow has shipped. This is the biggest technical gap in our entire catalog for CTOs.
+
+Flagging as escalated — this is now 7 days pending.
+
+---
+
 ## 2026-04-21 — DPO Review (Tue)
 
 **Lens**: GDPR/privacy assessments, data residency, regulation changes
