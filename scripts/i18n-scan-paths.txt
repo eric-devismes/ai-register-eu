@@ -28,3 +28,4 @@ src/app/[lang]/regulations/page.tsx
 src/app/[lang]/regulations/[slug]/page.tsx
 src/app/[lang]/industries/page.tsx
 src/app/[lang]/industries/[slug]/page.tsx
+src/app/[lang]/ai-act/page.tsx
