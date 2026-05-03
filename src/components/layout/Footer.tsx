@@ -46,7 +46,7 @@ export default function Footer() {
                 <span className="text-sm font-bold text-white tracking-tight">AI</span>
               </div>
               <div>
-                <div className="text-lg font-bold text-white">AI Compass EU</div>
+                <div className="text-lg font-bold text-white">VendorScope</div>
                 <div className="text-[10px] text-gray-500">{t("footer.slogan")}</div>
               </div>
             </Link>

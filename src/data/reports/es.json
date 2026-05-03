@@ -6,7 +6,7 @@
     "category": "compliance",
     "date": "2026-04-01",
     "readingTime": "12 min read",
-    "author": "AI Compass EU Research Team",
+    "author": "VendorScope Research Team",
     "sections": [
       {
         "id": "executive-summary",
@@ -53,7 +53,7 @@
     "category": "adoption",
     "date": "2026-03-15",
     "readingTime": "15 min read",
-    "author": "AI Compass EU Research Team",
+    "author": "VendorScope Research Team",
     "sections": [
       {
         "id": "executive-summary",
@@ -105,7 +105,7 @@
     "category": "data-privacy",
     "date": "2026-03-01",
     "readingTime": "10 min read",
-    "author": "AI Compass EU Research Team",
+    "author": "VendorScope Research Team",
     "sections": [
       {
         "id": "executive-summary",
@@ -152,7 +152,7 @@
     "category": "security",
     "date": "2026-02-15",
     "readingTime": "18 min read",
-    "author": "AI Compass EU Research Team",
+    "author": "VendorScope Research Team",
     "sections": [
       {
         "id": "executive-summary",
@@ -199,7 +199,7 @@
     "category": "compliance",
     "date": "2026-02-01",
     "readingTime": "8 min read",
-    "author": "AI Compass EU Research Team",
+    "author": "VendorScope Research Team",
     "sections": [
       {
         "id": "executive-summary",
@@ -229,7 +229,7 @@
       {
         "id": "common-challenges",
         "heading": "Common Classification Challenges",
-        "content": "Several recurring challenges arise when organisations attempt to classify their AI portfolio.\n\n**Challenge 1: General-purpose AI in high-risk contexts**\n\nA general-purpose language model (ChatGPT, Claude, Gemini) is not inherently high-risk. However, if an organisation deploys it for a high-risk purpose — answering questions about benefits eligibility, screening job applications, or advising on credit decisions — the deployment becomes high-risk.\n\nThis creates a classification that depends on use, not technology. The same tool may be minimal-risk in one deployment (answering general employee questions) and high-risk in another (answering questions about employee performance).\n\nGuidance: classify based on the specific deployment's intended purpose. If a general-purpose AI tool is used across multiple purposes, classify each use case independently. If one use case is high-risk, the high-risk requirements apply to that use case (and may practically affect the entire deployment if the tool cannot be easily segmented).\n\n**Challenge 2: AI as part of a larger system**\n\nMany AI components are embedded in larger software systems — an AI model that scores fraud risk within a broader transaction monitoring platform, or a computer vision model that inspects parts within a manufacturing execution system.\n\nGuidance: assess whether the AI component is a \"safety component\" of the larger system. If the AI component's failure or error could cause harm to health, safety, or fundamental rights, it is likely high-risk. If it plays an ancillary role (e.g., UI optimisation within a larger system), it may not be.\n\n**Challenge 3: Evolving use cases**\n\nAI systems often start as low-risk tools and gradually expand into higher-risk territory. A document summarisation tool initially used for general research may be extended to summarise medical records, entering the healthcare high-risk domain.\n\nGuidance: establish a change control process that triggers re-classification whenever an AI system's scope, data inputs, or decision authority changes. Include AI classification review as a standard step in change management.\n\n**Challenge 4: Third-party vendor classification disagreements**\n\nYour vendor may classify their AI tool as \"not high-risk\" while your deployment of it is high-risk. This is not a contradiction — the provider classifies based on intended purpose, but the deployer's actual use determines the applicable obligations.\n\nGuidance: do not rely solely on vendor classification. Conduct your own classification based on how you use the tool. If your use is high-risk, you bear deployer obligations even if the vendor does not consider the tool high-risk.\n\n**Challenge 5: Cross-border classification consistency**\n\nDifferent EU Member States may interpret borderline classification cases differently until the European AI Office provides harmonised guidance. An AI system classified as not-high-risk in Germany might be treated differently in France.\n\nGuidance: in borderline cases, adopt the more conservative classification or seek legal advice. The cost of over-classifying is compliance burden; the cost of under-classifying is potential enforcement action.\n\n**Getting help:**\n\nFor complex classification decisions, consult:\n- The European AI Office's classification guidance (expected to be updated regularly).\n- Your national AI market surveillance authority.\n- Specialised legal counsel with AI Act expertise.\n- Industry associations and sector-specific guidance documents.\n- AI Compass EU's self-assessment tool (available to Pro subscribers) for automated classification support."
+        "content": "Several recurring challenges arise when organisations attempt to classify their AI portfolio.\n\n**Challenge 1: General-purpose AI in high-risk contexts**\n\nA general-purpose language model (ChatGPT, Claude, Gemini) is not inherently high-risk. However, if an organisation deploys it for a high-risk purpose — answering questions about benefits eligibility, screening job applications, or advising on credit decisions — the deployment becomes high-risk.\n\nThis creates a classification that depends on use, not technology. The same tool may be minimal-risk in one deployment (answering general employee questions) and high-risk in another (answering questions about employee performance).\n\nGuidance: classify based on the specific deployment's intended purpose. If a general-purpose AI tool is used across multiple purposes, classify each use case independently. If one use case is high-risk, the high-risk requirements apply to that use case (and may practically affect the entire deployment if the tool cannot be easily segmented).\n\n**Challenge 2: AI as part of a larger system**\n\nMany AI components are embedded in larger software systems — an AI model that scores fraud risk within a broader transaction monitoring platform, or a computer vision model that inspects parts within a manufacturing execution system.\n\nGuidance: assess whether the AI component is a \"safety component\" of the larger system. If the AI component's failure or error could cause harm to health, safety, or fundamental rights, it is likely high-risk. If it plays an ancillary role (e.g., UI optimisation within a larger system), it may not be.\n\n**Challenge 3: Evolving use cases**\n\nAI systems often start as low-risk tools and gradually expand into higher-risk territory. A document summarisation tool initially used for general research may be extended to summarise medical records, entering the healthcare high-risk domain.\n\nGuidance: establish a change control process that triggers re-classification whenever an AI system's scope, data inputs, or decision authority changes. Include AI classification review as a standard step in change management.\n\n**Challenge 4: Third-party vendor classification disagreements**\n\nYour vendor may classify their AI tool as \"not high-risk\" while your deployment of it is high-risk. This is not a contradiction — the provider classifies based on intended purpose, but the deployer's actual use determines the applicable obligations.\n\nGuidance: do not rely solely on vendor classification. Conduct your own classification based on how you use the tool. If your use is high-risk, you bear deployer obligations even if the vendor does not consider the tool high-risk.\n\n**Challenge 5: Cross-border classification consistency**\n\nDifferent EU Member States may interpret borderline classification cases differently until the European AI Office provides harmonised guidance. An AI system classified as not-high-risk in Germany might be treated differently in France.\n\nGuidance: in borderline cases, adopt the more conservative classification or seek legal advice. The cost of over-classifying is compliance burden; the cost of under-classifying is potential enforcement action.\n\n**Getting help:**\n\nFor complex classification decisions, consult:\n- The European AI Office's classification guidance (expected to be updated regularly).\n- Your national AI market surveillance authority.\n- Specialised legal counsel with AI Act expertise.\n- Industry associations and sector-specific guidance documents.\n- VendorScope's self-assessment tool (available to Pro subscribers) for automated classification support."
       },
       {
         "id": "conclusion",

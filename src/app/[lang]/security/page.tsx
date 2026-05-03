@@ -1,5 +1,5 @@
 /**
- * Security Policy Page — DORA & NIS2 aligned security posture for AI Compass EU.
+ * Security Policy Page — DORA & NIS2 aligned security posture for VendorScope.
  *
  * URL: /[lang]/security
  */
@@ -263,7 +263,7 @@ export default async function SecurityPage({
                     ))}
                     <li>
                       {(t("security.vulnDisclosure") as string).split("{link}")[0]}
-                      <a href="mailto:security@aicompass.eu" className="text-[#003399] hover:underline">security@aicompass.eu</a>
+                      <a href="mailto:security@vendorscope.eu" className="text-[#003399] hover:underline">security@vendorscope.eu</a>
                       {(t("security.vulnDisclosure") as string).split("{link}")[1]}
                     </li>
                   </ul>
@@ -307,11 +307,11 @@ export default async function SecurityPage({
               <h2 className="text-lg font-bold text-[#0d1b3e]">{t("security.contactTitle")}</h2>
               <p className="mt-2 text-gray-700">{t("security.contactBody")}</p>
               <p className="mt-3">
-                <a href="mailto:security@aicompass.eu" className="inline-flex items-center gap-2 rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0d1b3e]">
+                <a href="mailto:security@vendorscope.eu" className="inline-flex items-center gap-2 rounded-lg bg-[#003399] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0d1b3e]">
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
-                  security@aicompass.eu
+                  security@vendorscope.eu
                 </a>
               </p>
               <p className="mt-4 text-xs text-gray-500">{t("security.contactFooter")}</p>

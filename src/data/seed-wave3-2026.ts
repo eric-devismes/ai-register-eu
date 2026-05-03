@@ -611,7 +611,7 @@ const wave3NewsEntries = [
     date: new Date("2025-01-30"),
     sourceUrl: "https://www.garanteprivacy.it/",
     sourceLabel: "Garante (Italian DPA)",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "deepseek-r1",
   },
   {
@@ -622,7 +622,7 @@ const wave3NewsEntries = [
     date: new Date("2025-02-11"),
     sourceUrl: "https://www.oracle.com/security/saas-security/data-sovereignty/european-union-restricted-access/",
     sourceLabel: "Oracle EURA Programme",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "oracle-fusion-ai",
   },
   {
@@ -633,7 +633,7 @@ const wave3NewsEntries = [
     date: new Date("2024-10-15"),
     sourceUrl: "https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5231",
     sourceLabel: "European Commission Press Release",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -644,7 +644,7 @@ const wave3NewsEntries = [
     date: new Date("2025-05-01"),
     sourceUrl: "https://www.aesia.gob.es/",
     sourceLabel: "AESIA Spain — AI Sandbox",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -655,7 +655,7 @@ const wave3NewsEntries = [
     date: new Date("2025-11-01"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -666,7 +666,7 @@ const wave3NewsEntries = [
     date: new Date("2025-04-01"),
     sourceUrl: "https://www.anthropic.com/responsible-scaling-policy",
     sourceLabel: "Anthropic Responsible Scaling Policy",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "anthropic-claude-api",
   },
   {
@@ -677,7 +677,7 @@ const wave3NewsEntries = [
     date: new Date("2025-12-15"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office — GPAI Code of Practice",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "google-gemini-vertex-ai",
   },
   {
@@ -688,7 +688,7 @@ const wave3NewsEntries = [
     date: new Date("2025-09-01"),
     sourceUrl: "https://www.edpb.europa.eu/",
     sourceLabel: "European Data Protection Board",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -699,7 +699,7 @@ const wave3NewsEntries = [
     date: new Date("2025-07-10"),
     sourceUrl: "https://www.autoriteprotectiondonnees.be/",
     sourceLabel: "Belgian DPA (APD)",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -710,7 +710,7 @@ const wave3NewsEntries = [
     date: new Date("2025-06-01"),
     sourceUrl: "https://www.cnil.fr/",
     sourceLabel: "CNIL (French DPA)",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -721,7 +721,7 @@ const wave3NewsEntries = [
     date: new Date("2025-03-01"),
     sourceUrl: "https://www.iso.org/standard/81230.html",
     sourceLabel: "ISO — ISO/IEC 42001:2023",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -732,7 +732,7 @@ const wave3NewsEntries = [
     date: new Date("2025-07-20"),
     sourceUrl: "https://www.veeva.com/",
     sourceLabel: "Veeva Systems Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "veeva-vault-ai",
   },
   {
@@ -743,7 +743,7 @@ const wave3NewsEntries = [
     date: new Date("2025-09-15"),
     sourceUrl: "https://c3.ai/",
     sourceLabel: "C3.ai Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "c3ai-enterprise",
   },
   {
@@ -754,7 +754,7 @@ const wave3NewsEntries = [
     date: new Date("2026-02-20"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office — Market Surveillance",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -765,7 +765,7 @@ const wave3NewsEntries = [
     date: new Date("2025-04-15"),
     sourceUrl: "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en",
     sourceLabel: "MDCG 2025-6 Guidance",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "mdr-ivdr",
   },
 ];

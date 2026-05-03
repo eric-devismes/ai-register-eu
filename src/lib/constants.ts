@@ -1,5 +1,5 @@
 /**
- * Shared constants for the AI Compass EU platform.
+ * Shared constants for the VendorScope platform.
  *
  * Centralises values that are used across multiple files:
  * brand colors, contact emails, badge color mappings, etc.
@@ -18,8 +18,8 @@ export const BRAND = {
 
 // ─── Contact ────────────────────────────────────────────
 
-export const CONTACT_EMAIL = "contact@aicompass.eu";
-export const CONSULTING_EMAIL = "consulting@aicompass.eu";
+export const CONTACT_EMAIL = "contact@vendorscope.eu";
+export const CONSULTING_EMAIL = "consulting@vendorscope.eu";
 
 // ─── Tier Badge Styles ──────────────────────────────────
 

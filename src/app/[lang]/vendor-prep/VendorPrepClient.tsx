@@ -375,8 +375,8 @@ export function VendorPrepClient({ tier, systems }: Props) {
               </div>
             </div>
             <div className="hidden print:block text-right text-xs text-gray-400">
-              <p>AI Compass EU</p>
-              <p>aicompass.eu</p>
+              <p>VendorScope</p>
+              <p>vendorscope.eu</p>
             </div>
           </div>
         </div>

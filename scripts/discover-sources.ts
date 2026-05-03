@@ -68,7 +68,7 @@ interface ProposedSource {
 // ─── LLM prompt ──────────────────────────────────────────────
 
 function buildDiscoveryPrompt(vendor: string, systemName: string, vendorDomainHint: string | null): string {
-  return `You are a procurement analyst at AI Compass EU. Your task: propose the primary-source URLs on the vendor's own website that an EU enterprise buyer would cite when evaluating this AI product.
+  return `You are a procurement analyst at VendorScope. Your task: propose the primary-source URLs on the vendor's own website that an EU enterprise buyer would cite when evaluating this AI product.
 
 VENDOR: ${vendor}
 PRODUCT: ${systemName}${vendorDomainHint ? `\nVENDOR DOMAIN HINT: ${vendorDomainHint}` : ""}
@@ -115,7 +115,7 @@ interface UrlCheck {
 
 const VALIDATE_TIMEOUT_MS = 15_000;
 const USER_AGENT =
-  "AI-Compass-EU-EvidenceDiscover/1.0 (+https://ai-compass.eu/methodology; contact: corrections@ai-compass.eu)";
+  "VendorScope-EvidenceDiscover/1.0 (+https://vendorscope.eu/methodology; contact: corrections@vendorscope.eu)";
 
 async function headOrGet(url: string, method: "HEAD" | "GET"): Promise<{ status: number; errorMessage: string }> {
   const controller = new AbortController();

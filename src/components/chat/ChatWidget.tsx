@@ -125,7 +125,7 @@ export default function ChatWidget() {
                 <span className="text-xs font-bold text-white">AI</span>
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">AI Compass EU</p>
+                <p className="text-sm font-semibold text-white">VendorScope</p>
                 <p className="text-[10px] text-blue-200">
                   {remaining !== null && remaining >= 0
                     ? t("chat.remainingToday").replace("{count}", String(remaining))

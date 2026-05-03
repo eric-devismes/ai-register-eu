@@ -1,4 +1,4 @@
-# Seed Scripts — AI Compass EU
+# Seed Scripts — VendorScope
 
 All seed scripts live in `src/data/`. Run with `npx tsx src/data/<filename>.ts`.
 

@@ -1,10 +1,10 @@
-# Developer Guide — AI Compass EU
+# Developer Guide — VendorScope
 
-This guide covers everything a new developer needs to get productive on the AI Compass EU codebase.
+This guide covers everything a new developer needs to get productive on the VendorScope codebase.
 
 ## What This Project Does
 
-AI Compass EU is a SaaS platform that rates AI tools (ChatGPT, Azure OpenAI, Mistral, etc.) against EU regulations (EU AI Act, GDPR, DORA). It serves European decision-makers (CTOs, DPOs, procurement leads) who need to understand whether an AI tool is safe to deploy in their regulated environment.
+VendorScope is a SaaS platform that rates AI tools (ChatGPT, Azure OpenAI, Mistral, etc.) against EU regulations (EU AI Act, GDPR, DORA). It serves European decision-makers (CTOs, DPOs, procurement leads) who need to understand whether an AI tool is safe to deploy in their regulated environment.
 
 Key features:
 - **AI Database**: 30+ AI systems with detailed compliance assessments

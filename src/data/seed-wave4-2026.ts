@@ -572,7 +572,7 @@ const wave4NewsEntries = [
     date: new Date("2025-11-20"),
     sourceUrl: "https://www.twobirds.com/en/insights/2025/landmark-ruling-of-the-munich-regional-court-(gema-v-openai)-on-copyright-and-ai-training",
     sourceLabel: "Two Birds LLP — GEMA v OpenAI",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "openai-chatgpt-enterprise",
   },
   {
@@ -583,7 +583,7 @@ const wave4NewsEntries = [
     date: new Date("2025-11-18"),
     sourceUrl: "https://www.taylorwessing.com/en/interface/2025/online-and-ai-generated-content/ai-and-copyright-litigation-in-the-eu-and-the-uk",
     sourceLabel: "Taylor Wessing — AI Copyright Litigation Review",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "stability-ai-sdxl",
   },
   {
@@ -594,7 +594,7 @@ const wave4NewsEntries = [
     date: new Date("2025-10-01"),
     sourceUrl: "https://news.sap.com/",
     sourceLabel: "SAP News Centre",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "sap-joule-enterprise",
   },
   {
@@ -605,7 +605,7 @@ const wave4NewsEntries = [
     date: new Date("2025-06-15"),
     sourceUrl: "https://www.nvidia.com/en-us/ai/",
     sourceLabel: "NVIDIA Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "nvidia-nim-enterprise",
   },
   {
@@ -616,7 +616,7 @@ const wave4NewsEntries = [
     date: new Date("2025-01-15"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -627,7 +627,7 @@ const wave4NewsEntries = [
     date: new Date("2025-09-01"),
     sourceUrl: "https://www.cencenelec.eu/",
     sourceLabel: "CEN/CENELEC",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -638,7 +638,7 @@ const wave4NewsEntries = [
     date: new Date("2025-09-20"),
     sourceUrl: "https://www.centralbank.ie/",
     sourceLabel: "Central Bank of Ireland",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "dora",
   },
   {
@@ -649,7 +649,7 @@ const wave4NewsEntries = [
     date: new Date("2026-01-10"),
     sourceUrl: "https://www.eba.europa.eu/",
     sourceLabel: "European Banking Authority",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eba-eiopa-guidelines",
   },
   {
@@ -660,7 +660,7 @@ const wave4NewsEntries = [
     date: new Date("2025-05-20"),
     sourceUrl: "https://qdrant.tech/",
     sourceLabel: "Qdrant Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "qdrant-vector-db",
   },
   {
@@ -671,7 +671,7 @@ const wave4NewsEntries = [
     date: new Date("2025-07-01"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/",
     sourceLabel: "European Commission Digital Strategy",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "national-ai-strategies",
   },
   {
@@ -682,7 +682,7 @@ const wave4NewsEntries = [
     date: new Date("2025-08-10"),
     sourceUrl: "https://www.cours-appel.justice.fr/paris",
     sourceLabel: "Paris Commercial Court",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -693,7 +693,7 @@ const wave4NewsEntries = [
     date: new Date("2025-04-25"),
     sourceUrl: "https://www.europarl.europa.eu/",
     sourceLabel: "European Parliament",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -704,7 +704,7 @@ const wave4NewsEntries = [
     date: new Date("2025-08-15"),
     sourceUrl: "https://www.synthesia.io/",
     sourceLabel: "Synthesia Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "synthesia-ai-video",
   },
   {
@@ -715,7 +715,7 @@ const wave4NewsEntries = [
     date: new Date("2025-11-10"),
     sourceUrl: "https://ec.europa.eu/clima/eu-action/eu-climate-action/eu-climate-strategy-targets_en",
     sourceLabel: "European Commission — Climate Action",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -726,7 +726,7 @@ const wave4NewsEntries = [
     date: new Date("2025-07-30"),
     sourceUrl: "https://scale.com/",
     sourceLabel: "Scale AI Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "scale-ai-enterprise",
   },
 ];

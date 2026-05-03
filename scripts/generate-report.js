@@ -1,8 +1,8 @@
 /**
- * Generate the AI Compass EU Assessment Model & Vendor Reports document.
+ * Generate the VendorScope Assessment Model & Vendor Reports document.
  *
  * Run: node scripts/generate-report.js
- * Output: AI-Compass-EU-Assessment-Model-v1.docx
+ * Output: VendorScope-Assessment-Model-v1.docx
  */
 
 const fs = require("fs");
@@ -436,7 +436,7 @@ function buildVendorSection(v, numbering) {
 }
 
 async function main() {
-  console.log("Generating AI Compass EU Assessment Model document...");
+  console.log("Generating VendorScope Assessment Model document...");
 
   const allContent = [];
 
@@ -448,7 +448,7 @@ async function main() {
   allContent.push(new Paragraph({
     alignment: AlignmentType.CENTER,
     spacing: { after: 200 },
-    children: [new TextRun({ text: "AI COMPASS EU", size: 56, bold: true, font: "Arial", color: EU_BLUE })],
+    children: [new TextRun({ text: "VENDORSCOPE", size: 56, bold: true, font: "Arial", color: EU_BLUE })],
   }));
   allContent.push(new Paragraph({
     alignment: AlignmentType.CENTER,
@@ -677,7 +677,7 @@ async function main() {
         default: new Header({
           children: [new Paragraph({
             alignment: AlignmentType.RIGHT,
-            children: [new TextRun({ text: "AI Compass EU", size: 16, font: "Arial", color: EU_BLUE, italics: true })],
+            children: [new TextRun({ text: "VendorScope", size: 16, font: "Arial", color: EU_BLUE, italics: true })],
           })],
         }),
       },
@@ -686,7 +686,7 @@ async function main() {
           children: [new Paragraph({
             alignment: AlignmentType.CENTER,
             children: [
-              new TextRun({ text: "AI Compass EU \u2014 Confidential Draft v1.0 \u2014 April 2026  |  Page ", size: 14, font: "Arial", color: "999999" }),
+              new TextRun({ text: "VendorScope \u2014 Confidential Draft v1.0 \u2014 April 2026  |  Page ", size: 14, font: "Arial", color: "999999" }),
               new TextRun({ children: [PageNumber.CURRENT], size: 14, font: "Arial", color: "999999" }),
             ],
           })],
@@ -697,8 +697,8 @@ async function main() {
   });
 
   const buffer = await Packer.toBuffer(doc);
-  fs.writeFileSync("/Users/ericdevismes/Documents/Claude-Work/PROJECTS/ai-register-eu/AI-Compass-EU-Assessment-Model-v1.docx", buffer);
-  console.log("Done! Written to AI-Compass-EU-Assessment-Model-v1.docx");
+  fs.writeFileSync("/Users/ericdevismes/Documents/Claude-Work/PROJECTS/ai-register-eu/VendorScope-Assessment-Model-v1.docx", buffer);
+  console.log("Done! Written to VendorScope-Assessment-Model-v1.docx");
 }
 
 main().catch(console.error);

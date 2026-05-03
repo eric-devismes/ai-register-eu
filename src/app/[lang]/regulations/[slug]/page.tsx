@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const framework = await getFrameworkBySlug(slug);
   if (!framework) return {};
   return {
-    title: `${framework.name} | AI Compass EU`,
+    title: `${framework.name} | VendorScope`,
     description: framework.description?.slice(0, 160) || `EU regulatory framework: ${framework.name}. Compliance requirements and AI system assessments.`,
   };
 }

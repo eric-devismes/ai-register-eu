@@ -93,7 +93,7 @@ async function buildContext(): Promise<string> {
 async function askClaude(userMessage: string, context: string): Promise<string> {
   if (!ANTHROPIC_KEY) return "⚠️ Claude API not configured on this deployment.";
 
-  const systemPrompt = `You are the AI assistant for AI Compass EU, a regulatory intelligence platform for European AI compliance. You are chatting with Eric Devismes, the CEO and founder, via Telegram.
+  const systemPrompt = `You are the AI assistant for VendorScope, a regulatory intelligence platform for European AI compliance. You are chatting with Eric Devismes, the CEO and founder, via Telegram.
 
 YOUR ROLE:
 - You are his trusted advisor and project partner

@@ -68,8 +68,8 @@ async function ContactContent({ params }: { params: Promise<{ lang: string }> })
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {t("contact.generalDesc")}
                 </p>
-                <a href="mailto:contact@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
-                  contact@aicompass.eu
+                <a href="mailto:contact@vendorscope.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
+                  contact@vendorscope.eu
                 </a>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -79,8 +79,8 @@ async function ContactContent({ params }: { params: Promise<{ lang: string }> })
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {t("contact.correctionsDesc")}
                 </p>
-                <a href="mailto:corrections@ai-compass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
-                  corrections@ai-compass.eu
+                <a href="mailto:corrections@vendorscope.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
+                  corrections@vendorscope.eu
                 </a>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -90,8 +90,8 @@ async function ContactContent({ params }: { params: Promise<{ lang: string }> })
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {t("contact.partnershipsDesc")}
                 </p>
-                <a href="mailto:partnerships@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
-                  partnerships@aicompass.eu
+                <a href="mailto:partnerships@vendorscope.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
+                  partnerships@vendorscope.eu
                 </a>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -101,8 +101,8 @@ async function ContactContent({ params }: { params: Promise<{ lang: string }> })
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {t("contact.pressDesc")}
                 </p>
-                <a href="mailto:press@aicompass.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
-                  press@aicompass.eu
+                <a href="mailto:press@vendorscope.eu" className="mt-4 inline-flex items-center text-sm font-semibold text-[#003399] hover:underline">
+                  press@vendorscope.eu
                 </a>
               </div>
             </div>

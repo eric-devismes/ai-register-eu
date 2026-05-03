@@ -1,6 +1,6 @@
 # Operations Guide — Human Edition
 
-This is the plain-English explanation of how AI Compass EU runs. It covers what the platform does, who does what, how content moves from raw data to a published page, and what the daily, weekly, and monthly rhythms look like. If you are an operator, an investor, an auditor, or a new team member, start here.
+This is the plain-English explanation of how VendorScope runs. It covers what the platform does, who does what, how content moves from raw data to a published page, and what the daily, weekly, and monthly rhythms look like. If you are an operator, an investor, an auditor, or a new team member, start here.
 
 For the machine-executable version of the same operations (commands, decision trees, exact triggers), see [OPERATIONS-AGENT.md](OPERATIONS-AGENT.md).
 
@@ -8,7 +8,7 @@ For the machine-executable version of the same operations (commands, decision tr
 
 ## 1. What the platform actually is
 
-AI Compass EU is a procurement intelligence platform for European decision-makers — DPOs, CISOs, CROs, and procurement leads — who need to evaluate AI tools against EU regulations (AI Act, GDPR, DORA, EBA/EIOPA guidelines, MDR/IVDR, national strategies).
+VendorScope is a procurement intelligence platform for European decision-makers — DPOs, CISOs, CROs, and procurement leads — who need to evaluate AI tools against EU regulations (AI Act, GDPR, DORA, EBA/EIOPA guidelines, MDR/IVDR, national strategies).
 
 The product is **anti-vendor-pitch**: every claim about a vendor is backed by a quoted excerpt from a primary source (the vendor's own trust centre, security page, or DPA), with a date and a "report outdated" link. The buyer should never have to take the platform's word for anything.
 
@@ -200,7 +200,7 @@ Honesty matters here — these are real, as of 2026-04-26:
 4. **GDPR data export is manual** (admin runs it on request). It needs to be a self-service endpoint.
 5. **Translation debt**: about 20 hardcoded English strings still live on the pricing, methodology, reports, regulations, and industries pages. They will be migrated as those paths are added to the i18n scan list.
 6. **Three customer-development calls** with target buyers (DPO / CISO / procurement) are blocking paid acquisition.
-7. **The domain and final brand** (currently ai-compass.eu) are pending a CEO decision.
+7. **The domain and final brand** (currently vendorscope.eu) are pending a CEO decision.
 8. **Autonomous QA bots** (continuous testing, broken-link sweeps, translation drift detection, mobile/perf testing, UX-improvement crawl) are designed but not built. Today, QA happens through scheduled domain-expert reviews and manual checks logged in `qa/`.
 
 `TODO.md` is the live backlog. `qa/defects.md` is the live bug log. `qa/content-suggestions.md` is the live content review log.
@@ -227,4 +227,4 @@ If this guide and the source disagree, the source wins. Update the guide.
 
 ## 11. A one-paragraph elevator version
 
-AI Compass EU is a procurement intelligence platform that rates AI tools against EU regulations using only verifiable, quote-cited evidence from each vendor's own public materials. The site is operated by a fleet of AI agents working under a CEO, with an expert panel of domain personas (CTO, CISO, DPO, CRO, CFO, etc.) advising on cross-functional decisions. Content flows through a strict pipeline — discover → fetch → extract → review → publish → re-verify every 90 days — with translation parity across five EU languages enforced as a hard build gate. Revenue comes from a Free / Pro €19 / Enterprise tiered subscription, with LemonSqueezy as merchant of record. The platform's defensibility is the trust model: every claim is sourced, every claim is dated, every claim is challengeable.
+VendorScope is a procurement intelligence platform that rates AI tools against EU regulations using only verifiable, quote-cited evidence from each vendor's own public materials. The site is operated by a fleet of AI agents working under a CEO, with an expert panel of domain personas (CTO, CISO, DPO, CRO, CFO, etc.) advising on cross-functional decisions. Content flows through a strict pipeline — discover → fetch → extract → review → publish → re-verify every 90 days — with translation parity across five EU languages enforced as a hard build gate. Revenue comes from a Free / Pro €19 / Enterprise tiered subscription, with LemonSqueezy as merchant of record. The platform's defensibility is the trust model: every claim is sourced, every claim is dated, every claim is challengeable.

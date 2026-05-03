@@ -130,7 +130,7 @@ export async function getPageMetadata(
   const meta = dict?.meta?.[pageKey];
   if (meta?.title && meta?.description) {
     // Homepage title already includes the brand name; use absolute to skip the
-    // root layout template ("%s | AI Compass EU") that would otherwise append it.
+    // root layout template ("%s | VendorScope") that would otherwise append it.
     const title = pageKey === "home" ? { absolute: meta.title } : meta.title;
     return { title, description: meta.description };
   }
@@ -139,7 +139,7 @@ export async function getPageMetadata(
     meta?: Record<string, { title?: string; description?: string }>;
   };
   const en = fallback?.meta?.[pageKey];
-  const fallbackTitle = en?.title ?? "AI Compass EU";
+  const fallbackTitle = en?.title ?? "VendorScope";
   return {
     title: pageKey === "home" ? { absolute: fallbackTitle } : fallbackTitle,
     description: en?.description ?? "AI Intelligence for European Decision-Makers",

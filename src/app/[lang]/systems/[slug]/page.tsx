@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const system = await getSystemBySlug(slug);
   if (!system) return {};
   return {
-    title: `${system.name} | AI Compass EU`,
+    title: `${system.name} | VendorScope`,
     description: `EU compliance assessment for ${system.name} by ${system.vendor}. Scores across EU AI Act, GDPR, DORA, and more.`,
   };
 }

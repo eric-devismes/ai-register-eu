@@ -83,7 +83,7 @@ const FETCH_TIMEOUT_MS = 30_000;
 // most trust pages are <100 KB so this still protects against rogue downloads.
 const MAX_BYTES = 5 * 1024 * 1024;
 const USER_AGENT =
-  "AI-Compass-EU-EvidenceFetcher/1.0 (+https://ai-compass.eu/methodology; contact: corrections@ai-compass.eu)";
+  "VendorScope-EvidenceFetcher/1.0 (+https://vendorscope.eu/methodology; contact: corrections@vendorscope.eu)";
 
 export interface FetchResult {
   ok: boolean;

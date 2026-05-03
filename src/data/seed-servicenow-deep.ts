@@ -185,7 +185,7 @@ const servicenowNewsEntries = [
     date: new Date("2025-05-06"),
     sourceUrl: "https://blogs.nvidia.com/blog/servicenow-apriel-nemotron/",
     sourceLabel: "NVIDIA Blog — Apriel Nemotron 15B",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "servicenow-now-assist",
   },
   {
@@ -196,7 +196,7 @@ const servicenowNewsEntries = [
     date: new Date("2025-05-07"),
     sourceUrl: "https://newsroom.servicenow.com/press-releases/details/2025/ServiceNow-Unveils-the-New-ServiceNow-AI-Platform-to-Put-Any-AI-Any-Agent-Any-Model-to-Work-Across-the-Enterprise/default.aspx",
     sourceLabel: "ServiceNow Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "servicenow-now-assist",
   },
   {
@@ -207,7 +207,7 @@ const servicenowNewsEntries = [
     date: new Date("2025-03-01"),
     sourceUrl: "https://www.servicenow.com/uk/blogs/2025/ai-data-sovereignty-compliance",
     sourceLabel: "ServiceNow UK Blog — AI and Data Sovereignty",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "servicenow-now-assist",
   },
   {
@@ -218,7 +218,7 @@ const servicenowNewsEntries = [
     date: new Date("2025-09-15"),
     sourceUrl: "https://www.servicenow.com/",
     sourceLabel: "ServiceNow Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "servicenow-now-assist",
   },
 ];

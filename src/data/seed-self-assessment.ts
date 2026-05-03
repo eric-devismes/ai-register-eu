@@ -1,5 +1,5 @@
 /**
- * Self-Assessment — AI Compass EU rated by its own methodology
+ * Self-Assessment — VendorScope rated by its own methodology
  *
  * "Eat your own dog food" — rate ourselves with the same rigour
  * we apply to every other AI system in the database.
@@ -18,12 +18,12 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("Self-assessing AI Compass EU...\n");
+  console.log("Self-assessing VendorScope...\n");
 
   const system = {
-    slug: "ai-compass-eu",
-    vendor: "AI Compass EU",
-    name: "AI Compass EU Platform",
+    slug: "vendorscope-eu",
+    vendor: "VendorScope",
+    name: "VendorScope Platform",
     type: "AI Compliance Intelligence Platform",
     risk: "Minimal",
     description:
@@ -33,7 +33,7 @@ async function main() {
     capabilityType: "decision-support",
     vendorHq: "France (EU-native)",
     euPresence:
-      "EU-native company based in France. All infrastructure hosted in EU: Vercel EU (Frankfurt), Neon PostgreSQL (AWS eu-central-1, Frankfurt). No data leaves the EU for storage or processing. Team and operations fully European. Domain: aicompass.eu.",
+      "EU-native company based in France. All infrastructure hosted in EU: Vercel EU (Frankfurt), Neon PostgreSQL (AWS eu-central-1, Frankfurt). No data leaves the EU for storage or processing. Team and operations fully European. Domain: vendorscope.eu.",
     foundedYear: 2025,
     employeeCount: "1-10",
     fundingStatus:
@@ -51,11 +51,11 @@ async function main() {
     dataProcessing:
       "Minimal personal data processing. Core data is regulatory content and AI system assessments (public information). Subscriber data: email for authentication (magic link, no passwords stored), optional profile (role, industry, org size) for AI personalisation. Chat questions sent to Anthropic Claude API for inference — no email, name, or account identifiers are forwarded to the LLM. Only the question text and an anonymised role/industry label are sent.",
     trainingDataUse:
-      "AI Compass EU does NOT train any AI models. The platform uses Anthropic's Claude Haiku 4.5 via API. Per Anthropic's API terms: data sent via API is not used for model training. Customer data is never used for any form of model training, fine-tuning, or improvement. The platform's regulatory database content is curated by human editorial processes.",
+      "VendorScope does NOT train any AI models. The platform uses Anthropic's Claude Haiku 4.5 via API. Per Anthropic's API terms: data sent via API is not used for model training. Customer data is never used for any form of model training, fine-tuning, or improvement. The platform's regulatory database content is curated by human editorial processes.",
     subprocessors:
       "Anthropic (US — AI inference for chatbot and comparison tool, questions only, no PII forwarded)\nVercel (EU Frankfurt — hosting, CDN, serverless functions)\nNeon (EU Frankfurt — PostgreSQL database)\nResend (US + EU SCCs — transactional email delivery)\nLemonSqueezy (US — payment processing as Merchant of Record, handles EU VAT)",
     dpaDetails:
-      "GDPR-compliant privacy policy published at /privacy. Consent recorded with date and text snapshot at subscription. Data Processing Agreements: Vercel DPA (standard), Neon DPA (EU data residency), Anthropic API terms (no training use), Resend DPA (EU SCCs), LemonSqueezy DPA (Merchant of Record). No DPA required from subscribers — AI Compass EU is the data controller, not a processor.",
+      "GDPR-compliant privacy policy published at /privacy. Consent recorded with date and text snapshot at subscription. Data Processing Agreements: Vercel DPA (standard), Neon DPA (EU data residency), Anthropic API terms (no training use), Resend DPA (EU SCCs), LemonSqueezy DPA (Merchant of Record). No DPA required from subscribers — VendorScope is the data controller, not a processor.",
     slaDetails:
       "Platform hosted on Vercel with global CDN. Database on Neon with automatic failover. No formal SLA published for the free tier. Pro/Enterprise: best-effort 99.9% uptime. Chatbot availability depends on Anthropic API availability. Incident response plan published at /incident-response. Security policy published at /security.",
     dataPortability:
@@ -63,7 +63,7 @@ async function main() {
     exitTerms:
       "Monthly subscription via LemonSqueezy. Cancel anytime via customer portal. Data deletion available via account settings (immediate, irreversible). Unsubscribe from communications via one-click link. No lock-in period. No exit fees.",
     ipTerms:
-      "AI Compass EU retains IP in platform, assessment methodology, and editorial content. Regulatory text and framework content is derived from public EU legislation. AI-generated chatbot responses are not claimed as IP. Subscriber data owned by subscribers.",
+      "VendorScope retains IP in platform, assessment methodology, and editorial content. Regulatory text and framework content is derived from public EU legislation. AI-generated chatbot responses are not claimed as IP. Subscriber data owned by subscribers.",
     certifications:
       "No formal certifications (early-stage startup). Security measures implemented: bcrypt password hashing (admin), SHA-256 token hashing, TOTP 2FA for admin access, HTTP-only session cookies, input validation and injection detection on all AI endpoints, rate limiting on chatbot and comparison tool. Self-assessed against EU AI Act, GDPR, and platform's own methodology. ICT Risk Management framework documented per DORA Chapter II requirements. Incident Response Plan published (P1-P4 classification with SLA timelines). Supply chain risk assessment documented for all subprocessors.",
     encryptionInfo:
@@ -136,7 +136,7 @@ async function main() {
     }
   }
 
-  console.log("  ✓ AI Compass EU — self-assessment profile created");
+  console.log("  ✓ VendorScope — self-assessment profile created");
   console.log("    Risk: Minimal");
   console.log("    EU AI Act: B+ | GDPR: B+ | DORA: B- | NIS2: C+");
   console.log("    Honest gaps documented in aiActStatus, gdprStatus fields");

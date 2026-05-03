@@ -180,7 +180,7 @@ function buildExtractorPrompt(sourceLabel: string, sourceUrl: string, rawText: s
     .map((f) => `  - ${f.field}: ${f.description}`)
     .join("\n");
 
-  return `You are an evidence extractor for AI Compass EU. Your job: read a vendor trust-page snippet and extract verifiable claims about that vendor's compliance, security, and data handling.
+  return `You are an evidence extractor for VendorScope. Your job: read a vendor trust-page snippet and extract verifiable claims about that vendor's compliance, security, and data handling.
 
 ABSOLUTE RULES — VIOLATIONS CAUSE THE OUTPUT TO BE DISCARDED:
 1. Use ONLY the snippet below. Never use prior knowledge of the vendor. If the snippet doesn't say it, you don't claim it.

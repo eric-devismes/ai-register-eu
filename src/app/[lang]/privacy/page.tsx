@@ -1,5 +1,5 @@
 /**
- * Privacy Policy Page — GDPR-compliant privacy practices for AI Compass EU.
+ * Privacy Policy Page — GDPR-compliant privacy practices for VendorScope.
  *
  * URL: /[lang]/privacy
  */
@@ -56,7 +56,7 @@ async function PrivacyContent({ params }: { params: Promise<{ lang: string }> })
               <p className="mt-3">{t("privacy.section1Body")}</p>
               <p className="mt-2">
                 {(t("privacy.section1Controller") as string).split("{link}")[0]}
-                <a href="mailto:privacy@aicompass.eu" className="text-[#003399] hover:underline">privacy@aicompass.eu</a>
+                <a href="mailto:privacy@vendorscope.eu" className="text-[#003399] hover:underline">privacy@vendorscope.eu</a>
                 {(t("privacy.section1Controller") as string).split("{link}")[1]}
               </p>
             </section>
@@ -280,7 +280,7 @@ async function PrivacyContent({ params }: { params: Promise<{ lang: string }> })
               <h2 className="text-lg font-bold text-gray-900">{t("privacy.section11Title")}</h2>
               <p className="mt-3">{t("privacy.section11Body")}</p>
               <p className="mt-2">
-                <a href="mailto:privacy@aicompass.eu" className="text-[#003399] hover:underline">privacy@aicompass.eu</a>
+                <a href="mailto:privacy@vendorscope.eu" className="text-[#003399] hover:underline">privacy@vendorscope.eu</a>
               </p>
               <p className="mt-4 text-xs text-gray-400">{t("privacy.section11Complaint")}</p>
             </section>

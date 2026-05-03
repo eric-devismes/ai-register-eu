@@ -1,4 +1,4 @@
-# AI Compass EU — Technical Documentation
+# VendorScope — Technical Documentation
 
 > **Version**: 1.0 — April 2026
 > **Author**: Eric Devismes
@@ -32,9 +32,9 @@
 
 ## 1. Executive Summary
 
-### What is AI Compass EU?
+### What is VendorScope?
 
-AI Compass EU is a web platform that helps European enterprises evaluate AI tools against EU regulations. Think of it as **"Consumer Reports for enterprise AI"** — independent, structured, actionable intelligence for decision-makers (CTOs, CISOs, DPOs, procurement officers) who need to buy AI tools that comply with European law.
+VendorScope is a web platform that helps European enterprises evaluate AI tools against EU regulations. Think of it as **"Consumer Reports for enterprise AI"** — independent, structured, actionable intelligence for decision-makers (CTOs, CISOs, DPOs, procurement officers) who need to buy AI tools that comply with European law.
 
 ### What does it do?
 

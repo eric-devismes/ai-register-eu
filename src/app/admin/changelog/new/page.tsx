@@ -70,7 +70,7 @@ export default async function NewChangeLogPage() {
             </div>
             <div>
               <label htmlFor="author" className="block text-sm font-medium text-text-primary">Author</label>
-              <input id="author" name="author" type="text" defaultValue="AI Compass EU Editorial"
+              <input id="author" name="author" type="text" defaultValue="VendorScope Editorial"
                 className="mt-1 block w-full rounded-lg border border-border px-4 py-2.5 text-sm focus:border-eu-blue focus:outline-none focus:ring-1 focus:ring-eu-blue" />
             </div>
           </div>

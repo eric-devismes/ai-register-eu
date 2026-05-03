@@ -390,7 +390,7 @@ export default function SystemDetailClient({ system, overall, locale, dimensionS
         <p className="mt-4 text-xs text-gray-400">
           {t("system.evidenceCommitment")}{" "}
           <a
-            href={`mailto:corrections@ai-compass.eu?subject=Error%20report%20—%20${encodeURIComponent(system.name)}`}
+            href={`mailto:corrections@vendorscope.eu?subject=Error%20report%20—%20${encodeURIComponent(system.name)}`}
             className="underline hover:text-gray-600"
           >
             {t("system.reportError")}

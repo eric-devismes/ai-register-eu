@@ -52,7 +52,7 @@ async function main() {
   const ibmId = await getSystemId("ibm-watsonx");
   const sapId = await getSystemId("sap-joule");
 
-  const author = "AI Compass EU";
+  const author = "VendorScope";
 
   // ─── EU AI Act Entries ──────────────────────────────────
 

@@ -102,7 +102,7 @@ export default function Header() {
                 <span className="text-sm font-bold text-white tracking-tight">AI</span>
               </div>
               <div className="hidden sm:block">
-                <div className="text-lg font-bold text-[#003399] leading-tight">AI Compass EU</div>
+                <div className="text-lg font-bold text-[#003399] leading-tight">VendorScope</div>
                 <div className="text-[10px] text-gray-500 leading-tight">{t("footer.slogan")}</div>
               </div>
             </Link>

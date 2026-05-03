@@ -21,7 +21,7 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const email = "eric@aicompass.eu";
+  const email = "eric@vendorscope.eu";
   const name = "Eric de Vismes";
   const passwordHash = process.env.ADMIN_PASSWORD_HASH || "";
   const totpSecret = process.env.TOTP_SECRET || "";

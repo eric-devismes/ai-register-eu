@@ -22,7 +22,7 @@ export default async function NewsMonitorPage() {
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   // Match both RSS monitor and Grok scanner authors
-  const autoAuthors = { in: ["AI Compass EU News Monitor", "AI Compass EU Grok Scanner"] };
+  const autoAuthors = { in: ["VendorScope News Monitor", "VendorScope Grok Scanner"] };
 
   const [last24h, last7d, totalMonitored, totalManual, recentItems] = await Promise.all([
     prisma.changeLog.count({

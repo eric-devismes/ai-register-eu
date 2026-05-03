@@ -407,7 +407,7 @@ async function ingestGrokItems(items: GrokNewsItem[]): Promise<number> {
           changeType: item.changeType || "update",
           sourceUrl: item.sourceUrl || "",
           sourceLabel: item.sourceLabel || "X/Twitter via Grok",
-          author: "AI Compass EU Grok Scanner",
+          author: "VendorScope Grok Scanner",
           ...(frameworkId ? { frameworkId } : {}),
           ...(systemId ? { systemId } : {}),
         },

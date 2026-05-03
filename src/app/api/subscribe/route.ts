@@ -10,7 +10,7 @@ import { prisma } from "@/lib/db";
 import { generateMagicToken } from "@/lib/subscriber-auth";
 import { sendMagicLink } from "@/lib/email";
 
-const CONSENT_TEXT = "I agree to receive email updates about selected AI compliance topics from AI Compass EU. I can unsubscribe or delete my account at any time.";
+const CONSENT_TEXT = "I agree to receive email updates about selected AI compliance topics from VendorScope. I can unsubscribe or delete my account at any time.";
 
 export async function POST(request: Request) {
   try {

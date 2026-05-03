@@ -108,7 +108,7 @@ async function fetchSource(source: NewsSource): Promise<RawNewsItem[]> {
     const res = await fetch(source.url, {
       signal: controller.signal,
       headers: {
-        "User-Agent": "AI-Compass-EU-NewsBot/1.0 (+https://aicompass.eu)",
+        "User-Agent": "VendorScope-NewsBot/1.0 (+https://vendorscope.eu)",
         Accept: "application/rss+xml, application/xml, application/atom+xml, text/xml",
       },
     });
@@ -203,7 +203,7 @@ async function classifyWithLLM(items: RawNewsItem[]): Promise<ClassifiedNewsItem
         body: JSON.stringify({
           model: LLM_MODEL,
           max_tokens: 2048,
-          system: `You are a seasoned EU tech-policy journalist writing for AI Compass EU. Your readers are European decision-makers — CTOs, DPOs, procurement leads — who scan headlines between meetings. They need to grasp the essentials in seconds, but they also need to feel the weight and context of what's happening.
+          system: `You are a seasoned EU tech-policy journalist writing for VendorScope. Your readers are European decision-makers — CTOs, DPOs, procurement leads — who scan headlines between meetings. They need to grasp the essentials in seconds, but they also need to feel the weight and context of what's happening.
 
 For each news item, return these fields:
 
@@ -339,7 +339,7 @@ async function ingestItems(items: ClassifiedNewsItem[]): Promise<number> {
           changeType: item.changeType,
           sourceUrl: item.sourceUrl,
           sourceLabel: item.sourceLabel,
-          author: "AI Compass EU News Monitor",
+          author: "VendorScope News Monitor",
           ...(frameworkId ? { frameworkId } : {}),
           ...(systemId ? { systemId } : {}),
         },

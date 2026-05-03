@@ -79,10 +79,10 @@ async function TermsContent({ params }: { params: Promise<{ lang: string }> }) {
             <p className="mt-3 text-gray-600 leading-relaxed">
               {(t("terms.section10Body") as string).split("{link}")[0]}
               <a
-                href="mailto:contact@aicompass.eu"
+                href="mailto:contact@vendorscope.eu"
                 className="font-semibold text-[#003399] hover:underline"
               >
-                contact@aicompass.eu
+                contact@vendorscope.eu
               </a>
               {(t("terms.section10Body") as string).split("{link}")[1]}
             </p>

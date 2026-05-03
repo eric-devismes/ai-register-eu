@@ -95,7 +95,7 @@ export function requireEnterprise(auth: ApiAuthResult): Response | null {
     return Response.json(
       {
         error: "Forbidden",
-        message: "REST API access requires an Enterprise subscription. Contact sales@aicompass.eu for access.",
+        message: "REST API access requires an Enterprise subscription. Contact sales@vendorscope.eu for access.",
       },
       { status: 403 }
     );

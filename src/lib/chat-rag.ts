@@ -264,5 +264,5 @@ export async function retrieveContext(question: string): Promise<string> {
     context = context.slice(0, MAX_CONTEXT_LENGTH) + "\n\n[Context truncated]";
   }
 
-  return context || "No relevant context found in the AI Compass EU database.";
+  return context || "No relevant context found in the VendorScope database.";
 }

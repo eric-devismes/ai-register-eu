@@ -255,7 +255,7 @@ export default async function CrossReportPage({ params }: PageProps) {
             <p className="text-xs text-gray-600">
               <strong>{t("systemFramework.disclaimerTitle")}</strong>{" "}
               {(t("systemFramework.disclaimerBody") as string).split("{link}")[0]}
-              <a href="mailto:consulting@aicompass.eu" className="text-[#003399] underline">{t("systemFramework.disclaimerLink")}</a>
+              <a href="mailto:consulting@vendorscope.eu" className="text-[#003399] underline">{t("systemFramework.disclaimerLink")}</a>
               {(t("systemFramework.disclaimerBody") as string).split("{link}")[1]}
             </p>
           </div>

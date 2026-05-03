@@ -220,7 +220,7 @@ const newsEntries = [
     date: new Date("2025-11-15"),
     sourceUrl: "https://news.sap.com/",
     sourceLabel: "SAP Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "sap-joule-enterprise",
   },
   {
@@ -231,7 +231,7 @@ const newsEntries = [
     date: new Date("2025-08-20"),
     sourceUrl: "https://www.ibm.com/products/watsonx-governance",
     sourceLabel: "IBM watsonx.governance",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "ibm-watsonx",
   },
   {
@@ -242,7 +242,7 @@ const newsEntries = [
     date: new Date("2025-01-15"),
     sourceUrl: "https://workspaceupdates.googleblog.com/2025/01/expanding-google-ai-to-more-of-google-workspace.html",
     sourceLabel: "Google Workspace Updates Blog",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "google-gemini-vertex-ai",
   },
   {
@@ -253,7 +253,7 @@ const newsEntries = [
     date: new Date("2025-10-01"),
     sourceUrl: "https://www.ibm.com/granite",
     sourceLabel: "IBM Granite",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "ibm-watsonx",
   },
 ];

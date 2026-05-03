@@ -833,7 +833,7 @@ const additionalNewsEntries = [
     date: new Date("2025-03-15"),
     sourceUrl: "https://www.gouvernement.fr/",
     sourceLabel: "French Government Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "national-ai-strategies",
   },
   {
@@ -844,7 +844,7 @@ const additionalNewsEntries = [
     date: new Date("2025-04-10"),
     sourceUrl: "https://www.bmwk.de/",
     sourceLabel: "German Federal Ministry for Economic Affairs",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "national-ai-strategies",
   },
   {
@@ -855,7 +855,7 @@ const additionalNewsEntries = [
     date: new Date("2025-02-20"),
     sourceUrl: "https://www.government.nl/",
     sourceLabel: "Dutch Government",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "national-ai-strategies",
   },
   {
@@ -866,7 +866,7 @@ const additionalNewsEntries = [
     date: new Date("2024-03-01"),
     sourceUrl: "https://www.aesia.gob.es/",
     sourceLabel: "AESIA — Spanish AI Authority",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "national-ai-strategies",
   },
   {
@@ -877,7 +877,7 @@ const additionalNewsEntries = [
     date: new Date("2025-07-01"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/",
     sourceLabel: "European Commission Digital Strategy",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -888,7 +888,7 @@ const additionalNewsEntries = [
     date: new Date("2024-07-17"),
     sourceUrl: "https://www.eba.europa.eu/regulation-and-policy/dora",
     sourceLabel: "European Banking Authority — DORA",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "dora",
   },
   {
@@ -899,7 +899,7 @@ const additionalNewsEntries = [
     date: new Date("2025-05-10"),
     sourceUrl: "https://www.eba.europa.eu/",
     sourceLabel: "European Banking Authority",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eba-eiopa-guidelines",
   },
   {
@@ -910,7 +910,7 @@ const additionalNewsEntries = [
     date: new Date("2024-09-15"),
     sourceUrl: "https://www.eiopa.europa.eu/",
     sourceLabel: "EIOPA",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eba-eiopa-guidelines",
   },
   {
@@ -921,7 +921,7 @@ const additionalNewsEntries = [
     date: new Date("2026-02-15"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -932,7 +932,7 @@ const additionalNewsEntries = [
     date: new Date("2025-12-01"),
     sourceUrl: "https://www.cencenelec.eu/",
     sourceLabel: "CEN/CENELEC",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -943,7 +943,7 @@ const additionalNewsEntries = [
     date: new Date("2025-08-20"),
     sourceUrl: "https://blog.workday.com/",
     sourceLabel: "Workday Blog",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "workday-ai-talent",
   },
   {
@@ -954,7 +954,7 @@ const additionalNewsEntries = [
     date: new Date("2025-06-10"),
     sourceUrl: "https://www.autoriteprotectiondonnees.be/",
     sourceLabel: "Belgian DPA (APD)",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "hirevue-ai",
   },
   {
@@ -965,7 +965,7 @@ const additionalNewsEntries = [
     date: new Date("2025-10-05"),
     sourceUrl: "https://www.ema.europa.eu/",
     sourceLabel: "European Medicines Agency",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "mdr-ivdr",
   },
   {
@@ -976,7 +976,7 @@ const additionalNewsEntries = [
     date: new Date("2026-01-20"),
     sourceUrl: "https://www.featurespace.com/",
     sourceLabel: "Featurespace Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "aslyce-fraud-ai",
   },
   {
@@ -987,7 +987,7 @@ const additionalNewsEntries = [
     date: new Date("2026-03-20"),
     sourceUrl: "https://www.europarl.europa.eu/committees/en/libe/about",
     sourceLabel: "European Parliament LIBE Committee",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
 ];

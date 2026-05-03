@@ -1,4 +1,4 @@
-# AI Compass EU — Risk Remediation Plan
+# VendorScope — Risk Remediation Plan
 
 > Created: 11 April 2026
 > Owner: Eric Devismes (CEO)

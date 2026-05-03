@@ -3,7 +3,7 @@
 /**
  * SourceChip — Renders a clickable evidence-source badge next to a claim.
  *
- * This is AI Compass EU's core differentiator versus unsourced analyst
+ * This is VendorScope's core differentiator versus unsourced analyst
  * reports: every claim on the site links to the vendor's own trust centre
  * (or the regulatory filing) that backs it, with the date we verified.
  *

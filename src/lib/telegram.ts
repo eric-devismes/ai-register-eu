@@ -51,7 +51,7 @@ export async function sendTelegram(text: string): Promise<void> {
       data: {
         telegramUpdateId: 0,
         text: text.slice(0, 2000),
-        fromName: "AI Compass EU Bot",
+        fromName: "VendorScope Bot",
         direction: "outgoing",
         processedAt: new Date(),
       },

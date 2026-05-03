@@ -1,6 +1,6 @@
 # Operations Runbook — Agent Edition
 
-This is the autonomous-execution guide for AI agents operating the AI Compass EU platform. It is structured for machine consumption: decision trees, exact commands, exit criteria, failure modes.
+This is the autonomous-execution guide for AI agents operating the VendorScope platform. It is structured for machine consumption: decision trees, exact commands, exit criteria, failure modes.
 
 For a narrative human-readable version of the same operations, see [OPERATIONS-HUMAN.md](OPERATIONS-HUMAN.md).
 For prerequisite reading: [AGENTS.md](../AGENTS.md), [CLAUDE.md](../CLAUDE.md), [DEVELOPER.md](../DEVELOPER.md), [TECHNICAL-DOCUMENTATION.md](TECHNICAL-DOCUMENTATION.md).
@@ -391,7 +391,7 @@ Cache the resulting numbers in working memory; do not repeat the snapshot more t
 
 The following are documented gaps as of 2026-04-26. Treat as "human in the loop" unless a CEO directive changes that.
 
-- **Domain / branding decision** — ai-compass.eu is the current domain; rebrand pending.
+- **Domain / branding decision** — vendorscope.eu is the current domain; rebrand pending.
 - **Customer-development calls** — 3 calls (DPO, CISO, procurement) blocking paid acquisition.
 - **Pricing validation** — gross-margin check on €19 Pro tier vs. inference cost.
 - **Business Case Generator** — currently broken and hidden from nav.

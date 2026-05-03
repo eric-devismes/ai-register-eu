@@ -4,8 +4,8 @@ import CookieConsent from "@/components/ui/CookieConsent";
 
 export const metadata: Metadata = {
   title: {
-    default: "AI Compass EU — AI Intelligence for European Decision-Makers",
-    template: "%s | AI Compass EU",
+    default: "VendorScope — AI Intelligence for European Decision-Makers",
+    template: "%s | VendorScope",
   },
   description:
     "Search, compare, and evaluate AI tools rated for European enterprises. GDPR compliance, AI Act readiness, data sovereignty, and multilingual quality scores.",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_EU",
-    siteName: "AI Compass EU",
+    siteName: "VendorScope",
   },
 };
 

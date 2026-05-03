@@ -1,4 +1,4 @@
-# AI Compass EU — Backlog
+# VendorScope — Backlog
 
 > Persistent task list. Checked at the start of every Claude session.
 > `[ ]` pending | `[~]` in progress | `[x]` done (with date)
@@ -56,7 +56,7 @@ Expected cost: **~$2–3 total**. Expected duration: **~15–25 min**. Output la
 ## CEO Action Required (ask via Telegram if not in session)
 
 - [x] **LemonSqueezy configuration**: Product created (Pro €19/month, test mode), all 4 env vars set on Vercel, webhook configured (2026-04-12)
-- [ ] **Domain name + site naming** ⚠️ NEEDS BRAINSTORM: Find the right name for the platform and register a domain. Consider: .com, .org, .ai, .eu extensions — scope, future expansion, cost, memorability, ease of typing. "AI Compass EU" may be taken. May need full rebrand. All branding, metadata, URLs, and LemonSqueezy config depend on this. Brainstorm with advisory board.
+- [ ] **Register vendorscope.eu** (CEO decision 2026-05-03 after 6-iteration board brainstorm). Recommended registrar: Gandi.net (~€10/yr) or OVH. Optional defensive: vendorscope.ai (~€100/yr). Skip .com (parked, aftermarket only). Once registered, downstream rebrand work begins: site metadata, all 14 dictionaries, Vercel domain, LemonSqueezy config, email (corrections@), social handles. Brand: VendorScope. Tagline territory: research-firm tone, "we vet AI vendors against EU regulations". CRITICAL: this is a ~1-day refactor across the codebase once the domain is live — track as separate task.
 - [ ] **3 customer-dev calls before any acquisition spend** (advisory board decision 2026-04-17, John/VP Sales ask — approved). Target: one DPO at a mid-cap bank, one CISO at a pharma, one procurement lead at a CAC 40. Ask literally: "would you pay €19/month for AI Act vendor intel, and what would get you to yes?". No champion, no compelling event, no deal — pretty pages don't close. Gate on this BEFORE paid acquisition.
 - [ ] **Gross margin validation on Pro €19** (Amy/CFO ask — approved). Model Claude/OpenAI inference cost per seat at realistic usage + LemonSqueezy MoR take (~5-8%) → is Pro gross margin ≥60% at steady state? If not, Enterprise tier subsidises Pro; price the launch accordingly.
 
@@ -164,7 +164,7 @@ Five items in this exact sequence. Nothing ships until 0–3 are live; nothing i
 
 ## P3 — Risk & Compliance (Internal)
 
-- [ ] **Risk assessment for running the site**: Identify operational, legal, reputational, financial risks of operating AI Compass EU. Include remediation plan, controls, metrics to measure risk. (from Telegram)
+- [ ] **Risk assessment for running the site**: Identify operational, legal, reputational, financial risks of operating VendorScope. Include remediation plan, controls, metrics to measure risk. (from Telegram)
 
 ## P4 — DevOps & Automation
 

@@ -63,7 +63,7 @@ export async function hashPassword(plaintext: string): Promise<string> {
 /** Create a TOTP instance for a given secret. */
 export function createTOTP(secret: string, label = "Admin") {
   return new TOTP({
-    issuer: "AI Compass EU",
+    issuer: "VendorScope",
     label,
     algorithm: "SHA1",
     digits: 6,
@@ -109,7 +109,7 @@ export async function authenticateAdmin(email: string, password: string) {
     if (valid) {
       return {
         id: "legacy",
-        email: "admin@aicompass.eu",
+        email: "admin@vendorscope.eu",
         name: "Admin",
         role: "owner" as AdminRole,
         totpSecret: process.env.TOTP_SECRET || "",

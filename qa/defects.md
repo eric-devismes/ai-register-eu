@@ -11,7 +11,7 @@
 _None this run._
 
 ### Warning
-- **NEW: System & regulation detail pages use generic page title** — All `/en/systems/[slug]` and `/en/regulations/[slug]` pages served `<title>AI Compass EU — AI Intelligence for European Decision-Makers</title>` (root layout fallback) instead of system/framework-specific titles. Neither page had a `generateMetadata` export. SEO impact: search engines cannot distinguish individual detail pages. **✅ Fixed this run**: Added `generateMetadata` to both `src/app/[lang]/systems/[slug]/page.tsx` and `src/app/[lang]/regulations/[slug]/page.tsx`. Committed `3d733d1`, pushed. — https://ai-register-eu.vercel.app/en/systems/anthropic-claude-enterprise
+- **NEW: System & regulation detail pages use generic page title** — All `/en/systems/[slug]` and `/en/regulations/[slug]` pages served `<title>VendorScope — AI Intelligence for European Decision-Makers</title>` (root layout fallback) instead of system/framework-specific titles. Neither page had a `generateMetadata` export. SEO impact: search engines cannot distinguish individual detail pages. **✅ Fixed this run**: Added `generateMetadata` to both `src/app/[lang]/systems/[slug]/page.tsx` and `src/app/[lang]/regulations/[slug]/page.tsx`. Committed `3d733d1`, pushed. — https://ai-register-eu.vercel.app/en/systems/anthropic-claude-enterprise
 - **Ongoing: Stats bar (66 systems) vs pricing page ("100+") inconsistency** — `pricing.cards.proFeat1` and `freeFeat6` in `en.json` both say "100+"; live DB has 66. Trust gap for enterprise buyers. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/en/pricing
 - **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — English blocks persist on /fr/methodology and /de/methodology. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology
 - **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
@@ -27,7 +27,7 @@ _None this run._
 - **No new critical issues found this run.**
 
 ### Fixed this run
-- **Generic page titles on system and regulation detail pages** — Added `generateMetadata` to both `/[lang]/systems/[slug]/page.tsx` and `/[lang]/regulations/[slug]/page.tsx`. Titles now read e.g. "Claude Enterprise | AI Compass EU". Committed `3d733d1`. ✅
+- **Generic page titles on system and regulation detail pages** — Added `generateMetadata` to both `/[lang]/systems/[slug]/page.tsx` and `/[lang]/regulations/[slug]/page.tsx`. Titles now read e.g. "Claude Enterprise | VendorScope". Committed `3d733d1`. ✅
 
 ---
 
@@ -37,7 +37,7 @@ _None this run._
 _None this run._
 
 ### Warning
-- **NEW: Email domain inconsistency on contact page** — `contact/page.tsx` used `corrections@aicompass.eu` (no hyphen) while all other references (`SystemDetailClient.tsx`, `methodology/sourcing/page.tsx`, `evidence-fetcher.ts`) use `corrections@ai-compass.eu` (with hyphen). Users clicking the contact page corrections link were being directed to the wrong domain. **✅ Fixed this run**: Updated `src/app/[lang]/contact/page.tsx` to use `corrections@ai-compass.eu`. — https://ai-register-eu.vercel.app/en/contact
+- **NEW: Email domain inconsistency on contact page** — `contact/page.tsx` used `corrections@vendorscope.eu` (no hyphen) while all other references (`SystemDetailClient.tsx`, `methodology/sourcing/page.tsx`, `evidence-fetcher.ts`) use `corrections@vendorscope.eu` (with hyphen). Users clicking the contact page corrections link were being directed to the wrong domain. **✅ Fixed this run**: Updated `src/app/[lang]/contact/page.tsx` to use `corrections@vendorscope.eu`. — https://ai-register-eu.vercel.app/en/contact
 - **NEW: `not-found.tsx` hardcodes "Browse 100+ AI systems"** — The 404 page description under "AI Database" says "Browse 100+ AI systems" but actual DB count is 66. Also a hardcoded English string (no `t()` wrapper), though `not-found.tsx` is outside `[lang]` routing so full i18n is architecturally constrained. The count inaccuracy is the more pressing issue. — https://ai-register-eu.vercel.app/en/404
 - **Ongoing: FR/DE methodology pages have 42–46 untranslated keys** — English blocks persist on /fr/methodology and /de/methodology. Ongoing from 2026-04-13. — https://ai-register-eu.vercel.app/fr/methodology
 - **Ongoing: `html lang="en"` hardcoded for all locales** — Architectural issue. Ongoing from 2026-04-14. — https://ai-register-eu.vercel.app/fr
@@ -49,12 +49,12 @@ _None this run._
 - **FR/DE locale pages return 200** — /fr, /de, /fr/database, /de/database, /fr/pricing, /de/pricing all clean. ✅
 - **API endpoints working** — `/api/chat` POST returns structured EU AI Act answer; `/api/compare` POST returns ranked healthcare compliance vendor list. ✅
 - **System detail pages confirmed** — anthropic-claude-enterprise, google-gemini-vertex-ai, openai-chatgpt-enterprise, amazon-bedrock-aws, veeva-vault-ai all return 200. microsoft-azure-openai-service 200. ✅
-- **ClaimChip "Report outdated" link** — Wired correctly to `mailto:corrections@ai-compass.eu?subject=Error%20report%20—%20{system.name}`. Uses mailto: requiring an email client — acceptable for corrections workflow. ✅
+- **ClaimChip "Report outdated" link** — Wired correctly to `mailto:corrections@vendorscope.eu?subject=Error%20report%20—%20{system.name}`. Uses mailto: requiring an email client — acceptable for corrections workflow. ✅
 - **Sitemap and robots.txt both return 200** ✅
 - **No new critical issues found this run.**
 
 ### Fixed this run
-- **Email domain inconsistency on contact page** — `corrections@aicompass.eu` corrected to `corrections@ai-compass.eu` in `src/app/[lang]/contact/page.tsx`. ✅
+- **Email domain inconsistency on contact page** — `corrections@vendorscope.eu` corrected to `corrections@vendorscope.eu` in `src/app/[lang]/contact/page.tsx`. ✅
 
 ---
 
@@ -125,7 +125,7 @@ _None this run._
 - **FR/DE translations complete on all tested pages** — No English bleed-through detected on /fr or /de homepages, pricing, database, or methodology. ✅
 
 ### Fixed this run
-- **Homepage title duplicated brand name** — "AI Compass EU — AI Intelligence for European Decision-Makers | AI Compass EU" was produced because the root-layout `%s | AI Compass EU` template was appended to a title already starting with "AI Compass EU". Fixed: `getPageMetadata` now returns `{ absolute: title }` for `pageKey === "home"`, bypassing the template. Committed `58a8686`, pushed. — https://ai-register-eu.vercel.app/en ✅
+- **Homepage title duplicated brand name** — "VendorScope — AI Intelligence for European Decision-Makers | VendorScope" was produced because the root-layout `%s | VendorScope` template was appended to a title already starting with "VendorScope". Fixed: `getPageMetadata` now returns `{ absolute: title }` for `pageKey === "home"`, bypassing the template. Committed `58a8686`, pushed. — https://ai-register-eu.vercel.app/en ✅
 
 ---
 
@@ -314,7 +314,7 @@ _None_
 
 ### Fixed this run
 - **`/regulations/ai-act` returned 404** — Added redirects in `next.config.ts`: `/regulations/ai-act` → `/en/regulations/eu-ai-act` and `/:lang/regulations/ai-act` → `/:lang/regulations/eu-ai-act`. ✅ Fixed (2026-04-13)
-- **About page title "About AI Compass EU | AI Compass EU"** — Changed metadata title from "About AI Compass EU" to "About" so template renders "About | AI Compass EU". ✅ Fixed (2026-04-13)
+- **About page title "About VendorScope | VendorScope"** — Changed metadata title from "About VendorScope" to "About" so template renders "About | VendorScope". ✅ Fixed (2026-04-13)
 
 ---
 
@@ -332,7 +332,7 @@ _None_
 
 ### Info
 - **`/ratings` redirects to `/methodology`** — intentional (code comment: "content was duplicated"), but no canonical redirect label or SEO signal. — https://ai-register-eu.vercel.app/en/ratings
-- **Duplicate site name in `<title>` tags** — Pages like `/database`, `/regulations`, `/industries`, `/newsfeed` had titles like "AI Database — AI Compass EU" while the root layout template appends "| AI Compass EU" again, resulting in "AI Database — AI Compass EU | AI Compass EU". ✅ **Fixed** (2026-04-12): Removed "— AI Compass EU" and "| AI Compass EU" suffixes from 18 page metadata titles.
+- **Duplicate site name in `<title>` tags** — Pages like `/database`, `/regulations`, `/industries`, `/newsfeed` had titles like "AI Database — VendorScope" while the root layout template appends "| VendorScope" again, resulting in "AI Database — VendorScope | VendorScope". ✅ **Fixed** (2026-04-12): Removed "— VendorScope" and "| VendorScope" suffixes from 18 page metadata titles.
 - **Partial i18n on /de** — Several sections untranslated: "How It Works", "AI Compliance Intelligence" (newsletter CTA), and all 5 industry filter labels (Financial, Healthcare, Insurance, Public Sector, HR). — https://ai-register-eu.vercel.app/de ✅ **Fixed** (2026-04-12): Updated de.json with full German translations for `featured.*`, `howItWorks.*`, and `cta.*` keys.
 - **`/api/compare` correctly rejects GET with 405** — POST works correctly. — internal
 

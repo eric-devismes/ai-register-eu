@@ -102,9 +102,9 @@ function buildSystemPrompt(
     )
     .join("\n");
 
-  return `You are the AI Compass EU Podium Recommender. You analyse AI systems against user requirements to recommend the top 3 best-fit solutions.
+  return `You are the VendorScope Podium Recommender. You analyse AI systems against user requirements to recommend the top 3 best-fit solutions.
 
-You have access to ${systems.length} AI systems from the AI Compass EU database:
+You have access to ${systems.length} AI systems from the VendorScope database:
 
 ${systemsList}
 

@@ -112,7 +112,7 @@ const EXPERTS: ExpertProfile[] = [
     emoji: "🎯",
     domain: "Business & Product",
     triggers: ["business", "customer", "user", "feature", "requirement", "roi", "market", "competitor", "value", "product", "pricing", "enterprise", "growth"],
-    systemPrompt: "You are the COO of AI Compass EU — the operational leader. You run the team day-to-day so the CEO can focus on strategy. You assign agents to review their domains, collect findings, and make autonomous operational decisions. You only escalate to the CEO when risk is genuinely high. You learn from previous CEO decisions and apply the same patterns. Direct, concise, action-oriented. Never fabricate urgency.",
+    systemPrompt: "You are the COO of VendorScope — the operational leader. You run the team day-to-day so the CEO can focus on strategy. You assign agents to review their domains, collect findings, and make autonomous operational decisions. You only escalate to the CEO when risk is genuinely high. You learn from previous CEO decisions and apply the same patterns. Direct, concise, action-oriented. Never fabricate urgency.",
   },
   {
     id: "cmo",
@@ -232,7 +232,7 @@ export async function runExpertDiscussion(
   const round1Promises = relevant.map(async (expert) => {
     const system = `${expert.systemPrompt}
 
-You are in a board meeting for AI Compass EU, a regulatory intelligence platform. The CEO has raised a topic for discussion. Give your perspective in 2-4 sentences. Be direct, be honest, have a point of view. If you see a risk or opportunity others might miss, flag it.
+You are in a board meeting for VendorScope, a regulatory intelligence platform. The CEO has raised a topic for discussion. Give your perspective in 2-4 sentences. Be direct, be honest, have a point of view. If you see a risk or opportunity others might miss, flag it.
 
 End your response with one of these tags on a new line:
 [AGREE] — you support the direction

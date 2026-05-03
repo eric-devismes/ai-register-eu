@@ -42,7 +42,7 @@ export async function GET() {
 
   const exportData = {
     exportDate: new Date().toISOString(),
-    exportedBy: "AI Compass EU — GDPR Data Export (Article 20)",
+    exportedBy: "VendorScope — GDPR Data Export (Article 20)",
     subscriber: {
       email: fullData?.email,
       name: fullData?.name || undefined,
@@ -77,7 +77,7 @@ export async function GET() {
   return new NextResponse(JSON.stringify(exportData, null, 2), {
     headers: {
       "Content-Type": "application/json",
-      "Content-Disposition": `attachment; filename="aicompass-data-export-${new Date().toISOString().split("T")[0]}.json"`,
+      "Content-Disposition": `attachment; filename="vendorscope-data-export-${new Date().toISOString().split("T")[0]}.json"`,
     },
   });
 }

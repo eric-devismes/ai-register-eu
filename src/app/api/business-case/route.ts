@@ -99,7 +99,7 @@ function buildSystemPrompt(
     .map((s) => `  - ${s.framework}: ${s.score}`)
     .join("\n");
 
-  return `You are the AI Compass EU Business Case Generator. You create professional, data-driven business cases that European decision-makers can present to their board or procurement committee.
+  return `You are the VendorScope Business Case Generator. You create professional, data-driven business cases that European decision-makers can present to their board or procurement committee.
 
 SYSTEM BEING EVALUATED:
 - Name: ${system.name}

@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# AI Compass EU
+# VendorScope
 
 AI intelligence platform for European decision-makers. Rates AI tools against EU regulations (AI Act, GDPR, DORA) with structured scoring for compliance, data sovereignty, multilingual quality, and pricing.
 
@@ -38,7 +38,7 @@ src/
 
 ## Brand & Design
 
-- **Name**: AI Compass EU
+- **Name**: VendorScope
 - **Tagline**: AI Intelligence for European Decision-Makers
 - **Primary**: EU Blue `#003399`
 - **Secondary**: Navy `#0d1b3e`

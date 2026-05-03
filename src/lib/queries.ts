@@ -1,5 +1,5 @@
 /**
- * Database query functions for AI Compass EU.
+ * Database query functions for VendorScope.
  *
  * Every piece of data displayed on the frontend comes through
  * one of these functions. No hardcoded data in components.

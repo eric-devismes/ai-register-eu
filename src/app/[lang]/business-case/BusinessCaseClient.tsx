@@ -265,7 +265,7 @@ export function BusinessCaseClient({ tier, systems }: Props) {
               <p className="leading-relaxed">
                 This business case is an AI-generated estimate for educational and indicative purposes only.
                 Figures are based on publicly available information and industry benchmarks.
-                AI Compass EU accepts no liability for the accuracy of these estimates.
+                VendorScope accepts no liability for the accuracy of these estimates.
                 This should not be used as the sole basis for procurement decisions.
                 We recommend validating all figures with vendor quotes and internal financial analysis.
               </p>
@@ -312,7 +312,7 @@ export function BusinessCaseClient({ tier, systems }: Props) {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-[#003399] mb-1">
-                AI Compass EU — Business Case
+                VendorScope — Business Case
               </p>
               <h2 className="text-2xl font-bold text-[#0d1b3e] font-serif">
                 {selectedSystem ? `${selectedSystem.vendor} ${selectedSystem.name}` : "AI System"}
@@ -322,8 +322,8 @@ export function BusinessCaseClient({ tier, systems }: Props) {
               </p>
             </div>
             <div className="hidden print:block text-right text-xs text-gray-400">
-              <p>AI Compass EU</p>
-              <p>aicompass.eu</p>
+              <p>VendorScope</p>
+              <p>vendorscope.eu</p>
             </div>
           </div>
         </div>
@@ -359,7 +359,7 @@ export function BusinessCaseClient({ tier, systems }: Props) {
           <p>
             This business case is an AI-generated estimate for educational and indicative purposes only.
             Figures are based on publicly available information and industry benchmarks.
-            AI Compass EU accepts no liability for the accuracy of these estimates.
+            VendorScope accepts no liability for the accuracy of these estimates.
             This should not be used as the sole basis for procurement decisions.
             We recommend validating all figures with vendor quotes and internal financial analysis.
           </p>

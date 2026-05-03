@@ -178,8 +178,8 @@ async function SourcingContent({ params }: { params: Promise<{ lang: string }> }
             </h2>
             <p className="mt-4 text-blue-100 leading-relaxed max-w-3xl">
               {(t("sourcing.correctionsBody") as string).split("{link}")[0]}
-              <a href="mailto:corrections@ai-compass.eu" className="underline text-[#ffc107] hover:text-yellow-300">
-                corrections@ai-compass.eu
+              <a href="mailto:corrections@vendorscope.eu" className="underline text-[#ffc107] hover:text-yellow-300">
+                corrections@vendorscope.eu
               </a>
               {(t("sourcing.correctionsBody") as string).split("{link}")[1]}
             </p>

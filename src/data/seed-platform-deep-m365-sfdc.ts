@@ -272,7 +272,7 @@ const platformNews = [
     date: new Date("2025-09-01"),
     sourceUrl: "https://www.schneider.im/microsoft-updates-privacy-security-terms-microsoft-365-copilot-chat-and-eu-data-act/",
     sourceLabel: "Schneider IT Management — Microsoft EU Data Act Terms",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "microsoft-azure-openai-service",
   },
   {
@@ -283,7 +283,7 @@ const platformNews = [
     date: new Date("2024-10-29"),
     sourceUrl: "https://www.salesforce.com/uk/news/press-releases/2024/09/17/agentforce/",
     sourceLabel: "Salesforce Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "agentforce-einstein-ai",
   },
   {
@@ -294,7 +294,7 @@ const platformNews = [
     date: new Date("2025-07-15"),
     sourceUrl: "https://learn.microsoft.com/en-us/microsoft-365/copilot/",
     sourceLabel: "Microsoft Learn — M365 Copilot Documentation",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "microsoft-azure-openai-service",
   },
   {
@@ -305,7 +305,7 @@ const platformNews = [
     date: new Date("2025-04-01"),
     sourceUrl: "https://www.salesforce.com/eu/trust/hyperforce/",
     sourceLabel: "Salesforce Hyperforce EU",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "agentforce-einstein-ai",
   },
 ];

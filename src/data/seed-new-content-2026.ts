@@ -447,7 +447,7 @@ const newsEntries = [
     date: new Date("2024-08-01"),
     sourceUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
     sourceLabel: "EUR-Lex Official Journal",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -459,7 +459,7 @@ const newsEntries = [
     sourceUrl:
       "https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015",
     sourceLabel: "European Parliament Press",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -470,7 +470,7 @@ const newsEntries = [
     date: new Date("2025-08-02"),
     sourceUrl: "https://www.europarl.europa.eu/topics/en/article/20230601STO93804",
     sourceLabel: "European Parliament",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -481,7 +481,7 @@ const newsEntries = [
     date: new Date("2026-08-02"),
     sourceUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
     sourceLabel: "EUR-Lex — EU AI Act Chapter III",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -493,7 +493,7 @@ const newsEntries = [
     sourceUrl:
       "https://www.cooley.com/news/insight/2025/2025-11-24-eu-ai-act-proposed-digital-omnibus-on-ai-will-impact-businesses-ai-compliance-roadmaps",
     sourceLabel: "Cooley LLP Analysis",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -504,7 +504,7 @@ const newsEntries = [
     date: new Date("2026-01-15"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -515,7 +515,7 @@ const newsEntries = [
     date: new Date("2026-02-01"),
     sourceUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
     sourceLabel: "EU AI Act — Article 71",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -526,7 +526,7 @@ const newsEntries = [
     date: new Date("2026-02-10"),
     sourceUrl: "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
     sourceLabel: "International AI Safety Report 2026",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   // GDPR + AI developments
@@ -538,7 +538,7 @@ const newsEntries = [
     date: new Date("2024-12-17"),
     sourceUrl: "https://www.edpb.europa.eu/news/news/2024/edpb-adopts-opinion-ai-models_en",
     sourceLabel: "European Data Protection Board",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -549,7 +549,7 @@ const newsEntries = [
     date: new Date("2025-01-30"),
     sourceUrl: "https://www.garanteprivacy.it/",
     sourceLabel: "Garante (Italian DPA)",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   {
@@ -560,7 +560,7 @@ const newsEntries = [
     date: new Date("2025-03-15"),
     sourceUrl: "https://www.dataprotection.ie/",
     sourceLabel: "Irish Data Protection Commission",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "gdpr",
   },
   // DORA
@@ -572,7 +572,7 @@ const newsEntries = [
     date: new Date("2025-01-17"),
     sourceUrl: "https://www.eba.europa.eu/regulation-and-policy/dora",
     sourceLabel: "European Banking Authority",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "dora",
   },
   {
@@ -583,7 +583,7 @@ const newsEntries = [
     date: new Date("2025-06-20"),
     sourceUrl: "https://www.eba.europa.eu/",
     sourceLabel: "European Banking Authority",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eba-eiopa-guidelines",
   },
   // Vendor-specific news
@@ -595,7 +595,7 @@ const newsEntries = [
     date: new Date("2025-09-10"),
     sourceUrl: "https://blogs.microsoft.com/on-the-issues/",
     sourceLabel: "Microsoft On The Issues",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "microsoft-azure-openai-service",
   },
   {
@@ -606,7 +606,7 @@ const newsEntries = [
     date: new Date("2025-11-30"),
     sourceUrl: "https://mistral.ai/news/",
     sourceLabel: "Mistral AI Official",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "mistral-platform-le-chat",
   },
   {
@@ -617,7 +617,7 @@ const newsEntries = [
     date: new Date("2026-03-10"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
     sourceLabel: "EU AI Office",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "xai-grok-enterprise",
   },
   {
@@ -628,7 +628,7 @@ const newsEntries = [
     date: new Date("2024-12-05"),
     sourceUrl: "https://www.apple.com/newsroom/",
     sourceLabel: "Apple Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "apple-intelligence-enterprise",
   },
   {
@@ -639,7 +639,7 @@ const newsEntries = [
     date: new Date("2025-05-15"),
     sourceUrl: "https://aleph-alpha.com/news/",
     sourceLabel: "Aleph Alpha Newsroom",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     systemSlug: "aleph-alpha-luminous",
   },
   {
@@ -650,7 +650,7 @@ const newsEntries = [
     date: new Date("2026-01-30"),
     sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence",
     sourceLabel: "European Commission Digital Strategy",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
   {
@@ -661,7 +661,7 @@ const newsEntries = [
     date: new Date("2026-03-01"),
     sourceUrl: "https://www.enisa.europa.eu/",
     sourceLabel: "ENISA",
-    author: "AI Compass EU Editorial",
+    author: "VendorScope Editorial",
     frameworkSlug: "eu-ai-act",
   },
 ];

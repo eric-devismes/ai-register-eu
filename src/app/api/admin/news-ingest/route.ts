@@ -59,13 +59,13 @@ export async function GET() {
   // Return recent ingest stats
   const recentCount = await (await import("@/lib/db")).prisma.changeLog.count({
     where: {
-      author: "AI Compass EU News Monitor",
+      author: "VendorScope News Monitor",
       date: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
     },
   });
 
   const totalMonitored = await (await import("@/lib/db")).prisma.changeLog.count({
-    where: { author: "AI Compass EU News Monitor" },
+    where: { author: "VendorScope News Monitor" },
   });
 
   return NextResponse.json({

@@ -84,7 +84,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
         <div className="mb-8 text-center">
           <h1 className="font-heading text-2xl font-bold text-navy-900">
-            AI Compass EU
+            VendorScope
           </h1>
           <p className="mt-1 text-sm text-text-secondary">Admin Panel</p>
         </div>
@@ -101,7 +101,7 @@ export default function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 block w-full rounded-lg border border-border px-4 py-3 text-sm focus:border-eu-blue focus:outline-none focus:ring-1 focus:ring-eu-blue"
-                placeholder="admin@aicompass.eu"
+                placeholder="admin@vendorscope.eu"
                 autoFocus
               />
             </div>

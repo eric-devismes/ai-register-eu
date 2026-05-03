@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify({ data, exportedAt: new Date().toISOString() }, null, 2), {
       headers: {
         "Content-Type": "application/json",
-        "Content-Disposition": `attachment; filename="ai-compass-export-${new Date().toISOString().split("T")[0]}.json"`,
+        "Content-Disposition": `attachment; filename="vendorscope-export-${new Date().toISOString().split("T")[0]}.json"`,
       },
     });
   }
@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="ai-compass-export-${new Date().toISOString().split("T")[0]}.csv"`,
+      "Content-Disposition": `attachment; filename="vendorscope-export-${new Date().toISOString().split("T")[0]}.csv"`,
     },
   });
 }
@@ -229,7 +229,7 @@ async function exportComparisonMatrix(slugList: string[], format: string) {
     return new Response(JSON.stringify(data, null, 2), {
       headers: {
         "Content-Type": "application/json",
-        "Content-Disposition": `attachment; filename="ai-compass-comparison-${new Date().toISOString().split("T")[0]}.json"`,
+        "Content-Disposition": `attachment; filename="vendorscope-comparison-${new Date().toISOString().split("T")[0]}.json"`,
       },
     });
   }
@@ -252,7 +252,7 @@ async function exportComparisonMatrix(slugList: string[], format: string) {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="ai-compass-comparison-${new Date().toISOString().split("T")[0]}.csv"`,
+      "Content-Disposition": `attachment; filename="vendorscope-comparison-${new Date().toISOString().split("T")[0]}.csv"`,
     },
   });
 }

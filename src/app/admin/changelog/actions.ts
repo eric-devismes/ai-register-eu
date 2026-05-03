@@ -25,7 +25,7 @@ export async function createChangeLog(formData: FormData) {
   const changeType = formData.get("changeType") as string;
   const sourceUrl = (formData.get("sourceUrl") as string) || "";
   const sourceLabel = (formData.get("sourceLabel") as string) || "";
-  const author = (formData.get("author") as string) || "AI Compass EU Editorial";
+  const author = (formData.get("author") as string) || "VendorScope Editorial";
   const frameworkId = (formData.get("frameworkId") as string) || null;
   const systemId = (formData.get("systemId") as string) || null;
   const dateStr = formData.get("date") as string;

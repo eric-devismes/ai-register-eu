@@ -17,7 +17,7 @@ export default function AdminLayout({
       <aside className="flex w-64 flex-col bg-navy-900 text-white">
         <div className="border-b border-navy-700 px-6 py-5">
           <Link href="/admin" className="text-lg font-bold">
-            AI Compass EU
+            VendorScope
           </Link>
           <p className="text-xs text-navy-400">Admin Panel</p>
         </div>

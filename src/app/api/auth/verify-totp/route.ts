@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     }
 
     // Re-authenticate
-    const admin = await authenticateAdmin(email || "admin@aicompass.eu", password);
+    const admin = await authenticateAdmin(email || "admin@vendorscope.eu", password);
     if (!admin) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }

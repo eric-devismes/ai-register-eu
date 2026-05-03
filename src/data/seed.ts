@@ -403,7 +403,7 @@ async function main() {
         changeType: "amendment",
         sourceUrl: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
         sourceLabel: "EUR-Lex",
-        author: "AI Compass EU",
+        author: "VendorScope",
         frameworkId: euAiAct.id,
       },
     }).catch(() => {/* skip if duplicate */});
@@ -417,7 +417,7 @@ async function main() {
         changeType: "update",
         sourceUrl: "https://digital-strategy.ec.europa.eu/en/policies/ai-pact",
         sourceLabel: "EU AI Office",
-        author: "AI Compass EU",
+        author: "VendorScope",
         frameworkId: euAiAct.id,
       },
     }).catch(() => {/* skip if duplicate */});
@@ -433,7 +433,7 @@ async function main() {
         changeType: "jurisprudence",
         sourceUrl: "https://edpb.europa.eu",
         sourceLabel: "EDPB",
-        author: "AI Compass EU",
+        author: "VendorScope",
         frameworkId: gdpr.id,
       },
     }).catch(() => {/* skip if duplicate */});

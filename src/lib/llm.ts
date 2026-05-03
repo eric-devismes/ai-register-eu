@@ -65,7 +65,7 @@ function profileLabel(p: UserProfile): string {
 function buildSystemPrompt(locale: Locale, context: string, profile?: UserProfile): string {
   const langName = localeNames[locale] || "English";
 
-  return `You are the AI Compass EU assistant. You bridge the gap between complex EU regulations, vendor documentation, and what organisations actually need to know — in plain, operational language.
+  return `You are the VendorScope assistant. You bridge the gap between complex EU regulations, vendor documentation, and what organisations actually need to know — in plain, operational language.
 
 YOUR MISSION:
 Help decision-makers (procurement leads, CTOs, DPOs, CISOs) understand what the law requires, what AI vendors actually offer, and what it means for their organisation — without reading legal texts or vendor docs.
@@ -116,7 +116,7 @@ The person asking is a ${profileLabel(profile)}. Adjust your language and focus 
 - CISO: focus on security controls, data residency, encryption, incident reporting, certifications
 - Executive: keep it high-level, focus on risk exposure, business impact, and bottom-line implications
 Do NOT mention this profiling to the user. Just naturally adjust your tone and emphasis.
-` : ""}CONTEXT FROM AI COMPASS EU DATABASE:
+` : ""}CONTEXT FROM VENDORSCOPE DATABASE:
 ${context}`;
 }
 
@@ -128,7 +128,7 @@ export async function callLLM(req: LLMRequest): Promise<LLMResponse> {
   if (!apiKey) {
     // Dev mode — return placeholder
     return {
-      answer: `[Dev mode — no ANTHROPIC_API_KEY configured]\n\nYour question: "${req.question}"\n\nIn production, this would query Claude Haiku with ${req.context.length} characters of context from the AI Compass EU database.`,
+      answer: `[Dev mode — no ANTHROPIC_API_KEY configured]\n\nYour question: "${req.question}"\n\nIn production, this would query Claude Haiku with ${req.context.length} characters of context from the VendorScope database.`,
       blocked: false,
     };
   }

@@ -41,7 +41,7 @@
   "hero": {
     "badge": "Oberoende och leverantörneutral",
     "title": "Den europeiska referensdatabasen för",
-    "titleHighlight": "AI Compass EU",
+    "titleHighlight": "VendorScope",
     "subtitle": "Omfattande, oberoende utvärderingar av AI-system inom Europeiska unionen — mappade mot AI Act, GDPR, DORA och sektorspecifika förordningar.",
     "ctaDatabase": "Utforska AI-databasen",
     "ctaMethodology": "Visa metodik",
@@ -161,7 +161,7 @@
     "subtitle": "Ange din e-postadress för att logga in eller skapa ett konto. Inget lösenord krävs.",
     "emailLabel": "E-postadress",
     "emailPlaceholder": "du@företag.eu",
-    "consent": "Jag godkänner att ta emot e-postuppdateringar om utvalda AI-regelefterlevnadsämnen från AI Compass EU. Jag kan när som helst avreg mig eller ta bort mitt konto.",
+    "consent": "Jag godkänner att ta emot e-postuppdateringar om utvalda AI-regelefterlevnadsämnen från VendorScope. Jag kan när som helst avreg mig eller ta bort mitt konto.",
     "privacyNote": "Vi lagrar endast din e-postadress och ämnespreferenser. Ingen spårning, ingen profilering.",
     "readPrivacy": "Läs vår",
     "privacyLink": "sekretesspolicy",
@@ -188,7 +188,7 @@
     "verifyRedirect": "Om du inte omdirigeras automatiskt, {retryLink}.",
     "verifyRetryText": "klicka här för att försöka igen",
     "unsubscribedTitle": "Avprenumererad",
-    "unsubscribedDesc": "Du kommer inte längre att få sammanfattningsmeddelanden från AI Compass EU. Ditt konto och dina inställningar sparas fortfarande.",
+    "unsubscribedDesc": "Du kommer inte längre att få sammanfattningsmeddelanden från VendorScope. Ditt konto och dina inställningar sparas fortfarande.",
     "unsubscribedReEnable": "Vill du återaktivera sammanfattningar? {accountLink}.",
     "unsubscribedAccountLink": "Hantera ditt konto"
   },
@@ -288,8 +288,8 @@
     "standards": "Standarder och ramverk",
     "nationalImpl": "Nationell implementering",
     "aboutUs": "Om oss",
-    "copyright": "© 2026 AI Compass EU. Alla rättigheter förbehållna.",
-    "disclaimer": "Ansvarsfriskrivning: AI Compass EU tillhandahåller information för utbildnings- och professionella ändamål. Våra bedömningar baseras på allmänt tillgänglig information och bör inte betraktas som juridisk rådgivning. Rådfråga kvalificerade juridiska experter för specifika efterlevnadskrav.",
+    "copyright": "© 2026 VendorScope. Alla rättigheter förbehållna.",
+    "disclaimer": "Ansvarsfriskrivning: VendorScope tillhandahåller information för utbildnings- och professionella ändamål. Våra bedömningar baseras på allmänt tillgänglig information och bör inte betraktas som juridisk rådgivning. Rådfråga kvalificerade juridiska experter för specifika efterlevnadskrav.",
     "aiTransparencyTitle": "AI-transparensnotis",
     "aiTransparencyBody": "Denna plattform använder AI (Anthropic Claude) för sin chatbot-assistent och jämförelsevertyg. AI-genererade svar är grundade i vår bedömd databas och tydligt märkta. Ingen personuppgift används för AI-modellträning. Alla AI-funktioner uppfyller EU AI Acts transparensskyldigheter (artikel 50) och GDPR-krav för automatiserad behandling.",
     "security": "Säkerhet",
@@ -317,7 +317,7 @@
   },
   "meta": {
     "home": {
-      "title": "AI Compass EU — AI Intelligence för europeiska beslutsfattare",
+      "title": "VendorScope — AI Intelligence för europeiska beslutsfattare",
       "description": "Omfattande, oberoende bedömningar av AI-system inom Europeiska unionen — mappade mot AI Act, GDPR, DORA och sektorspecifika förordningar."
     },
     "database": {
@@ -330,7 +330,7 @@
     },
     "about": {
       "title": "Om oss",
-      "description": "AI Compass EU är den oberoende europeiska referensen för AI-verktygsinformation — som betjänar DPO:er, CISO:er och efterlevnadsproffs."
+      "description": "VendorScope är den oberoende europeiska referensen för AI-verktygsinformation — som betjänar DPO:er, CISO:er och efterlevnadsproffs."
     },
     "methodology": {
       "title": "Metod",
@@ -350,7 +350,7 @@
     },
     "contact": {
       "title": "Kontakt",
-      "description": "Kontakta AI Compass EU för frågor, partnerförfrågningar, rättelser eller pressförfrågningar."
+      "description": "Kontakta VendorScope för frågor, partnerförfrågningar, rättelser eller pressförfrågningar."
     },
     "pricingSuccess": {
       "title": "Välkommen till Pro!",
@@ -394,22 +394,22 @@
     },
     "privacy": {
       "title": "Privacy Policy",
-      "description": "How AI Compass EU collects, uses, and protects your personal data. GDPR-compliant privacy practices."
+      "description": "How VendorScope collects, uses, and protects your personal data. GDPR-compliant privacy practices."
     },
     "terms": {
       "title": "Terms of Service",
-      "description": "Terms of Service for AI Compass EU. Conditions governing your use of the platform, its data, ratings, and services."
+      "description": "Terms of Service for VendorScope. Conditions governing your use of the platform, its data, ratings, and services."
     },
     "security": {
       "title": "Security Policy",
-      "description": "AI Compass EU security policy: ICT risk management (DORA Chapter II), incident response, supply chain risk assessment, business continuity, and NIS2 alignment."
+      "description": "VendorScope security policy: ICT risk management (DORA Chapter II), incident response, supply chain risk assessment, business continuity, and NIS2 alignment."
     },
     "incidentResponse": {
       "title": "Incident Response Plan",
-      "description": "AI Compass EU incident response plan: incident classification (P1-P4), response timelines, communication protocol, post-incident review, and DORA/NIS2 reporting obligations."
+      "description": "VendorScope incident response plan: incident classification (P1-P4), response timelines, communication protocol, post-incident review, and DORA/NIS2 reporting obligations."
     },
     "sourcing": {
-      "title": "How we verify our sources — AI Compass EU",
+      "title": "How we verify our sources — VendorScope",
       "description": "Every claim we publish is linked to a primary vendor source, backed by a verbatim quote, and tracked with a content hash. Here's how the evidence backbone works."
     },
     "resources": {
@@ -523,7 +523,7 @@
   "methodology": {
     "badge": "Metodik",
     "heroTitle": "Transparent poängmetodik",
-    "heroSubtitle": "Varje betyg på AI Compass EU är byggt på en transparent, evidensbaserad metodik. Våra 8 bedömningsdimensioner täcker hela spektrumet av europeiska AI-efterlevnadskrav.",
+    "heroSubtitle": "Varje betyg på VendorScope är byggt på en transparent, evidensbaserad metodik. Våra 8 bedömningsdimensioner täcker hela spektrumet av europeiska AI-efterlevnadskrav.",
     "verifyLink": "Hur vi verifierar varje påstående",
     "processTitle": "Vår bedömningsprocess",
     "processSubtitle": "En rigorös, flerstegad process säkerställer konsistens, noggrannhet och rättvisa i alla bedömningar.",
@@ -695,10 +695,10 @@
   "about": {
     "badge": "Om oss",
     "heroTitle": "AI Intelligence för europeiska beslutsfattare",
-    "heroSubtitle": "AI Compass EU är den oberoende, leverantörneutrala plattformen som hjälper europeiska organisationer att förstå, utvärdera och distribuera AI-system i enlighet med EU-förordningar.",
+    "heroSubtitle": "VendorScope är den oberoende, leverantörneutrala plattformen som hjälper europeiska organisationer att förstå, utvärdera och distribuera AI-system i enlighet med EU-förordningar.",
     "missionTitle": "Vår mission",
     "missionP1": "Det europeiska AI-landskapet utvecklas snabbt. Med EU AI Act i kraft och ett växande lapptäcke av sektorspecifika regleringar står organisationer inför oöverträffad komplexitet när de väljer och implementerar AI-system på ett ansvarsfullt sätt.",
-    "missionP2": "AI Compass EU grundades för att ge klarhet i denna komplexitet. Vi tillhandahåller oberoende compliance-information — transparenta betyg, regulatorisk analys och praktisk vägledning — så att beslutsfattare kan agera med självförtroende.",
+    "missionP2": "VendorScope grundades för att ge klarhet i denna komplexitet. Vi tillhandahåller oberoende compliance-information — transparenta betyg, regulatorisk analys och praktisk vägledning — så att beslutsfattare kan agera med självförtroende.",
     "valuesTitle": "Våra värderingar",
     "value1Title": "Oberoende och leverantörsöverstigande",
     "value1Desc": "Vi accepterar ingen sponsring, annonsering eller leverantörsbetalningar som kan påverka våra betyg. Vår intäkt kommer enbart från prenumerationer.",
@@ -709,7 +709,7 @@
     "value4Title": "Rigorös och evidensbaserad",
     "value4Desc": "Utvärderingar genomförs av domänexperter med hjälp av standardiserade mallar, inte automatiserad skrapning eller självrapporterade leverantörsanspråk.",
     "contactTitle": "Kontakta oss",
-    "contactText": "AI Compass EU är ett oberoende projekt byggt i Europa för europeiska beslutsfattare. För frågor, partnerförfrågningar eller pressöverförfrågningar, kontakta oss på {email}."
+    "contactText": "VendorScope är ett oberoende projekt byggt i Europa för europeiska beslutsfattare. För frågor, partnerförfrågningar eller pressöverförfrågningar, kontakta oss på {email}."
   },
   "reports": {
     "detail": {
@@ -960,10 +960,10 @@
     "copyAll": "Kopiera allt",
     "copied": "Kopierad!",
     "print": "Skriv ut",
-    "headerLabel": "AI Compass EU — Förberedelse för leverantörmöte",
+    "headerLabel": "VendorScope — Förberedelse för leverantörmöte",
     "generated": "Genererad {date}",
     "disclaimerTitle": "Ansvarsfriskrivning",
-    "disclaimerBody": "Denna mötessammanfattning är genererad av AI baserat på AI Compass EU-bedömningsdata. Den bör användas som utgångspunkt för din förberedelse av leverantörmötet, inte som juridisk eller upphandlingsrådgivning. Verifiera alla efterlevnadsanspråk och poäng direkt med leverantören."
+    "disclaimerBody": "Denna mötessammanfattning är genererad av AI baserat på VendorScope-bedömningsdata. Den bör användas som utgångspunkt för din förberedelse av leverantörmötet, inte som juridisk eller upphandlingsrådgivning. Verifiera alla efterlevnadsanspråk och poäng direkt med leverantören."
   },
   "businessCase": {
     "badge": "Enterprise-verktyg",
@@ -1017,13 +1017,13 @@
     "loadingTime": "Det tar vanligtvis 15-30 sekunder",
     "networkError": "Nätverksfel. Kontrollera din anslutning och försök igen.",
     "disclaimerTitle": "Ansvarsfriskrivning",
-    "disclaimerBody": "Denna business case är en AI-genererad uppskattning för utbildnings- och informationssyfte endast. Siffrorna baseras på offentligt tillgänglig information och branschstandard. AI Compass EU påtar sig inget ansvar för noggrannheten i dessa uppskattningar. Detta bör inte användas som enda grund för inköpsbeslut. Vi rekommenderar att du validerar alla siffror med leverantörsofferter och intern finansiell analys.",
+    "disclaimerBody": "Denna business case är en AI-genererad uppskattning för utbildnings- och informationssyfte endast. Siffrorna baseras på offentligt tillgänglig information och branschstandard. VendorScope påtar sig inget ansvar för noggrannheten i dessa uppskattningar. Detta bör inte användas som enda grund för inköpsbeslut. Vi rekommenderar att du validerar alla siffror med leverantörsofferter och intern finansiell analys.",
     "disclaimerShort": "Uppskattningar är vägledande och AI-genererade. Inte finansiell rådgivning.",
     "generateAnother": "Generera en annan",
     "copyToClipboard": "Kopiera till urklipp",
     "copied": "Kopierad!",
     "downloadPDF": "Ladda ned som PDF",
-    "headerLabel": "AI Compass EU — Affärsfall",
+    "headerLabel": "VendorScope — Affärsfall",
     "generated": "Genererad {date}"
   },
   "podium": {
@@ -1103,13 +1103,13 @@
     "copyAll": "Kopiera allt",
     "copied": "Kopierat!",
     "export": "Exportera",
-    "headerLabel": "AI Compass EU — RFP/RFI-svar",
+    "headerLabel": "VendorScope — RFP/RFI-svar",
     "questionsAnswered": "{count} fråga besvarad",
     "questionsAnsweredPlural": "{count} frågor besvarade",
     "generated": "Genererad {date}",
     "systemsLabel": "System:",
     "disclaimerTitle": "Ansvarsfriskrivning",
-    "disclaimerBody": "Dessa utkastsvara är genererade av AI baserat på AI Compass EU-bedömningsdata. Alla svar bör granskas och valideras av ditt upphandlingsteam innan de inkluderas i någon formell RFP/RFI-ansökan. Detta utgör inte juridisk eller upphandlingsrådgivning.",
+    "disclaimerBody": "Dessa utkastsvara är genererade av AI baserat på VendorScope-bedömningsdata. Alla svar bör granskas och valideras av ditt upphandlingsteam innan de inkluderas i någon formell RFP/RFI-ansökan. Detta utgör inte juridisk eller upphandlingsrådgivning.",
     "step1PreviewLabel": "1. Välj AI-system",
     "step2PreviewLabel": "2. Klistra in RFP-frågor",
     "step3PreviewLabel": "3. Företagskontext"
@@ -1219,8 +1219,8 @@
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: {date}",
     "section1Title": "1. Who We Are",
-    "section1Body": "AI Compass EU is an independent AI compliance intelligence platform for European decision-makers. We rate AI systems against EU regulatory frameworks (AI Act, GDPR, DORA, and sector-specific regulations).",
-    "section1Controller": "For the purposes of the General Data Protection Regulation (GDPR), the data controller is AI Compass EU. Contact: {link}",
+    "section1Body": "VendorScope is an independent AI compliance intelligence platform for European decision-makers. We rate AI systems against EU regulatory frameworks (AI Act, GDPR, DORA, and sector-specific regulations).",
+    "section1Controller": "For the purposes of the General Data Protection Regulation (GDPR), the data controller is VendorScope. Contact: {link}",
     "section2Title": "2. What Data We Collect",
     "section2Intro": "We collect the minimum data necessary to provide our services:",
     "tableHeaderData": "Data",
@@ -1335,33 +1335,33 @@
     "title": "Terms of Service",
     "lastUpdated": "Last updated: 6 April 2026",
     "section1Title": "1. Acceptance of Terms",
-    "section1Body": "By accessing or using AI Compass EU (\"the Platform\"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform.",
+    "section1Body": "By accessing or using VendorScope (\"the Platform\"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform.",
     "section2Title": "2. Description of Service",
-    "section2Body": "AI Compass EU provides compliance intelligence for AI systems in the European market, including ratings, regulatory analysis, and educational resources. The Platform is intended for informational purposes only and does not constitute legal, regulatory, or professional advice.",
+    "section2Body": "VendorScope provides compliance intelligence for AI systems in the European market, including ratings, regulatory analysis, and educational resources. The Platform is intended for informational purposes only and does not constitute legal, regulatory, or professional advice.",
     "section3Title": "3. Ratings and Assessments",
     "section3Body": "Our ratings reflect our independent assessment based on publicly available information at the time of evaluation. Ratings are not guarantees of compliance and should not be used as the sole basis for procurement or regulatory decisions. We update assessments periodically but cannot guarantee real-time accuracy.",
     "section4Title": "4. User Accounts",
     "section4Body": "You may create a subscriber account using your email address. You are responsible for maintaining the confidentiality of your account access. You may delete your account and all associated data at any time through your account settings page.",
     "section5Title": "5. Acceptable Use",
-    "section5Body": "You agree not to: (a) use the Platform for any unlawful purpose; (b) attempt to gain unauthorized access to the Platform's systems; (c) scrape, crawl, or use automated tools to bulk-extract data beyond what is available via our public pages; (d) misrepresent AI Compass EU ratings as your own analysis.",
+    "section5Body": "You agree not to: (a) use the Platform for any unlawful purpose; (b) attempt to gain unauthorized access to the Platform's systems; (c) scrape, crawl, or use automated tools to bulk-extract data beyond what is available via our public pages; (d) misrepresent VendorScope ratings as your own analysis.",
     "section6Title": "6. Intellectual Property",
-    "section6Body": "All content, ratings, methodology documentation, and original materials on the Platform are the intellectual property of AI Compass EU. You may cite our ratings with proper attribution. Republishing substantial portions of our content requires written permission.",
+    "section6Body": "All content, ratings, methodology documentation, and original materials on the Platform are the intellectual property of VendorScope. You may cite our ratings with proper attribution. Republishing substantial portions of our content requires written permission.",
     "section7Title": "7. Limitation of Liability",
-    "section7Body": "AI Compass EU is provided \"as is\" without warranties of any kind. We are not liable for any damages arising from your use of or reliance on the Platform's content, ratings, or services. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim.",
+    "section7Body": "VendorScope is provided \"as is\" without warranties of any kind. We are not liable for any damages arising from your use of or reliance on the Platform's content, ratings, or services. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim.",
     "section8Title": "8. Changes to Terms",
     "section8Body": "We may update these Terms of Service from time to time. Continued use of the Platform after changes constitutes acceptance of the new terms. We will notify registered subscribers of material changes via email.",
     "section9Title": "9. Governing Law",
-    "section9Body": "These terms are governed by the laws of the European Union and the Member State in which AI Compass EU is established. Disputes shall be resolved in the competent courts of that jurisdiction.",
+    "section9Body": "These terms are governed by the laws of the European Union and the Member State in which VendorScope is established. Disputes shall be resolved in the competent courts of that jurisdiction.",
     "section10Title": "10. Contact",
     "section10Body": "For questions about these terms, contact us at {link}."
   },
   "security": {
     "title": "Security Policy",
     "lastUpdated": "Last updated: {date}",
-    "introBody": "This document describes the security posture, ICT risk management framework, and operational resilience measures of AI Compass EU. It is aligned with the Digital Operational Resilience Act (DORA) and the Network and Information Security Directive (NIS2).",
+    "introBody": "This document describes the security posture, ICT risk management framework, and operational resilience measures of VendorScope. It is aligned with the Digital Operational Resilience Act (DORA) and the Network and Information Security Directive (NIS2).",
     "section1Title": "ICT Risk Management Framework",
     "section1Ref": "DORA Chapter II, Articles 5-16",
-    "section1Body": "AI Compass EU maintains a structured ICT risk management framework proportionate to the scale and complexity of its operations. The framework is reviewed at least annually and after any significant incident.",
+    "section1Body": "VendorScope maintains a structured ICT risk management framework proportionate to the scale and complexity of its operations. The framework is reviewed at least annually and after any significant incident.",
     "riskIdentificationTitle": "Risk Identification",
     "riskIdentificationBody": "We maintain an asset inventory covering all ICT systems, third-party dependencies, and data flows. Each asset is classified by criticality (critical, important, standard) and mapped to the business functions it supports.",
     "riskAssessmentTitle": "Risk Assessment",
@@ -1449,7 +1449,7 @@
     "controlHeadersImpl": "Strict-Transport-Security, X-Content-Type-Options (nosniff), X-Frame-Options (DENY), Referrer-Policy (strict-origin-when-cross-origin), Content-Security-Policy configured per Vercel deployment.",
     "section6Title": "NIS2 Alignment",
     "section6Ref": "Directive (EU) 2022/2555, Article 21",
-    "section6Body": "While AI Compass EU may not fall within the scope of NIS2 as an essential or important entity, we voluntarily align with its cybersecurity risk management measures as a matter of best practice and to demonstrate commitment to our users.",
+    "section6Body": "While VendorScope may not fall within the scope of NIS2 as an essential or important entity, we voluntarily align with its cybersecurity risk management measures as a matter of best practice and to demonstrate commitment to our users.",
     "cyberHygieneTitle": "Cybersecurity Hygiene (Art. 21(2)(g))",
     "vulnHandlingTitle": "Vulnerability Handling (Art. 21(2)(e))",
     "vulnDisclosure": "Responsible disclosure: security researchers can report vulnerabilities to {link}",
@@ -1490,12 +1490,12 @@
   "incident": {
     "title": "Incident Response Plan",
     "lastUpdated": "Last updated: {date}",
-    "introBody": "This document defines how AI Compass EU detects, classifies, responds to, and learns from security and operational incidents. It is aligned with the Digital Operational Resilience Act (DORA, Chapter III) and the Network and Information Security Directive (NIS2, Article 23).",
+    "introBody": "This document defines how VendorScope detects, classifies, responds to, and learns from security and operational incidents. It is aligned with the Digital Operational Resilience Act (DORA, Chapter III) and the Network and Information Security Directive (NIS2, Article 23).",
     "badgeDora": "DORA Chapter III",
     "badgeNis2": "NIS2 Article 23",
     "badgeGdpr": "GDPR Article 33-34",
     "section1Title": "Scope & Purpose",
-    "section1Body": "This Incident Response Plan (IRP) covers all ICT-related incidents affecting the AI Compass EU platform, including but not limited to:",
+    "section1Body": "This Incident Response Plan (IRP) covers all ICT-related incidents affecting the VendorScope platform, including but not limited to:",
     "scope1": "Service outages or significant degradation of platform availability",
     "scope2": "Security breaches, including unauthorised access to systems or data",
     "scope3": "Personal data breaches as defined by GDPR Article 4(12)",
@@ -1628,7 +1628,7 @@
   "sourcing": {
     "badge": "Methodology / Sourcing",
     "heroTitle": "How we verify every claim",
-    "heroSubtitle": "AI Compass EU's credibility depends on one thing: that every statement on this platform can be traced back to a primary vendor source, a specific quote, and a timestamped snapshot. The pipeline below is how we enforce that — mechanically, not on trust.",
+    "heroSubtitle": "VendorScope's credibility depends on one thing: that every statement on this platform can be traced back to a primary vendor source, a specific quote, and a timestamped snapshot. The pipeline below is how we enforce that — mechanically, not on trust.",
     "pipelineTitle": "The evidence pipeline",
     "pipelineSubtitle": "Five stages, all auditable. The database keeps every intermediate artefact — source URL, raw text snapshot, content hash, extracted claim, verbatim quote, review decision — available to our analysts and, on request, to enterprise subscribers performing their own due diligence.",
     "step1Title": "Source curation",
@@ -1662,7 +1662,7 @@
     "guarantee4Title": "No opaque AI writing",
     "guarantee4Body": "The LLM is a retrieval-and-structuring tool. Every draft it produces is gated by a human reviewer and a verbatim-quote check. It is not used to generate opinions, scores, or marketing copy about vendors.",
     "correctionsTitle": "Found something wrong? Tell us.",
-    "correctionsBody": "If a claim on AI Compass EU is outdated, misquoted, or no longer matches the vendor's current policy, we want to know. Email {link} with the system, the claim, and a link to the current source. Vendors can also request review of claims about their own products via the same address.",
+    "correctionsBody": "If a claim on VendorScope is outdated, misquoted, or no longer matches the vendor's current policy, we want to know. Email {link} with the system, the claim, and a link to the current source. Vendors can also request review of claims about their own products via the same address.",
     "correctionsBody2": "We publish corrections with the date they were made. Our credibility is in the audit trail, not in never being wrong.",
     "backToMethodology": "Back to methodology",
     "browseAISystems": "Browse AI systems"

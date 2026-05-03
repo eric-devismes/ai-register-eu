@@ -106,10 +106,10 @@ async function AboutContent({ params }: { params: Promise<{ lang: string }> }) {
               <p className="mt-4 text-gray-600 leading-relaxed">
                 {t("about.contactText").split("{email}")[0]}
                 <a
-                  href="mailto:contact@aicompass.eu"
+                  href="mailto:contact@vendorscope.eu"
                   className="font-semibold text-[#003399] hover:underline"
                 >
-                  contact@aicompass.eu
+                  contact@vendorscope.eu
                 </a>
                 {t("about.contactText").split("{email}")[1]}
               </p>
