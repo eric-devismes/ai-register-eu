@@ -690,6 +690,22 @@
       "ctaPrimary": "Browse AI Act-rated vendors",
       "ctaSecondary": "Read the methodology"
     },
+    "roles": {
+      "badge": "Quick definitions",
+      "title": "Provider vs deployer — and why each gets its own article",
+      "subtitle": "The AI Act splits obligations between the company that builds the AI system and the company that uses it in production. Each holds information the other doesn't. Closing that gap is what VendorScope does.",
+      "providerLabel": "Provider — Article 16",
+      "providerDefinition": "The company that develops the AI system and places it on the EU market.",
+      "providerExamples": "OpenAI, Anthropic, Microsoft Copilot, Salesforce Einstein, Google Vertex AI, Mistral.",
+      "providerKnows": "Knows how the model was built — training data governance, evaluation, conformity assessment, technical documentation.",
+      "providerDoesntKnow": "Cannot know how you will use it in your specific business context.",
+      "deployerLabel": "Deployer — Article 26 (this is you)",
+      "deployerDefinition": "The organisation that operates the AI system under its own authority for an intended purpose.",
+      "deployerExamples": "A bank running a credit-scoring model, an HR team using a CV-screening tool, a hospital using a triage assistant, a government department using benefits-eligibility AI.",
+      "deployerKnows": "Knows the operational context — who's affected, what data flows in, what decisions are at stake, who oversees the system.",
+      "deployerDoesntKnow": "Cannot know whether the provider has met their obligations — unless the provider produces the evidence.",
+      "bridge": "Article 26 expects you to operate responsibly. Article 16 expects providers to give you what you need to do that. VendorScope makes the provider evidence findable, sourced, and dated — so your Article 26 file holds together."
+    },
     "wedge": {
       "badge": "The wedge",
       "title": "Two articles. One evidence chain. Zero hand-waving.",

@@ -83,8 +83,77 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* The Wedge — mapping table */}
+        {/* Roles — define provider vs deployer before the wedge */}
         <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("aiAct.roles.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("aiAct.roles.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.roles.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              {/* Provider card */}
+              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                  {t("aiAct.roles.providerLabel")}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
+                  {t("aiAct.roles.providerDefinition")}
+                </h3>
+                <p className="mt-3 text-sm italic text-gray-500">
+                  {t("aiAct.roles.providerExamples")}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                  <li className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#003399]" aria-hidden />
+                    <span>{t("aiAct.roles.providerKnows")}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" aria-hidden />
+                    <span>{t("aiAct.roles.providerDoesntKnow")}</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Deployer card */}
+              <div className="rounded-xl border border-[#ffc107]/40 bg-[#fffaeb] p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#0d1b3e]">
+                  {t("aiAct.roles.deployerLabel")}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
+                  {t("aiAct.roles.deployerDefinition")}
+                </h3>
+                <p className="mt-3 text-sm italic text-gray-600">
+                  {t("aiAct.roles.deployerExamples")}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                  <li className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#ffc107]" aria-hidden />
+                    <span>{t("aiAct.roles.deployerKnows")}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" aria-hidden />
+                    <span>{t("aiAct.roles.deployerDoesntKnow")}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mx-auto mt-10 max-w-3xl text-center text-base font-medium text-[#0d1b3e]">
+              {t("aiAct.roles.bridge")}
+            </p>
+          </div>
+        </section>
+
+        {/* The Wedge — mapping table */}
+        <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
