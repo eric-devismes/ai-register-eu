@@ -18,6 +18,8 @@ const deployerObligations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const providerObligations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const milestones = [1, 2, 3, 4] as const;
 const nextSteps = [1, 2, 3] as const;
+const annex3Categories = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+const carveOuts = [1, 2, 3, 4] as const;
 
 export default async function AiActPage({
   params,
@@ -83,8 +85,106 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Roles — define provider vs deployer before the wedge */}
+        {/* Scope — define what counts as high-risk before anything else */}
         <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("aiAct.scope.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("aiAct.scope.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.scope.subtitle")}
+              </p>
+            </div>
+
+            {/* Two paths */}
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                  {t("aiAct.scope.path1Label")}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
+                  {t("aiAct.scope.path1Title")}
+                </h3>
+                <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                  {t("aiAct.scope.path1Body")}
+                </p>
+                <p className="mt-3 text-sm italic text-gray-500">
+                  {t("aiAct.scope.path1Example")}
+                </p>
+                <p className="mt-3 text-xs font-medium text-[#003399]">
+                  {t("aiAct.scope.path1Deadline")}
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                  {t("aiAct.scope.path2Label")}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
+                  {t("aiAct.scope.path2Title")}
+                </h3>
+                <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                  {t("aiAct.scope.path2Body")}
+                </p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  {t("aiAct.scope.path2Intro")}
+                </p>
+                <ol className="mt-2 space-y-2 text-sm text-gray-700">
+                  {annex3Categories.map((n) => (
+                    <li key={n} className="flex gap-3">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-[10px] font-semibold text-[#003399]">
+                        {n}
+                      </span>
+                      <span>
+                        <span className="font-semibold text-[#0d1b3e]">
+                          {t(`aiAct.scope.annex3Cat${n}`)}
+                        </span>
+                        <span className="text-gray-600">
+                          {" — "}
+                          {t(`aiAct.scope.annex3Cat${n}Desc`)}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            {/* Carve-out */}
+            <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="text-base font-semibold text-[#0d1b3e]">
+                {t("aiAct.scope.carveOutTitle")}
+              </h3>
+              <p className="mt-2 text-sm text-gray-700">
+                {t("aiAct.scope.carveOutBody")}
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-gray-700">
+                {carveOuts.map((n) => (
+                  <li key={n} className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-500" aria-hidden />
+                    <span>{t(`aiAct.scope.carveOut${n}`)}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 rounded-md bg-[#fffaeb] border border-[#ffc107]/40 p-3 text-sm text-[#0d1b3e]">
+                <span className="font-semibold">⚠ </span>
+                {t("aiAct.scope.carveOutException")}
+              </p>
+            </div>
+
+            {/* Not in scope */}
+            <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-gray-600 leading-relaxed">
+              {t("aiAct.scope.notInScope")}
+            </p>
+          </div>
+        </section>
+
+        {/* Roles — define provider vs deployer before the wedge */}
+        <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
@@ -153,7 +253,7 @@ export default async function AiActPage({
         </section>
 
         {/* The Wedge — mapping table */}
-        <section className="py-16 lg:py-24 bg-gray-50">
+        <section className="py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
