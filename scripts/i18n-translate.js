@@ -285,43 +285,81 @@ You will receive a JSON object mapping arbitrary string keys to English source s
 }
 
 // ─── Claude call (one batch) ─────────────────────────────────────────
-async function translateBatch(client, model, sourceObj, systemPrompt) {
-  const userMsg = `Translate the values in the following JSON object. Return only the JSON object with the same keys.\n\n${JSON.stringify(sourceObj, null, 2)}`;
 
+// Pull JSON out of a possibly-fenced or possibly-prosey response.
+function extractJsonString(text) {
+  const trimmed = text.trim();
+  const fence = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+  if (fence) return fence[1];
+  const first = trimmed.indexOf("{");
+  const last = trimmed.lastIndexOf("}");
+  if (first !== -1 && last > first) return trimmed.slice(first, last + 1);
+  return trimmed;
+}
+
+async function callClaudeForBatch(client, model, system, messages) {
   const response = await client.messages.create({
     model,
     max_tokens: 16000,
-    system: systemPrompt,
-    messages: [{ role: "user", content: userMsg }],
+    system,
+    messages,
   });
-
   const text = response.content
     .filter((b) => b.type === "text")
     .map((b) => b.text)
-    .join("\n")
-    .trim();
+    .join("\n");
+  return { text, usage: response.usage, content: response.content };
+}
 
-  // Be defensive about model output: raw JSON, fenced, or text-with-JSON.
-  let jsonStr = text;
-  const fence = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-  if (fence) {
-    jsonStr = fence[1];
-  } else {
-    const first = text.indexOf("{");
-    const last = text.lastIndexOf("}");
-    if (first !== -1 && last > first) jsonStr = text.slice(first, last + 1);
-  }
+async function translateBatch(client, model, sourceObj, systemPrompt) {
+  const userMsg = `Translate the values in the following JSON object. Return only the JSON object with the same keys. Make sure every internal double-quote inside a translated string is escaped as \\" and every newline as \\n — the response must be valid JSON.\n\n${JSON.stringify(sourceObj, null, 2)}`;
 
-  let parsed;
+  const messages = [{ role: "user", content: userMsg }];
+
+  // First attempt
+  const first = await callClaudeForBatch(client, model, systemPrompt, messages);
+  const totalUsage = { ...first.usage };
+  const jsonStr1 = extractJsonString(first.text);
+  let parsed = null;
+  let parseErr = null;
   try {
-    parsed = JSON.parse(jsonStr);
+    parsed = JSON.parse(jsonStr1);
   } catch (e) {
-    throw new Error(
-      `Could not parse model output as JSON.\nFirst 500 chars of response:\n${text.slice(0, 500)}\n\nParse error: ${e.message}`,
-    );
+    parseErr = e;
   }
 
-  return { translations: parsed, usage: response.usage };
+  // Retry once with the bad output as feedback
+  if (!parsed) {
+    console.log(
+      `      [retry] JSON parse failed (${parseErr.message}). Asking the model to fix its previous response.`,
+    );
+    const retryMessages = [
+      ...messages,
+      { role: "assistant", content: first.content },
+      {
+        role: "user",
+        content: `Your previous response was not valid JSON. Specifically: ${parseErr.message}\n\nReturn the same translations again, but as a strictly-valid JSON object. Escape every internal " as \\" and every newline as \\n. No prose, no markdown fences — just the JSON object starting with { and ending with }.`,
+      },
+    ];
+    const retry = await callClaudeForBatch(client, model, systemPrompt, retryMessages);
+    totalUsage.input_tokens += retry.usage.input_tokens || 0;
+    totalUsage.output_tokens += retry.usage.output_tokens || 0;
+    totalUsage.cache_creation_input_tokens += retry.usage.cache_creation_input_tokens || 0;
+    totalUsage.cache_read_input_tokens += retry.usage.cache_read_input_tokens || 0;
+
+    try {
+      parsed = JSON.parse(extractJsonString(retry.text));
+    } catch (e2) {
+      // Both attempts failed — fall back to English placeholders for this batch
+      // so the run continues and the user can re-run later.
+      console.log(
+        `      [fallback] Retry also produced invalid JSON (${e2.message}). Keeping English placeholders for this batch.`,
+      );
+      parsed = { ...sourceObj }; // English fallback
+    }
+  }
+
+  return { translations: parsed, usage: totalUsage };
 }
 
 // ─── Validate translated batch ───────────────────────────────────────
