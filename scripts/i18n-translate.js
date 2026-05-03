@@ -1,32 +1,50 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-require-imports */
 /**
- * i18n-translate — Backfills dictionary + report translations via DeepL.
+ * i18n-translate — Backfills dictionary + report translations via Anthropic Claude.
  *
- * For each target locale:
+ * For each target locale (fr, de, es, it):
  *   - Dictionary: fills keys that are missing, empty, or English-identical.
  *   - Reports: regenerates src/data/reports/{locale}.json from en.json when
- *     slugs are missing (does NOT overwrite existing translations).
+ *     fields are missing or English-identical (does NOT overwrite human edits).
  *
  * Honors scripts/i18n-glossary.json (do-not-translate terms).
  * Idempotent: re-running produces no diff when everything is already translated.
+ * Uses prompt caching: the per-locale system prompt (style guide + glossary +
+ * worked examples) is cached across batch calls.
  *
- * Requires DEEPL_API_KEY in environment (loaded from .env.local).
+ * Requires ANTHROPIC_API_KEY in environment (loaded from .env.local).
  * Run: node scripts/i18n-translate.js
+ *
+ * Flags:
+ *   --locale=fr         Only translate the given locale (default: all targets)
+ *   --reports-only      Skip dictionaries
+ *   --dicts-only        Skip reports
+ *   --dry-run           Show what would change without calling the API
+ *   --model=ID          Override model (default: claude-opus-4-7)
  */
 
 const fs = require("fs");
 const path = require("path");
+const Anthropic = require("@anthropic-ai/sdk").default;
 
 const ROOT = path.join(__dirname, "..");
 const DICT_DIR = path.join(ROOT, "src", "dictionaries");
 const REPORTS_DIR = path.join(ROOT, "src", "data", "reports");
 const GLOSSARY_FILE = path.join(__dirname, "i18n-glossary.json");
 
-// Must mirror `activeLocales` in src/lib/i18n.ts.
+// Must mirror `activeLocales` in src/lib/i18n.ts
 const ACTIVE_LOCALES = ["en", "fr", "de", "es", "it"];
+const TARGET_LOCALES = ACTIVE_LOCALES.filter((l) => l !== "en");
 
-// Load .env.local if present (simple parser, no new dep)
+const LOCALE_NAMES = {
+  fr: "French",
+  de: "German",
+  es: "Spanish",
+  it: "Italian",
+};
+
+// ─── .env.local loader ──────────────────────────────────────────────
 function loadEnvLocal() {
   const envPath = path.join(ROOT, ".env.local");
   if (!fs.existsSync(envPath)) return;
@@ -37,64 +55,69 @@ function loadEnvLocal() {
     if (eq === -1) continue;
     const key = line.slice(0, eq).trim();
     let val = line.slice(eq + 1).trim();
-    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+    if (
+      (val.startsWith('"') && val.endsWith('"')) ||
+      (val.startsWith("'") && val.endsWith("'"))
+    ) {
       val = val.slice(1, -1);
     }
-    if (!process.env[key]) process.env[key] = val;
+    if (!process.env[key] && val) process.env[key] = val;
   }
 }
 
-// ─── Locale mapping — keep in sync with src/lib/i18n.ts ──────────────
-const DEEPL_LOCALE_MAP = {
-  en: "EN-GB",
-  fr: "FR",
-  de: "DE",
-  es: "ES",
-  it: "IT",
-  nl: "NL",
-  pl: "PL",
-  ro: "RO",
-  pt: "PT-PT",
-  cs: "CS",
-  el: "EL",
-  hu: "HU",
-  sv: "SV",
-  bg: "BG",
-};
-
-// ─── Helpers ─────────────────────────────────────────────────────────
-
-function loadJson(p) {
-  return JSON.parse(fs.readFileSync(p, "utf8"));
+// ─── CLI args ────────────────────────────────────────────────────────
+function parseArgs() {
+  const args = {
+    locales: TARGET_LOCALES,
+    reports: true,
+    dicts: true,
+    dryRun: false,
+    model: "claude-opus-4-7",
+  };
+  for (const a of process.argv.slice(2)) {
+    if (a.startsWith("--locale=")) {
+      const l = a.slice("--locale=".length);
+      if (!TARGET_LOCALES.includes(l)) {
+        console.error(`Unknown locale: ${l}. Allowed: ${TARGET_LOCALES.join(", ")}`);
+        process.exit(1);
+      }
+      args.locales = [l];
+    } else if (a === "--reports-only") {
+      args.dicts = false;
+    } else if (a === "--dicts-only") {
+      args.reports = false;
+    } else if (a === "--dry-run") {
+      args.dryRun = true;
+    } else if (a.startsWith("--model=")) {
+      args.model = a.slice("--model=".length);
+    } else if (a === "--fallback") {
+      console.error(
+        "✗ --fallback is not supported by the Claude-based translator.\n" +
+          "  Set ANTHROPIC_API_KEY in .env.local and re-run, or pass --dry-run\n" +
+          "  to see what would change.",
+      );
+      process.exit(1);
+    } else {
+      console.error(`Unknown flag: ${a}`);
+      process.exit(1);
+    }
+  }
+  return args;
 }
 
-function writeJson(p, obj) {
-  fs.writeFileSync(p, JSON.stringify(obj, null, 2) + "\n");
-}
-
-function discoverLocales() {
-  // Only backfill active locales (FR/EN/DE/IT/ES). Inactive dictionaries
-  // stay on disk untouched — flip `ACTIVE_LOCALES` + `src/lib/i18n.ts` to
-  // re-enable and the next run picks them back up.
-  const onDisk = fs
-    .readdirSync(DICT_DIR)
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => f.replace(/\.json$/, ""));
-  return ACTIVE_LOCALES.filter((l) => onDisk.includes(l));
-}
-
-function leafKeys(obj, prefix = "") {
-  const out = [];
-  for (const [k, v] of Object.entries(obj)) {
-    const key = prefix ? `${prefix}.${k}` : k;
-    if (v && typeof v === "object" && !Array.isArray(v)) out.push(...leafKeys(v, key));
-    else out.push(key);
+// ─── JSON helpers ────────────────────────────────────────────────────
+function flatten(obj, prefix = "") {
+  const out = {};
+  for (const key of Object.keys(obj)) {
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+    const v = obj[key];
+    if (v && typeof v === "object" && !Array.isArray(v)) {
+      Object.assign(out, flatten(v, fullKey));
+    } else {
+      out[fullKey] = v;
+    }
   }
   return out;
-}
-
-function getByPath(obj, dotted) {
-  return dotted.split(".").reduce((acc, k) => (acc == null ? undefined : acc[k]), obj);
 }
 
 function setByPath(obj, dotted, value) {
@@ -102,193 +125,568 @@ function setByPath(obj, dotted, value) {
   let cur = obj;
   for (let i = 0; i < parts.length - 1; i++) {
     const k = parts[i];
-    if (cur[k] == null || typeof cur[k] !== "object") cur[k] = {};
+    if (typeof cur[k] !== "object" || cur[k] === null || Array.isArray(cur[k])) {
+      cur[k] = {};
+    }
     cur = cur[k];
   }
   cur[parts[parts.length - 1]] = value;
 }
 
-// ─── DeepL client ────────────────────────────────────────────────────
-
-let translator = null;
-let FALLBACK_MODE = false; // true when no DEEPL_API_KEY — copies English as stub
-
-async function initDeepL() {
-  loadEnvLocal();
-  const apiKey = process.env.DEEPL_API_KEY;
-  const wantFallback = process.argv.includes("--fallback");
-  if (!apiKey && !wantFallback) {
-    console.error(
-      "\u2717 DEEPL_API_KEY is not set. Either set it in .env.local, or\n" +
-        "  run `node scripts/i18n-translate.js --fallback` to fill missing\n" +
-        "  keys with English placeholders (unblocks the build; quality\n" +
-        "  follow-up required).",
-    );
-    process.exit(2);
+function findKeysToTranslate(enFlat, targetFlat, glossarySet) {
+  const out = {};
+  for (const key of Object.keys(enFlat)) {
+    const enVal = enFlat[key];
+    if (typeof enVal !== "string" || !enVal.trim()) continue;
+    if (glossarySet.has(enVal.trim())) continue; // do-not-translate term
+    const tgtVal = targetFlat[key];
+    if (typeof tgtVal === "string" && tgtVal.trim() && tgtVal !== enVal) continue; // already translated
+    out[key] = enVal;
   }
-  if (!apiKey) {
-    FALLBACK_MODE = true;
-    console.log("⚠ No DEEPL_API_KEY — running in FALLBACK mode (English placeholders).\n");
-    return;
-  }
-  const { Translator } = await import("deepl-node");
-  translator = new Translator(apiKey);
+  return out;
 }
 
-/**
- * Translate a single string.
- * Protects {placeholder} tokens via DeepL's tagHandling (XML-like mode).
- */
-async function translateString(text, targetLang, glossaryTerms) {
-  if (!text || !text.trim()) return text;
-  if (FALLBACK_MODE) return text; // English placeholder
-  // Skip translation if the entire text matches a glossary term
-  if (glossaryTerms.has(text.trim())) return text;
+// ─── Placeholder validation ──────────────────────────────────────────
+function placeholders(s) {
+  if (typeof s !== "string") return [];
+  return Array.from(new Set(s.match(/\{[a-zA-Z][a-zA-Z0-9_]*\}/g) || [])).sort();
+}
 
-  // Wrap placeholders in <x> tags so DeepL doesn't translate them
-  let prepared = text.replace(
-    /\{([a-zA-Z][a-zA-Z0-9_]*)\}/g,
-    (_m, name) => `<x id="${name}">{${name}}</x>`
-  );
-  // Protect glossary terms as ignored spans
-  for (const term of glossaryTerms) {
-    if (term.length < 2) continue;
-    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    prepared = prepared.replace(
-      new RegExp(`\\b${escaped}\\b`, "g"),
-      `<x>${term}</x>`
-    );
-  }
+function placeholdersMatch(en, tr) {
+  return placeholders(en).join("|") === placeholders(tr).join("|");
+}
 
-  const result = await translator.translateText(prepared, "en", targetLang, {
-    tagHandling: "xml",
-    ignoreTags: ["x"],
+// ─── System prompt builder ───────────────────────────────────────────
+//
+// Designed to pass the Opus 4.7 prompt-cache minimum (4096 tokens) so the
+// glossary + style guide is cached across many batch calls per locale.
+// Without that, every batch pays full input cost.
+
+const LOCALE_NOTES = {
+  fr: `Use the formal register ("vous", never "tu") throughout. Use European French (français de France), not Canadian French. Match the regulatory vocabulary used by the CNIL and EU institutions in their French publications: "responsable du traitement", "sous-traitant", "personne concernée", "fournisseur" (provider), "déployeur" (deployer), "système d'IA à haut risque", "obligations de transparence". Prefer concise constructions; avoid the over-passive voice common in literal translations from English. Do not capitalize common nouns mid-sentence.`,
+  de: `Use formal register ("Sie") throughout. Match the regulatory vocabulary used by the EDSA, BfDI, and German-language EU publications: "Verantwortlicher" (controller), "Auftragsverarbeiter" (processor), "betroffene Person" (data subject), "Anbieter" (provider), "Betreiber" (deployer), "Hochrisiko-KI-System", "Transparenzpflichten". Prefer compound nouns where natural in German; avoid Anglicisms when a clear German equivalent exists. Capitalize all common nouns (German rule). Do not anglicize spellings ("Compliance" can stay; "Plattform" not "Platform").`,
+  es: `Use formal register ("usted") throughout. Use European Spanish (español de España), not Latin American variants. Match the regulatory vocabulary used by the AEPD and Spanish-language EU institutions: "responsable del tratamiento", "encargado del tratamiento", "interesado", "proveedor" (provider), "responsable del despliegue" (deployer), "sistema de IA de alto riesgo", "obligaciones de transparencia". Use Iberian conventions (formal "usted", not "ustedes" for impersonal addresses).`,
+  it: `Use formal register ("Lei") throughout. Match the regulatory vocabulary used by the Garante and Italian-language EU institutions: "titolare del trattamento", "responsabile del trattamento", "interessato", "fornitore" (provider), "operatore" / "deployer" (deployer), "sistema di IA ad alto rischio", "obblighi di trasparenza". Italian regulatory texts often retain English terms in parentheses for technical concepts — use sparingly, only where the Italian equivalent is genuinely ambiguous.`,
+};
+
+const EXAMPLES = {
+  fr: [
+    ['"Browse AI Database"', '"Explorer la base de données IA"'],
+    [
+      '"We will email {email} when your report is ready."',
+      '"Nous enverrons un email à {email} dès que votre rapport sera prêt."',
+    ],
+    [
+      '"Every claim is **sourced** and *dated*."',
+      '"Chaque affirmation est **sourcée** et *datée*."',
+    ],
+    ['"Article 26 deployer obligations"', '"Obligations du déployeur (Article 26)"'],
+    [
+      '"VendorScope rates AI vendors against the EU AI Act."',
+      "\"VendorScope évalue les fournisseurs d'IA au regard de l'EU AI Act.\"",
+    ],
+  ],
+  de: [
+    ['"Browse AI Database"', '"KI-Datenbank durchsuchen"'],
+    [
+      '"We will email {email} when your report is ready."',
+      '"Wir senden eine E-Mail an {email}, sobald Ihr Bericht bereit ist."',
+    ],
+    ['"Every claim is **sourced** and *dated*."', '"Jede Aussage ist **quellenbasiert** und *datiert*."'],
+    ['"Article 26 deployer obligations"', '"Pflichten des Betreibers (Artikel 26)"'],
+    [
+      '"VendorScope rates AI vendors against the EU AI Act."',
+      '"VendorScope bewertet KI-Anbieter im Hinblick auf den EU AI Act."',
+    ],
+  ],
+  es: [
+    ['"Browse AI Database"', '"Explorar base de datos de IA"'],
+    [
+      '"We will email {email} when your report is ready."',
+      '"Enviaremos un correo a {email} cuando su informe esté listo."',
+    ],
+    ['"Every claim is **sourced** and *dated*."', '"Cada afirmación está **referenciada** y *fechada*."'],
+    [
+      '"Article 26 deployer obligations"',
+      '"Obligaciones del responsable del despliegue (Artículo 26)"',
+    ],
+    [
+      '"VendorScope rates AI vendors against the EU AI Act."',
+      '"VendorScope evalúa proveedores de IA frente al EU AI Act."',
+    ],
+  ],
+  it: [
+    ['"Browse AI Database"', '"Esplora database IA"'],
+    [
+      '"We will email {email} when your report is ready."',
+      "\"Invieremo un'email a {email} non appena il rapporto sarà pronto.\"",
+    ],
+    ['"Every claim is **sourced** and *dated*."', '"Ogni affermazione è **basata su fonti** e *datata*."'],
+    ['"Article 26 deployer obligations"', "\"Obblighi dell'operatore (Articolo 26)\""],
+    [
+      '"VendorScope rates AI vendors against the EU AI Act."',
+      "\"VendorScope valuta i fornitori di IA rispetto all'EU AI Act.\"",
+    ],
+  ],
+};
+
+function buildSystemPrompt(locale, glossary) {
+  const localeName = LOCALE_NAMES[locale];
+  const examples = EXAMPLES[locale]
+    .map(([en, tr], i) => `Example ${i + 1}:\n  EN: ${en}\n  ${locale.toUpperCase()}: ${tr}`)
+    .join("\n\n");
+
+  return [
+    {
+      type: "text",
+      text: `You are a senior professional translator specialising in EU technology, data protection, and AI regulation. You are translating UI strings, marketing copy, and regulatory content for VendorScope — a B2B intelligence platform that rates AI vendors against EU compliance frameworks (AI Act, GDPR, DORA, NIS2). Your audience: Data Protection Officers, CISOs, procurement leads, and compliance professionals at European mid-cap and CAC 40 enterprises.
+
+# Target language: ${localeName}
+
+${LOCALE_NOTES[locale]}
+
+# General translation rules
+
+1. **Match register and tone.** This is a serious procurement-grade product. The voice is research-firm: incisive, sourced, decisive. Avoid casual phrasing, exclamation marks, hype words ("revolutionary", "game-changing"), and bureaucratese. Mirror the directness of the English source.
+2. **Preserve placeholder tokens verbatim.** Tokens like \`{name}\`, \`{count}\`, \`{systemName}\`, \`{lang}\`, \`{date}\` MUST appear unchanged in the translation. Do not translate the inside of the braces. Do not add or remove placeholders. Do not add space inside braces.
+3. **Preserve markdown and inline formatting.** \`**bold**\`, \`*italic*\`, \`\`code\`\`, \`[link](url)\`, headings (\`##\`), and HTML tags (\`<strong>\`, \`<em>\`, \`<a>\`) must remain structurally identical. Translate the text content inside them, not the markup.
+4. **Preserve URLs, email addresses, file paths, and IDs unchanged.** Same for ISO codes (ISO 27001), regulation numbers (Article 26, Regulation (EU) 2024/1689), and dates in ISO format (2026-08-02).
+5. **Use industry-standard regulatory vocabulary.** Where the EU has an official ${localeName} translation of a regulation (AI Act, GDPR, DORA), use the exact terms from the official ${localeName} text — not literal English translations.
+6. **Length and density.** Match the source length within ±20%. UI strings (button labels, badges, table headers) MUST stay short — translate "Search" as one word in ${localeName}, not a phrase.
+7. **Capitalization.** Follow ${localeName} conventions, not English. Do not capitalize every word in headings — use ${localeName} sentence case where convention requires it.
+8. **Numbers and units.** Use ${localeName} number formatting (decimal separator, thousands separator) where it appears in user-facing copy, but leave numbers in tables, IDs, and code unchanged.
+9. **No hallucinations.** Translate only what is in the source. Do not add explanations, footnotes, qualifiers, or extra context. If the source is ambiguous, mirror that ambiguity rather than inventing meaning.
+
+# Do-not-translate glossary
+
+These exact terms MUST appear unchanged in the ${localeName} translation. Do not translate them, do not inflect them, do not transliterate them:
+
+${glossary.map((t) => `  - ${t}`).join("\n")}
+
+# Worked examples
+
+These illustrate the style. Use them as reference for register, length, and how to handle placeholders, markdown, and glossary terms — not as direct templates for unrelated strings.
+
+${examples}
+
+# Output format
+
+You will receive a JSON object mapping arbitrary string keys to English source strings. Return ONLY a JSON object with the same keys mapping to ${localeName} translations.
+
+- No preamble, no markdown fences, no explanation, no surrounding prose.
+- The first character of your response MUST be \`{\`.
+- The last character MUST be \`}\`.
+- The set of keys in your output MUST be identical to the input keys — do not add, omit, rename, or reorder beyond what JSON allows.
+- Every value MUST be a JSON string. Escape internal quotes and newlines as \\" and \\n.
+- If a source string is too short or ambiguous to translate confidently, still produce your best ${localeName} rendering. Never return the English source unchanged unless it is a glossary term.`,
+      cache_control: { type: "ephemeral" },
+    },
+  ];
+}
+
+// ─── Claude call (one batch) ─────────────────────────────────────────
+async function translateBatch(client, model, sourceObj, systemPrompt) {
+  const userMsg = `Translate the values in the following JSON object. Return only the JSON object with the same keys.\n\n${JSON.stringify(sourceObj, null, 2)}`;
+
+  const response = await client.messages.create({
+    model,
+    max_tokens: 16000,
+    system: systemPrompt,
+    messages: [{ role: "user", content: userMsg }],
   });
-  const translated = Array.isArray(result) ? result[0].text : result.text;
-  // Strip the <x> wrappers
-  return translated.replace(/<x(?:\s+id="[^"]*")?>([^<]*)<\/x>/g, "$1");
+
+  const text = response.content
+    .filter((b) => b.type === "text")
+    .map((b) => b.text)
+    .join("\n")
+    .trim();
+
+  // Be defensive about model output: raw JSON, fenced, or text-with-JSON.
+  let jsonStr = text;
+  const fence = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+  if (fence) {
+    jsonStr = fence[1];
+  } else {
+    const first = text.indexOf("{");
+    const last = text.lastIndexOf("}");
+    if (first !== -1 && last > first) jsonStr = text.slice(first, last + 1);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonStr);
+  } catch (e) {
+    throw new Error(
+      `Could not parse model output as JSON.\nFirst 500 chars of response:\n${text.slice(0, 500)}\n\nParse error: ${e.message}`,
+    );
+  }
+
+  return { translations: parsed, usage: response.usage };
 }
 
-// ─── Dictionary backfill ─────────────────────────────────────────────
-
-async function backfillDictionary(locale, en, glossaryTerms) {
-  const deeplLang = DEEPL_LOCALE_MAP[locale];
-  if (!deeplLang) {
-    console.warn(`  [warn] No DeepL mapping for "${locale}", skipping`);
-    return 0;
+// ─── Validate translated batch ───────────────────────────────────────
+function validateBatch(source, translations, glossarySet) {
+  const issues = [];
+  const fixed = {};
+  for (const key of Object.keys(source)) {
+    const en = source[key];
+    const tr = translations[key];
+    if (typeof tr !== "string") {
+      issues.push(`  [${key}] missing or non-string in response — keeping English source`);
+      fixed[key] = en;
+      continue;
+    }
+    if (!placeholdersMatch(en, tr)) {
+      issues.push(
+        `  [${key}] placeholder mismatch (en: ${JSON.stringify(placeholders(en))}, tr: ${JSON.stringify(placeholders(tr))}) — keeping English source`,
+      );
+      fixed[key] = en;
+      continue;
+    }
+    fixed[key] = tr;
+    // Glossary whole-word presence check (warning only — doesn't reject)
+    for (const term of glossarySet) {
+      if (typeof term !== "string" || term.length < 3) continue;
+      const re = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`);
+      if (re.test(en) && !tr.includes(term)) {
+        issues.push(`  [${key}] glossary term "${term}" missing in translation`);
+        break;
+      }
+    }
   }
-  const dictPath = path.join(DICT_DIR, `${locale}.json`);
-  const dict = fs.existsSync(dictPath) ? loadJson(dictPath) : {};
-  const keys = leafKeys(en);
+  return { fixed, issues };
+}
+
+// ─── Dictionary translation ──────────────────────────────────────────
+async function translateDictionary(client, model, locale, enDict, glossarySet, dryRun) {
+  const targetPath = path.join(DICT_DIR, `${locale}.json`);
+  const targetDict = fs.existsSync(targetPath)
+    ? JSON.parse(fs.readFileSync(targetPath, "utf8"))
+    : {};
+
+  const enFlat = flatten(enDict);
+  const targetFlat = flatten(targetDict);
+  const toTranslate = findKeysToTranslate(enFlat, targetFlat, glossarySet);
+  const keys = Object.keys(toTranslate);
+
+  if (keys.length === 0) {
+    console.log(`  [${locale}] dictionary up to date.`);
+    return { count: 0, usage: emptyUsage() };
+  }
+
+  console.log(`  [${locale}] ${keys.length} dictionary keys to translate...`);
+  if (dryRun) return { count: keys.length, usage: emptyUsage() };
+
+  const systemPrompt = buildSystemPrompt(locale, Array.from(glossarySet));
+
+  const BATCH_SIZE = 40;
+  const totalUsage = emptyUsage();
   let translated = 0;
 
-  for (const key of keys) {
-    const enVal = getByPath(en, key);
-    if (typeof enVal !== "string") continue;
-    const current = getByPath(dict, key);
-    const needsFill =
-      current === undefined ||
-      current === null ||
-      (typeof current === "string" && (current.trim() === "" || current === enVal)) ;
+  for (let i = 0; i < keys.length; i += BATCH_SIZE) {
+    const slice = keys.slice(i, i + BATCH_SIZE);
+    const chunk = Object.fromEntries(slice.map((k) => [k, toTranslate[k]]));
+    const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+    const totalBatches = Math.ceil(keys.length / BATCH_SIZE);
 
-    if (!needsFill) continue;
-    // Don't "translate" glossary-whole strings — keep as English
-    if (glossaryTerms.has(enVal.trim())) {
-      setByPath(dict, key, enVal);
-      continue;
+    process.stdout.write(`    [${locale}] dict batch ${batchNum}/${totalBatches} (${slice.length} keys)...`);
+
+    const { translations, usage } = await translateBatch(client, model, chunk, systemPrompt);
+    addUsage(totalUsage, usage);
+
+    const { fixed, issues } = validateBatch(chunk, translations, glossarySet);
+    for (const key of Object.keys(fixed)) {
+      setByPath(targetDict, key, fixed[key]);
+      translated += 1;
     }
-    try {
-      const out = await translateString(enVal, deeplLang, glossaryTerms);
-      setByPath(dict, key, out);
-      translated++;
-      if (translated % 20 === 0) process.stdout.write(`.`);
-    } catch (err) {
-      console.error(`\n  [error] ${locale} ${key}:`, err.message || err);
-    }
+
+    process.stdout.write(
+      ` cache_read=${usage.cache_read_input_tokens || 0}, create=${usage.cache_creation_input_tokens || 0}, in=${usage.input_tokens}, out=${usage.output_tokens}\n`,
+    );
+    for (const issue of issues) console.log(issue);
+
+    // Persist progressively so a mid-run failure doesn't lose work
+    fs.writeFileSync(targetPath, JSON.stringify(targetDict, null, 2) + "\n");
   }
-  writeJson(dictPath, dict);
-  return translated;
+
+  return { count: translated, usage: totalUsage };
 }
 
-// ─── Reports backfill ────────────────────────────────────────────────
+// ─── Reports translation ─────────────────────────────────────────────
+const REPORT_TRANSLATABLE_FIELDS = ["title", "subtitle", "readingTime"];
+const SECTION_TRANSLATABLE_FIELDS = ["heading", "content"];
 
-async function backfillReports(locale, enReports, glossaryTerms) {
-  if (!fs.existsSync(REPORTS_DIR)) return 0;
-  const deeplLang = DEEPL_LOCALE_MAP[locale];
-  if (!deeplLang) return 0;
-  const outPath = path.join(REPORTS_DIR, `${locale}.json`);
-  const existing = fs.existsSync(outPath) ? loadJson(outPath) : [];
-  const byslug = new Map(existing.map((r) => [r.slug, r]));
-  let translatedCount = 0;
-  const out = [];
+function collectReportKeys(enReports, targetReports, glossarySet) {
+  const sourceMap = {};
+  const targetBySlug = new Map(targetReports.map((r) => [r.slug, r]));
 
-  for (const report of enReports) {
-    if (byslug.has(report.slug)) {
-      out.push(byslug.get(report.slug));
-      continue;
+  for (const enReport of enReports) {
+    const tgtReport = targetBySlug.get(enReport.slug);
+
+    for (const field of REPORT_TRANSLATABLE_FIELDS) {
+      const enVal = enReport[field];
+      if (typeof enVal !== "string" || !enVal.trim()) continue;
+      if (glossarySet.has(enVal.trim())) continue;
+      const tgtVal = tgtReport ? tgtReport[field] : undefined;
+      if (typeof tgtVal === "string" && tgtVal.trim() && tgtVal !== enVal) continue;
+      sourceMap[`${enReport.slug}::report::${field}`] = enVal;
     }
-    // Translate full report
-    process.stdout.write(`\n  [${locale}] translating report "${report.slug}"`);
-    const tr = { ...report, autoTranslated: true };
-    tr.title = await translateString(report.title, deeplLang, glossaryTerms);
-    tr.subtitle = await translateString(report.subtitle, deeplLang, glossaryTerms);
-    tr.sections = [];
-    for (const section of report.sections) {
-      const translatedSection = { id: section.id };
-      translatedSection.heading = await translateString(
-        section.heading,
-        deeplLang,
-        glossaryTerms
-      );
-      translatedSection.content = await translateString(
-        section.content,
-        deeplLang,
-        glossaryTerms
-      );
-      tr.sections.push(translatedSection);
-      process.stdout.write(".");
+
+    if (Array.isArray(enReport.sections)) {
+      for (const enSec of enReport.sections) {
+        const tgtSec =
+          tgtReport && Array.isArray(tgtReport.sections)
+            ? tgtReport.sections.find((s) => s && s.id === enSec.id)
+            : undefined;
+        for (const field of SECTION_TRANSLATABLE_FIELDS) {
+          const enVal = enSec[field];
+          if (typeof enVal !== "string" || !enVal.trim()) continue;
+          if (glossarySet.has(enVal.trim())) continue;
+          const tgtVal = tgtSec ? tgtSec[field] : undefined;
+          if (typeof tgtVal === "string" && tgtVal.trim() && tgtVal !== enVal) continue;
+          sourceMap[`${enReport.slug}::section::${enSec.id}::${field}`] = enVal;
+        }
+      }
     }
-    out.push(tr);
-    translatedCount++;
   }
-  writeJson(outPath, out);
-  return translatedCount;
+  return sourceMap;
+}
+
+function applyReportTranslations(enReports, targetReports, translations) {
+  const targetBySlug = new Map(targetReports.map((r) => [r.slug, r]));
+  const result = [];
+
+  for (const enReport of enReports) {
+    let out = targetBySlug.get(enReport.slug);
+    if (!out) {
+      out = { ...enReport, autoTranslated: true };
+      if (Array.isArray(enReport.sections)) {
+        out.sections = enReport.sections.map((s) => ({ ...s }));
+      }
+    } else {
+      // Keep stable fields in sync with en
+      out.slug = enReport.slug;
+      out.category = enReport.category;
+      out.date = enReport.date;
+      out.author = enReport.author;
+      // Reconcile sections array, preserving existing translations
+      if (Array.isArray(enReport.sections)) {
+        const tgtBySecId = new Map(
+          (Array.isArray(out.sections) ? out.sections : []).map((s) => [s.id, s]),
+        );
+        out.sections = enReport.sections.map((enSec) => tgtBySecId.get(enSec.id) || { ...enSec });
+      }
+      // Mark as auto-translated unless a human edited it (heuristic: if it was
+      // already flagged, keep the flag; if not, set to true since we touched it)
+      if (out.autoTranslated === undefined) out.autoTranslated = true;
+    }
+
+    for (const field of REPORT_TRANSLATABLE_FIELDS) {
+      const k = `${enReport.slug}::report::${field}`;
+      if (k in translations) out[field] = translations[k];
+    }
+    if (Array.isArray(out.sections)) {
+      for (const sec of out.sections) {
+        for (const field of SECTION_TRANSLATABLE_FIELDS) {
+          const k = `${enReport.slug}::section::${sec.id}::${field}`;
+          if (k in translations) sec[field] = translations[k];
+        }
+      }
+    }
+
+    result.push(out);
+  }
+  return result;
+}
+
+async function translateReports(client, model, locale, enReports, glossarySet, dryRun) {
+  const targetPath = path.join(REPORTS_DIR, `${locale}.json`);
+  const targetReports = fs.existsSync(targetPath)
+    ? JSON.parse(fs.readFileSync(targetPath, "utf8"))
+    : [];
+
+  const sourceMap = collectReportKeys(enReports, targetReports, glossarySet);
+  const keys = Object.keys(sourceMap);
+
+  if (keys.length === 0) {
+    console.log(`  [${locale}] reports up to date.`);
+    return { count: 0, usage: emptyUsage() };
+  }
+
+  console.log(`  [${locale}] ${keys.length} report fields to translate...`);
+  if (dryRun) return { count: keys.length, usage: emptyUsage() };
+
+  const systemPrompt = buildSystemPrompt(locale, Array.from(glossarySet));
+
+  // Section content is large (some sections > 3K tokens). Smaller batches.
+  const BATCH_SIZE = 6;
+  const totalUsage = emptyUsage();
+  const allTranslations = {};
+
+  for (let i = 0; i < keys.length; i += BATCH_SIZE) {
+    const slice = keys.slice(i, i + BATCH_SIZE);
+    const chunk = Object.fromEntries(slice.map((k) => [k, sourceMap[k]]));
+    const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+    const totalBatches = Math.ceil(keys.length / BATCH_SIZE);
+
+    process.stdout.write(
+      `    [${locale}] report batch ${batchNum}/${totalBatches} (${slice.length} fields)...`,
+    );
+
+    const { translations, usage } = await translateBatch(client, model, chunk, systemPrompt);
+    addUsage(totalUsage, usage);
+
+    const { fixed, issues } = validateBatch(chunk, translations, glossarySet);
+    Object.assign(allTranslations, fixed);
+
+    process.stdout.write(
+      ` cache_read=${usage.cache_read_input_tokens || 0}, create=${usage.cache_creation_input_tokens || 0}, in=${usage.input_tokens}, out=${usage.output_tokens}\n`,
+    );
+    for (const issue of issues) console.log(issue);
+
+    // Persist progressively
+    const merged = applyReportTranslations(enReports, targetReports, allTranslations);
+    fs.writeFileSync(targetPath, JSON.stringify(merged, null, 2) + "\n");
+  }
+
+  return { count: keys.length, usage: totalUsage };
+}
+
+// ─── Usage helpers ───────────────────────────────────────────────────
+function emptyUsage() {
+  return {
+    input_tokens: 0,
+    output_tokens: 0,
+    cache_creation_input_tokens: 0,
+    cache_read_input_tokens: 0,
+  };
+}
+
+function addUsage(acc, u) {
+  acc.input_tokens += u.input_tokens || 0;
+  acc.output_tokens += u.output_tokens || 0;
+  acc.cache_creation_input_tokens += u.cache_creation_input_tokens || 0;
+  acc.cache_read_input_tokens += u.cache_read_input_tokens || 0;
+}
+
+function estimateCost(usage, model) {
+  const PRICES = {
+    "claude-opus-4-7": { input: 5, output: 25 },
+    "claude-opus-4-6": { input: 5, output: 25 },
+    "claude-sonnet-4-6": { input: 3, output: 15 },
+    "claude-haiku-4-5": { input: 1, output: 5 },
+  };
+  const p = PRICES[model] || PRICES["claude-opus-4-7"];
+  return (
+    (usage.input_tokens * p.input) / 1_000_000 +
+    (usage.cache_creation_input_tokens * p.input * 1.25) / 1_000_000 +
+    (usage.cache_read_input_tokens * p.input * 0.1) / 1_000_000 +
+    (usage.output_tokens * p.output) / 1_000_000
+  );
 }
 
 // ─── Main ────────────────────────────────────────────────────────────
-
 async function main() {
-  await initDeepL();
-  const glossary = fs.existsSync(GLOSSARY_FILE) ? loadJson(GLOSSARY_FILE) : { doNotTranslate: [] };
-  const glossaryTerms = new Set(glossary.doNotTranslate || []);
+  loadEnvLocal();
+  const args = parseArgs();
 
-  const en = loadJson(path.join(DICT_DIR, "en.json"));
-  const targetLocales = discoverLocales().filter((l) => l !== "en");
-
-  console.log(`Backfilling dictionaries into ${targetLocales.length} locales…\n`);
-  for (const locale of targetLocales) {
-    process.stdout.write(`  [${locale}] `);
-    const n = await backfillDictionary(locale, en, glossaryTerms);
-    console.log(` ${n} key${n === 1 ? "" : "s"} translated`);
+  if (!process.env.ANTHROPIC_API_KEY && !args.dryRun) {
+    console.error(
+      "✗ ANTHROPIC_API_KEY is not set. Add it to .env.local or export it,\n" +
+        "  or run with --dry-run to see what would be translated.",
+    );
+    process.exit(1);
   }
 
-  // Reports (optional — only if src/data/reports/en.json exists)
+  if (!fs.existsSync(GLOSSARY_FILE)) {
+    console.error(`✗ Missing glossary at ${GLOSSARY_FILE}`);
+    process.exit(1);
+  }
+  const glossary = JSON.parse(fs.readFileSync(GLOSSARY_FILE, "utf8"));
+  const glossarySet = new Set(glossary.doNotTranslate || []);
+
+  const enDictPath = path.join(DICT_DIR, "en.json");
+  if (!fs.existsSync(enDictPath)) {
+    console.error("✗ Missing src/dictionaries/en.json (source of truth)");
+    process.exit(1);
+  }
+  const enDict = JSON.parse(fs.readFileSync(enDictPath, "utf8"));
+
   const enReportsPath = path.join(REPORTS_DIR, "en.json");
-  if (fs.existsSync(enReportsPath)) {
-    console.log(`\nBackfilling reports into ${targetLocales.length} locales…`);
-    const enReports = loadJson(enReportsPath);
-    for (const locale of targetLocales) {
-      const n = await backfillReports(locale, enReports, glossaryTerms);
-      if (n > 0) console.log(`\n  [${locale}] ${n} report${n === 1 ? "" : "s"} translated`);
+  const enReports = fs.existsSync(enReportsPath)
+    ? JSON.parse(fs.readFileSync(enReportsPath, "utf8"))
+    : null;
+
+  const client = args.dryRun ? null : new Anthropic();
+  const totalUsage = emptyUsage();
+  let totalCount = 0;
+
+  console.log(`\nUsing model: ${args.model}`);
+  console.log(`Locales: ${args.locales.join(", ")}`);
+  console.log(`Glossary terms: ${glossarySet.size}`);
+  if (args.dryRun) console.log(`(dry-run mode — no API calls)`);
+
+  if (args.dicts) {
+    console.log(`\n=== Translating dictionaries ===`);
+    for (const locale of args.locales) {
+      const { count, usage } = await translateDictionary(
+        client,
+        args.model,
+        locale,
+        enDict,
+        glossarySet,
+        args.dryRun,
+      );
+      totalCount += count;
+      addUsage(totalUsage, usage);
     }
-  } else {
-    console.log(`\n(Skipping reports backfill: src/data/reports/en.json not found)`);
   }
 
-  console.log("\n\u2713 i18n-translate done");
+  if (args.reports && enReports) {
+    console.log(`\n=== Translating reports ===`);
+    for (const locale of args.locales) {
+      const { count, usage } = await translateReports(
+        client,
+        args.model,
+        locale,
+        enReports,
+        glossarySet,
+        args.dryRun,
+      );
+      totalCount += count;
+      addUsage(totalUsage, usage);
+    }
+  } else if (args.reports && !enReports) {
+    console.log(`\n(Skipping reports: src/data/reports/en.json not found)`);
+  }
+
+  console.log(`\n=== Done ===`);
+  console.log(`Translated: ${totalCount} fields/keys`);
+  if (!args.dryRun) {
+    console.log(
+      `Tokens — input: ${totalUsage.input_tokens.toLocaleString()}, ` +
+        `cache_create: ${totalUsage.cache_creation_input_tokens.toLocaleString()}, ` +
+        `cache_read: ${totalUsage.cache_read_input_tokens.toLocaleString()}, ` +
+        `output: ${totalUsage.output_tokens.toLocaleString()}`,
+    );
+    console.log(`Estimated cost: $${estimateCost(totalUsage, args.model).toFixed(4)}`);
+
+    const totalIn =
+      totalUsage.input_tokens +
+      totalUsage.cache_creation_input_tokens +
+      totalUsage.cache_read_input_tokens;
+    if (totalIn > 0) {
+      const cacheRate = ((totalUsage.cache_read_input_tokens / totalIn) * 100).toFixed(1);
+      console.log(`Cache hit rate: ${cacheRate}% of input tokens`);
+    }
+  }
+  console.log(`✓ i18n-translate done`);
 }
 
 main().catch((err) => {
-  console.error("\u2717 i18n-translate failed:", err);
+  console.error("\n✗ Translation failed:", err.message);
+  if (err instanceof Anthropic.APIError) {
+    console.error(`  HTTP ${err.status} ${err.error?.error?.type || ""}`);
+  }
   process.exit(1);
 });
