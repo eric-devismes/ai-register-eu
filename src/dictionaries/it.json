@@ -386,7 +386,7 @@
       "description": "Ottieni raccomandazioni personalizzate dei 3 migliori sistemi AI in base al tuo caso d'uso, settore e requisiti di conformità. Podio oro, argento e bronzo con motivazione del punteggio."
     },
     "rfpEngine": {
-      "title": "RFP/RFI Answer Engine",
+      "title": "Motore di risposta RFP/RFI",
       "description": "Incolla le tue domande RFP/RFI e genera risposte bozza professionali basate su intelligence di conformità dei sistemi AI. Funzionalità Enterprise per i team di procurement."
     },
     "checklist": {

@@ -1575,7 +1575,7 @@
     "acknowledge": "Reconocimiento:",
     "mitigate": "Mitigación:",
     "resolve": "Resolución:",
-    "postMortem": "Post-mortem:",
+    "postMortem": "Análisis post mortem:",
     "p2Label": "P2 — Mayor",
     "p2DefinitionBody": "Degradación significativa de la funcionalidad principal de la plataforma que afecta a la mayoría de los usuarios, o evento de seguridad que no implica un compromiso confirmado de datos personales pero requiere investigación inmediata.",
     "p2Example1": "Problemas de conectividad con la base de datos que provocan errores",

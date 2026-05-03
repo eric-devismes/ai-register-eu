@@ -1346,7 +1346,7 @@
     "processorResendPurpose": "Acheminement des emails",
     "processorResendData": "Adresse email, contenu des emails",
     "processorResendLocation": "États-Unis (avec CCT UE)",
-    "processorAnthropic": "Anthropic (Claude API)",
+    "processorAnthropic": "Anthropic (API Claude)",
     "processorAnthropicPurpose": "Inférence IA pour le chatbot et l'outil de comparaison",
     "processorAnthropicData": "Questions des utilisateurs (sans email ni nom) transmises via API avec un contexte de rôle/secteur. Les données ne sont pas utilisées pour l'entraînement des modèles, conformément aux conditions de l'API Anthropic.",
     "processorAnthropicLocation": "États-Unis (avec CCT UE)",

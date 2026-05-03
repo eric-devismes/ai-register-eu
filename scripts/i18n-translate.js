@@ -382,9 +382,13 @@ function validateBatch(source, translations, glossarySet) {
       continue;
     }
     fixed[key] = tr;
-    // Glossary whole-word presence check (warning only — doesn't reject)
+    // Glossary whole-word presence check (warning only — doesn't reject).
+    // Skip short terms (Email/Home/DPA/MDR/etc.) — those false-positive a lot
+    // because translators legitimately render them in the target language. The
+    // brand names that genuinely must stay verbatim (VendorScope, OpenAI,
+    // Anthropic, Salesforce…) are all 6+ chars.
     for (const term of glossarySet) {
-      if (typeof term !== "string" || term.length < 3) continue;
+      if (typeof term !== "string" || term.length < 6) continue;
       const re = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`);
       if (re.test(en) && !tr.includes(term)) {
         issues.push(`  [${key}] glossary term "${term}" missing in translation`);
