@@ -64,7 +64,7 @@ Expected cost: **~$2–3 total**. Expected duration: **~15–25 min**. Output la
 
 Five items in this exact sequence. Nothing ships until 0–3 are live; nothing is promoted until 4 is done.
 
-0. **Methodology page rewritten** (Bojana/DPO veto — approved). Three promises visible: every claim has a source, every claim has a date, anyone can challenge any claim. Source hierarchy (Tier 1 trust portal → Tier 4 regulatory filings). Refresh cadence + review SLAs public. DPOs read methodology first; it is the reason they trust the landing page.
+0. **Methodology page rewritten** ✅ (verified 2026-05-03, Bojana/DPO veto satisfied). Three promises live (sourced/dated/challengeable), Tier 1-4 hierarchy with examples, refresh cadence (weekly diff / 90-day re-verify / 48h escalation), challenge-a-claim 3-step flow. Sourcing sub-page documents the 5-step pipeline + 4 guarantees. `/methodology` and `/methodology/sourcing` both live in 14 locales.
 1. **Evidence backbone filled for ~30 AI Act-exposed vendors** (from Phase 2 top-20 + Wave 1 enterprise additions). The 74 "active" catalog without sources is half the launch risk.
 2. **AI Act landing page** — 30-second value prop, buyer deployer obligations (Article 26) mapped to vendor provider evidence (Article 16) on page one. This is the wedge; nothing else we do is unique.
 3. **Live checkout end-to-end** — real €19 Pro payment, confirmation, Pro-gated page accessible. Pricing page also shows **Enterprise €199 tier from Day 1** (Amy/CFO ask — approved); don't launch with only a Pro tier if unit economics force Enterprise eventually.
