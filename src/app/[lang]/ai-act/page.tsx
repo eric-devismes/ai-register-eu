@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AIActScopeChecker from "@/components/aiact/AIActScopeChecker";
 import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
@@ -130,8 +131,8 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Scope — define what counts as high-risk before anything else */}
-        <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+        {/* Scope — 2-column IN vs OUT comparison */}
+        <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
@@ -145,62 +146,119 @@ export default async function AiActPage({
               </p>
             </div>
 
-            {/* Two paths */}
+            {/* IN | OUT side-by-side */}
             <div className="mt-12 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
-                  {t("aiAct.scope.path1Label")}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
-                  {t("aiAct.scope.path1Title")}
-                </h3>
+              {/* IN scope column */}
+              <div className="rounded-xl border-2 border-[#ffc107] bg-[#fffaeb] p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ffc107] text-lg font-bold text-[#0d1b3e]">
+                    ✓
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[#0d1b3e]">
+                      {t("aiAct.scope.inLabel")}
+                    </p>
+                    <h3 className="text-lg font-bold text-[#0d1b3e]">
+                      {t("aiAct.scope.inSubtitle")}
+                    </h3>
+                  </div>
+                </div>
                 <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                  {t("aiAct.scope.path1Body")}
+                  {t("aiAct.scope.inDesc")}
                 </p>
-                <p className="mt-3 text-sm italic text-gray-500">
-                  {t("aiAct.scope.path1Example")}
-                </p>
-                <p className="mt-3 text-xs font-medium text-[#003399]">
-                  {t("aiAct.scope.path1Deadline")}
-                </p>
+
+                {/* Path 1 */}
+                <div className="mt-5 rounded-lg border border-[#ffc107]/40 bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                    {t("aiAct.scope.path1Label")}
+                  </p>
+                  <h4 className="mt-1 text-base font-semibold text-[#0d1b3e]">
+                    {t("aiAct.scope.path1Title")}
+                  </h4>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t("aiAct.scope.path1Body")}
+                  </p>
+                  <p className="mt-2 text-xs italic text-gray-500">
+                    {t("aiAct.scope.path1Example")}
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-[#003399]">
+                    {t("aiAct.scope.path1Deadline")}
+                  </p>
+                </div>
+
+                {/* Path 2 */}
+                <div className="mt-4 rounded-lg border border-[#ffc107]/40 bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                    {t("aiAct.scope.path2Label")}
+                  </p>
+                  <h4 className="mt-1 text-base font-semibold text-[#0d1b3e]">
+                    {t("aiAct.scope.path2Title")}
+                  </h4>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t("aiAct.scope.path2Body")}
+                  </p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                    {t("aiAct.scope.path2Intro")}
+                  </p>
+                  <ol className="mt-2 space-y-1.5 text-xs text-gray-700">
+                    {annex3Categories.map((n) => (
+                      <li key={n} className="flex gap-2">
+                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-[9px] font-semibold text-[#003399]">
+                          {n}
+                        </span>
+                        <span>
+                          <span className="font-semibold text-[#0d1b3e]">
+                            {t(`aiAct.scope.annex3Cat${n}`)}
+                          </span>
+                          <span className="text-gray-600">
+                            {" — "}
+                            {t(`aiAct.scope.annex3Cat${n}Desc`)}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
 
-              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
-                  {t("aiAct.scope.path2Label")}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
-                  {t("aiAct.scope.path2Title")}
-                </h3>
+              {/* OUT of scope column */}
+              <div className="rounded-xl border-2 border-gray-300 bg-white p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-lg font-bold text-gray-600">
+                    ✕
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gray-600">
+                      {t("aiAct.scope.outLabel")}
+                    </p>
+                    <h3 className="text-lg font-bold text-[#0d1b3e]">
+                      {t("aiAct.scope.outSubtitle")}
+                    </h3>
+                  </div>
+                </div>
                 <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                  {t("aiAct.scope.path2Body")}
+                  {t("aiAct.scope.outDesc")}
                 </p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  {t("aiAct.scope.path2Intro")}
+                <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  {t("aiAct.scope.outIntro")}
                 </p>
-                <ol className="mt-2 space-y-2 text-sm text-gray-700">
-                  {annex3Categories.map((n) => (
-                    <li key={n} className="flex gap-3">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-[10px] font-semibold text-[#003399]">
-                        {n}
-                      </span>
-                      <span>
-                        <span className="font-semibold text-[#0d1b3e]">
-                          {t(`aiAct.scope.annex3Cat${n}`)}
-                        </span>
-                        <span className="text-gray-600">
-                          {" — "}
-                          {t(`aiAct.scope.annex3Cat${n}Desc`)}
-                        </span>
-                      </span>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+                    <li key={n} className="flex gap-2">
+                      <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" aria-hidden />
+                      <span>{t(`aiAct.scope.outEx${n}`)}</span>
                     </li>
                   ))}
-                </ol>
+                </ul>
+                <div className="mt-5 rounded-md border border-orange-200 bg-orange-50 p-3 text-sm text-[#0d1b3e]">
+                  <span className="font-semibold">Caveat: </span>
+                  {t("aiAct.scope.outCaveat")}
+                </div>
               </div>
             </div>
 
             {/* Carve-out */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6">
               <h3 className="text-base font-semibold text-[#0d1b3e]">
                 {t("aiAct.scope.carveOutTitle")}
               </h3>
@@ -221,10 +279,24 @@ export default async function AiActPage({
               </p>
             </div>
 
-            {/* Not in scope */}
-            <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-gray-600 leading-relaxed">
-              {t("aiAct.scope.notInScope")}
-            </p>
+            {/* Use case checker */}
+            <div className="mt-12">
+              <AIActScopeChecker
+                lang={lang}
+                badge={t("aiAct.scope.checkerBadge")}
+                title={t("aiAct.scope.checkerTitle")}
+                desc={t("aiAct.scope.checkerDesc")}
+                placeholder={t("aiAct.scope.checkerPlaceholder")}
+                submitLabel={t("aiAct.scope.checkerSubmit")}
+                workingLabel={t("aiAct.scope.checkerWorking")}
+                errorLabel={t("aiAct.scope.checkerError")}
+                resultIn={t("aiAct.scope.checkerResultIn")}
+                resultOut={t("aiAct.scope.checkerResultOut")}
+                resultBorderline={t("aiAct.scope.checkerResultBorderline")}
+                citationsLabel={t("aiAct.scope.checkerCitations")}
+                disclaimer={t("aiAct.scope.checkerNote")}
+              />
+            </div>
           </div>
         </section>
 
