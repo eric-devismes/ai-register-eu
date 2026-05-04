@@ -20,6 +20,7 @@ const milestones = [1, 2, 3, 4] as const;
 const nextSteps = [1, 2, 3] as const;
 const annex3Categories = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 const carveOuts = [1, 2, 3, 4] as const;
+const structureArticles = ["art5", "art6", "art16", "art26", "art50"] as const;
 
 export default async function AiActPage({
   params,
@@ -85,8 +86,52 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Scope — define what counts as high-risk before anything else */}
+        {/* Structure — quick map of the AI Act, introduces the articles */}
         <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("aiAct.structure.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("aiAct.structure.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.structure.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 mx-auto max-w-4xl space-y-3">
+              {structureArticles.map((art) => (
+                <div
+                  key={art}
+                  className={`rounded-xl border p-5 ${
+                    art === "art26"
+                      ? "border-[#ffc107] bg-[#fffaeb] ring-1 ring-[#ffc107]/40"
+                      : "border-gray-200 bg-white"
+                  }`}
+                >
+                  <h3 className="text-base font-semibold text-[#0d1b3e]">
+                    {t(`aiAct.structure.${art}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t(`aiAct.structure.${art}Body`)}
+                  </p>
+                </div>
+              ))}
+              <p className="pt-2 text-sm italic text-gray-500">
+                {t("aiAct.structure.annexNote")}
+              </p>
+            </div>
+
+            <p className="mx-auto mt-10 max-w-3xl text-center text-base font-medium text-[#0d1b3e]">
+              {t("aiAct.structure.wrap")}
+            </p>
+          </div>
+        </section>
+
+        {/* Scope — define what counts as high-risk before anything else */}
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">

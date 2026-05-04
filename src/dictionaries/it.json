@@ -1783,10 +1783,10 @@
   },
   "aiAct": {
     "hero": {
-      "badge": "EU AI Act — Articoli 16 e 26",
+      "badge": "For European AI buyers",
       "title": "Se distribuisce IA in Europa,",
       "titleHighlight": "i Suoi fornitori fanno parte del Suo dossier di conformità.",
-      "subtitle": "Il 2 agosto 2026 si applicheranno gli obblighi per i sistemi ad alto rischio dell'EU AI Act. Gli operatori (Articolo 26) non possono adempiere ai propri obblighi senza le evidenze dei fornitori (Articolo 16). VendorScope rende tali evidenze rintracciabili, basate su fonti e datate — affinché il Suo dossier di audit regga.",
+      "subtitle": "On 2 August 2026, the AI Act's high-risk obligations apply. Buyers cannot meet their obligations without evidence from their AI vendors. VendorScope makes that evidence findable, sourced, and dated — so your audit file holds together.",
       "deadlineLabel": "Applicazione degli obblighi per l'alto rischio",
       "deadlineDate": "2 agosto 2026",
       "ctaPrimary": "Esplora i fornitori valutati sull'AI Act",
@@ -1962,6 +1962,23 @@
       "carveOut4": "Svolge un compito preparatorio rispetto a una valutazione rilevante ai fini di una finalità di cui all'Allegato III.",
       "carveOutException": "Eccezione importante: la profilazione delle persone fisiche è sempre ad alto rischio se rientra nell'ambito dell'Allegato III. Nessuna deroga è applicabile.",
       "notInScope": "Se il suo sistema di IA non rientra in nessuno dei due percorsi, gli obblighi dell'Articolo 26 non si applicano. Possono comunque applicarsi gli obblighi di trasparenza più leggeri previsti dall'Articolo 50 (ad esempio, dichiarazione dei contenuti generati da IA, etichettatura dei deepfake, watermarking dei contenuti sintetici)."
+    },
+    "structure": {
+      "badge": "Your map of the AI Act",
+      "title": "What actually applies to you",
+      "subtitle": "The AI Act is one regulation, 13 chapters, 113 articles, 13 annexes. Most of it is procedural. For an enterprise buyer, only a handful of provisions actually shape your work — and they all reference each other.",
+      "art5Title": "Article 5 — Prohibited practices",
+      "art5Body": "Eight uses of AI banned outright since 2 February 2025: social scoring, manipulative AI, untargeted scraping for facial recognition databases, real-time remote biometric ID in public spaces (with narrow exceptions). If you're using one of these, stop.",
+      "art6Title": "Article 6 + Annex III — The high-risk line",
+      "art6Body": "How the regulation decides whether an AI system is high-risk. There are two paths in: embedded in a regulated product, or used in one of eight sensitive domains. We map both in the next section.",
+      "art16Title": "Article 16 — Provider obligations",
+      "art16Body": "What the company that built the AI system must produce: technical documentation, conformity assessment, CE marking, post-market monitoring, and more. Twelve obligations.",
+      "art26Title": "Article 26 — Deployer obligations (this is you)",
+      "art26Body": "What you, the buyer, must do when you operate a high-risk AI system in your business: human oversight, monitoring, log retention, DPIA, and more. Twelve obligations — most require evidence from the provider.",
+      "art50Title": "Article 50 — Transparency for everything else",
+      "art50Body": "Even AI systems that aren't high-risk have lighter rules: disclose when users are interacting with AI, label deepfakes, watermark AI-generated content.",
+      "annexNote": "Annexes I, III, IV — the lists referenced above: regulated products covered by Annex I, high-risk domains in Annex III, and required technical documentation under Annex IV.",
+      "wrap": "Five articles. That's the spine of enterprise AI compliance. The rest of this page maps each one to the evidence you need."
     }
   }
 }
