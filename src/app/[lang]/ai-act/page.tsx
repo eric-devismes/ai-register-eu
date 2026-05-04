@@ -495,7 +495,7 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Timeline */}
+        {/* Timeline — horizontal arrow on lg, stacked cards on mobile */}
         <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
@@ -505,26 +505,117 @@ export default async function AiActPage({
               <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
                 {t("aiAct.timeline.title")}
               </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.timeline.subtitle")}
+              </p>
             </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Desktop: horizontal arrow with TODAY caret */}
+            <div className="mt-20 hidden lg:block">
+              <div className="relative mx-auto max-w-5xl">
+                {/* Horizontal line: gray on the past side, fading to gold around the next deadline, then light beyond */}
+                <div className="absolute left-0 right-0 top-12 h-1 rounded-full bg-gradient-to-r from-gray-300 via-gray-300 to-[#ffc107]" />
+
+                {/* Arrowhead at right end */}
+                <div className="absolute -right-1 top-12 -translate-y-1/2">
+                  <div className="h-3 w-3 rotate-45 border-r-2 border-t-2 border-gray-300" />
+                </div>
+
+                {/* TODAY marker — positioned between milestone 2 (33%) and milestone 3 (66%); we put it at 55% to reflect actual chronology (we're closer to Aug 2026 than Aug 2025) */}
+                <div className="absolute top-0" style={{ left: "55%", transform: "translateX(-50%)" }}>
+                  <div className="flex flex-col items-center">
+                    <span className="rounded-full bg-[#003399] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-md">
+                      {t("aiAct.timeline.todayLabel")}
+                    </span>
+                    <div className="mt-1 h-0 w-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-[#003399]" aria-hidden />
+                  </div>
+                </div>
+
+                {/* Milestone nodes — 4 evenly distributed at 0%, 33%, 66%, 100% */}
+                <div className="relative grid grid-cols-4">
+                  {milestones.map((n) => {
+                    const isHighlight = n === 3;
+                    const isPast = n === 1 || n === 2;
+                    return (
+                      <div key={n} className="relative flex flex-col items-center">
+                        {/* Date label above the dot */}
+                        <p
+                          className={`mb-3 text-xs font-semibold uppercase tracking-wide ${
+                            isHighlight ? "text-[#0d1b3e]" : isPast ? "text-gray-500" : "text-gray-500"
+                          }`}
+                        >
+                          {t(`aiAct.timeline.milestone${n}Date`)}
+                        </p>
+                        {/* Dot on the line */}
+                        <div className="relative h-6 w-6">
+                          <div
+                            className={`absolute inset-0 rounded-full ${
+                              isHighlight
+                                ? "bg-[#ffc107] ring-4 ring-[#ffc107]/30 shadow-md"
+                                : isPast
+                                  ? "bg-gray-400"
+                                  : "bg-white border-2 border-gray-300"
+                            }`}
+                          />
+                          {isHighlight && (
+                            <span
+                              className="absolute -inset-2 animate-ping rounded-full bg-[#ffc107] opacity-30"
+                              aria-hidden
+                            />
+                          )}
+                        </div>
+                        {/* Title + body below the dot */}
+                        <div className="mt-4 px-3 text-center">
+                          <h3
+                            className={`text-sm font-bold leading-tight ${
+                              isHighlight ? "text-[#0d1b3e]" : "text-gray-700"
+                            }`}
+                          >
+                            {t(`aiAct.timeline.milestone${n}Title`)}
+                          </h3>
+                          <p className="mt-2 text-xs text-gray-600 leading-relaxed">
+                            {t(`aiAct.timeline.milestone${n}Body`)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: stacked vertical cards (preserves the highlight on milestone 3) */}
+            <div className="mt-12 space-y-4 lg:hidden">
               {milestones.map((n) => (
                 <div
                   key={n}
-                  className={`rounded-xl border bg-white p-5 ${
+                  className={`relative rounded-xl border bg-white p-5 ${
                     n === 3
                       ? "border-[#ffc107] ring-2 ring-[#ffc107]/40"
                       : "border-gray-200"
                   }`}
                 >
-                  <p
-                    className={`text-xs font-semibold uppercase tracking-wide ${
-                      n === 3 ? "text-[#ffc107]" : "text-[#003399]"
-                    }`}
-                  >
-                    {t(`aiAct.timeline.milestone${n}Date`)}
-                  </p>
-                  <h3 className="mt-2 text-sm font-semibold text-[#0d1b3e]">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                        n === 3
+                          ? "bg-[#ffc107] text-[#0d1b3e]"
+                          : n < 3
+                            ? "bg-gray-200 text-gray-600"
+                            : "bg-gray-100 text-gray-500"
+                      }`}
+                    >
+                      {n}
+                    </span>
+                    <p
+                      className={`text-xs font-semibold uppercase tracking-wide ${
+                        n === 3 ? "text-[#0d1b3e]" : "text-[#003399]"
+                      }`}
+                    >
+                      {t(`aiAct.timeline.milestone${n}Date`)}
+                    </p>
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-[#0d1b3e]">
                     {t(`aiAct.timeline.milestone${n}Title`)}
                   </h3>
                   <p className="mt-2 text-xs text-gray-600 leading-relaxed">
