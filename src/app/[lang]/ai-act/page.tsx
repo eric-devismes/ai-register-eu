@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AIActScopeChecker from "@/components/aiact/AIActScopeChecker";
 import { getPageMetadata, getDictionary, type Locale } from "@/lib/i18n";
 
 export async function generateMetadata({
@@ -20,6 +21,7 @@ const milestones = [1, 2, 3, 4] as const;
 const nextSteps = [1, 2, 3] as const;
 const annex3Categories = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 const carveOuts = [1, 2, 3, 4] as const;
+const structureArticles = ["art5", "art6", "art16", "art26", "art50"] as const;
 
 export default async function AiActPage({
   params,
@@ -85,8 +87,52 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Scope — define what counts as high-risk before anything else */}
+        {/* Structure — quick map of the AI Act, introduces the articles */}
         <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
+                {t("aiAct.structure.badge")}
+              </p>
+              <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
+                {t("aiAct.structure.title")}
+              </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.structure.subtitle")}
+              </p>
+            </div>
+
+            <div className="mt-12 mx-auto max-w-4xl space-y-3">
+              {structureArticles.map((art) => (
+                <div
+                  key={art}
+                  className={`rounded-xl border p-5 ${
+                    art === "art26"
+                      ? "border-[#ffc107] bg-[#fffaeb] ring-1 ring-[#ffc107]/40"
+                      : "border-gray-200 bg-white"
+                  }`}
+                >
+                  <h3 className="text-base font-semibold text-[#0d1b3e]">
+                    {t(`aiAct.structure.${art}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t(`aiAct.structure.${art}Body`)}
+                  </p>
+                </div>
+              ))}
+              <p className="pt-2 text-sm italic text-gray-500">
+                {t("aiAct.structure.annexNote")}
+              </p>
+            </div>
+
+            <p className="mx-auto mt-10 max-w-3xl text-center text-base font-medium text-[#0d1b3e]">
+              {t("aiAct.structure.wrap")}
+            </p>
+          </div>
+        </section>
+
+        {/* Scope — 2-column IN vs OUT comparison */}
+        <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold text-[#003399] tracking-wide uppercase">
@@ -100,62 +146,119 @@ export default async function AiActPage({
               </p>
             </div>
 
-            {/* Two paths */}
+            {/* IN | OUT side-by-side */}
             <div className="mt-12 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
-                  {t("aiAct.scope.path1Label")}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
-                  {t("aiAct.scope.path1Title")}
-                </h3>
+              {/* IN scope column */}
+              <div className="rounded-xl border-2 border-[#ffc107] bg-[#fffaeb] p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ffc107] text-lg font-bold text-[#0d1b3e]">
+                    ✓
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[#0d1b3e]">
+                      {t("aiAct.scope.inLabel")}
+                    </p>
+                    <h3 className="text-lg font-bold text-[#0d1b3e]">
+                      {t("aiAct.scope.inSubtitle")}
+                    </h3>
+                  </div>
+                </div>
                 <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                  {t("aiAct.scope.path1Body")}
+                  {t("aiAct.scope.inDesc")}
                 </p>
-                <p className="mt-3 text-sm italic text-gray-500">
-                  {t("aiAct.scope.path1Example")}
-                </p>
-                <p className="mt-3 text-xs font-medium text-[#003399]">
-                  {t("aiAct.scope.path1Deadline")}
-                </p>
+
+                {/* Path 1 */}
+                <div className="mt-5 rounded-lg border border-[#ffc107]/40 bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                    {t("aiAct.scope.path1Label")}
+                  </p>
+                  <h4 className="mt-1 text-base font-semibold text-[#0d1b3e]">
+                    {t("aiAct.scope.path1Title")}
+                  </h4>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t("aiAct.scope.path1Body")}
+                  </p>
+                  <p className="mt-2 text-xs italic text-gray-500">
+                    {t("aiAct.scope.path1Example")}
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-[#003399]">
+                    {t("aiAct.scope.path1Deadline")}
+                  </p>
+                </div>
+
+                {/* Path 2 */}
+                <div className="mt-4 rounded-lg border border-[#ffc107]/40 bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
+                    {t("aiAct.scope.path2Label")}
+                  </p>
+                  <h4 className="mt-1 text-base font-semibold text-[#0d1b3e]">
+                    {t("aiAct.scope.path2Title")}
+                  </h4>
+                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                    {t("aiAct.scope.path2Body")}
+                  </p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                    {t("aiAct.scope.path2Intro")}
+                  </p>
+                  <ol className="mt-2 space-y-1.5 text-xs text-gray-700">
+                    {annex3Categories.map((n) => (
+                      <li key={n} className="flex gap-2">
+                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-[9px] font-semibold text-[#003399]">
+                          {n}
+                        </span>
+                        <span>
+                          <span className="font-semibold text-[#0d1b3e]">
+                            {t(`aiAct.scope.annex3Cat${n}`)}
+                          </span>
+                          <span className="text-gray-600">
+                            {" — "}
+                            {t(`aiAct.scope.annex3Cat${n}Desc`)}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
 
-              <div className="rounded-xl border border-[#003399]/15 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#003399]">
-                  {t("aiAct.scope.path2Label")}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-[#0d1b3e]">
-                  {t("aiAct.scope.path2Title")}
-                </h3>
+              {/* OUT of scope column */}
+              <div className="rounded-xl border-2 border-gray-300 bg-white p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-lg font-bold text-gray-600">
+                    ✕
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gray-600">
+                      {t("aiAct.scope.outLabel")}
+                    </p>
+                    <h3 className="text-lg font-bold text-[#0d1b3e]">
+                      {t("aiAct.scope.outSubtitle")}
+                    </h3>
+                  </div>
+                </div>
                 <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                  {t("aiAct.scope.path2Body")}
+                  {t("aiAct.scope.outDesc")}
                 </p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  {t("aiAct.scope.path2Intro")}
+                <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  {t("aiAct.scope.outIntro")}
                 </p>
-                <ol className="mt-2 space-y-2 text-sm text-gray-700">
-                  {annex3Categories.map((n) => (
-                    <li key={n} className="flex gap-3">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#003399]/10 text-[10px] font-semibold text-[#003399]">
-                        {n}
-                      </span>
-                      <span>
-                        <span className="font-semibold text-[#0d1b3e]">
-                          {t(`aiAct.scope.annex3Cat${n}`)}
-                        </span>
-                        <span className="text-gray-600">
-                          {" — "}
-                          {t(`aiAct.scope.annex3Cat${n}Desc`)}
-                        </span>
-                      </span>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+                    <li key={n} className="flex gap-2">
+                      <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" aria-hidden />
+                      <span>{t(`aiAct.scope.outEx${n}`)}</span>
                     </li>
                   ))}
-                </ol>
+                </ul>
+                <div className="mt-5 rounded-md border border-orange-200 bg-orange-50 p-3 text-sm text-[#0d1b3e]">
+                  <span className="font-semibold">Caveat: </span>
+                  {t("aiAct.scope.outCaveat")}
+                </div>
               </div>
             </div>
 
             {/* Carve-out */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6">
               <h3 className="text-base font-semibold text-[#0d1b3e]">
                 {t("aiAct.scope.carveOutTitle")}
               </h3>
@@ -176,10 +279,24 @@ export default async function AiActPage({
               </p>
             </div>
 
-            {/* Not in scope */}
-            <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-gray-600 leading-relaxed">
-              {t("aiAct.scope.notInScope")}
-            </p>
+            {/* Use case checker */}
+            <div className="mt-12">
+              <AIActScopeChecker
+                lang={lang}
+                badge={t("aiAct.scope.checkerBadge")}
+                title={t("aiAct.scope.checkerTitle")}
+                desc={t("aiAct.scope.checkerDesc")}
+                placeholder={t("aiAct.scope.checkerPlaceholder")}
+                submitLabel={t("aiAct.scope.checkerSubmit")}
+                workingLabel={t("aiAct.scope.checkerWorking")}
+                errorLabel={t("aiAct.scope.checkerError")}
+                resultIn={t("aiAct.scope.checkerResultIn")}
+                resultOut={t("aiAct.scope.checkerResultOut")}
+                resultBorderline={t("aiAct.scope.checkerResultBorderline")}
+                citationsLabel={t("aiAct.scope.checkerCitations")}
+                disclaimer={t("aiAct.scope.checkerNote")}
+              />
+            </div>
           </div>
         </section>
 
@@ -378,7 +495,7 @@ export default async function AiActPage({
           </div>
         </section>
 
-        {/* Timeline */}
+        {/* Timeline — horizontal arrow on lg, stacked cards on mobile */}
         <section className="py-16 lg:py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
@@ -388,26 +505,117 @@ export default async function AiActPage({
               <h2 className="mt-3 text-2xl font-bold text-[#0d1b3e] sm:text-3xl">
                 {t("aiAct.timeline.title")}
               </h2>
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                {t("aiAct.timeline.subtitle")}
+              </p>
             </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Desktop: horizontal arrow with TODAY caret */}
+            <div className="mt-20 hidden lg:block">
+              <div className="relative mx-auto max-w-5xl">
+                {/* Horizontal line: gray on the past side, fading to gold around the next deadline, then light beyond */}
+                <div className="absolute left-0 right-0 top-12 h-1 rounded-full bg-gradient-to-r from-gray-300 via-gray-300 to-[#ffc107]" />
+
+                {/* Arrowhead at right end */}
+                <div className="absolute -right-1 top-12 -translate-y-1/2">
+                  <div className="h-3 w-3 rotate-45 border-r-2 border-t-2 border-gray-300" />
+                </div>
+
+                {/* TODAY marker — positioned between milestone 2 (33%) and milestone 3 (66%); we put it at 55% to reflect actual chronology (we're closer to Aug 2026 than Aug 2025) */}
+                <div className="absolute top-0" style={{ left: "55%", transform: "translateX(-50%)" }}>
+                  <div className="flex flex-col items-center">
+                    <span className="rounded-full bg-[#003399] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-md">
+                      {t("aiAct.timeline.todayLabel")}
+                    </span>
+                    <div className="mt-1 h-0 w-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-[#003399]" aria-hidden />
+                  </div>
+                </div>
+
+                {/* Milestone nodes — 4 evenly distributed at 0%, 33%, 66%, 100% */}
+                <div className="relative grid grid-cols-4">
+                  {milestones.map((n) => {
+                    const isHighlight = n === 3;
+                    const isPast = n === 1 || n === 2;
+                    return (
+                      <div key={n} className="relative flex flex-col items-center">
+                        {/* Date label above the dot */}
+                        <p
+                          className={`mb-3 text-xs font-semibold uppercase tracking-wide ${
+                            isHighlight ? "text-[#0d1b3e]" : isPast ? "text-gray-500" : "text-gray-500"
+                          }`}
+                        >
+                          {t(`aiAct.timeline.milestone${n}Date`)}
+                        </p>
+                        {/* Dot on the line */}
+                        <div className="relative h-6 w-6">
+                          <div
+                            className={`absolute inset-0 rounded-full ${
+                              isHighlight
+                                ? "bg-[#ffc107] ring-4 ring-[#ffc107]/30 shadow-md"
+                                : isPast
+                                  ? "bg-gray-400"
+                                  : "bg-white border-2 border-gray-300"
+                            }`}
+                          />
+                          {isHighlight && (
+                            <span
+                              className="absolute -inset-2 animate-ping rounded-full bg-[#ffc107] opacity-30"
+                              aria-hidden
+                            />
+                          )}
+                        </div>
+                        {/* Title + body below the dot */}
+                        <div className="mt-4 px-3 text-center">
+                          <h3
+                            className={`text-sm font-bold leading-tight ${
+                              isHighlight ? "text-[#0d1b3e]" : "text-gray-700"
+                            }`}
+                          >
+                            {t(`aiAct.timeline.milestone${n}Title`)}
+                          </h3>
+                          <p className="mt-2 text-xs text-gray-600 leading-relaxed">
+                            {t(`aiAct.timeline.milestone${n}Body`)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: stacked vertical cards (preserves the highlight on milestone 3) */}
+            <div className="mt-12 space-y-4 lg:hidden">
               {milestones.map((n) => (
                 <div
                   key={n}
-                  className={`rounded-xl border bg-white p-5 ${
+                  className={`relative rounded-xl border bg-white p-5 ${
                     n === 3
                       ? "border-[#ffc107] ring-2 ring-[#ffc107]/40"
                       : "border-gray-200"
                   }`}
                 >
-                  <p
-                    className={`text-xs font-semibold uppercase tracking-wide ${
-                      n === 3 ? "text-[#ffc107]" : "text-[#003399]"
-                    }`}
-                  >
-                    {t(`aiAct.timeline.milestone${n}Date`)}
-                  </p>
-                  <h3 className="mt-2 text-sm font-semibold text-[#0d1b3e]">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                        n === 3
+                          ? "bg-[#ffc107] text-[#0d1b3e]"
+                          : n < 3
+                            ? "bg-gray-200 text-gray-600"
+                            : "bg-gray-100 text-gray-500"
+                      }`}
+                    >
+                      {n}
+                    </span>
+                    <p
+                      className={`text-xs font-semibold uppercase tracking-wide ${
+                        n === 3 ? "text-[#0d1b3e]" : "text-[#003399]"
+                      }`}
+                    >
+                      {t(`aiAct.timeline.milestone${n}Date`)}
+                    </p>
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-[#0d1b3e]">
                     {t(`aiAct.timeline.milestone${n}Title`)}
                   </h3>
                   <p className="mt-2 text-xs text-gray-600 leading-relaxed">
